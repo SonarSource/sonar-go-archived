@@ -1,0 +1,16 @@
+{
+  "kinds": ["COMPILATION_UNIT"],
+  "children": [
+    {
+      "kinds": ["CLASS"],
+      "children": [
+        {
+          "kinds": ["METHOD"]
+        },
+        {
+          "kinds": ["METHOD"]
+        }
+      ]
+    }
+  ]
+}

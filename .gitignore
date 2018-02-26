@@ -18,8 +18,13 @@ Desktop.ini
 *.iml
 *.ipr
 .idea/
+out/
 
 # --- SonarQube
 .sonar/
 .sonarlint/
 .scannerwork/
+
+# --- Gradle
+.gradle/
+build/
