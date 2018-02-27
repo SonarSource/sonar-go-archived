@@ -1,0 +1,57 @@
+package main
+
+import (
+	"testing"
+	"reflect"
+	"go/ast"
+)
+
+func Test_mapFile(t *testing.T) {
+	uast := getSampleUast()
+	if expected := []Kind{COMPILATION_UNIT}; !reflect.DeepEqual(expected, uast.Kinds) {
+		t.Fatalf("got %v as Kinds; expected %v", uast.Kinds, expected)
+	}
+
+	if expected := 1; expected != len(uast.Children) {
+		t.Fatalf("got %v as number of Children; expected %v", len(uast.Children), expected)
+	}
+
+	// TODO validate Start and End too
+	if expected := 9; expected != uast.Position.Offset {
+		t.Fatalf("got %v as Position.Offset; expected %v", uast.Position.Offset, expected)
+	}
+
+	if expected := "main"; expected != uast.Value {
+		t.Fatalf("got %v as Value; expected %v", uast.Value, expected)
+	}
+
+	if expected := "*ast.File"; expected != uast.NativeNode {
+		t.Fatalf("got %v as NativeValue; expected %v", uast.NativeNode, expected)
+	}
+}
+
+func Test_mapFuncDecl(t *testing.T) {
+	funcDecl := getSampleAst().Decls[1].(*ast.FuncDecl)
+	uast := mapFuncDecl(funcDecl)
+
+	if expected := []Kind{FUNCTION}; !reflect.DeepEqual(expected, uast.Kinds) {
+		t.Fatalf("got %v as Kinds; expected %v", uast.Kinds, expected)
+	}
+
+	if expected := 2; expected != len(uast.Children) {
+		t.Fatalf("got %v as number of Children; expected %v", len(uast.Children), expected)
+	}
+
+	// TODO validate Start and End too
+	if expected := 32; expected != uast.Position.Offset {
+		t.Fatalf("got %v as Position.Offset; expected %v", uast.Position.Offset, expected)
+	}
+
+	if expected := "main"; expected != uast.Value {
+		t.Fatalf("got %v as Value; expected %v", uast.Value, expected)
+	}
+
+	if expected := "*ast.FuncDecl"; expected != uast.NativeNode {
+		t.Fatalf("got %v as NativeValue; expected %v", uast.NativeNode, expected)
+	}
+}
