@@ -15,7 +15,6 @@ public class Engine {
 
   private static final List<CommonRule> ALL_RULES = Arrays.asList(new NoIdenticalFunctionsRule());
   private final List<CommonRule> rules;
-  private final EngineContext engineContext;
 
   public static void main(String[] args) {
     try {
@@ -31,11 +30,11 @@ public class Engine {
 
   public Engine(List<CommonRule> rules) {
     this.rules = rules;
-    this.engineContext = new EngineContext();
-    rules.forEach(rule -> rule.setContext(engineContext));
   }
 
   public List<Issue> scan(UastNode uast) {
+    EngineContext engineContext = new EngineContext();
+    rules.forEach(rule -> rule.setContext(engineContext));
     visit(uast);
     return engineContext.getIssues();
   }

@@ -3,7 +3,7 @@ package org.sonar.uast;
 import com.google.gson.Gson;
 import java.io.Reader;
 
-public class Uast {
+public final class Uast {
 
   private static final Gson GSON = new Gson();
 
