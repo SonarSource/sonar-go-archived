@@ -32,9 +32,7 @@ public class Engine {
   public Engine(List<CommonRule> rules) {
     this.rules = rules;
     this.engineContext = new EngineContext();
-    for (CommonRule rule : rules) {
-      rule.setContext(engineContext);
-    }
+    rules.forEach(rule -> rule.setContext(engineContext));
   }
 
   public List<Issue> scan(UastNode uast) {
