@@ -19,6 +19,7 @@ const (
 	COMMENT          Kind = "COMMENT"
 	ASSIGNMENT       Kind = "ASSIGNMENT"
 	STATEMENT        Kind = "STATEMENT"
+	TOKEN            Kind = "TOKEN"
 )
 
 type Position struct {
@@ -108,7 +109,23 @@ func mapStmt(astNode ast.Stmt) (*Node, error) {
 }
 
 func mapAssignStmt(stmt *ast.AssignStmt) *Node {
-	return nil
+	return &Node{
+		Kinds:      []Kind{ASSIGNMENT},
+		Children:   []*Node{mapExprList(stmt.Lhs), mapToken(stmt.Tok, stmt.TokPos), mapExprList(stmt.Rhs)},
+		NativeNode: nativeValue(stmt),
+	}
+}
+
+func mapExprList(exprList []ast.Expr) *Node {
+	return &Node{}
+}
+
+func mapToken(tok token.Token, pos token.Pos) *Node {
+	return &Node{
+		Kinds:    []Kind{TOKEN},
+		Position: mapPos(pos),
+		Value:    nativeValue(tok),
+	}
 }
 
 func mapExprStmt(stmt *ast.ExprStmt) *Node {
