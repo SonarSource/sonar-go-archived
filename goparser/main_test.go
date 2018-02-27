@@ -16,7 +16,10 @@ func Test_mapFile(t *testing.T) {
 		t.Fatalf("got %v as number of Children; expected %v", len(uast.Children), expected)
 	}
 
-	// TODO validate Start and End too
+	if expected := []Kind{DECL_LIST}; !reflect.DeepEqual(expected, uast.Children[0].Kinds) {
+		t.Fatalf("got %v as kinds of first child; expected %v", uast.Children[0].Kinds, expected)
+	}
+
 	if expected := 9; expected != uast.Position.Offset {
 		t.Fatalf("got %v as Position.Offset; expected %v", uast.Position.Offset, expected)
 	}

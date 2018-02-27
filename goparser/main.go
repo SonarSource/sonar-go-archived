@@ -14,6 +14,7 @@ type Kind string
 const (
 	COMPILATION_UNIT Kind = "COMPILATION_UNIT"
 	FUNCTION         Kind = "FUNCTION"
+	DECL_LIST        Kind = "DECL_LIST"
 	BODY             Kind = "BODY"
 	ASSIGNMENT       Kind = "ASSIGNMENT"
 	STATEMENT        Kind = "STATEMENT"
@@ -48,14 +49,14 @@ func (e unknownElement) Error() string {
 func mapFile(file *ast.File) *Node {
 	return &Node{
 		Kinds:      []Kind{COMPILATION_UNIT},
-		Children:   mapDeclList(file.Decls),
+		Children:   []*Node{mapDeclList(file.Decls)},
 		Position:   mapPos(file.Name.NamePos),
 		Value:      file.Name.String(),
 		NativeNode: nativeValue(file),
 	}
 }
 
-func mapDeclList(decls []ast.Decl) []*Node {
+func mapDeclList(decls []ast.Decl) *Node {
 	uastNodeList := []*Node{}
 
 	for _, astNode := range decls {
@@ -64,7 +65,11 @@ func mapDeclList(decls []ast.Decl) []*Node {
 		}
 	}
 
-	return uastNodeList
+	return &Node{
+		Kinds:      []Kind{DECL_LIST},
+		Children:   uastNodeList,
+		NativeNode: nativeValue(decls),
+	}
 }
 
 func mapDecl(decl ast.Decl) (*Node, error) {
@@ -215,7 +220,8 @@ func getSampleUast() *Node {
 
 func main() {
 	astFile := getSampleAst()
-	fmt.Println(render.Render(astFile))
+	_ = render.Render(astFile)
+	//fmt.Println(render.Render(astFile))
 
 	uast := mapFile(astFile)
 	printJson(uast)
