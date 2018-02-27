@@ -178,9 +178,10 @@ func mapBasicLit(lit *ast.BasicLit) *Node {
 
 func mapToken(tok token.Token, pos token.Pos) *Node {
 	return &Node{
-		Kinds:    []Kind{TOKEN},
-		Position: mapPos(pos),
-		Value:    nativeValue(tok),
+		Kinds:      []Kind{TOKEN},
+		Position:   mapPos(pos),
+		Value:      tok.String(),
+		NativeNode: nativeValue(tok),
 	}
 }
 
