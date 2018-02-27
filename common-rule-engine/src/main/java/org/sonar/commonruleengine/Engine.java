@@ -7,13 +7,13 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import org.sonar.commonruleengine.rules.CommonRule;
-import org.sonar.commonruleengine.rules.NoIdenticalMethodsRule;
+import org.sonar.commonruleengine.rules.NoIdenticalFunctionsRule;
 import org.sonar.uast.Uast;
 import org.sonar.uast.UastNode;
 
 public class Engine {
 
-  private static final List<CommonRule> ALL_RULES = Arrays.asList(new NoIdenticalMethodsRule());
+  private static final List<CommonRule> ALL_RULES = Arrays.asList(new NoIdenticalFunctionsRule());
   private final List<CommonRule> rules;
   private final EngineContext engineContext;
 

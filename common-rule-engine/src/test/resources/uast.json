@@ -5,10 +5,10 @@
       "kinds": ["CLASS"],
       "children": [
         {
-          "kinds": ["METHOD"]
+          "kinds": ["FUNCTION"]
         },
         {
-          "kinds": ["METHOD"]
+          "kinds": ["FUNCTION"]
         }
       ]
     }

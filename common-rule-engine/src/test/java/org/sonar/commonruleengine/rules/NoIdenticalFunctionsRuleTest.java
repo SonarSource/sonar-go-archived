@@ -11,12 +11,12 @@ import org.sonar.uast.UastNode;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class NoIdenticalMethodsRuleTest {
+class NoIdenticalFunctionsRuleTest {
 
   @Test
   void test() {
     UastNode uast = Uast.from(new InputStreamReader(getClass().getResourceAsStream("/uast.json")));
-    Engine engine = new Engine(Collections.singletonList(new NoIdenticalMethodsRule()));
+    Engine engine = new Engine(Collections.singletonList(new NoIdenticalFunctionsRule()));
     List<Issue> issues = engine.scan(uast);
     assertEquals(2, issues.size());
     assertEquals(issues.get(0).getMessage(), "Issue here");
