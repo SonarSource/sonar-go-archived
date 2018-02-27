@@ -107,9 +107,13 @@ func Test_mapExprList(t *testing.T) {
 	}
 }
 
-func Test_mapExpr(t *testing.T) {
+func Test_mapExpr_Ident(t *testing.T) {
 	blockStmt := getSampleAst().Decls[1].(*ast.FuncDecl).Body
-	uast, _ := mapExpr(blockStmt.List[0].(*ast.AssignStmt).Lhs[0])
+	uast, err := mapExpr(blockStmt.List[0].(*ast.AssignStmt).Lhs[0])
+
+	if err != nil {
+		t.Fatalf("got nil; expected an identifier")
+	}
 
 	if expected := []Kind{IDENTIFIER}; !reflect.DeepEqual(expected, uast.Kinds) {
 		t.Fatalf("got %v as Kinds; expected %v", uast.Kinds, expected)
@@ -128,6 +132,35 @@ func Test_mapExpr(t *testing.T) {
 	}
 
 	if expected := "*ast.Ident"; expected != uast.NativeNode {
+		t.Fatalf("got %v as NativeValue; expected %v", uast.NativeNode, expected)
+	}
+}
+
+func Test_mapExpr_BasicLit(t *testing.T) {
+	blockStmt := getSampleAst().Decls[1].(*ast.FuncDecl).Body
+	uast, err := mapExpr(blockStmt.List[0].(*ast.AssignStmt).Rhs[0])
+
+	if err != nil {
+		t.Fatalf("got nil; expected a literal")
+	}
+
+	if expected := []Kind{LITERAL}; !reflect.DeepEqual(expected, uast.Kinds) {
+		t.Fatalf("got %v as Kinds; expected %v", uast.Kinds, expected)
+	}
+
+	if expected := 0; expected != len(uast.Children) {
+		t.Fatalf("got %v as number of Children; expected %v", len(uast.Children), expected)
+	}
+
+	if expected := 77; expected != uast.Position.Offset {
+		t.Fatalf("got %v as Position.Offset; expected %v", uast.Position.Offset, expected)
+	}
+
+	if expected := "\"hello, world\\n\""; expected != uast.Value {
+		t.Fatalf("got %v as Value; expected %v", uast.Value, expected)
+	}
+
+	if expected := "*ast.BasicLit"; expected != uast.NativeNode {
 		t.Fatalf("got %v as NativeValue; expected %v", uast.NativeNode, expected)
 	}
 }

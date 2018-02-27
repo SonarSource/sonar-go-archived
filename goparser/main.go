@@ -13,14 +13,13 @@ type Kind string
 
 const (
 	COMPILATION_UNIT Kind = "COMPILATION_UNIT"
-	CLASS            Kind = "CLASS"
 	FUNCTION         Kind = "FUNCTION"
 	BODY             Kind = "BODY"
-	COMMENT          Kind = "COMMENT"
 	ASSIGNMENT       Kind = "ASSIGNMENT"
 	STATEMENT        Kind = "STATEMENT"
 	TOKEN            Kind = "TOKEN"
 	IDENTIFIER       Kind = "IDENTIFIER"
+	LITERAL          Kind = "LITERAL"
 	EXPR_LIST        Kind = "EXPR_LIST"
 )
 
@@ -138,6 +137,8 @@ func mapExpr(astNode ast.Expr) (*Node, error) {
 	switch v := astNode.(type) {
 	case *ast.Ident:
 		return mapIdent(v), nil
+	case *ast.BasicLit:
+		return mapBasicLit(v), nil
 	default:
 		return nil, unknownElement{astNode}
 	}
@@ -149,6 +150,15 @@ func mapIdent(ident *ast.Ident) *Node {
 		Position:   mapPos(ident.NamePos),
 		Value:      ident.Name,
 		NativeNode: nativeValue(ident),
+	}
+}
+
+func mapBasicLit(lit *ast.BasicLit) *Node {
+	return &Node{
+		Kinds:      []Kind{LITERAL},
+		Position:   mapPos(lit.ValuePos),
+		Value:      lit.Value,
+		NativeNode: nativeValue(lit),
 	}
 }
 
