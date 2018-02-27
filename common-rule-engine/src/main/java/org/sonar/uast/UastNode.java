@@ -5,17 +5,22 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class UastNode {
+public final class UastNode {
 
   public Set<Kind> kinds = new HashSet<>();
   public List<UastNode> children = new ArrayList<>();
-  public Position position;
-  public String value;
+  public Token token;
   public String nativeNode;
 
-  public static class Position {
+  public static class Token {
+    public String value;
     public int line;
     public int column;
+
+    @Override
+    public String toString() {
+      return "[" + line + ":" + column + " " + value + "]";
+    }
   }
 
   public enum Kind {
@@ -24,4 +29,11 @@ public class UastNode {
     FUNCTION
   }
 
+  @Override
+  public String toString() {
+    if (token != null) {
+      return token.toString();
+    }
+    return kinds.toString();
+  }
 }
