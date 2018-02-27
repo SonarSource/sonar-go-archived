@@ -20,6 +20,12 @@ Desktop.ini
 .idea/
 out/
 
+# ---- Eclipse
+.project
+.settings/
+.classpath
+bin/
+
 # --- SonarQube
 .sonar/
 .sonarlint/
