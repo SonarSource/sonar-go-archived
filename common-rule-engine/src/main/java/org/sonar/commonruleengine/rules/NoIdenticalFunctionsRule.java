@@ -9,7 +9,7 @@ public class NoIdenticalFunctionsRule extends CommonRule {
 
   @Override
   public void visitNode(UastNode node) {
-    if (node.kinds.contains("FUNCTION")) {
+    if (node.kinds.contains(UastNode.Kind.FUNCTION)) {
       // dummy implementation which reports every method
       reportIssue(node, "Issue here");
     }

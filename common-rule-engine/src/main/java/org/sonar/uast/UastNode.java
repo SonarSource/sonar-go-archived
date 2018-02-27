@@ -7,7 +7,7 @@ import java.util.Set;
 
 public class UastNode {
 
-  public Set<String> kinds = new HashSet<>();
+  public Set<Kind> kinds = new HashSet<>();
   public List<UastNode> children = new ArrayList<>();
   public Position position;
   public String value;
@@ -18,5 +18,10 @@ public class UastNode {
     public int column;
   }
 
+  public enum Kind {
+    COMPILATION_UNIT,
+    CLASS,
+    FUNCTION
+  }
 
 }
