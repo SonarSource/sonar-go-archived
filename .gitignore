@@ -1,0 +1,30 @@
+# ---- Mac OS X
+.DS_Store?
+Icon?
+# Thumbnails
+._*
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+# ---- Windows
+# Windows image file caches
+Thumbs.db
+# Folder config file
+Desktop.ini
+
+# ---- IntelliJ IDEA
+*.iws
+*.iml
+*.ipr
+.idea/
+out/
+
+# --- SonarQube
+.sonar/
+.sonarlint/
+.scannerwork/
+
+# --- Gradle
+.gradle/
+build/
