@@ -41,11 +41,10 @@ func Test_mapFuncDecl(t *testing.T) {
 		t.Fatalf("got %v as Kinds; expected %v", uast.Kinds, expected)
 	}
 
-	if expected := 2; expected != len(uast.Children) {
+	if expected := 1; expected != len(uast.Children) {
 		t.Fatalf("got %v as number of Children; expected %v", len(uast.Children), expected)
 	}
 
-	// TODO validate Start and End too
 	if expected := 32; expected != uast.Position.Offset {
 		t.Fatalf("got %v as Position.Offset; expected %v", uast.Position.Offset, expected)
 	}
@@ -71,7 +70,6 @@ func Test_mapAssignStmt(t *testing.T) {
 		t.Fatalf("got %v as number of Children; expected %v", len(uast.Children), expected)
 	}
 
-	// TODO validate Start and End
 	if expected := 0; expected != uast.Position.Offset {
 		t.Fatalf("got %v as Position.Offset; expected %v", uast.Position.Offset, expected)
 	}

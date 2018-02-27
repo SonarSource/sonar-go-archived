@@ -14,6 +14,7 @@ type Kind string
 const (
 	COMPILATION_UNIT Kind = "COMPILATION_UNIT"
 	FUNCTION         Kind = "FUNCTION"
+	FUNC_DECL_BODY   Kind = "FUNC_DECL_BODY"
 	DECL_LIST        Kind = "DECL_LIST"
 	BODY             Kind = "BODY"
 	ASSIGNMENT       Kind = "ASSIGNMENT"
@@ -84,10 +85,18 @@ func mapDecl(decl ast.Decl) (*Node, error) {
 func mapFuncDecl(funcDecl *ast.FuncDecl) *Node {
 	return &Node{
 		Kinds:      []Kind{FUNCTION},
-		Children:   mapBlockStmt(funcDecl.Body),
+		Children:   []*Node{mapFuncDeclBody(funcDecl.Body)},
 		Position:   mapPos(funcDecl.Name.NamePos),
 		Value:      funcDecl.Name.String(),
 		NativeNode: nativeValue(funcDecl),
+	}
+}
+
+func mapFuncDeclBody(blockStmt *ast.BlockStmt) *Node {
+	return &Node{
+		Kinds:      []Kind{FUNC_DECL_BODY},
+		Children:   mapBlockStmt(blockStmt),
+		NativeNode: nativeValue(blockStmt),
 	}
 }
 
