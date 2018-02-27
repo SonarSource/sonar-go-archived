@@ -106,3 +106,28 @@ func Test_mapExprList(t *testing.T) {
 		t.Fatalf("got %v as NativeValue; expected %v", uast.NativeNode, expected)
 	}
 }
+
+func Test_mapExpr(t *testing.T) {
+	blockStmt := getSampleAst().Decls[1].(*ast.FuncDecl).Body
+	uast, _ := mapExpr(blockStmt.List[0].(*ast.AssignStmt).Lhs[0])
+
+	if expected := []Kind{IDENTIFIER}; !reflect.DeepEqual(expected, uast.Kinds) {
+		t.Fatalf("got %v as Kinds; expected %v", uast.Kinds, expected)
+	}
+
+	if expected := 0; expected != len(uast.Children) {
+		t.Fatalf("got %v as number of Children; expected %v", len(uast.Children), expected)
+	}
+
+	if expected := 70; expected != uast.Position.Offset {
+		t.Fatalf("got %v as Position.Offset; expected %v", uast.Position.Offset, expected)
+	}
+
+	if expected := "msg"; expected != uast.Value {
+		t.Fatalf("got %v as Value; expected %v", uast.Value, expected)
+	}
+
+	if expected := "*ast.Ident"; expected != uast.NativeNode {
+		t.Fatalf("got %v as NativeValue; expected %v", uast.NativeNode, expected)
+	}
+}

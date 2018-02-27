@@ -128,14 +128,28 @@ func mapExprList(exprList []ast.Expr) *Node {
 	}
 
 	return &Node{
-		Kinds: []Kind{EXPR_LIST},
-		Children: uastNodeList,
+		Kinds:      []Kind{EXPR_LIST},
+		Children:   uastNodeList,
 		NativeNode: nativeValue(exprList),
 	}
 }
 
-func mapExpr(expr ast.Expr) (*Node, error) {
-	return nil, nil
+func mapExpr(astNode ast.Expr) (*Node, error) {
+	switch v := astNode.(type) {
+	case *ast.Ident:
+		return mapIdent(v), nil
+	default:
+		return nil, unknownElement{astNode}
+	}
+}
+
+func mapIdent(ident *ast.Ident) *Node {
+	return &Node{
+		Kinds:      []Kind{IDENTIFIER},
+		Position:   mapPos(ident.NamePos),
+		Value:      ident.Name,
+		NativeNode: nativeValue(ident),
+	}
 }
 
 func mapToken(tok token.Token, pos token.Pos) *Node {
