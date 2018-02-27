@@ -24,17 +24,17 @@ const (
 )
 
 type Position struct {
-	//Start  int
-	//End    int
-	Offset int // TODO remove this
+	Start  int `json:"start"`
+	End    int `json:"end"`
+	offset int // TODO remove this
 }
 
 type Node struct {
-	Kinds      []Kind
-	Children   []*Node
-	Position   Position
-	Value      string
-	NativeNode string
+	Kinds      []Kind   `json:"kinds"`
+	Position   Position `json:"position"`
+	Value      string   `json:"value"`
+	NativeNode string   `json:"nativeNode"`
+	Children   []*Node  `json:"children,omitempty"`
 }
 
 type unknownElement struct {
@@ -188,7 +188,7 @@ func mapExprStmt(stmt *ast.ExprStmt) *Node {
 }
 
 func mapPos(pos token.Pos) Position {
-	return Position{Offset: int(pos)}
+	return Position{Start: 1, End: 1, offset: int(pos)}
 }
 
 func nativeValue(x interface{}) string {
