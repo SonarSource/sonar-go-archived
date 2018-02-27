@@ -10,3 +10,4 @@
 rootProject.name = 'sonar-go'
 
 include 'common-rule-engine'
+include 'uast-generator-java'
