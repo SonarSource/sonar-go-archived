@@ -16,9 +16,7 @@ const (
 	FUNCTION         Kind = "FUNCTION"
 	FUNC_DECL_BODY   Kind = "FUNC_DECL_BODY"
 	DECL_LIST        Kind = "DECL_LIST"
-	BODY             Kind = "BODY"
 	ASSIGNMENT       Kind = "ASSIGNMENT"
-	STATEMENT        Kind = "STATEMENT"
 	TOKEN            Kind = "TOKEN"
 	IDENTIFIER       Kind = "IDENTIFIER"
 	LITERAL          Kind = "LITERAL"
@@ -26,8 +24,8 @@ const (
 )
 
 type Position struct {
-	Start  int
-	End    int
+	//Start  int
+	//End    int
 	Offset int // TODO remove this
 }
 
