@@ -6,15 +6,19 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
-import org.sonar.commonruleengine.rules.CommonRule;
-import org.sonar.commonruleengine.rules.NoIdenticalFunctionsRule;
+import org.sonar.commonruleengine.checks.CommonCheck;
+import org.sonar.commonruleengine.checks.NoIdenticalFunctionsCheck;
+import org.sonar.commonruleengine.checks.NoSelfAssignmentCheck;
 import org.sonar.uast.Uast;
 import org.sonar.uast.UastNode;
 
 public class Engine {
 
-  private static final List<CommonRule> ALL_RULES = Arrays.asList(new NoIdenticalFunctionsRule());
-  private final List<CommonRule> rules;
+  private static final List<CommonCheck> ALL_RULES = Arrays.asList(
+    new NoIdenticalFunctionsCheck(),
+    new NoSelfAssignmentCheck()
+  );
+  private final List<CommonCheck> rules;
 
   public static void main(String[] args) {
     try {
@@ -28,7 +32,7 @@ public class Engine {
     }
   }
 
-  public Engine(List<CommonRule> rules) {
+  public Engine(List<CommonCheck> rules) {
     this.rules = rules;
   }
 
@@ -40,7 +44,7 @@ public class Engine {
   }
 
   private void visit(UastNode uast) {
-    for (CommonRule rule : rules) {
+    for (CommonCheck rule : rules) {
       rule.visitNode(uast);
       for (UastNode child : uast.children) {
         visit(child);

@@ -1,12 +1,12 @@
-package org.sonar.commonruleengine.rules;
+package org.sonar.commonruleengine.checks;
 
 import org.sonar.commonruleengine.EngineContext;
 import org.sonar.commonruleengine.Issue;
 import org.sonar.uast.UastNode;
 
-public abstract class CommonRule {
+public abstract class CommonCheck {
 
-  EngineContext context;
+  protected EngineContext context;
 
   public void setContext(EngineContext context) {
     this.context = context;

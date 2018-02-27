@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.sonar.commonruleengine.rules.CommonRule;
+import org.sonar.commonruleengine.checks.CommonCheck;
 import org.sonar.uast.Uast;
 import org.sonar.uast.UastNode;
 
@@ -30,7 +30,7 @@ class EngineTest {
     assertTrue(issues.stream().map(Issue::getRule).allMatch(rule -> rule == nodeCounter));
   }
 
-  static class NodeCounter extends CommonRule {
+  static class NodeCounter extends CommonCheck {
     int count;
 
     @Override

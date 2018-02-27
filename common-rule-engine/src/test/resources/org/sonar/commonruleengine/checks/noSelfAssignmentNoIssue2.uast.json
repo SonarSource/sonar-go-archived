@@ -1,0 +1,34 @@
+{
+  "kinds": ["ASSIGNMENT"],
+  "children": [
+    {
+      "kinds": ["IDENTIFIER", "ASSIGNMENT_TARGET"],
+      "token": {
+        "value": "x",
+        "line": 1,
+        "pos": 0
+      }
+    },
+    {
+      "kinds": ["EQUAL"],
+      "token": {
+        "value": "=",
+        "line": 1,
+        "pos": 0
+      }
+    },
+    {
+      "kinds": ["CALL", "ASSIGNMENT_VALUE"],
+      "children": [
+        {
+          "kinds": ["IDENTIFIER"],
+          "token": {
+            "value": "foo",
+            "line": 1,
+            "pos": 5
+          }
+        }
+      ]
+    }
+  ]
+}
