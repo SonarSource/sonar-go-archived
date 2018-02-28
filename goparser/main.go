@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"go/parser"
 	"go/token"
-	"github.com/SonarSource/sonar-go/goparser/test-go/render"
 	"go/ast"
 	"encoding/json"
 )
@@ -80,7 +79,7 @@ func handleUnknownType(o interface{}) {
 	panic(o)
 }
 
-func mapFile(file *ast.File) *Node {
+func MapFile(file *ast.File) *Node {
 	return &Node{
 		Kinds:      kinds(file),
 		Children:   children(makeNodeFromDeclList(kind(file.Decls), mapDecl, file.Decls)),
@@ -276,7 +275,7 @@ func nativeNode(x interface{}) string {
 	return fmt.Sprintf("%T", x)
 }
 
-func printJson(node *Node) {
+func PrintJson(node *Node) {
 	b, err := json.MarshalIndent(node, "", "  ")
 	if err != nil {
 		fmt.Println(err)
@@ -313,14 +312,5 @@ func main() {
 }
 
 func getSampleUast() *Node {
-	return mapFile(getSampleAst())
-}
-
-func main() {
-	astFile := getSampleAst()
-	_ = render.Render(astFile)
-	//fmt.Println(render.Render(astFile))
-
-	uast := mapFile(astFile)
-	printJson(uast)
+	return MapFile(getSampleAst())
 }

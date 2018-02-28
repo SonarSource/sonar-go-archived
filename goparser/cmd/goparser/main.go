@@ -5,7 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
-	"github.com/SonarSource/sonar-go/goparser/test-go/render"
+	"github.com/SonarSource/sonar-go/goparser/utils"
 	"github.com/SonarSource/sonar-go/goparser"
 )
 
@@ -14,29 +14,39 @@ func exit() {
 	os.Exit(1)
 }
 
-func parseArgs() string {
+type Params struct {
+	dumpAst bool
+	path    string
+}
+
+func parseArgs() Params {
 	flag.Usage = func() {
 		fmt.Printf("Usage: %s [options] source.go\n\n", os.Args[0])
 		flag.PrintDefaults()
 	}
 
+	dumpAstFlag := flag.Bool("d", false, "dump ast (instead of JSON)")
 	flag.Parse()
 
 	if len(flag.Args()) != 1 {
 		exit()
 	}
 
-	return flag.Args()[0]
+	return Params{
+		dumpAst: *dumpAstFlag,
+		path:    flag.Args()[0],
+	}
 }
 
-
 func main() {
-	filename := parseArgs()
+	params := parseArgs()
 
-	astFile := goparser.ReadAstFile(filename)
-	_ = render.Render(astFile)
-	fmt.Println(render.Render(astFile))
+	astFile := goparser.ReadAstFile(params.path)
 
-	//uast := mapFile(astFile)
-	//printJson(uast)
+	if params.dumpAst {
+		fmt.Println(render.Render(astFile))
+	} else {
+		uast := goparser.MapFile(astFile)
+		goparser.PrintJson(uast)
+	}
 }
