@@ -2,6 +2,7 @@ package org.sonar.uast.generator.java;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Collections;
@@ -33,13 +34,13 @@ public class GeneratorTest {
     assertEquals("CLASS", classNode.nativeNode);
     assertNull(classNode.token);
     assertEquals(Collections.singleton(UastNode.Kind.CLASS), classNode.kinds);
-    assertEquals(8, classNode.children.size());
+    assertEquals(5, classNode.children.size());
 
     UastNode eofToken = cutNode.children.get(1);
     assertEquals("TOKEN", eofToken.nativeNode);
     assertNotNull(eofToken.token);
     assertEquals(5, eofToken.token.line);
-    assertEquals(1, eofToken.token.column);
+    assertEquals(2, eofToken.token.column);
     assertEquals("", eofToken.token.value);
     assertEquals(Collections.emptySet(), eofToken.kinds);
     assertEquals(0, eofToken.children.size());
@@ -48,8 +49,8 @@ public class GeneratorTest {
   @Test
   void fileContent() throws Exception {
     String source = Generator.fileContent("src/test/files/source.java");
-    JsonElement generatedUast = new Gson().fromJson(new Generator(source).json(), JsonElement.class);
-    JsonElement expectedUast = new Gson().fromJson(Files.newBufferedReader(Paths.get("src/test/files/source.java.uast.json")), JsonElement.class);
+    String generatedUast = new Generator(source).json();
+    String expectedUast = new String(Files.readAllBytes(Paths.get("src/test/files/source.java.uast.json")), StandardCharsets.UTF_8).trim();
     assertEquals(expectedUast, generatedUast);
   }
 
