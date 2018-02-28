@@ -43,6 +43,7 @@ public final class UastNode {
     ASSIGNMENT_OPERATOR,
     ASSIGNMENT_TARGET,
     ASSIGNMENT_VALUE,
+    BLOCK,
     CLASS,
     COMPILATION_UNIT,
     FUNCTION,

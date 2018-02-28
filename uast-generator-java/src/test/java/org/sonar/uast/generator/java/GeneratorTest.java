@@ -1,7 +1,5 @@
 package org.sonar.uast.generator.java;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -48,7 +46,7 @@ public class GeneratorTest {
 
   @Test
   void fileContent() throws Exception {
-    String source = Generator.fileContent("src/test/files/source.java");
+    String source = new String(Files.readAllBytes(Paths.get("src/test/files/source.java")), StandardCharsets.UTF_8);
     String generatedUast = new Generator(source).json();
     String expectedUast = new String(Files.readAllBytes(Paths.get("src/test/files/source.java.uast.json")), StandardCharsets.UTF_8).trim();
     assertEquals(expectedUast, generatedUast);

@@ -105,7 +105,9 @@
               "children": []
             },
             {
-              "kinds": [],
+              "kinds": [
+                "BLOCK"
+              ],
               "nativeNode": "BLOCK",
               "children": [
                 {

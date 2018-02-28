@@ -28,7 +28,8 @@ import org.sonar.uast.UastNode;
 public class Generator {
 
   public static void main(String[] args) throws IOException {
-    System.out.println(new Generator(fileContent(args[0])).json());
+    String source = new String(Files.readAllBytes(Paths.get(args[0])), StandardCharsets.UTF_8);
+    System.out.println(new Generator(source).json());
   }
 
   private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
@@ -49,11 +50,6 @@ public class Generator {
 
   public String json() {
     return GSON.toJson(uast);
-  }
-
-  static String fileContent(String fileLocation) throws IOException {
-    byte[] bytes = Files.readAllBytes(Paths.get(fileLocation));
-    return new String(bytes, StandardCharsets.UTF_8);
   }
 
   private UastNode visit(Tree tree) {
@@ -109,6 +105,9 @@ public class Generator {
         break;
       case ASSIGNMENT:
         result = UastNode.Kind.ASSIGNMENT;
+        break;
+      case BLOCK:
+        result = UastNode.Kind.BLOCK;
         break;
       default:
         result = null;

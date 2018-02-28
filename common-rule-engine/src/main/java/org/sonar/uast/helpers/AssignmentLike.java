@@ -30,7 +30,7 @@ public class AssignmentLike {
     return null;
   }
 
-  public UastNode assignment() {
+  public UastNode node() {
     return node;
   }
 
