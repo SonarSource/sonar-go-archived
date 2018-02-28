@@ -1,11 +1,11 @@
-package org.sonar.commonruleengine.rules;
+package org.sonar.commonruleengine.checks;
 
 import org.sonar.uast.UastNode;
 
 /**
  * Rule https://jira.sonarsource.com/browse/RSPEC-4144
  */
-public class NoIdenticalFunctionsRule extends CommonRule {
+public class NoIdenticalFunctionsCheck extends Check {
 
   @Override
   public void visitNode(UastNode node) {

@@ -1,0 +1,29 @@
+{
+  "kinds": ["ASSIGNMENT"],
+  "children": [
+    {
+      "kinds": ["IDENTIFIER", "ASSIGNMENT_TARGET"],
+      "token": {
+        "value": "x",
+        "line": 1,
+        "column": 0
+      }
+    },
+    {
+      "kinds": ["EQUAL"],
+      "token": {
+        "value": "=",
+        "line": "1",
+        "column": 0
+      }
+    },
+    {
+      "kinds": ["LITERAL", "ASSIGNMENT_VALUE"],
+      "token": {
+        "value": "5",
+        "line": 1,
+        "column": 5
+      }
+    }
+  ]
+}

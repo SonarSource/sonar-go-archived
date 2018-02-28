@@ -16,6 +16,7 @@ apply plugin: 'org.junit.platform.gradle.plugin'
 
 ext.junitJupiterVersion  = '5.1.0'
 ext.gsonVersion  = '2.8.2'
+ext.jsr305Version = '3.0.2'
 
 compileJava {
     sourceCompatibility = 1.8
@@ -25,7 +26,9 @@ compileJava {
 
 dependencies {
     implementation "com.google.code.gson:gson:${gsonVersion}"
+    api "com.google.code.findbugs:jsr305:${jsr305Version}"
 
+    testCompile "com.google.guava:guava:24.0-jre"
     testCompile "org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}"
     testRuntime "org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}"
 }

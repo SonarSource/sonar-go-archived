@@ -6,6 +6,7 @@ import com.sonar.sslr.api.typed.ActionParser;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.EnumSet;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import org.sonar.api.internal.google.common.io.Files;
@@ -47,7 +48,7 @@ public class Generator {
   private static UastNode visit(Tree tree) {
     UastNode uast = newUastNode(tree);
     if (!tree.is(Tree.Kind.TOKEN)) {
-      ((JavaTree) tree).getChildren().forEach(child -> uast.children.add(visit(child)));
+      uast.children = ((JavaTree) tree).getChildren().stream().map(Generator::visit).collect(Collectors.toList());
     }
     return uast;
   }
@@ -55,7 +56,7 @@ public class Generator {
   private static UastNode newUastNode(Tree tree) {
     UastNode result = new UastNode();
     result.nativeNode = tree.kind().name();
-    uastKind(tree).ifPresent(result.kinds::add);
+    uastKind(tree).ifPresent(kind -> result.kinds = EnumSet.of(kind));
     if (tree.is(Tree.Kind.TOKEN)) {
       result.token = newToken((SyntaxToken) tree);
     }
@@ -71,7 +72,7 @@ public class Generator {
   }
 
   private static Optional<UastNode.Kind> uastKind(Tree tree) {
-    UastNode.Kind result = null;
+    UastNode.Kind result;
     switch (tree.kind()) {
       case COMPILATION_UNIT:
         result = UastNode.Kind.COMPILATION_UNIT;

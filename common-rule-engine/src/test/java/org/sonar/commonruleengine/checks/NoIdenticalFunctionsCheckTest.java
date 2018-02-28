@@ -1,4 +1,4 @@
-package org.sonar.commonruleengine.rules;
+package org.sonar.commonruleengine.checks;
 
 import java.io.InputStreamReader;
 import java.util.Collections;
@@ -11,12 +11,12 @@ import org.sonar.uast.UastNode;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class NoIdenticalFunctionsRuleTest {
+class NoIdenticalFunctionsCheckTest {
 
   @Test
   void test() {
     UastNode uast = Uast.from(new InputStreamReader(getClass().getResourceAsStream("/uast.json")));
-    Engine engine = new Engine(Collections.singletonList(new NoIdenticalFunctionsRule()));
+    Engine engine = new Engine(Collections.singletonList(new NoIdenticalFunctionsCheck()));
     List<Issue> issues = engine.scan(uast);
     assertEquals(2, issues.size());
     assertEquals(issues.get(0).getMessage(), "Issue here");
