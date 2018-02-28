@@ -31,8 +31,8 @@ const (
 )
 
 type Position struct {
-	Start  int `json:"start"`
-	End    int `json:"end"`
+	Line   int `json:"line"`
+	Column int `json:"column"`
 	offset int // TODO remove this
 }
 
@@ -271,7 +271,7 @@ func mapCallExpr(callExpr *ast.CallExpr) *Node {
 }
 
 func mapPos(pos token.Pos) Position {
-	return Position{Start: 1, End: 1, offset: int(pos)}
+	return Position{Line: 1, Column: 1, offset: int(pos)}
 }
 
 func nativeNode(x interface{}) string {
