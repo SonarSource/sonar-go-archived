@@ -34,3 +34,5 @@ bin/
 # --- Gradle
 .gradle/
 build/
+
+**/.gogradle/
