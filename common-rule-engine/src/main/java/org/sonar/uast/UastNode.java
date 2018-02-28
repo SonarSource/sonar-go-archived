@@ -1,7 +1,6 @@
 package org.sonar.uast;
 
-import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -10,8 +9,8 @@ import javax.annotation.Nullable;
 
 public final class UastNode {
 
-  public Set<Kind> kinds = new HashSet<>();
-  public List<UastNode> children = new ArrayList<>();
+  public Set<Kind> kinds = Collections.emptySet();
+  public List<UastNode> children = Collections.emptyList();
   @Nullable
   public Token token;
   public String nativeNode;

@@ -4,7 +4,7 @@ import org.sonar.commonruleengine.EngineContext;
 import org.sonar.commonruleengine.Issue;
 import org.sonar.uast.UastNode;
 
-public abstract class CommonCheck {
+public abstract class Check {
 
   protected EngineContext context;
 

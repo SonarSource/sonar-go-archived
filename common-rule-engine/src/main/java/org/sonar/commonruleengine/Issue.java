@@ -1,15 +1,15 @@
 package org.sonar.commonruleengine;
 
-import org.sonar.commonruleengine.checks.CommonCheck;
+import org.sonar.commonruleengine.checks.Check;
 import org.sonar.uast.UastNode;
 
 public class Issue {
 
   private final String message;
-  private final CommonCheck rule;
+  private final Check rule;
   private final UastNode node;
 
-  public Issue(CommonCheck rule, UastNode node, String message) {
+  public Issue(Check rule, UastNode node, String message) {
     this.message = message;
     this.node = node;
     this.rule = rule;
@@ -19,7 +19,7 @@ public class Issue {
     return message;
   }
 
-  public CommonCheck getRule() {
+  public Check getRule() {
     return rule;
   }
 

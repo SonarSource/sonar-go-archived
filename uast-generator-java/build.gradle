@@ -25,7 +25,9 @@ compileJava {
 
 dependencies {
     implementation "com.google.code.gson:gson:${gsonVersion}"
-    implementation "org.sonarsource.java:java-frontend:${javaFrontendVersion}"
+    implementation("org.sonarsource.java:java-frontend:${javaFrontendVersion}") {
+        exclude group: 'junit', module: 'junit'
+    }
     implementation project(":common-rule-engine")
 
     testCompile "org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}"

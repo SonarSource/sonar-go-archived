@@ -5,7 +5,7 @@ import org.sonar.uast.UastNode;
 /**
  * Rule https://jira.sonarsource.com/browse/RSPEC-4144
  */
-public class NoIdenticalFunctionsCheck extends CommonCheck {
+public class NoIdenticalFunctionsCheck extends Check {
 
   @Override
   public void visitNode(UastNode node) {
