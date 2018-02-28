@@ -1,0 +1,348 @@
+{
+  "kinds": [
+    "COMPILATION_UNIT"
+  ],
+  "position": {
+    "start": 1,
+    "end": 1
+  },
+  "value": "samples",
+  "nativeNode": "*ast.File",
+  "children": [
+    {
+      "kinds": [
+        "DECL_LIST"
+      ],
+      "position": {
+        "start": 0,
+        "end": 0
+      },
+      "nativeNode": "[]ast.Decl",
+      "children": [
+        {
+          "kinds": [
+            "FUNCTION"
+          ],
+          "position": {
+            "start": 0,
+            "end": 0
+          },
+          "nativeNode": "*ast.FuncDecl",
+          "children": [
+            {
+              "kinds": [
+                "IDENTIFIER"
+              ],
+              "position": {
+                "start": 1,
+                "end": 1
+              },
+              "value": "rename",
+              "nativeNode": "*ast.Ident"
+            },
+            {
+              "kinds": [
+                "*ast.BlockStmt"
+              ],
+              "position": {
+                "start": 0,
+                "end": 0
+              },
+              "nativeNode": "*ast.BlockStmt",
+              "children": [
+                {
+                  "kinds": [
+                    "[]ast.Stmt"
+                  ],
+                  "position": {
+                    "start": 0,
+                    "end": 0
+                  },
+                  "nativeNode": "[]ast.Stmt",
+                  "children": [
+                    {
+                      "kinds": [
+                        "ASSIGNMENT"
+                      ],
+                      "position": {
+                        "start": 0,
+                        "end": 0
+                      },
+                      "nativeNode": "*ast.AssignStmt",
+                      "children": [
+                        {
+                          "kinds": [
+                            "ASSIGNMENT_TARGET"
+                          ],
+                          "position": {
+                            "start": 0,
+                            "end": 0
+                          },
+                          "nativeNode": "[]ast.Expr",
+                          "children": [
+                            {
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
+                              "position": {
+                                "start": 1,
+                                "end": 1
+                              },
+                              "value": "name",
+                              "nativeNode": "*ast.Ident"
+                            }
+                          ]
+                        },
+                        {
+                          "kinds": [
+                            "TOKEN"
+                          ],
+                          "position": {
+                            "start": 1,
+                            "end": 1
+                          },
+                          "value": "=",
+                          "nativeNode": "token.Token"
+                        },
+                        {
+                          "kinds": [
+                            "ASSIGNMENT_VALUE"
+                          ],
+                          "position": {
+                            "start": 0,
+                            "end": 0
+                          },
+                          "nativeNode": "[]ast.Expr",
+                          "children": [
+                            {
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
+                              "position": {
+                                "start": 1,
+                                "end": 1
+                              },
+                              "value": "name",
+                              "nativeNode": "*ast.Ident"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [
+                        "ASSIGNMENT"
+                      ],
+                      "position": {
+                        "start": 0,
+                        "end": 0
+                      },
+                      "nativeNode": "*ast.AssignStmt",
+                      "children": [
+                        {
+                          "kinds": [
+                            "ASSIGNMENT_TARGET"
+                          ],
+                          "position": {
+                            "start": 0,
+                            "end": 0
+                          },
+                          "nativeNode": "[]ast.Expr",
+                          "children": [
+                            {
+                              "kinds": [
+                                "SELECTOR_EXPR"
+                              ],
+                              "position": {
+                                "start": 0,
+                                "end": 0
+                              },
+                              "nativeNode": "*ast.SelectorExpr",
+                              "children": [
+                                {
+                                  "kinds": [
+                                    "IDENTIFIER"
+                                  ],
+                                  "position": {
+                                    "start": 1,
+                                    "end": 1
+                                  },
+                                  "value": "user",
+                                  "nativeNode": "*ast.Ident"
+                                },
+                                {
+                                  "kinds": [
+                                    "IDENTIFIER"
+                                  ],
+                                  "position": {
+                                    "start": 1,
+                                    "end": 1
+                                  },
+                                  "value": "name",
+                                  "nativeNode": "*ast.Ident"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "kinds": [
+                            "TOKEN"
+                          ],
+                          "position": {
+                            "start": 1,
+                            "end": 1
+                          },
+                          "value": "=",
+                          "nativeNode": "token.Token"
+                        },
+                        {
+                          "kinds": [
+                            "ASSIGNMENT_VALUE"
+                          ],
+                          "position": {
+                            "start": 0,
+                            "end": 0
+                          },
+                          "nativeNode": "[]ast.Expr",
+                          "children": [
+                            {
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
+                              "position": {
+                                "start": 1,
+                                "end": 1
+                              },
+                              "value": "name",
+                              "nativeNode": "*ast.Ident"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [
+                        "ASSIGNMENT"
+                      ],
+                      "position": {
+                        "start": 0,
+                        "end": 0
+                      },
+                      "nativeNode": "*ast.AssignStmt",
+                      "children": [
+                        {
+                          "kinds": [
+                            "ASSIGNMENT_TARGET"
+                          ],
+                          "position": {
+                            "start": 0,
+                            "end": 0
+                          },
+                          "nativeNode": "[]ast.Expr",
+                          "children": [
+                            {
+                              "kinds": [
+                                "SELECTOR_EXPR"
+                              ],
+                              "position": {
+                                "start": 0,
+                                "end": 0
+                              },
+                              "nativeNode": "*ast.SelectorExpr",
+                              "children": [
+                                {
+                                  "kinds": [
+                                    "IDENTIFIER"
+                                  ],
+                                  "position": {
+                                    "start": 1,
+                                    "end": 1
+                                  },
+                                  "value": "user",
+                                  "nativeNode": "*ast.Ident"
+                                },
+                                {
+                                  "kinds": [
+                                    "IDENTIFIER"
+                                  ],
+                                  "position": {
+                                    "start": 1,
+                                    "end": 1
+                                  },
+                                  "value": "name",
+                                  "nativeNode": "*ast.Ident"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "kinds": [
+                            "TOKEN"
+                          ],
+                          "position": {
+                            "start": 1,
+                            "end": 1
+                          },
+                          "value": "=",
+                          "nativeNode": "token.Token"
+                        },
+                        {
+                          "kinds": [
+                            "ASSIGNMENT_VALUE"
+                          ],
+                          "position": {
+                            "start": 0,
+                            "end": 0
+                          },
+                          "nativeNode": "[]ast.Expr",
+                          "children": [
+                            {
+                              "kinds": [
+                                "SELECTOR_EXPR"
+                              ],
+                              "position": {
+                                "start": 0,
+                                "end": 0
+                              },
+                              "nativeNode": "*ast.SelectorExpr",
+                              "children": [
+                                {
+                                  "kinds": [
+                                    "IDENTIFIER"
+                                  ],
+                                  "position": {
+                                    "start": 1,
+                                    "end": 1
+                                  },
+                                  "value": "user",
+                                  "nativeNode": "*ast.Ident"
+                                },
+                                {
+                                  "kinds": [
+                                    "IDENTIFIER"
+                                  ],
+                                  "position": {
+                                    "start": 1,
+                                    "end": 1
+                                  },
+                                  "value": "name",
+                                  "nativeNode": "*ast.Ident"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
