@@ -27,6 +27,10 @@ public class Issue {
     return node;
   }
 
+  public int getLine() {
+    return node.firstToken().token.line;
+  }
+
   @Override
   public String toString() {
     return String.format("%s %s: %s", node, rule.getClass().getSimpleName(), message);

@@ -1,5 +1,9 @@
 package org.sonar.uast.generator.java;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Collections;
 import org.junit.jupiter.api.Test;
 import org.sonar.uast.UastNode;
@@ -44,8 +48,8 @@ public class GeneratorTest {
   @Test
   void fileContent() throws Exception {
     String source = Generator.fileContent("src/test/files/source.java");
-    String expectedUast = Generator.fileContent("src/test/files/source.java.uast.json");
-    String generatedUast = new Generator(source).json();
+    JsonElement generatedUast = new Gson().fromJson(new Generator(source).json(), JsonElement.class);
+    JsonElement expectedUast = new Gson().fromJson(Files.newBufferedReader(Paths.get("src/test/files/source.java.uast.json")), JsonElement.class);
     assertEquals(expectedUast, generatedUast);
   }
 
