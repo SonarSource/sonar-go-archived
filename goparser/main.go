@@ -66,10 +66,14 @@ func kinds(rawItems ... interface{}) []Kind {
 	return items
 }
 
+func children(items ... *Node) []*Node {
+	return items
+}
+
 func mapFile(file *ast.File) *Node {
 	return &Node{
 		Kinds:      kinds(file),
-		Children:   []*Node{mapDeclList(file.Decls)},
+		Children:   children(mapDeclList(file.Decls)),
 		Position:   mapPos(file.Name.NamePos),
 		Value:      file.Name.String(),
 		NativeNode: nativeValue(file),
@@ -77,7 +81,7 @@ func mapFile(file *ast.File) *Node {
 }
 
 func mapDeclList(decls []ast.Decl) *Node {
-	uastNodeList := []*Node{}
+	uastNodeList := children()
 
 	for _, astNode := range decls {
 		if uastNode := mapDecl(astNode); uastNode != nil {
@@ -104,7 +108,7 @@ func mapDecl(decl ast.Decl) *Node {
 func mapFuncDecl(funcDecl *ast.FuncDecl) *Node {
 	return &Node{
 		Kinds:      kinds(funcDecl),
-		Children:   []*Node{mapExpr(funcDecl.Name), mapBlockStmt(funcDecl.Body)},
+		Children:   children(mapExpr(funcDecl.Name), mapBlockStmt(funcDecl.Body)),
 		NativeNode: nativeValue(funcDecl),
 	}
 }
@@ -112,13 +116,13 @@ func mapFuncDecl(funcDecl *ast.FuncDecl) *Node {
 func mapBlockStmt(blockStmt *ast.BlockStmt) *Node {
 	return &Node{
 		Kinds:      kinds(blockStmt),
-		Children:   []*Node{makeNodeWithChildren(IDENTIFIER, mapStmt, blockStmt.List)},
+		Children:   children(makeNodeWithChildren(IDENTIFIER, mapStmt, blockStmt.List)),
 		NativeNode: nativeValue(blockStmt),
 	}
 }
 
 func makeNodeWithChildren(kind Kind, mapper func(astNode ast.Stmt) *Node, stmts []ast.Stmt) *Node {
-	children := []*Node{}
+	children := children()
 	for _, v := range stmts {
 		if uastNode := mapper(v); uastNode != nil {
 			children = append(children, uastNode)
@@ -146,13 +150,13 @@ func mapStmt(astNode ast.Stmt) *Node {
 func mapAssignStmt(stmt *ast.AssignStmt) *Node {
 	return &Node{
 		Kinds:      kinds(ASSIGNMENT),
-		Children:   []*Node{mapExprList(EXPR_LIST, stmt.Lhs), mapToken(stmt.Tok, stmt.TokPos), mapExprList(EXPR_LIST, stmt.Rhs)},
+		Children:   children(mapExprList(EXPR_LIST, stmt.Lhs), mapToken(stmt.Tok, stmt.TokPos), mapExprList(EXPR_LIST, stmt.Rhs)),
 		NativeNode: nativeValue(stmt),
 	}
 }
 
 func mapExprList(kind Kind, exprList []ast.Expr) *Node {
-	uastNodeList := []*Node{}
+	uastNodeList := children()
 
 	for _, astNode := range exprList {
 		if uastNode := mapExpr(astNode); uastNode != nil {
@@ -183,7 +187,7 @@ func mapExpr(astNode ast.Expr) *Node {
 func mapSelectorExpr(expr *ast.SelectorExpr) *Node {
 	return &Node{
 		Kinds:      kinds(SELECTOR_EXPR),
-		Children:   []*Node{mapExpr(expr.X), mapIdent(expr.Sel)},
+		Children:   children(mapExpr(expr.X), mapIdent(expr.Sel)),
 		NativeNode: nativeValue(expr),
 	}
 }
@@ -226,7 +230,7 @@ func mapLiteralToken(kind Kind, pos token.Pos) *Node {
 func mapExprStmt(stmt *ast.ExprStmt) *Node {
 	return &Node{
 		Kinds:      kinds(EXPR_STMT),
-		Children:   []*Node{mapExpr(stmt.X)},
+		Children:   children(mapExpr(stmt.X)),
 		NativeNode: nativeValue(stmt),
 	}
 }
@@ -234,12 +238,12 @@ func mapExprStmt(stmt *ast.ExprStmt) *Node {
 func mapCallExpr(callExpr *ast.CallExpr) *Node {
 	return &Node{
 		Kinds: kinds(CALL),
-		Children: []*Node{
+		Children: children(
 			mapExpr(callExpr.Fun),
 			mapLiteralToken(LPAREN, callExpr.Lparen),
 			mapExprList(ARGS_LIST, callExpr.Args),
 			mapLiteralToken(RPAREN, callExpr.Rparen),
-		},
+		),
 	}
 }
 
