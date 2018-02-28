@@ -7,11 +7,13 @@ import org.sonar.uast.UastNode;
  */
 public class NoIdenticalFunctionsCheck extends Check {
 
+  public NoIdenticalFunctionsCheck() {
+    super(UastNode.Kind.FUNCTION);
+  }
+
   @Override
   public void visitNode(UastNode node) {
-    if (node.kinds.contains(UastNode.Kind.FUNCTION)) {
-      // dummy implementation which reports every method
-      reportIssue(node, "Issue here");
-    }
+    // dummy implementation which reports every method
+    reportIssue(node, "Issue here");
   }
 }

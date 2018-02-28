@@ -10,6 +10,10 @@ import static org.sonar.uast.Uast.syntacticallyEquivalent;
  */
 public class NoSelfAssignmentCheck extends Check {
 
+  public NoSelfAssignmentCheck() {
+    super(AssignmentLike.KIND);
+  }
+
   @Override
   public void visitNode(UastNode node) {
     AssignmentLike assignment = AssignmentLike.from(node);
@@ -18,5 +22,3 @@ public class NoSelfAssignmentCheck extends Check {
     }
   }
 }
-
-

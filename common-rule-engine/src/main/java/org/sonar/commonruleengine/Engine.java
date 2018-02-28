@@ -18,7 +18,7 @@ public class Engine {
     new NoIdenticalFunctionsCheck(),
     new NoSelfAssignmentCheck()
   );
-  private final List<Check> rules;
+  private final EngineContext engineContext;
 
   public static void main(String[] args) {
     try {
@@ -33,22 +33,24 @@ public class Engine {
   }
 
   public Engine(List<Check> rules) {
-    this.rules = rules;
+    engineContext = new EngineContext();
+    rules.forEach(rule -> rule.initialize(engineContext));
   }
 
   public List<Issue> scan(UastNode uast) {
-    EngineContext engineContext = new EngineContext();
-    rules.forEach(rule -> rule.setContext(engineContext));
+    engineContext.enterFile();
     visit(uast);
     return engineContext.getIssues();
   }
 
   private void visit(UastNode uast) {
-    for (Check rule : rules) {
-      rule.visitNode(uast);
-      for (UastNode child : uast.children) {
-        visit(child);
+    for (UastNode.Kind kind : uast.kinds) {
+      for (Check rule : engineContext.registeredChecks(kind)) {
+        rule.visitNode(uast);
       }
+    }
+    for (UastNode child : uast.children) {
+      visit(child);
     }
   }
 }

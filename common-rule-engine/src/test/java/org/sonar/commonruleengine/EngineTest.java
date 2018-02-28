@@ -33,6 +33,10 @@ class EngineTest {
   static class NodeCounter extends Check {
     int count;
 
+    NodeCounter() {
+      super(UastNode.Kind.values());
+    }
+
     @Override
     public void visitNode(UastNode node) {
       count++;
