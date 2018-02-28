@@ -38,7 +38,7 @@ type Position struct {
 
 type Node struct {
 	Kinds      []Kind   `json:"kinds"`
-	Position   Position `json:"position,omitempty"`
+	Position   *Position `json:"position,omitempty"`
 	Value      string   `json:"value,omitempty"`
 	NativeNode string   `json:"nativeNode"`
 	Children   []*Node  `json:"children,omitempty"`
@@ -270,8 +270,8 @@ func mapCallExpr(callExpr *ast.CallExpr) *Node {
 	}
 }
 
-func mapPos(pos token.Pos) Position {
-	return Position{Line: 1, Column: 1, offset: int(pos)}
+func mapPos(pos token.Pos) *Position {
+	return &Position{Line: 1, Column: 1, offset: int(pos)}
 }
 
 func nativeNode(x interface{}) string {

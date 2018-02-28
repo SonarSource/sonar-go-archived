@@ -45,8 +45,8 @@ func Test_mapFuncDecl(t *testing.T) {
 		t.Fatalf("got %v as number of Children; expected %v", len(uast.Children), expected)
 	}
 
-	if expected := 0; expected != uast.Position.offset {
-		t.Fatalf("got %v as Position.offset; expected %v", uast.Position.offset, expected)
+	if uast.Position != nil {
+		t.Fatalf("got %v as Position; expected nil", uast.Position)
 	}
 
 	if expected := ""; expected != uast.Value {
@@ -95,8 +95,8 @@ func Test_mapAssignStmt(t *testing.T) {
 		t.Fatalf("got %v as number of Children; expected %v", len(uast.Children), expected)
 	}
 
-	if expected := 0; expected != uast.Position.offset {
-		t.Fatalf("got %v as Position.offset; expected %v", uast.Position.offset, expected)
+	if uast.Position != nil {
+		t.Fatalf("got %v as Position; expected nil", uast.Position)
 	}
 
 	if expected := ""; expected != uast.Value {
@@ -120,8 +120,8 @@ func Test_mapExprList(t *testing.T) {
 		t.Fatalf("got %v as number of Children; expected %v", len(uast.Children), expected)
 	}
 
-	if expected := 0; expected != uast.Position.offset {
-		t.Fatalf("got %v as Position.offset; expected %v", uast.Position.offset, expected)
+	if uast.Position != nil {
+		t.Fatalf("got %v as Position; expected nil", uast.Position)
 	}
 
 	if expected := ""; expected != uast.Value {
@@ -203,8 +203,8 @@ func Test_mapExprStmt(t *testing.T) {
 		t.Fatalf("got %v as number of Children; expected %v", len(uast.Children), expected)
 	}
 
-	if expected := 0; expected != uast.Position.offset {
-		t.Fatalf("got %v as Position.offset; expected %v", uast.Position.offset, expected)
+	if uast.Position != nil {
+		t.Fatalf("got %v as Position; expected nil", uast.Position)
 	}
 }
 
@@ -220,7 +220,7 @@ func Test_mapCallExpr(t *testing.T) {
 		t.Fatalf("got %v as number of Children; expected %v", len(uast.Children), expected)
 	}
 
-	if expected := 0; expected != uast.Position.offset {
-		t.Fatalf("got %v as Position.offset; expected %v", uast.Position.offset, expected)
+	if uast.Position != nil {
+		t.Fatalf("got %v as Position; expected nil", uast.Position)
 	}
 }
