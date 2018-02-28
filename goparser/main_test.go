@@ -85,7 +85,7 @@ func Test_mapAssignStmt(t *testing.T) {
 
 func Test_mapExprList(t *testing.T) {
 	blockStmt := getSampleAst().Decls[1].(*ast.FuncDecl).Body
-	uast := mapExprList(blockStmt.List[0].(*ast.AssignStmt).Lhs)
+	uast := mapExprList(EXPR_LIST, blockStmt.List[0].(*ast.AssignStmt).Lhs)
 
 	if expected := []Kind{EXPR_LIST}; !reflect.DeepEqual(expected, uast.Kinds) {
 		t.Fatalf("got %v as Kinds; expected %v", uast.Kinds, expected)
@@ -175,6 +175,23 @@ func Test_mapExprStmt(t *testing.T) {
 	}
 
 	if expected := 1; expected != len(uast.Children) {
+		t.Fatalf("got %v as number of Children; expected %v", len(uast.Children), expected)
+	}
+
+	if expected := 0; expected != uast.Position.offset {
+		t.Fatalf("got %v as Position.offset; expected %v", uast.Position.offset, expected)
+	}
+}
+
+func Test_mapCallExpr(t *testing.T) {
+	blockStmt := getSampleAst().Decls[1].(*ast.FuncDecl).Body
+	uast := mapCallExpr(blockStmt.List[1].(*ast.ExprStmt).X.(*ast.CallExpr))
+
+	if expected := []Kind{CALL}; !reflect.DeepEqual(expected, uast.Kinds) {
+		t.Fatalf("got %v as Kinds; expected %v", uast.Kinds, expected)
+	}
+
+	if expected := 4; expected != len(uast.Children) {
 		t.Fatalf("got %v as number of Children; expected %v", len(uast.Children), expected)
 	}
 

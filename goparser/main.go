@@ -14,11 +14,16 @@ type Kind string
 const (
 	COMPILATION_UNIT Kind = "COMPILATION_UNIT"
 	FUNCTION         Kind = "FUNCTION"
+	LPAREN           Kind = "LPAREN"
+	RPAREN           Kind = "RPAREN"
+	ARGS_LIST        Kind = "ARGS_LIST"
+	CALL             Kind = "CALL"
 	FUNC_DECL_BODY   Kind = "FUNC_DECL_BODY"
 	DECL_LIST        Kind = "DECL_LIST"
 	ASSIGNMENT       Kind = "ASSIGNMENT"
 	TOKEN            Kind = "TOKEN"
 	IDENTIFIER       Kind = "IDENTIFIER"
+	SELECTOR_EXPR    Kind = "SELECTOR_EXPR"
 	LITERAL          Kind = "LITERAL"
 	EXPR_LIST        Kind = "EXPR_LIST"
 	EXPR_STMT        Kind = "EXPR_STMT"
@@ -117,12 +122,12 @@ func mapStmt(astNode ast.Stmt) *Node {
 func mapAssignStmt(stmt *ast.AssignStmt) *Node {
 	return &Node{
 		Kinds:      []Kind{ASSIGNMENT},
-		Children:   []*Node{mapExprList(stmt.Lhs), mapToken(stmt.Tok, stmt.TokPos), mapExprList(stmt.Rhs)},
+		Children:   []*Node{mapExprList(EXPR_LIST, stmt.Lhs), mapToken(stmt.Tok, stmt.TokPos), mapExprList(EXPR_LIST, stmt.Rhs)},
 		NativeNode: nativeValue(stmt),
 	}
 }
 
-func mapExprList(exprList []ast.Expr) *Node {
+func mapExprList(kind Kind, exprList []ast.Expr) *Node {
 	uastNodeList := []*Node{}
 
 	for _, astNode := range exprList {
@@ -132,7 +137,7 @@ func mapExprList(exprList []ast.Expr) *Node {
 	}
 
 	return &Node{
-		Kinds:      []Kind{EXPR_LIST},
+		Kinds:      []Kind{kind},
 		Children:   uastNodeList,
 		NativeNode: nativeValue(exprList),
 	}
@@ -144,8 +149,18 @@ func mapExpr(astNode ast.Expr) *Node {
 		return mapIdent(v)
 	case *ast.BasicLit:
 		return mapBasicLit(v)
+	case *ast.SelectorExpr:
+		return mapSelectorExpr(v)
 	default:
 		return nil
+	}
+}
+
+func mapSelectorExpr(expr *ast.SelectorExpr) *Node {
+	return &Node{
+		Kinds:      []Kind{SELECTOR_EXPR},
+		Children:   []*Node{mapExpr(expr.X), mapIdent(expr.Sel)},
+		NativeNode: nativeValue(expr),
 	}
 }
 
@@ -176,11 +191,31 @@ func mapToken(tok token.Token, pos token.Pos) *Node {
 	}
 }
 
+func mapLiteralToken(kind Kind, pos token.Pos) *Node {
+	return &Node{
+		Kinds:      []Kind{kind},
+		Position:   mapPos(pos),
+		NativeNode: nativeValue(kind),
+	}
+}
+
 func mapExprStmt(stmt *ast.ExprStmt) *Node {
 	return &Node{
 		Kinds:      []Kind{EXPR_STMT},
 		Children:   []*Node{mapExpr(stmt.X)},
 		NativeNode: nativeValue(stmt),
+	}
+}
+
+func mapCallExpr(callExpr *ast.CallExpr) *Node {
+	return &Node{
+		Kinds: []Kind{CALL},
+		Children: []*Node{
+			mapExpr(callExpr.Fun),
+			mapLiteralToken(LPAREN, callExpr.Lparen),
+			mapExprList(ARGS_LIST, callExpr.Args),
+			mapLiteralToken(RPAREN, callExpr.Rparen),
+		},
 	}
 }
 
