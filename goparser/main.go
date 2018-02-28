@@ -18,7 +18,6 @@ const (
 	RPAREN            Kind = "RPAREN"
 	ARGS_LIST         Kind = "ARGS_LIST"
 	CALL              Kind = "CALL"
-	FUNC_DECL_BODY    Kind = "FUNC_DECL_BODY"
 	DECL_LIST         Kind = "DECL_LIST"
 	ASSIGNMENT        Kind = "ASSIGNMENT"
 	ASSIGNMENT_TARGET Kind = "ASSIGNMENT_TARGET"
@@ -72,6 +71,15 @@ func children(items ... *Node) []*Node {
 	return items
 }
 
+func handleUnknownType(o interface{}) {
+	switch o.(type) {
+	case *ast.GenDecl:
+		// ignore
+		return
+	}
+	panic(o)
+}
+
 func mapFile(file *ast.File) *Node {
 	return &Node{
 		Kinds:      kinds(file),
@@ -102,6 +110,7 @@ func mapDecl(decl ast.Decl) *Node {
 	case *ast.FuncDecl:
 		return mapFuncDecl(v)
 	default:
+		handleUnknownType(v)
 		return nil
 	}
 }
@@ -144,6 +153,7 @@ func mapStmt(astNode ast.Stmt) *Node {
 	case *ast.ExprStmt:
 		return mapExprStmt(v)
 	default:
+		handleUnknownType(v)
 		return nil
 	}
 }
@@ -187,7 +197,10 @@ func mapExpr(astNode ast.Expr) *Node {
 		return mapBasicLit(v)
 	case *ast.SelectorExpr:
 		return mapSelectorExpr(v)
+	case *ast.CallExpr:
+		return mapCallExpr(v)
 	default:
+		handleUnknownType(v)
 		return nil
 	}
 }
