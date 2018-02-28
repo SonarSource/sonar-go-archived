@@ -37,11 +37,11 @@ type Position struct {
 }
 
 type Node struct {
-	Kinds      []Kind   `json:"kinds"`
+	Kinds      []Kind    `json:"kinds"`
 	Position   *Position `json:"position,omitempty"`
-	Value      string   `json:"value,omitempty"`
-	NativeNode string   `json:"nativeNode"`
-	Children   []*Node  `json:"children,omitempty"`
+	Value      string    `json:"value,omitempty"`
+	NativeNode string    `json:"nativeNode"`
+	Children   []*Node   `json:"children,omitempty"`
 }
 
 func kind(k interface{}) Kind {
@@ -154,9 +154,30 @@ func mapStmt(astNode ast.Stmt) *Node {
 		return mapAssignStmt(v)
 	case *ast.ExprStmt:
 		return mapExprStmt(v)
+	case *ast.IfStmt:
+		return mapIfStmt(v)
+	case *ast.BlockStmt:
+		return mapBlockStmt(v)
+	case *ast.ReturnStmt:
+		return nil
+	case nil:
+		return nil
 	default:
 		handleUnknownType(v)
 		return nil
+	}
+}
+
+func mapIfStmt(stmt *ast.IfStmt) *Node {
+	return &Node{
+		Kinds: kinds(kind(stmt)),
+		Children: children(
+			mapStmt(stmt.Init),
+			mapExpr(stmt.Cond),
+			mapStmt(stmt.Body),
+			mapStmt(stmt.Else),
+		),
+		NativeNode: nativeNode(stmt),
 	}
 }
 
@@ -201,9 +222,39 @@ func mapExpr(astNode ast.Expr) *Node {
 		return mapSelectorExpr(v)
 	case *ast.CallExpr:
 		return mapCallExpr(v)
+	case *ast.ParenExpr:
+		return mapParenExpr(v)
+	case *ast.BinaryExpr:
+		return mapBinaryExpr(v)
+	case *ast.FuncLit:
+		return nil
 	default:
 		handleUnknownType(v)
 		return nil
+	}
+}
+
+func mapBinaryExpr(expr *ast.BinaryExpr) *Node {
+	return &Node{
+		Kinds: kinds(kind(expr)),
+		Children: children(
+			mapExpr(expr.X),
+			mapToken(expr.Op, expr.OpPos),
+			mapExpr(expr.Y),
+		),
+		NativeNode: nativeNode(expr),
+	}
+}
+
+func mapParenExpr(expr *ast.ParenExpr) *Node {
+	return &Node{
+		Kinds: kinds(kind(expr)),
+		Children: children(
+			mapLiteralToken(LPAREN, expr.Lparen),
+			mapExpr(expr.X),
+			mapLiteralToken(RPAREN, expr.Rparen),
+		),
+		NativeNode: nativeNode(expr),
 	}
 }
 
