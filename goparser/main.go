@@ -73,26 +73,25 @@ func children(items ... *Node) []*Node {
 func mapFile(file *ast.File) *Node {
 	return &Node{
 		Kinds:      kinds(file),
-		Children:   children(mapDeclList(file.Decls)),
+		Children:   children(makeNodeFromDeclList(kind(file.Decls), mapDecl, file.Decls)),
 		Position:   mapPos(file.Name.NamePos),
 		Value:      file.Name.String(),
 		NativeNode: nativeValue(file),
 	}
 }
 
-func mapDeclList(decls []ast.Decl) *Node {
-	uastNodeList := children()
-
-	for _, astNode := range decls {
-		if uastNode := mapDecl(astNode); uastNode != nil {
-			uastNodeList = append(uastNodeList, uastNode)
+func makeNodeFromDeclList(kind Kind, mapper func(decl ast.Decl) *Node, declList []ast.Decl) *Node {
+	children := children()
+	for _, v := range declList {
+		if uastNode := mapper(v); uastNode != nil {
+			children = append(children, uastNode)
 		}
 	}
 
 	return &Node{
-		Kinds:      kinds(kind(decls)),
-		Children:   uastNodeList,
-		NativeNode: nativeValue(decls),
+		Kinds:      kinds(kind),
+		Children:   children,
+		NativeNode: nativeValue(declList),
 	}
 }
 
@@ -116,14 +115,14 @@ func mapFuncDecl(funcDecl *ast.FuncDecl) *Node {
 func mapBlockStmt(blockStmt *ast.BlockStmt) *Node {
 	return &Node{
 		Kinds:      kinds(blockStmt),
-		Children:   children(makeNodeWithChildren(IDENTIFIER, mapStmt, blockStmt.List)),
+		Children:   children(makeNodeFromStmtList(kind(blockStmt.List), mapStmt, blockStmt.List)),
 		NativeNode: nativeValue(blockStmt),
 	}
 }
 
-func makeNodeWithChildren(kind Kind, mapper func(astNode ast.Stmt) *Node, stmts []ast.Stmt) *Node {
+func makeNodeFromStmtList(kind Kind, mapper func(stmt ast.Stmt) *Node, stmtList []ast.Stmt) *Node {
 	children := children()
-	for _, v := range stmts {
+	for _, v := range stmtList {
 		if uastNode := mapper(v); uastNode != nil {
 			children = append(children, uastNode)
 		}
@@ -132,7 +131,7 @@ func makeNodeWithChildren(kind Kind, mapper func(astNode ast.Stmt) *Node, stmts 
 	return &Node{
 		Kinds:      kinds(kind),
 		Children:   children,
-		NativeNode: nativeValue(stmts),
+		NativeNode: nativeValue(stmtList),
 	}
 }
 
