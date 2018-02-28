@@ -10,10 +10,10 @@ import javax.annotation.Nullable;
 public final class UastNode {
 
   public Set<Kind> kinds = Collections.emptySet();
-  public List<UastNode> children = Collections.emptyList();
+  public String nativeNode;
   @Nullable
   public Token token;
-  public String nativeNode;
+  public List<UastNode> children = Collections.emptyList();
 
   public static class Token {
     public String value;
