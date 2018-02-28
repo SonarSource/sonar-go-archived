@@ -196,7 +196,7 @@ func nativeValue(x interface{}) string {
 }
 
 func printJson(node *Node) {
-	b, err := json.Marshal(node)
+	b, err := json.MarshalIndent(node, "", "  ")
 	if err != nil {
 		fmt.Println(err)
 		return
