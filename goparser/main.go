@@ -12,21 +12,23 @@ import (
 type Kind string
 
 const (
-	COMPILATION_UNIT Kind = "COMPILATION_UNIT"
-	FUNCTION         Kind = "FUNCTION"
-	LPAREN           Kind = "LPAREN"
-	RPAREN           Kind = "RPAREN"
-	ARGS_LIST        Kind = "ARGS_LIST"
-	CALL             Kind = "CALL"
-	FUNC_DECL_BODY   Kind = "FUNC_DECL_BODY"
-	DECL_LIST        Kind = "DECL_LIST"
-	ASSIGNMENT       Kind = "ASSIGNMENT"
-	TOKEN            Kind = "TOKEN"
-	IDENTIFIER       Kind = "IDENTIFIER"
-	SELECTOR_EXPR    Kind = "SELECTOR_EXPR"
-	LITERAL          Kind = "LITERAL"
-	EXPR_LIST        Kind = "EXPR_LIST"
-	EXPR_STMT        Kind = "EXPR_STMT"
+	COMPILATION_UNIT  Kind = "COMPILATION_UNIT"
+	FUNCTION          Kind = "FUNCTION"
+	LPAREN            Kind = "LPAREN"
+	RPAREN            Kind = "RPAREN"
+	ARGS_LIST         Kind = "ARGS_LIST"
+	CALL              Kind = "CALL"
+	FUNC_DECL_BODY    Kind = "FUNC_DECL_BODY"
+	DECL_LIST         Kind = "DECL_LIST"
+	ASSIGNMENT        Kind = "ASSIGNMENT"
+	ASSIGNMENT_TARGET Kind = "ASSIGNMENT_TARGET"
+	ASSIGNMENT_VALUE  Kind = "ASSIGNMENT_VALUE"
+	TOKEN             Kind = "TOKEN"
+	IDENTIFIER        Kind = "IDENTIFIER"
+	SELECTOR_EXPR     Kind = "SELECTOR_EXPR"
+	LITERAL           Kind = "LITERAL"
+	EXPR_LIST         Kind = "EXPR_LIST"
+	EXPR_STMT         Kind = "EXPR_STMT"
 )
 
 type Position struct {
@@ -148,24 +150,31 @@ func mapStmt(astNode ast.Stmt) *Node {
 
 func mapAssignStmt(stmt *ast.AssignStmt) *Node {
 	return &Node{
-		Kinds:      kinds(ASSIGNMENT),
-		Children:   children(mapExprList(EXPR_LIST, stmt.Lhs), mapToken(stmt.Tok, stmt.TokPos), mapExprList(EXPR_LIST, stmt.Rhs)),
+		Kinds: kinds(ASSIGNMENT),
+		Children: children(
+			mapExprList(ASSIGNMENT_TARGET, stmt.Lhs),
+			mapToken(stmt.Tok, stmt.TokPos),
+			mapExprList(ASSIGNMENT_VALUE, stmt.Rhs),
+		),
 		NativeNode: nativeNode(stmt),
 	}
 }
 
 func mapExprList(kind Kind, exprList []ast.Expr) *Node {
-	uastNodeList := children()
+	return makeNodeFromExprList(kind, mapExpr, exprList)
+}
 
-	for _, astNode := range exprList {
-		if uastNode := mapExpr(astNode); uastNode != nil {
-			uastNodeList = append(uastNodeList, uastNode)
+func makeNodeFromExprList(kind Kind, mapper func(expr ast.Expr) *Node, exprList []ast.Expr) *Node {
+	children := children()
+	for _, v := range exprList {
+		if uastNode := mapper(v); uastNode != nil {
+			children = append(children, uastNode)
 		}
 	}
 
 	return &Node{
 		Kinds:      kinds(kind),
-		Children:   uastNodeList,
+		Children:   children,
 		NativeNode: nativeNode(exprList),
 	}
 }
