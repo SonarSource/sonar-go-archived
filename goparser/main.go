@@ -38,14 +38,6 @@ type Node struct {
 	Children   []*Node  `json:"children,omitempty"`
 }
 
-type unknownElement struct {
-	value interface{}
-}
-
-func (e unknownElement) Error() string {
-	return fmt.Sprintf("%v", e.value)
-}
-
 func mapFile(file *ast.File) *Node {
 	return &Node{
 		Kinds:      []Kind{COMPILATION_UNIT},
@@ -60,7 +52,7 @@ func mapDeclList(decls []ast.Decl) *Node {
 	uastNodeList := []*Node{}
 
 	for _, astNode := range decls {
-		if uastNode, err := mapDecl(astNode); err == nil {
+		if uastNode := mapDecl(astNode); uastNode != nil {
 			uastNodeList = append(uastNodeList, uastNode)
 		}
 	}
@@ -72,12 +64,12 @@ func mapDeclList(decls []ast.Decl) *Node {
 	}
 }
 
-func mapDecl(decl ast.Decl) (*Node, error) {
+func mapDecl(decl ast.Decl) *Node {
 	switch v := decl.(type) {
 	case *ast.FuncDecl:
-		return mapFuncDecl(v), nil
+		return mapFuncDecl(v)
 	default:
-		return nil, unknownElement{decl}
+		return nil
 	}
 }
 
@@ -103,7 +95,7 @@ func mapBlockStmt(blockStmt *ast.BlockStmt) []*Node {
 	uastNodeList := []*Node{}
 
 	for _, astNode := range blockStmt.List {
-		if uastNode, err := mapStmt(astNode); err == nil {
+		if uastNode := mapStmt(astNode); uastNode != nil {
 			uastNodeList = append(uastNodeList, uastNode)
 		}
 	}
@@ -111,14 +103,14 @@ func mapBlockStmt(blockStmt *ast.BlockStmt) []*Node {
 	return uastNodeList
 }
 
-func mapStmt(astNode ast.Stmt) (*Node, error) {
+func mapStmt(astNode ast.Stmt) *Node {
 	switch v := astNode.(type) {
 	case *ast.AssignStmt:
-		return mapAssignStmt(v), nil
+		return mapAssignStmt(v)
 	case *ast.ExprStmt:
-		return mapExprStmt(v), nil
+		return mapExprStmt(v)
 	default:
-		return nil, unknownElement{astNode}
+		return nil
 	}
 }
 
