@@ -6,6 +6,8 @@ import org.sonar.uast.UastNode;
 
 public class AssignmentLike {
 
+  public static final UastNode.Kind KIND = UastNode.Kind.ASSIGNMENT;
+
   private final UastNode node;
   private final UastNode target;
   private final UastNode value;
@@ -18,7 +20,7 @@ public class AssignmentLike {
 
   @CheckForNull
   public static AssignmentLike from(UastNode node) {
-    if (node.kinds.contains(UastNode.Kind.ASSIGNMENT)) {
+    if (node.kinds.contains(AssignmentLike.KIND)) {
       Optional<UastNode> target = node.getChild(UastNode.Kind.ASSIGNMENT_TARGET);
       Optional<UastNode> value = node.getChild(UastNode.Kind.ASSIGNMENT_VALUE);
       if (target.isPresent() && value.isPresent()) {

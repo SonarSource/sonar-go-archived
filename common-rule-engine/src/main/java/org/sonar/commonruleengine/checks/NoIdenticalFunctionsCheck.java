@@ -1,5 +1,7 @@
 package org.sonar.commonruleengine.checks;
 
+import java.util.Collections;
+import java.util.List;
 import org.sonar.uast.UastNode;
 
 /**
@@ -8,10 +10,13 @@ import org.sonar.uast.UastNode;
 public class NoIdenticalFunctionsCheck extends Check {
 
   @Override
+  public List<UastNode.Kind> nodeKindsToVisit() {
+    return Collections.singletonList(UastNode.Kind.FUNCTION);
+  }
+
+  @Override
   public void visitNode(UastNode node) {
-    if (node.kinds.contains(UastNode.Kind.FUNCTION)) {
-      // dummy implementation which reports every method
-      reportIssue(node, "Issue here");
-    }
+    // dummy implementation which reports every method
+    reportIssue(node, "Issue here");
   }
 }

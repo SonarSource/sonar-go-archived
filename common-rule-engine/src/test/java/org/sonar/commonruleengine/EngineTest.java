@@ -1,6 +1,7 @@
 package org.sonar.commonruleengine;
 
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.sonar.commonruleengine.checks.Check;
 import org.sonar.uast.Uast;
 import org.sonar.uast.UastNode;
+import org.sonar.uast.UastNode.Kind;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -32,6 +34,10 @@ class EngineTest {
 
   static class NodeCounter extends Check {
     int count;
+
+    protected List<Kind> nodeKindsToVisit() {
+      return Arrays.asList(Kind.COMPILATION_UNIT, Kind.CLASS, Kind.FUNCTION);
+    }
 
     @Override
     public void visitNode(UastNode node) {
