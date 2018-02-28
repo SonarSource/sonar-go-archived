@@ -37,8 +37,8 @@ type Position struct {
 
 type Node struct {
 	Kinds      []Kind   `json:"kinds"`
-	Position   Position `json:"position"`
-	Value      string   `json:"value"`
+	Position   Position `json:"position,omitempty"`
+	Value      string   `json:"value,omitempty"`
 	NativeNode string   `json:"nativeNode"`
 	Children   []*Node  `json:"children,omitempty"`
 }
