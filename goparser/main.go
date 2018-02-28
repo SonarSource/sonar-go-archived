@@ -1,4 +1,4 @@
-package main
+package goparser
 
 import (
 	"fmt"
@@ -283,6 +283,15 @@ func printJson(node *Node) {
 		return
 	}
 	fmt.Println(string(b))
+}
+
+func ReadAstFile(filename string) *ast.File {
+	fileSet := token.NewFileSet()
+	astFile, err := parser.ParseFile(fileSet, filename, nil, parser.ParseComments)
+	if err != nil {
+		panic(err)
+	}
+	return astFile
 }
 
 func getSampleAst() *ast.File {
