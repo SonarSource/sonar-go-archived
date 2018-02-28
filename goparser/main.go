@@ -54,7 +54,7 @@ func kind(k interface{}) Kind {
 	case Kind:
 		return v
 	default:
-		return Kind(nativeValue(k))
+		return Kind(nativeNode(k))
 	}
 }
 
@@ -76,7 +76,7 @@ func mapFile(file *ast.File) *Node {
 		Children:   children(makeNodeFromDeclList(kind(file.Decls), mapDecl, file.Decls)),
 		Position:   mapPos(file.Name.NamePos),
 		Value:      file.Name.String(),
-		NativeNode: nativeValue(file),
+		NativeNode: nativeNode(file),
 	}
 }
 
@@ -91,7 +91,7 @@ func makeNodeFromDeclList(kind Kind, mapper func(decl ast.Decl) *Node, declList 
 	return &Node{
 		Kinds:      kinds(kind),
 		Children:   children,
-		NativeNode: nativeValue(declList),
+		NativeNode: nativeNode(declList),
 	}
 }
 
@@ -108,7 +108,7 @@ func mapFuncDecl(funcDecl *ast.FuncDecl) *Node {
 	return &Node{
 		Kinds:      kinds(funcDecl),
 		Children:   children(mapExpr(funcDecl.Name), mapBlockStmt(funcDecl.Body)),
-		NativeNode: nativeValue(funcDecl),
+		NativeNode: nativeNode(funcDecl),
 	}
 }
 
@@ -116,7 +116,7 @@ func mapBlockStmt(blockStmt *ast.BlockStmt) *Node {
 	return &Node{
 		Kinds:      kinds(blockStmt),
 		Children:   children(makeNodeFromStmtList(kind(blockStmt.List), mapStmt, blockStmt.List)),
-		NativeNode: nativeValue(blockStmt),
+		NativeNode: nativeNode(blockStmt),
 	}
 }
 
@@ -131,7 +131,7 @@ func makeNodeFromStmtList(kind Kind, mapper func(stmt ast.Stmt) *Node, stmtList 
 	return &Node{
 		Kinds:      kinds(kind),
 		Children:   children,
-		NativeNode: nativeValue(stmtList),
+		NativeNode: nativeNode(stmtList),
 	}
 }
 
@@ -150,7 +150,7 @@ func mapAssignStmt(stmt *ast.AssignStmt) *Node {
 	return &Node{
 		Kinds:      kinds(ASSIGNMENT),
 		Children:   children(mapExprList(EXPR_LIST, stmt.Lhs), mapToken(stmt.Tok, stmt.TokPos), mapExprList(EXPR_LIST, stmt.Rhs)),
-		NativeNode: nativeValue(stmt),
+		NativeNode: nativeNode(stmt),
 	}
 }
 
@@ -166,7 +166,7 @@ func mapExprList(kind Kind, exprList []ast.Expr) *Node {
 	return &Node{
 		Kinds:      kinds(kind),
 		Children:   uastNodeList,
-		NativeNode: nativeValue(exprList),
+		NativeNode: nativeNode(exprList),
 	}
 }
 
@@ -187,7 +187,7 @@ func mapSelectorExpr(expr *ast.SelectorExpr) *Node {
 	return &Node{
 		Kinds:      kinds(SELECTOR_EXPR),
 		Children:   children(mapExpr(expr.X), mapIdent(expr.Sel)),
-		NativeNode: nativeValue(expr),
+		NativeNode: nativeNode(expr),
 	}
 }
 
@@ -196,7 +196,7 @@ func mapIdent(ident *ast.Ident) *Node {
 		Kinds:      kinds(IDENTIFIER),
 		Position:   mapPos(ident.NamePos),
 		Value:      ident.Name,
-		NativeNode: nativeValue(ident),
+		NativeNode: nativeNode(ident),
 	}
 }
 
@@ -205,7 +205,7 @@ func mapBasicLit(lit *ast.BasicLit) *Node {
 		Kinds:      kinds(LITERAL),
 		Position:   mapPos(lit.ValuePos),
 		Value:      lit.Value,
-		NativeNode: nativeValue(lit),
+		NativeNode: nativeNode(lit),
 	}
 }
 
@@ -214,7 +214,7 @@ func mapToken(tok token.Token, pos token.Pos) *Node {
 		Kinds:      kinds(TOKEN),
 		Position:   mapPos(pos),
 		Value:      tok.String(),
-		NativeNode: nativeValue(tok),
+		NativeNode: nativeNode(tok),
 	}
 }
 
@@ -222,7 +222,7 @@ func mapLiteralToken(kind Kind, pos token.Pos) *Node {
 	return &Node{
 		Kinds:      kinds(kind),
 		Position:   mapPos(pos),
-		NativeNode: nativeValue(kind),
+		NativeNode: nativeNode(kind),
 	}
 }
 
@@ -230,7 +230,7 @@ func mapExprStmt(stmt *ast.ExprStmt) *Node {
 	return &Node{
 		Kinds:      kinds(EXPR_STMT),
 		Children:   children(mapExpr(stmt.X)),
-		NativeNode: nativeValue(stmt),
+		NativeNode: nativeNode(stmt),
 	}
 }
 
@@ -250,7 +250,7 @@ func mapPos(pos token.Pos) Position {
 	return Position{Start: 1, End: 1, offset: int(pos)}
 }
 
-func nativeValue(x interface{}) string {
+func nativeNode(x interface{}) string {
 	return fmt.Sprintf("%T", x)
 }
 
