@@ -21,6 +21,7 @@ const (
 	IDENTIFIER       Kind = "IDENTIFIER"
 	LITERAL          Kind = "LITERAL"
 	EXPR_LIST        Kind = "EXPR_LIST"
+	EXPR_STMT        Kind = "EXPR_STMT"
 )
 
 type Position struct {
@@ -133,7 +134,7 @@ func mapExprList(exprList []ast.Expr) *Node {
 	uastNodeList := []*Node{}
 
 	for _, astNode := range exprList {
-		if uastNode, err := mapExpr(astNode); err == nil {
+		if uastNode := mapExpr(astNode); uastNode != nil {
 			uastNodeList = append(uastNodeList, uastNode)
 		}
 	}
@@ -145,14 +146,14 @@ func mapExprList(exprList []ast.Expr) *Node {
 	}
 }
 
-func mapExpr(astNode ast.Expr) (*Node, error) {
+func mapExpr(astNode ast.Expr) *Node {
 	switch v := astNode.(type) {
 	case *ast.Ident:
-		return mapIdent(v), nil
+		return mapIdent(v)
 	case *ast.BasicLit:
-		return mapBasicLit(v), nil
+		return mapBasicLit(v)
 	default:
-		return nil, unknownElement{astNode}
+		return nil
 	}
 }
 
@@ -184,7 +185,11 @@ func mapToken(tok token.Token, pos token.Pos) *Node {
 }
 
 func mapExprStmt(stmt *ast.ExprStmt) *Node {
-	return nil
+	return &Node{
+		Kinds:      []Kind{EXPR_STMT},
+		Children:   []*Node{mapExpr(stmt.X)},
+		NativeNode: nativeValue(stmt),
+	}
 }
 
 func mapPos(pos token.Pos) Position {
