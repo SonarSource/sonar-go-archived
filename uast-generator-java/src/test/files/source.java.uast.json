@@ -12,16 +12,11 @@
       "children": [
         {
           "kinds": [],
-          "nativeNode": "MODIFIERS",
-          "children": []
-        },
-        {
-          "kinds": [],
           "nativeNode": "TOKEN",
           "token": {
             "value": "class",
             "line": 1,
-            "column": 0
+            "column": 1
           },
           "children": []
         },
@@ -35,7 +30,7 @@
               "token": {
                 "value": "A",
                 "line": 1,
-                "column": 6
+                "column": 7
               },
               "children": []
             }
@@ -43,21 +38,11 @@
         },
         {
           "kinds": [],
-          "nativeNode": "TYPE_PARAMETERS",
-          "children": []
-        },
-        {
-          "kinds": [],
-          "nativeNode": "LIST",
-          "children": []
-        },
-        {
-          "kinds": [],
           "nativeNode": "TOKEN",
           "token": {
             "value": "{",
             "line": 1,
-            "column": 8
+            "column": 9
           },
           "children": []
         },
@@ -69,16 +54,6 @@
           "children": [
             {
               "kinds": [],
-              "nativeNode": "MODIFIERS",
-              "children": []
-            },
-            {
-              "kinds": [],
-              "nativeNode": "TYPE_PARAMETERS",
-              "children": []
-            },
-            {
-              "kinds": [],
               "nativeNode": "PRIMITIVE_TYPE",
               "children": [
                 {
@@ -87,7 +62,7 @@
                   "token": {
                     "value": "void",
                     "line": 2,
-                    "column": 2
+                    "column": 3
                   },
                   "children": []
                 }
@@ -103,7 +78,7 @@
                   "token": {
                     "value": "foo",
                     "line": 2,
-                    "column": 7
+                    "column": 8
                   },
                   "children": []
                 }
@@ -115,7 +90,7 @@
               "token": {
                 "value": "(",
                 "line": 2,
-                "column": 10
+                "column": 11
               },
               "children": []
             },
@@ -125,7 +100,7 @@
               "token": {
                 "value": ")",
                 "line": 2,
-                "column": 11
+                "column": 12
               },
               "children": []
             },
@@ -139,7 +114,7 @@
                   "token": {
                     "value": "{",
                     "line": 2,
-                    "column": 13
+                    "column": 14
                   },
                   "children": []
                 },
@@ -169,7 +144,7 @@
                                       "token": {
                                         "value": "System",
                                         "line": 3,
-                                        "column": 4
+                                        "column": 5
                                       },
                                       "children": []
                                     }
@@ -181,7 +156,7 @@
                                   "token": {
                                     "value": ".",
                                     "line": 3,
-                                    "column": 10
+                                    "column": 11
                                   },
                                   "children": []
                                 },
@@ -195,7 +170,7 @@
                                       "token": {
                                         "value": "out",
                                         "line": 3,
-                                        "column": 11
+                                        "column": 12
                                       },
                                       "children": []
                                     }
@@ -209,7 +184,7 @@
                               "token": {
                                 "value": ".",
                                 "line": 3,
-                                "column": 14
+                                "column": 15
                               },
                               "children": []
                             },
@@ -223,7 +198,7 @@
                                   "token": {
                                     "value": "println",
                                     "line": 3,
-                                    "column": 15
+                                    "column": 16
                                   },
                                   "children": []
                                 }
@@ -241,7 +216,7 @@
                               "token": {
                                 "value": "(",
                                 "line": 3,
-                                "column": 22
+                                "column": 23
                               },
                               "children": []
                             },
@@ -255,7 +230,7 @@
                                   "token": {
                                     "value": "\"yolo\"",
                                     "line": 3,
-                                    "column": 23
+                                    "column": 24
                                   },
                                   "children": []
                                 }
@@ -267,7 +242,7 @@
                               "token": {
                                 "value": ")",
                                 "line": 3,
-                                "column": 29
+                                "column": 30
                               },
                               "children": []
                             }
@@ -281,7 +256,7 @@
                       "token": {
                         "value": ";",
                         "line": 3,
-                        "column": 30
+                        "column": 31
                       },
                       "children": []
                     }
@@ -293,7 +268,7 @@
                   "token": {
                     "value": "}",
                     "line": 4,
-                    "column": 2
+                    "column": 3
                   },
                   "children": []
                 }
@@ -307,7 +282,7 @@
           "token": {
             "value": "}",
             "line": 5,
-            "column": 0
+            "column": 1
           },
           "children": []
         }
@@ -319,7 +294,7 @@
       "token": {
         "value": "",
         "line": 6,
-        "column": 0
+        "column": 1
       },
       "children": []
     }

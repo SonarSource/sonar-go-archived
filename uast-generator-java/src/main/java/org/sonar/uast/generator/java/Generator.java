@@ -9,7 +9,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.EnumSet;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import org.sonar.java.ast.parser.JavaParser;
@@ -54,10 +56,18 @@ public class Generator {
   }
 
   private UastNode visit(Tree tree) {
-    UastNode uast = newUastNode(tree);
-    treeUastNodeMap.put(tree, uast);
-    if (!tree.is(Tree.Kind.TOKEN)) {
-      uast.children = ((JavaTree) tree).getChildren().stream().map(this::visit).collect(Collectors.toList());
+    UastNode uast = null;
+    if (tree.is(Tree.Kind.TOKEN)) {
+      uast = newUastNode(tree);
+    } else {
+      List<Tree> children = ((JavaTree) tree).getChildren();
+      if (!children.isEmpty()) {
+        uast = newUastNode(tree);
+        uast.children = children.stream().map(this::visit).filter(Objects::nonNull).collect(Collectors.toList());
+      }
+    }
+    if (uast != null) {
+      treeUastNodeMap.put(tree, uast);
     }
     return uast;
   }
@@ -74,7 +84,8 @@ public class Generator {
 
   private static UastNode.Token newToken(SyntaxToken javaToken) {
     UastNode.Token result = new UastNode.Token();
-    result.column = javaToken.column();
+    // as per UAST specification column starts at 1
+    result.column = javaToken.column() + 1;
     result.line = javaToken.line();
     result.value = javaToken.text();
     return result;
