@@ -13,6 +13,7 @@ type Kind string
 const (
 	COMPILATION_UNIT  Kind = "COMPILATION_UNIT"
 	FUNCTION          Kind = "FUNCTION"
+	BLOCK             Kind = "BLOCK"
 	LPAREN            Kind = "LPAREN"
 	RPAREN            Kind = "RPAREN"
 	ARGS_LIST         Kind = "ARGS_LIST"
@@ -51,6 +52,8 @@ func kind(k interface{}) Kind {
 		return FUNCTION
 	case []ast.Decl:
 		return DECL_LIST
+	case *ast.BlockStmt:
+		return BLOCK
 	case Kind:
 		return v
 	default:
