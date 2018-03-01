@@ -40,7 +40,7 @@ type Token struct {
 	Value  string `json:"value,omitempty"`
 	Line   int    `json:"line"`
 	Column int    `json:"column"`
-	offset int // TODO remove this
+	pos    token.Pos // TODO remove this
 }
 
 type Node struct {
@@ -120,7 +120,13 @@ func makeNodeFromList(kind Kind, nodeList NodeList) *Node {
 	}
 }
 
-func MapFile(file *ast.File) *Node {
+func toUast(fileSet *token.FileSet, astFile *ast.File) *Node {
+	node := mapFile(astFile)
+	fixPositions(node, fileSet)
+	return node
+}
+
+func mapFile(file *ast.File) *Node {
 	return &Node{
 		Kinds:      kinds(file),
 		Children:   children(mapDeclList(kind(file.Decls), file.Decls)),
@@ -304,8 +310,8 @@ func mapToken(tok token.Token, pos token.Pos) *Node {
 
 func mapLiteralToken(kind Kind, pos token.Pos) *Node {
 	return &Node{
-		Kinds:      kinds(kind),
-		Token:      mapTokenPos(kind.String(), pos),
+		Kinds: kinds(kind),
+		Token: mapTokenPos(kind.String(), pos),
 	}
 }
 
@@ -330,7 +336,7 @@ func mapCallExpr(callExpr *ast.CallExpr) *Node {
 }
 
 func mapTokenPos(tok string, pos token.Pos) *Token {
-	return &Token{Value: tok, Line: 1, Column: 1, offset: int(pos)}
+	return &Token{Value: tok, Line: 1, Column: 1, pos: pos}
 }
 
 func nativeNode(x interface{}) string {
@@ -346,11 +352,22 @@ func PrintJson(node *Node) {
 	fmt.Println(string(b))
 }
 
-func ReadAstFile(filename string) *ast.File {
+func readAstFile(filename string) (*token.FileSet, *ast.File) {
 	fileSet := token.NewFileSet()
 	astFile, err := parser.ParseFile(fileSet, filename, nil, parser.ParseComments)
 	if err != nil {
 		panic(err)
 	}
-	return astFile
+	return fileSet, astFile
+}
+
+func fixPositions(node *Node, fileSet *token.FileSet) {
+	if node.Token != nil {
+		position := fileSet.Position(node.Token.pos)
+		node.Token.Line = position.Line
+		node.Token.Column = position.Column
+	}
+	for _, child := range node.Children {
+		fixPositions(child, fileSet)
+	}
 }

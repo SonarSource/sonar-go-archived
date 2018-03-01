@@ -4,7 +4,7 @@
   ],
   "token": {
     "value": "samples",
-    "line": 1,
+    "line": 2,
     "column": 1
   },
   "nativeNode": "*ast.File",
@@ -27,8 +27,8 @@
               ],
               "token": {
                 "value": "three",
-                "line": 1,
-                "column": 1
+                "line": 4,
+                "column": 6
               },
               "nativeNode": "*ast.Ident"
             },
@@ -62,8 +62,8 @@
                               ],
                               "token": {
                                 "value": "x",
-                                "line": 1,
-                                "column": 1
+                                "line": 5,
+                                "column": 3
                               },
                               "nativeNode": "*ast.Ident"
                             }
@@ -75,8 +75,8 @@
                           ],
                           "token": {
                             "value": ":=",
-                            "line": 1,
-                            "column": 1
+                            "line": 5,
+                            "column": 5
                           },
                           "nativeNode": "token.Token"
                         },
@@ -92,8 +92,8 @@
                               ],
                               "token": {
                                 "value": "3",
-                                "line": 1,
-                                "column": 1
+                                "line": 5,
+                                "column": 8
                               },
                               "nativeNode": "*ast.BasicLit"
                             }

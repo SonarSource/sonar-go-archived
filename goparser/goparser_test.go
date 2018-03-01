@@ -8,7 +8,9 @@ import (
 	"go/parser"
 )
 
-func getSampleAst() *ast.File {
+var fileSet, astFile = getSampleAst()
+
+func getSampleAst() (*token.FileSet, *ast.File) {
 	const sourceContent = `package main
 import "fmt"
 func main() {
@@ -26,15 +28,11 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	return astFile
-}
-
-func getSampleUast() *Node {
-	return MapFile(getSampleAst())
+	return fileSet, astFile
 }
 
 func Test_mapFile(t *testing.T) {
-	uast := getSampleUast()
+	uast := toUast(fileSet, astFile)
 	if expected := []Kind{COMPILATION_UNIT}; !reflect.DeepEqual(expected, uast.Kinds) {
 		t.Fatalf("got %v as Kinds; expected %v", uast.Kinds, expected)
 	}
@@ -47,8 +45,8 @@ func Test_mapFile(t *testing.T) {
 		t.Fatalf("got %v as kinds of first child; expected %v", uast.Children[0].Kinds, expected)
 	}
 
-	if expected := 1; expected != uast.Token.offset {
-		t.Fatalf("got %v as Token.offset; expected %v", uast.Token.offset, expected)
+	if expected := 1; expected != uast.Token.Line {
+		t.Fatalf("got %v as Token.Line; expected %v", uast.Token.Line, expected)
 	}
 
 	if expected := "main"; expected != uast.Token.Value {
@@ -61,8 +59,9 @@ func Test_mapFile(t *testing.T) {
 }
 
 func Test_mapFuncDecl(t *testing.T) {
-	funcDecl := getSampleAst().Decls[1].(*ast.FuncDecl)
+	funcDecl := astFile.Decls[1].(*ast.FuncDecl)
 	uast := mapFuncDecl(funcDecl)
+	fixPositions(uast, fileSet)
 
 	if expected := []Kind{FUNCTION}; !reflect.DeepEqual(expected, uast.Kinds) {
 		t.Fatalf("got %v as Kinds; expected %v", uast.Kinds, expected)
@@ -82,8 +81,9 @@ func Test_mapFuncDecl(t *testing.T) {
 }
 
 func Test_mapFuncDecl_Name(t *testing.T) {
-	funcDecl := getSampleAst().Decls[1].(*ast.FuncDecl)
+	funcDecl := astFile.Decls[1].(*ast.FuncDecl)
 	uast := mapFuncDecl(funcDecl).Children[0]
+	fixPositions(uast, fileSet)
 
 	if expected := []Kind{IDENTIFIER}; !reflect.DeepEqual(expected, uast.Kinds) {
 		t.Fatalf("got %v as Kinds; expected %v", uast.Kinds, expected)
@@ -93,8 +93,12 @@ func Test_mapFuncDecl_Name(t *testing.T) {
 		t.Fatalf("got %v as number of Children; expected %v", len(uast.Children), expected)
 	}
 
-	if expected := 32; expected != uast.Token.offset {
-		t.Fatalf("got %v as Token.offset; expected %v", uast.Token.offset, expected)
+	if expected := 3; expected != uast.Token.Line {
+		t.Fatalf("got %v as Token.Line; expected %v", uast.Token.Line, expected)
+	}
+
+	if expected := 6; expected != uast.Token.Column {
+		t.Fatalf("got %v as Token.Column; expected %v", uast.Token.Column, expected)
 	}
 
 	if expected := "main"; expected != uast.Token.Value {
@@ -107,8 +111,9 @@ func Test_mapFuncDecl_Name(t *testing.T) {
 }
 
 func Test_mapAssignStmt(t *testing.T) {
-	blockStmt := getSampleAst().Decls[1].(*ast.FuncDecl).Body
+	blockStmt := astFile.Decls[1].(*ast.FuncDecl).Body
 	uast := mapAssignStmt(blockStmt.List[0].(*ast.AssignStmt))
+	fixPositions(uast, fileSet)
 
 	if expected := []Kind{ASSIGNMENT}; !reflect.DeepEqual(expected, uast.Kinds) {
 		t.Fatalf("got %v as Kinds; expected %v", uast.Kinds, expected)
@@ -128,8 +133,9 @@ func Test_mapAssignStmt(t *testing.T) {
 }
 
 func Test_mapExprList(t *testing.T) {
-	blockStmt := getSampleAst().Decls[1].(*ast.FuncDecl).Body
+	blockStmt := astFile.Decls[1].(*ast.FuncDecl).Body
 	uast := mapExprList(EXPR_LIST, blockStmt.List[0].(*ast.AssignStmt).Lhs)
+	fixPositions(uast, fileSet)
 
 	if expected := []Kind{EXPR_LIST}; !reflect.DeepEqual(expected, uast.Kinds) {
 		t.Fatalf("got %v as Kinds; expected %v", uast.Kinds, expected)
@@ -149,8 +155,9 @@ func Test_mapExprList(t *testing.T) {
 }
 
 func Test_mapExpr_Ident(t *testing.T) {
-	blockStmt := getSampleAst().Decls[1].(*ast.FuncDecl).Body
+	blockStmt := astFile.Decls[1].(*ast.FuncDecl).Body
 	uast := mapExpr(blockStmt.List[0].(*ast.AssignStmt).Lhs[0])
+	fixPositions(uast, fileSet)
 
 	if uast == nil {
 		t.Fatalf("got nil; expected an identifier")
@@ -164,8 +171,12 @@ func Test_mapExpr_Ident(t *testing.T) {
 		t.Fatalf("got %v as number of Children; expected %v", len(uast.Children), expected)
 	}
 
-	if expected := 70; expected != uast.Token.offset {
-		t.Fatalf("got %v as Token.offset; expected %v", uast.Token.offset, expected)
+	if expected := 5; expected != uast.Token.Line {
+		t.Fatalf("got %v as Token.Line; expected %v", uast.Token.Line, expected)
+	}
+
+	if expected := 5; expected != uast.Token.Column {
+		t.Fatalf("got %v as Token.Column; expected %v", uast.Token.Column, expected)
 	}
 
 	if expected := "msg"; expected != uast.Token.Value {
@@ -178,8 +189,9 @@ func Test_mapExpr_Ident(t *testing.T) {
 }
 
 func Test_mapExpr_BasicLit(t *testing.T) {
-	blockStmt := getSampleAst().Decls[1].(*ast.FuncDecl).Body
+	blockStmt := astFile.Decls[1].(*ast.FuncDecl).Body
 	uast := mapExpr(blockStmt.List[0].(*ast.AssignStmt).Rhs[0])
+	fixPositions(uast, fileSet)
 
 	if uast == nil {
 		t.Fatalf("got nil; expected a literal")
@@ -193,8 +205,12 @@ func Test_mapExpr_BasicLit(t *testing.T) {
 		t.Fatalf("got %v as number of Children; expected %v", len(uast.Children), expected)
 	}
 
-	if expected := 77; expected != uast.Token.offset {
-		t.Fatalf("got %v as Token.offset; expected %v", uast.Token.offset, expected)
+	if expected := 5; expected != uast.Token.Line {
+		t.Fatalf("got %v as Token.Line; expected %v", uast.Token.Line, expected)
+	}
+
+	if expected := 12; expected != uast.Token.Column {
+		t.Fatalf("got %v as Token.Column; expected %v", uast.Token.Column, expected)
 	}
 
 	if expected := "\"hello, world\\n\""; expected != uast.Token.Value {
@@ -207,8 +223,9 @@ func Test_mapExpr_BasicLit(t *testing.T) {
 }
 
 func Test_mapExprStmt(t *testing.T) {
-	blockStmt := getSampleAst().Decls[1].(*ast.FuncDecl).Body
+	blockStmt := astFile.Decls[1].(*ast.FuncDecl).Body
 	uast := mapExprStmt(blockStmt.List[1].(*ast.ExprStmt))
+	fixPositions(uast, fileSet)
 
 	if expected := []Kind{EXPR_STMT}; !reflect.DeepEqual(expected, uast.Kinds) {
 		t.Fatalf("got %v as Kinds; expected %v", uast.Kinds, expected)
@@ -224,8 +241,9 @@ func Test_mapExprStmt(t *testing.T) {
 }
 
 func Test_mapCallExpr(t *testing.T) {
-	blockStmt := getSampleAst().Decls[1].(*ast.FuncDecl).Body
+	blockStmt := astFile.Decls[1].(*ast.FuncDecl).Body
 	uast := mapCallExpr(blockStmt.List[1].(*ast.ExprStmt).X.(*ast.CallExpr))
+	fixPositions(uast, fileSet)
 
 	if expected := []Kind{CALL}; !reflect.DeepEqual(expected, uast.Kinds) {
 		t.Fatalf("got %v as Kinds; expected %v", uast.Kinds, expected)
@@ -241,8 +259,9 @@ func Test_mapCallExpr(t *testing.T) {
 }
 
 func Test_mapIfStmt(t *testing.T) {
-	blockStmt := getSampleAst().Decls[1].(*ast.FuncDecl).Body
+	blockStmt := astFile.Decls[1].(*ast.FuncDecl).Body
 	uast := mapIfStmt(blockStmt.List[2].(*ast.IfStmt))
+	fixPositions(uast, fileSet)
 
 	if expected := []Kind{IF_STMT}; !reflect.DeepEqual(expected, uast.Kinds) {
 		t.Fatalf("got %v as Kinds; expected %v", uast.Kinds, expected)
