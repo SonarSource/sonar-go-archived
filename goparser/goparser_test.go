@@ -60,7 +60,7 @@ func Test_mapFile(t *testing.T) {
 
 func Test_mapFuncDecl(t *testing.T) {
 	funcDecl := astFile.Decls[1].(*ast.FuncDecl)
-	uast := mapFuncDecl(funcDecl)
+	uast := mapNode(funcDecl)
 	fixPositions(uast, fileSet)
 
 	if expected := []Kind{FUNCTION}; !reflect.DeepEqual(expected, uast.Kinds) {
@@ -82,7 +82,7 @@ func Test_mapFuncDecl(t *testing.T) {
 
 func Test_mapFuncDecl_Name(t *testing.T) {
 	funcDecl := astFile.Decls[1].(*ast.FuncDecl)
-	uast := mapFuncDecl(funcDecl).Children[0]
+	uast := mapNode(funcDecl).Children[0]
 	fixPositions(uast, fileSet)
 
 	if expected := []Kind{IDENTIFIER}; !reflect.DeepEqual(expected, uast.Kinds) {
@@ -112,7 +112,7 @@ func Test_mapFuncDecl_Name(t *testing.T) {
 
 func Test_mapAssignStmt(t *testing.T) {
 	blockStmt := astFile.Decls[1].(*ast.FuncDecl).Body
-	uast := mapAssignStmt(blockStmt.List[0].(*ast.AssignStmt))
+	uast := mapNode(blockStmt.List[0].(*ast.AssignStmt))
 	fixPositions(uast, fileSet)
 
 	if expected := []Kind{ASSIGNMENT}; !reflect.DeepEqual(expected, uast.Kinds) {
@@ -156,7 +156,7 @@ func Test_mapExprList(t *testing.T) {
 
 func Test_mapExpr_Ident(t *testing.T) {
 	blockStmt := astFile.Decls[1].(*ast.FuncDecl).Body
-	uast := mapExpr(blockStmt.List[0].(*ast.AssignStmt).Lhs[0])
+	uast := mapNode(blockStmt.List[0].(*ast.AssignStmt).Lhs[0])
 	fixPositions(uast, fileSet)
 
 	if uast == nil {
@@ -190,7 +190,7 @@ func Test_mapExpr_Ident(t *testing.T) {
 
 func Test_mapExpr_BasicLit(t *testing.T) {
 	blockStmt := astFile.Decls[1].(*ast.FuncDecl).Body
-	uast := mapExpr(blockStmt.List[0].(*ast.AssignStmt).Rhs[0])
+	uast := mapNode(blockStmt.List[0].(*ast.AssignStmt).Rhs[0])
 	fixPositions(uast, fileSet)
 
 	if uast == nil {
@@ -224,7 +224,7 @@ func Test_mapExpr_BasicLit(t *testing.T) {
 
 func Test_mapExprStmt(t *testing.T) {
 	blockStmt := astFile.Decls[1].(*ast.FuncDecl).Body
-	uast := mapExprStmt(blockStmt.List[1].(*ast.ExprStmt))
+	uast := mapNode(blockStmt.List[1].(*ast.ExprStmt))
 	fixPositions(uast, fileSet)
 
 	if expected := []Kind{EXPR_STMT}; !reflect.DeepEqual(expected, uast.Kinds) {
@@ -242,7 +242,7 @@ func Test_mapExprStmt(t *testing.T) {
 
 func Test_mapCallExpr(t *testing.T) {
 	blockStmt := astFile.Decls[1].(*ast.FuncDecl).Body
-	uast := mapCallExpr(blockStmt.List[1].(*ast.ExprStmt).X.(*ast.CallExpr))
+	uast := mapNode(blockStmt.List[1].(*ast.ExprStmt).X.(*ast.CallExpr))
 	fixPositions(uast, fileSet)
 
 	if expected := []Kind{CALL}; !reflect.DeepEqual(expected, uast.Kinds) {
@@ -260,7 +260,7 @@ func Test_mapCallExpr(t *testing.T) {
 
 func Test_mapIfStmt(t *testing.T) {
 	blockStmt := astFile.Decls[1].(*ast.FuncDecl).Body
-	uast := mapIfStmt(blockStmt.List[2].(*ast.IfStmt))
+	uast := mapNode(blockStmt.List[2].(*ast.IfStmt))
 	fixPositions(uast, fileSet)
 
 	if expected := []Kind{IF_STMT}; !reflect.DeepEqual(expected, uast.Kinds) {
