@@ -75,7 +75,7 @@
                                 "line": 1,
                                 "column": 1
                               },
-                              "nativeNode": "goparser.Kind"
+                              "nativeNode": "main.Kind"
                             },
                             {
                               "kinds": [
@@ -91,7 +91,7 @@
                                 "line": 1,
                                 "column": 1
                               },
-                              "nativeNode": "goparser.Kind"
+                              "nativeNode": "main.Kind"
                             }
                           ]
                         }
@@ -128,7 +128,7 @@
                                 "line": 1,
                                 "column": 1
                               },
-                              "nativeNode": "goparser.Kind"
+                              "nativeNode": "main.Kind"
                             },
                             {
                               "kinds": [
@@ -144,7 +144,7 @@
                                 "line": 1,
                                 "column": 1
                               },
-                              "nativeNode": "goparser.Kind"
+                              "nativeNode": "main.Kind"
                             }
                           ]
                         }
@@ -181,7 +181,7 @@
                                 "line": 1,
                                 "column": 1
                               },
-                              "nativeNode": "goparser.Kind"
+                              "nativeNode": "main.Kind"
                             },
                             {
                               "kinds": [
@@ -197,7 +197,7 @@
                                 "line": 1,
                                 "column": 1
                               },
-                              "nativeNode": "goparser.Kind"
+                              "nativeNode": "main.Kind"
                             }
                           ]
                         }
@@ -229,7 +229,7 @@
                                 "line": 1,
                                 "column": 1
                               },
-                              "nativeNode": "goparser.Kind"
+                              "nativeNode": "main.Kind"
                             },
                             {
                               "kinds": [
@@ -262,7 +262,7 @@
                                         "line": 1,
                                         "column": 1
                                       },
-                                      "nativeNode": "goparser.Kind"
+                                      "nativeNode": "main.Kind"
                                     },
                                     {
                                       "kinds": [
@@ -278,7 +278,7 @@
                                         "line": 1,
                                         "column": 1
                                       },
-                                      "nativeNode": "goparser.Kind"
+                                      "nativeNode": "main.Kind"
                                     }
                                   ]
                                 },
@@ -318,7 +318,7 @@
                                         "line": 1,
                                         "column": 1
                                       },
-                                      "nativeNode": "goparser.Kind"
+                                      "nativeNode": "main.Kind"
                                     },
                                     {
                                       "kinds": [
@@ -334,7 +334,7 @@
                                         "line": 1,
                                         "column": 1
                                       },
-                                      "nativeNode": "goparser.Kind"
+                                      "nativeNode": "main.Kind"
                                     }
                                   ]
                                 }
@@ -348,7 +348,7 @@
                                 "line": 1,
                                 "column": 1
                               },
-                              "nativeNode": "goparser.Kind"
+                              "nativeNode": "main.Kind"
                             }
                           ]
                         },
@@ -457,7 +457,7 @@
                                 "line": 1,
                                 "column": 1
                               },
-                              "nativeNode": "goparser.Kind"
+                              "nativeNode": "main.Kind"
                             },
                             {
                               "kinds": [
@@ -473,7 +473,7 @@
                                 "line": 1,
                                 "column": 1
                               },
-                              "nativeNode": "goparser.Kind"
+                              "nativeNode": "main.Kind"
                             }
                           ]
                         }
@@ -522,7 +522,7 @@
                                     "line": 1,
                                     "column": 1
                                   },
-                                  "nativeNode": "goparser.Kind"
+                                  "nativeNode": "main.Kind"
                                 },
                                 {
                                   "kinds": [
@@ -538,7 +538,7 @@
                                     "line": 1,
                                     "column": 1
                                   },
-                                  "nativeNode": "goparser.Kind"
+                                  "nativeNode": "main.Kind"
                                 }
                               ]
                             },
@@ -609,7 +609,7 @@
                                             "line": 1,
                                             "column": 1
                                           },
-                                          "nativeNode": "goparser.Kind"
+                                          "nativeNode": "main.Kind"
                                         },
                                         {
                                           "kinds": [
@@ -625,7 +625,7 @@
                                             "line": 1,
                                             "column": 1
                                           },
-                                          "nativeNode": "goparser.Kind"
+                                          "nativeNode": "main.Kind"
                                         }
                                       ]
                                     }
@@ -686,7 +686,7 @@
                                     "line": 1,
                                     "column": 1
                                   },
-                                  "nativeNode": "goparser.Kind"
+                                  "nativeNode": "main.Kind"
                                 },
                                 {
                                   "kinds": [
@@ -702,7 +702,7 @@
                                     "line": 1,
                                     "column": 1
                                   },
-                                  "nativeNode": "goparser.Kind"
+                                  "nativeNode": "main.Kind"
                                 }
                               ]
                             },
@@ -773,7 +773,7 @@
                                             "line": 1,
                                             "column": 1
                                           },
-                                          "nativeNode": "goparser.Kind"
+                                          "nativeNode": "main.Kind"
                                         },
                                         {
                                           "kinds": [
@@ -789,7 +789,7 @@
                                             "line": 1,
                                             "column": 1
                                           },
-                                          "nativeNode": "goparser.Kind"
+                                          "nativeNode": "main.Kind"
                                         }
                                       ]
                                     }
@@ -826,7 +826,7 @@
                                             "line": 1,
                                             "column": 1
                                           },
-                                          "nativeNode": "goparser.Kind"
+                                          "nativeNode": "main.Kind"
                                         },
                                         {
                                           "kinds": [
@@ -842,7 +842,7 @@
                                             "line": 1,
                                             "column": 1
                                           },
-                                          "nativeNode": "goparser.Kind"
+                                          "nativeNode": "main.Kind"
                                         }
                                       ]
                                     }
@@ -903,7 +903,7 @@
                                     "line": 1,
                                     "column": 1
                                   },
-                                  "nativeNode": "goparser.Kind"
+                                  "nativeNode": "main.Kind"
                                 },
                                 {
                                   "kinds": [
@@ -919,7 +919,7 @@
                                     "line": 1,
                                     "column": 1
                                   },
-                                  "nativeNode": "goparser.Kind"
+                                  "nativeNode": "main.Kind"
                                 }
                               ]
                             },
@@ -990,7 +990,7 @@
                                             "line": 1,
                                             "column": 1
                                           },
-                                          "nativeNode": "goparser.Kind"
+                                          "nativeNode": "main.Kind"
                                         },
                                         {
                                           "kinds": [
@@ -1006,7 +1006,7 @@
                                             "line": 1,
                                             "column": 1
                                           },
-                                          "nativeNode": "goparser.Kind"
+                                          "nativeNode": "main.Kind"
                                         }
                                       ]
                                     }
@@ -1059,7 +1059,7 @@
                                             "line": 1,
                                             "column": 1
                                           },
-                                          "nativeNode": "goparser.Kind"
+                                          "nativeNode": "main.Kind"
                                         },
                                         {
                                           "kinds": [
@@ -1075,7 +1075,7 @@
                                             "line": 1,
                                             "column": 1
                                           },
-                                          "nativeNode": "goparser.Kind"
+                                          "nativeNode": "main.Kind"
                                         }
                                       ]
                                     }
