@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Collections;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
@@ -58,12 +59,11 @@ public class Generator {
   private UastNode visit(Tree tree) {
     UastNode uast = null;
     if (tree.is(Tree.Kind.TOKEN)) {
-      uast = newUastNode(tree);
+      uast = newUastNode(tree, Collections.emptyList());
     } else {
       List<Tree> children = ((JavaTree) tree).getChildren();
       if (!children.isEmpty()) {
-        uast = newUastNode(tree);
-        uast.children = children.stream().map(this::visit).filter(Objects::nonNull).collect(Collectors.toList());
+        uast = newUastNode(tree, children.stream().map(this::visit).filter(Objects::nonNull).collect(Collectors.toList()));
       }
     }
     if (uast != null) {
@@ -72,23 +72,22 @@ public class Generator {
     return uast;
   }
 
-  private static UastNode newUastNode(Tree tree) {
-    UastNode result = new UastNode();
-    result.nativeNode = tree.kind().name();
-    uastKind(tree).ifPresent(kind -> result.kinds = EnumSet.of(kind));
-    if (tree.is(Tree.Kind.TOKEN)) {
-      result.token = newToken((SyntaxToken) tree);
-    }
-    return result;
+  private static UastNode newUastNode(Tree tree, List<UastNode> children) {
+    return new UastNode(
+            uastKind(tree).map(EnumSet::of).orElse(EnumSet.noneOf(UastNode.Kind.class)),
+            tree.kind().name(),
+            tree.is(Tree.Kind.TOKEN) ? newToken((SyntaxToken) tree) : null,
+            children
+    );
   }
 
   private static UastNode.Token newToken(SyntaxToken javaToken) {
-    UastNode.Token result = new UastNode.Token();
-    // as per UAST specification column starts at 1
-    result.column = javaToken.column() + 1;
-    result.line = javaToken.line();
-    result.value = javaToken.text();
-    return result;
+    return new UastNode.Token(
+            javaToken.line(),
+            // as per UAST specification column starts at 1
+            javaToken.column() + 1,
+            javaToken.text()
+    );
   }
 
   private static Optional<UastNode.Kind> uastKind(Tree tree) {

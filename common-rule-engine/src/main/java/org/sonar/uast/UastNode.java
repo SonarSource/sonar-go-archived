@@ -1,7 +1,5 @@
 package org.sonar.uast;
 
-import java.util.Collections;
-import java.util.EnumSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -10,16 +8,29 @@ import javax.annotation.Nullable;
 
 public final class UastNode {
 
-  public Set<Kind> kinds = EnumSet.noneOf(Kind.class);
-  public String nativeNode;
+  public final Set<Kind> kinds;
+  public final String nativeNode;
   @Nullable
-  public Token token;
-  public List<UastNode> children = Collections.emptyList();
+  public final Token token;
+  public final List<UastNode> children;
+
+  public UastNode(Set<Kind> kinds, String nativeNode, Token token, List<UastNode> children) {
+    this.kinds = kinds;
+    this.nativeNode = nativeNode;
+    this.token = token;
+    this.children = children;
+  }
 
   public static class Token {
-    public String value;
-    public int line;
-    public int column;
+    public final String value;
+    public final int line;
+    public final int column;
+
+    public Token(int line, int column, String value) {
+      this.line = line;
+      this.column = column;
+      this.value = value;
+    }
 
     @Override
     public String toString() {
@@ -36,6 +47,7 @@ public final class UastNode {
     COMPILATION_UNIT,
     FUNCTION,
     IDENTIFIER,
+    EOF
     ;
 
     @Override

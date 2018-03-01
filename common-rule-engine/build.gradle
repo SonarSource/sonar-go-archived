@@ -30,5 +30,6 @@ dependencies {
 
     testCompile "com.google.guava:guava:24.0-jre"
     testCompile "org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}"
+    testCompile "org.junit.jupiter:junit-jupiter-params:${junitJupiterVersion}"
     testRuntime "org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}"
 }
