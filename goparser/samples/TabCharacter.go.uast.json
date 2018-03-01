@@ -2,11 +2,11 @@
   "kinds": [
     "COMPILATION_UNIT"
   ],
-  "position": {
+  "token": {
+    "value": "samples",
     "line": 1,
     "column": 1
   },
-  "value": "samples",
   "nativeNode": "*ast.File",
   "children": [
     {
@@ -25,11 +25,11 @@
               "kinds": [
                 "IDENTIFIER"
               ],
-              "position": {
+              "token": {
+                "value": "three",
                 "line": 1,
                 "column": 1
               },
-              "value": "three",
               "nativeNode": "*ast.Ident"
             },
             {
@@ -60,11 +60,11 @@
                               "kinds": [
                                 "IDENTIFIER"
                               ],
-                              "position": {
+                              "token": {
+                                "value": "x",
                                 "line": 1,
                                 "column": 1
                               },
-                              "value": "x",
                               "nativeNode": "*ast.Ident"
                             }
                           ]
@@ -73,11 +73,11 @@
                           "kinds": [
                             "TOKEN"
                           ],
-                          "position": {
+                          "token": {
+                            "value": ":=",
                             "line": 1,
                             "column": 1
                           },
-                          "value": ":=",
                           "nativeNode": "token.Token"
                         },
                         {
@@ -90,11 +90,11 @@
                               "kinds": [
                                 "LITERAL"
                               ],
-                              "position": {
+                              "token": {
+                                "value": "3",
                                 "line": 1,
                                 "column": 1
                               },
-                              "value": "3",
                               "nativeNode": "*ast.BasicLit"
                             }
                           ]

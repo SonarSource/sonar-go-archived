@@ -2,11 +2,11 @@
   "kinds": [
     "COMPILATION_UNIT"
   ],
-  "position": {
+  "token": {
+    "value": "samples",
     "line": 1,
     "column": 1
   },
-  "value": "samples",
   "nativeNode": "*ast.File",
   "children": [
     {
@@ -25,11 +25,11 @@
               "kinds": [
                 "IDENTIFIER"
               ],
-              "position": {
+              "token": {
+                "value": "todo",
                 "line": 1,
                 "column": 1
               },
-              "value": "todo",
               "nativeNode": "*ast.Ident"
             },
             {
