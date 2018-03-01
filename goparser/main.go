@@ -73,7 +73,7 @@ func children(items ... *Node) []*Node {
 	return items
 }
 
-func handleUnknownType(o interface{}) {
+func handleUnknownType(o ast.Node) {
 	switch o.(type) {
 	case *ast.GenDecl:
 		// ignore
@@ -82,20 +82,34 @@ func handleUnknownType(o interface{}) {
 	panic(o)
 }
 
-func MapFile(file *ast.File) *Node {
-	return &Node{
-		Kinds:      kinds(file),
-		Children:   children(makeNodeFromDeclList(kind(file.Decls), mapDecl, file.Decls)),
-		Position:   mapPos(file.Name.NamePos),
-		Value:      file.Name.String(),
-		NativeNode: nativeNode(file),
-	}
+type NodeList interface {
+	At(i int) ast.Node
+	Len() int
+	NativeNode() string
 }
 
-func makeNodeFromDeclList(kind Kind, mapper func(decl ast.Decl) *Node, declList []ast.Decl) *Node {
+type ExprList []ast.Expr
+
+func (items ExprList) At(i int) ast.Node  { return items[i] }
+func (items ExprList) Len() int           { return len(items) }
+func (items ExprList) NativeNode() string { return nativeNode([]ast.Expr{}) }
+
+type StmtList []ast.Stmt
+
+func (items StmtList) At(i int) ast.Node  { return items[i] }
+func (items StmtList) Len() int           { return len(items) }
+func (items StmtList) NativeNode() string { return nativeNode([]ast.Stmt{}) }
+
+type DeclList []ast.Decl
+
+func (items DeclList) At(i int) ast.Node  { return items[i] }
+func (items DeclList) Len() int           { return len(items) }
+func (items DeclList) NativeNode() string { return nativeNode([]ast.Decl{}) }
+
+func makeNodeFromList(kind Kind, nodeList NodeList) *Node {
 	children := children()
-	for _, v := range declList {
-		if uastNode := mapper(v); uastNode != nil {
+	for i := 0; i < nodeList.Len(); i++ {
+		if uastNode := mapNode(nodeList.At(i)); uastNode != nil {
 			children = append(children, uastNode)
 		}
 	}
@@ -103,8 +117,22 @@ func makeNodeFromDeclList(kind Kind, mapper func(decl ast.Decl) *Node, declList 
 	return &Node{
 		Kinds:      kinds(kind),
 		Children:   children,
-		NativeNode: nativeNode(declList),
+		NativeNode: nodeList.NativeNode(),
 	}
+}
+
+func MapFile(file *ast.File) *Node {
+	return &Node{
+		Kinds:      kinds(file),
+		Children:   children(mapDeclList(kind(file.Decls), file.Decls)),
+		Position:   mapPos(file.Name.NamePos),
+		Value:      file.Name.String(),
+		NativeNode: nativeNode(file),
+	}
+}
+
+func mapDeclList(kind Kind, declList []ast.Decl) *Node {
+	return makeNodeFromList(kind, DeclList(declList))
 }
 
 func mapDecl(decl ast.Decl) *Node {
@@ -128,24 +156,13 @@ func mapFuncDecl(funcDecl *ast.FuncDecl) *Node {
 func mapBlockStmt(blockStmt *ast.BlockStmt) *Node {
 	return &Node{
 		Kinds:      kinds(blockStmt),
-		Children:   children(makeNodeFromStmtList(kind(blockStmt.List), mapStmt, blockStmt.List)),
+		Children:   children(mapStmtList(kind(blockStmt.List), blockStmt.List)),
 		NativeNode: nativeNode(blockStmt),
 	}
 }
 
-func makeNodeFromStmtList(kind Kind, mapper func(stmt ast.Stmt) *Node, stmtList []ast.Stmt) *Node {
-	children := children()
-	for _, v := range stmtList {
-		if uastNode := mapper(v); uastNode != nil {
-			children = append(children, uastNode)
-		}
-	}
-
-	return &Node{
-		Kinds:      kinds(kind),
-		Children:   children,
-		NativeNode: nativeNode(stmtList),
-	}
+func mapStmtList(kind Kind, stmtList []ast.Stmt) *Node {
+	return makeNodeFromList(kind, StmtList(stmtList))
 }
 
 func mapStmt(astNode ast.Stmt) *Node {
@@ -194,21 +211,20 @@ func mapAssignStmt(stmt *ast.AssignStmt) *Node {
 }
 
 func mapExprList(kind Kind, exprList []ast.Expr) *Node {
-	return makeNodeFromExprList(kind, mapExpr, exprList)
+	return makeNodeFromList(kind, ExprList(exprList))
 }
 
-func makeNodeFromExprList(kind Kind, mapper func(expr ast.Expr) *Node, exprList []ast.Expr) *Node {
-	children := children()
-	for _, v := range exprList {
-		if uastNode := mapper(v); uastNode != nil {
-			children = append(children, uastNode)
-		}
-	}
-
-	return &Node{
-		Kinds:      kinds(kind),
-		Children:   children,
-		NativeNode: nativeNode(exprList),
+func mapNode(astNode ast.Node) *Node {
+	switch v := astNode.(type) {
+	case ast.Expr:
+		return mapExpr(v)
+	case ast.Stmt:
+		return mapStmt(v)
+	case ast.Decl:
+		return mapDecl(v)
+	default:
+		handleUnknownType(astNode)
+		return nil
 	}
 }
 
