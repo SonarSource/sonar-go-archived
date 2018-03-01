@@ -4,7 +4,7 @@
   ],
   "token": {
     "value": "samples",
-    "line": 1,
+    "line": 2,
     "column": 1
   },
   "nativeNode": "*ast.File",
@@ -27,8 +27,8 @@
               ],
               "token": {
                 "value": "functionWith8",
-                "line": 1,
-                "column": 1
+                "line": 4,
+                "column": 6
               },
               "nativeNode": "*ast.Ident"
             },
@@ -60,8 +60,8 @@
               ],
               "token": {
                 "value": "functionWith7",
-                "line": 1,
-                "column": 1
+                "line": 7,
+                "column": 6
               },
               "nativeNode": "*ast.Ident"
             },
