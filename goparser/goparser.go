@@ -62,6 +62,20 @@ func kind(k interface{}) Kind {
 		return BLOCK
 	case *ast.IfStmt:
 		return IF_STMT
+	case *ast.Ident:
+		return IDENTIFIER
+	case *ast.AssignStmt:
+		return ASSIGNMENT
+	case *ast.BasicLit:
+		return LITERAL
+	case *ast.ExprStmt:
+		return EXPR_STMT
+	case *ast.CallExpr:
+		return CALL
+	case *ast.SelectorExpr:
+		return SELECTOR_EXPR
+	case token.Token:
+		return TOKEN
 	case Kind:
 		return v
 	default:
@@ -185,7 +199,7 @@ func mapStmt(astNode ast.Stmt) *Node {
 
 func mapIfStmt(stmt *ast.IfStmt) *Node {
 	return &Node{
-		Kinds: kinds(kind(stmt)),
+		Kinds: kinds(stmt),
 		Children: children(
 			mapStmt(stmt.Init),
 			mapExpr(stmt.Cond),
@@ -198,7 +212,7 @@ func mapIfStmt(stmt *ast.IfStmt) *Node {
 
 func mapAssignStmt(stmt *ast.AssignStmt) *Node {
 	return &Node{
-		Kinds: kinds(ASSIGNMENT),
+		Kinds: kinds(stmt),
 		Children: children(
 			mapExprList(ASSIGNMENT_TARGET, stmt.Lhs),
 			mapToken(stmt.Tok, stmt.TokPos),
@@ -254,7 +268,7 @@ func mapExpr(astNode ast.Expr) *Node {
 
 func mapBinaryExpr(expr *ast.BinaryExpr) *Node {
 	return &Node{
-		Kinds: kinds(kind(expr)),
+		Kinds: kinds(expr),
 		Children: children(
 			mapExpr(expr.X),
 			mapToken(expr.Op, expr.OpPos),
@@ -266,7 +280,7 @@ func mapBinaryExpr(expr *ast.BinaryExpr) *Node {
 
 func mapParenExpr(expr *ast.ParenExpr) *Node {
 	return &Node{
-		Kinds: kinds(kind(expr)),
+		Kinds: kinds(expr),
 		Children: children(
 			mapLiteralToken(LPAREN, expr.Lparen),
 			mapExpr(expr.X),
@@ -278,7 +292,7 @@ func mapParenExpr(expr *ast.ParenExpr) *Node {
 
 func mapSelectorExpr(expr *ast.SelectorExpr) *Node {
 	return &Node{
-		Kinds:      kinds(SELECTOR_EXPR),
+		Kinds:      kinds(expr),
 		Children:   children(mapExpr(expr.X), mapIdent(expr.Sel)),
 		NativeNode: nativeNode(expr),
 	}
@@ -286,7 +300,7 @@ func mapSelectorExpr(expr *ast.SelectorExpr) *Node {
 
 func mapIdent(ident *ast.Ident) *Node {
 	return &Node{
-		Kinds:      kinds(IDENTIFIER),
+		Kinds:      kinds(ident),
 		Token:      mapTokenPos(ident.Name, ident.Pos()),
 		NativeNode: nativeNode(ident),
 	}
@@ -294,7 +308,7 @@ func mapIdent(ident *ast.Ident) *Node {
 
 func mapBasicLit(lit *ast.BasicLit) *Node {
 	return &Node{
-		Kinds:      kinds(LITERAL),
+		Kinds:      kinds(lit),
 		Token:      mapTokenPos(lit.Value, lit.Pos()),
 		NativeNode: nativeNode(lit),
 	}
@@ -302,7 +316,7 @@ func mapBasicLit(lit *ast.BasicLit) *Node {
 
 func mapToken(tok token.Token, pos token.Pos) *Node {
 	return &Node{
-		Kinds:      kinds(TOKEN),
+		Kinds:      kinds(tok),
 		Token:      mapTokenPos(tok.String(), pos),
 		NativeNode: nativeNode(tok),
 	}
@@ -317,7 +331,7 @@ func mapLiteralToken(kind Kind, pos token.Pos) *Node {
 
 func mapExprStmt(stmt *ast.ExprStmt) *Node {
 	return &Node{
-		Kinds:      kinds(EXPR_STMT),
+		Kinds:      kinds(stmt),
 		Children:   children(mapExpr(stmt.X)),
 		NativeNode: nativeNode(stmt),
 	}
@@ -325,7 +339,7 @@ func mapExprStmt(stmt *ast.ExprStmt) *Node {
 
 func mapCallExpr(callExpr *ast.CallExpr) *Node {
 	return &Node{
-		Kinds: kinds(CALL),
+		Kinds: kinds(callExpr),
 		Children: children(
 			mapExpr(callExpr.Fun),
 			mapLiteralToken(LPAREN, callExpr.Lparen),
