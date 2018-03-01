@@ -1,0 +1,119 @@
+{
+  "kinds": [
+    "COMPILATION_UNIT"
+  ],
+  "position": {
+    "line": 1,
+    "column": 1
+  },
+  "value": "samples",
+  "nativeNode": "*ast.File",
+  "children": [
+    {
+      "kinds": [
+        "DECL_LIST"
+      ],
+      "nativeNode": "[]ast.Decl",
+      "children": [
+        {
+          "kinds": [
+            "FUNCTION"
+          ],
+          "nativeNode": "*ast.FuncDecl",
+          "children": [
+            {
+              "kinds": [
+                "IDENTIFIER"
+              ],
+              "position": {
+                "line": 1,
+                "column": 1
+              },
+              "value": "three",
+              "nativeNode": "*ast.Ident"
+            },
+            {
+              "kinds": [
+                "BLOCK"
+              ],
+              "nativeNode": "*ast.BlockStmt",
+              "children": [
+                {
+                  "kinds": [
+                    "[]ast.Stmt"
+                  ],
+                  "nativeNode": "[]ast.Stmt",
+                  "children": [
+                    {
+                      "kinds": [
+                        "ASSIGNMENT"
+                      ],
+                      "nativeNode": "*ast.AssignStmt",
+                      "children": [
+                        {
+                          "kinds": [
+                            "ASSIGNMENT_TARGET"
+                          ],
+                          "nativeNode": "[]ast.Expr",
+                          "children": [
+                            {
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
+                              "position": {
+                                "line": 1,
+                                "column": 1
+                              },
+                              "value": "x",
+                              "nativeNode": "*ast.Ident"
+                            }
+                          ]
+                        },
+                        {
+                          "kinds": [
+                            "TOKEN"
+                          ],
+                          "position": {
+                            "line": 1,
+                            "column": 1
+                          },
+                          "value": ":=",
+                          "nativeNode": "token.Token"
+                        },
+                        {
+                          "kinds": [
+                            "ASSIGNMENT_VALUE"
+                          ],
+                          "nativeNode": "[]ast.Expr",
+                          "children": [
+                            {
+                              "kinds": [
+                                "LITERAL"
+                              ],
+                              "position": {
+                                "line": 1,
+                                "column": 1
+                              },
+                              "value": "3",
+                              "nativeNode": "*ast.BasicLit"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [
+                        "UNSUPPORTED"
+                      ],
+                      "nativeNode": "*ast.ReturnStmt"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

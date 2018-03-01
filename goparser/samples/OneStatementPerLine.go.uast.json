@@ -1,0 +1,1140 @@
+{
+  "kinds": [
+    "COMPILATION_UNIT"
+  ],
+  "position": {
+    "line": 1,
+    "column": 1
+  },
+  "value": "samples",
+  "nativeNode": "*ast.File",
+  "children": [
+    {
+      "kinds": [
+        "DECL_LIST"
+      ],
+      "nativeNode": "[]ast.Decl",
+      "children": [
+        {
+          "kinds": [
+            "FUNCTION"
+          ],
+          "nativeNode": "*ast.FuncDecl",
+          "children": [
+            {
+              "kinds": [
+                "IDENTIFIER"
+              ],
+              "position": {
+                "line": 1,
+                "column": 1
+              },
+              "value": "foo",
+              "nativeNode": "*ast.Ident"
+            },
+            {
+              "kinds": [
+                "BLOCK"
+              ],
+              "nativeNode": "*ast.BlockStmt",
+              "children": [
+                {
+                  "kinds": [
+                    "[]ast.Stmt"
+                  ],
+                  "nativeNode": "[]ast.Stmt",
+                  "children": [
+                    {
+                      "kinds": [
+                        "EXPR_STMT"
+                      ],
+                      "nativeNode": "*ast.ExprStmt",
+                      "children": [
+                        {
+                          "kinds": [
+                            "CALL"
+                          ],
+                          "nativeNode": "",
+                          "children": [
+                            {
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
+                              "position": {
+                                "line": 1,
+                                "column": 1
+                              },
+                              "value": "foo",
+                              "nativeNode": "*ast.Ident"
+                            },
+                            {
+                              "kinds": [
+                                "LPAREN"
+                              ],
+                              "position": {
+                                "line": 1,
+                                "column": 1
+                              },
+                              "nativeNode": "goparser.Kind"
+                            },
+                            {
+                              "kinds": [
+                                "ARGS_LIST"
+                              ],
+                              "nativeNode": "[]ast.Expr"
+                            },
+                            {
+                              "kinds": [
+                                "RPAREN"
+                              ],
+                              "position": {
+                                "line": 1,
+                                "column": 1
+                              },
+                              "nativeNode": "goparser.Kind"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [
+                        "EXPR_STMT"
+                      ],
+                      "nativeNode": "*ast.ExprStmt",
+                      "children": [
+                        {
+                          "kinds": [
+                            "CALL"
+                          ],
+                          "nativeNode": "",
+                          "children": [
+                            {
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
+                              "position": {
+                                "line": 1,
+                                "column": 1
+                              },
+                              "value": "foo",
+                              "nativeNode": "*ast.Ident"
+                            },
+                            {
+                              "kinds": [
+                                "LPAREN"
+                              ],
+                              "position": {
+                                "line": 1,
+                                "column": 1
+                              },
+                              "nativeNode": "goparser.Kind"
+                            },
+                            {
+                              "kinds": [
+                                "ARGS_LIST"
+                              ],
+                              "nativeNode": "[]ast.Expr"
+                            },
+                            {
+                              "kinds": [
+                                "RPAREN"
+                              ],
+                              "position": {
+                                "line": 1,
+                                "column": 1
+                              },
+                              "nativeNode": "goparser.Kind"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [
+                        "EXPR_STMT"
+                      ],
+                      "nativeNode": "*ast.ExprStmt",
+                      "children": [
+                        {
+                          "kinds": [
+                            "CALL"
+                          ],
+                          "nativeNode": "",
+                          "children": [
+                            {
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
+                              "position": {
+                                "line": 1,
+                                "column": 1
+                              },
+                              "value": "bar",
+                              "nativeNode": "*ast.Ident"
+                            },
+                            {
+                              "kinds": [
+                                "LPAREN"
+                              ],
+                              "position": {
+                                "line": 1,
+                                "column": 1
+                              },
+                              "nativeNode": "goparser.Kind"
+                            },
+                            {
+                              "kinds": [
+                                "ARGS_LIST"
+                              ],
+                              "nativeNode": "[]ast.Expr"
+                            },
+                            {
+                              "kinds": [
+                                "RPAREN"
+                              ],
+                              "position": {
+                                "line": 1,
+                                "column": 1
+                              },
+                              "nativeNode": "goparser.Kind"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [
+                        "IF_STMT"
+                      ],
+                      "nativeNode": "*ast.IfStmt",
+                      "children": [
+                        {
+                          "kinds": [
+                            "UNSUPPORTED"
+                          ],
+                          "nativeNode": "\u003cnil\u003e"
+                        },
+                        {
+                          "kinds": [
+                            "*ast.ParenExpr"
+                          ],
+                          "nativeNode": "*ast.ParenExpr",
+                          "children": [
+                            {
+                              "kinds": [
+                                "LPAREN"
+                              ],
+                              "position": {
+                                "line": 1,
+                                "column": 1
+                              },
+                              "nativeNode": "goparser.Kind"
+                            },
+                            {
+                              "kinds": [
+                                "*ast.BinaryExpr"
+                              ],
+                              "nativeNode": "*ast.BinaryExpr",
+                              "children": [
+                                {
+                                  "kinds": [
+                                    "CALL"
+                                  ],
+                                  "nativeNode": "",
+                                  "children": [
+                                    {
+                                      "kinds": [
+                                        "IDENTIFIER"
+                                      ],
+                                      "position": {
+                                        "line": 1,
+                                        "column": 1
+                                      },
+                                      "value": "bar",
+                                      "nativeNode": "*ast.Ident"
+                                    },
+                                    {
+                                      "kinds": [
+                                        "LPAREN"
+                                      ],
+                                      "position": {
+                                        "line": 1,
+                                        "column": 1
+                                      },
+                                      "nativeNode": "goparser.Kind"
+                                    },
+                                    {
+                                      "kinds": [
+                                        "ARGS_LIST"
+                                      ],
+                                      "nativeNode": "[]ast.Expr"
+                                    },
+                                    {
+                                      "kinds": [
+                                        "RPAREN"
+                                      ],
+                                      "position": {
+                                        "line": 1,
+                                        "column": 1
+                                      },
+                                      "nativeNode": "goparser.Kind"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "kinds": [
+                                    "TOKEN"
+                                  ],
+                                  "position": {
+                                    "line": 1,
+                                    "column": 1
+                                  },
+                                  "value": "==",
+                                  "nativeNode": "token.Token"
+                                },
+                                {
+                                  "kinds": [
+                                    "CALL"
+                                  ],
+                                  "nativeNode": "",
+                                  "children": [
+                                    {
+                                      "kinds": [
+                                        "IDENTIFIER"
+                                      ],
+                                      "position": {
+                                        "line": 1,
+                                        "column": 1
+                                      },
+                                      "value": "bar",
+                                      "nativeNode": "*ast.Ident"
+                                    },
+                                    {
+                                      "kinds": [
+                                        "LPAREN"
+                                      ],
+                                      "position": {
+                                        "line": 1,
+                                        "column": 1
+                                      },
+                                      "nativeNode": "goparser.Kind"
+                                    },
+                                    {
+                                      "kinds": [
+                                        "ARGS_LIST"
+                                      ],
+                                      "nativeNode": "[]ast.Expr"
+                                    },
+                                    {
+                                      "kinds": [
+                                        "RPAREN"
+                                      ],
+                                      "position": {
+                                        "line": 1,
+                                        "column": 1
+                                      },
+                                      "nativeNode": "goparser.Kind"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "kinds": [
+                                "RPAREN"
+                              ],
+                              "position": {
+                                "line": 1,
+                                "column": 1
+                              },
+                              "nativeNode": "goparser.Kind"
+                            }
+                          ]
+                        },
+                        {
+                          "kinds": [
+                            "BLOCK"
+                          ],
+                          "nativeNode": "*ast.BlockStmt",
+                          "children": [
+                            {
+                              "kinds": [
+                                "[]ast.Stmt"
+                              ],
+                              "nativeNode": "[]ast.Stmt"
+                            }
+                          ]
+                        },
+                        {
+                          "kinds": [
+                            "UNSUPPORTED"
+                          ],
+                          "nativeNode": "\u003cnil\u003e"
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [
+                        "ASSIGNMENT"
+                      ],
+                      "nativeNode": "*ast.AssignStmt",
+                      "children": [
+                        {
+                          "kinds": [
+                            "ASSIGNMENT_TARGET"
+                          ],
+                          "nativeNode": "[]ast.Expr",
+                          "children": [
+                            {
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
+                              "position": {
+                                "line": 1,
+                                "column": 1
+                              },
+                              "value": "f",
+                              "nativeNode": "*ast.Ident"
+                            }
+                          ]
+                        },
+                        {
+                          "kinds": [
+                            "TOKEN"
+                          ],
+                          "position": {
+                            "line": 1,
+                            "column": 1
+                          },
+                          "value": ":=",
+                          "nativeNode": "token.Token"
+                        },
+                        {
+                          "kinds": [
+                            "ASSIGNMENT_VALUE"
+                          ],
+                          "nativeNode": "[]ast.Expr",
+                          "children": [
+                            {
+                              "kinds": [
+                                "UNSUPPORTED"
+                              ],
+                              "nativeNode": "*ast.FuncLit"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [
+                        "EXPR_STMT"
+                      ],
+                      "nativeNode": "*ast.ExprStmt",
+                      "children": [
+                        {
+                          "kinds": [
+                            "CALL"
+                          ],
+                          "nativeNode": "",
+                          "children": [
+                            {
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
+                              "position": {
+                                "line": 1,
+                                "column": 1
+                              },
+                              "value": "f",
+                              "nativeNode": "*ast.Ident"
+                            },
+                            {
+                              "kinds": [
+                                "LPAREN"
+                              ],
+                              "position": {
+                                "line": 1,
+                                "column": 1
+                              },
+                              "nativeNode": "goparser.Kind"
+                            },
+                            {
+                              "kinds": [
+                                "ARGS_LIST"
+                              ],
+                              "nativeNode": "[]ast.Expr"
+                            },
+                            {
+                              "kinds": [
+                                "RPAREN"
+                              ],
+                              "position": {
+                                "line": 1,
+                                "column": 1
+                              },
+                              "nativeNode": "goparser.Kind"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [
+                        "IF_STMT"
+                      ],
+                      "nativeNode": "*ast.IfStmt",
+                      "children": [
+                        {
+                          "kinds": [
+                            "UNSUPPORTED"
+                          ],
+                          "nativeNode": "\u003cnil\u003e"
+                        },
+                        {
+                          "kinds": [
+                            "*ast.BinaryExpr"
+                          ],
+                          "nativeNode": "*ast.BinaryExpr",
+                          "children": [
+                            {
+                              "kinds": [
+                                "CALL"
+                              ],
+                              "nativeNode": "",
+                              "children": [
+                                {
+                                  "kinds": [
+                                    "IDENTIFIER"
+                                  ],
+                                  "position": {
+                                    "line": 1,
+                                    "column": 1
+                                  },
+                                  "value": "bar",
+                                  "nativeNode": "*ast.Ident"
+                                },
+                                {
+                                  "kinds": [
+                                    "LPAREN"
+                                  ],
+                                  "position": {
+                                    "line": 1,
+                                    "column": 1
+                                  },
+                                  "nativeNode": "goparser.Kind"
+                                },
+                                {
+                                  "kinds": [
+                                    "ARGS_LIST"
+                                  ],
+                                  "nativeNode": "[]ast.Expr"
+                                },
+                                {
+                                  "kinds": [
+                                    "RPAREN"
+                                  ],
+                                  "position": {
+                                    "line": 1,
+                                    "column": 1
+                                  },
+                                  "nativeNode": "goparser.Kind"
+                                }
+                              ]
+                            },
+                            {
+                              "kinds": [
+                                "TOKEN"
+                              ],
+                              "position": {
+                                "line": 1,
+                                "column": 1
+                              },
+                              "value": "==",
+                              "nativeNode": "token.Token"
+                            },
+                            {
+                              "kinds": [
+                                "LITERAL"
+                              ],
+                              "position": {
+                                "line": 1,
+                                "column": 1
+                              },
+                              "value": "0",
+                              "nativeNode": "*ast.BasicLit"
+                            }
+                          ]
+                        },
+                        {
+                          "kinds": [
+                            "BLOCK"
+                          ],
+                          "nativeNode": "*ast.BlockStmt",
+                          "children": [
+                            {
+                              "kinds": [
+                                "[]ast.Stmt"
+                              ],
+                              "nativeNode": "[]ast.Stmt",
+                              "children": [
+                                {
+                                  "kinds": [
+                                    "EXPR_STMT"
+                                  ],
+                                  "nativeNode": "*ast.ExprStmt",
+                                  "children": [
+                                    {
+                                      "kinds": [
+                                        "CALL"
+                                      ],
+                                      "nativeNode": "",
+                                      "children": [
+                                        {
+                                          "kinds": [
+                                            "IDENTIFIER"
+                                          ],
+                                          "position": {
+                                            "line": 1,
+                                            "column": 1
+                                          },
+                                          "value": "foo",
+                                          "nativeNode": "*ast.Ident"
+                                        },
+                                        {
+                                          "kinds": [
+                                            "LPAREN"
+                                          ],
+                                          "position": {
+                                            "line": 1,
+                                            "column": 1
+                                          },
+                                          "nativeNode": "goparser.Kind"
+                                        },
+                                        {
+                                          "kinds": [
+                                            "ARGS_LIST"
+                                          ],
+                                          "nativeNode": "[]ast.Expr"
+                                        },
+                                        {
+                                          "kinds": [
+                                            "RPAREN"
+                                          ],
+                                          "position": {
+                                            "line": 1,
+                                            "column": 1
+                                          },
+                                          "nativeNode": "goparser.Kind"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "kinds": [
+                            "UNSUPPORTED"
+                          ],
+                          "nativeNode": "\u003cnil\u003e"
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [
+                        "IF_STMT"
+                      ],
+                      "nativeNode": "*ast.IfStmt",
+                      "children": [
+                        {
+                          "kinds": [
+                            "UNSUPPORTED"
+                          ],
+                          "nativeNode": "\u003cnil\u003e"
+                        },
+                        {
+                          "kinds": [
+                            "*ast.BinaryExpr"
+                          ],
+                          "nativeNode": "*ast.BinaryExpr",
+                          "children": [
+                            {
+                              "kinds": [
+                                "CALL"
+                              ],
+                              "nativeNode": "",
+                              "children": [
+                                {
+                                  "kinds": [
+                                    "IDENTIFIER"
+                                  ],
+                                  "position": {
+                                    "line": 1,
+                                    "column": 1
+                                  },
+                                  "value": "bar",
+                                  "nativeNode": "*ast.Ident"
+                                },
+                                {
+                                  "kinds": [
+                                    "LPAREN"
+                                  ],
+                                  "position": {
+                                    "line": 1,
+                                    "column": 1
+                                  },
+                                  "nativeNode": "goparser.Kind"
+                                },
+                                {
+                                  "kinds": [
+                                    "ARGS_LIST"
+                                  ],
+                                  "nativeNode": "[]ast.Expr"
+                                },
+                                {
+                                  "kinds": [
+                                    "RPAREN"
+                                  ],
+                                  "position": {
+                                    "line": 1,
+                                    "column": 1
+                                  },
+                                  "nativeNode": "goparser.Kind"
+                                }
+                              ]
+                            },
+                            {
+                              "kinds": [
+                                "TOKEN"
+                              ],
+                              "position": {
+                                "line": 1,
+                                "column": 1
+                              },
+                              "value": "==",
+                              "nativeNode": "token.Token"
+                            },
+                            {
+                              "kinds": [
+                                "LITERAL"
+                              ],
+                              "position": {
+                                "line": 1,
+                                "column": 1
+                              },
+                              "value": "0",
+                              "nativeNode": "*ast.BasicLit"
+                            }
+                          ]
+                        },
+                        {
+                          "kinds": [
+                            "BLOCK"
+                          ],
+                          "nativeNode": "*ast.BlockStmt",
+                          "children": [
+                            {
+                              "kinds": [
+                                "[]ast.Stmt"
+                              ],
+                              "nativeNode": "[]ast.Stmt",
+                              "children": [
+                                {
+                                  "kinds": [
+                                    "EXPR_STMT"
+                                  ],
+                                  "nativeNode": "*ast.ExprStmt",
+                                  "children": [
+                                    {
+                                      "kinds": [
+                                        "CALL"
+                                      ],
+                                      "nativeNode": "",
+                                      "children": [
+                                        {
+                                          "kinds": [
+                                            "IDENTIFIER"
+                                          ],
+                                          "position": {
+                                            "line": 1,
+                                            "column": 1
+                                          },
+                                          "value": "foo",
+                                          "nativeNode": "*ast.Ident"
+                                        },
+                                        {
+                                          "kinds": [
+                                            "LPAREN"
+                                          ],
+                                          "position": {
+                                            "line": 1,
+                                            "column": 1
+                                          },
+                                          "nativeNode": "goparser.Kind"
+                                        },
+                                        {
+                                          "kinds": [
+                                            "ARGS_LIST"
+                                          ],
+                                          "nativeNode": "[]ast.Expr"
+                                        },
+                                        {
+                                          "kinds": [
+                                            "RPAREN"
+                                          ],
+                                          "position": {
+                                            "line": 1,
+                                            "column": 1
+                                          },
+                                          "nativeNode": "goparser.Kind"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "kinds": [
+                                    "EXPR_STMT"
+                                  ],
+                                  "nativeNode": "*ast.ExprStmt",
+                                  "children": [
+                                    {
+                                      "kinds": [
+                                        "CALL"
+                                      ],
+                                      "nativeNode": "",
+                                      "children": [
+                                        {
+                                          "kinds": [
+                                            "IDENTIFIER"
+                                          ],
+                                          "position": {
+                                            "line": 1,
+                                            "column": 1
+                                          },
+                                          "value": "bar",
+                                          "nativeNode": "*ast.Ident"
+                                        },
+                                        {
+                                          "kinds": [
+                                            "LPAREN"
+                                          ],
+                                          "position": {
+                                            "line": 1,
+                                            "column": 1
+                                          },
+                                          "nativeNode": "goparser.Kind"
+                                        },
+                                        {
+                                          "kinds": [
+                                            "ARGS_LIST"
+                                          ],
+                                          "nativeNode": "[]ast.Expr"
+                                        },
+                                        {
+                                          "kinds": [
+                                            "RPAREN"
+                                          ],
+                                          "position": {
+                                            "line": 1,
+                                            "column": 1
+                                          },
+                                          "nativeNode": "goparser.Kind"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "kinds": [
+                            "UNSUPPORTED"
+                          ],
+                          "nativeNode": "\u003cnil\u003e"
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [
+                        "IF_STMT"
+                      ],
+                      "nativeNode": "*ast.IfStmt",
+                      "children": [
+                        {
+                          "kinds": [
+                            "UNSUPPORTED"
+                          ],
+                          "nativeNode": "\u003cnil\u003e"
+                        },
+                        {
+                          "kinds": [
+                            "*ast.BinaryExpr"
+                          ],
+                          "nativeNode": "*ast.BinaryExpr",
+                          "children": [
+                            {
+                              "kinds": [
+                                "CALL"
+                              ],
+                              "nativeNode": "",
+                              "children": [
+                                {
+                                  "kinds": [
+                                    "IDENTIFIER"
+                                  ],
+                                  "position": {
+                                    "line": 1,
+                                    "column": 1
+                                  },
+                                  "value": "bar",
+                                  "nativeNode": "*ast.Ident"
+                                },
+                                {
+                                  "kinds": [
+                                    "LPAREN"
+                                  ],
+                                  "position": {
+                                    "line": 1,
+                                    "column": 1
+                                  },
+                                  "nativeNode": "goparser.Kind"
+                                },
+                                {
+                                  "kinds": [
+                                    "ARGS_LIST"
+                                  ],
+                                  "nativeNode": "[]ast.Expr"
+                                },
+                                {
+                                  "kinds": [
+                                    "RPAREN"
+                                  ],
+                                  "position": {
+                                    "line": 1,
+                                    "column": 1
+                                  },
+                                  "nativeNode": "goparser.Kind"
+                                }
+                              ]
+                            },
+                            {
+                              "kinds": [
+                                "TOKEN"
+                              ],
+                              "position": {
+                                "line": 1,
+                                "column": 1
+                              },
+                              "value": "==",
+                              "nativeNode": "token.Token"
+                            },
+                            {
+                              "kinds": [
+                                "LITERAL"
+                              ],
+                              "position": {
+                                "line": 1,
+                                "column": 1
+                              },
+                              "value": "0",
+                              "nativeNode": "*ast.BasicLit"
+                            }
+                          ]
+                        },
+                        {
+                          "kinds": [
+                            "BLOCK"
+                          ],
+                          "nativeNode": "*ast.BlockStmt",
+                          "children": [
+                            {
+                              "kinds": [
+                                "[]ast.Stmt"
+                              ],
+                              "nativeNode": "[]ast.Stmt",
+                              "children": [
+                                {
+                                  "kinds": [
+                                    "EXPR_STMT"
+                                  ],
+                                  "nativeNode": "*ast.ExprStmt",
+                                  "children": [
+                                    {
+                                      "kinds": [
+                                        "CALL"
+                                      ],
+                                      "nativeNode": "",
+                                      "children": [
+                                        {
+                                          "kinds": [
+                                            "IDENTIFIER"
+                                          ],
+                                          "position": {
+                                            "line": 1,
+                                            "column": 1
+                                          },
+                                          "value": "foo",
+                                          "nativeNode": "*ast.Ident"
+                                        },
+                                        {
+                                          "kinds": [
+                                            "LPAREN"
+                                          ],
+                                          "position": {
+                                            "line": 1,
+                                            "column": 1
+                                          },
+                                          "nativeNode": "goparser.Kind"
+                                        },
+                                        {
+                                          "kinds": [
+                                            "ARGS_LIST"
+                                          ],
+                                          "nativeNode": "[]ast.Expr"
+                                        },
+                                        {
+                                          "kinds": [
+                                            "RPAREN"
+                                          ],
+                                          "position": {
+                                            "line": 1,
+                                            "column": 1
+                                          },
+                                          "nativeNode": "goparser.Kind"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "kinds": [
+                            "BLOCK"
+                          ],
+                          "nativeNode": "*ast.BlockStmt",
+                          "children": [
+                            {
+                              "kinds": [
+                                "[]ast.Stmt"
+                              ],
+                              "nativeNode": "[]ast.Stmt",
+                              "children": [
+                                {
+                                  "kinds": [
+                                    "EXPR_STMT"
+                                  ],
+                                  "nativeNode": "*ast.ExprStmt",
+                                  "children": [
+                                    {
+                                      "kinds": [
+                                        "CALL"
+                                      ],
+                                      "nativeNode": "",
+                                      "children": [
+                                        {
+                                          "kinds": [
+                                            "IDENTIFIER"
+                                          ],
+                                          "position": {
+                                            "line": 1,
+                                            "column": 1
+                                          },
+                                          "value": "bar",
+                                          "nativeNode": "*ast.Ident"
+                                        },
+                                        {
+                                          "kinds": [
+                                            "LPAREN"
+                                          ],
+                                          "position": {
+                                            "line": 1,
+                                            "column": 1
+                                          },
+                                          "nativeNode": "goparser.Kind"
+                                        },
+                                        {
+                                          "kinds": [
+                                            "ARGS_LIST"
+                                          ],
+                                          "nativeNode": "[]ast.Expr"
+                                        },
+                                        {
+                                          "kinds": [
+                                            "RPAREN"
+                                          ],
+                                          "position": {
+                                            "line": 1,
+                                            "column": 1
+                                          },
+                                          "nativeNode": "goparser.Kind"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kinds": [
+            "FUNCTION"
+          ],
+          "nativeNode": "*ast.FuncDecl",
+          "children": [
+            {
+              "kinds": [
+                "IDENTIFIER"
+              ],
+              "position": {
+                "line": 1,
+                "column": 1
+              },
+              "value": "bar",
+              "nativeNode": "*ast.Ident"
+            },
+            {
+              "kinds": [
+                "BLOCK"
+              ],
+              "nativeNode": "*ast.BlockStmt",
+              "children": [
+                {
+                  "kinds": [
+                    "[]ast.Stmt"
+                  ],
+                  "nativeNode": "[]ast.Stmt",
+                  "children": [
+                    {
+                      "kinds": [
+                        "UNSUPPORTED"
+                      ],
+                      "nativeNode": "*ast.ReturnStmt"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

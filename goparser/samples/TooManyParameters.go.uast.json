@@ -1,0 +1,87 @@
+{
+  "kinds": [
+    "COMPILATION_UNIT"
+  ],
+  "position": {
+    "line": 1,
+    "column": 1
+  },
+  "value": "samples",
+  "nativeNode": "*ast.File",
+  "children": [
+    {
+      "kinds": [
+        "DECL_LIST"
+      ],
+      "nativeNode": "[]ast.Decl",
+      "children": [
+        {
+          "kinds": [
+            "FUNCTION"
+          ],
+          "nativeNode": "*ast.FuncDecl",
+          "children": [
+            {
+              "kinds": [
+                "IDENTIFIER"
+              ],
+              "position": {
+                "line": 1,
+                "column": 1
+              },
+              "value": "functionWith8",
+              "nativeNode": "*ast.Ident"
+            },
+            {
+              "kinds": [
+                "BLOCK"
+              ],
+              "nativeNode": "*ast.BlockStmt",
+              "children": [
+                {
+                  "kinds": [
+                    "[]ast.Stmt"
+                  ],
+                  "nativeNode": "[]ast.Stmt"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kinds": [
+            "FUNCTION"
+          ],
+          "nativeNode": "*ast.FuncDecl",
+          "children": [
+            {
+              "kinds": [
+                "IDENTIFIER"
+              ],
+              "position": {
+                "line": 1,
+                "column": 1
+              },
+              "value": "functionWith7",
+              "nativeNode": "*ast.Ident"
+            },
+            {
+              "kinds": [
+                "BLOCK"
+              ],
+              "nativeNode": "*ast.BlockStmt",
+              "children": [
+                {
+                  "kinds": [
+                    "[]ast.Stmt"
+                  ],
+                  "nativeNode": "[]ast.Stmt"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

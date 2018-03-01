@@ -1,0 +1,664 @@
+(*ast.File) {
+  Doc: (*ast.CommentGroup) {
+      List: []*ast.Comment{
+        (*ast.Comment) {
+            Slash: token.Pos(1),
+            Text: "// S1656"
+          }
+        }
+    },
+  Package: token.Pos(10),
+  Name: (*ast.Ident) {
+      NamePos: token.Pos(18),
+      Name: "samples",
+      Obj: (*ast.Object)(nil)
+    },
+  Decls: []ast.Decl{
+    (*ast.GenDecl) {
+        Doc: (*ast.CommentGroup)(nil),
+        TokPos: token.Pos(27),
+        Tok: token.Token(84),
+        Lparen: token.Pos(0),
+        Specs: []ast.Spec{
+          (*ast.TypeSpec) {
+              Doc: (*ast.CommentGroup)(nil),
+              Name: (*ast.Ident) {
+                  NamePos: token.Pos(32),
+                  Name: "User",
+                  Obj: (*ast.Object) {
+                      Kind: ast.ObjKind(3),
+                      Name: "User",
+                      Decl: <REC(*ast.TypeSpec)>,
+                      Data: interface{}(nil),
+                      Type: interface{}(nil)
+                    }
+                },
+              Assign: token.Pos(0),
+              Type: (*ast.StructType) {
+                  Struct: token.Pos(37),
+                  Fields: (*ast.FieldList) {
+                      Opening: token.Pos(44),
+                      List: []*ast.Field{
+                        (*ast.Field) {
+                            Doc: (*ast.CommentGroup)(nil),
+                            Names: []*ast.Ident{
+                              (*ast.Ident) {
+                                  NamePos: token.Pos(46),
+                                  Name: "name",
+                                  Obj: (*ast.Object) {
+                                      Kind: ast.ObjKind(4),
+                                      Name: "name",
+                                      Decl: <REC(*ast.Field)>,
+                                      Data: interface{}(nil),
+                                      Type: interface{}(nil)
+                                    }
+                                }
+                              },
+                            Type: (*ast.Ident) {
+                                NamePos: token.Pos(51),
+                                Name: "string",
+                                Obj: (*ast.Object)(nil)
+                              },
+                            Tag: (*ast.BasicLit)(nil),
+                            Comment: (*ast.CommentGroup)(nil)
+                          }
+                        },
+                      Closing: token.Pos(58)
+                    },
+                  Incomplete: false
+                },
+              Comment: (*ast.CommentGroup)(nil)
+            }
+          },
+        Rparen: token.Pos(0)
+      },
+    (*ast.FuncDecl) {
+        Doc: (*ast.CommentGroup)(nil),
+        Recv: (*ast.FieldList) {
+            Opening: token.Pos(66),
+            List: []*ast.Field{
+              (*ast.Field) {
+                  Doc: (*ast.CommentGroup)(nil),
+                  Names: []*ast.Ident{
+                    (*ast.Ident) {
+                        NamePos: token.Pos(67),
+                        Name: "user",
+                        Obj: (*ast.Object) {
+                            Kind: ast.ObjKind(4),
+                            Name: "user",
+                            Decl: <REC(*ast.Field)>,
+                            Data: interface{}(nil),
+                            Type: interface{}(nil)
+                          }
+                      }
+                    },
+                  Type: (*ast.StarExpr) {
+                      Star: token.Pos(72),
+                      X: (*ast.Ident) {
+                          NamePos: token.Pos(73),
+                          Name: "User",
+                          Obj: (*ast.Object) {
+                              Kind: ast.ObjKind(3),
+                              Name: "User",
+                              Decl: (*ast.TypeSpec) {
+                                  Doc: (*ast.CommentGroup)(nil),
+                                  Name: (*ast.Ident) {
+                                      NamePos: token.Pos(32),
+                                      Name: "User",
+                                      Obj: <REC(*ast.Object)>
+                                    },
+                                  Assign: token.Pos(0),
+                                  Type: (*ast.StructType) {
+                                      Struct: token.Pos(37),
+                                      Fields: (*ast.FieldList) {
+                                          Opening: token.Pos(44),
+                                          List: []*ast.Field{
+                                            (*ast.Field) {
+                                                Doc: (*ast.CommentGroup)(nil),
+                                                Names: []*ast.Ident{
+                                                  (*ast.Ident) {
+                                                      NamePos: token.Pos(46),
+                                                      Name: "name",
+                                                      Obj: (*ast.Object) {
+                                                          Kind: ast.ObjKind(4),
+                                                          Name: "name",
+                                                          Decl: <REC(*ast.Field)>,
+                                                          Data: interface{}(nil),
+                                                          Type: interface{}(nil)
+                                                        }
+                                                    }
+                                                  },
+                                                Type: (*ast.Ident) {
+                                                    NamePos: token.Pos(51),
+                                                    Name: "string",
+                                                    Obj: (*ast.Object)(nil)
+                                                  },
+                                                Tag: (*ast.BasicLit)(nil),
+                                                Comment: (*ast.CommentGroup)(nil)
+                                              }
+                                            },
+                                          Closing: token.Pos(58)
+                                        },
+                                      Incomplete: false
+                                    },
+                                  Comment: (*ast.CommentGroup)(nil)
+                                },
+                              Data: interface{}(nil),
+                              Type: interface{}(nil)
+                            }
+                        }
+                    },
+                  Tag: (*ast.BasicLit)(nil),
+                  Comment: (*ast.CommentGroup)(nil)
+                }
+              },
+            Closing: token.Pos(77)
+          },
+        Name: (*ast.Ident) {
+            NamePos: token.Pos(79),
+            Name: "rename",
+            Obj: (*ast.Object)(nil)
+          },
+        Type: (*ast.FuncType) {
+            Func: token.Pos(61),
+            Params: (*ast.FieldList) {
+                Opening: token.Pos(85),
+                List: []*ast.Field{
+                  (*ast.Field) {
+                      Doc: (*ast.CommentGroup)(nil),
+                      Names: []*ast.Ident{
+                        (*ast.Ident) {
+                            NamePos: token.Pos(86),
+                            Name: "name",
+                            Obj: (*ast.Object) {
+                                Kind: ast.ObjKind(4),
+                                Name: "name",
+                                Decl: <REC(*ast.Field)>,
+                                Data: interface{}(nil),
+                                Type: interface{}(nil)
+                              }
+                          }
+                        },
+                      Type: (*ast.Ident) {
+                          NamePos: token.Pos(91),
+                          Name: "string",
+                          Obj: (*ast.Object)(nil)
+                        },
+                      Tag: (*ast.BasicLit)(nil),
+                      Comment: (*ast.CommentGroup)(nil)
+                    }
+                  },
+                Closing: token.Pos(97)
+              },
+            Results: (*ast.FieldList)(nil)
+          },
+        Body: (*ast.BlockStmt) {
+            Lbrace: token.Pos(99),
+            List: []ast.Stmt{
+              (*ast.AssignStmt) {
+                  Lhs: []ast.Expr{
+                    (*ast.Ident) {
+                        NamePos: token.Pos(103),
+                        Name: "name",
+                        Obj: (*ast.Object) {
+                            Kind: ast.ObjKind(4),
+                            Name: "name",
+                            Decl: (*ast.Field) {
+                                Doc: (*ast.CommentGroup)(nil),
+                                Names: []*ast.Ident{
+                                  (*ast.Ident) {
+                                      NamePos: token.Pos(86),
+                                      Name: "name",
+                                      Obj: <REC(*ast.Object)>
+                                    }
+                                  },
+                                Type: (*ast.Ident) {
+                                    NamePos: token.Pos(91),
+                                    Name: "string",
+                                    Obj: (*ast.Object)(nil)
+                                  },
+                                Tag: (*ast.BasicLit)(nil),
+                                Comment: (*ast.CommentGroup)(nil)
+                              },
+                            Data: interface{}(nil),
+                            Type: interface{}(nil)
+                          }
+                      }
+                    },
+                  TokPos: token.Pos(108),
+                  Tok: token.Token(42),
+                  Rhs: []ast.Expr{
+                    (*ast.Ident) {
+                        NamePos: token.Pos(110),
+                        Name: "name",
+                        Obj: (*ast.Object) {
+                            Kind: ast.ObjKind(4),
+                            Name: "name",
+                            Decl: (*ast.Field) {
+                                Doc: (*ast.CommentGroup)(nil),
+                                Names: []*ast.Ident{
+                                  (*ast.Ident) {
+                                      NamePos: token.Pos(86),
+                                      Name: "name",
+                                      Obj: <REC(*ast.Object)>
+                                    }
+                                  },
+                                Type: (*ast.Ident) {
+                                    NamePos: token.Pos(91),
+                                    Name: "string",
+                                    Obj: (*ast.Object)(nil)
+                                  },
+                                Tag: (*ast.BasicLit)(nil),
+                                Comment: (*ast.CommentGroup)(nil)
+                              },
+                            Data: interface{}(nil),
+                            Type: interface{}(nil)
+                          }
+                      }
+                    }
+                },
+              (*ast.AssignStmt) {
+                  Lhs: []ast.Expr{
+                    (*ast.SelectorExpr) {
+                        X: (*ast.Ident) {
+                            NamePos: token.Pos(195),
+                            Name: "user",
+                            Obj: (*ast.Object) {
+                                Kind: ast.ObjKind(4),
+                                Name: "user",
+                                Decl: (*ast.Field) {
+                                    Doc: (*ast.CommentGroup)(nil),
+                                    Names: []*ast.Ident{
+                                      (*ast.Ident) {
+                                          NamePos: token.Pos(67),
+                                          Name: "user",
+                                          Obj: <REC(*ast.Object)>
+                                        }
+                                      },
+                                    Type: (*ast.StarExpr) {
+                                        Star: token.Pos(72),
+                                        X: (*ast.Ident) {
+                                            NamePos: token.Pos(73),
+                                            Name: "User",
+                                            Obj: (*ast.Object) {
+                                                Kind: ast.ObjKind(3),
+                                                Name: "User",
+                                                Decl: (*ast.TypeSpec) {
+                                                    Doc: (*ast.CommentGroup)(nil),
+                                                    Name: (*ast.Ident) {
+                                                        NamePos: token.Pos(32),
+                                                        Name: "User",
+                                                        Obj: <REC(*ast.Object)>
+                                                      },
+                                                    Assign: token.Pos(0),
+                                                    Type: (*ast.StructType) {
+                                                        Struct: token.Pos(37),
+                                                        Fields: (*ast.FieldList) {
+                                                            Opening: token.Pos(44),
+                                                            List: []*ast.Field{
+                                                              (*ast.Field) {
+                                                                  Doc: (*ast.CommentGroup)(nil),
+                                                                  Names: []*ast.Ident{
+                                                                    (*ast.Ident) {
+                                                                        NamePos: token.Pos(46),
+                                                                        Name: "name",
+                                                                        Obj: (*ast.Object) {
+                                                                            Kind: ast.ObjKind(4),
+                                                                            Name: "name",
+                                                                            Decl: <REC(*ast.Field)>,
+                                                                            Data: interface{}(nil),
+                                                                            Type: interface{}(nil)
+                                                                          }
+                                                                      }
+                                                                    },
+                                                                  Type: (*ast.Ident) {
+                                                                      NamePos: token.Pos(51),
+                                                                      Name: "string",
+                                                                      Obj: (*ast.Object)(nil)
+                                                                    },
+                                                                  Tag: (*ast.BasicLit)(nil),
+                                                                  Comment: (*ast.CommentGroup)(nil)
+                                                                }
+                                                              },
+                                                            Closing: token.Pos(58)
+                                                          },
+                                                        Incomplete: false
+                                                      },
+                                                    Comment: (*ast.CommentGroup)(nil)
+                                                  },
+                                                Data: interface{}(nil),
+                                                Type: interface{}(nil)
+                                              }
+                                          }
+                                      },
+                                    Tag: (*ast.BasicLit)(nil),
+                                    Comment: (*ast.CommentGroup)(nil)
+                                  },
+                                Data: interface{}(nil),
+                                Type: interface{}(nil)
+                              }
+                          },
+                        Sel: (*ast.Ident) {
+                            NamePos: token.Pos(200),
+                            Name: "name",
+                            Obj: (*ast.Object)(nil)
+                          }
+                      }
+                    },
+                  TokPos: token.Pos(205),
+                  Tok: token.Token(42),
+                  Rhs: []ast.Expr{
+                    (*ast.Ident) {
+                        NamePos: token.Pos(207),
+                        Name: "name",
+                        Obj: (*ast.Object) {
+                            Kind: ast.ObjKind(4),
+                            Name: "name",
+                            Decl: (*ast.Field) {
+                                Doc: (*ast.CommentGroup)(nil),
+                                Names: []*ast.Ident{
+                                  (*ast.Ident) {
+                                      NamePos: token.Pos(86),
+                                      Name: "name",
+                                      Obj: <REC(*ast.Object)>
+                                    }
+                                  },
+                                Type: (*ast.Ident) {
+                                    NamePos: token.Pos(91),
+                                    Name: "string",
+                                    Obj: (*ast.Object)(nil)
+                                  },
+                                Tag: (*ast.BasicLit)(nil),
+                                Comment: (*ast.CommentGroup)(nil)
+                              },
+                            Data: interface{}(nil),
+                            Type: interface{}(nil)
+                          }
+                      }
+                    }
+                },
+              (*ast.AssignStmt) {
+                  Lhs: []ast.Expr{
+                    (*ast.SelectorExpr) {
+                        X: (*ast.Ident) {
+                            NamePos: token.Pos(232),
+                            Name: "user",
+                            Obj: (*ast.Object) {
+                                Kind: ast.ObjKind(4),
+                                Name: "user",
+                                Decl: (*ast.Field) {
+                                    Doc: (*ast.CommentGroup)(nil),
+                                    Names: []*ast.Ident{
+                                      (*ast.Ident) {
+                                          NamePos: token.Pos(67),
+                                          Name: "user",
+                                          Obj: <REC(*ast.Object)>
+                                        }
+                                      },
+                                    Type: (*ast.StarExpr) {
+                                        Star: token.Pos(72),
+                                        X: (*ast.Ident) {
+                                            NamePos: token.Pos(73),
+                                            Name: "User",
+                                            Obj: (*ast.Object) {
+                                                Kind: ast.ObjKind(3),
+                                                Name: "User",
+                                                Decl: (*ast.TypeSpec) {
+                                                    Doc: (*ast.CommentGroup)(nil),
+                                                    Name: (*ast.Ident) {
+                                                        NamePos: token.Pos(32),
+                                                        Name: "User",
+                                                        Obj: <REC(*ast.Object)>
+                                                      },
+                                                    Assign: token.Pos(0),
+                                                    Type: (*ast.StructType) {
+                                                        Struct: token.Pos(37),
+                                                        Fields: (*ast.FieldList) {
+                                                            Opening: token.Pos(44),
+                                                            List: []*ast.Field{
+                                                              (*ast.Field) {
+                                                                  Doc: (*ast.CommentGroup)(nil),
+                                                                  Names: []*ast.Ident{
+                                                                    (*ast.Ident) {
+                                                                        NamePos: token.Pos(46),
+                                                                        Name: "name",
+                                                                        Obj: (*ast.Object) {
+                                                                            Kind: ast.ObjKind(4),
+                                                                            Name: "name",
+                                                                            Decl: <REC(*ast.Field)>,
+                                                                            Data: interface{}(nil),
+                                                                            Type: interface{}(nil)
+                                                                          }
+                                                                      }
+                                                                    },
+                                                                  Type: (*ast.Ident) {
+                                                                      NamePos: token.Pos(51),
+                                                                      Name: "string",
+                                                                      Obj: (*ast.Object)(nil)
+                                                                    },
+                                                                  Tag: (*ast.BasicLit)(nil),
+                                                                  Comment: (*ast.CommentGroup)(nil)
+                                                                }
+                                                              },
+                                                            Closing: token.Pos(58)
+                                                          },
+                                                        Incomplete: false
+                                                      },
+                                                    Comment: (*ast.CommentGroup)(nil)
+                                                  },
+                                                Data: interface{}(nil),
+                                                Type: interface{}(nil)
+                                              }
+                                          }
+                                      },
+                                    Tag: (*ast.BasicLit)(nil),
+                                    Comment: (*ast.CommentGroup)(nil)
+                                  },
+                                Data: interface{}(nil),
+                                Type: interface{}(nil)
+                              }
+                          },
+                        Sel: (*ast.Ident) {
+                            NamePos: token.Pos(237),
+                            Name: "name",
+                            Obj: (*ast.Object)(nil)
+                          }
+                      }
+                    },
+                  TokPos: token.Pos(242),
+                  Tok: token.Token(42),
+                  Rhs: []ast.Expr{
+                    (*ast.SelectorExpr) {
+                        X: (*ast.Ident) {
+                            NamePos: token.Pos(244),
+                            Name: "user",
+                            Obj: (*ast.Object) {
+                                Kind: ast.ObjKind(4),
+                                Name: "user",
+                                Decl: (*ast.Field) {
+                                    Doc: (*ast.CommentGroup)(nil),
+                                    Names: []*ast.Ident{
+                                      (*ast.Ident) {
+                                          NamePos: token.Pos(67),
+                                          Name: "user",
+                                          Obj: <REC(*ast.Object)>
+                                        }
+                                      },
+                                    Type: (*ast.StarExpr) {
+                                        Star: token.Pos(72),
+                                        X: (*ast.Ident) {
+                                            NamePos: token.Pos(73),
+                                            Name: "User",
+                                            Obj: (*ast.Object) {
+                                                Kind: ast.ObjKind(3),
+                                                Name: "User",
+                                                Decl: (*ast.TypeSpec) {
+                                                    Doc: (*ast.CommentGroup)(nil),
+                                                    Name: (*ast.Ident) {
+                                                        NamePos: token.Pos(32),
+                                                        Name: "User",
+                                                        Obj: <REC(*ast.Object)>
+                                                      },
+                                                    Assign: token.Pos(0),
+                                                    Type: (*ast.StructType) {
+                                                        Struct: token.Pos(37),
+                                                        Fields: (*ast.FieldList) {
+                                                            Opening: token.Pos(44),
+                                                            List: []*ast.Field{
+                                                              (*ast.Field) {
+                                                                  Doc: (*ast.CommentGroup)(nil),
+                                                                  Names: []*ast.Ident{
+                                                                    (*ast.Ident) {
+                                                                        NamePos: token.Pos(46),
+                                                                        Name: "name",
+                                                                        Obj: (*ast.Object) {
+                                                                            Kind: ast.ObjKind(4),
+                                                                            Name: "name",
+                                                                            Decl: <REC(*ast.Field)>,
+                                                                            Data: interface{}(nil),
+                                                                            Type: interface{}(nil)
+                                                                          }
+                                                                      }
+                                                                    },
+                                                                  Type: (*ast.Ident) {
+                                                                      NamePos: token.Pos(51),
+                                                                      Name: "string",
+                                                                      Obj: (*ast.Object)(nil)
+                                                                    },
+                                                                  Tag: (*ast.BasicLit)(nil),
+                                                                  Comment: (*ast.CommentGroup)(nil)
+                                                                }
+                                                              },
+                                                            Closing: token.Pos(58)
+                                                          },
+                                                        Incomplete: false
+                                                      },
+                                                    Comment: (*ast.CommentGroup)(nil)
+                                                  },
+                                                Data: interface{}(nil),
+                                                Type: interface{}(nil)
+                                              }
+                                          }
+                                      },
+                                    Tag: (*ast.BasicLit)(nil),
+                                    Comment: (*ast.CommentGroup)(nil)
+                                  },
+                                Data: interface{}(nil),
+                                Type: interface{}(nil)
+                              }
+                          },
+                        Sel: (*ast.Ident) {
+                            NamePos: token.Pos(249),
+                            Name: "name",
+                            Obj: (*ast.Object)(nil)
+                          }
+                      }
+                    }
+                }
+              },
+            Rbrace: token.Pos(270)
+          }
+      }
+    },
+  Scope: (*ast.Scope) {
+      Outer: (*ast.Scope)(nil),
+      Objects: map[string]*ast.Object{
+        "User": (*ast.Object) {
+              Kind: ast.ObjKind(3),
+              Name: "User",
+              Decl: (*ast.TypeSpec) {
+                  Doc: (*ast.CommentGroup)(nil),
+                  Name: (*ast.Ident) {
+                      NamePos: token.Pos(32),
+                      Name: "User",
+                      Obj: <REC(*ast.Object)>
+                    },
+                  Assign: token.Pos(0),
+                  Type: (*ast.StructType) {
+                      Struct: token.Pos(37),
+                      Fields: (*ast.FieldList) {
+                          Opening: token.Pos(44),
+                          List: []*ast.Field{
+                            (*ast.Field) {
+                                Doc: (*ast.CommentGroup)(nil),
+                                Names: []*ast.Ident{
+                                  (*ast.Ident) {
+                                      NamePos: token.Pos(46),
+                                      Name: "name",
+                                      Obj: (*ast.Object) {
+                                          Kind: ast.ObjKind(4),
+                                          Name: "name",
+                                          Decl: <REC(*ast.Field)>,
+                                          Data: interface{}(nil),
+                                          Type: interface{}(nil)
+                                        }
+                                    }
+                                  },
+                                Type: (*ast.Ident) {
+                                    NamePos: token.Pos(51),
+                                    Name: "string",
+                                    Obj: (*ast.Object)(nil)
+                                  },
+                                Tag: (*ast.BasicLit)(nil),
+                                Comment: (*ast.CommentGroup)(nil)
+                              }
+                            },
+                          Closing: token.Pos(58)
+                        },
+                      Incomplete: false
+                    },
+                  Comment: (*ast.CommentGroup)(nil)
+                },
+              Data: interface{}(nil),
+              Type: interface{}(nil)
+            }
+        }
+    },
+  Imports: []*ast.ImportSpec(nil),
+  Unresolved: []*ast.Ident{
+    (*ast.Ident) {
+        NamePos: token.Pos(51),
+        Name: "string",
+        Obj: (*ast.Object)(nil)
+      },
+    (*ast.Ident) {
+        NamePos: token.Pos(91),
+        Name: "string",
+        Obj: (*ast.Object)(nil)
+      }
+    },
+  Comments: []*ast.CommentGroup{
+    (*ast.CommentGroup) {
+        List: []*ast.Comment{
+          (*ast.Comment) {
+              Slash: token.Pos(1),
+              Text: "// S1656"
+            }
+          }
+      },
+    (*ast.CommentGroup) {
+        List: []*ast.Comment{
+          (*ast.Comment) {
+              Slash: token.Pos(125),
+              Text: "// Noncompliant {{Remove or correct this useless self-assignment.}}"
+            }
+          }
+      },
+    (*ast.CommentGroup) {
+        List: []*ast.Comment{
+          (*ast.Comment) {
+              Slash: token.Pos(217),
+              Text: "// Compliant"
+            }
+          }
+      },
+    (*ast.CommentGroup) {
+        List: []*ast.Comment{
+          (*ast.Comment) {
+              Slash: token.Pos(254),
+              Text: "// Noncompliant"
+            }
+          }
+      }
+    }
+}
