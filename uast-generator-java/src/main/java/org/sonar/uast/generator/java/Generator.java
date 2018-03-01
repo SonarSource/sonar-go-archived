@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 import org.sonar.java.ast.parser.JavaParser;
 import org.sonar.java.model.JavaTree;
@@ -21,6 +21,8 @@ import org.sonar.plugins.java.api.tree.AssignmentExpressionTree;
 import org.sonar.plugins.java.api.tree.BaseTreeVisitor;
 import org.sonar.plugins.java.api.tree.CompilationUnitTree;
 import org.sonar.plugins.java.api.tree.ExpressionTree;
+import org.sonar.plugins.java.api.tree.MethodTree;
+import org.sonar.plugins.java.api.tree.StatementTree;
 import org.sonar.plugins.java.api.tree.SyntaxToken;
 import org.sonar.plugins.java.api.tree.Tree;
 import org.sonar.uast.UastNode;
@@ -70,7 +72,7 @@ public class Generator {
 
   private static UastNode newUastNode(Tree tree, List<UastNode> children) {
     return new UastNode(
-            uastKind(tree).map(EnumSet::of).orElse(EnumSet.noneOf(UastNode.Kind.class)),
+            uastKind(tree),
             tree.kind().name(),
             tree.is(Tree.Kind.TOKEN) ? newToken((SyntaxToken) tree) : null,
             children
@@ -86,33 +88,36 @@ public class Generator {
     );
   }
 
-  private static Optional<UastNode.Kind> uastKind(Tree tree) {
-    UastNode.Kind result;
+  private static Set<UastNode.Kind> uastKind(Tree tree) {
+    Set<UastNode.Kind> result = EnumSet.noneOf(UastNode.Kind.class);
     switch (tree.kind()) {
       case COMPILATION_UNIT:
-        result = UastNode.Kind.COMPILATION_UNIT;
+        result.add(UastNode.Kind.COMPILATION_UNIT);
         break;
       case METHOD:
       case CONSTRUCTOR:
       case LAMBDA_EXPRESSION:
-        result = UastNode.Kind.FUNCTION;
+        result.add(UastNode.Kind.FUNCTION);
         break;
       case CLASS:
       case ENUM:
       case INTERFACE:
       case ANNOTATION_TYPE:
-        result = UastNode.Kind.CLASS;
+        result.add(UastNode.Kind.CLASS);
         break;
       case ASSIGNMENT:
-        result = UastNode.Kind.ASSIGNMENT;
+        result.add(UastNode.Kind.ASSIGNMENT);
         break;
       case BLOCK:
-        result = UastNode.Kind.BLOCK;
+        result.add(UastNode.Kind.BLOCK);
         break;
       default:
-        result = null;
+        break;
     }
-    return Optional.ofNullable(result);
+    if (tree instanceof StatementTree) {
+      result.add(UastNode.Kind.STATEMENT);
+    }
+    return result;
   }
 
 
@@ -126,6 +131,14 @@ public class Generator {
       treeUastNodeMap.get(expression).kinds.add(UastNode.Kind.ASSIGNMENT_VALUE);
       super.visitAssignmentExpression(tree);
     }
+
+    @Override
+    public void visitMethod(MethodTree tree) {
+      tree.parameters().forEach(p -> treeUastNodeMap.get(p).kinds.add(UastNode.Kind.PARAMETER));
+      super.visitMethod(tree);
+    }
+
+
   }
 
 }

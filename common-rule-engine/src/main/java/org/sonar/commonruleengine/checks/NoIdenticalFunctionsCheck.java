@@ -28,8 +28,11 @@ public class NoIdenticalFunctionsCheck extends Check {
       if (thisFunction == null) {
         return;
       }
+      if (thisFunction.body().getChildren(UastNode.Kind.STATEMENT).size() < 2) {
+        return;
+      }
       for (FunctionLike function : functions) {
-        if (syntacticallyEquivalent(thisFunction.body(), function.body())) {
+        if (syntacticallyEquivalent(thisFunction.body(), function.body()) && syntacticallyEquivalent(thisFunction.parameters(), function.parameters())) {
           reportIssue(node, "Function is identical with function on line " + function.node().firstToken().token.line);
           break;
         }

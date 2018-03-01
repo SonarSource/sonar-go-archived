@@ -3,8 +3,8 @@ abstract class A {
   private String code;
 
   public String getCode() { return code; }
-  public String getName() { return code; } // Noncompliant [[sc=17;ec=24;secondary=5]] {{Update this method so that its implementation is not identical to "getCode" on line 5.}}
-  public String getWord() { return code; } // Noncompliant [[sc=17;ec=24;secondary=5]] {{Update this method so that its implementation is not identical to "getCode" on line 5.}}
+  public String getName() { return code; } // XXXoncompliant [[sc=17;ec=24;secondary=5]] {{Update this method so that its implementation is not identical to "getCode" on line 5.}}
+  public String getWord() { return code; } // XXXoncompliant [[sc=17;ec=24;secondary=5]] {{Update this method so that its implementation is not identical to "getCode" on line 5.}}
 
   String getOtherCode() { return CODE; }
   String getOtherName() { return CODE; } // Compliant - not getters (not public)
@@ -115,7 +115,7 @@ abstract class E {
   }
 
   LocalB o2;
-  void bam2(LocalA o1) { // Noncompliant - parameters are not considered
+  void bam2(LocalA o1) { // XXXoncompliant - parameters are not considered
     doSomething(o1);
     doSomethingElse(o2);
   }

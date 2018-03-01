@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 public final class UastNode {
@@ -14,7 +15,7 @@ public final class UastNode {
   public final Token token;
   public final List<UastNode> children;
 
-  public UastNode(Set<Kind> kinds, String nativeNode, Token token, List<UastNode> children) {
+  public UastNode(Set<Kind> kinds, String nativeNode, @Nullable Token token, List<UastNode> children) {
     this.kinds = kinds;
     this.nativeNode = nativeNode;
     this.token = token;
@@ -48,6 +49,8 @@ public final class UastNode {
     COMPILATION_UNIT,
     FUNCTION,
     IDENTIFIER,
+    PARAMETER,
+    STATEMENT,
     EOF
     ;
 
@@ -59,6 +62,19 @@ public final class UastNode {
 
   public Optional<UastNode> getChild(Kind kind) {
     return children.stream().filter(kind).findAny();
+  }
+
+  public List<UastNode> getChildren(Kind... kinds) {
+    return children.stream()
+      .filter(child -> {
+        for (Kind kind : kinds) {
+          if (child.kinds.contains(kind)) {
+            return true;
+          }
+        }
+        return false;
+      })
+      .collect(Collectors.toList());
   }
 
   public UastNode firstToken() {

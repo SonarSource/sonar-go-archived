@@ -1,5 +1,7 @@
 package org.sonar.uast.helpers;
 
+import java.util.List;
+import javax.annotation.CheckForNull;
 import org.sonar.uast.UastNode;
 
 public class FunctionLike {
@@ -13,6 +15,7 @@ public class FunctionLike {
     this.block = block;
   }
 
+  @CheckForNull
   public static FunctionLike from(UastNode node) {
     if (node.kinds.contains(KIND)) {
       return node.getChild(UastNode.Kind.BLOCK).map(block -> new FunctionLike(node, block)).orElse(null);
@@ -26,5 +29,9 @@ public class FunctionLike {
 
   public UastNode body() {
     return block;
+  }
+
+  public List<UastNode> parameters() {
+    return node.getChildren(UastNode.Kind.PARAMETER);
   }
 }

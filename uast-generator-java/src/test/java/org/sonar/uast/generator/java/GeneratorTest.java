@@ -4,6 +4,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Collections;
+import java.util.EnumSet;
 import org.junit.jupiter.api.Test;
 import org.sonar.uast.UastNode;
 
@@ -31,7 +32,7 @@ public class GeneratorTest {
     UastNode classNode = cutNode.children.get(0);
     assertEquals("CLASS", classNode.nativeNode);
     assertNull(classNode.token);
-    assertEquals(Collections.singleton(UastNode.Kind.CLASS), classNode.kinds);
+    assertEquals(EnumSet.of(UastNode.Kind.CLASS, UastNode.Kind.STATEMENT), classNode.kinds);
     assertEquals(5, classNode.children.size());
 
     UastNode eofToken = cutNode.children.get(1);
