@@ -28,6 +28,7 @@ const (
 	LITERAL           Kind = "LITERAL"
 	EXPR_LIST         Kind = "EXPR_LIST"
 	EXPR_STMT         Kind = "EXPR_STMT"
+	UNSUPPORTED       Kind = "UNSUPPORTED"
 )
 
 type Position struct {
@@ -71,15 +72,6 @@ func kinds(rawItems ... interface{}) []Kind {
 
 func children(items ... *Node) []*Node {
 	return items
-}
-
-func handleUnknownType(o ast.Node) {
-	switch o.(type) {
-	case *ast.GenDecl:
-		// ignore
-		return
-	}
-	panic(o)
 }
 
 type NodeList interface {
@@ -140,8 +132,7 @@ func mapDecl(decl ast.Decl) *Node {
 	case *ast.FuncDecl:
 		return mapFuncDecl(v)
 	default:
-		handleUnknownType(v)
-		return nil
+		return mapUnsupported(v)
 	}
 }
 
@@ -175,13 +166,8 @@ func mapStmt(astNode ast.Stmt) *Node {
 		return mapIfStmt(v)
 	case *ast.BlockStmt:
 		return mapBlockStmt(v)
-	case *ast.ReturnStmt:
-		return nil
-	case nil:
-		return nil
 	default:
-		handleUnknownType(v)
-		return nil
+		return mapUnsupported(v)
 	}
 }
 
@@ -222,9 +208,18 @@ func mapNode(astNode ast.Node) *Node {
 		return mapStmt(v)
 	case ast.Decl:
 		return mapDecl(v)
+	case *ast.File:
+		return MapFile(v)
 	default:
-		handleUnknownType(astNode)
-		return nil
+		return mapUnsupported(astNode)
+	}
+}
+
+func mapUnsupported(node ast.Node) *Node {
+	return &Node{
+		Kinds:      kinds(UNSUPPORTED),
+		Children:   children(),
+		NativeNode: nativeNode(node),
 	}
 }
 
@@ -242,11 +237,8 @@ func mapExpr(astNode ast.Expr) *Node {
 		return mapParenExpr(v)
 	case *ast.BinaryExpr:
 		return mapBinaryExpr(v)
-	case *ast.FuncLit:
-		return nil
 	default:
-		handleUnknownType(v)
-		return nil
+		return mapUnsupported(v)
 	}
 }
 
