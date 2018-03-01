@@ -355,28 +355,3 @@ func ReadAstFile(filename string) *ast.File {
 	}
 	return astFile
 }
-
-func getSampleAst() *ast.File {
-	const sourceContent = `package main
-import "fmt"
-func main() {
-    // This is a comment
-    msg := "hello, world\n"
-    fmt.Printf( msg )
-	if (len(msg)) > 0 {
-		fmt.Println(msg)
-    }
-}
-`
-	fileSet := token.NewFileSet()
-	sourceFileName := "main.go"
-	astFile, err := parser.ParseFile(fileSet, sourceFileName, sourceContent, parser.ParseComments)
-	if err != nil {
-		panic(err)
-	}
-	return astFile
-}
-
-func getSampleUast() *Node {
-	return MapFile(getSampleAst())
-}
