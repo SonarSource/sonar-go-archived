@@ -9,7 +9,9 @@ fi
 cd $(dirname "$0")
 
 for f in ../../go-samples/*.go; do
-    json=$(basename "$f").uast.json
+    basename=$(basename "$f")
+    goparser -d "$f" > "$basename.ast"
+    json=$basename.uast.json
     if ! goparser "$f" > "$json" 2>/dev/null; then
         echo "Error: could not parse $f. Run goparser manually on it to investigate."
         rm -f "$json"

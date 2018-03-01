@@ -1,0 +1,109 @@
+(*ast.File) {
+  Doc: (*ast.CommentGroup) {
+      List: []*ast.Comment{
+        (*ast.Comment) {
+            Slash: token.Pos(1),
+            Text: "// S1135"
+          }
+        }
+    },
+  Package: token.Pos(10),
+  Name: (*ast.Ident) {
+      NamePos: token.Pos(18),
+      Name: "samples",
+      Obj: (*ast.Object)(nil)
+    },
+  Decls: []ast.Decl{
+    (*ast.FuncDecl) {
+        Doc: (*ast.CommentGroup)(nil),
+        Recv: (*ast.FieldList)(nil),
+        Name: (*ast.Ident) {
+            NamePos: token.Pos(32),
+            Name: "todo",
+            Obj: (*ast.Object) {
+                Kind: ast.ObjKind(5),
+                Name: "todo",
+                Decl: <REC(*ast.FuncDecl)>,
+                Data: interface{}(nil),
+                Type: interface{}(nil)
+              }
+          },
+        Type: (*ast.FuncType) {
+            Func: token.Pos(27),
+            Params: (*ast.FieldList) {
+                Opening: token.Pos(36),
+                List: []*ast.Field(nil),
+                Closing: token.Pos(37)
+              },
+            Results: (*ast.FieldList)(nil)
+          },
+        Body: (*ast.BlockStmt) {
+            Lbrace: token.Pos(39),
+            List: []ast.Stmt(nil),
+            Rbrace: token.Pos(155)
+          }
+      }
+    },
+  Scope: (*ast.Scope) {
+      Outer: (*ast.Scope)(nil),
+      Objects: map[string]*ast.Object{
+        "todo": (*ast.Object) {
+              Kind: ast.ObjKind(5),
+              Name: "todo",
+              Decl: (*ast.FuncDecl) {
+                  Doc: (*ast.CommentGroup)(nil),
+                  Recv: (*ast.FieldList)(nil),
+                  Name: (*ast.Ident) {
+                      NamePos: token.Pos(32),
+                      Name: "todo",
+                      Obj: <REC(*ast.Object)>
+                    },
+                  Type: (*ast.FuncType) {
+                      Func: token.Pos(27),
+                      Params: (*ast.FieldList) {
+                          Opening: token.Pos(36),
+                          List: []*ast.Field(nil),
+                          Closing: token.Pos(37)
+                        },
+                      Results: (*ast.FieldList)(nil)
+                    },
+                  Body: (*ast.BlockStmt) {
+                      Lbrace: token.Pos(39),
+                      List: []ast.Stmt(nil),
+                      Rbrace: token.Pos(155)
+                    }
+                },
+              Data: interface{}(nil),
+              Type: interface{}(nil)
+            }
+        }
+    },
+  Imports: []*ast.ImportSpec(nil),
+  Unresolved: []*ast.Ident(nil),
+  Comments: []*ast.CommentGroup{
+    (*ast.CommentGroup) {
+        List: []*ast.Comment{
+          (*ast.Comment) {
+              Slash: token.Pos(1),
+              Text: "// S1135"
+            }
+          }
+      },
+    (*ast.CommentGroup) {
+        List: []*ast.Comment{
+          (*ast.Comment) {
+              Slash: token.Pos(43),
+              Text: "// Noncompliant@+1"
+            },
+          (*ast.Comment) {
+              Slash: token.Pos(64),
+              Text: "// Noncompliant@+1 {{Complete the task associated to this TODO comment.}}"
+            },
+          (*ast.Comment) {
+              Slash: token.Pos(140),
+              Text: "// TODO x := 3"
+            }
+          }
+      }
+    }
+}
