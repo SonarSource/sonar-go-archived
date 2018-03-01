@@ -74,6 +74,20 @@ public final class Uast {
     return true;
   }
 
+  public static boolean syntacticallyEquivalent(List<UastNode> node1, List<UastNode> node2) {
+    if (node1.size() != node2.size()) {
+      return false;
+    }
+    Iterator<UastNode> it1 = node1.iterator();
+    Iterator<UastNode> it2 = node2.iterator();
+    while (it1.hasNext()) {
+      if (!syntacticallyEquivalent(it1.next(), it2.next())) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   private static class JsonUastNode {
     @Nullable
     Set<UastNode.Kind> kinds;

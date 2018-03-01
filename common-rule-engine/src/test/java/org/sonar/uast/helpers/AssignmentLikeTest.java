@@ -17,7 +17,7 @@ class AssignmentLikeTest {
     UastNode assignment = node(UastNode.Kind.ASSIGNMENT, target, value);
 
     AssignmentLike assignmentLike = AssignmentLike.from(assignment);
-    assertEquals(assignmentLike.assignment(), assignment);
+    assertEquals(assignmentLike.node(), assignment);
     assertEquals(assignmentLike.target(), target);
     assertEquals(assignmentLike.value(), value);
   }
