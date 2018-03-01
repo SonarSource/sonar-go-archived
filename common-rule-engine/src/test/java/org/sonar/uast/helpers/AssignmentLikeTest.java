@@ -33,9 +33,10 @@ class AssignmentLikeTest {
   }
 
   private UastNode node(UastNode.Kind kind, UastNode... children) {
-    UastNode node = new UastNode();
-    node.kinds = EnumSet.of(kind);
-    node.children = Arrays.asList(children);
-    return node;
+    return new UastNode(
+      EnumSet.of(kind),
+      "",
+      null,
+      Arrays.asList(children));
   }
 }

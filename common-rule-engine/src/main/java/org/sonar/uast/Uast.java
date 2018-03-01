@@ -1,12 +1,50 @@
 package org.sonar.uast;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializer;
 import java.io.Reader;
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+import javax.annotation.Nullable;
 
 public final class Uast {
 
-  private static final Gson GSON = new Gson();
+  private static final JsonDeserializer<UastNode> NODE_DESERIALIZER = (json, type, context) -> {
+    JsonUastNode node = context.deserialize(json, JsonUastNode.class);
+    if (node == null) {
+      return null;
+    }
+    if (node.kinds != null) {
+      // unsupported enum values are replaced by null
+      node.kinds.remove(null);
+    }
+    return new UastNode(
+      node.kinds != null ? node.kinds : Collections.emptySet(),
+      node.nativeNode != null ? node.nativeNode : "",
+      node.token,
+      node.children != null ? node.children : Collections.emptyList());
+  };
+
+  private static final JsonDeserializer<UastNode.Token> TOKEN_DESERIALIZER = (json, type, context) -> {
+    JsonUastToken token = context.deserialize(json, JsonUastToken.class);
+    if (token == null) {
+      return null;
+    }
+    return new UastNode.Token(
+      token.line,
+      token.column,
+      token.value != null ? token.value : ""
+
+    );
+  };
+
+  private static final Gson GSON = new GsonBuilder()
+    .registerTypeAdapter(UastNode.class, NODE_DESERIALIZER)
+    .registerTypeAdapter(UastNode.Token.class, TOKEN_DESERIALIZER)
+    .create();
 
   private Uast() {
     // utility class
@@ -34,5 +72,23 @@ public final class Uast {
       }
     }
     return true;
+  }
+
+  private static class JsonUastNode {
+    @Nullable
+    Set<UastNode.Kind> kinds;
+    @Nullable
+    String nativeNode;
+    @Nullable
+    UastNode.Token token;
+    @Nullable
+    List<UastNode> children;
+ }
+
+  private static class JsonUastToken {
+    int line;
+    int column;
+    @Nullable
+    String value;
   }
 }
