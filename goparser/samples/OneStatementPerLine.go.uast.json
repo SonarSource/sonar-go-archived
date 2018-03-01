@@ -205,7 +205,7 @@
                     },
                     {
                       "kinds": [
-                        "*ast.IfStmt"
+                        "IF_STMT"
                       ],
                       "nativeNode": "*ast.IfStmt",
                       "children": [
@@ -481,7 +481,7 @@
                     },
                     {
                       "kinds": [
-                        "*ast.IfStmt"
+                        "IF_STMT"
                       ],
                       "nativeNode": "*ast.IfStmt",
                       "children": [
@@ -645,7 +645,7 @@
                     },
                     {
                       "kinds": [
-                        "*ast.IfStmt"
+                        "IF_STMT"
                       ],
                       "nativeNode": "*ast.IfStmt",
                       "children": [
@@ -862,7 +862,7 @@
                     },
                     {
                       "kinds": [
-                        "*ast.IfStmt"
+                        "IF_STMT"
                       ],
                       "nativeNode": "*ast.IfStmt",
                       "children": [
