@@ -5,7 +5,6 @@ import (
 	"flag"
 	"fmt"
 	"os"
-	"github.com/SonarSource/sonar-go/goparser/utils"
 )
 
 func exit() {
@@ -43,7 +42,7 @@ func main() {
 	astFile := ReadAstFile(params.path)
 
 	if params.dumpAst {
-		fmt.Println(render.Render(astFile))
+		fmt.Println(render(astFile))
 	} else {
 		uast := MapFile(astFile)
 		PrintJson(uast)
