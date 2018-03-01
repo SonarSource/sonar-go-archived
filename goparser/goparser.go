@@ -42,7 +42,7 @@ type Node struct {
 	Kinds      []Kind    `json:"kinds"`
 	Position   *Position `json:"position,omitempty"`
 	Value      string    `json:"value,omitempty"`
-	NativeNode string    `json:"nativeNode"`
+	NativeNode string    `json:"nativeNode,omitempty"`
 	Children   []*Node   `json:"children,omitempty"`
 }
 
@@ -306,7 +306,6 @@ func mapLiteralToken(kind Kind, pos token.Pos) *Node {
 	return &Node{
 		Kinds:      kinds(kind),
 		Position:   mapPos(pos),
-		NativeNode: nativeNode(kind),
 	}
 }
 

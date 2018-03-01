@@ -54,7 +54,6 @@
                           "kinds": [
                             "CALL"
                           ],
-                          "nativeNode": "",
                           "children": [
                             {
                               "kinds": [
@@ -74,8 +73,7 @@
                               "position": {
                                 "line": 1,
                                 "column": 1
-                              },
-                              "nativeNode": "main.Kind"
+                              }
                             },
                             {
                               "kinds": [
@@ -90,8 +88,7 @@
                               "position": {
                                 "line": 1,
                                 "column": 1
-                              },
-                              "nativeNode": "main.Kind"
+                              }
                             }
                           ]
                         }
@@ -107,7 +104,6 @@
                           "kinds": [
                             "CALL"
                           ],
-                          "nativeNode": "",
                           "children": [
                             {
                               "kinds": [
@@ -127,8 +123,7 @@
                               "position": {
                                 "line": 1,
                                 "column": 1
-                              },
-                              "nativeNode": "main.Kind"
+                              }
                             },
                             {
                               "kinds": [
@@ -143,8 +138,7 @@
                               "position": {
                                 "line": 1,
                                 "column": 1
-                              },
-                              "nativeNode": "main.Kind"
+                              }
                             }
                           ]
                         }
@@ -160,7 +154,6 @@
                           "kinds": [
                             "CALL"
                           ],
-                          "nativeNode": "",
                           "children": [
                             {
                               "kinds": [
@@ -180,8 +173,7 @@
                               "position": {
                                 "line": 1,
                                 "column": 1
-                              },
-                              "nativeNode": "main.Kind"
+                              }
                             },
                             {
                               "kinds": [
@@ -196,8 +188,7 @@
                               "position": {
                                 "line": 1,
                                 "column": 1
-                              },
-                              "nativeNode": "main.Kind"
+                              }
                             }
                           ]
                         }
@@ -228,8 +219,7 @@
                               "position": {
                                 "line": 1,
                                 "column": 1
-                              },
-                              "nativeNode": "main.Kind"
+                              }
                             },
                             {
                               "kinds": [
@@ -241,7 +231,6 @@
                                   "kinds": [
                                     "CALL"
                                   ],
-                                  "nativeNode": "",
                                   "children": [
                                     {
                                       "kinds": [
@@ -261,8 +250,7 @@
                                       "position": {
                                         "line": 1,
                                         "column": 1
-                                      },
-                                      "nativeNode": "main.Kind"
+                                      }
                                     },
                                     {
                                       "kinds": [
@@ -277,8 +265,7 @@
                                       "position": {
                                         "line": 1,
                                         "column": 1
-                                      },
-                                      "nativeNode": "main.Kind"
+                                      }
                                     }
                                   ]
                                 },
@@ -297,7 +284,6 @@
                                   "kinds": [
                                     "CALL"
                                   ],
-                                  "nativeNode": "",
                                   "children": [
                                     {
                                       "kinds": [
@@ -317,8 +303,7 @@
                                       "position": {
                                         "line": 1,
                                         "column": 1
-                                      },
-                                      "nativeNode": "main.Kind"
+                                      }
                                     },
                                     {
                                       "kinds": [
@@ -333,8 +318,7 @@
                                       "position": {
                                         "line": 1,
                                         "column": 1
-                                      },
-                                      "nativeNode": "main.Kind"
+                                      }
                                     }
                                   ]
                                 }
@@ -347,8 +331,7 @@
                               "position": {
                                 "line": 1,
                                 "column": 1
-                              },
-                              "nativeNode": "main.Kind"
+                              }
                             }
                           ]
                         },
@@ -436,7 +419,6 @@
                           "kinds": [
                             "CALL"
                           ],
-                          "nativeNode": "",
                           "children": [
                             {
                               "kinds": [
@@ -456,8 +438,7 @@
                               "position": {
                                 "line": 1,
                                 "column": 1
-                              },
-                              "nativeNode": "main.Kind"
+                              }
                             },
                             {
                               "kinds": [
@@ -472,8 +453,7 @@
                               "position": {
                                 "line": 1,
                                 "column": 1
-                              },
-                              "nativeNode": "main.Kind"
+                              }
                             }
                           ]
                         }
@@ -501,7 +481,6 @@
                               "kinds": [
                                 "CALL"
                               ],
-                              "nativeNode": "",
                               "children": [
                                 {
                                   "kinds": [
@@ -521,8 +500,7 @@
                                   "position": {
                                     "line": 1,
                                     "column": 1
-                                  },
-                                  "nativeNode": "main.Kind"
+                                  }
                                 },
                                 {
                                   "kinds": [
@@ -537,8 +515,7 @@
                                   "position": {
                                     "line": 1,
                                     "column": 1
-                                  },
-                                  "nativeNode": "main.Kind"
+                                  }
                                 }
                               ]
                             },
@@ -588,7 +565,6 @@
                                       "kinds": [
                                         "CALL"
                                       ],
-                                      "nativeNode": "",
                                       "children": [
                                         {
                                           "kinds": [
@@ -608,8 +584,7 @@
                                           "position": {
                                             "line": 1,
                                             "column": 1
-                                          },
-                                          "nativeNode": "main.Kind"
+                                          }
                                         },
                                         {
                                           "kinds": [
@@ -624,8 +599,7 @@
                                           "position": {
                                             "line": 1,
                                             "column": 1
-                                          },
-                                          "nativeNode": "main.Kind"
+                                          }
                                         }
                                       ]
                                     }
@@ -665,7 +639,6 @@
                               "kinds": [
                                 "CALL"
                               ],
-                              "nativeNode": "",
                               "children": [
                                 {
                                   "kinds": [
@@ -685,8 +658,7 @@
                                   "position": {
                                     "line": 1,
                                     "column": 1
-                                  },
-                                  "nativeNode": "main.Kind"
+                                  }
                                 },
                                 {
                                   "kinds": [
@@ -701,8 +673,7 @@
                                   "position": {
                                     "line": 1,
                                     "column": 1
-                                  },
-                                  "nativeNode": "main.Kind"
+                                  }
                                 }
                               ]
                             },
@@ -752,7 +723,6 @@
                                       "kinds": [
                                         "CALL"
                                       ],
-                                      "nativeNode": "",
                                       "children": [
                                         {
                                           "kinds": [
@@ -772,8 +742,7 @@
                                           "position": {
                                             "line": 1,
                                             "column": 1
-                                          },
-                                          "nativeNode": "main.Kind"
+                                          }
                                         },
                                         {
                                           "kinds": [
@@ -788,8 +757,7 @@
                                           "position": {
                                             "line": 1,
                                             "column": 1
-                                          },
-                                          "nativeNode": "main.Kind"
+                                          }
                                         }
                                       ]
                                     }
@@ -805,7 +773,6 @@
                                       "kinds": [
                                         "CALL"
                                       ],
-                                      "nativeNode": "",
                                       "children": [
                                         {
                                           "kinds": [
@@ -825,8 +792,7 @@
                                           "position": {
                                             "line": 1,
                                             "column": 1
-                                          },
-                                          "nativeNode": "main.Kind"
+                                          }
                                         },
                                         {
                                           "kinds": [
@@ -841,8 +807,7 @@
                                           "position": {
                                             "line": 1,
                                             "column": 1
-                                          },
-                                          "nativeNode": "main.Kind"
+                                          }
                                         }
                                       ]
                                     }
@@ -882,7 +847,6 @@
                               "kinds": [
                                 "CALL"
                               ],
-                              "nativeNode": "",
                               "children": [
                                 {
                                   "kinds": [
@@ -902,8 +866,7 @@
                                   "position": {
                                     "line": 1,
                                     "column": 1
-                                  },
-                                  "nativeNode": "main.Kind"
+                                  }
                                 },
                                 {
                                   "kinds": [
@@ -918,8 +881,7 @@
                                   "position": {
                                     "line": 1,
                                     "column": 1
-                                  },
-                                  "nativeNode": "main.Kind"
+                                  }
                                 }
                               ]
                             },
@@ -969,7 +931,6 @@
                                       "kinds": [
                                         "CALL"
                                       ],
-                                      "nativeNode": "",
                                       "children": [
                                         {
                                           "kinds": [
@@ -989,8 +950,7 @@
                                           "position": {
                                             "line": 1,
                                             "column": 1
-                                          },
-                                          "nativeNode": "main.Kind"
+                                          }
                                         },
                                         {
                                           "kinds": [
@@ -1005,8 +965,7 @@
                                           "position": {
                                             "line": 1,
                                             "column": 1
-                                          },
-                                          "nativeNode": "main.Kind"
+                                          }
                                         }
                                       ]
                                     }
@@ -1038,7 +997,6 @@
                                       "kinds": [
                                         "CALL"
                                       ],
-                                      "nativeNode": "",
                                       "children": [
                                         {
                                           "kinds": [
@@ -1058,8 +1016,7 @@
                                           "position": {
                                             "line": 1,
                                             "column": 1
-                                          },
-                                          "nativeNode": "main.Kind"
+                                          }
                                         },
                                         {
                                           "kinds": [
@@ -1074,8 +1031,7 @@
                                           "position": {
                                             "line": 1,
                                             "column": 1
-                                          },
-                                          "nativeNode": "main.Kind"
+                                          }
                                         }
                                       ]
                                     }
