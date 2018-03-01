@@ -224,3 +224,20 @@ func Test_mapCallExpr(t *testing.T) {
 		t.Fatalf("got %v as Position; expected nil", uast.Position)
 	}
 }
+
+func Test_mapIfStmt(t *testing.T) {
+	blockStmt := getSampleAst().Decls[1].(*ast.FuncDecl).Body
+	uast := mapIfStmt(blockStmt.List[2].(*ast.IfStmt))
+
+	if expected := []Kind{IF_STMT}; !reflect.DeepEqual(expected, uast.Kinds) {
+		t.Fatalf("got %v as Kinds; expected %v", uast.Kinds, expected)
+	}
+
+	if expected := 4; expected != len(uast.Children) {
+		t.Fatalf("got %v as number of Children; expected %v", len(uast.Children), expected)
+	}
+
+	if uast.Position != nil {
+		t.Fatalf("got %v as Position; expected nil", uast.Position)
+	}
+}

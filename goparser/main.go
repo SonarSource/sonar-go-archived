@@ -18,6 +18,7 @@ const (
 	RPAREN            Kind = "RPAREN"
 	ARGS_LIST         Kind = "ARGS_LIST"
 	CALL              Kind = "CALL"
+	IF_STMT           Kind = "IF_STMT"
 	DECL_LIST         Kind = "DECL_LIST"
 	ASSIGNMENT        Kind = "ASSIGNMENT"
 	ASSIGNMENT_TARGET Kind = "ASSIGNMENT_TARGET"
@@ -55,6 +56,8 @@ func kind(k interface{}) Kind {
 		return DECL_LIST
 	case *ast.BlockStmt:
 		return BLOCK
+	case *ast.IfStmt:
+		return IF_STMT
 	case Kind:
 		return v
 	default:
@@ -139,7 +142,7 @@ func mapDecl(decl ast.Decl) *Node {
 func mapFuncDecl(funcDecl *ast.FuncDecl) *Node {
 	return &Node{
 		Kinds:      kinds(funcDecl),
-		Children:   children(mapExpr(funcDecl.Name), mapBlockStmt(funcDecl.Body)),
+		Children:   children(mapExpr(funcDecl.Name), mapStmt(funcDecl.Body)),
 		NativeNode: nativeNode(funcDecl),
 	}
 }
@@ -208,8 +211,6 @@ func mapNode(astNode ast.Node) *Node {
 		return mapStmt(v)
 	case ast.Decl:
 		return mapDecl(v)
-	case *ast.File:
-		return MapFile(v)
 	default:
 		return mapUnsupported(astNode)
 	}
@@ -362,6 +363,9 @@ func main() {
     // This is a comment
     msg := "hello, world\n"
     fmt.Printf( msg )
+	if (len(msg)) > 0 {
+		fmt.Println(msg)
+    }
 }
 `
 	fileSet := token.NewFileSet()
