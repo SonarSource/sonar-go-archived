@@ -2,6 +2,7 @@ package org.sonar.commonruleengine.checks;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.sonar.check.Rule;
 import org.sonar.uast.UastNode;
 import org.sonar.uast.helpers.FunctionLike;
 
@@ -10,6 +11,7 @@ import static org.sonar.uast.Uast.syntacticallyEquivalent;
 /**
  * Rule https://jira.sonarsource.com/browse/RSPEC-4144
  */
+@Rule(key = "S4144")
 public class NoIdenticalFunctionsCheck extends Check {
 
   private List<FunctionLike> functions = new ArrayList<>();
