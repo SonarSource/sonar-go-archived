@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-package render
+package main
 
 import (
 	"bytes"
@@ -46,10 +46,10 @@ var typeOfInt = reflect.TypeOf(int(1))
 var typeOfUint = reflect.TypeOf(uint(1))
 var typeOfFloat = reflect.TypeOf(10.1)
 
-// Render converts a structure to a string representation. Unline the "%#v"
+// render converts a structure to a string representation. Unline the "%#v"
 // format string, this resolves pointer types' contents in structs, maps, and
 // slices/arrays and prints their field values.
-func Render(v interface{}) string {
+func render(v interface{}) string {
 	buf := bytes.Buffer{}
 	s := (*traverseState)(nil)
 	s.render(&buf, 0, reflect.ValueOf(v), false, 0)

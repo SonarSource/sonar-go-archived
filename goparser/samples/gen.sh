@@ -2,7 +2,7 @@
 
 if ! type goparser &>/dev/null; then
     echo "The program 'goparser' doesn't exist or it's not on your path."
-    echo "Add ~/go/bin to your PATH, and install goparser with 'go install' inside cmd/goparser"
+    echo "Add ~/go/bin to your PATH, and install goparser with 'go install'"
     exit 1
 fi
 
