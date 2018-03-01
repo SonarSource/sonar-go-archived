@@ -209,7 +209,12 @@
                       ],
                       "nativeNode": "*ast.IfStmt",
                       "children": [
-                        null,
+                        {
+                          "kinds": [
+                            "UNSUPPORTED"
+                          ],
+                          "nativeNode": "\u003cnil\u003e"
+                        },
                         {
                           "kinds": [
                             "*ast.ParenExpr"
@@ -361,7 +366,12 @@
                             }
                           ]
                         },
-                        null
+                        {
+                          "kinds": [
+                            "UNSUPPORTED"
+                          ],
+                          "nativeNode": "\u003cnil\u003e"
+                        }
                       ]
                     },
                     {
@@ -404,7 +414,15 @@
                           "kinds": [
                             "ASSIGNMENT_VALUE"
                           ],
-                          "nativeNode": "[]ast.Expr"
+                          "nativeNode": "[]ast.Expr",
+                          "children": [
+                            {
+                              "kinds": [
+                                "UNSUPPORTED"
+                              ],
+                              "nativeNode": "*ast.FuncLit"
+                            }
+                          ]
                         }
                       ]
                     },
@@ -467,7 +485,12 @@
                       ],
                       "nativeNode": "*ast.IfStmt",
                       "children": [
-                        null,
+                        {
+                          "kinds": [
+                            "UNSUPPORTED"
+                          ],
+                          "nativeNode": "\u003cnil\u003e"
+                        },
                         {
                           "kinds": [
                             "*ast.BinaryExpr"
@@ -612,7 +635,12 @@
                             }
                           ]
                         },
-                        null
+                        {
+                          "kinds": [
+                            "UNSUPPORTED"
+                          ],
+                          "nativeNode": "\u003cnil\u003e"
+                        }
                       ]
                     },
                     {
@@ -621,7 +649,12 @@
                       ],
                       "nativeNode": "*ast.IfStmt",
                       "children": [
-                        null,
+                        {
+                          "kinds": [
+                            "UNSUPPORTED"
+                          ],
+                          "nativeNode": "\u003cnil\u003e"
+                        },
                         {
                           "kinds": [
                             "*ast.BinaryExpr"
@@ -819,7 +852,12 @@
                             }
                           ]
                         },
-                        null
+                        {
+                          "kinds": [
+                            "UNSUPPORTED"
+                          ],
+                          "nativeNode": "\u003cnil\u003e"
+                        }
                       ]
                     },
                     {
@@ -828,7 +866,12 @@
                       ],
                       "nativeNode": "*ast.IfStmt",
                       "children": [
-                        null,
+                        {
+                          "kinds": [
+                            "UNSUPPORTED"
+                          ],
+                          "nativeNode": "\u003cnil\u003e"
+                        },
                         {
                           "kinds": [
                             "*ast.BinaryExpr"
