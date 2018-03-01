@@ -47,12 +47,12 @@ func Test_mapFile(t *testing.T) {
 		t.Fatalf("got %v as kinds of first child; expected %v", uast.Children[0].Kinds, expected)
 	}
 
-	if expected := 9; expected != uast.Position.offset {
-		t.Fatalf("got %v as Position.offset; expected %v", uast.Position.offset, expected)
+	if expected := 1; expected != uast.Token.offset {
+		t.Fatalf("got %v as Token.offset; expected %v", uast.Token.offset, expected)
 	}
 
-	if expected := "main"; expected != uast.Value {
-		t.Fatalf("got %v as Value; expected %v", uast.Value, expected)
+	if expected := "main"; expected != uast.Token.Value {
+		t.Fatalf("got %v as Value; expected %v", uast.Token.Value, expected)
 	}
 
 	if expected := "*ast.File"; expected != uast.NativeNode {
@@ -72,12 +72,8 @@ func Test_mapFuncDecl(t *testing.T) {
 		t.Fatalf("got %v as number of Children; expected %v", len(uast.Children), expected)
 	}
 
-	if uast.Position != nil {
-		t.Fatalf("got %v as Position; expected nil", uast.Position)
-	}
-
-	if expected := ""; expected != uast.Value {
-		t.Fatalf("got %v as Value; expected %v", uast.Value, expected)
+	if uast.Token != nil {
+		t.Fatalf("got %v as Token; expected nil", uast.Token)
 	}
 
 	if expected := "*ast.FuncDecl"; expected != uast.NativeNode {
@@ -97,12 +93,12 @@ func Test_mapFuncDecl_Name(t *testing.T) {
 		t.Fatalf("got %v as number of Children; expected %v", len(uast.Children), expected)
 	}
 
-	if expected := 32; expected != uast.Position.offset {
-		t.Fatalf("got %v as Position.offset; expected %v", uast.Position.offset, expected)
+	if expected := 32; expected != uast.Token.offset {
+		t.Fatalf("got %v as Token.offset; expected %v", uast.Token.offset, expected)
 	}
 
-	if expected := "main"; expected != uast.Value {
-		t.Fatalf("got %v as Value; expected %v", uast.Value, expected)
+	if expected := "main"; expected != uast.Token.Value {
+		t.Fatalf("got %v as Value; expected %v", uast.Token.Value, expected)
 	}
 
 	if expected := "*ast.Ident"; expected != uast.NativeNode {
@@ -122,12 +118,8 @@ func Test_mapAssignStmt(t *testing.T) {
 		t.Fatalf("got %v as number of Children; expected %v", len(uast.Children), expected)
 	}
 
-	if uast.Position != nil {
-		t.Fatalf("got %v as Position; expected nil", uast.Position)
-	}
-
-	if expected := ""; expected != uast.Value {
-		t.Fatalf("got %v as Value; expected %v", uast.Value, expected)
+	if uast.Token != nil {
+		t.Fatalf("got %v as Token; expected nil", uast.Token)
 	}
 
 	if expected := "*ast.AssignStmt"; expected != uast.NativeNode {
@@ -147,12 +139,8 @@ func Test_mapExprList(t *testing.T) {
 		t.Fatalf("got %v as number of Children; expected %v", len(uast.Children), expected)
 	}
 
-	if uast.Position != nil {
-		t.Fatalf("got %v as Position; expected nil", uast.Position)
-	}
-
-	if expected := ""; expected != uast.Value {
-		t.Fatalf("got %v as Value; expected %v", uast.Value, expected)
+	if uast.Token != nil {
+		t.Fatalf("got %v as Token; expected nil", uast.Token)
 	}
 
 	if expected := "[]ast.Expr"; expected != uast.NativeNode {
@@ -176,12 +164,12 @@ func Test_mapExpr_Ident(t *testing.T) {
 		t.Fatalf("got %v as number of Children; expected %v", len(uast.Children), expected)
 	}
 
-	if expected := 70; expected != uast.Position.offset {
-		t.Fatalf("got %v as Position.offset; expected %v", uast.Position.offset, expected)
+	if expected := 70; expected != uast.Token.offset {
+		t.Fatalf("got %v as Token.offset; expected %v", uast.Token.offset, expected)
 	}
 
-	if expected := "msg"; expected != uast.Value {
-		t.Fatalf("got %v as Value; expected %v", uast.Value, expected)
+	if expected := "msg"; expected != uast.Token.Value {
+		t.Fatalf("got %v as Value; expected %v", uast.Token.Value, expected)
 	}
 
 	if expected := "*ast.Ident"; expected != uast.NativeNode {
@@ -205,12 +193,12 @@ func Test_mapExpr_BasicLit(t *testing.T) {
 		t.Fatalf("got %v as number of Children; expected %v", len(uast.Children), expected)
 	}
 
-	if expected := 77; expected != uast.Position.offset {
-		t.Fatalf("got %v as Position.offset; expected %v", uast.Position.offset, expected)
+	if expected := 77; expected != uast.Token.offset {
+		t.Fatalf("got %v as Token.offset; expected %v", uast.Token.offset, expected)
 	}
 
-	if expected := "\"hello, world\\n\""; expected != uast.Value {
-		t.Fatalf("got %v as Value; expected %v", uast.Value, expected)
+	if expected := "\"hello, world\\n\""; expected != uast.Token.Value {
+		t.Fatalf("got %v as Value; expected %v", uast.Token.Value, expected)
 	}
 
 	if expected := "*ast.BasicLit"; expected != uast.NativeNode {
@@ -230,8 +218,8 @@ func Test_mapExprStmt(t *testing.T) {
 		t.Fatalf("got %v as number of Children; expected %v", len(uast.Children), expected)
 	}
 
-	if uast.Position != nil {
-		t.Fatalf("got %v as Position; expected nil", uast.Position)
+	if uast.Token != nil {
+		t.Fatalf("got %v as Token; expected nil", uast.Token)
 	}
 }
 
@@ -247,8 +235,8 @@ func Test_mapCallExpr(t *testing.T) {
 		t.Fatalf("got %v as number of Children; expected %v", len(uast.Children), expected)
 	}
 
-	if uast.Position != nil {
-		t.Fatalf("got %v as Position; expected nil", uast.Position)
+	if uast.Token != nil {
+		t.Fatalf("got %v as Token; expected nil", uast.Token)
 	}
 }
 
@@ -264,7 +252,7 @@ func Test_mapIfStmt(t *testing.T) {
 		t.Fatalf("got %v as number of Children; expected %v", len(uast.Children), expected)
 	}
 
-	if uast.Position != nil {
-		t.Fatalf("got %v as Position; expected nil", uast.Position)
+	if uast.Token != nil {
+		t.Fatalf("got %v as Token; expected nil", uast.Token)
 	}
 }

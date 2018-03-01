@@ -10,6 +10,10 @@ import (
 
 type Kind string
 
+func (k Kind) String() string {
+	return string(k)
+}
+
 const (
 	COMPILATION_UNIT  Kind = "COMPILATION_UNIT"
 	FUNCTION          Kind = "FUNCTION"
@@ -32,18 +36,18 @@ const (
 	UNSUPPORTED       Kind = "UNSUPPORTED"
 )
 
-type Position struct {
-	Line   int `json:"line"`
-	Column int `json:"column"`
+type Token struct {
+	Value  string `json:"value,omitempty"`
+	Line   int    `json:"line"`
+	Column int    `json:"column"`
 	offset int // TODO remove this
 }
 
 type Node struct {
-	Kinds      []Kind    `json:"kinds"`
-	Position   *Position `json:"position,omitempty"`
-	Value      string    `json:"value,omitempty"`
-	NativeNode string    `json:"nativeNode,omitempty"`
-	Children   []*Node   `json:"children,omitempty"`
+	Kinds      []Kind  `json:"kinds"`
+	Token      *Token  `json:"token,omitempty"`
+	NativeNode string  `json:"nativeNode,omitempty"`
+	Children   []*Node `json:"children,omitempty"`
 }
 
 func kind(k interface{}) Kind {
@@ -120,8 +124,7 @@ func MapFile(file *ast.File) *Node {
 	return &Node{
 		Kinds:      kinds(file),
 		Children:   children(mapDeclList(kind(file.Decls), file.Decls)),
-		Position:   mapPos(file.Name.NamePos),
-		Value:      file.Name.String(),
+		Token:      mapTokenPos(file.Name.Name, file.Pos()),
 		NativeNode: nativeNode(file),
 	}
 }
@@ -278,8 +281,7 @@ func mapSelectorExpr(expr *ast.SelectorExpr) *Node {
 func mapIdent(ident *ast.Ident) *Node {
 	return &Node{
 		Kinds:      kinds(IDENTIFIER),
-		Position:   mapPos(ident.NamePos),
-		Value:      ident.Name,
+		Token:      mapTokenPos(ident.Name, ident.Pos()),
 		NativeNode: nativeNode(ident),
 	}
 }
@@ -287,8 +289,7 @@ func mapIdent(ident *ast.Ident) *Node {
 func mapBasicLit(lit *ast.BasicLit) *Node {
 	return &Node{
 		Kinds:      kinds(LITERAL),
-		Position:   mapPos(lit.ValuePos),
-		Value:      lit.Value,
+		Token:      mapTokenPos(lit.Value, lit.Pos()),
 		NativeNode: nativeNode(lit),
 	}
 }
@@ -296,8 +297,7 @@ func mapBasicLit(lit *ast.BasicLit) *Node {
 func mapToken(tok token.Token, pos token.Pos) *Node {
 	return &Node{
 		Kinds:      kinds(TOKEN),
-		Position:   mapPos(pos),
-		Value:      tok.String(),
+		Token:      mapTokenPos(tok.String(), pos),
 		NativeNode: nativeNode(tok),
 	}
 }
@@ -305,7 +305,7 @@ func mapToken(tok token.Token, pos token.Pos) *Node {
 func mapLiteralToken(kind Kind, pos token.Pos) *Node {
 	return &Node{
 		Kinds:      kinds(kind),
-		Position:   mapPos(pos),
+		Token:      mapTokenPos(kind.String(), pos),
 	}
 }
 
@@ -329,8 +329,8 @@ func mapCallExpr(callExpr *ast.CallExpr) *Node {
 	}
 }
 
-func mapPos(pos token.Pos) *Position {
-	return &Position{Line: 1, Column: 1, offset: int(pos)}
+func mapTokenPos(tok string, pos token.Pos) *Token {
+	return &Token{Value: tok, Line: 1, Column: 1, offset: int(pos)}
 }
 
 func nativeNode(x interface{}) string {

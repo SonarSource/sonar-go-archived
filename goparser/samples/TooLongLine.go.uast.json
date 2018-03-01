@@ -2,11 +2,11 @@
   "kinds": [
     "COMPILATION_UNIT"
   ],
-  "position": {
+  "token": {
+    "value": "samples",
     "line": 1,
     "column": 1
   },
-  "value": "samples",
   "nativeNode": "*ast.File",
   "children": [
     {
@@ -25,11 +25,11 @@
               "kinds": [
                 "IDENTIFIER"
               ],
-              "position": {
+              "token": {
+                "value": "longLine",
                 "line": 1,
                 "column": 1
               },
-              "value": "longLine",
               "nativeNode": "*ast.Ident"
             },
             {
@@ -60,11 +60,11 @@
                               "kinds": [
                                 "IDENTIFIER"
                               ],
-                              "position": {
+                              "token": {
+                                "value": "x",
                                 "line": 1,
                                 "column": 1
                               },
-                              "value": "x",
                               "nativeNode": "*ast.Ident"
                             }
                           ]
@@ -73,11 +73,11 @@
                           "kinds": [
                             "TOKEN"
                           ],
-                          "position": {
+                          "token": {
+                            "value": ":=",
                             "line": 1,
                             "column": 1
                           },
-                          "value": ":=",
                           "nativeNode": "token.Token"
                         },
                         {
@@ -252,33 +252,33 @@
                                                                                                                                           "kinds": [
                                                                                                                                             "LITERAL"
                                                                                                                                           ],
-                                                                                                                                          "position": {
+                                                                                                                                          "token": {
+                                                                                                                                            "value": "1",
                                                                                                                                             "line": 1,
                                                                                                                                             "column": 1
                                                                                                                                           },
-                                                                                                                                          "value": "1",
                                                                                                                                           "nativeNode": "*ast.BasicLit"
                                                                                                                                         },
                                                                                                                                         {
                                                                                                                                           "kinds": [
                                                                                                                                             "TOKEN"
                                                                                                                                           ],
-                                                                                                                                          "position": {
+                                                                                                                                          "token": {
+                                                                                                                                            "value": "+",
                                                                                                                                             "line": 1,
                                                                                                                                             "column": 1
                                                                                                                                           },
-                                                                                                                                          "value": "+",
                                                                                                                                           "nativeNode": "token.Token"
                                                                                                                                         },
                                                                                                                                         {
                                                                                                                                           "kinds": [
                                                                                                                                             "LITERAL"
                                                                                                                                           ],
-                                                                                                                                          "position": {
+                                                                                                                                          "token": {
+                                                                                                                                            "value": "1",
                                                                                                                                             "line": 1,
                                                                                                                                             "column": 1
                                                                                                                                           },
-                                                                                                                                          "value": "1",
                                                                                                                                           "nativeNode": "*ast.BasicLit"
                                                                                                                                         }
                                                                                                                                       ]
@@ -287,22 +287,22 @@
                                                                                                                                       "kinds": [
                                                                                                                                         "TOKEN"
                                                                                                                                       ],
-                                                                                                                                      "position": {
+                                                                                                                                      "token": {
+                                                                                                                                        "value": "+",
                                                                                                                                         "line": 1,
                                                                                                                                         "column": 1
                                                                                                                                       },
-                                                                                                                                      "value": "+",
                                                                                                                                       "nativeNode": "token.Token"
                                                                                                                                     },
                                                                                                                                     {
                                                                                                                                       "kinds": [
                                                                                                                                         "LITERAL"
                                                                                                                                       ],
-                                                                                                                                      "position": {
+                                                                                                                                      "token": {
+                                                                                                                                        "value": "1",
                                                                                                                                         "line": 1,
                                                                                                                                         "column": 1
                                                                                                                                       },
-                                                                                                                                      "value": "1",
                                                                                                                                       "nativeNode": "*ast.BasicLit"
                                                                                                                                     }
                                                                                                                                   ]
@@ -311,22 +311,22 @@
                                                                                                                                   "kinds": [
                                                                                                                                     "TOKEN"
                                                                                                                                   ],
-                                                                                                                                  "position": {
+                                                                                                                                  "token": {
+                                                                                                                                    "value": "+",
                                                                                                                                     "line": 1,
                                                                                                                                     "column": 1
                                                                                                                                   },
-                                                                                                                                  "value": "+",
                                                                                                                                   "nativeNode": "token.Token"
                                                                                                                                 },
                                                                                                                                 {
                                                                                                                                   "kinds": [
                                                                                                                                     "LITERAL"
                                                                                                                                   ],
-                                                                                                                                  "position": {
+                                                                                                                                  "token": {
+                                                                                                                                    "value": "1",
                                                                                                                                     "line": 1,
                                                                                                                                     "column": 1
                                                                                                                                   },
-                                                                                                                                  "value": "1",
                                                                                                                                   "nativeNode": "*ast.BasicLit"
                                                                                                                                 }
                                                                                                                               ]
@@ -335,22 +335,22 @@
                                                                                                                               "kinds": [
                                                                                                                                 "TOKEN"
                                                                                                                               ],
-                                                                                                                              "position": {
+                                                                                                                              "token": {
+                                                                                                                                "value": "+",
                                                                                                                                 "line": 1,
                                                                                                                                 "column": 1
                                                                                                                               },
-                                                                                                                              "value": "+",
                                                                                                                               "nativeNode": "token.Token"
                                                                                                                             },
                                                                                                                             {
                                                                                                                               "kinds": [
                                                                                                                                 "LITERAL"
                                                                                                                               ],
-                                                                                                                              "position": {
+                                                                                                                              "token": {
+                                                                                                                                "value": "1",
                                                                                                                                 "line": 1,
                                                                                                                                 "column": 1
                                                                                                                               },
-                                                                                                                              "value": "1",
                                                                                                                               "nativeNode": "*ast.BasicLit"
                                                                                                                             }
                                                                                                                           ]
@@ -359,22 +359,22 @@
                                                                                                                           "kinds": [
                                                                                                                             "TOKEN"
                                                                                                                           ],
-                                                                                                                          "position": {
+                                                                                                                          "token": {
+                                                                                                                            "value": "+",
                                                                                                                             "line": 1,
                                                                                                                             "column": 1
                                                                                                                           },
-                                                                                                                          "value": "+",
                                                                                                                           "nativeNode": "token.Token"
                                                                                                                         },
                                                                                                                         {
                                                                                                                           "kinds": [
                                                                                                                             "LITERAL"
                                                                                                                           ],
-                                                                                                                          "position": {
+                                                                                                                          "token": {
+                                                                                                                            "value": "1",
                                                                                                                             "line": 1,
                                                                                                                             "column": 1
                                                                                                                           },
-                                                                                                                          "value": "1",
                                                                                                                           "nativeNode": "*ast.BasicLit"
                                                                                                                         }
                                                                                                                       ]
@@ -383,22 +383,22 @@
                                                                                                                       "kinds": [
                                                                                                                         "TOKEN"
                                                                                                                       ],
-                                                                                                                      "position": {
+                                                                                                                      "token": {
+                                                                                                                        "value": "+",
                                                                                                                         "line": 1,
                                                                                                                         "column": 1
                                                                                                                       },
-                                                                                                                      "value": "+",
                                                                                                                       "nativeNode": "token.Token"
                                                                                                                     },
                                                                                                                     {
                                                                                                                       "kinds": [
                                                                                                                         "LITERAL"
                                                                                                                       ],
-                                                                                                                      "position": {
+                                                                                                                      "token": {
+                                                                                                                        "value": "1",
                                                                                                                         "line": 1,
                                                                                                                         "column": 1
                                                                                                                       },
-                                                                                                                      "value": "1",
                                                                                                                       "nativeNode": "*ast.BasicLit"
                                                                                                                     }
                                                                                                                   ]
@@ -407,22 +407,22 @@
                                                                                                                   "kinds": [
                                                                                                                     "TOKEN"
                                                                                                                   ],
-                                                                                                                  "position": {
+                                                                                                                  "token": {
+                                                                                                                    "value": "+",
                                                                                                                     "line": 1,
                                                                                                                     "column": 1
                                                                                                                   },
-                                                                                                                  "value": "+",
                                                                                                                   "nativeNode": "token.Token"
                                                                                                                 },
                                                                                                                 {
                                                                                                                   "kinds": [
                                                                                                                     "LITERAL"
                                                                                                                   ],
-                                                                                                                  "position": {
+                                                                                                                  "token": {
+                                                                                                                    "value": "1",
                                                                                                                     "line": 1,
                                                                                                                     "column": 1
                                                                                                                   },
-                                                                                                                  "value": "1",
                                                                                                                   "nativeNode": "*ast.BasicLit"
                                                                                                                 }
                                                                                                               ]
@@ -431,22 +431,22 @@
                                                                                                               "kinds": [
                                                                                                                 "TOKEN"
                                                                                                               ],
-                                                                                                              "position": {
+                                                                                                              "token": {
+                                                                                                                "value": "+",
                                                                                                                 "line": 1,
                                                                                                                 "column": 1
                                                                                                               },
-                                                                                                              "value": "+",
                                                                                                               "nativeNode": "token.Token"
                                                                                                             },
                                                                                                             {
                                                                                                               "kinds": [
                                                                                                                 "LITERAL"
                                                                                                               ],
-                                                                                                              "position": {
+                                                                                                              "token": {
+                                                                                                                "value": "1",
                                                                                                                 "line": 1,
                                                                                                                 "column": 1
                                                                                                               },
-                                                                                                              "value": "1",
                                                                                                               "nativeNode": "*ast.BasicLit"
                                                                                                             }
                                                                                                           ]
@@ -455,22 +455,22 @@
                                                                                                           "kinds": [
                                                                                                             "TOKEN"
                                                                                                           ],
-                                                                                                          "position": {
+                                                                                                          "token": {
+                                                                                                            "value": "+",
                                                                                                             "line": 1,
                                                                                                             "column": 1
                                                                                                           },
-                                                                                                          "value": "+",
                                                                                                           "nativeNode": "token.Token"
                                                                                                         },
                                                                                                         {
                                                                                                           "kinds": [
                                                                                                             "LITERAL"
                                                                                                           ],
-                                                                                                          "position": {
+                                                                                                          "token": {
+                                                                                                            "value": "1",
                                                                                                             "line": 1,
                                                                                                             "column": 1
                                                                                                           },
-                                                                                                          "value": "1",
                                                                                                           "nativeNode": "*ast.BasicLit"
                                                                                                         }
                                                                                                       ]
@@ -479,22 +479,22 @@
                                                                                                       "kinds": [
                                                                                                         "TOKEN"
                                                                                                       ],
-                                                                                                      "position": {
+                                                                                                      "token": {
+                                                                                                        "value": "+",
                                                                                                         "line": 1,
                                                                                                         "column": 1
                                                                                                       },
-                                                                                                      "value": "+",
                                                                                                       "nativeNode": "token.Token"
                                                                                                     },
                                                                                                     {
                                                                                                       "kinds": [
                                                                                                         "LITERAL"
                                                                                                       ],
-                                                                                                      "position": {
+                                                                                                      "token": {
+                                                                                                        "value": "1",
                                                                                                         "line": 1,
                                                                                                         "column": 1
                                                                                                       },
-                                                                                                      "value": "1",
                                                                                                       "nativeNode": "*ast.BasicLit"
                                                                                                     }
                                                                                                   ]
@@ -503,22 +503,22 @@
                                                                                                   "kinds": [
                                                                                                     "TOKEN"
                                                                                                   ],
-                                                                                                  "position": {
+                                                                                                  "token": {
+                                                                                                    "value": "+",
                                                                                                     "line": 1,
                                                                                                     "column": 1
                                                                                                   },
-                                                                                                  "value": "+",
                                                                                                   "nativeNode": "token.Token"
                                                                                                 },
                                                                                                 {
                                                                                                   "kinds": [
                                                                                                     "LITERAL"
                                                                                                   ],
-                                                                                                  "position": {
+                                                                                                  "token": {
+                                                                                                    "value": "1",
                                                                                                     "line": 1,
                                                                                                     "column": 1
                                                                                                   },
-                                                                                                  "value": "1",
                                                                                                   "nativeNode": "*ast.BasicLit"
                                                                                                 }
                                                                                               ]
@@ -527,22 +527,22 @@
                                                                                               "kinds": [
                                                                                                 "TOKEN"
                                                                                               ],
-                                                                                              "position": {
+                                                                                              "token": {
+                                                                                                "value": "+",
                                                                                                 "line": 1,
                                                                                                 "column": 1
                                                                                               },
-                                                                                              "value": "+",
                                                                                               "nativeNode": "token.Token"
                                                                                             },
                                                                                             {
                                                                                               "kinds": [
                                                                                                 "LITERAL"
                                                                                               ],
-                                                                                              "position": {
+                                                                                              "token": {
+                                                                                                "value": "1",
                                                                                                 "line": 1,
                                                                                                 "column": 1
                                                                                               },
-                                                                                              "value": "1",
                                                                                               "nativeNode": "*ast.BasicLit"
                                                                                             }
                                                                                           ]
@@ -551,22 +551,22 @@
                                                                                           "kinds": [
                                                                                             "TOKEN"
                                                                                           ],
-                                                                                          "position": {
+                                                                                          "token": {
+                                                                                            "value": "+",
                                                                                             "line": 1,
                                                                                             "column": 1
                                                                                           },
-                                                                                          "value": "+",
                                                                                           "nativeNode": "token.Token"
                                                                                         },
                                                                                         {
                                                                                           "kinds": [
                                                                                             "LITERAL"
                                                                                           ],
-                                                                                          "position": {
+                                                                                          "token": {
+                                                                                            "value": "1",
                                                                                             "line": 1,
                                                                                             "column": 1
                                                                                           },
-                                                                                          "value": "1",
                                                                                           "nativeNode": "*ast.BasicLit"
                                                                                         }
                                                                                       ]
@@ -575,22 +575,22 @@
                                                                                       "kinds": [
                                                                                         "TOKEN"
                                                                                       ],
-                                                                                      "position": {
+                                                                                      "token": {
+                                                                                        "value": "+",
                                                                                         "line": 1,
                                                                                         "column": 1
                                                                                       },
-                                                                                      "value": "+",
                                                                                       "nativeNode": "token.Token"
                                                                                     },
                                                                                     {
                                                                                       "kinds": [
                                                                                         "LITERAL"
                                                                                       ],
-                                                                                      "position": {
+                                                                                      "token": {
+                                                                                        "value": "1",
                                                                                         "line": 1,
                                                                                         "column": 1
                                                                                       },
-                                                                                      "value": "1",
                                                                                       "nativeNode": "*ast.BasicLit"
                                                                                     }
                                                                                   ]
@@ -599,22 +599,22 @@
                                                                                   "kinds": [
                                                                                     "TOKEN"
                                                                                   ],
-                                                                                  "position": {
+                                                                                  "token": {
+                                                                                    "value": "+",
                                                                                     "line": 1,
                                                                                     "column": 1
                                                                                   },
-                                                                                  "value": "+",
                                                                                   "nativeNode": "token.Token"
                                                                                 },
                                                                                 {
                                                                                   "kinds": [
                                                                                     "LITERAL"
                                                                                   ],
-                                                                                  "position": {
+                                                                                  "token": {
+                                                                                    "value": "1",
                                                                                     "line": 1,
                                                                                     "column": 1
                                                                                   },
-                                                                                  "value": "1",
                                                                                   "nativeNode": "*ast.BasicLit"
                                                                                 }
                                                                               ]
@@ -623,22 +623,22 @@
                                                                               "kinds": [
                                                                                 "TOKEN"
                                                                               ],
-                                                                              "position": {
+                                                                              "token": {
+                                                                                "value": "+",
                                                                                 "line": 1,
                                                                                 "column": 1
                                                                               },
-                                                                              "value": "+",
                                                                               "nativeNode": "token.Token"
                                                                             },
                                                                             {
                                                                               "kinds": [
                                                                                 "LITERAL"
                                                                               ],
-                                                                              "position": {
+                                                                              "token": {
+                                                                                "value": "1",
                                                                                 "line": 1,
                                                                                 "column": 1
                                                                               },
-                                                                              "value": "1",
                                                                               "nativeNode": "*ast.BasicLit"
                                                                             }
                                                                           ]
@@ -647,22 +647,22 @@
                                                                           "kinds": [
                                                                             "TOKEN"
                                                                           ],
-                                                                          "position": {
+                                                                          "token": {
+                                                                            "value": "+",
                                                                             "line": 1,
                                                                             "column": 1
                                                                           },
-                                                                          "value": "+",
                                                                           "nativeNode": "token.Token"
                                                                         },
                                                                         {
                                                                           "kinds": [
                                                                             "LITERAL"
                                                                           ],
-                                                                          "position": {
+                                                                          "token": {
+                                                                            "value": "1",
                                                                             "line": 1,
                                                                             "column": 1
                                                                           },
-                                                                          "value": "1",
                                                                           "nativeNode": "*ast.BasicLit"
                                                                         }
                                                                       ]
@@ -671,22 +671,22 @@
                                                                       "kinds": [
                                                                         "TOKEN"
                                                                       ],
-                                                                      "position": {
+                                                                      "token": {
+                                                                        "value": "+",
                                                                         "line": 1,
                                                                         "column": 1
                                                                       },
-                                                                      "value": "+",
                                                                       "nativeNode": "token.Token"
                                                                     },
                                                                     {
                                                                       "kinds": [
                                                                         "LITERAL"
                                                                       ],
-                                                                      "position": {
+                                                                      "token": {
+                                                                        "value": "1",
                                                                         "line": 1,
                                                                         "column": 1
                                                                       },
-                                                                      "value": "1",
                                                                       "nativeNode": "*ast.BasicLit"
                                                                     }
                                                                   ]
@@ -695,22 +695,22 @@
                                                                   "kinds": [
                                                                     "TOKEN"
                                                                   ],
-                                                                  "position": {
+                                                                  "token": {
+                                                                    "value": "+",
                                                                     "line": 1,
                                                                     "column": 1
                                                                   },
-                                                                  "value": "+",
                                                                   "nativeNode": "token.Token"
                                                                 },
                                                                 {
                                                                   "kinds": [
                                                                     "LITERAL"
                                                                   ],
-                                                                  "position": {
+                                                                  "token": {
+                                                                    "value": "1",
                                                                     "line": 1,
                                                                     "column": 1
                                                                   },
-                                                                  "value": "1",
                                                                   "nativeNode": "*ast.BasicLit"
                                                                 }
                                                               ]
@@ -719,22 +719,22 @@
                                                               "kinds": [
                                                                 "TOKEN"
                                                               ],
-                                                              "position": {
+                                                              "token": {
+                                                                "value": "+",
                                                                 "line": 1,
                                                                 "column": 1
                                                               },
-                                                              "value": "+",
                                                               "nativeNode": "token.Token"
                                                             },
                                                             {
                                                               "kinds": [
                                                                 "LITERAL"
                                                               ],
-                                                              "position": {
+                                                              "token": {
+                                                                "value": "1",
                                                                 "line": 1,
                                                                 "column": 1
                                                               },
-                                                              "value": "1",
                                                               "nativeNode": "*ast.BasicLit"
                                                             }
                                                           ]
@@ -743,22 +743,22 @@
                                                           "kinds": [
                                                             "TOKEN"
                                                           ],
-                                                          "position": {
+                                                          "token": {
+                                                            "value": "+",
                                                             "line": 1,
                                                             "column": 1
                                                           },
-                                                          "value": "+",
                                                           "nativeNode": "token.Token"
                                                         },
                                                         {
                                                           "kinds": [
                                                             "LITERAL"
                                                           ],
-                                                          "position": {
+                                                          "token": {
+                                                            "value": "1",
                                                             "line": 1,
                                                             "column": 1
                                                           },
-                                                          "value": "1",
                                                           "nativeNode": "*ast.BasicLit"
                                                         }
                                                       ]
@@ -767,22 +767,22 @@
                                                       "kinds": [
                                                         "TOKEN"
                                                       ],
-                                                      "position": {
+                                                      "token": {
+                                                        "value": "+",
                                                         "line": 1,
                                                         "column": 1
                                                       },
-                                                      "value": "+",
                                                       "nativeNode": "token.Token"
                                                     },
                                                     {
                                                       "kinds": [
                                                         "LITERAL"
                                                       ],
-                                                      "position": {
+                                                      "token": {
+                                                        "value": "1",
                                                         "line": 1,
                                                         "column": 1
                                                       },
-                                                      "value": "1",
                                                       "nativeNode": "*ast.BasicLit"
                                                     }
                                                   ]
@@ -791,22 +791,22 @@
                                                   "kinds": [
                                                     "TOKEN"
                                                   ],
-                                                  "position": {
+                                                  "token": {
+                                                    "value": "+",
                                                     "line": 1,
                                                     "column": 1
                                                   },
-                                                  "value": "+",
                                                   "nativeNode": "token.Token"
                                                 },
                                                 {
                                                   "kinds": [
                                                     "LITERAL"
                                                   ],
-                                                  "position": {
+                                                  "token": {
+                                                    "value": "1",
                                                     "line": 1,
                                                     "column": 1
                                                   },
-                                                  "value": "1",
                                                   "nativeNode": "*ast.BasicLit"
                                                 }
                                               ]
@@ -815,22 +815,22 @@
                                               "kinds": [
                                                 "TOKEN"
                                               ],
-                                              "position": {
+                                              "token": {
+                                                "value": "+",
                                                 "line": 1,
                                                 "column": 1
                                               },
-                                              "value": "+",
                                               "nativeNode": "token.Token"
                                             },
                                             {
                                               "kinds": [
                                                 "LITERAL"
                                               ],
-                                              "position": {
+                                              "token": {
+                                                "value": "1",
                                                 "line": 1,
                                                 "column": 1
                                               },
-                                              "value": "1",
                                               "nativeNode": "*ast.BasicLit"
                                             }
                                           ]
@@ -839,22 +839,22 @@
                                           "kinds": [
                                             "TOKEN"
                                           ],
-                                          "position": {
+                                          "token": {
+                                            "value": "+",
                                             "line": 1,
                                             "column": 1
                                           },
-                                          "value": "+",
                                           "nativeNode": "token.Token"
                                         },
                                         {
                                           "kinds": [
                                             "LITERAL"
                                           ],
-                                          "position": {
+                                          "token": {
+                                            "value": "1",
                                             "line": 1,
                                             "column": 1
                                           },
-                                          "value": "1",
                                           "nativeNode": "*ast.BasicLit"
                                         }
                                       ]
@@ -863,22 +863,22 @@
                                       "kinds": [
                                         "TOKEN"
                                       ],
-                                      "position": {
+                                      "token": {
+                                        "value": "+",
                                         "line": 1,
                                         "column": 1
                                       },
-                                      "value": "+",
                                       "nativeNode": "token.Token"
                                     },
                                     {
                                       "kinds": [
                                         "LITERAL"
                                       ],
-                                      "position": {
+                                      "token": {
+                                        "value": "1",
                                         "line": 1,
                                         "column": 1
                                       },
-                                      "value": "1",
                                       "nativeNode": "*ast.BasicLit"
                                     }
                                   ]
@@ -887,22 +887,22 @@
                                   "kinds": [
                                     "TOKEN"
                                   ],
-                                  "position": {
+                                  "token": {
+                                    "value": "+",
                                     "line": 1,
                                     "column": 1
                                   },
-                                  "value": "+",
                                   "nativeNode": "token.Token"
                                 },
                                 {
                                   "kinds": [
                                     "LITERAL"
                                   ],
-                                  "position": {
+                                  "token": {
+                                    "value": "1",
                                     "line": 1,
                                     "column": 1
                                   },
-                                  "value": "1",
                                   "nativeNode": "*ast.BasicLit"
                                 }
                               ]
