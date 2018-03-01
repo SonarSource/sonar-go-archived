@@ -910,6 +910,12 @@
                           ]
                         }
                       ]
+                    },
+                    {
+                      "kinds": [
+                        "UNSUPPORTED"
+                      ],
+                      "nativeNode": "*ast.ReturnStmt"
                     }
                   ]
                 }

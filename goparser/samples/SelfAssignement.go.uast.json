@@ -17,6 +17,12 @@
       "children": [
         {
           "kinds": [
+            "UNSUPPORTED"
+          ],
+          "nativeNode": "*ast.GenDecl"
+        },
+        {
+          "kinds": [
             "FUNCTION"
           ],
           "nativeNode": "*ast.FuncDecl",

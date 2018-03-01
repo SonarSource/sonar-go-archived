@@ -1077,7 +1077,15 @@
                   "kinds": [
                     "[]ast.Stmt"
                   ],
-                  "nativeNode": "[]ast.Stmt"
+                  "nativeNode": "[]ast.Stmt",
+                  "children": [
+                    {
+                      "kinds": [
+                        "UNSUPPORTED"
+                      ],
+                      "nativeNode": "*ast.ReturnStmt"
+                    }
+                  ]
                 }
               ]
             }
