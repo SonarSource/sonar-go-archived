@@ -8,3 +8,8 @@ golang {
 }
 
 build.dependsOn check
+
+build {
+  targetPlatform = ['linux-amd64', 'windows-amd64', 'darwin-amd64']
+  outputLocation = './build/goparser-${GOOS}-${GOARCH}${GOEXE}'
+}
