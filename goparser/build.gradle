@@ -6,3 +6,5 @@ golang {
   packagePath = 'github.com/SonarSource/sonar-go/goparser'
   goVersion = '1.10'
 }
+
+build.dependsOn check
