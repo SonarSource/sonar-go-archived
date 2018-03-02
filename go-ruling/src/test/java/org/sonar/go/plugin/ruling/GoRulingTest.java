@@ -23,19 +23,20 @@ class GoRulingTest {
   @Test
   void ruling() throws IOException {
     StringBuilder actualResult = new StringBuilder();
-    try (Stream<Path> files = Files.walk(Paths.get("..", "go-samples"))) {
+    try (Stream<Path> files = Files.walk(Paths.get("src", "test", "resources", "go", "samples"))) {
       files.filter(path -> path.toString().endsWith(".go"))
         .sorted()
         .forEach(path -> analyze(actualResult, path));
     }
-    Path expectedPath = Paths.get("src/test/resources/analyze-expected-result.txt");
+    Path expectedPath = Paths.get("src", "test", "resources", "go", "samples-expected-result.txt");
     String expected = new String(Files.readAllBytes(expectedPath), UTF_8);
-    Assertions.assertEquals(expected, actualResult.toString());
+    String message = "\n=== expected ===\n" + actualResult.toString() + "===============\n";
+    Assertions.assertEquals(expected, actualResult.toString(), message);
   }
 
   void analyze(StringBuilder out, Path path) {
     try {
-      out.append("[" + path.toString().replace('\\', '/') + "]\n");
+      out.append("[" + path.getFileName().toString() + "]\n");
       UastNode uast = getGoUast(path);
       Engine engine = new Engine(Engine.ALL_CHECKS);
       List<Issue> issues = engine.scan(uast);
