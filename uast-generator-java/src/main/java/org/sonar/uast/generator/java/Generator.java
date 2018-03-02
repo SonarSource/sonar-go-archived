@@ -6,6 +6,7 @@ import com.sonar.sslr.api.typed.ActionParser;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.EnumSet;
@@ -25,13 +26,18 @@ import org.sonar.plugins.java.api.tree.MethodTree;
 import org.sonar.plugins.java.api.tree.StatementTree;
 import org.sonar.plugins.java.api.tree.SyntaxToken;
 import org.sonar.plugins.java.api.tree.Tree;
-import org.sonar.uast.UastNode;
 
 public class Generator {
 
   public static void main(String[] args) throws IOException {
-    String source = new String(Files.readAllBytes(Paths.get(args[0])), StandardCharsets.UTF_8);
-    System.out.println(new Generator(source).json());
+    Path path = Paths.get(args[0]);
+    if (Files.isDirectory(path)) {
+      Files.walk(path)
+        .filter(p -> p.toString().endsWith(".java"))
+        .forEach(Generator::createUastFile);
+    } else {
+      Generator.createUastFile(path);
+    }
   }
 
   private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
@@ -44,6 +50,24 @@ public class Generator {
     cut = (CompilationUnitTree) PARSER.parse(source);
     uast = visit(cut);
     cut.accept(new PostprocessVisitor());
+  }
+
+  private static String readFile(Path path) {
+    try {
+      return new String(Files.readAllBytes(path), StandardCharsets.UTF_8);
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  private static void createUastFile(Path p) {
+    try {
+      String source = readFile(p);
+      String uast = new Generator(source).json();
+      Files.write(Paths.get(p.toString() + ".uast.json"), uast.getBytes(StandardCharsets.UTF_8));
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   public UastNode uast() {

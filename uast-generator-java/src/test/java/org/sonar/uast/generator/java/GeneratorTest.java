@@ -6,7 +6,6 @@ import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.EnumSet;
 import org.junit.jupiter.api.Test;
-import org.sonar.uast.UastNode;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

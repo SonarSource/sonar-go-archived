@@ -28,10 +28,19 @@ dependencies {
     implementation("org.sonarsource.java:java-frontend:${javaFrontendVersion}") {
         exclude group: 'junit', module: 'junit'
     }
-    implementation project(":common-rule-engine")
 
     testCompile "org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}"
     testRuntime "org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}"
     // to run tests on eclipse...
-    testCompile group: 'org.junit.platform', name: 'junit-platform-launcher', version: "1.1.0"
+    testCompile "org.junit.platform:junit-platform-launcher:1.1.0"
 }
+
+task generateUast(type: JavaExec) {
+    classpath sourceSets.main.runtimeClasspath
+    main = "org.sonar.uast.generator.java.Generator"
+    if (project.hasProperty("inputFile")) {
+        args project.inputFile
+    }
+}
+
+generateUast.dependsOn build
