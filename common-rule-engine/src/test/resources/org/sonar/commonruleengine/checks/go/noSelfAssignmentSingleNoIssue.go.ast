@@ -1,0 +1,273 @@
+(*ast.File) {
+  Doc: (*ast.CommentGroup)(nil),
+  Package: token.Pos(1),
+  Name: (*ast.Ident) {
+      NamePos: token.Pos(9),
+      Name: "main",
+      Obj: (*ast.Object)(nil)
+    },
+  Decls: []ast.Decl{
+    (*ast.FuncDecl) {
+        Doc: (*ast.CommentGroup)(nil),
+        Recv: (*ast.FieldList)(nil),
+        Name: (*ast.Ident) {
+            NamePos: token.Pos(20),
+            Name: "main",
+            Obj: (*ast.Object) {
+                Kind: ast.ObjKind(5),
+                Name: "main",
+                Decl: <REC(*ast.FuncDecl)>,
+                Data: interface{}(nil),
+                Type: interface{}(nil)
+              }
+          },
+        Type: (*ast.FuncType) {
+            Func: token.Pos(15),
+            Params: (*ast.FieldList) {
+                Opening: token.Pos(24),
+                List: []*ast.Field(nil),
+                Closing: token.Pos(25)
+              },
+            Results: (*ast.FieldList)(nil)
+          },
+        Body: (*ast.BlockStmt) {
+            Lbrace: token.Pos(27),
+            List: []ast.Stmt{
+              (*ast.AssignStmt) {
+                  Lhs: []ast.Expr{
+                    (*ast.Ident) {
+                        NamePos: token.Pos(30),
+                        Name: "a",
+                        Obj: (*ast.Object) {
+                            Kind: ast.ObjKind(4),
+                            Name: "a",
+                            Decl: <REC(*ast.AssignStmt)>,
+                            Data: interface{}(nil),
+                            Type: interface{}(nil)
+                          }
+                      }
+                    },
+                  TokPos: token.Pos(32),
+                  Tok: token.Token(47),
+                  Rhs: []ast.Expr{
+                    (*ast.BasicLit) {
+                        ValuePos: token.Pos(35),
+                        Kind: token.Token(5),
+                        Value: "1"
+                      }
+                    }
+                },
+              (*ast.AssignStmt) {
+                  Lhs: []ast.Expr{
+                    (*ast.Ident) {
+                        NamePos: token.Pos(38),
+                        Name: "a",
+                        Obj: (*ast.Object) {
+                            Kind: ast.ObjKind(4),
+                            Name: "a",
+                            Decl: (*ast.AssignStmt) {
+                                Lhs: []ast.Expr{
+                                  (*ast.Ident) {
+                                      NamePos: token.Pos(30),
+                                      Name: "a",
+                                      Obj: <REC(*ast.Object)>
+                                    }
+                                  },
+                                TokPos: token.Pos(32),
+                                Tok: token.Token(47),
+                                Rhs: []ast.Expr{
+                                  (*ast.BasicLit) {
+                                      ValuePos: token.Pos(35),
+                                      Kind: token.Token(5),
+                                      Value: "1"
+                                    }
+                                  }
+                              },
+                            Data: interface{}(nil),
+                            Type: interface{}(nil)
+                          }
+                      }
+                    },
+                  TokPos: token.Pos(40),
+                  Tok: token.Token(42),
+                  Rhs: []ast.Expr{
+                    (*ast.BinaryExpr) {
+                        X: (*ast.Ident) {
+                            NamePos: token.Pos(42),
+                            Name: "a",
+                            Obj: (*ast.Object) {
+                                Kind: ast.ObjKind(4),
+                                Name: "a",
+                                Decl: (*ast.AssignStmt) {
+                                    Lhs: []ast.Expr{
+                                      (*ast.Ident) {
+                                          NamePos: token.Pos(30),
+                                          Name: "a",
+                                          Obj: <REC(*ast.Object)>
+                                        }
+                                      },
+                                    TokPos: token.Pos(32),
+                                    Tok: token.Token(47),
+                                    Rhs: []ast.Expr{
+                                      (*ast.BasicLit) {
+                                          ValuePos: token.Pos(35),
+                                          Kind: token.Token(5),
+                                          Value: "1"
+                                        }
+                                      }
+                                  },
+                                Data: interface{}(nil),
+                                Type: interface{}(nil)
+                              }
+                          },
+                        OpPos: token.Pos(44),
+                        Op: token.Token(12),
+                        Y: (*ast.BasicLit) {
+                            ValuePos: token.Pos(46),
+                            Kind: token.Token(5),
+                            Value: "1"
+                          }
+                      }
+                    }
+                }
+              },
+            Rbrace: token.Pos(48)
+          }
+      }
+    },
+  Scope: (*ast.Scope) {
+      Outer: (*ast.Scope)(nil),
+      Objects: map[string]*ast.Object{
+        "main": (*ast.Object) {
+              Kind: ast.ObjKind(5),
+              Name: "main",
+              Decl: (*ast.FuncDecl) {
+                  Doc: (*ast.CommentGroup)(nil),
+                  Recv: (*ast.FieldList)(nil),
+                  Name: (*ast.Ident) {
+                      NamePos: token.Pos(20),
+                      Name: "main",
+                      Obj: <REC(*ast.Object)>
+                    },
+                  Type: (*ast.FuncType) {
+                      Func: token.Pos(15),
+                      Params: (*ast.FieldList) {
+                          Opening: token.Pos(24),
+                          List: []*ast.Field(nil),
+                          Closing: token.Pos(25)
+                        },
+                      Results: (*ast.FieldList)(nil)
+                    },
+                  Body: (*ast.BlockStmt) {
+                      Lbrace: token.Pos(27),
+                      List: []ast.Stmt{
+                        (*ast.AssignStmt) {
+                            Lhs: []ast.Expr{
+                              (*ast.Ident) {
+                                  NamePos: token.Pos(30),
+                                  Name: "a",
+                                  Obj: (*ast.Object) {
+                                      Kind: ast.ObjKind(4),
+                                      Name: "a",
+                                      Decl: <REC(*ast.AssignStmt)>,
+                                      Data: interface{}(nil),
+                                      Type: interface{}(nil)
+                                    }
+                                }
+                              },
+                            TokPos: token.Pos(32),
+                            Tok: token.Token(47),
+                            Rhs: []ast.Expr{
+                              (*ast.BasicLit) {
+                                  ValuePos: token.Pos(35),
+                                  Kind: token.Token(5),
+                                  Value: "1"
+                                }
+                              }
+                          },
+                        (*ast.AssignStmt) {
+                            Lhs: []ast.Expr{
+                              (*ast.Ident) {
+                                  NamePos: token.Pos(38),
+                                  Name: "a",
+                                  Obj: (*ast.Object) {
+                                      Kind: ast.ObjKind(4),
+                                      Name: "a",
+                                      Decl: (*ast.AssignStmt) {
+                                          Lhs: []ast.Expr{
+                                            (*ast.Ident) {
+                                                NamePos: token.Pos(30),
+                                                Name: "a",
+                                                Obj: <REC(*ast.Object)>
+                                              }
+                                            },
+                                          TokPos: token.Pos(32),
+                                          Tok: token.Token(47),
+                                          Rhs: []ast.Expr{
+                                            (*ast.BasicLit) {
+                                                ValuePos: token.Pos(35),
+                                                Kind: token.Token(5),
+                                                Value: "1"
+                                              }
+                                            }
+                                        },
+                                      Data: interface{}(nil),
+                                      Type: interface{}(nil)
+                                    }
+                                }
+                              },
+                            TokPos: token.Pos(40),
+                            Tok: token.Token(42),
+                            Rhs: []ast.Expr{
+                              (*ast.BinaryExpr) {
+                                  X: (*ast.Ident) {
+                                      NamePos: token.Pos(42),
+                                      Name: "a",
+                                      Obj: (*ast.Object) {
+                                          Kind: ast.ObjKind(4),
+                                          Name: "a",
+                                          Decl: (*ast.AssignStmt) {
+                                              Lhs: []ast.Expr{
+                                                (*ast.Ident) {
+                                                    NamePos: token.Pos(30),
+                                                    Name: "a",
+                                                    Obj: <REC(*ast.Object)>
+                                                  }
+                                                },
+                                              TokPos: token.Pos(32),
+                                              Tok: token.Token(47),
+                                              Rhs: []ast.Expr{
+                                                (*ast.BasicLit) {
+                                                    ValuePos: token.Pos(35),
+                                                    Kind: token.Token(5),
+                                                    Value: "1"
+                                                  }
+                                                }
+                                            },
+                                          Data: interface{}(nil),
+                                          Type: interface{}(nil)
+                                        }
+                                    },
+                                  OpPos: token.Pos(44),
+                                  Op: token.Token(12),
+                                  Y: (*ast.BasicLit) {
+                                      ValuePos: token.Pos(46),
+                                      Kind: token.Token(5),
+                                      Value: "1"
+                                    }
+                                }
+                              }
+                          }
+                        },
+                      Rbrace: token.Pos(48)
+                    }
+                },
+              Data: interface{}(nil),
+              Type: interface{}(nil)
+            }
+        }
+    },
+  Imports: []*ast.ImportSpec(nil),
+  Unresolved: []*ast.Ident(nil),
+  Comments: []*ast.CommentGroup(nil)
+}
