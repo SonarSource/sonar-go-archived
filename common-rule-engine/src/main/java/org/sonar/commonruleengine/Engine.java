@@ -13,7 +13,7 @@ import org.sonar.uast.UastNode;
 
 public class Engine {
 
-  private static final List<Check> ALL_CHECKS;
+  public static final List<Check> ALL_CHECKS;
 
   static {
     ALL_CHECKS = CheckList.getChecks().stream().map(c -> {

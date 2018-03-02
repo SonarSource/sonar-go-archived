@@ -1,0 +1,13 @@
+[../go-samples/OneStatementPerLine.go]
+[ASSIGNMENT][13:3 f] NoSelfAssignmentCheck: Remove this self assignment
+[../go-samples/SelfAssignement.go]
+[ASSIGNMENT][7:3 name] NoSelfAssignmentCheck: Remove this self assignment
+[ASSIGNMENT][9:3 user] NoSelfAssignmentCheck: Remove this self assignment
+[../go-samples/TabCharacter.go]
+
+[../go-samples/TodoTagPresence.go]
+
+[../go-samples/TooLongLine.go]
+
+[../go-samples/TooManyParameters.go]
+
