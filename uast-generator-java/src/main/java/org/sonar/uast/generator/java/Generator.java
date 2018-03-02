@@ -137,8 +137,6 @@ public class Generator {
       tree.parameters().forEach(p -> treeUastNodeMap.get(p).kinds.add(UastNode.Kind.PARAMETER));
       super.visitMethod(tree);
     }
-
-
   }
 
 }
