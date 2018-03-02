@@ -145,7 +145,7 @@ func (s *traverseState) render(buf *bytes.Buffer, ptrs int, v reflect.Value, imp
 			writeType(buf, ptrs, vt)
 		}
 		structAnon := vt.Name() == ""
-		buf.WriteString( " {\n")
+		buf.WriteString(" {\n")
 		for i := 0; i < vt.NumField(); i++ {
 			if i > 0 {
 				buf.WriteString(",\n")

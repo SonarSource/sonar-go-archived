@@ -1,11 +1,11 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
+	"go/ast"
 	"go/parser"
 	"go/token"
-	"go/ast"
-	"encoding/json"
 )
 
 type Kind string
@@ -37,9 +37,9 @@ const (
 )
 
 type Token struct {
-	Value  string `json:"value,omitempty"`
-	Line   int    `json:"line"`
-	Column int    `json:"column"`
+	Value  string    `json:"value,omitempty"`
+	Line   int       `json:"line"`
+	Column int       `json:"column"`
 	pos    token.Pos // TODO remove this
 }
 
@@ -83,7 +83,7 @@ func kind(k interface{}) Kind {
 	}
 }
 
-func kinds(rawItems ... interface{}) []Kind {
+func kinds(rawItems ...interface{}) []Kind {
 	items := make([]Kind, len(rawItems))
 	for i, v := range rawItems {
 		items[i] = kind(v)
@@ -91,7 +91,7 @@ func kinds(rawItems ... interface{}) []Kind {
 	return items
 }
 
-func children(items ... *Node) []*Node {
+func children(items ...*Node) []*Node {
 	return items
 }
 

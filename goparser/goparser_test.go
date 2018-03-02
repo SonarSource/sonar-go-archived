@@ -1,11 +1,11 @@
 package main
 
 import (
-	"testing"
-	"reflect"
 	"go/ast"
-	"go/token"
 	"go/parser"
+	"go/token"
+	"reflect"
+	"testing"
 )
 
 var fileSet, astFile = getSampleAst()
