@@ -3,7 +3,7 @@ plugins {
 }
 
 golang {
-  packagePath = 'github.com/SonarSource/sonar-go/goparser'
+  packagePath = 'github.com/SonarSource/sonar-go/uast-generator-go'
   goVersion = '1.10'
 }
 
@@ -11,5 +11,5 @@ build.dependsOn check
 
 build {
   targetPlatform = ['linux-amd64', 'windows-amd64', 'darwin-amd64']
-  outputLocation = './build/goparser-${GOOS}-${GOARCH}${GOEXE}'
+  outputLocation = './build/uast-generator-go-${GOOS}-${GOARCH}${GOEXE}'
 }

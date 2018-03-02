@@ -11,5 +11,5 @@ rootProject.name = 'sonar-go'
 
 include 'common-rule-engine'
 include 'uast-generator-java'
+include 'uast-generator-go'
 include 'go-samples'
-include 'goparser'

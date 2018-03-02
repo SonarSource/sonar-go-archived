@@ -1,4 +1,4 @@
-// Command line interface to goparser
+// Command line interface to uast-generator-go
 package main
 
 import (
