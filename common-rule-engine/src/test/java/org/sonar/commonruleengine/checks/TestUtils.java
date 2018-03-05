@@ -13,7 +13,7 @@ import org.sonar.commonruleengine.Issue;
 import org.sonar.commonruleengine.UastUtils;
 import org.sonar.uast.UastNode;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class TestUtils {
 
@@ -54,7 +54,7 @@ public class TestUtils {
     List<Issue> issues = engine.scan(uast).issues;
     List<Integer> actualLines = issues.stream().map(Issue::getLine).collect(Collectors.toList());
     List<Integer> expectedLines = expectedLines(check.getClass().getResourceAsStream(filename));
-    assertEquals(expectedLines, actualLines);
+    assertThat(actualLines).containsExactlyInAnyOrderElementsOf(expectedLines);
   }
 }
 

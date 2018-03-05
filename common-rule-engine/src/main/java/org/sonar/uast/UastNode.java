@@ -80,12 +80,13 @@ public final class UastNode {
     CLASS,
     COMMENT,
     COMPILATION_UNIT,
+    EOF,
     FUNCTION,
     IDENTIFIER,
+    LITERAL,
     PARAMETER,
     STATEMENT,
     UNSUPPORTED,
-    EOF
     ;
 
     @Override
@@ -122,6 +123,21 @@ public final class UastNode {
       }
     }
     return null;
+  }
+
+  public String tokenize() {
+    StringBuilder sb = new StringBuilder();
+    tokenize(sb);
+    return sb.toString();
+  }
+
+  private void tokenize(StringBuilder sb) {
+    if (token != null) {
+      sb.append(token.value);
+    }
+    for (UastNode child : children) {
+      child.tokenize(sb);
+    }
   }
 
   @Override

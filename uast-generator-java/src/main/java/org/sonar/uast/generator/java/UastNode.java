@@ -27,11 +27,12 @@ class UastNode {
     BLOCK,
     CLASS,
     COMPILATION_UNIT,
+    EOF,
     FUNCTION,
     IDENTIFIER,
+    LITERAL,
     PARAMETER,
     STATEMENT,
-    EOF
     ;
   }
 

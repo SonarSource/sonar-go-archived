@@ -26,6 +26,7 @@ import org.sonar.plugins.java.api.tree.MethodTree;
 import org.sonar.plugins.java.api.tree.StatementTree;
 import org.sonar.plugins.java.api.tree.SyntaxToken;
 import org.sonar.plugins.java.api.tree.Tree;
+import org.sonar.plugins.java.api.tree.VariableTree;
 
 public class Generator {
 
@@ -135,6 +136,12 @@ public class Generator {
       case BLOCK:
         result.add(UastNode.Kind.BLOCK);
         break;
+      case IDENTIFIER:
+        result.add(UastNode.Kind.IDENTIFIER);
+        break;
+      case STRING_LITERAL:
+        result.add(UastNode.Kind.LITERAL);
+        break;
       default:
         break;
     }
@@ -151,9 +158,19 @@ public class Generator {
     public void visitAssignmentExpression(AssignmentExpressionTree tree) {
       ExpressionTree variable = tree.variable();
       ExpressionTree expression = tree.expression();
-      treeUastNodeMap.get(variable).kinds.add(UastNode.Kind.ASSIGNMENT_TARGET);
-      treeUastNodeMap.get(expression).kinds.add(UastNode.Kind.ASSIGNMENT_VALUE);
+      addKind(variable, UastNode.Kind.ASSIGNMENT_TARGET);
+      addKind(expression, UastNode.Kind.ASSIGNMENT_VALUE);
       super.visitAssignmentExpression(tree);
+    }
+
+    @Override
+    public void visitVariable(VariableTree tree) {
+      super.visitVariable(tree);
+      if (tree.initializer() != null) {
+        addKind(tree, UastNode.Kind.ASSIGNMENT);
+        addKind(tree.simpleName(), UastNode.Kind.ASSIGNMENT_TARGET);
+        addKind(tree.initializer(), UastNode.Kind.ASSIGNMENT_VALUE);
+      }
     }
 
     @Override
@@ -161,6 +178,10 @@ public class Generator {
       tree.parameters().forEach(p -> treeUastNodeMap.get(p).kinds.add(UastNode.Kind.PARAMETER));
       super.visitMethod(tree);
     }
+  }
+
+  private void addKind(Tree tree, UastNode.Kind kind) {
+    treeUastNodeMap.get(tree).kinds.add(kind);
   }
 
 }
