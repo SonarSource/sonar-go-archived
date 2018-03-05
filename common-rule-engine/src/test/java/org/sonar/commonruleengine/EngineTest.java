@@ -25,7 +25,7 @@ class EngineTest {
   void visit_should_visit_all_nodes() {
     NodeCounter nodeCounter = new NodeCounter();
     Engine engine = new Engine(Collections.singletonList(nodeCounter));
-    List<Issue> issues = engine.scan(uast);
+    List<Issue> issues = engine.scan(uast).issues;
     assertEquals(4, issues.size());
     assertTrue(issues.stream().map(Issue::getRule).allMatch(rule -> rule == nodeCounter));
   }

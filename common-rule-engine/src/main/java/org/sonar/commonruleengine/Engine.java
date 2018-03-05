@@ -26,13 +26,14 @@ public class Engine {
   }
 
   private final EngineContext engineContext;
+  private final MetricsVisitor metricsVisitor;
 
   public static void main(String[] args) {
     try {
       BufferedReader inputReader = Files.newBufferedReader(Paths.get(args[0]));
       UastNode uast = Uast.from(inputReader);
       Engine engine = new Engine(ALL_CHECKS);
-      List<Issue> issues = engine.scan(uast);
+      List<Issue> issues = engine.scan(uast).issues;
       issues.forEach(System.out::println);
     } catch (IOException e) {
       e.printStackTrace();
@@ -41,16 +42,19 @@ public class Engine {
 
   public Engine(List<Check> rules) {
     engineContext = new EngineContext();
+    metricsVisitor = new MetricsVisitor();
     rules.forEach(rule -> rule.initialize(engineContext));
   }
 
-  public List<Issue> scan(UastNode uast) {
+  public ScanResult scan(UastNode uast) {
+    metricsVisitor.enterFile();
     engineContext.enterFile();
     visit(uast);
-    return engineContext.getIssues();
+    return new ScanResult(engineContext.getIssues(), metricsVisitor.getMetrics());
   }
 
   private void visit(UastNode uast) {
+    metricsVisitor.visitNode(uast);
     for (UastNode.Kind kind : uast.kinds) {
       for (Check rule : engineContext.registeredChecks(kind)) {
         rule.visitNode(uast);
@@ -58,6 +62,16 @@ public class Engine {
     }
     for (UastNode child : uast.children) {
       visit(child);
+    }
+  }
+
+  public static class ScanResult {
+    public final List<Issue> issues;
+    public final Metrics metrics;
+
+    public ScanResult(List<Issue> issues, Metrics metrics) {
+      this.issues = issues;
+      this.metrics = metrics;
     }
   }
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -23,14 +24,42 @@ public final class UastNode {
   }
 
   public static class Token {
+
+    private static final Pattern LINE_SPLITTER = Pattern.compile("\r\n|\n|\r");
+
     public final String value;
+    /**
+     * start at 1, line number of the first character of the token
+     */
     public final int line;
+    /**
+     * start at 1, column number of the first character of the token
+     */
     public final int column;
+    /**
+     * start at 1, line number of the last character of the token
+     * if the token is on a single line, endLine() == line()
+     */
+    public final int endLine;
+    /**
+     * start at 1, column number of the last character of the token
+     * if the token has only one character, endColumn() == column()
+     * EOF token is empty, in this case endColumn() == column() - 1
+     */
+    public final int endColumn;
 
     public Token(int line, int column, String value) {
       this.line = line;
       this.column = column;
       this.value = value;
+      if (value.indexOf('\n') == -1 && value.indexOf('\r') == -1) {
+        this.endLine = line;
+        this.endColumn = column + value.length() - 1;
+      } else {
+        String[] lines = LINE_SPLITTER.split(value, -1);
+        this.endLine = line + lines.length - 1;
+        this.endColumn = lines[lines.length - 1].length();
+      }
     }
 
     @Override
@@ -46,6 +75,7 @@ public final class UastNode {
     ASSIGNMENT_VALUE,
     BLOCK,
     CLASS,
+    COMMENT,
     COMPILATION_UNIT,
     FUNCTION,
     IDENTIFIER,

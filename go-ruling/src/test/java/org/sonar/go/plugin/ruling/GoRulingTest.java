@@ -7,6 +7,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -14,6 +17,7 @@ import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 import org.sonar.commonruleengine.Engine;
 import org.sonar.commonruleengine.Issue;
+import org.sonar.commonruleengine.Metrics;
 import org.sonar.uast.Uast;
 import org.sonar.uast.UastNode;
 
@@ -47,6 +51,21 @@ class GoRulingTest {
     assertEquals(expected.toString(), actual.toString());
   }
 
+  @Test
+  void metrics() throws IOException {
+    UastNode uast = getGoUast(GO_SOURCE_DIRECTORY.resolve("samples").resolve("SelfAssignement.go"));
+    Engine engine = new Engine(Collections.emptyList());
+    Metrics metrics = engine.scan(uast).metrics;
+    // TODO should be 1
+    assertEquals(0, metrics.numberOfClasses);
+    assertEquals(1, metrics.numberOfFunctions);
+    assertEquals(3, metrics.numberOfStatements);
+    // TODO should be 2, 4, 6, 7, 8, 9, 10
+    assertEquals(new HashSet<>(Arrays.asList(2, 6, 7, 8, 9)), metrics.linesOfCode);
+    // TODO should be 1, 7, 8, 9
+    assertEquals(0, metrics.commentLines.size());
+  }
+
   private String getAndWriteActual(String ruleName, Map<String, List<String>> issuesPreFile) throws IOException {
     StringBuilder actual = new StringBuilder();
     for (Map.Entry<String, List<String>> issuesPreFileEntry : issuesPreFile.entrySet()) {
@@ -78,7 +97,7 @@ class GoRulingTest {
     try {
       UastNode uast = getGoUast(path);
       Engine engine = new Engine(Engine.ALL_CHECKS);
-      for (Issue issue : engine.scan(uast)) {
+      for (Issue issue : engine.scan(uast).issues) {
         String ruleName = issue.getRule().getClass().getSimpleName();
         String filename = GO_SOURCE_DIRECTORY.relativize(path).toString().replace('\\', '/');
         issuesPreRulePreFile

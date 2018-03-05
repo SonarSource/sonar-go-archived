@@ -51,7 +51,7 @@ public class TestUtils {
   public static void checkRule(Check check, String filename) throws IOException {
     UastNode uast = UastUtils.fromClasspath(check.getClass(), filename + ".uast.json");
     Engine engine = new Engine(Collections.singletonList(check));
-    List<Issue> issues = engine.scan(uast);
+    List<Issue> issues = engine.scan(uast).issues;
     List<Integer> actualLines = issues.stream().map(Issue::getLine).collect(Collectors.toList());
     List<Integer> expectedLines = expectedLines(check.getClass().getResourceAsStream(filename));
     assertEquals(expectedLines, actualLines);
