@@ -34,127 +34,122 @@
             },
             {
               "kinds": [
-                "BLOCK"
+                "BLOCK",
+                "STATEMENT"
               ],
               "nativeNode": "*ast.BlockStmt",
               "children": [
                 {
                   "kinds": [
-                    "[]ast.Stmt"
+                    "ASSIGNMENT",
+                    "STATEMENT"
                   ],
-                  "nativeNode": "[]ast.Stmt",
+                  "nativeNode": "*ast.AssignStmt",
                   "children": [
                     {
                       "kinds": [
-                        "ASSIGNMENT"
+                        "ASSIGNMENT_TARGET"
                       ],
-                      "nativeNode": "*ast.AssignStmt",
+                      "nativeNode": "[]ast.Expr",
                       "children": [
                         {
                           "kinds": [
-                            "ASSIGNMENT_TARGET"
-                          ],
-                          "nativeNode": "[]ast.Expr",
-                          "children": [
-                            {
-                              "kinds": [
-                                "IDENTIFIER"
-                              ],
-                              "token": {
-                                "value": "a",
-                                "line": 4,
-                                "column": 2
-                              },
-                              "nativeNode": "*ast.Ident"
-                            }
-                          ]
-                        },
-                        {
-                          "kinds": [
-                            "TOKEN"
+                            "IDENTIFIER"
                           ],
                           "token": {
-                            "value": ":=",
+                            "value": "a",
                             "line": 4,
-                            "column": 4
+                            "column": 2
                           },
-                          "nativeNode": "token.Token"
-                        },
-                        {
-                          "kinds": [
-                            "ASSIGNMENT_VALUE"
-                          ],
-                          "nativeNode": "[]ast.Expr",
-                          "children": [
-                            {
-                              "kinds": [
-                                "LITERAL"
-                              ],
-                              "token": {
-                                "value": "1",
-                                "line": 4,
-                                "column": 7
-                              },
-                              "nativeNode": "*ast.BasicLit"
-                            }
-                          ]
+                          "nativeNode": "*ast.Ident"
                         }
                       ]
                     },
                     {
                       "kinds": [
-                        "ASSIGNMENT"
+                        "TOKEN"
                       ],
-                      "nativeNode": "*ast.AssignStmt",
+                      "token": {
+                        "value": ":=",
+                        "line": 4,
+                        "column": 4
+                      },
+                      "nativeNode": "token.Token"
+                    },
+                    {
+                      "kinds": [
+                        "ASSIGNMENT_VALUE"
+                      ],
+                      "nativeNode": "[]ast.Expr",
                       "children": [
                         {
                           "kinds": [
-                            "ASSIGNMENT_TARGET"
-                          ],
-                          "nativeNode": "[]ast.Expr",
-                          "children": [
-                            {
-                              "kinds": [
-                                "IDENTIFIER"
-                              ],
-                              "token": {
-                                "value": "a",
-                                "line": 5,
-                                "column": 2
-                              },
-                              "nativeNode": "*ast.Ident"
-                            }
-                          ]
-                        },
-                        {
-                          "kinds": [
-                            "TOKEN"
+                            "LITERAL"
                           ],
                           "token": {
-                            "value": "=",
-                            "line": 5,
-                            "column": 4
+                            "value": "1",
+                            "line": 4,
+                            "column": 7
                           },
-                          "nativeNode": "token.Token"
-                        },
+                          "nativeNode": "*ast.BasicLit"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kinds": [
+                    "ASSIGNMENT",
+                    "STATEMENT"
+                  ],
+                  "nativeNode": "*ast.AssignStmt",
+                  "children": [
+                    {
+                      "kinds": [
+                        "ASSIGNMENT_TARGET"
+                      ],
+                      "nativeNode": "[]ast.Expr",
+                      "children": [
                         {
                           "kinds": [
-                            "ASSIGNMENT_VALUE"
+                            "IDENTIFIER"
                           ],
-                          "nativeNode": "[]ast.Expr",
-                          "children": [
-                            {
-                              "kinds": [
-                                "IDENTIFIER"
-                              ],
-                              "token": {
-                                "value": "a",
-                                "line": 5,
-                                "column": 6
-                              },
-                              "nativeNode": "*ast.Ident"
-                            }
-                          ]
+                          "token": {
+                            "value": "a",
+                            "line": 5,
+                            "column": 2
+                          },
+                          "nativeNode": "*ast.Ident"
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [
+                        "TOKEN"
+                      ],
+                      "token": {
+                        "value": "=",
+                        "line": 5,
+                        "column": 4
+                      },
+                      "nativeNode": "token.Token"
+                    },
+                    {
+                      "kinds": [
+                        "ASSIGNMENT_VALUE"
+                      ],
+                      "nativeNode": "[]ast.Expr",
+                      "children": [
+                        {
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
+                          "token": {
+                            "value": "a",
+                            "line": 5,
+                            "column": 6
+                          },
+                          "nativeNode": "*ast.Ident"
                         }
                       ]
                     }
@@ -183,171 +178,166 @@
             },
             {
               "kinds": [
-                "BLOCK"
+                "BLOCK",
+                "STATEMENT"
               ],
               "nativeNode": "*ast.BlockStmt",
               "children": [
                 {
                   "kinds": [
-                    "[]ast.Stmt"
+                    "ASSIGNMENT",
+                    "STATEMENT"
                   ],
-                  "nativeNode": "[]ast.Stmt",
+                  "nativeNode": "*ast.AssignStmt",
                   "children": [
                     {
                       "kinds": [
-                        "ASSIGNMENT"
+                        "ASSIGNMENT_TARGET"
                       ],
-                      "nativeNode": "*ast.AssignStmt",
+                      "nativeNode": "[]ast.Expr",
                       "children": [
                         {
                           "kinds": [
-                            "ASSIGNMENT_TARGET"
-                          ],
-                          "nativeNode": "[]ast.Expr",
-                          "children": [
-                            {
-                              "kinds": [
-                                "IDENTIFIER"
-                              ],
-                              "token": {
-                                "value": "a",
-                                "line": 9,
-                                "column": 2
-                              },
-                              "nativeNode": "*ast.Ident"
-                            },
-                            {
-                              "kinds": [
-                                "IDENTIFIER"
-                              ],
-                              "token": {
-                                "value": "b",
-                                "line": 9,
-                                "column": 5
-                              },
-                              "nativeNode": "*ast.Ident"
-                            }
-                          ]
-                        },
-                        {
-                          "kinds": [
-                            "TOKEN"
+                            "IDENTIFIER"
                           ],
                           "token": {
-                            "value": ":=",
+                            "value": "a",
                             "line": 9,
-                            "column": 7
+                            "column": 2
                           },
-                          "nativeNode": "token.Token"
+                          "nativeNode": "*ast.Ident"
                         },
                         {
                           "kinds": [
-                            "ASSIGNMENT_VALUE"
+                            "IDENTIFIER"
                           ],
-                          "nativeNode": "[]ast.Expr",
-                          "children": [
-                            {
-                              "kinds": [
-                                "LITERAL"
-                              ],
-                              "token": {
-                                "value": "1",
-                                "line": 9,
-                                "column": 10
-                              },
-                              "nativeNode": "*ast.BasicLit"
-                            },
-                            {
-                              "kinds": [
-                                "LITERAL"
-                              ],
-                              "token": {
-                                "value": "2",
-                                "line": 9,
-                                "column": 13
-                              },
-                              "nativeNode": "*ast.BasicLit"
-                            }
-                          ]
+                          "token": {
+                            "value": "b",
+                            "line": 9,
+                            "column": 5
+                          },
+                          "nativeNode": "*ast.Ident"
                         }
                       ]
                     },
                     {
                       "kinds": [
-                        "ASSIGNMENT"
+                        "TOKEN"
                       ],
-                      "nativeNode": "*ast.AssignStmt",
+                      "token": {
+                        "value": ":=",
+                        "line": 9,
+                        "column": 7
+                      },
+                      "nativeNode": "token.Token"
+                    },
+                    {
+                      "kinds": [
+                        "ASSIGNMENT_VALUE"
+                      ],
+                      "nativeNode": "[]ast.Expr",
                       "children": [
                         {
                           "kinds": [
-                            "ASSIGNMENT_TARGET"
-                          ],
-                          "nativeNode": "[]ast.Expr",
-                          "children": [
-                            {
-                              "kinds": [
-                                "IDENTIFIER"
-                              ],
-                              "token": {
-                                "value": "b",
-                                "line": 10,
-                                "column": 2
-                              },
-                              "nativeNode": "*ast.Ident"
-                            },
-                            {
-                              "kinds": [
-                                "IDENTIFIER"
-                              ],
-                              "token": {
-                                "value": "a",
-                                "line": 10,
-                                "column": 5
-                              },
-                              "nativeNode": "*ast.Ident"
-                            }
-                          ]
-                        },
-                        {
-                          "kinds": [
-                            "TOKEN"
+                            "LITERAL"
                           ],
                           "token": {
-                            "value": "=",
-                            "line": 10,
-                            "column": 7
+                            "value": "1",
+                            "line": 9,
+                            "column": 10
                           },
-                          "nativeNode": "token.Token"
+                          "nativeNode": "*ast.BasicLit"
                         },
                         {
                           "kinds": [
-                            "ASSIGNMENT_VALUE"
+                            "LITERAL"
                           ],
-                          "nativeNode": "[]ast.Expr",
-                          "children": [
-                            {
-                              "kinds": [
-                                "IDENTIFIER"
-                              ],
-                              "token": {
-                                "value": "b",
-                                "line": 10,
-                                "column": 9
-                              },
-                              "nativeNode": "*ast.Ident"
-                            },
-                            {
-                              "kinds": [
-                                "IDENTIFIER"
-                              ],
-                              "token": {
-                                "value": "a",
-                                "line": 10,
-                                "column": 12
-                              },
-                              "nativeNode": "*ast.Ident"
-                            }
-                          ]
+                          "token": {
+                            "value": "2",
+                            "line": 9,
+                            "column": 13
+                          },
+                          "nativeNode": "*ast.BasicLit"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kinds": [
+                    "ASSIGNMENT",
+                    "STATEMENT"
+                  ],
+                  "nativeNode": "*ast.AssignStmt",
+                  "children": [
+                    {
+                      "kinds": [
+                        "ASSIGNMENT_TARGET"
+                      ],
+                      "nativeNode": "[]ast.Expr",
+                      "children": [
+                        {
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
+                          "token": {
+                            "value": "b",
+                            "line": 10,
+                            "column": 2
+                          },
+                          "nativeNode": "*ast.Ident"
+                        },
+                        {
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
+                          "token": {
+                            "value": "a",
+                            "line": 10,
+                            "column": 5
+                          },
+                          "nativeNode": "*ast.Ident"
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [
+                        "TOKEN"
+                      ],
+                      "token": {
+                        "value": "=",
+                        "line": 10,
+                        "column": 7
+                      },
+                      "nativeNode": "token.Token"
+                    },
+                    {
+                      "kinds": [
+                        "ASSIGNMENT_VALUE"
+                      ],
+                      "nativeNode": "[]ast.Expr",
+                      "children": [
+                        {
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
+                          "token": {
+                            "value": "b",
+                            "line": 10,
+                            "column": 9
+                          },
+                          "nativeNode": "*ast.Ident"
+                        },
+                        {
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
+                          "token": {
+                            "value": "a",
+                            "line": 10,
+                            "column": 12
+                          },
+                          "nativeNode": "*ast.Ident"
                         }
                       ]
                     }
@@ -376,84 +366,117 @@
             },
             {
               "kinds": [
-                "BLOCK"
+                "BLOCK",
+                "STATEMENT"
               ],
               "nativeNode": "*ast.BlockStmt",
               "children": [
                 {
                   "kinds": [
-                    "[]ast.Stmt"
+                    "ASSIGNMENT",
+                    "STATEMENT"
                   ],
-                  "nativeNode": "[]ast.Stmt",
+                  "nativeNode": "*ast.AssignStmt",
                   "children": [
                     {
                       "kinds": [
-                        "ASSIGNMENT"
+                        "ASSIGNMENT_TARGET"
                       ],
-                      "nativeNode": "*ast.AssignStmt",
+                      "nativeNode": "[]ast.Expr",
                       "children": [
                         {
                           "kinds": [
-                            "ASSIGNMENT_TARGET"
-                          ],
-                          "nativeNode": "[]ast.Expr",
-                          "children": [
-                            {
-                              "kinds": [
-                                "IDENTIFIER"
-                              ],
-                              "token": {
-                                "value": "a",
-                                "line": 14,
-                                "column": 2
-                              },
-                              "nativeNode": "*ast.Ident"
-                            }
-                          ]
-                        },
-                        {
-                          "kinds": [
-                            "TOKEN"
+                            "IDENTIFIER"
                           ],
                           "token": {
-                            "value": ":=",
+                            "value": "a",
                             "line": 14,
-                            "column": 4
+                            "column": 2
                           },
-                          "nativeNode": "token.Token"
-                        },
-                        {
-                          "kinds": [
-                            "ASSIGNMENT_VALUE"
-                          ],
-                          "nativeNode": "[]ast.Expr",
-                          "children": [
-                            {
-                              "kinds": [
-                                "LITERAL"
-                              ],
-                              "token": {
-                                "value": "1",
-                                "line": 14,
-                                "column": 7
-                              },
-                              "nativeNode": "*ast.BasicLit"
-                            }
-                          ]
+                          "nativeNode": "*ast.Ident"
                         }
                       ]
                     },
                     {
                       "kinds": [
-                        "ASSIGNMENT"
+                        "TOKEN"
                       ],
-                      "nativeNode": "*ast.AssignStmt",
+                      "token": {
+                        "value": ":=",
+                        "line": 14,
+                        "column": 4
+                      },
+                      "nativeNode": "token.Token"
+                    },
+                    {
+                      "kinds": [
+                        "ASSIGNMENT_VALUE"
+                      ],
+                      "nativeNode": "[]ast.Expr",
                       "children": [
                         {
                           "kinds": [
-                            "ASSIGNMENT_TARGET"
+                            "LITERAL"
                           ],
-                          "nativeNode": "[]ast.Expr",
+                          "token": {
+                            "value": "1",
+                            "line": 14,
+                            "column": 7
+                          },
+                          "nativeNode": "*ast.BasicLit"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kinds": [
+                    "ASSIGNMENT",
+                    "STATEMENT"
+                  ],
+                  "nativeNode": "*ast.AssignStmt",
+                  "children": [
+                    {
+                      "kinds": [
+                        "ASSIGNMENT_TARGET"
+                      ],
+                      "nativeNode": "[]ast.Expr",
+                      "children": [
+                        {
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
+                          "token": {
+                            "value": "a",
+                            "line": 15,
+                            "column": 2
+                          },
+                          "nativeNode": "*ast.Ident"
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [
+                        "TOKEN"
+                      ],
+                      "token": {
+                        "value": "=",
+                        "line": 15,
+                        "column": 4
+                      },
+                      "nativeNode": "token.Token"
+                    },
+                    {
+                      "kinds": [
+                        "ASSIGNMENT_VALUE"
+                      ],
+                      "nativeNode": "[]ast.Expr",
+                      "children": [
+                        {
+                          "kinds": [
+                            "*ast.BinaryExpr"
+                          ],
+                          "nativeNode": "*ast.BinaryExpr",
                           "children": [
                             {
                               "kinds": [
@@ -462,69 +485,31 @@
                               "token": {
                                 "value": "a",
                                 "line": 15,
-                                "column": 2
+                                "column": 6
                               },
                               "nativeNode": "*ast.Ident"
-                            }
-                          ]
-                        },
-                        {
-                          "kinds": [
-                            "TOKEN"
-                          ],
-                          "token": {
-                            "value": "=",
-                            "line": 15,
-                            "column": 4
-                          },
-                          "nativeNode": "token.Token"
-                        },
-                        {
-                          "kinds": [
-                            "ASSIGNMENT_VALUE"
-                          ],
-                          "nativeNode": "[]ast.Expr",
-                          "children": [
+                            },
                             {
                               "kinds": [
-                                "*ast.BinaryExpr"
+                                "TOKEN"
                               ],
-                              "nativeNode": "*ast.BinaryExpr",
-                              "children": [
-                                {
-                                  "kinds": [
-                                    "IDENTIFIER"
-                                  ],
-                                  "token": {
-                                    "value": "a",
-                                    "line": 15,
-                                    "column": 6
-                                  },
-                                  "nativeNode": "*ast.Ident"
-                                },
-                                {
-                                  "kinds": [
-                                    "TOKEN"
-                                  ],
-                                  "token": {
-                                    "value": "+",
-                                    "line": 15,
-                                    "column": 8
-                                  },
-                                  "nativeNode": "token.Token"
-                                },
-                                {
-                                  "kinds": [
-                                    "LITERAL"
-                                  ],
-                                  "token": {
-                                    "value": "1",
-                                    "line": 15,
-                                    "column": 10
-                                  },
-                                  "nativeNode": "*ast.BasicLit"
-                                }
-                              ]
+                              "token": {
+                                "value": "+",
+                                "line": 15,
+                                "column": 8
+                              },
+                              "nativeNode": "token.Token"
+                            },
+                            {
+                              "kinds": [
+                                "LITERAL"
+                              ],
+                              "token": {
+                                "value": "1",
+                                "line": 15,
+                                "column": 10
+                              },
+                              "nativeNode": "*ast.BasicLit"
                             }
                           ]
                         }
@@ -555,171 +540,166 @@
             },
             {
               "kinds": [
-                "BLOCK"
+                "BLOCK",
+                "STATEMENT"
               ],
               "nativeNode": "*ast.BlockStmt",
               "children": [
                 {
                   "kinds": [
-                    "[]ast.Stmt"
+                    "ASSIGNMENT",
+                    "STATEMENT"
                   ],
-                  "nativeNode": "[]ast.Stmt",
+                  "nativeNode": "*ast.AssignStmt",
                   "children": [
                     {
                       "kinds": [
-                        "ASSIGNMENT"
+                        "ASSIGNMENT_TARGET"
                       ],
-                      "nativeNode": "*ast.AssignStmt",
+                      "nativeNode": "[]ast.Expr",
                       "children": [
                         {
                           "kinds": [
-                            "ASSIGNMENT_TARGET"
-                          ],
-                          "nativeNode": "[]ast.Expr",
-                          "children": [
-                            {
-                              "kinds": [
-                                "IDENTIFIER"
-                              ],
-                              "token": {
-                                "value": "a",
-                                "line": 19,
-                                "column": 2
-                              },
-                              "nativeNode": "*ast.Ident"
-                            },
-                            {
-                              "kinds": [
-                                "IDENTIFIER"
-                              ],
-                              "token": {
-                                "value": "b",
-                                "line": 19,
-                                "column": 5
-                              },
-                              "nativeNode": "*ast.Ident"
-                            }
-                          ]
-                        },
-                        {
-                          "kinds": [
-                            "TOKEN"
+                            "IDENTIFIER"
                           ],
                           "token": {
-                            "value": ":=",
+                            "value": "a",
                             "line": 19,
-                            "column": 7
+                            "column": 2
                           },
-                          "nativeNode": "token.Token"
+                          "nativeNode": "*ast.Ident"
                         },
                         {
                           "kinds": [
-                            "ASSIGNMENT_VALUE"
+                            "IDENTIFIER"
                           ],
-                          "nativeNode": "[]ast.Expr",
-                          "children": [
-                            {
-                              "kinds": [
-                                "LITERAL"
-                              ],
-                              "token": {
-                                "value": "1",
-                                "line": 19,
-                                "column": 10
-                              },
-                              "nativeNode": "*ast.BasicLit"
-                            },
-                            {
-                              "kinds": [
-                                "LITERAL"
-                              ],
-                              "token": {
-                                "value": "2",
-                                "line": 19,
-                                "column": 13
-                              },
-                              "nativeNode": "*ast.BasicLit"
-                            }
-                          ]
+                          "token": {
+                            "value": "b",
+                            "line": 19,
+                            "column": 5
+                          },
+                          "nativeNode": "*ast.Ident"
                         }
                       ]
                     },
                     {
                       "kinds": [
-                        "ASSIGNMENT"
+                        "TOKEN"
                       ],
-                      "nativeNode": "*ast.AssignStmt",
+                      "token": {
+                        "value": ":=",
+                        "line": 19,
+                        "column": 7
+                      },
+                      "nativeNode": "token.Token"
+                    },
+                    {
+                      "kinds": [
+                        "ASSIGNMENT_VALUE"
+                      ],
+                      "nativeNode": "[]ast.Expr",
                       "children": [
                         {
                           "kinds": [
-                            "ASSIGNMENT_TARGET"
-                          ],
-                          "nativeNode": "[]ast.Expr",
-                          "children": [
-                            {
-                              "kinds": [
-                                "IDENTIFIER"
-                              ],
-                              "token": {
-                                "value": "a",
-                                "line": 20,
-                                "column": 2
-                              },
-                              "nativeNode": "*ast.Ident"
-                            },
-                            {
-                              "kinds": [
-                                "IDENTIFIER"
-                              ],
-                              "token": {
-                                "value": "b",
-                                "line": 20,
-                                "column": 5
-                              },
-                              "nativeNode": "*ast.Ident"
-                            }
-                          ]
-                        },
-                        {
-                          "kinds": [
-                            "TOKEN"
+                            "LITERAL"
                           ],
                           "token": {
-                            "value": "=",
-                            "line": 20,
-                            "column": 7
+                            "value": "1",
+                            "line": 19,
+                            "column": 10
                           },
-                          "nativeNode": "token.Token"
+                          "nativeNode": "*ast.BasicLit"
                         },
                         {
                           "kinds": [
-                            "ASSIGNMENT_VALUE"
+                            "LITERAL"
                           ],
-                          "nativeNode": "[]ast.Expr",
-                          "children": [
-                            {
-                              "kinds": [
-                                "IDENTIFIER"
-                              ],
-                              "token": {
-                                "value": "b",
-                                "line": 20,
-                                "column": 9
-                              },
-                              "nativeNode": "*ast.Ident"
-                            },
-                            {
-                              "kinds": [
-                                "IDENTIFIER"
-                              ],
-                              "token": {
-                                "value": "a",
-                                "line": 20,
-                                "column": 12
-                              },
-                              "nativeNode": "*ast.Ident"
-                            }
-                          ]
+                          "token": {
+                            "value": "2",
+                            "line": 19,
+                            "column": 13
+                          },
+                          "nativeNode": "*ast.BasicLit"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kinds": [
+                    "ASSIGNMENT",
+                    "STATEMENT"
+                  ],
+                  "nativeNode": "*ast.AssignStmt",
+                  "children": [
+                    {
+                      "kinds": [
+                        "ASSIGNMENT_TARGET"
+                      ],
+                      "nativeNode": "[]ast.Expr",
+                      "children": [
+                        {
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
+                          "token": {
+                            "value": "a",
+                            "line": 20,
+                            "column": 2
+                          },
+                          "nativeNode": "*ast.Ident"
+                        },
+                        {
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
+                          "token": {
+                            "value": "b",
+                            "line": 20,
+                            "column": 5
+                          },
+                          "nativeNode": "*ast.Ident"
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [
+                        "TOKEN"
+                      ],
+                      "token": {
+                        "value": "=",
+                        "line": 20,
+                        "column": 7
+                      },
+                      "nativeNode": "token.Token"
+                    },
+                    {
+                      "kinds": [
+                        "ASSIGNMENT_VALUE"
+                      ],
+                      "nativeNode": "[]ast.Expr",
+                      "children": [
+                        {
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
+                          "token": {
+                            "value": "b",
+                            "line": 20,
+                            "column": 9
+                          },
+                          "nativeNode": "*ast.Ident"
+                        },
+                        {
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
+                          "token": {
+                            "value": "a",
+                            "line": 20,
+                            "column": 12
+                          },
+                          "nativeNode": "*ast.Ident"
                         }
                       ]
                     }
@@ -748,228 +728,224 @@
             },
             {
               "kinds": [
-                "BLOCK"
+                "BLOCK",
+                "STATEMENT"
               ],
               "nativeNode": "*ast.BlockStmt",
               "children": [
                 {
                   "kinds": [
-                    "[]ast.Stmt"
+                    "ASSIGNMENT",
+                    "STATEMENT"
                   ],
-                  "nativeNode": "[]ast.Stmt",
+                  "nativeNode": "*ast.AssignStmt",
                   "children": [
                     {
                       "kinds": [
-                        "ASSIGNMENT"
+                        "ASSIGNMENT_TARGET"
                       ],
-                      "nativeNode": "*ast.AssignStmt",
+                      "nativeNode": "[]ast.Expr",
                       "children": [
                         {
                           "kinds": [
-                            "ASSIGNMENT_TARGET"
-                          ],
-                          "nativeNode": "[]ast.Expr",
-                          "children": [
-                            {
-                              "kinds": [
-                                "IDENTIFIER"
-                              ],
-                              "token": {
-                                "value": "a",
-                                "line": 24,
-                                "column": 2
-                              },
-                              "nativeNode": "*ast.Ident"
-                            },
-                            {
-                              "kinds": [
-                                "IDENTIFIER"
-                              ],
-                              "token": {
-                                "value": "b",
-                                "line": 24,
-                                "column": 5
-                              },
-                              "nativeNode": "*ast.Ident"
-                            }
-                          ]
-                        },
-                        {
-                          "kinds": [
-                            "TOKEN"
+                            "IDENTIFIER"
                           ],
                           "token": {
-                            "value": ":=",
+                            "value": "a",
                             "line": 24,
-                            "column": 7
+                            "column": 2
                           },
-                          "nativeNode": "token.Token"
+                          "nativeNode": "*ast.Ident"
                         },
                         {
                           "kinds": [
-                            "ASSIGNMENT_VALUE"
+                            "IDENTIFIER"
                           ],
-                          "nativeNode": "[]ast.Expr",
-                          "children": [
-                            {
-                              "kinds": [
-                                "LITERAL"
-                              ],
-                              "token": {
-                                "value": "1",
-                                "line": 24,
-                                "column": 10
-                              },
-                              "nativeNode": "*ast.BasicLit"
-                            },
-                            {
-                              "kinds": [
-                                "LITERAL"
-                              ],
-                              "token": {
-                                "value": "2",
-                                "line": 24,
-                                "column": 13
-                              },
-                              "nativeNode": "*ast.BasicLit"
-                            }
-                          ]
+                          "token": {
+                            "value": "b",
+                            "line": 24,
+                            "column": 5
+                          },
+                          "nativeNode": "*ast.Ident"
                         }
                       ]
                     },
                     {
                       "kinds": [
-                        "ASSIGNMENT"
+                        "TOKEN"
                       ],
-                      "nativeNode": "*ast.AssignStmt",
+                      "token": {
+                        "value": ":=",
+                        "line": 24,
+                        "column": 7
+                      },
+                      "nativeNode": "token.Token"
+                    },
+                    {
+                      "kinds": [
+                        "ASSIGNMENT_VALUE"
+                      ],
+                      "nativeNode": "[]ast.Expr",
                       "children": [
                         {
                           "kinds": [
-                            "ASSIGNMENT_TARGET"
+                            "LITERAL"
                           ],
-                          "nativeNode": "[]ast.Expr",
-                          "children": [
-                            {
-                              "kinds": [
-                                "IDENTIFIER"
-                              ],
-                              "token": {
-                                "value": "a",
-                                "line": 25,
-                                "column": 2
-                              },
-                              "nativeNode": "*ast.Ident"
-                            },
-                            {
-                              "kinds": [
-                                "IDENTIFIER"
-                              ],
-                              "token": {
-                                "value": "b",
-                                "line": 25,
-                                "column": 5
-                              },
-                              "nativeNode": "*ast.Ident"
-                            }
-                          ]
+                          "token": {
+                            "value": "1",
+                            "line": 24,
+                            "column": 10
+                          },
+                          "nativeNode": "*ast.BasicLit"
                         },
                         {
                           "kinds": [
-                            "TOKEN"
+                            "LITERAL"
                           ],
                           "token": {
-                            "value": "=",
+                            "value": "2",
+                            "line": 24,
+                            "column": 13
+                          },
+                          "nativeNode": "*ast.BasicLit"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kinds": [
+                    "ASSIGNMENT",
+                    "STATEMENT"
+                  ],
+                  "nativeNode": "*ast.AssignStmt",
+                  "children": [
+                    {
+                      "kinds": [
+                        "ASSIGNMENT_TARGET"
+                      ],
+                      "nativeNode": "[]ast.Expr",
+                      "children": [
+                        {
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
+                          "token": {
+                            "value": "a",
                             "line": 25,
-                            "column": 7
+                            "column": 2
                           },
-                          "nativeNode": "token.Token"
+                          "nativeNode": "*ast.Ident"
                         },
                         {
                           "kinds": [
-                            "ASSIGNMENT_VALUE"
+                            "IDENTIFIER"
                           ],
-                          "nativeNode": "[]ast.Expr",
-                          "children": [
-                            {
-                              "kinds": [
-                                "IDENTIFIER"
-                              ],
-                              "token": {
-                                "value": "a",
-                                "line": 25,
-                                "column": 9
-                              },
-                              "nativeNode": "*ast.Ident"
-                            },
-                            {
-                              "kinds": [
-                                "LITERAL"
-                              ],
-                              "token": {
-                                "value": "5",
-                                "line": 25,
-                                "column": 12
-                              },
-                              "nativeNode": "*ast.BasicLit"
-                            }
-                          ]
+                          "token": {
+                            "value": "b",
+                            "line": 25,
+                            "column": 5
+                          },
+                          "nativeNode": "*ast.Ident"
                         }
                       ]
                     },
                     {
                       "kinds": [
-                        "ASSIGNMENT"
+                        "TOKEN"
                       ],
-                      "nativeNode": "*ast.AssignStmt",
+                      "token": {
+                        "value": "=",
+                        "line": 25,
+                        "column": 7
+                      },
+                      "nativeNode": "token.Token"
+                    },
+                    {
+                      "kinds": [
+                        "ASSIGNMENT_VALUE"
+                      ],
+                      "nativeNode": "[]ast.Expr",
                       "children": [
                         {
                           "kinds": [
-                            "ASSIGNMENT_TARGET"
-                          ],
-                          "nativeNode": "[]ast.Expr",
-                          "children": [
-                            {
-                              "kinds": [
-                                "IDENTIFIER"
-                              ],
-                              "token": {
-                                "value": "a",
-                                "line": 26,
-                                "column": 2
-                              },
-                              "nativeNode": "*ast.Ident"
-                            }
-                          ]
-                        },
-                        {
-                          "kinds": [
-                            "TOKEN"
+                            "IDENTIFIER"
                           ],
                           "token": {
-                            "value": "=",
-                            "line": 26,
-                            "column": 4
+                            "value": "a",
+                            "line": 25,
+                            "column": 9
                           },
-                          "nativeNode": "token.Token"
+                          "nativeNode": "*ast.Ident"
                         },
                         {
                           "kinds": [
-                            "ASSIGNMENT_VALUE"
+                            "LITERAL"
                           ],
-                          "nativeNode": "[]ast.Expr",
-                          "children": [
-                            {
-                              "kinds": [
-                                "IDENTIFIER"
-                              ],
-                              "token": {
-                                "value": "b",
-                                "line": 26,
-                                "column": 6
-                              },
-                              "nativeNode": "*ast.Ident"
-                            }
-                          ]
+                          "token": {
+                            "value": "5",
+                            "line": 25,
+                            "column": 12
+                          },
+                          "nativeNode": "*ast.BasicLit"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kinds": [
+                    "ASSIGNMENT",
+                    "STATEMENT"
+                  ],
+                  "nativeNode": "*ast.AssignStmt",
+                  "children": [
+                    {
+                      "kinds": [
+                        "ASSIGNMENT_TARGET"
+                      ],
+                      "nativeNode": "[]ast.Expr",
+                      "children": [
+                        {
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
+                          "token": {
+                            "value": "a",
+                            "line": 26,
+                            "column": 2
+                          },
+                          "nativeNode": "*ast.Ident"
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [
+                        "TOKEN"
+                      ],
+                      "token": {
+                        "value": "=",
+                        "line": 26,
+                        "column": 4
+                      },
+                      "nativeNode": "token.Token"
+                    },
+                    {
+                      "kinds": [
+                        "ASSIGNMENT_VALUE"
+                      ],
+                      "nativeNode": "[]ast.Expr",
+                      "children": [
+                        {
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
+                          "token": {
+                            "value": "b",
+                            "line": 26,
+                            "column": 6
+                          },
+                          "nativeNode": "*ast.Ident"
                         }
                       ]
                     }
