@@ -40,74 +40,67 @@
               "children": [
                 {
                   "kinds": [
-                    "[]ast.Stmt"
+                    "ASSIGNMENT",
+                    "STATEMENT"
                   ],
-                  "nativeNode": "[]ast.Stmt",
+                  "nativeNode": "*ast.AssignStmt",
                   "children": [
                     {
                       "kinds": [
-                        "ASSIGNMENT"
+                        "ASSIGNMENT_TARGET"
                       ],
-                      "nativeNode": "*ast.AssignStmt",
+                      "nativeNode": "[]ast.Expr",
                       "children": [
                         {
                           "kinds": [
-                            "ASSIGNMENT_TARGET"
-                          ],
-                          "nativeNode": "[]ast.Expr",
-                          "children": [
-                            {
-                              "kinds": [
-                                "IDENTIFIER"
-                              ],
-                              "token": {
-                                "value": "x",
-                                "line": 5,
-                                "column": 3
-                              },
-                              "nativeNode": "*ast.Ident"
-                            }
-                          ]
-                        },
-                        {
-                          "kinds": [
-                            "TOKEN"
+                            "IDENTIFIER"
                           ],
                           "token": {
-                            "value": ":=",
+                            "value": "x",
                             "line": 5,
-                            "column": 5
+                            "column": 3
                           },
-                          "nativeNode": "token.Token"
-                        },
-                        {
-                          "kinds": [
-                            "ASSIGNMENT_VALUE"
-                          ],
-                          "nativeNode": "[]ast.Expr",
-                          "children": [
-                            {
-                              "kinds": [
-                                "LITERAL"
-                              ],
-                              "token": {
-                                "value": "3",
-                                "line": 5,
-                                "column": 8
-                              },
-                              "nativeNode": "*ast.BasicLit"
-                            }
-                          ]
+                          "nativeNode": "*ast.Ident"
                         }
                       ]
                     },
                     {
                       "kinds": [
-                        "UNSUPPORTED"
+                        "TOKEN"
                       ],
-                      "nativeNode": "*ast.ReturnStmt"
+                      "token": {
+                        "value": ":=",
+                        "line": 5,
+                        "column": 5
+                      },
+                      "nativeNode": "token.Token"
+                    },
+                    {
+                      "kinds": [
+                        "ASSIGNMENT_VALUE"
+                      ],
+                      "nativeNode": "[]ast.Expr",
+                      "children": [
+                        {
+                          "kinds": [
+                            "LITERAL"
+                          ],
+                          "token": {
+                            "value": "3",
+                            "line": 5,
+                            "column": 8
+                          },
+                          "nativeNode": "*ast.BasicLit"
+                        }
+                      ]
                     }
                   ]
+                },
+                {
+                  "kinds": [
+                    "UNSUPPORTED"
+                  ],
+                  "nativeNode": "*ast.ReturnStmt"
                 }
               ]
             }

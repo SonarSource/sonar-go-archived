@@ -40,51 +40,52 @@
               "children": [
                 {
                   "kinds": [
-                    "[]ast.Stmt"
+                    "ASSIGNMENT",
+                    "STATEMENT"
                   ],
-                  "nativeNode": "[]ast.Stmt",
+                  "nativeNode": "*ast.AssignStmt",
                   "children": [
                     {
                       "kinds": [
-                        "ASSIGNMENT"
+                        "ASSIGNMENT_TARGET"
                       ],
-                      "nativeNode": "*ast.AssignStmt",
+                      "nativeNode": "[]ast.Expr",
                       "children": [
                         {
                           "kinds": [
-                            "ASSIGNMENT_TARGET"
-                          ],
-                          "nativeNode": "[]ast.Expr",
-                          "children": [
-                            {
-                              "kinds": [
-                                "IDENTIFIER"
-                              ],
-                              "token": {
-                                "value": "x",
-                                "line": 5,
-                                "column": 3
-                              },
-                              "nativeNode": "*ast.Ident"
-                            }
-                          ]
-                        },
-                        {
-                          "kinds": [
-                            "TOKEN"
+                            "IDENTIFIER"
                           ],
                           "token": {
-                            "value": ":=",
+                            "value": "x",
                             "line": 5,
-                            "column": 5
+                            "column": 3
                           },
-                          "nativeNode": "token.Token"
-                        },
+                          "nativeNode": "*ast.Ident"
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [
+                        "TOKEN"
+                      ],
+                      "token": {
+                        "value": ":=",
+                        "line": 5,
+                        "column": 5
+                      },
+                      "nativeNode": "token.Token"
+                    },
+                    {
+                      "kinds": [
+                        "ASSIGNMENT_VALUE"
+                      ],
+                      "nativeNode": "[]ast.Expr",
+                      "children": [
                         {
                           "kinds": [
-                            "ASSIGNMENT_VALUE"
+                            "*ast.BinaryExpr"
                           ],
-                          "nativeNode": "[]ast.Expr",
+                          "nativeNode": "*ast.BinaryExpr",
                           "children": [
                             {
                               "kinds": [
@@ -244,44 +245,14 @@
                                                                                                                                   "children": [
                                                                                                                                     {
                                                                                                                                       "kinds": [
-                                                                                                                                        "*ast.BinaryExpr"
+                                                                                                                                        "LITERAL"
                                                                                                                                       ],
-                                                                                                                                      "nativeNode": "*ast.BinaryExpr",
-                                                                                                                                      "children": [
-                                                                                                                                        {
-                                                                                                                                          "kinds": [
-                                                                                                                                            "LITERAL"
-                                                                                                                                          ],
-                                                                                                                                          "token": {
-                                                                                                                                            "value": "1",
-                                                                                                                                            "line": 5,
-                                                                                                                                            "column": 8
-                                                                                                                                          },
-                                                                                                                                          "nativeNode": "*ast.BasicLit"
-                                                                                                                                        },
-                                                                                                                                        {
-                                                                                                                                          "kinds": [
-                                                                                                                                            "TOKEN"
-                                                                                                                                          ],
-                                                                                                                                          "token": {
-                                                                                                                                            "value": "+",
-                                                                                                                                            "line": 5,
-                                                                                                                                            "column": 10
-                                                                                                                                          },
-                                                                                                                                          "nativeNode": "token.Token"
-                                                                                                                                        },
-                                                                                                                                        {
-                                                                                                                                          "kinds": [
-                                                                                                                                            "LITERAL"
-                                                                                                                                          ],
-                                                                                                                                          "token": {
-                                                                                                                                            "value": "1",
-                                                                                                                                            "line": 5,
-                                                                                                                                            "column": 12
-                                                                                                                                          },
-                                                                                                                                          "nativeNode": "*ast.BasicLit"
-                                                                                                                                        }
-                                                                                                                                      ]
+                                                                                                                                      "token": {
+                                                                                                                                        "value": "1",
+                                                                                                                                        "line": 5,
+                                                                                                                                        "column": 8
+                                                                                                                                      },
+                                                                                                                                      "nativeNode": "*ast.BasicLit"
                                                                                                                                     },
                                                                                                                                     {
                                                                                                                                       "kinds": [
@@ -290,7 +261,7 @@
                                                                                                                                       "token": {
                                                                                                                                         "value": "+",
                                                                                                                                         "line": 5,
-                                                                                                                                        "column": 14
+                                                                                                                                        "column": 10
                                                                                                                                       },
                                                                                                                                       "nativeNode": "token.Token"
                                                                                                                                     },
@@ -301,7 +272,7 @@
                                                                                                                                       "token": {
                                                                                                                                         "value": "1",
                                                                                                                                         "line": 5,
-                                                                                                                                        "column": 16
+                                                                                                                                        "column": 12
                                                                                                                                       },
                                                                                                                                       "nativeNode": "*ast.BasicLit"
                                                                                                                                     }
@@ -314,7 +285,7 @@
                                                                                                                                   "token": {
                                                                                                                                     "value": "+",
                                                                                                                                     "line": 5,
-                                                                                                                                    "column": 18
+                                                                                                                                    "column": 14
                                                                                                                                   },
                                                                                                                                   "nativeNode": "token.Token"
                                                                                                                                 },
@@ -325,7 +296,7 @@
                                                                                                                                   "token": {
                                                                                                                                     "value": "1",
                                                                                                                                     "line": 5,
-                                                                                                                                    "column": 20
+                                                                                                                                    "column": 16
                                                                                                                                   },
                                                                                                                                   "nativeNode": "*ast.BasicLit"
                                                                                                                                 }
@@ -338,7 +309,7 @@
                                                                                                                               "token": {
                                                                                                                                 "value": "+",
                                                                                                                                 "line": 5,
-                                                                                                                                "column": 22
+                                                                                                                                "column": 18
                                                                                                                               },
                                                                                                                               "nativeNode": "token.Token"
                                                                                                                             },
@@ -349,7 +320,7 @@
                                                                                                                               "token": {
                                                                                                                                 "value": "1",
                                                                                                                                 "line": 5,
-                                                                                                                                "column": 24
+                                                                                                                                "column": 20
                                                                                                                               },
                                                                                                                               "nativeNode": "*ast.BasicLit"
                                                                                                                             }
@@ -362,7 +333,7 @@
                                                                                                                           "token": {
                                                                                                                             "value": "+",
                                                                                                                             "line": 5,
-                                                                                                                            "column": 26
+                                                                                                                            "column": 22
                                                                                                                           },
                                                                                                                           "nativeNode": "token.Token"
                                                                                                                         },
@@ -373,7 +344,7 @@
                                                                                                                           "token": {
                                                                                                                             "value": "1",
                                                                                                                             "line": 5,
-                                                                                                                            "column": 28
+                                                                                                                            "column": 24
                                                                                                                           },
                                                                                                                           "nativeNode": "*ast.BasicLit"
                                                                                                                         }
@@ -386,7 +357,7 @@
                                                                                                                       "token": {
                                                                                                                         "value": "+",
                                                                                                                         "line": 5,
-                                                                                                                        "column": 30
+                                                                                                                        "column": 26
                                                                                                                       },
                                                                                                                       "nativeNode": "token.Token"
                                                                                                                     },
@@ -397,7 +368,7 @@
                                                                                                                       "token": {
                                                                                                                         "value": "1",
                                                                                                                         "line": 5,
-                                                                                                                        "column": 32
+                                                                                                                        "column": 28
                                                                                                                       },
                                                                                                                       "nativeNode": "*ast.BasicLit"
                                                                                                                     }
@@ -410,7 +381,7 @@
                                                                                                                   "token": {
                                                                                                                     "value": "+",
                                                                                                                     "line": 5,
-                                                                                                                    "column": 34
+                                                                                                                    "column": 30
                                                                                                                   },
                                                                                                                   "nativeNode": "token.Token"
                                                                                                                 },
@@ -421,7 +392,7 @@
                                                                                                                   "token": {
                                                                                                                     "value": "1",
                                                                                                                     "line": 5,
-                                                                                                                    "column": 36
+                                                                                                                    "column": 32
                                                                                                                   },
                                                                                                                   "nativeNode": "*ast.BasicLit"
                                                                                                                 }
@@ -434,7 +405,7 @@
                                                                                                               "token": {
                                                                                                                 "value": "+",
                                                                                                                 "line": 5,
-                                                                                                                "column": 38
+                                                                                                                "column": 34
                                                                                                               },
                                                                                                               "nativeNode": "token.Token"
                                                                                                             },
@@ -445,7 +416,7 @@
                                                                                                               "token": {
                                                                                                                 "value": "1",
                                                                                                                 "line": 5,
-                                                                                                                "column": 40
+                                                                                                                "column": 36
                                                                                                               },
                                                                                                               "nativeNode": "*ast.BasicLit"
                                                                                                             }
@@ -458,7 +429,7 @@
                                                                                                           "token": {
                                                                                                             "value": "+",
                                                                                                             "line": 5,
-                                                                                                            "column": 42
+                                                                                                            "column": 38
                                                                                                           },
                                                                                                           "nativeNode": "token.Token"
                                                                                                         },
@@ -469,7 +440,7 @@
                                                                                                           "token": {
                                                                                                             "value": "1",
                                                                                                             "line": 5,
-                                                                                                            "column": 44
+                                                                                                            "column": 40
                                                                                                           },
                                                                                                           "nativeNode": "*ast.BasicLit"
                                                                                                         }
@@ -482,7 +453,7 @@
                                                                                                       "token": {
                                                                                                         "value": "+",
                                                                                                         "line": 5,
-                                                                                                        "column": 46
+                                                                                                        "column": 42
                                                                                                       },
                                                                                                       "nativeNode": "token.Token"
                                                                                                     },
@@ -493,7 +464,7 @@
                                                                                                       "token": {
                                                                                                         "value": "1",
                                                                                                         "line": 5,
-                                                                                                        "column": 48
+                                                                                                        "column": 44
                                                                                                       },
                                                                                                       "nativeNode": "*ast.BasicLit"
                                                                                                     }
@@ -506,7 +477,7 @@
                                                                                                   "token": {
                                                                                                     "value": "+",
                                                                                                     "line": 5,
-                                                                                                    "column": 50
+                                                                                                    "column": 46
                                                                                                   },
                                                                                                   "nativeNode": "token.Token"
                                                                                                 },
@@ -517,7 +488,7 @@
                                                                                                   "token": {
                                                                                                     "value": "1",
                                                                                                     "line": 5,
-                                                                                                    "column": 52
+                                                                                                    "column": 48
                                                                                                   },
                                                                                                   "nativeNode": "*ast.BasicLit"
                                                                                                 }
@@ -530,7 +501,7 @@
                                                                                               "token": {
                                                                                                 "value": "+",
                                                                                                 "line": 5,
-                                                                                                "column": 54
+                                                                                                "column": 50
                                                                                               },
                                                                                               "nativeNode": "token.Token"
                                                                                             },
@@ -541,7 +512,7 @@
                                                                                               "token": {
                                                                                                 "value": "1",
                                                                                                 "line": 5,
-                                                                                                "column": 56
+                                                                                                "column": 52
                                                                                               },
                                                                                               "nativeNode": "*ast.BasicLit"
                                                                                             }
@@ -554,7 +525,7 @@
                                                                                           "token": {
                                                                                             "value": "+",
                                                                                             "line": 5,
-                                                                                            "column": 58
+                                                                                            "column": 54
                                                                                           },
                                                                                           "nativeNode": "token.Token"
                                                                                         },
@@ -565,7 +536,7 @@
                                                                                           "token": {
                                                                                             "value": "1",
                                                                                             "line": 5,
-                                                                                            "column": 60
+                                                                                            "column": 56
                                                                                           },
                                                                                           "nativeNode": "*ast.BasicLit"
                                                                                         }
@@ -578,7 +549,7 @@
                                                                                       "token": {
                                                                                         "value": "+",
                                                                                         "line": 5,
-                                                                                        "column": 62
+                                                                                        "column": 58
                                                                                       },
                                                                                       "nativeNode": "token.Token"
                                                                                     },
@@ -589,7 +560,7 @@
                                                                                       "token": {
                                                                                         "value": "1",
                                                                                         "line": 5,
-                                                                                        "column": 64
+                                                                                        "column": 60
                                                                                       },
                                                                                       "nativeNode": "*ast.BasicLit"
                                                                                     }
@@ -602,7 +573,7 @@
                                                                                   "token": {
                                                                                     "value": "+",
                                                                                     "line": 5,
-                                                                                    "column": 66
+                                                                                    "column": 62
                                                                                   },
                                                                                   "nativeNode": "token.Token"
                                                                                 },
@@ -613,7 +584,7 @@
                                                                                   "token": {
                                                                                     "value": "1",
                                                                                     "line": 5,
-                                                                                    "column": 68
+                                                                                    "column": 64
                                                                                   },
                                                                                   "nativeNode": "*ast.BasicLit"
                                                                                 }
@@ -626,7 +597,7 @@
                                                                               "token": {
                                                                                 "value": "+",
                                                                                 "line": 5,
-                                                                                "column": 70
+                                                                                "column": 66
                                                                               },
                                                                               "nativeNode": "token.Token"
                                                                             },
@@ -637,7 +608,7 @@
                                                                               "token": {
                                                                                 "value": "1",
                                                                                 "line": 5,
-                                                                                "column": 72
+                                                                                "column": 68
                                                                               },
                                                                               "nativeNode": "*ast.BasicLit"
                                                                             }
@@ -650,7 +621,7 @@
                                                                           "token": {
                                                                             "value": "+",
                                                                             "line": 5,
-                                                                            "column": 74
+                                                                            "column": 70
                                                                           },
                                                                           "nativeNode": "token.Token"
                                                                         },
@@ -661,7 +632,7 @@
                                                                           "token": {
                                                                             "value": "1",
                                                                             "line": 5,
-                                                                            "column": 76
+                                                                            "column": 72
                                                                           },
                                                                           "nativeNode": "*ast.BasicLit"
                                                                         }
@@ -674,7 +645,7 @@
                                                                       "token": {
                                                                         "value": "+",
                                                                         "line": 5,
-                                                                        "column": 78
+                                                                        "column": 74
                                                                       },
                                                                       "nativeNode": "token.Token"
                                                                     },
@@ -685,7 +656,7 @@
                                                                       "token": {
                                                                         "value": "1",
                                                                         "line": 5,
-                                                                        "column": 80
+                                                                        "column": 76
                                                                       },
                                                                       "nativeNode": "*ast.BasicLit"
                                                                     }
@@ -698,7 +669,7 @@
                                                                   "token": {
                                                                     "value": "+",
                                                                     "line": 5,
-                                                                    "column": 82
+                                                                    "column": 78
                                                                   },
                                                                   "nativeNode": "token.Token"
                                                                 },
@@ -709,7 +680,7 @@
                                                                   "token": {
                                                                     "value": "1",
                                                                     "line": 5,
-                                                                    "column": 84
+                                                                    "column": 80
                                                                   },
                                                                   "nativeNode": "*ast.BasicLit"
                                                                 }
@@ -722,7 +693,7 @@
                                                               "token": {
                                                                 "value": "+",
                                                                 "line": 5,
-                                                                "column": 86
+                                                                "column": 82
                                                               },
                                                               "nativeNode": "token.Token"
                                                             },
@@ -733,7 +704,7 @@
                                                               "token": {
                                                                 "value": "1",
                                                                 "line": 5,
-                                                                "column": 88
+                                                                "column": 84
                                                               },
                                                               "nativeNode": "*ast.BasicLit"
                                                             }
@@ -746,7 +717,7 @@
                                                           "token": {
                                                             "value": "+",
                                                             "line": 5,
-                                                            "column": 90
+                                                            "column": 86
                                                           },
                                                           "nativeNode": "token.Token"
                                                         },
@@ -757,7 +728,7 @@
                                                           "token": {
                                                             "value": "1",
                                                             "line": 5,
-                                                            "column": 92
+                                                            "column": 88
                                                           },
                                                           "nativeNode": "*ast.BasicLit"
                                                         }
@@ -770,7 +741,7 @@
                                                       "token": {
                                                         "value": "+",
                                                         "line": 5,
-                                                        "column": 94
+                                                        "column": 90
                                                       },
                                                       "nativeNode": "token.Token"
                                                     },
@@ -781,7 +752,7 @@
                                                       "token": {
                                                         "value": "1",
                                                         "line": 5,
-                                                        "column": 96
+                                                        "column": 92
                                                       },
                                                       "nativeNode": "*ast.BasicLit"
                                                     }
@@ -794,7 +765,7 @@
                                                   "token": {
                                                     "value": "+",
                                                     "line": 5,
-                                                    "column": 98
+                                                    "column": 94
                                                   },
                                                   "nativeNode": "token.Token"
                                                 },
@@ -805,7 +776,7 @@
                                                   "token": {
                                                     "value": "1",
                                                     "line": 5,
-                                                    "column": 100
+                                                    "column": 96
                                                   },
                                                   "nativeNode": "*ast.BasicLit"
                                                 }
@@ -818,7 +789,7 @@
                                               "token": {
                                                 "value": "+",
                                                 "line": 5,
-                                                "column": 102
+                                                "column": 98
                                               },
                                               "nativeNode": "token.Token"
                                             },
@@ -829,7 +800,7 @@
                                               "token": {
                                                 "value": "1",
                                                 "line": 5,
-                                                "column": 104
+                                                "column": 100
                                               },
                                               "nativeNode": "*ast.BasicLit"
                                             }
@@ -842,7 +813,7 @@
                                           "token": {
                                             "value": "+",
                                             "line": 5,
-                                            "column": 106
+                                            "column": 102
                                           },
                                           "nativeNode": "token.Token"
                                         },
@@ -853,7 +824,7 @@
                                           "token": {
                                             "value": "1",
                                             "line": 5,
-                                            "column": 108
+                                            "column": 104
                                           },
                                           "nativeNode": "*ast.BasicLit"
                                         }
@@ -866,7 +837,7 @@
                                       "token": {
                                         "value": "+",
                                         "line": 5,
-                                        "column": 110
+                                        "column": 106
                                       },
                                       "nativeNode": "token.Token"
                                     },
@@ -877,7 +848,7 @@
                                       "token": {
                                         "value": "1",
                                         "line": 5,
-                                        "column": 112
+                                        "column": 108
                                       },
                                       "nativeNode": "*ast.BasicLit"
                                     }
@@ -890,7 +861,7 @@
                                   "token": {
                                     "value": "+",
                                     "line": 5,
-                                    "column": 114
+                                    "column": 110
                                   },
                                   "nativeNode": "token.Token"
                                 },
@@ -901,23 +872,45 @@
                                   "token": {
                                     "value": "1",
                                     "line": 5,
-                                    "column": 116
+                                    "column": 112
                                   },
                                   "nativeNode": "*ast.BasicLit"
                                 }
                               ]
+                            },
+                            {
+                              "kinds": [
+                                "TOKEN"
+                              ],
+                              "token": {
+                                "value": "+",
+                                "line": 5,
+                                "column": 114
+                              },
+                              "nativeNode": "token.Token"
+                            },
+                            {
+                              "kinds": [
+                                "LITERAL"
+                              ],
+                              "token": {
+                                "value": "1",
+                                "line": 5,
+                                "column": 116
+                              },
+                              "nativeNode": "*ast.BasicLit"
                             }
                           ]
                         }
                       ]
-                    },
-                    {
-                      "kinds": [
-                        "UNSUPPORTED"
-                      ],
-                      "nativeNode": "*ast.ReturnStmt"
                     }
                   ]
+                },
+                {
+                  "kinds": [
+                    "UNSUPPORTED"
+                  ],
+                  "nativeNode": "*ast.ReturnStmt"
                 }
               ]
             }
