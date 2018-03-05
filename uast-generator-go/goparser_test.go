@@ -110,6 +110,28 @@ func Test_mapFuncDecl_Name(t *testing.T) {
 	}
 }
 
+func Test_mapBlockStmt(t *testing.T) {
+	blockStmt := astFile.Decls[1].(*ast.FuncDecl).Body
+	uast := mapNode(blockStmt)
+	fixPositions(uast, fileSet)
+
+	if expected := kinds(BLOCK); !reflect.DeepEqual(expected, uast.Kinds) {
+		t.Fatalf("got %v as Kinds; expected %v", uast.Kinds, expected)
+	}
+
+	if expected := 3; expected != len(uast.Children) {
+		t.Fatalf("got %v as number of Children; expected %v", len(uast.Children), expected)
+	}
+
+	if uast.Token != nil {
+		t.Fatalf("got %v as Token; expected nil", uast.Token)
+	}
+
+	if expected := "*ast.BlockStmt"; expected != uast.NativeNode {
+		t.Fatalf("got %v as NativeValue; expected %v", uast.NativeNode, expected)
+	}
+}
+
 func Test_mapAssignStmt(t *testing.T) {
 	blockStmt := astFile.Decls[1].(*ast.FuncDecl).Body
 	uast := mapNode(blockStmt.List[0].(*ast.AssignStmt))
