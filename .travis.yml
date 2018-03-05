@@ -14,5 +14,5 @@ cache:
 notifications:
   email: false
 
-install: ./gradlew --console=plain build
-script: ./gradlew --console=plain check -x :go-samples:vet
+install: true
+script: ./gradlew --console=plain check

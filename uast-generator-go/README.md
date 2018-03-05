@@ -26,6 +26,7 @@ Dump the native raw AST for some `source.go`:
 
 ## Goodies
 
-The `samples/` directory contains the AST and UAST.json files that correspond to the samples in `../go-samples`. You can regenerate them with:
+The `samples/` directory contains the AST and UAST.json files that correspond to the samples in
+`../go-ruling/src/test/resources/go/samples`. You can regenerate them with:
 
     ./samples/gen.sh

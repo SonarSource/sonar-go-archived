@@ -1,8 +1,0 @@
-plugins {
-  id 'com.github.blindpirate.gogradle' version '0.8.1'
-}
-
-golang {
-  packagePath = 'github.com/SonarSource/sonar-go/go-samples'
-  goVersion = '1.10'
-}
