@@ -2,6 +2,7 @@ package org.sonar.uast.generator.java;
 
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.EnumSet;
@@ -45,11 +46,23 @@ public class GeneratorTest {
   }
 
   @Test
-  void fileContent() throws Exception {
-    String source = new String(Files.readAllBytes(Paths.get("src/test/files/source.java")), StandardCharsets.UTF_8);
-    String generatedUast = new Generator(source).json();
-    String expectedUast = new String(Files.readAllBytes(Paths.get("src/test/files/source.java.uast.json")), StandardCharsets.UTF_8).trim();
+  void test_generator_main() throws Exception {
+    Generator.main(new String[] {"src/test/files/source.java"});
+    Path generatedFile = Paths.get("src/test/files/source.java.uast.json");
+    String generatedUast = new String(Files.readAllBytes(generatedFile), StandardCharsets.UTF_8);
+    String expectedUast = new String(Files.readAllBytes(Paths.get("src/test/files/reference.java.uast.json")), StandardCharsets.UTF_8).trim();
     assertEquals(expectedUast, generatedUast);
+    Files.deleteIfExists(generatedFile);
+  }
+
+  @Test
+  void test_generator_main_with_directory() throws Exception {
+    Generator.main(new String[] {"src/test/files"});
+    Path generatedFile = Paths.get("src/test/files/source.java.uast.json");
+    String generatedUast = new String(Files.readAllBytes(generatedFile), StandardCharsets.UTF_8);
+    String expectedUast = new String(Files.readAllBytes(Paths.get("src/test/files/reference.java.uast.json")), StandardCharsets.UTF_8).trim();
+    assertEquals(expectedUast, generatedUast);
+    Files.deleteIfExists(generatedFile);
   }
 
 }
