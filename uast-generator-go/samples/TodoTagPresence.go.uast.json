@@ -36,15 +36,7 @@
               "kinds": [
                 "BLOCK"
               ],
-              "nativeNode": "*ast.BlockStmt",
-              "children": [
-                {
-                  "kinds": [
-                    "[]ast.Stmt"
-                  ],
-                  "nativeNode": "[]ast.Stmt"
-                }
-              ]
+              "nativeNode": "*ast.BlockStmt"
             }
           ]
         }
