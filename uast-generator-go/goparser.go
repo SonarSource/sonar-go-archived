@@ -192,7 +192,7 @@ func mapStmt(astNode ast.Stmt) *Node {
 	case *ast.IfStmt:
 		node = mapIfStmt(v)
 	case *ast.BlockStmt:
-		node = mapBlockStmt(v)
+		return mapBlockStmt(v)
 	default:
 		return mapUnsupported(v)
 	}
