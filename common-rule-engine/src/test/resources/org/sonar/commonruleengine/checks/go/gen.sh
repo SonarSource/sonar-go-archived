@@ -19,7 +19,10 @@ fi
 
 cd "$(dirname "$0")"
 
-for f in *.go; do
+shopt -s nullglob
+
+for f in */*.go; do
+    echo "Generating .ast and .uast.json for $f ..."
     "$GO_PARSER" -d "$f" > "$f.ast"
     json=$f.uast.json
     if ! "$GO_PARSER" "$f" > "$json" 2>/dev/null; then

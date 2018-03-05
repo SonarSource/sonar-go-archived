@@ -42,6 +42,12 @@ public class TestUtils {
     checkRule(check, sourceFilename);
   }
 
+  public static void checkRuleOnGo(Check check) throws IOException {
+    String checkName = check.getClass().getSimpleName();
+    String sourceFilename = "go/" + checkName + "/" + checkName + ".go";
+    checkRule(check, sourceFilename);
+  }
+
   public static void checkRule(Check check, String filename) throws IOException {
     UastNode uast = UastUtils.fromClasspath(check.getClass(), filename + ".uast.json");
     Engine engine = new Engine(Collections.singletonList(check));
