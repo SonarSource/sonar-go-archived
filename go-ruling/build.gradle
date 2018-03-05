@@ -21,7 +21,7 @@ compileJava {
     targetCompatibility = 1.8
 }
 
-junitPlatformTest.dependsOn(":goparser:build")
+junitPlatformTest.dependsOn(":uast-generator-go:build")
 
 dependencies {
     implementation project(":common-rule-engine")

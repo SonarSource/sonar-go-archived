@@ -15,4 +15,4 @@ notifications:
   email: false
 
 install: true
-script: ./gradlew --console=plain check -x :go-samples:vet
+script: ./gradlew --console=plain check

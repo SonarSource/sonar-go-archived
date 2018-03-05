@@ -6,10 +6,11 @@ import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.stream.Stream;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.sonar.commonruleengine.Engine;
 import org.sonar.commonruleengine.Issue;
@@ -17,34 +18,88 @@ import org.sonar.uast.Uast;
 import org.sonar.uast.UastNode;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GoRulingTest {
 
+  public static final Path GO_SOURCE_DIRECTORY = Paths.get("src", "test", "resources", "go");
+  public static final Path GO_EXPECTED_DIRECTORY = GO_SOURCE_DIRECTORY.resolve("expected");
+  public static final Path GO_ACTUAL_DIRECTORY = Paths.get("build", "tmp", "actual", "go");
+
   @Test
   void ruling() throws IOException {
-    StringBuilder actualResult = new StringBuilder();
-    try (Stream<Path> files = Files.walk(Paths.get("src", "test", "resources", "go", "samples"))) {
+    Files.createDirectories(GO_ACTUAL_DIRECTORY);
+    Map<String, Map<String, List<String>>> issuesPreRulePreFile = new TreeMap<>();
+    try (Stream<Path> files = Files.walk(GO_SOURCE_DIRECTORY)) {
       files.filter(path -> path.toString().endsWith(".go"))
         .sorted()
-        .forEach(path -> analyze(actualResult, path));
+        .forEach(path -> analyze(issuesPreRulePreFile, path));
     }
-    Path expectedPath = Paths.get("src", "test", "resources", "go", "samples-expected-result.txt");
-    String expected = new String(Files.readAllBytes(expectedPath), UTF_8);
-    String message = "\n=== expected ===\n" + actualResult.toString() + "===============\n";
-    Assertions.assertEquals(expected, actualResult.toString(), message);
+    StringBuilder expected = new StringBuilder();
+    StringBuilder actual = new StringBuilder();
+    for (Map.Entry<String, Map<String, List<String>>> preRulePreFileEntry : issuesPreRulePreFile.entrySet()) {
+      String ruleName = preRulePreFileEntry.getKey();
+      expected.append("[").append(ruleName).append("]\n");
+      expected.append(getExpected(ruleName)).append("\n");
+      actual.append("[").append(ruleName).append("]\n");
+      actual.append(getAndWriteActual(ruleName, preRulePreFileEntry.getValue())).append("\n");
+    }
+    assertEquals(expected.toString(), actual.toString());
   }
 
-  void analyze(StringBuilder out, Path path) {
+  private String getAndWriteActual(String ruleName, Map<String, List<String>> issuesPreFile) throws IOException {
+    StringBuilder actual = new StringBuilder();
+    for (Map.Entry<String, List<String>> issuesPreFileEntry : issuesPreFile.entrySet()) {
+      String fileName = issuesPreFileEntry.getKey();
+      actual.append(fileName).append(":");
+      issuesPreFileEntry.getValue().forEach(actual::append);
+      actual.append("\n");
+    }
+    String actualContent = actual.toString();
+    Path actualFile = GO_ACTUAL_DIRECTORY.resolve(ruleName + ".txt");
+    if (actualContent.isEmpty()) {
+      Files.deleteIfExists(actualFile);
+    } else {
+      Files.write(actualFile, actualContent.getBytes(UTF_8));
+    }
+    return actualContent;
+  }
+
+  String getExpected(String ruleName) throws IOException {
+    Path expectedFile = GO_EXPECTED_DIRECTORY.resolve(ruleName + ".txt");
+    if (Files.exists(expectedFile)) {
+      return new String(Files.readAllBytes(expectedFile), UTF_8);
+    } else {
+      return "";
+    }
+  }
+
+  void analyze(Map<String, Map<String, List<String>>> issuesPreRulePreFile, Path path) {
     try {
-      out.append("[" + path.getFileName().toString() + "]\n");
       UastNode uast = getGoUast(path);
       Engine engine = new Engine(Engine.ALL_CHECKS);
-      List<Issue> issues = engine.scan(uast);
-      out.append(issues.stream().map(Issue::toString).collect(Collectors.joining("\n")));
-      out.append("\n");
+      for (Issue issue : engine.scan(uast)) {
+        String ruleName = issue.getRule().getClass().getSimpleName();
+        String filename = GO_SOURCE_DIRECTORY.relativize(path).toString().replace('\\', '/');
+        issuesPreRulePreFile
+          .computeIfAbsent(ruleName, key -> new TreeMap<>())
+          .computeIfAbsent(filename, key -> new ArrayList<>())
+          .add(" " + getNodeLocation(issue));
+      }
     } catch (IOException e) {
       throw new RuntimeException(e.getMessage(), e);
     }
+  }
+
+  private String getNodeLocation(Issue issue) {
+    UastNode node = issue.getNode().firstToken();
+    if (node != null) {
+      UastNode.Token token = node.token;
+      if (token != null) {
+        return token.line + ":" + token.column;
+      }
+    }
+    return "unknown";
   }
 
   private UastNode getGoUast(Path path) throws IOException {
@@ -60,12 +115,12 @@ class GoRulingTest {
     String name;
     String os = System.getProperty("os.name").toLowerCase();
     if (os.contains("win")) {
-      name = "goparser-windows-amd64.exe";
+      name = "uast-generator-go-windows-amd64.exe";
     } else if (os.contains("mac")) {
-      name = "goparser-darwin-amd64";
+      name = "uast-generator-go-darwin-amd64";
     } else {
-      name = "goparser-linux-amd64";
+      name = "uast-generator-go-linux-amd64";
     }
-    return Paths.get("..", "goparser", "build", name).toAbsolutePath().normalize().toString();
+    return Paths.get("..", "uast-generator-go", "build", name).toAbsolutePath().normalize().toString();
   }
 }

@@ -1,0 +1,2 @@
+samples/OneStatementPerLine.go: 13:3
+samples/SelfAssignement.go: 7:3 9:3

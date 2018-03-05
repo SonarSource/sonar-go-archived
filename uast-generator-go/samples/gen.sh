@@ -8,7 +8,7 @@ fi
 
 cd $(dirname "$0")
 
-for f in ../../go-samples/*.go; do
+for f in ../../go-ruling/src/test/resources/go/samples/*.go; do
     basename=$(basename "$f")
     uast-generator-go -d "$f" > "$basename.ast"
     json=$basename.uast.json
