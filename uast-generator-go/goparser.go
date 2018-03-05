@@ -24,6 +24,7 @@ const (
 	CALL              Kind = "CALL"
 	IF_STMT           Kind = "IF_STMT"
 	DECL_LIST         Kind = "DECL_LIST"
+	STATEMENT         Kind = "STATEMENT"
 	ASSIGNMENT        Kind = "ASSIGNMENT"
 	ASSIGNMENT_TARGET Kind = "ASSIGNMENT_TARGET"
 	ASSIGNMENT_VALUE  Kind = "ASSIGNMENT_VALUE"
@@ -32,7 +33,7 @@ const (
 	SELECTOR_EXPR     Kind = "SELECTOR_EXPR"
 	LITERAL           Kind = "LITERAL"
 	EXPR_LIST         Kind = "EXPR_LIST"
-	EXPR_STMT         Kind = "EXPR_STMT"
+	EXPRESSION        Kind = "EXPRESSION"
 	UNSUPPORTED       Kind = "UNSUPPORTED"
 )
 
@@ -69,7 +70,7 @@ func kind(k interface{}) Kind {
 	case *ast.BasicLit:
 		return LITERAL
 	case *ast.ExprStmt:
-		return EXPR_STMT
+		return EXPRESSION
 	case *ast.CallExpr:
 		return CALL
 	case *ast.SelectorExpr:
@@ -119,17 +120,20 @@ func (items DeclList) At(i int) ast.Node  { return items[i] }
 func (items DeclList) Len() int           { return len(items) }
 func (items DeclList) NativeNode() string { return nativeNode([]ast.Decl{}) }
 
-func makeNodeFromList(kind Kind, nodeList NodeList) *Node {
+func childrenFromNodeList(nodeList NodeList) []*Node {
 	children := children()
 	for i := 0; i < nodeList.Len(); i++ {
 		if uastNode := mapNode(nodeList.At(i)); uastNode != nil {
 			children = append(children, uastNode)
 		}
 	}
+	return children
+}
 
+func makeNodeFromList(kind Kind, nodeList NodeList) *Node {
 	return &Node{
 		Kinds:      kinds(kind),
-		Children:   children,
+		Children:   childrenFromNodeList(nodeList),
 		NativeNode: nodeList.NativeNode(),
 	}
 }
@@ -173,28 +177,29 @@ func mapFuncDecl(funcDecl *ast.FuncDecl) *Node {
 func mapBlockStmt(blockStmt *ast.BlockStmt) *Node {
 	return &Node{
 		Kinds:      kinds(blockStmt),
-		Children:   children(mapStmtList(kind(blockStmt.List), blockStmt.List)),
+		Children:   childrenFromNodeList(StmtList(blockStmt.List)),
 		NativeNode: nativeNode(blockStmt),
 	}
 }
 
-func mapStmtList(kind Kind, stmtList []ast.Stmt) *Node {
-	return makeNodeFromList(kind, StmtList(stmtList))
-}
-
 func mapStmt(astNode ast.Stmt) *Node {
+	var node *Node
 	switch v := astNode.(type) {
 	case *ast.AssignStmt:
-		return mapAssignStmt(v)
+		node = mapAssignStmt(v)
 	case *ast.ExprStmt:
-		return mapExprStmt(v)
+		node = mapExprStmt(v)
 	case *ast.IfStmt:
-		return mapIfStmt(v)
+		node = mapIfStmt(v)
 	case *ast.BlockStmt:
-		return mapBlockStmt(v)
+		node = mapBlockStmt(v)
 	default:
 		return mapUnsupported(v)
 	}
+
+	node.Kinds = append(node.Kinds, STATEMENT)
+
+	return node
 }
 
 func mapIfStmt(stmt *ast.IfStmt) *Node {

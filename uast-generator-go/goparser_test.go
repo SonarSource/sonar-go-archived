@@ -115,7 +115,7 @@ func Test_mapAssignStmt(t *testing.T) {
 	uast := mapNode(blockStmt.List[0].(*ast.AssignStmt))
 	fixPositions(uast, fileSet)
 
-	if expected := kinds(ASSIGNMENT); !reflect.DeepEqual(expected, uast.Kinds) {
+	if expected := kinds(ASSIGNMENT, STATEMENT); !reflect.DeepEqual(expected, uast.Kinds) {
 		t.Fatalf("got %v as Kinds; expected %v", uast.Kinds, expected)
 	}
 
@@ -227,7 +227,7 @@ func Test_mapExprStmt(t *testing.T) {
 	uast := mapNode(blockStmt.List[1].(*ast.ExprStmt))
 	fixPositions(uast, fileSet)
 
-	if expected := kinds(EXPR_STMT); !reflect.DeepEqual(expected, uast.Kinds) {
+	if expected := kinds(EXPRESSION, STATEMENT); !reflect.DeepEqual(expected, uast.Kinds) {
 		t.Fatalf("got %v as Kinds; expected %v", uast.Kinds, expected)
 	}
 
@@ -263,7 +263,7 @@ func Test_mapIfStmt(t *testing.T) {
 	uast := mapNode(blockStmt.List[2].(*ast.IfStmt))
 	fixPositions(uast, fileSet)
 
-	if expected := kinds(IF_STMT); !reflect.DeepEqual(expected, uast.Kinds) {
+	if expected := kinds(IF_STMT, STATEMENT); !reflect.DeepEqual(expected, uast.Kinds) {
 		t.Fatalf("got %v as Kinds; expected %v", uast.Kinds, expected)
 	}
 
