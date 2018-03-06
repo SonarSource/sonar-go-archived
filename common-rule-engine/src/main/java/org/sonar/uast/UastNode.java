@@ -1,5 +1,6 @@
 package org.sonar.uast;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -110,6 +111,19 @@ public final class UastNode {
         return false;
       })
       .collect(Collectors.toList());
+  }
+
+  public List<UastNode> getChildrenRecursively(Kind kind) {
+    List<UastNode> matches = new ArrayList<>();
+    getChildrenRecursively(kind, matches);
+    return matches;
+  }
+
+  private void getChildrenRecursively(Kind kind, List<UastNode> matches) {
+    if (kinds.contains(kind)) {
+      matches.add(this);
+    }
+    children.forEach(child -> child.getChildrenRecursively(kind, matches));
   }
 
   public UastNode firstToken() {
