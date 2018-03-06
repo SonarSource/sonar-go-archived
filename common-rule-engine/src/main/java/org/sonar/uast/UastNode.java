@@ -77,6 +77,7 @@ public final class UastNode {
     ASSIGNMENT_OPERATOR,
     ASSIGNMENT_TARGET,
     ASSIGNMENT_VALUE,
+    BINARY_EXPRESSION,
     BLOCK,
     CLASS,
     COMMENT,
