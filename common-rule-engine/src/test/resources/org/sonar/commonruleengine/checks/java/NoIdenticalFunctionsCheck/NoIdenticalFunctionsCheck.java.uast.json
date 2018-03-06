@@ -38,7 +38,9 @@
           "children": []
         },
         {
-          "kinds": [],
+          "kinds": [
+            "IDENTIFIER"
+          ],
           "nativeNode": "IDENTIFIER",
           "children": [
             {
@@ -65,6 +67,7 @@
         },
         {
           "kinds": [
+            "ASSIGNMENT",
             "STATEMENT"
           ],
           "nativeNode": "VARIABLE",
@@ -106,7 +109,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -122,7 +127,10 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "ASSIGNMENT_TARGET",
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -148,7 +156,10 @@
               "children": []
             },
             {
-              "kinds": [],
+              "kinds": [
+                "ASSIGNMENT_VALUE",
+                "LITERAL"
+              ],
               "nativeNode": "STRING_LITERAL",
               "children": [
                 {
@@ -198,7 +209,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -214,7 +227,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -264,7 +279,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -280,7 +297,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -349,7 +368,9 @@
                       "children": []
                     },
                     {
-                      "kinds": [],
+                      "kinds": [
+                        "IDENTIFIER"
+                      ],
                       "nativeNode": "IDENTIFIER",
                       "children": [
                         {
@@ -413,7 +434,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -429,7 +452,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -498,7 +523,9 @@
                       "children": []
                     },
                     {
-                      "kinds": [],
+                      "kinds": [
+                        "IDENTIFIER"
+                      ],
                       "nativeNode": "IDENTIFIER",
                       "children": [
                         {
@@ -562,7 +589,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -578,7 +607,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -647,7 +678,9 @@
                       "children": []
                     },
                     {
-                      "kinds": [],
+                      "kinds": [
+                        "IDENTIFIER"
+                      ],
                       "nativeNode": "IDENTIFIER",
                       "children": [
                         {
@@ -695,7 +728,9 @@
           "nativeNode": "METHOD",
           "children": [
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -711,7 +746,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -780,7 +817,9 @@
                       "children": []
                     },
                     {
-                      "kinds": [],
+                      "kinds": [
+                        "IDENTIFIER"
+                      ],
                       "nativeNode": "IDENTIFIER",
                       "children": [
                         {
@@ -828,7 +867,9 @@
           "nativeNode": "METHOD",
           "children": [
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -844,7 +885,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -913,7 +956,9 @@
                       "children": []
                     },
                     {
-                      "kinds": [],
+                      "kinds": [
+                        "IDENTIFIER"
+                      ],
                       "nativeNode": "IDENTIFIER",
                       "children": [
                         {
@@ -977,7 +1022,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -1031,12 +1078,15 @@
                 },
                 {
                   "kinds": [
+                    "ASSIGNMENT",
                     "STATEMENT"
                   ],
                   "nativeNode": "VARIABLE",
                   "children": [
                     {
-                      "kinds": [],
+                      "kinds": [
+                        "IDENTIFIER"
+                      ],
                       "nativeNode": "IDENTIFIER",
                       "children": [
                         {
@@ -1052,7 +1102,10 @@
                       ]
                     },
                     {
-                      "kinds": [],
+                      "kinds": [
+                        "ASSIGNMENT_TARGET",
+                        "IDENTIFIER"
+                      ],
                       "nativeNode": "IDENTIFIER",
                       "children": [
                         {
@@ -1078,7 +1131,9 @@
                       "children": []
                     },
                     {
-                      "kinds": [],
+                      "kinds": [
+                        "ASSIGNMENT_VALUE"
+                      ],
                       "nativeNode": "NULL_LITERAL",
                       "children": [
                         {
@@ -1152,7 +1207,8 @@
                               "children": [
                                 {
                                   "kinds": [
-                                    "ASSIGNMENT_TARGET"
+                                    "ASSIGNMENT_TARGET",
+                                    "IDENTIFIER"
                                   ],
                                   "nativeNode": "IDENTIFIER",
                                   "children": [
@@ -1195,7 +1251,9 @@
                                       "children": []
                                     },
                                     {
-                                      "kinds": [],
+                                      "kinds": [
+                                        "IDENTIFIER"
+                                      ],
                                       "nativeNode": "IDENTIFIER",
                                       "children": [
                                         {
@@ -1263,7 +1321,9 @@
                               "nativeNode": "METHOD_INVOCATION",
                               "children": [
                                 {
-                                  "kinds": [],
+                                  "kinds": [
+                                    "IDENTIFIER"
+                                  ],
                                   "nativeNode": "IDENTIFIER",
                                   "children": [
                                     {
@@ -1332,7 +1392,8 @@
                               "children": [
                                 {
                                   "kinds": [
-                                    "ASSIGNMENT_TARGET"
+                                    "ASSIGNMENT_TARGET",
+                                    "IDENTIFIER"
                                   ],
                                   "nativeNode": "IDENTIFIER",
                                   "children": [
@@ -1433,7 +1494,9 @@
                           "nativeNode": "VARIABLE",
                           "children": [
                             {
-                              "kinds": [],
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
                                 {
@@ -1449,7 +1512,9 @@
                               ]
                             },
                             {
-                              "kinds": [],
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
                                 {
@@ -1524,7 +1589,9 @@
                                   "nativeNode": "EQUAL_TO",
                                   "children": [
                                     {
-                                      "kinds": [],
+                                      "kinds": [
+                                        "IDENTIFIER"
+                                      ],
                                       "nativeNode": "IDENTIFIER",
                                       "children": [
                                         {
@@ -1605,7 +1672,9 @@
                                           "nativeNode": "METHOD_INVOCATION",
                                           "children": [
                                             {
-                                              "kinds": [],
+                                              "kinds": [
+                                                "IDENTIFIER"
+                                              ],
                                               "nativeNode": "IDENTIFIER",
                                               "children": [
                                                 {
@@ -1727,7 +1796,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -1781,12 +1852,15 @@
                 },
                 {
                   "kinds": [
+                    "ASSIGNMENT",
                     "STATEMENT"
                   ],
                   "nativeNode": "VARIABLE",
                   "children": [
                     {
-                      "kinds": [],
+                      "kinds": [
+                        "IDENTIFIER"
+                      ],
                       "nativeNode": "IDENTIFIER",
                       "children": [
                         {
@@ -1802,7 +1876,10 @@
                       ]
                     },
                     {
-                      "kinds": [],
+                      "kinds": [
+                        "ASSIGNMENT_TARGET",
+                        "IDENTIFIER"
+                      ],
                       "nativeNode": "IDENTIFIER",
                       "children": [
                         {
@@ -1828,7 +1905,9 @@
                       "children": []
                     },
                     {
-                      "kinds": [],
+                      "kinds": [
+                        "ASSIGNMENT_VALUE"
+                      ],
                       "nativeNode": "NULL_LITERAL",
                       "children": [
                         {
@@ -1902,7 +1981,8 @@
                               "children": [
                                 {
                                   "kinds": [
-                                    "ASSIGNMENT_TARGET"
+                                    "ASSIGNMENT_TARGET",
+                                    "IDENTIFIER"
                                   ],
                                   "nativeNode": "IDENTIFIER",
                                   "children": [
@@ -1945,7 +2025,9 @@
                                       "children": []
                                     },
                                     {
-                                      "kinds": [],
+                                      "kinds": [
+                                        "IDENTIFIER"
+                                      ],
                                       "nativeNode": "IDENTIFIER",
                                       "children": [
                                         {
@@ -2013,7 +2095,9 @@
                               "nativeNode": "METHOD_INVOCATION",
                               "children": [
                                 {
-                                  "kinds": [],
+                                  "kinds": [
+                                    "IDENTIFIER"
+                                  ],
                                   "nativeNode": "IDENTIFIER",
                                   "children": [
                                     {
@@ -2082,7 +2166,8 @@
                               "children": [
                                 {
                                   "kinds": [
-                                    "ASSIGNMENT_TARGET"
+                                    "ASSIGNMENT_TARGET",
+                                    "IDENTIFIER"
                                   ],
                                   "nativeNode": "IDENTIFIER",
                                   "children": [
@@ -2183,7 +2268,9 @@
                           "nativeNode": "VARIABLE",
                           "children": [
                             {
-                              "kinds": [],
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
                                 {
@@ -2199,7 +2286,9 @@
                               ]
                             },
                             {
-                              "kinds": [],
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
                                 {
@@ -2274,7 +2363,9 @@
                                   "nativeNode": "EQUAL_TO",
                                   "children": [
                                     {
-                                      "kinds": [],
+                                      "kinds": [
+                                        "IDENTIFIER"
+                                      ],
                                       "nativeNode": "IDENTIFIER",
                                       "children": [
                                         {
@@ -2355,7 +2446,9 @@
                                           "nativeNode": "METHOD_INVOCATION",
                                           "children": [
                                             {
-                                              "kinds": [],
+                                              "kinds": [
+                                                "IDENTIFIER"
+                                              ],
                                               "nativeNode": "IDENTIFIER",
                                               "children": [
                                                 {
@@ -2493,7 +2586,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -2543,7 +2638,9 @@
               "nativeNode": "LIST",
               "children": [
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -2611,7 +2708,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -2697,7 +2796,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -2734,7 +2835,9 @@
                   "nativeNode": "ARRAY_TYPE",
                   "children": [
                     {
-                      "kinds": [],
+                      "kinds": [
+                        "IDENTIFIER"
+                      ],
                       "nativeNode": "IDENTIFIER",
                       "children": [
                         {
@@ -2762,7 +2865,9 @@
                   ]
                 },
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -2824,7 +2929,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -2857,7 +2964,9 @@
               "nativeNode": "VARIABLE",
               "children": [
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -2873,7 +2982,9 @@
                   ]
                 },
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -2928,7 +3039,9 @@
                       "nativeNode": "METHOD_INVOCATION",
                       "children": [
                         {
-                          "kinds": [],
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
                           "nativeNode": "IDENTIFIER",
                           "children": [
                             {
@@ -2972,7 +3085,9 @@
                                   "children": []
                                 },
                                 {
-                                  "kinds": [],
+                                  "kinds": [
+                                    "IDENTIFIER"
+                                  ],
                                   "nativeNode": "IDENTIFIER",
                                   "children": [
                                     {
@@ -2998,7 +3113,9 @@
                                   "children": []
                                 },
                                 {
-                                  "kinds": [],
+                                  "kinds": [
+                                    "IDENTIFIER"
+                                  ],
                                   "nativeNode": "IDENTIFIER",
                                   "children": [
                                     {
@@ -3052,7 +3169,9 @@
                       "nativeNode": "METHOD_INVOCATION",
                       "children": [
                         {
-                          "kinds": [],
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
                           "nativeNode": "IDENTIFIER",
                           "children": [
                             {
@@ -3096,7 +3215,9 @@
                                   "children": []
                                 },
                                 {
-                                  "kinds": [],
+                                  "kinds": [
+                                    "IDENTIFIER"
+                                  ],
                                   "nativeNode": "IDENTIFIER",
                                   "children": [
                                     {
@@ -3122,7 +3243,9 @@
                                   "children": []
                                 },
                                 {
-                                  "kinds": [],
+                                  "kinds": [
+                                    "IDENTIFIER"
+                                  ],
                                   "nativeNode": "IDENTIFIER",
                                   "children": [
                                     {
@@ -3202,7 +3325,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -3235,7 +3360,9 @@
               "nativeNode": "VARIABLE",
               "children": [
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -3251,7 +3378,9 @@
                   ]
                 },
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -3306,7 +3435,9 @@
                       "nativeNode": "METHOD_INVOCATION",
                       "children": [
                         {
-                          "kinds": [],
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
                           "nativeNode": "IDENTIFIER",
                           "children": [
                             {
@@ -3350,7 +3481,9 @@
                                   "children": []
                                 },
                                 {
-                                  "kinds": [],
+                                  "kinds": [
+                                    "IDENTIFIER"
+                                  ],
                                   "nativeNode": "IDENTIFIER",
                                   "children": [
                                     {
@@ -3376,7 +3509,9 @@
                                   "children": []
                                 },
                                 {
-                                  "kinds": [],
+                                  "kinds": [
+                                    "IDENTIFIER"
+                                  ],
                                   "nativeNode": "IDENTIFIER",
                                   "children": [
                                     {
@@ -3430,7 +3565,9 @@
                       "nativeNode": "METHOD_INVOCATION",
                       "children": [
                         {
-                          "kinds": [],
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
                           "nativeNode": "IDENTIFIER",
                           "children": [
                             {
@@ -3474,7 +3611,9 @@
                                   "children": []
                                 },
                                 {
-                                  "kinds": [],
+                                  "kinds": [
+                                    "IDENTIFIER"
+                                  ],
                                   "nativeNode": "IDENTIFIER",
                                   "children": [
                                     {
@@ -3500,7 +3639,9 @@
                                   "children": []
                                 },
                                 {
-                                  "kinds": [],
+                                  "kinds": [
+                                    "IDENTIFIER"
+                                  ],
                                   "nativeNode": "IDENTIFIER",
                                   "children": [
                                     {
@@ -3587,7 +3728,9 @@
           "children": []
         },
         {
-          "kinds": [],
+          "kinds": [
+            "IDENTIFIER"
+          ],
           "nativeNode": "IDENTIFIER",
           "children": [
             {
@@ -3635,7 +3778,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -3651,7 +3796,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -3685,7 +3832,9 @@
           "nativeNode": "METHOD",
           "children": [
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -3701,7 +3850,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -3770,7 +3921,9 @@
                       "children": []
                     },
                     {
-                      "kinds": [],
+                      "kinds": [
+                        "IDENTIFIER"
+                      ],
                       "nativeNode": "IDENTIFIER",
                       "children": [
                         {
@@ -3818,7 +3971,9 @@
           "nativeNode": "METHOD",
           "children": [
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -3834,7 +3989,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -3907,7 +4064,9 @@
                       "nativeNode": "METHOD_INVOCATION",
                       "children": [
                         {
-                          "kinds": [],
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
                           "nativeNode": "IDENTIFIER",
                           "children": [
                             {
@@ -4006,7 +4165,9 @@
           "children": []
         },
         {
-          "kinds": [],
+          "kinds": [
+            "IDENTIFIER"
+          ],
           "nativeNode": "IDENTIFIER",
           "children": [
             {
@@ -4054,7 +4215,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -4166,7 +4329,9 @@
           "children": []
         },
         {
-          "kinds": [],
+          "kinds": [
+            "IDENTIFIER"
+          ],
           "nativeNode": "IDENTIFIER",
           "children": [
             {
@@ -4214,7 +4379,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -4247,7 +4414,9 @@
               "nativeNode": "VARIABLE",
               "children": [
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -4263,7 +4432,9 @@
                   ]
                 },
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -4318,7 +4489,9 @@
                       "nativeNode": "METHOD_INVOCATION",
                       "children": [
                         {
-                          "kinds": [],
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
                           "nativeNode": "IDENTIFIER",
                           "children": [
                             {
@@ -4356,7 +4529,9 @@
                                   "nativeNode": "MEMBER_SELECT",
                                   "children": [
                                     {
-                                      "kinds": [],
+                                      "kinds": [
+                                        "IDENTIFIER"
+                                      ],
                                       "nativeNode": "IDENTIFIER",
                                       "children": [
                                         {
@@ -4382,7 +4557,9 @@
                                       "children": []
                                     },
                                     {
-                                      "kinds": [],
+                                      "kinds": [
+                                        "IDENTIFIER"
+                                      ],
                                       "nativeNode": "IDENTIFIER",
                                       "children": [
                                         {
@@ -4464,7 +4641,9 @@
                       "nativeNode": "METHOD_INVOCATION",
                       "children": [
                         {
-                          "kinds": [],
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
                           "nativeNode": "IDENTIFIER",
                           "children": [
                             {
@@ -4502,7 +4681,9 @@
                                   "nativeNode": "MEMBER_SELECT",
                                   "children": [
                                     {
-                                      "kinds": [],
+                                      "kinds": [
+                                        "IDENTIFIER"
+                                      ],
                                       "nativeNode": "IDENTIFIER",
                                       "children": [
                                         {
@@ -4528,7 +4709,9 @@
                                       "children": []
                                     },
                                     {
-                                      "kinds": [],
+                                      "kinds": [
+                                        "IDENTIFIER"
+                                      ],
                                       "nativeNode": "IDENTIFIER",
                                       "children": [
                                         {
@@ -4636,7 +4819,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -4669,7 +4854,9 @@
               "nativeNode": "VARIABLE",
               "children": [
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -4685,7 +4872,9 @@
                   ]
                 },
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -4740,7 +4929,9 @@
                       "nativeNode": "METHOD_INVOCATION",
                       "children": [
                         {
-                          "kinds": [],
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
                           "nativeNode": "IDENTIFIER",
                           "children": [
                             {
@@ -4778,7 +4969,9 @@
                                   "nativeNode": "MEMBER_SELECT",
                                   "children": [
                                     {
-                                      "kinds": [],
+                                      "kinds": [
+                                        "IDENTIFIER"
+                                      ],
                                       "nativeNode": "IDENTIFIER",
                                       "children": [
                                         {
@@ -4804,7 +4997,9 @@
                                       "children": []
                                     },
                                     {
-                                      "kinds": [],
+                                      "kinds": [
+                                        "IDENTIFIER"
+                                      ],
                                       "nativeNode": "IDENTIFIER",
                                       "children": [
                                         {
@@ -4886,7 +5081,9 @@
                       "nativeNode": "METHOD_INVOCATION",
                       "children": [
                         {
-                          "kinds": [],
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
                           "nativeNode": "IDENTIFIER",
                           "children": [
                             {
@@ -4924,7 +5121,9 @@
                                   "nativeNode": "MEMBER_SELECT",
                                   "children": [
                                     {
-                                      "kinds": [],
+                                      "kinds": [
+                                        "IDENTIFIER"
+                                      ],
                                       "nativeNode": "IDENTIFIER",
                                       "children": [
                                         {
@@ -4950,7 +5149,9 @@
                                       "children": []
                                     },
                                     {
-                                      "kinds": [],
+                                      "kinds": [
+                                        "IDENTIFIER"
+                                      ],
                                       "nativeNode": "IDENTIFIER",
                                       "children": [
                                         {
@@ -5058,7 +5259,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -5095,7 +5298,9 @@
                   "nativeNode": "ARRAY_TYPE",
                   "children": [
                     {
-                      "kinds": [],
+                      "kinds": [
+                        "IDENTIFIER"
+                      ],
                       "nativeNode": "IDENTIFIER",
                       "children": [
                         {
@@ -5133,7 +5338,9 @@
                   ]
                 },
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -5210,7 +5417,9 @@
                       "nativeNode": "VARIABLE",
                       "children": [
                         {
-                          "kinds": [],
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
                           "nativeNode": "IDENTIFIER",
                           "children": [
                             {
@@ -5226,7 +5435,9 @@
                           ]
                         },
                         {
-                          "kinds": [],
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
                           "nativeNode": "IDENTIFIER",
                           "children": [
                             {
@@ -5254,7 +5465,9 @@
                       "children": []
                     },
                     {
-                      "kinds": [],
+                      "kinds": [
+                        "IDENTIFIER"
+                      ],
                       "nativeNode": "IDENTIFIER",
                       "children": [
                         {
@@ -5307,7 +5520,9 @@
                               "nativeNode": "METHOD_INVOCATION",
                               "children": [
                                 {
-                                  "kinds": [],
+                                  "kinds": [
+                                    "IDENTIFIER"
+                                  ],
                                   "nativeNode": "IDENTIFIER",
                                   "children": [
                                     {
@@ -5337,7 +5552,9 @@
                                       "children": []
                                     },
                                     {
-                                      "kinds": [],
+                                      "kinds": [
+                                        "IDENTIFIER"
+                                      ],
                                       "nativeNode": "IDENTIFIER",
                                       "children": [
                                         {
@@ -5429,7 +5646,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -5474,7 +5693,9 @@
                           "nativeNode": "MEMBER_SELECT",
                           "children": [
                             {
-                              "kinds": [],
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
                                 {
@@ -5500,7 +5721,9 @@
                               "children": []
                             },
                             {
-                              "kinds": [],
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
                                 {
@@ -5528,7 +5751,9 @@
                           "children": []
                         },
                         {
-                          "kinds": [],
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
                           "nativeNode": "IDENTIFIER",
                           "children": [
                             {
@@ -5560,7 +5785,9 @@
                           "children": []
                         },
                         {
-                          "kinds": [],
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
                           "nativeNode": "IDENTIFIER",
                           "children": [
                             {
@@ -5590,7 +5817,9 @@
                   ]
                 },
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -5667,7 +5896,9 @@
                       "nativeNode": "VARIABLE",
                       "children": [
                         {
-                          "kinds": [],
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
                           "nativeNode": "IDENTIFIER",
                           "children": [
                             {
@@ -5683,7 +5914,9 @@
                           ]
                         },
                         {
-                          "kinds": [],
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
                           "nativeNode": "IDENTIFIER",
                           "children": [
                             {
@@ -5711,7 +5944,9 @@
                       "children": []
                     },
                     {
-                      "kinds": [],
+                      "kinds": [
+                        "IDENTIFIER"
+                      ],
                       "nativeNode": "IDENTIFIER",
                       "children": [
                         {
@@ -5764,7 +5999,9 @@
                               "nativeNode": "METHOD_INVOCATION",
                               "children": [
                                 {
-                                  "kinds": [],
+                                  "kinds": [
+                                    "IDENTIFIER"
+                                  ],
                                   "nativeNode": "IDENTIFIER",
                                   "children": [
                                     {
@@ -5794,7 +6031,9 @@
                                       "children": []
                                     },
                                     {
-                                      "kinds": [],
+                                      "kinds": [
+                                        "IDENTIFIER"
+                                      ],
                                       "nativeNode": "IDENTIFIER",
                                       "children": [
                                         {
@@ -5886,7 +6125,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -5919,7 +6160,9 @@
               "nativeNode": "VARIABLE",
               "children": [
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -5935,7 +6178,9 @@
                   ]
                 },
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -5990,7 +6235,9 @@
                       "nativeNode": "METHOD_INVOCATION",
                       "children": [
                         {
-                          "kinds": [],
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
                           "nativeNode": "IDENTIFIER",
                           "children": [
                             {
@@ -6020,7 +6267,9 @@
                               "children": []
                             },
                             {
-                              "kinds": [],
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
                                 {
@@ -6072,7 +6321,9 @@
                       "nativeNode": "METHOD_INVOCATION",
                       "children": [
                         {
-                          "kinds": [],
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
                           "nativeNode": "IDENTIFIER",
                           "children": [
                             {
@@ -6102,7 +6353,9 @@
                               "children": []
                             },
                             {
-                              "kinds": [],
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
                                 {
@@ -6180,7 +6433,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -6213,7 +6468,9 @@
               "nativeNode": "VARIABLE",
               "children": [
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -6229,7 +6486,9 @@
                   ]
                 },
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -6284,7 +6543,9 @@
                       "nativeNode": "METHOD_INVOCATION",
                       "children": [
                         {
-                          "kinds": [],
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
                           "nativeNode": "IDENTIFIER",
                           "children": [
                             {
@@ -6314,7 +6575,9 @@
                               "children": []
                             },
                             {
-                              "kinds": [],
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
                                 {
@@ -6366,7 +6629,9 @@
                       "nativeNode": "METHOD_INVOCATION",
                       "children": [
                         {
-                          "kinds": [],
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
                           "nativeNode": "IDENTIFIER",
                           "children": [
                             {
@@ -6396,7 +6661,9 @@
                               "children": []
                             },
                             {
-                              "kinds": [],
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
                                 {
@@ -6474,7 +6741,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -6507,7 +6776,9 @@
               "nativeNode": "VARIABLE",
               "children": [
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -6523,7 +6794,9 @@
                   ]
                 },
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -6578,7 +6851,9 @@
                       "nativeNode": "METHOD_INVOCATION",
                       "children": [
                         {
-                          "kinds": [],
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
                           "nativeNode": "IDENTIFIER",
                           "children": [
                             {
@@ -6608,7 +6883,9 @@
                               "children": []
                             },
                             {
-                              "kinds": [],
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
                                 {
@@ -6660,7 +6937,9 @@
                       "nativeNode": "METHOD_INVOCATION",
                       "children": [
                         {
-                          "kinds": [],
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
                           "nativeNode": "IDENTIFIER",
                           "children": [
                             {
@@ -6690,7 +6969,9 @@
                               "children": []
                             },
                             {
-                              "kinds": [],
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
                                 {
@@ -6768,7 +7049,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -6801,7 +7084,9 @@
               "nativeNode": "VARIABLE",
               "children": [
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -6817,7 +7102,9 @@
                   ]
                 },
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -6872,7 +7159,9 @@
                       "nativeNode": "METHOD_INVOCATION",
                       "children": [
                         {
-                          "kinds": [],
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
                           "nativeNode": "IDENTIFIER",
                           "children": [
                             {
@@ -6902,7 +7191,9 @@
                               "children": []
                             },
                             {
-                              "kinds": [],
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
                                 {
@@ -6954,7 +7245,9 @@
                       "nativeNode": "METHOD_INVOCATION",
                       "children": [
                         {
-                          "kinds": [],
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
                           "nativeNode": "IDENTIFIER",
                           "children": [
                             {
@@ -6984,7 +7277,9 @@
                               "children": []
                             },
                             {
-                              "kinds": [],
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
                                 {
@@ -7062,7 +7357,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -7095,7 +7392,9 @@
               "nativeNode": "VARIABLE",
               "children": [
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -7111,7 +7410,9 @@
                   ]
                 },
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -7146,7 +7447,9 @@
               "nativeNode": "VARIABLE",
               "children": [
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -7162,7 +7465,9 @@
                   ]
                 },
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -7217,7 +7522,9 @@
                       "nativeNode": "METHOD_INVOCATION",
                       "children": [
                         {
-                          "kinds": [],
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
                           "nativeNode": "IDENTIFIER",
                           "children": [
                             {
@@ -7247,7 +7554,9 @@
                               "children": []
                             },
                             {
-                              "kinds": [],
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
                                 {
@@ -7299,7 +7608,9 @@
                       "nativeNode": "METHOD_INVOCATION",
                       "children": [
                         {
-                          "kinds": [],
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
                           "nativeNode": "IDENTIFIER",
                           "children": [
                             {
@@ -7329,7 +7640,9 @@
                               "children": []
                             },
                             {
-                              "kinds": [],
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
                                 {
@@ -7391,7 +7704,9 @@
           "nativeNode": "VARIABLE",
           "children": [
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -7407,7 +7722,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -7457,7 +7774,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -7490,7 +7809,9 @@
               "nativeNode": "VARIABLE",
               "children": [
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -7506,7 +7827,9 @@
                   ]
                 },
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -7561,7 +7884,9 @@
                       "nativeNode": "METHOD_INVOCATION",
                       "children": [
                         {
-                          "kinds": [],
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
                           "nativeNode": "IDENTIFIER",
                           "children": [
                             {
@@ -7591,7 +7916,9 @@
                               "children": []
                             },
                             {
-                              "kinds": [],
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
                                 {
@@ -7643,7 +7970,9 @@
                       "nativeNode": "METHOD_INVOCATION",
                       "children": [
                         {
-                          "kinds": [],
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
                           "nativeNode": "IDENTIFIER",
                           "children": [
                             {
@@ -7673,7 +8002,9 @@
                               "children": []
                             },
                             {
-                              "kinds": [],
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
                                 {
@@ -7767,7 +8098,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -7800,7 +8133,9 @@
               "nativeNode": "VARIABLE",
               "children": [
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -7816,7 +8151,9 @@
                   ]
                 },
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -7894,7 +8231,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -7927,7 +8266,9 @@
               "nativeNode": "VARIABLE",
               "children": [
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -7943,7 +8284,9 @@
                   ]
                 },
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -8026,7 +8369,9 @@
               "children": []
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -8058,7 +8403,9 @@
               "nativeNode": "METHOD",
               "children": [
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -8074,7 +8421,9 @@
                   ]
                 },
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -8128,7 +8477,9 @@
               "nativeNode": "METHOD",
               "children": [
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -8144,7 +8495,9 @@
                   ]
                 },
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -8247,7 +8600,9 @@
               "children": []
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -8279,7 +8634,9 @@
               "nativeNode": "METHOD",
               "children": [
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -8295,7 +8652,9 @@
                   ]
                 },
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -8349,7 +8708,9 @@
               "nativeNode": "METHOD",
               "children": [
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -8365,7 +8726,9 @@
                   ]
                 },
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {

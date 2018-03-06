@@ -22,7 +22,9 @@
           "children": []
         },
         {
-          "kinds": [],
+          "kinds": [
+            "IDENTIFIER"
+          ],
           "nativeNode": "IDENTIFIER",
           "children": [
             {
@@ -70,7 +72,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -99,6 +103,7 @@
         },
         {
           "kinds": [
+            "ASSIGNMENT",
             "STATEMENT"
           ],
           "nativeNode": "VARIABLE",
@@ -120,7 +125,10 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "ASSIGNMENT_TARGET",
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -146,7 +154,9 @@
               "children": []
             },
             {
-              "kinds": [],
+              "kinds": [
+                "ASSIGNMENT_VALUE"
+              ],
               "nativeNode": "INT_LITERAL",
               "children": [
                 {
@@ -175,6 +185,7 @@
         },
         {
           "kinds": [
+            "ASSIGNMENT",
             "STATEMENT"
           ],
           "nativeNode": "VARIABLE",
@@ -222,7 +233,10 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "ASSIGNMENT_TARGET",
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -248,7 +262,9 @@
               "children": []
             },
             {
-              "kinds": [],
+              "kinds": [
+                "ASSIGNMENT_VALUE"
+              ],
               "nativeNode": "NEW_ARRAY",
               "children": [
                 {
@@ -330,7 +346,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -396,7 +414,8 @@
                       "children": [
                         {
                           "kinds": [
-                            "ASSIGNMENT_TARGET"
+                            "ASSIGNMENT_TARGET",
+                            "IDENTIFIER"
                           ],
                           "nativeNode": "IDENTIFIER",
                           "children": [
@@ -424,7 +443,8 @@
                         },
                         {
                           "kinds": [
-                            "ASSIGNMENT_VALUE"
+                            "ASSIGNMENT_VALUE",
+                            "IDENTIFIER"
                           ],
                           "nativeNode": "IDENTIFIER",
                           "children": [
@@ -473,7 +493,9 @@
                           "nativeNode": "MEMBER_SELECT",
                           "children": [
                             {
-                              "kinds": [],
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
                                 {
@@ -499,7 +521,9 @@
                               "children": []
                             },
                             {
-                              "kinds": [],
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
                                 {
@@ -533,7 +557,9 @@
                           "nativeNode": "MEMBER_SELECT",
                           "children": [
                             {
-                              "kinds": [],
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
                                 {
@@ -559,7 +585,9 @@
                               "children": []
                             },
                             {
-                              "kinds": [],
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
                                 {
@@ -609,7 +637,9 @@
                           "nativeNode": "MEMBER_SELECT",
                           "children": [
                             {
-                              "kinds": [],
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
                                 {
@@ -635,7 +665,9 @@
                               "children": []
                             },
                             {
-                              "kinds": [],
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
                                 {
@@ -664,7 +696,8 @@
                         },
                         {
                           "kinds": [
-                            "ASSIGNMENT_VALUE"
+                            "ASSIGNMENT_VALUE",
+                            "IDENTIFIER"
                           ],
                           "nativeNode": "IDENTIFIER",
                           "children": [
@@ -713,7 +746,9 @@
                           "nativeNode": "ARRAY_ACCESS_EXPRESSION",
                           "children": [
                             {
-                              "kinds": [],
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
                                 {
@@ -789,7 +824,9 @@
                           "nativeNode": "ARRAY_ACCESS_EXPRESSION",
                           "children": [
                             {
-                              "kinds": [],
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
                                 {
@@ -876,7 +913,8 @@
                       "children": [
                         {
                           "kinds": [
-                            "ASSIGNMENT_TARGET"
+                            "ASSIGNMENT_TARGET",
+                            "IDENTIFIER"
                           ],
                           "nativeNode": "IDENTIFIER",
                           "children": [
@@ -911,7 +949,8 @@
                           "children": [
                             {
                               "kinds": [
-                                "ASSIGNMENT_TARGET"
+                                "ASSIGNMENT_TARGET",
+                                "IDENTIFIER"
                               ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
@@ -939,7 +978,8 @@
                             },
                             {
                               "kinds": [
-                                "ASSIGNMENT_VALUE"
+                                "ASSIGNMENT_VALUE",
+                                "IDENTIFIER"
                               ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
@@ -990,7 +1030,9 @@
                           "nativeNode": "ARRAY_ACCESS_EXPRESSION",
                           "children": [
                             {
-                              "kinds": [],
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
                                 {
@@ -1024,7 +1066,9 @@
                                   "nativeNode": "METHOD_INVOCATION",
                                   "children": [
                                     {
-                                      "kinds": [],
+                                      "kinds": [
+                                        "IDENTIFIER"
+                                      ],
                                       "nativeNode": "IDENTIFIER",
                                       "children": [
                                         {
@@ -1098,7 +1142,9 @@
                           "nativeNode": "ARRAY_ACCESS_EXPRESSION",
                           "children": [
                             {
-                              "kinds": [],
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
                                 {
@@ -1132,7 +1178,9 @@
                                   "nativeNode": "METHOD_INVOCATION",
                                   "children": [
                                     {
-                                      "kinds": [],
+                                      "kinds": [
+                                        "IDENTIFIER"
+                                      ],
                                       "nativeNode": "IDENTIFIER",
                                       "children": [
                                         {
@@ -1240,7 +1288,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -1273,7 +1323,9 @@
               "nativeNode": "VARIABLE",
               "children": [
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -1289,7 +1341,9 @@
                   ]
                 },
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -1340,7 +1394,9 @@
                   ]
                 },
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -1403,7 +1459,9 @@
                           "nativeNode": "MEMBER_SELECT",
                           "children": [
                             {
-                              "kinds": [],
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
                                 {
@@ -1429,7 +1487,9 @@
                               "children": []
                             },
                             {
-                              "kinds": [],
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
                                 {
@@ -1463,7 +1523,9 @@
                           "nativeNode": "MEMBER_SELECT",
                           "children": [
                             {
-                              "kinds": [],
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
                                 {
@@ -1489,7 +1551,9 @@
                               "children": []
                             },
                             {
-                              "kinds": [],
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
                                 {
@@ -1539,7 +1603,9 @@
                           "nativeNode": "MEMBER_SELECT",
                           "children": [
                             {
-                              "kinds": [],
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
                                 {
@@ -1565,7 +1631,9 @@
                               "children": []
                             },
                             {
-                              "kinds": [],
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
                                 {
@@ -1594,7 +1662,8 @@
                         },
                         {
                           "kinds": [
-                            "ASSIGNMENT_VALUE"
+                            "ASSIGNMENT_VALUE",
+                            "IDENTIFIER"
                           ],
                           "nativeNode": "IDENTIFIER",
                           "children": [
@@ -1661,7 +1730,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -1801,7 +1872,9 @@
           "children": []
         },
         {
-          "kinds": [],
+          "kinds": [
+            "IDENTIFIER"
+          ],
           "nativeNode": "IDENTIFIER",
           "children": [
             {
@@ -1865,7 +1938,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -1915,7 +1990,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -1960,7 +2037,9 @@
               "children": []
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -2008,7 +2087,9 @@
                   ]
                 },
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -2079,7 +2160,9 @@
                               "nativeNode": "MEMBER_SELECT",
                               "children": [
                                 {
-                                  "kinds": [],
+                                  "kinds": [
+                                    "IDENTIFIER"
+                                  ],
                                   "nativeNode": "IDENTIFIER",
                                   "children": [
                                     {
@@ -2105,7 +2188,9 @@
                                   "children": []
                                 },
                                 {
-                                  "kinds": [],
+                                  "kinds": [
+                                    "IDENTIFIER"
+                                  ],
                                   "nativeNode": "IDENTIFIER",
                                   "children": [
                                     {
@@ -2134,7 +2219,8 @@
                             },
                             {
                               "kinds": [
-                                "ASSIGNMENT_VALUE"
+                                "ASSIGNMENT_VALUE",
+                                "IDENTIFIER"
                               ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
@@ -2213,7 +2299,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -2262,7 +2350,9 @@
                   ]
                 },
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -2325,7 +2415,9 @@
                           "nativeNode": "MEMBER_SELECT",
                           "children": [
                             {
-                              "kinds": [],
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
                                 {
@@ -2351,7 +2443,9 @@
                               "children": []
                             },
                             {
-                              "kinds": [],
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
                                 {
@@ -2380,7 +2474,8 @@
                         },
                         {
                           "kinds": [
-                            "ASSIGNMENT_VALUE"
+                            "ASSIGNMENT_VALUE",
+                            "IDENTIFIER"
                           ],
                           "nativeNode": "IDENTIFIER",
                           "children": [
@@ -2431,7 +2526,9 @@
           "nativeNode": "CONSTRUCTOR",
           "children": [
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -2464,7 +2561,9 @@
               "nativeNode": "VARIABLE",
               "children": [
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -2480,7 +2579,9 @@
                   ]
                 },
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -2538,7 +2639,8 @@
                       "children": [
                         {
                           "kinds": [
-                            "ASSIGNMENT_TARGET"
+                            "ASSIGNMENT_TARGET",
+                            "IDENTIFIER"
                           ],
                           "nativeNode": "IDENTIFIER",
                           "children": [
@@ -2571,7 +2673,9 @@
                           "nativeNode": "MEMBER_SELECT",
                           "children": [
                             {
-                              "kinds": [],
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
                                 {
@@ -2597,7 +2701,9 @@
                               "children": []
                             },
                             {
-                              "kinds": [],
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
                                 {

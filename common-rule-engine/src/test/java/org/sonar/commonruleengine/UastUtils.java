@@ -1,5 +1,6 @@
 package org.sonar.commonruleengine;
 
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import org.sonar.uast.Uast;
 import org.sonar.uast.UastNode;
@@ -11,6 +12,10 @@ public class UastUtils {
   }
 
   public static UastNode fromClasspath(Class<?> clazz, String resource) {
-    return Uast.from(new InputStreamReader(clazz.getResourceAsStream(resource)));
+    InputStream resourceAsStream = clazz.getResourceAsStream(resource);
+    if (resourceAsStream == null) {
+      throw new IllegalStateException("Resource " + resource + " not found on classpath.");
+    }
+    return Uast.from(new InputStreamReader(resourceAsStream));
   }
 }

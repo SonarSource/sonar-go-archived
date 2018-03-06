@@ -22,7 +22,9 @@
           "children": []
         },
         {
-          "kinds": [],
+          "kinds": [
+            "IDENTIFIER"
+          ],
           "nativeNode": "IDENTIFIER",
           "children": [
             {
@@ -54,7 +56,9 @@
           "nativeNode": "CONSTRUCTOR",
           "children": [
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -103,7 +107,9 @@
                   ]
                 },
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -154,7 +160,9 @@
                   ]
                 },
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -205,7 +213,9 @@
                   ]
                 },
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -256,7 +266,9 @@
                   ]
                 },
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -307,7 +319,9 @@
                   ]
                 },
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -358,7 +372,9 @@
                   ]
                 },
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -409,7 +425,9 @@
                   ]
                 },
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -460,7 +478,9 @@
                   ]
                 },
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -541,7 +561,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -590,7 +612,9 @@
                   ]
                 },
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -641,7 +665,9 @@
                   ]
                 },
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -692,7 +718,9 @@
                   ]
                 },
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -743,7 +771,9 @@
                   ]
                 },
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -824,7 +854,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "IDENTIFIER"
+              ],
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
@@ -873,7 +905,9 @@
                   ]
                 },
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -924,7 +958,9 @@
                   ]
                 },
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
@@ -975,7 +1011,9 @@
                   ]
                 },
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
                   "nativeNode": "IDENTIFIER",
                   "children": [
                     {
