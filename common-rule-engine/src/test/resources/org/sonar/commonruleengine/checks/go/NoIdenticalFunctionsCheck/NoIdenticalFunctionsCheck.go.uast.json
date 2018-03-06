@@ -40,8 +40,7 @@
             },
             {
               "kinds": [
-                "BLOCK",
-                "STATEMENT"
+                "BLOCK"
               ],
               "nativeNode": "*ast.BlockStmt",
               "children": [
@@ -228,8 +227,7 @@
             },
             {
               "kinds": [
-                "BLOCK",
-                "STATEMENT"
+                "BLOCK"
               ],
               "nativeNode": "*ast.BlockStmt",
               "children": [
@@ -416,8 +414,7 @@
             },
             {
               "kinds": [
-                "BLOCK",
-                "STATEMENT"
+                "BLOCK"
               ],
               "nativeNode": "*ast.BlockStmt",
               "children": [
@@ -614,8 +611,7 @@
             },
             {
               "kinds": [
-                "BLOCK",
-                "STATEMENT"
+                "BLOCK"
               ],
               "nativeNode": "*ast.BlockStmt",
               "children": [
