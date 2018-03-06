@@ -49,6 +49,9 @@ public final class UastNode {
     public final int endColumn;
 
     public Token(int line, int column, String value) {
+      if (line < 1 || column < 1) {
+        throw new IllegalArgumentException("Invalid token location " + line + ":" + column);
+      }
       this.line = line;
       this.column = column;
       this.value = value;

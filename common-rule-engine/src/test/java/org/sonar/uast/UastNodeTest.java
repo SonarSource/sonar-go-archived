@@ -3,8 +3,17 @@ package org.sonar.uast;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class UastNodeTest {
+
+  @Test
+  void invalid_token_position() {
+    assertEquals("Invalid token location 0:0",
+      assertThrows(IllegalArgumentException.class,
+        () -> new UastNode.Token(0, 0, "token"))
+          .getMessage());
+  }
 
   @Test
   void token_position() {

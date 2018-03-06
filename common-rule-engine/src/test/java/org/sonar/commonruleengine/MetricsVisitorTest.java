@@ -50,6 +50,17 @@ class MetricsVisitorTest {
   }
 
   @Test
+  void node_with_several_kinds() {
+    Metrics metrics = getMetrics("{children:[" +
+      "  {kinds:[ 'STATEMENT', 'FUNCTION' ]}," +
+      "  {kinds:[ 'STATEMENT', 'CLASS' ]}" +
+      "]}");
+    assertEquals(2, metrics.numberOfStatements);
+    assertEquals(1, metrics.numberOfFunctions);
+    assertEquals(1, metrics.numberOfClasses);
+  }
+
+  @Test
   void number_of_lines_of_code_and_comments() {
     Metrics metrics = getMetrics("{children:[" +
       "  {kinds:[ 'STATEMENT' ], token: {line: 1, column: 2, value: 'a'}}," +
