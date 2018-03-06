@@ -1,0 +1,731 @@
+{
+  "kinds": [
+    "COMPILATION_UNIT"
+  ],
+  "token": {
+    "value": "main",
+    "line": 1,
+    "column": 1
+  },
+  "nativeNode": "*ast.File",
+  "children": [
+    {
+      "kinds": [
+        "DECL_LIST"
+      ],
+      "nativeNode": "[]ast.Decl",
+      "children": [
+        {
+          "kinds": [
+            "FUNCTION"
+          ],
+          "nativeNode": "*ast.FuncDecl",
+          "children": [
+            {
+              "kinds": [
+                "IDENTIFIER"
+              ],
+              "token": {
+                "value": "nonCompliantFun1",
+                "line": 3,
+                "column": 6
+              },
+              "nativeNode": "*ast.Ident"
+            },
+            {
+              "kinds": [
+                "*ast.FuncType"
+              ],
+              "nativeNode": "*ast.FuncType",
+              "children": [
+                {
+                  "kinds": [
+                    "PARAMETER_LIST"
+                  ],
+                  "nativeNode": "*ast.FieldList",
+                  "children": [
+                    {
+                      "kinds": [
+                        "FIELD"
+                      ],
+                      "nativeNode": "*ast.Field",
+                      "children": [
+                        {
+                          "kinds": [
+                            "[]*ast.Ident"
+                          ],
+                          "nativeNode": "[]ast.Ident",
+                          "children": [
+                            {
+                              "kinds": [
+                                "IDENTIFIER",
+                                "PARAMETER"
+                              ],
+                              "token": {
+                                "value": "p1",
+                                "line": 3,
+                                "column": 23
+                              },
+                              "nativeNode": "*ast.Ident"
+                            },
+                            {
+                              "kinds": [
+                                "IDENTIFIER",
+                                "PARAMETER"
+                              ],
+                              "token": {
+                                "value": "p2",
+                                "line": 3,
+                                "column": 27
+                              },
+                              "nativeNode": "*ast.Ident"
+                            },
+                            {
+                              "kinds": [
+                                "IDENTIFIER",
+                                "PARAMETER"
+                              ],
+                              "token": {
+                                "value": "p3",
+                                "line": 3,
+                                "column": 31
+                              },
+                              "nativeNode": "*ast.Ident"
+                            },
+                            {
+                              "kinds": [
+                                "IDENTIFIER",
+                                "PARAMETER"
+                              ],
+                              "token": {
+                                "value": "p4",
+                                "line": 3,
+                                "column": 35
+                              },
+                              "nativeNode": "*ast.Ident"
+                            },
+                            {
+                              "kinds": [
+                                "IDENTIFIER",
+                                "PARAMETER"
+                              ],
+                              "token": {
+                                "value": "p5",
+                                "line": 3,
+                                "column": 39
+                              },
+                              "nativeNode": "*ast.Ident"
+                            },
+                            {
+                              "kinds": [
+                                "IDENTIFIER",
+                                "PARAMETER"
+                              ],
+                              "token": {
+                                "value": "p6",
+                                "line": 3,
+                                "column": 43
+                              },
+                              "nativeNode": "*ast.Ident"
+                            },
+                            {
+                              "kinds": [
+                                "IDENTIFIER",
+                                "PARAMETER"
+                              ],
+                              "token": {
+                                "value": "p7",
+                                "line": 3,
+                                "column": 47
+                              },
+                              "nativeNode": "*ast.Ident"
+                            },
+                            {
+                              "kinds": [
+                                "IDENTIFIER",
+                                "PARAMETER"
+                              ],
+                              "token": {
+                                "value": "p8",
+                                "line": 3,
+                                "column": 51
+                              },
+                              "nativeNode": "*ast.Ident"
+                            }
+                          ]
+                        },
+                        {
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
+                          "token": {
+                            "value": "int",
+                            "line": 3,
+                            "column": 54
+                          },
+                          "nativeNode": "*ast.Ident"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kinds": [
+                    "RESULT_LIST"
+                  ],
+                  "nativeNode": "*ast.FieldList"
+                }
+              ]
+            },
+            {
+              "kinds": [
+                "BLOCK"
+              ],
+              "nativeNode": "*ast.BlockStmt"
+            }
+          ]
+        },
+        {
+          "kinds": [
+            "FUNCTION"
+          ],
+          "nativeNode": "*ast.FuncDecl",
+          "children": [
+            {
+              "kinds": [
+                "IDENTIFIER"
+              ],
+              "token": {
+                "value": "nonCompliantFun2",
+                "line": 6,
+                "column": 6
+              },
+              "nativeNode": "*ast.Ident"
+            },
+            {
+              "kinds": [
+                "*ast.FuncType"
+              ],
+              "nativeNode": "*ast.FuncType",
+              "children": [
+                {
+                  "kinds": [
+                    "PARAMETER_LIST"
+                  ],
+                  "nativeNode": "*ast.FieldList",
+                  "children": [
+                    {
+                      "kinds": [
+                        "FIELD"
+                      ],
+                      "nativeNode": "*ast.Field",
+                      "children": [
+                        {
+                          "kinds": [
+                            "[]*ast.Ident"
+                          ],
+                          "nativeNode": "[]ast.Ident",
+                          "children": [
+                            {
+                              "kinds": [
+                                "IDENTIFIER",
+                                "PARAMETER"
+                              ],
+                              "token": {
+                                "value": "p1",
+                                "line": 6,
+                                "column": 23
+                              },
+                              "nativeNode": "*ast.Ident"
+                            },
+                            {
+                              "kinds": [
+                                "IDENTIFIER",
+                                "PARAMETER"
+                              ],
+                              "token": {
+                                "value": "p2",
+                                "line": 6,
+                                "column": 27
+                              },
+                              "nativeNode": "*ast.Ident"
+                            },
+                            {
+                              "kinds": [
+                                "IDENTIFIER",
+                                "PARAMETER"
+                              ],
+                              "token": {
+                                "value": "p3",
+                                "line": 6,
+                                "column": 31
+                              },
+                              "nativeNode": "*ast.Ident"
+                            },
+                            {
+                              "kinds": [
+                                "IDENTIFIER",
+                                "PARAMETER"
+                              ],
+                              "token": {
+                                "value": "p4",
+                                "line": 6,
+                                "column": 35
+                              },
+                              "nativeNode": "*ast.Ident"
+                            }
+                          ]
+                        },
+                        {
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
+                          "token": {
+                            "value": "int",
+                            "line": 6,
+                            "column": 38
+                          },
+                          "nativeNode": "*ast.Ident"
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [
+                        "FIELD"
+                      ],
+                      "nativeNode": "*ast.Field",
+                      "children": [
+                        {
+                          "kinds": [
+                            "[]*ast.Ident"
+                          ],
+                          "nativeNode": "[]ast.Ident",
+                          "children": [
+                            {
+                              "kinds": [
+                                "IDENTIFIER",
+                                "PARAMETER"
+                              ],
+                              "token": {
+                                "value": "p5",
+                                "line": 6,
+                                "column": 43
+                              },
+                              "nativeNode": "*ast.Ident"
+                            },
+                            {
+                              "kinds": [
+                                "IDENTIFIER",
+                                "PARAMETER"
+                              ],
+                              "token": {
+                                "value": "p6",
+                                "line": 6,
+                                "column": 47
+                              },
+                              "nativeNode": "*ast.Ident"
+                            },
+                            {
+                              "kinds": [
+                                "IDENTIFIER",
+                                "PARAMETER"
+                              ],
+                              "token": {
+                                "value": "p7",
+                                "line": 6,
+                                "column": 51
+                              },
+                              "nativeNode": "*ast.Ident"
+                            },
+                            {
+                              "kinds": [
+                                "IDENTIFIER",
+                                "PARAMETER"
+                              ],
+                              "token": {
+                                "value": "p8",
+                                "line": 6,
+                                "column": 55
+                              },
+                              "nativeNode": "*ast.Ident"
+                            }
+                          ]
+                        },
+                        {
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
+                          "token": {
+                            "value": "string",
+                            "line": 6,
+                            "column": 58
+                          },
+                          "nativeNode": "*ast.Ident"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kinds": [
+                    "RESULT_LIST"
+                  ],
+                  "nativeNode": "*ast.FieldList"
+                }
+              ]
+            },
+            {
+              "kinds": [
+                "BLOCK"
+              ],
+              "nativeNode": "*ast.BlockStmt"
+            }
+          ]
+        },
+        {
+          "kinds": [
+            "FUNCTION"
+          ],
+          "nativeNode": "*ast.FuncDecl",
+          "children": [
+            {
+              "kinds": [
+                "IDENTIFIER"
+              ],
+              "token": {
+                "value": "compliantFun1",
+                "line": 9,
+                "column": 6
+              },
+              "nativeNode": "*ast.Ident"
+            },
+            {
+              "kinds": [
+                "*ast.FuncType"
+              ],
+              "nativeNode": "*ast.FuncType",
+              "children": [
+                {
+                  "kinds": [
+                    "PARAMETER_LIST"
+                  ],
+                  "nativeNode": "*ast.FieldList",
+                  "children": [
+                    {
+                      "kinds": [
+                        "FIELD"
+                      ],
+                      "nativeNode": "*ast.Field",
+                      "children": [
+                        {
+                          "kinds": [
+                            "[]*ast.Ident"
+                          ],
+                          "nativeNode": "[]ast.Ident",
+                          "children": [
+                            {
+                              "kinds": [
+                                "IDENTIFIER",
+                                "PARAMETER"
+                              ],
+                              "token": {
+                                "value": "p1",
+                                "line": 9,
+                                "column": 20
+                              },
+                              "nativeNode": "*ast.Ident"
+                            },
+                            {
+                              "kinds": [
+                                "IDENTIFIER",
+                                "PARAMETER"
+                              ],
+                              "token": {
+                                "value": "p2",
+                                "line": 9,
+                                "column": 24
+                              },
+                              "nativeNode": "*ast.Ident"
+                            },
+                            {
+                              "kinds": [
+                                "IDENTIFIER",
+                                "PARAMETER"
+                              ],
+                              "token": {
+                                "value": "p3",
+                                "line": 9,
+                                "column": 28
+                              },
+                              "nativeNode": "*ast.Ident"
+                            },
+                            {
+                              "kinds": [
+                                "IDENTIFIER",
+                                "PARAMETER"
+                              ],
+                              "token": {
+                                "value": "p4",
+                                "line": 9,
+                                "column": 32
+                              },
+                              "nativeNode": "*ast.Ident"
+                            },
+                            {
+                              "kinds": [
+                                "IDENTIFIER",
+                                "PARAMETER"
+                              ],
+                              "token": {
+                                "value": "p5",
+                                "line": 9,
+                                "column": 36
+                              },
+                              "nativeNode": "*ast.Ident"
+                            },
+                            {
+                              "kinds": [
+                                "IDENTIFIER",
+                                "PARAMETER"
+                              ],
+                              "token": {
+                                "value": "p6",
+                                "line": 9,
+                                "column": 40
+                              },
+                              "nativeNode": "*ast.Ident"
+                            },
+                            {
+                              "kinds": [
+                                "IDENTIFIER",
+                                "PARAMETER"
+                              ],
+                              "token": {
+                                "value": "p7",
+                                "line": 9,
+                                "column": 44
+                              },
+                              "nativeNode": "*ast.Ident"
+                            }
+                          ]
+                        },
+                        {
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
+                          "token": {
+                            "value": "int",
+                            "line": 9,
+                            "column": 47
+                          },
+                          "nativeNode": "*ast.Ident"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kinds": [
+                    "RESULT_LIST"
+                  ],
+                  "nativeNode": "*ast.FieldList"
+                }
+              ]
+            },
+            {
+              "kinds": [
+                "BLOCK"
+              ],
+              "nativeNode": "*ast.BlockStmt"
+            }
+          ]
+        },
+        {
+          "kinds": [
+            "FUNCTION"
+          ],
+          "nativeNode": "*ast.FuncDecl",
+          "children": [
+            {
+              "kinds": [
+                "IDENTIFIER"
+              ],
+              "token": {
+                "value": "compliantFun2",
+                "line": 12,
+                "column": 6
+              },
+              "nativeNode": "*ast.Ident"
+            },
+            {
+              "kinds": [
+                "*ast.FuncType"
+              ],
+              "nativeNode": "*ast.FuncType",
+              "children": [
+                {
+                  "kinds": [
+                    "PARAMETER_LIST"
+                  ],
+                  "nativeNode": "*ast.FieldList",
+                  "children": [
+                    {
+                      "kinds": [
+                        "FIELD"
+                      ],
+                      "nativeNode": "*ast.Field",
+                      "children": [
+                        {
+                          "kinds": [
+                            "[]*ast.Ident"
+                          ],
+                          "nativeNode": "[]ast.Ident",
+                          "children": [
+                            {
+                              "kinds": [
+                                "IDENTIFIER",
+                                "PARAMETER"
+                              ],
+                              "token": {
+                                "value": "p1",
+                                "line": 12,
+                                "column": 20
+                              },
+                              "nativeNode": "*ast.Ident"
+                            },
+                            {
+                              "kinds": [
+                                "IDENTIFIER",
+                                "PARAMETER"
+                              ],
+                              "token": {
+                                "value": "p2",
+                                "line": 12,
+                                "column": 24
+                              },
+                              "nativeNode": "*ast.Ident"
+                            },
+                            {
+                              "kinds": [
+                                "IDENTIFIER",
+                                "PARAMETER"
+                              ],
+                              "token": {
+                                "value": "p3",
+                                "line": 12,
+                                "column": 28
+                              },
+                              "nativeNode": "*ast.Ident"
+                            },
+                            {
+                              "kinds": [
+                                "IDENTIFIER",
+                                "PARAMETER"
+                              ],
+                              "token": {
+                                "value": "p4",
+                                "line": 12,
+                                "column": 32
+                              },
+                              "nativeNode": "*ast.Ident"
+                            }
+                          ]
+                        },
+                        {
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
+                          "token": {
+                            "value": "int",
+                            "line": 12,
+                            "column": 35
+                          },
+                          "nativeNode": "*ast.Ident"
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [
+                        "FIELD"
+                      ],
+                      "nativeNode": "*ast.Field",
+                      "children": [
+                        {
+                          "kinds": [
+                            "[]*ast.Ident"
+                          ],
+                          "nativeNode": "[]ast.Ident",
+                          "children": [
+                            {
+                              "kinds": [
+                                "IDENTIFIER",
+                                "PARAMETER"
+                              ],
+                              "token": {
+                                "value": "p5",
+                                "line": 12,
+                                "column": 40
+                              },
+                              "nativeNode": "*ast.Ident"
+                            },
+                            {
+                              "kinds": [
+                                "IDENTIFIER",
+                                "PARAMETER"
+                              ],
+                              "token": {
+                                "value": "p6",
+                                "line": 12,
+                                "column": 44
+                              },
+                              "nativeNode": "*ast.Ident"
+                            },
+                            {
+                              "kinds": [
+                                "IDENTIFIER",
+                                "PARAMETER"
+                              ],
+                              "token": {
+                                "value": "p7",
+                                "line": 12,
+                                "column": 48
+                              },
+                              "nativeNode": "*ast.Ident"
+                            }
+                          ]
+                        },
+                        {
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
+                          "token": {
+                            "value": "string",
+                            "line": 12,
+                            "column": 51
+                          },
+                          "nativeNode": "*ast.Ident"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kinds": [
+                    "RESULT_LIST"
+                  ],
+                  "nativeNode": "*ast.FieldList"
+                }
+              ]
+            },
+            {
+              "kinds": [
+                "BLOCK"
+              ],
+              "nativeNode": "*ast.BlockStmt"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
