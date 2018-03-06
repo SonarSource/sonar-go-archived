@@ -13,7 +13,7 @@ class LiteralLikeTest {
 
   @Test
   void test() {
-    UastNode literal = Uast.from(new StringReader("{ \"kinds\": [\"LITERAL\"], \"token\": {\"value\": \"foo\" } }"));
+    UastNode literal = Uast.from(new StringReader("{ \"kinds\": [\"LITERAL\"], \"token\": {\"value\": \"foo\" , \"line\": 1, \"column\": 1} }"));
     LiteralLike literalLike = LiteralLike.from(literal);
     assertThat(literalLike).isNotNull();
     assertThat(literalLike.value()).isEqualTo("foo");
@@ -28,7 +28,7 @@ class LiteralLikeTest {
   void literal_nested_as_only_child() {
     UastNode literal = Uast.from(new StringReader(
       "{ \"kinds\": [], " +
-        "\"children\": [{ \"kinds\": [\"LITERAL\"], \"token\": {\"value\": \"foo\" } }]" +
+        "\"children\": [{ \"kinds\": [\"LITERAL\"], \"token\": {\"value\": \"foo\" , \"line\": 1, \"column\": 1 } }]" +
         "}"));
 
     LiteralLike literalLike = LiteralLike.from(literal);
@@ -41,8 +41,8 @@ class LiteralLikeTest {
     UastNode literal = Uast.from(new StringReader(
       "{ \"kinds\": [], " +
         "\"children\": [" +
-          "{ \"kinds\": [\"LITERAL\"], \"token\": {\"value\": \"foo\" } }," +
-          "{ \"kinds\": [\"LITERAL\"], \"token\": {\"value\": \"bar\" } }" +
+        "{ \"kinds\": [\"LITERAL\"], \"token\": {\"value\": \"foo\"  , \"line\": 1, \"column\": 1} }," +
+        "{ \"kinds\": [\"LITERAL\"], \"token\": {\"value\": \"bar\" , \"line\": 1, \"column\": 1 } }" +
         "]" +
         "}"));
 
