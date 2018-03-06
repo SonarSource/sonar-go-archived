@@ -1,9 +1,9 @@
 package org.sonar.uast;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -113,17 +113,11 @@ public final class UastNode {
       .collect(Collectors.toList());
   }
 
-  public List<UastNode> getChildrenRecursively(Kind kind) {
-    List<UastNode> matches = new ArrayList<>();
-    getChildrenRecursively(kind, matches);
-    return matches;
-  }
-
-  private void getChildrenRecursively(Kind kind, List<UastNode> matches) {
+  public void getDescendants(Kind kind, Consumer<UastNode> consumer) {
     if (kinds.contains(kind)) {
-      matches.add(this);
+      consumer.accept(this);
     }
-    children.forEach(child -> child.getChildrenRecursively(kind, matches));
+    children.forEach(child -> child.getDescendants(kind, consumer));
   }
 
   public UastNode firstToken() {

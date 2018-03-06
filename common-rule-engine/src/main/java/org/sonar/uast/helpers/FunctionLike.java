@@ -32,6 +32,12 @@ public class FunctionLike {
   }
 
   public List<UastNode> parameters() {
-    return node.getChildren(UastNode.Kind.PARAMETER);
+    List<UastNode> parameters = node.getChildren(UastNode.Kind.PARAMETER);
+    if (parameters.isEmpty()) {
+      node.children.stream()
+        .filter(child -> !child.kinds.contains(UastNode.Kind.BLOCK))
+        .forEach(child -> child.getDescendants(UastNode.Kind.PARAMETER, parameters::add));
+    }
+    return parameters;
   }
 }
