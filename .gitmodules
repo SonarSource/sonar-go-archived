@@ -1,0 +1,3 @@
+[submodule "go-ruling/src/test/resources/go/sources"]
+	path = go-ruling/src/test/resources/go/sources
+	url = https://github.com/SonarSource/go-test-sources.git
