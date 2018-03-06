@@ -125,18 +125,18 @@ public final class UastNode {
     return null;
   }
 
-  public String tokenize() {
+  public String joinTokens() {
     StringBuilder sb = new StringBuilder();
-    tokenize(sb);
+    joinTokens(sb);
     return sb.toString();
   }
 
-  private void tokenize(StringBuilder sb) {
+  private void joinTokens(StringBuilder sb) {
     if (token != null) {
       sb.append(token.value);
     }
     for (UastNode child : children) {
-      child.tokenize(sb);
+      child.joinTokens(sb);
     }
   }
 

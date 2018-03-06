@@ -25,7 +25,7 @@ public class LiteralLike {
   }
 
   public String value() {
-    return node.tokenize();
+    return node.joinTokens();
   }
 
 }

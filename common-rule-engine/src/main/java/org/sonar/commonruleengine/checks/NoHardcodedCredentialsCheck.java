@@ -37,9 +37,9 @@ public class NoHardcodedCredentialsCheck extends Check {
   public void initialize(EngineContext context) {
     super.initialize(context);
     String[] words = credentialWords.toLowerCase().split(",");
-    String pattern = Arrays.stream(words).collect(Collectors.joining("|"));
+    String pattern = Arrays.stream(words).map(Pattern::quote).collect(Collectors.joining("|"));
     targetPattern = Pattern.compile(pattern, Pattern.CASE_INSENSITIVE);
-    pattern = Arrays.stream(words).map(w -> w + "=[^\\s\"]").collect(Collectors.joining("|"));
+    pattern = Arrays.stream(words).map(Pattern::quote).map(w -> w + "=[^\\s\"]").collect(Collectors.joining("|"));
     valuePattern = Pattern.compile(pattern, Pattern.CASE_INSENSITIVE);
   }
 
@@ -56,7 +56,7 @@ public class NoHardcodedCredentialsCheck extends Check {
   }
 
   private void testPattern(UastNode node, Pattern pattern) {
-    String nodeValue = node.tokenize();
+    String nodeValue = node.joinTokens();
     Matcher matcher = pattern.matcher(nodeValue);
     if (matcher.find()) {
       reportIssue(node, String.format(MESSAGE, matcher.group(0)));

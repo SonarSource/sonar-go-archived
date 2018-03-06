@@ -37,12 +37,12 @@ class UastNodeTest {
   @Test
   void tokenize() {
     UastNode node = Uast.from(new StringReader("{ token: { line: 12, column: 34, value: 'foo' } }"));
-    assertThat(node.tokenize()).isEqualTo("foo");
+    assertThat(node.joinTokens()).isEqualTo("foo");
   }
 
   @Test
   void tokenize2() {
     UastNode uastNode = Uast.from(new InputStreamReader(UastNodeTest.class.getResourceAsStream("/reference.java.uast.json")));
-    assertThat(uastNode.tokenize()).isEqualTo("classA{voidfoo(){System.out.println(\"yolo\");}}");
+    assertThat(uastNode.joinTokens()).isEqualTo("classA{voidfoo(){System.out.println(\"yolo\");}}");
   }
 }
