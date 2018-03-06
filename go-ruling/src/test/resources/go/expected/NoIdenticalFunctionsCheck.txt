@@ -1,0 +1,3 @@
+sources/kubernetes/pkg/api/v1/defaults.go: 45:6
+sources/kubernetes/staging/src/k8s.io/apimachinery/pkg/apis/meta/v1/unstructured/unstructured.go: 564:28
+sources/kubernetes/staging/src/k8s.io/client-go/pkg/api/v1/defaults.go: 45:6

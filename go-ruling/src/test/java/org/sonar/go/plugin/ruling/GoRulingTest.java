@@ -1,8 +1,11 @@
 package org.sonar.go.plugin.ruling;
 
+import com.google.common.io.CharStreams;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.StringReader;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -126,7 +129,11 @@ class GoRulingTest {
     builder.redirectErrorStream(true);
     Process process = builder.start();
     try (InputStream inputStream = process.getInputStream()) {
-      return Uast.from(new InputStreamReader(inputStream));
+      String jsonOrError = CharStreams.toString(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
+      if (!jsonOrError.startsWith("{")) {
+        throw new IllegalArgumentException("Invalid file " + path + " :\n" + jsonOrError);
+      }
+      return Uast.from(new StringReader(jsonOrError));
     }
   }
 
