@@ -28,7 +28,12 @@ func main() {
 		a, b = b, a
     }
 }
-func forward_declaration() int64
+`
+	example_with_complete_function = `package main
+type id int
+func (a id) fun(n1, n2 int, s1 string, b1 bool) (n int, s string) {
+	return 1, "x"
+}
 `
 )
 
@@ -57,25 +62,16 @@ func Test_mapFuncDecl(t *testing.T) {
 }
 
 func Test_mapFuncDecl_forward_declaration(t *testing.T) {
-	funcDecl := astFile.Decls[2].(*ast.FuncDecl)
+	example_with_forward_declaration := "package main\nfunc forward_declaration() int64"
+	fileSet, astFile := astFromString(example_with_forward_declaration)
+	funcDecl := astFile.Decls[0].(*ast.FuncDecl)
 	uast := mapNode(funcDecl)
 	fixPositions(uast, fileSet)
 
-	if expected := kinds(FUNCTION); !reflect.DeepEqual(expected, uast.Kinds) {
-		t.Fatalf("got %v as Kinds; expected %v", uast.Kinds, expected)
-	}
-
-	if expected := 1; expected != len(uast.Children) {
-		t.Fatalf("got %v as number of Children; expected %v", len(uast.Children), expected)
-	}
-
-	if uast.Token != nil {
-		t.Fatalf("got %v as Token; expected nil", uast.Token)
-	}
-
-	if expected := "*ast.FuncDecl"; expected != uast.NativeNode {
-		t.Fatalf("got %v as NativeValue; expected %v", uast.NativeNode, expected)
-	}
+	expectKinds(t, uast, kinds(FUNCTION))
+	expectChildrenCount(t, uast, 2)
+	expectNativeNode(t, uast, "*ast.FuncDecl")
+	expectToken(t, uast, nil)
 }
 
 func Test_mapFuncDecl_Name(t *testing.T) {
@@ -88,6 +84,91 @@ func Test_mapFuncDecl_Name(t *testing.T) {
 	expectChildrenCount(t, uast, 0)
 	expectNativeNode(t, uast, "*ast.Ident")
 	expectToken(t, uast, &Token{Line: 3, Column: 6, Value: "main"})
+}
+
+func Test_mapFuncDecl_complete(t *testing.T) {
+	fileSet, astFile := astFromString(example_with_complete_function)
+	funcDecl := astFile.Decls[1].(*ast.FuncDecl)
+	uast := mapNode(funcDecl)
+	fixPositions(uast, fileSet)
+
+	expectKinds(t, uast, kinds(FUNCTION))
+	expectChildrenCount(t, uast, 3)
+	expectNativeNode(t, uast, "*ast.FuncDecl")
+
+	expectKinds(t, uast.Children[0], kinds(IDENTIFIER))
+	expectKinds(t, uast.Children[2], kinds(BLOCK))
+
+	funcType := uast.Children[1]
+	expectKinds(t, funcType, kinds(kind(&ast.FuncType{})))
+	expectChildrenCount(t, funcType, 2)
+
+	params := funcType.Children[0]
+	expectKinds(t, params, kinds(PARAMETER_LIST))
+	expectChildrenCount(t, params, 3)
+	expectNativeNode(t, params, "*ast.FieldList")
+
+	intParams := params.Children[0]
+	expectKinds(t, intParams, kinds(FIELD))
+	expectChildrenCount(t, intParams, 2)
+	expectNativeNode(t, intParams, "*ast.Field")
+
+	intParamsNames := intParams.Children[0]
+	expectChildrenCount(t, intParamsNames, 2)
+	expectNativeNode(t, intParamsNames, "[]ast.Ident")
+
+	n1 := intParamsNames.Children[0]
+	expectChildrenCount(t, n1, 0)
+	expectKinds(t, n1, kinds(IDENTIFIER, PARAMETER))
+	expectToken(t, n1, &Token{Line: 3, Column: 17, Value: "n1"})
+
+	intParamsType := intParams.Children[1]
+	expectKinds(t, intParamsType, kinds(IDENTIFIER))
+	expectChildrenCount(t, intParamsType, 0)
+	expectNativeNode(t, intParamsType, "*ast.Ident")
+
+	stringParams := params.Children[1]
+	expectKinds(t, stringParams, kinds(FIELD))
+	expectChildrenCount(t, stringParams, 2)
+	expectNativeNode(t, stringParams, "*ast.Field")
+
+	stringParamsNames := stringParams.Children[0]
+	expectChildrenCount(t, stringParamsNames, 1)
+	expectNativeNode(t, stringParamsNames, "[]ast.Ident")
+
+	s1 := stringParamsNames.Children[0]
+	expectChildrenCount(t, s1, 0)
+	expectKinds(t, s1, kinds(IDENTIFIER, PARAMETER))
+	expectToken(t, s1, &Token{Line: 3, Column: 29, Value: "s1"})
+
+	stringParamsType := stringParams.Children[1]
+	expectKinds(t, stringParamsType, kinds(IDENTIFIER))
+	expectChildrenCount(t, stringParamsType, 0)
+	expectNativeNode(t, stringParamsType, "*ast.Ident")
+
+	results := funcType.Children[1]
+	expectKinds(t, results, kinds(RESULT_LIST))
+	expectChildrenCount(t, results, 2)
+	expectNativeNode(t, results, "*ast.FieldList")
+
+	intResults := results.Children[0]
+	expectKinds(t, intResults, kinds(FIELD))
+	expectChildrenCount(t, intResults, 2)
+	expectNativeNode(t, intResults, "*ast.Field")
+
+	intResultsNames := intResults.Children[0]
+	expectChildrenCount(t, intResultsNames, 1)
+	expectNativeNode(t, intResultsNames, "[]ast.Ident")
+
+	n := intResultsNames.Children[0]
+	expectChildrenCount(t, n, 0)
+	expectKinds(t, n, kinds(IDENTIFIER, RESULT))
+	expectToken(t, n, &Token{Line: 3, Column: 50, Value: "n"})
+
+	intResultsType := intResults.Children[1]
+	expectKinds(t, intResultsType, kinds(IDENTIFIER))
+	expectChildrenCount(t, intResultsType, 0)
+	expectNativeNode(t, intResultsType, "*ast.Ident")
 }
 
 func Test_mapBlockStmt(t *testing.T) {
@@ -237,9 +318,9 @@ func expectToken(t *testing.T, actual *Node, expected *Token) {
 
 	// copy only fields we want to compare
 	tok := &Token{
-		Line: actual.Token.Line,
+		Line:   actual.Token.Line,
 		Column: actual.Token.Column,
-		Value: actual.Token.Value,
+		Value:  actual.Token.Value,
 	}
 	if !reflect.DeepEqual(expected, tok) {
 		t.Fatalf("got %v; expected %v", tok, expected)
