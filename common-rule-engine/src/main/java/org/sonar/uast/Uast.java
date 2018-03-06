@@ -64,6 +64,9 @@ public final class Uast {
     if (node1.children.size() != node2.children.size()) {
       return false;
     }
+    if (node1.kinds.contains(UastNode.Kind.UNSUPPORTED) || node2.kinds.contains(UastNode.Kind.UNSUPPORTED)) {
+      return false;
+    }
     Iterator<UastNode> child1 = node1.children.iterator();
     Iterator<UastNode> child2 = node2.children.iterator();
     while (child1.hasNext()) {

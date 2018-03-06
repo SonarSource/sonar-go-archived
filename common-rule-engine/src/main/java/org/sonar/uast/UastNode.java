@@ -51,6 +51,7 @@ public final class UastNode {
     IDENTIFIER,
     PARAMETER,
     STATEMENT,
+    UNSUPPORTED,
     EOF
     ;
 

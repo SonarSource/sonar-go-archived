@@ -69,4 +69,11 @@ class UastTest {
     assertEquals(Collections.emptyList(), node.children, message);
   }
 
+  @Test
+  void syntactically_equivalent_of_unsupported_node() {
+    UastNode node1 = Uast.from(new StringReader("{ children: [ { kinds: [ 'UNSUPPORTED' ] } ] }"));
+    UastNode node2 = Uast.from(new StringReader("{ children: [ { kinds: [ 'UNSUPPORTED' ] } ] }"));
+    assertFalse(Uast.syntacticallyEquivalent(node1, node2));
+  }
+
 }
