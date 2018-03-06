@@ -43,8 +43,11 @@ public class TestUtils {
   }
 
   public static void checkRuleOnGo(Check check) throws IOException {
-    String checkName = check.getClass().getSimpleName();
-    String sourceFilename = "go/" + checkName + "/" + checkName + ".go";
+    checkRuleOnGo(check, check.getClass().getSimpleName() + ".go");
+  }
+
+  public static void checkRuleOnGo(Check check, String filename) throws IOException {
+    String sourceFilename = "go/" + check.getClass().getSimpleName() + "/" + filename;
     checkRule(check, sourceFilename);
   }
 
