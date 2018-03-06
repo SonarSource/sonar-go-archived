@@ -18,6 +18,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
 import org.sonar.commonruleengine.Engine;
 import org.sonar.commonruleengine.Issue;
 import org.sonar.commonruleengine.Metrics;
@@ -27,10 +28,11 @@ import org.sonar.uast.UastNode;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@EnabledIfEnvironmentVariable(named = "ruling", matches = "true")
 class GoRulingTest {
 
-  public static final Path GO_SOURCE_DIRECTORY = Paths.get("src", "test", "resources", "go");
-  public static final Path GO_EXPECTED_DIRECTORY = GO_SOURCE_DIRECTORY.resolve("expected");
+  public static final Path GO_SOURCE_DIRECTORY = Paths.get("src", "test", "ruling-test-sources");
+  public static final Path GO_EXPECTED_DIRECTORY = Paths.get("src","test", "resources", "go", "expected");
   public static final Path GO_ACTUAL_DIRECTORY = Paths.get("build", "tmp", "actual", "go");
 
   @Test

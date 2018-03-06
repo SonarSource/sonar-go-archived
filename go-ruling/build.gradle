@@ -14,7 +14,7 @@ repositories {
 apply plugin: 'java-library'
 apply plugin: 'org.junit.platform.gradle.plugin'
 
-ext.junitJupiterVersion  = '5.1.0'
+ext.junitJupiterVersion = '5.1.0'
 
 compileJava {
     sourceCompatibility = 1.8
@@ -22,6 +22,9 @@ compileJava {
 }
 
 junitPlatformTest.dependsOn(":uast-generator-go:build")
+
+// disable caching for ruling test
+junitPlatformTest.outputs.upToDateWhen { false }
 
 dependencies {
     implementation project(":common-rule-engine")
