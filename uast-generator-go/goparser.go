@@ -167,9 +167,13 @@ func mapDecl(decl ast.Decl) *Node {
 }
 
 func mapFuncDecl(funcDecl *ast.FuncDecl) *Node {
+	children := children(mapExpr(funcDecl.Name))
+	if funcDecl.Body != nil {
+		children = append(children, mapStmt(funcDecl.Body))
+	}
 	return &Node{
 		Kinds:      kinds(funcDecl),
-		Children:   children(mapExpr(funcDecl.Name), mapStmt(funcDecl.Body)),
+		Children:   children,
 		NativeNode: nativeNode(funcDecl),
 	}
 }

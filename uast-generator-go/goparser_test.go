@@ -21,6 +21,7 @@ func main() {
 		fmt.Println(msg)
     }
 }
+func forward_declaration() int64
 `
 	fileSet := token.NewFileSet()
 	sourceFileName := "main.go"
@@ -68,6 +69,28 @@ func Test_mapFuncDecl(t *testing.T) {
 	}
 
 	if expected := 2; expected != len(uast.Children) {
+		t.Fatalf("got %v as number of Children; expected %v", len(uast.Children), expected)
+	}
+
+	if uast.Token != nil {
+		t.Fatalf("got %v as Token; expected nil", uast.Token)
+	}
+
+	if expected := "*ast.FuncDecl"; expected != uast.NativeNode {
+		t.Fatalf("got %v as NativeValue; expected %v", uast.NativeNode, expected)
+	}
+}
+
+func Test_mapFuncDecl_forward_declaration(t *testing.T) {
+	funcDecl := astFile.Decls[2].(*ast.FuncDecl)
+	uast := mapNode(funcDecl)
+	fixPositions(uast, fileSet)
+
+	if expected := kinds(FUNCTION); !reflect.DeepEqual(expected, uast.Kinds) {
+		t.Fatalf("got %v as Kinds; expected %v", uast.Kinds, expected)
+	}
+
+	if expected := 1; expected != len(uast.Children) {
 		t.Fatalf("got %v as number of Children; expected %v", len(uast.Children), expected)
 	}
 
