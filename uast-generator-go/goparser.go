@@ -34,6 +34,11 @@ const (
 	LITERAL           Kind = "LITERAL"
 	EXPR_LIST         Kind = "EXPR_LIST"
 	EXPRESSION        Kind = "EXPRESSION"
+	PARAMETER_LIST    Kind = "PARAMETER_LIST"
+	PARAMETER         Kind = "PARAMETER"
+	FIELD             Kind = "FIELD"
+	RESULT_LIST       Kind = "RESULT_LIST"
+	RESULT            Kind = "RESULT"
 	UNSUPPORTED       Kind = "UNSUPPORTED"
 )
 
@@ -120,6 +125,18 @@ func (items DeclList) At(i int) ast.Node  { return items[i] }
 func (items DeclList) Len() int           { return len(items) }
 func (items DeclList) NativeNode() string { return nativeNode([]ast.Decl{}) }
 
+type FieldList []*ast.Field
+
+func (items FieldList) At(i int) ast.Node  { return items[i] }
+func (items FieldList) Len() int           { return len(items) }
+func (items FieldList) NativeNode() string { return nativeNode([]ast.Field{}) }
+
+type IdentList []*ast.Ident
+
+func (items IdentList) At(i int) ast.Node  { return items[i] }
+func (items IdentList) Len() int           { return len(items) }
+func (items IdentList) NativeNode() string { return nativeNode([]ast.Ident{}) }
+
 func childrenFromNodeList(nodeList NodeList) []*Node {
 	children := children()
 	for i := 0; i < nodeList.Len(); i++ {
@@ -167,7 +184,7 @@ func mapDecl(decl ast.Decl) *Node {
 }
 
 func mapFuncDecl(funcDecl *ast.FuncDecl) *Node {
-	children := children(mapExpr(funcDecl.Name))
+	children := children(mapExpr(funcDecl.Name), mapFuncType(funcDecl.Type))
 	if funcDecl.Body != nil {
 		children = append(children, mapStmt(funcDecl.Body))
 	}
@@ -176,6 +193,51 @@ func mapFuncDecl(funcDecl *ast.FuncDecl) *Node {
 		Children:   children,
 		NativeNode: nativeNode(funcDecl),
 	}
+}
+
+func mapFuncType(funcType *ast.FuncType) *Node {
+	return &Node{
+		Kinds:      kinds(kind(funcType)),
+		Children:   children(mapParamsList(funcType.Params), mapResultsList(funcType.Results)),
+		NativeNode: nativeNode(funcType),
+	}
+}
+
+func mapParamsList(fields *ast.FieldList) *Node {
+	return mapFieldList(PARAMETER_LIST, PARAMETER, fields)
+}
+
+func mapResultsList(fields *ast.FieldList) *Node {
+	return mapFieldList(RESULT_LIST, RESULT, fields)
+}
+
+func mapFieldList(listKind, itemKind Kind, fieldList *ast.FieldList) *Node {
+	node := &Node{
+		Kinds:      kinds(listKind),
+		NativeNode: nativeNode(fieldList),
+	}
+	if fieldList != nil {
+		node.Children = childrenFromNodeList(FieldList(fieldList.List))
+		for _, field := range node.Children {
+			// see mapField: the first child of a field has the names as children
+			for _, child := range field.Children[0].Children {
+				child.Kinds = append(child.Kinds, itemKind)
+			}
+		}
+	}
+	return node
+}
+
+func mapField(field *ast.Field) *Node {
+	return &Node{
+		Kinds:      kinds(kind(FIELD)),
+		Children:   children(mapIdentList(field.Names), mapExpr(field.Type)),
+		NativeNode: nativeNode(field),
+	}
+}
+
+func mapIdentList(idents []*ast.Ident) *Node {
+	return makeNodeFromList(kind(idents), IdentList(idents))
 }
 
 func mapBlockStmt(blockStmt *ast.BlockStmt) *Node {
@@ -243,6 +305,8 @@ func mapNode(astNode ast.Node) *Node {
 		return mapStmt(v)
 	case ast.Decl:
 		return mapDecl(v)
+	case *ast.Field:
+		return mapField(v)
 	default:
 		return mapUnsupported(astNode)
 	}
