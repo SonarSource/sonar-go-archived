@@ -34,6 +34,26 @@
             },
             {
               "kinds": [
+                "*ast.FuncType"
+              ],
+              "nativeNode": "*ast.FuncType",
+              "children": [
+                {
+                  "kinds": [
+                    "PARAMETER_LIST"
+                  ],
+                  "nativeNode": "*ast.FieldList"
+                },
+                {
+                  "kinds": [
+                    "RESULT_LIST"
+                  ],
+                  "nativeNode": "*ast.FieldList"
+                }
+              ]
+            },
+            {
+              "kinds": [
                 "BLOCK"
               ],
               "nativeNode": "*ast.BlockStmt",
@@ -174,6 +194,26 @@
                 "column": 6
               },
               "nativeNode": "*ast.Ident"
+            },
+            {
+              "kinds": [
+                "*ast.FuncType"
+              ],
+              "nativeNode": "*ast.FuncType",
+              "children": [
+                {
+                  "kinds": [
+                    "PARAMETER_LIST"
+                  ],
+                  "nativeNode": "*ast.FieldList"
+                },
+                {
+                  "kinds": [
+                    "RESULT_LIST"
+                  ],
+                  "nativeNode": "*ast.FieldList"
+                }
+              ]
             },
             {
               "kinds": [
@@ -364,6 +404,26 @@
             },
             {
               "kinds": [
+                "*ast.FuncType"
+              ],
+              "nativeNode": "*ast.FuncType",
+              "children": [
+                {
+                  "kinds": [
+                    "PARAMETER_LIST"
+                  ],
+                  "nativeNode": "*ast.FieldList"
+                },
+                {
+                  "kinds": [
+                    "RESULT_LIST"
+                  ],
+                  "nativeNode": "*ast.FieldList"
+                }
+              ]
+            },
+            {
+              "kinds": [
                 "BLOCK"
               ],
               "nativeNode": "*ast.BlockStmt",
@@ -534,6 +594,26 @@
                 "column": 6
               },
               "nativeNode": "*ast.Ident"
+            },
+            {
+              "kinds": [
+                "*ast.FuncType"
+              ],
+              "nativeNode": "*ast.FuncType",
+              "children": [
+                {
+                  "kinds": [
+                    "PARAMETER_LIST"
+                  ],
+                  "nativeNode": "*ast.FieldList"
+                },
+                {
+                  "kinds": [
+                    "RESULT_LIST"
+                  ],
+                  "nativeNode": "*ast.FieldList"
+                }
+              ]
             },
             {
               "kinds": [
@@ -721,6 +801,26 @@
                 "column": 6
               },
               "nativeNode": "*ast.Ident"
+            },
+            {
+              "kinds": [
+                "*ast.FuncType"
+              ],
+              "nativeNode": "*ast.FuncType",
+              "children": [
+                {
+                  "kinds": [
+                    "PARAMETER_LIST"
+                  ],
+                  "nativeNode": "*ast.FieldList"
+                },
+                {
+                  "kinds": [
+                    "RESULT_LIST"
+                  ],
+                  "nativeNode": "*ast.FieldList"
+                }
+              ]
             },
             {
               "kinds": [
