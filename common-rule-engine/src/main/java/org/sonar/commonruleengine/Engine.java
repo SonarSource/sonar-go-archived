@@ -32,12 +32,26 @@ public class Engine {
     try {
       BufferedReader inputReader = Files.newBufferedReader(Paths.get(args[0]));
       UastNode uast = Uast.from(inputReader);
-      Engine engine = new Engine(ALL_CHECKS);
+      Engine engine = new Engine();
       List<Issue> issues = engine.scan(uast).issues;
       issues.forEach(System.out::println);
     } catch (IOException e) {
       e.printStackTrace();
     }
+  }
+
+  private static List<Check> initChecks() {
+    return CheckList.getChecks().stream().map(c -> {
+      try {
+        return c.newInstance();
+      } catch (Exception e) {
+        throw new RuntimeException(e);
+      }
+    }).collect(Collectors.toList());
+  }
+
+  public Engine() {
+    this(initChecks());
   }
 
   public Engine(List<Check> rules) {

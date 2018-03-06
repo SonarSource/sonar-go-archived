@@ -10,12 +10,13 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
@@ -38,15 +39,17 @@ class GoRulingTest {
   @Test
   void ruling() throws IOException {
     Files.createDirectories(GO_ACTUAL_DIRECTORY);
-    Map<String, Map<String, List<String>>> issuesPreRulePreFile = new TreeMap<>();
+    Map<String, Map<String, List<String>>> issuesPreRulePreFile = new ConcurrentHashMap<>();
     try (Stream<Path> files = Files.walk(GO_SOURCE_DIRECTORY)) {
       files.filter(path -> path.toString().endsWith(".go"))
-        .sorted()
+        .parallel()
         .forEach(path -> analyze(issuesPreRulePreFile, path));
     }
     StringBuilder expected = new StringBuilder();
     StringBuilder actual = new StringBuilder();
-    for (Map.Entry<String, Map<String, List<String>>> preRulePreFileEntry : issuesPreRulePreFile.entrySet()) {
+    List<Map.Entry<String, Map<String, List<String>>>> entries = new ArrayList<>(issuesPreRulePreFile.entrySet());
+    entries.sort(Comparator.comparing(Map.Entry::getKey));
+    for (Map.Entry<String, Map<String, List<String>>> preRulePreFileEntry : entries) {
       String ruleName = preRulePreFileEntry.getKey();
       expected.append("[").append(ruleName).append("]\n");
       expected.append(getExpected(ruleName)).append("\n");
@@ -73,7 +76,9 @@ class GoRulingTest {
 
   private String getAndWriteActual(String ruleName, Map<String, List<String>> issuesPreFile) throws IOException {
     StringBuilder actual = new StringBuilder();
-    for (Map.Entry<String, List<String>> issuesPreFileEntry : issuesPreFile.entrySet()) {
+    List<Map.Entry<String, List<String>>> entries = new ArrayList<>(issuesPreFile.entrySet());
+    entries.sort(Comparator.comparing(Map.Entry::getKey));
+    for (Map.Entry<String, List<String>> issuesPreFileEntry : entries) {
       String fileName = issuesPreFileEntry.getKey();
       actual.append(fileName).append(":");
       issuesPreFileEntry.getValue().forEach(actual::append);
@@ -101,12 +106,12 @@ class GoRulingTest {
   void analyze(Map<String, Map<String, List<String>>> issuesPreRulePreFile, Path path) {
     try {
       UastNode uast = getGoUast(path);
-      Engine engine = new Engine(Engine.ALL_CHECKS);
+      Engine engine = new Engine();
       for (Issue issue : engine.scan(uast).issues) {
         String ruleName = issue.getRule().getClass().getSimpleName();
         String filename = GO_SOURCE_DIRECTORY.relativize(path).toString().replace('\\', '/');
         issuesPreRulePreFile
-          .computeIfAbsent(ruleName, key -> new TreeMap<>())
+          .computeIfAbsent(ruleName, key -> new ConcurrentHashMap<>())
           .computeIfAbsent(filename, key -> new ArrayList<>())
           .add(" " + getNodeLocation(issue));
       }
