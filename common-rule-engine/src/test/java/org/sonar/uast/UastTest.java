@@ -1,5 +1,6 @@
 package org.sonar.uast;
 
+import com.google.gson.JsonParseException;
 import java.io.StringReader;
 import java.util.Collections;
 import java.util.EnumSet;
@@ -26,11 +27,11 @@ class UastTest {
 
   @Test
   void parse_token() {
-    UastNode node = Uast.from(new StringReader("{ token: { value: null } }"));
+    UastNode node = Uast.from(new StringReader("{ token: { line: 1, column: 1, value: null } }"));
     assertEquals(Collections.emptyList(), node.children);
     assertNotNull(node.token);
-    assertEquals(0, node.token.line);
-    assertEquals(0, node.token.column);
+    assertEquals(1, node.token.line);
+    assertEquals(1, node.token.column);
     assertEquals("", node.token.value);
 
     node = Uast.from(new StringReader("{ token: { line: 12, column: 34, value: 'foo' } }"));
@@ -45,6 +46,14 @@ class UastTest {
     assertEquals(345, node.token.line);
     assertEquals(1, node.token.column);
     assertEquals("", node.token.value);
+  }
+
+  @Test
+  void parse_invalid_token() {
+    assertEquals("Attributes 'line' and 'column' are mandatory on 'token' object.",
+      assertThrows(JsonParseException.class,
+        () ->  Uast.from(new StringReader("{ token: { } }")))
+        .getMessage());
   }
 
   @Test

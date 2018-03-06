@@ -3,6 +3,7 @@ package org.sonar.uast;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonParseException;
 import java.io.Reader;
 import java.util.Collections;
 import java.util.Iterator;
@@ -33,11 +34,13 @@ public final class Uast {
     if (token == null) {
       return null;
     }
+    if (token.line == null || token.column == null) {
+      throw new JsonParseException("Attributes 'line' and 'column' are mandatory on 'token' object.");
+    }
     return new UastNode.Token(
       token.line,
       token.column,
       token.value != null ? token.value : ""
-
     );
   };
 
@@ -100,8 +103,10 @@ public final class Uast {
  }
 
   private static class JsonUastToken {
-    int line;
-    int column;
+    @Nullable
+    Integer line;
+    @Nullable
+    Integer column;
     @Nullable
     String value;
   }

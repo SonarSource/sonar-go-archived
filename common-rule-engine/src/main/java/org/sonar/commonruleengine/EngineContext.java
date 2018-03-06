@@ -31,7 +31,6 @@ public class EngineContext {
   }
 
   public List<Issue> getIssues() {
-    return issues;
+    return new ArrayList<>(issues);
   }
 }
-
