@@ -48,11 +48,18 @@ public class NoHardcodedCredentialsCheck extends Check {
     AssignmentLike assignment = AssignmentLike.from(node);
     if (assignment != null) {
       LiteralLike assignmentValue = LiteralLike.from(assignment.value());
-      if (assignmentValue != null) {
+      if (assignmentValue != null && !removeQuotes(assignmentValue.value()).isEmpty()) {
         testPattern(assignment.target(), targetPattern);
         testPattern(assignment.value(), valuePattern);
       }
     }
+  }
+
+  private String removeQuotes(String string) {
+    if (string.length() >= 2) {
+      return string.substring(1, string.length() - 1);
+    }
+    return string;
   }
 
   private void testPattern(UastNode node, Pattern pattern) {
