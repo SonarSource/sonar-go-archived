@@ -3151,11 +3151,241 @@
                   ]
                 },
                 {
+                  "kinds": [
+                    "ASSIGNMENT",
+                    "STATEMENT"
+                  ],
+                  "nativeNode": "VARIABLE",
+                  "children": [
+                    {
+                      "kinds": [],
+                      "nativeNode": "PRIMITIVE_TYPE",
+                      "children": [
+                        {
+                          "kinds": [],
+                          "nativeNode": "TOKEN",
+                          "token": {
+                            "value": "int",
+                            "line": 28,
+                            "column": 5
+                          },
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [
+                        "ASSIGNMENT_TARGET",
+                        "IDENTIFIER"
+                      ],
+                      "nativeNode": "IDENTIFIER",
+                      "children": [
+                        {
+                          "kinds": [],
+                          "nativeNode": "TOKEN",
+                          "token": {
+                            "value": "v1",
+                            "line": 28,
+                            "column": 9
+                          },
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [],
+                      "nativeNode": "TOKEN",
+                      "token": {
+                        "value": "\u003d",
+                        "line": 28,
+                        "column": 12
+                      },
+                      "children": []
+                    },
+                    {
+                      "kinds": [
+                        "ASSIGNMENT_VALUE",
+                        "BINARY_EXPRESSION"
+                      ],
+                      "nativeNode": "MULTIPLY",
+                      "children": [
+                        {
+                          "kinds": [],
+                          "nativeNode": "INT_LITERAL",
+                          "children": [
+                            {
+                              "kinds": [],
+                              "nativeNode": "TOKEN",
+                              "token": {
+                                "value": "1024",
+                                "line": 28,
+                                "column": 14
+                              },
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "kinds": [],
+                          "nativeNode": "TOKEN",
+                          "token": {
+                            "value": "*",
+                            "line": 28,
+                            "column": 19
+                          },
+                          "children": []
+                        },
+                        {
+                          "kinds": [],
+                          "nativeNode": "INT_LITERAL",
+                          "children": [
+                            {
+                              "kinds": [],
+                              "nativeNode": "TOKEN",
+                              "token": {
+                                "value": "1024",
+                                "line": 28,
+                                "column": 21
+                              },
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [],
+                      "nativeNode": "TOKEN",
+                      "token": {
+                        "value": ";",
+                        "line": 28,
+                        "column": 25
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "kinds": [
+                    "ASSIGNMENT",
+                    "STATEMENT"
+                  ],
+                  "nativeNode": "VARIABLE",
+                  "children": [
+                    {
+                      "kinds": [],
+                      "nativeNode": "PRIMITIVE_TYPE",
+                      "children": [
+                        {
+                          "kinds": [],
+                          "nativeNode": "TOKEN",
+                          "token": {
+                            "value": "int",
+                            "line": 29,
+                            "column": 5
+                          },
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [
+                        "ASSIGNMENT_TARGET",
+                        "IDENTIFIER"
+                      ],
+                      "nativeNode": "IDENTIFIER",
+                      "children": [
+                        {
+                          "kinds": [],
+                          "nativeNode": "TOKEN",
+                          "token": {
+                            "value": "v2",
+                            "line": 29,
+                            "column": 9
+                          },
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [],
+                      "nativeNode": "TOKEN",
+                      "token": {
+                        "value": "\u003d",
+                        "line": 29,
+                        "column": 12
+                      },
+                      "children": []
+                    },
+                    {
+                      "kinds": [
+                        "ASSIGNMENT_VALUE",
+                        "BINARY_EXPRESSION"
+                      ],
+                      "nativeNode": "PLUS",
+                      "children": [
+                        {
+                          "kinds": [],
+                          "nativeNode": "INT_LITERAL",
+                          "children": [
+                            {
+                              "kinds": [],
+                              "nativeNode": "TOKEN",
+                              "token": {
+                                "value": "1",
+                                "line": 29,
+                                "column": 14
+                              },
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "kinds": [],
+                          "nativeNode": "TOKEN",
+                          "token": {
+                            "value": "+",
+                            "line": 29,
+                            "column": 16
+                          },
+                          "children": []
+                        },
+                        {
+                          "kinds": [],
+                          "nativeNode": "INT_LITERAL",
+                          "children": [
+                            {
+                              "kinds": [],
+                              "nativeNode": "TOKEN",
+                              "token": {
+                                "value": "1",
+                                "line": 29,
+                                "column": 18
+                              },
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [],
+                      "nativeNode": "TOKEN",
+                      "token": {
+                        "value": ";",
+                        "line": 29,
+                        "column": 19
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
                   "kinds": [],
                   "nativeNode": "TOKEN",
                   "token": {
                     "value": "}",
-                    "line": 27,
+                    "line": 30,
                     "column": 3
                   },
                   "children": []
@@ -3179,7 +3409,7 @@
                   "nativeNode": "TOKEN",
                   "token": {
                     "value": "void",
-                    "line": 29,
+                    "line": 32,
                     "column": 3
                   },
                   "children": []
@@ -3197,7 +3427,7 @@
                   "nativeNode": "TOKEN",
                   "token": {
                     "value": "fun",
-                    "line": 29,
+                    "line": 32,
                     "column": 8
                   },
                   "children": []
@@ -3209,7 +3439,7 @@
               "nativeNode": "TOKEN",
               "token": {
                 "value": "(",
-                "line": 29,
+                "line": 32,
                 "column": 11
               },
               "children": []
@@ -3232,7 +3462,7 @@
                       "nativeNode": "TOKEN",
                       "token": {
                         "value": "Object",
-                        "line": 29,
+                        "line": 32,
                         "column": 12
                       },
                       "children": []
@@ -3250,7 +3480,7 @@
                       "nativeNode": "TOKEN",
                       "token": {
                         "value": "a",
-                        "line": 29,
+                        "line": 32,
                         "column": 19
                       },
                       "children": []
@@ -3262,7 +3492,7 @@
                   "nativeNode": "TOKEN",
                   "token": {
                     "value": ",",
-                    "line": 29,
+                    "line": 32,
                     "column": 20
                   },
                   "children": []
@@ -3287,7 +3517,7 @@
                       "nativeNode": "TOKEN",
                       "token": {
                         "value": "Object",
-                        "line": 29,
+                        "line": 32,
                         "column": 22
                       },
                       "children": []
@@ -3305,7 +3535,7 @@
                       "nativeNode": "TOKEN",
                       "token": {
                         "value": "b",
-                        "line": 29,
+                        "line": 32,
                         "column": 29
                       },
                       "children": []
@@ -3319,7 +3549,7 @@
               "nativeNode": "TOKEN",
               "token": {
                 "value": ")",
-                "line": 29,
+                "line": 32,
                 "column": 30
               },
               "children": []
@@ -3336,7 +3566,7 @@
                   "nativeNode": "TOKEN",
                   "token": {
                     "value": "{",
-                    "line": 29,
+                    "line": 32,
                     "column": 32
                   },
                   "children": []
@@ -3366,7 +3596,7 @@
                                   "nativeNode": "TOKEN",
                                   "token": {
                                     "value": "a",
-                                    "line": 30,
+                                    "line": 33,
                                     "column": 5
                                   },
                                   "children": []
@@ -3378,7 +3608,7 @@
                               "nativeNode": "TOKEN",
                               "token": {
                                 "value": ".",
-                                "line": 30,
+                                "line": 33,
                                 "column": 6
                               },
                               "children": []
@@ -3394,7 +3624,7 @@
                                   "nativeNode": "TOKEN",
                                   "token": {
                                     "value": "equals",
-                                    "line": 30,
+                                    "line": 33,
                                     "column": 7
                                   },
                                   "children": []
@@ -3412,7 +3642,7 @@
                               "nativeNode": "TOKEN",
                               "token": {
                                 "value": "(",
-                                "line": 30,
+                                "line": 33,
                                 "column": 13
                               },
                               "children": []
@@ -3428,7 +3658,7 @@
                                   "nativeNode": "TOKEN",
                                   "token": {
                                     "value": "a",
-                                    "line": 30,
+                                    "line": 33,
                                     "column": 14
                                   },
                                   "children": []
@@ -3440,7 +3670,7 @@
                               "nativeNode": "TOKEN",
                               "token": {
                                 "value": ")",
-                                "line": 30,
+                                "line": 33,
                                 "column": 15
                               },
                               "children": []
@@ -3454,7 +3684,7 @@
                       "nativeNode": "TOKEN",
                       "token": {
                         "value": ";",
-                        "line": 30,
+                        "line": 33,
                         "column": 16
                       },
                       "children": []
@@ -3486,7 +3716,7 @@
                                   "nativeNode": "TOKEN",
                                   "token": {
                                     "value": "a",
-                                    "line": 31,
+                                    "line": 34,
                                     "column": 5
                                   },
                                   "children": []
@@ -3498,7 +3728,7 @@
                               "nativeNode": "TOKEN",
                               "token": {
                                 "value": ".",
-                                "line": 31,
+                                "line": 34,
                                 "column": 6
                               },
                               "children": []
@@ -3514,7 +3744,7 @@
                                   "nativeNode": "TOKEN",
                                   "token": {
                                     "value": "equals",
-                                    "line": 31,
+                                    "line": 34,
                                     "column": 7
                                   },
                                   "children": []
@@ -3532,7 +3762,7 @@
                               "nativeNode": "TOKEN",
                               "token": {
                                 "value": "(",
-                                "line": 31,
+                                "line": 34,
                                 "column": 13
                               },
                               "children": []
@@ -3548,7 +3778,7 @@
                                   "nativeNode": "TOKEN",
                                   "token": {
                                     "value": "b",
-                                    "line": 31,
+                                    "line": 34,
                                     "column": 14
                                   },
                                   "children": []
@@ -3560,7 +3790,7 @@
                               "nativeNode": "TOKEN",
                               "token": {
                                 "value": ")",
-                                "line": 31,
+                                "line": 34,
                                 "column": 15
                               },
                               "children": []
@@ -3574,7 +3804,7 @@
                       "nativeNode": "TOKEN",
                       "token": {
                         "value": ";",
-                        "line": 31,
+                        "line": 34,
                         "column": 16
                       },
                       "children": []
@@ -3602,7 +3832,7 @@
                               "nativeNode": "TOKEN",
                               "token": {
                                 "value": "equals",
-                                "line": 32,
+                                "line": 35,
                                 "column": 5
                               },
                               "children": []
@@ -3618,7 +3848,7 @@
                               "nativeNode": "TOKEN",
                               "token": {
                                 "value": "(",
-                                "line": 32,
+                                "line": 35,
                                 "column": 11
                               },
                               "children": []
@@ -3634,7 +3864,7 @@
                                   "nativeNode": "TOKEN",
                                   "token": {
                                     "value": "a",
-                                    "line": 32,
+                                    "line": 35,
                                     "column": 12
                                   },
                                   "children": []
@@ -3646,7 +3876,7 @@
                               "nativeNode": "TOKEN",
                               "token": {
                                 "value": ")",
-                                "line": 32,
+                                "line": 35,
                                 "column": 13
                               },
                               "children": []
@@ -3660,7 +3890,7 @@
                       "nativeNode": "TOKEN",
                       "token": {
                         "value": ";",
-                        "line": 32,
+                        "line": 35,
                         "column": 14
                       },
                       "children": []
@@ -3700,654 +3930,6 @@
                                           "nativeNode": "TOKEN",
                                           "token": {
                                             "value": "java",
-                                            "line": 33,
-                                            "column": 5
-                                          },
-                                          "children": []
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "kinds": [],
-                                      "nativeNode": "TOKEN",
-                                      "token": {
-                                        "value": ".",
-                                        "line": 33,
-                                        "column": 9
-                                      },
-                                      "children": []
-                                    },
-                                    {
-                                      "kinds": [
-                                        "IDENTIFIER"
-                                      ],
-                                      "nativeNode": "IDENTIFIER",
-                                      "children": [
-                                        {
-                                          "kinds": [],
-                                          "nativeNode": "TOKEN",
-                                          "token": {
-                                            "value": "util",
-                                            "line": 33,
-                                            "column": 10
-                                          },
-                                          "children": []
-                                        }
-                                      ]
-                                    }
-                                  ]
-                                },
-                                {
-                                  "kinds": [],
-                                  "nativeNode": "TOKEN",
-                                  "token": {
-                                    "value": ".",
-                                    "line": 33,
-                                    "column": 14
-                                  },
-                                  "children": []
-                                },
-                                {
-                                  "kinds": [
-                                    "IDENTIFIER"
-                                  ],
-                                  "nativeNode": "IDENTIFIER",
-                                  "children": [
-                                    {
-                                      "kinds": [],
-                                      "nativeNode": "TOKEN",
-                                      "token": {
-                                        "value": "Objects",
-                                        "line": 33,
-                                        "column": 15
-                                      },
-                                      "children": []
-                                    }
-                                  ]
-                                }
-                              ]
-                            },
-                            {
-                              "kinds": [],
-                              "nativeNode": "TOKEN",
-                              "token": {
-                                "value": ".",
-                                "line": 33,
-                                "column": 22
-                              },
-                              "children": []
-                            },
-                            {
-                              "kinds": [
-                                "IDENTIFIER"
-                              ],
-                              "nativeNode": "IDENTIFIER",
-                              "children": [
-                                {
-                                  "kinds": [],
-                                  "nativeNode": "TOKEN",
-                                  "token": {
-                                    "value": "equals",
-                                    "line": 33,
-                                    "column": 23
-                                  },
-                                  "children": []
-                                }
-                              ]
-                            }
-                          ]
-                        },
-                        {
-                          "kinds": [],
-                          "nativeNode": "ARGUMENTS",
-                          "children": [
-                            {
-                              "kinds": [],
-                              "nativeNode": "TOKEN",
-                              "token": {
-                                "value": "(",
-                                "line": 33,
-                                "column": 29
-                              },
-                              "children": []
-                            },
-                            {
-                              "kinds": [
-                                "IDENTIFIER"
-                              ],
-                              "nativeNode": "IDENTIFIER",
-                              "children": [
-                                {
-                                  "kinds": [],
-                                  "nativeNode": "TOKEN",
-                                  "token": {
-                                    "value": "a",
-                                    "line": 33,
-                                    "column": 30
-                                  },
-                                  "children": []
-                                }
-                              ]
-                            },
-                            {
-                              "kinds": [],
-                              "nativeNode": "TOKEN",
-                              "token": {
-                                "value": ",",
-                                "line": 33,
-                                "column": 31
-                              },
-                              "children": []
-                            },
-                            {
-                              "kinds": [
-                                "IDENTIFIER"
-                              ],
-                              "nativeNode": "IDENTIFIER",
-                              "children": [
-                                {
-                                  "kinds": [],
-                                  "nativeNode": "TOKEN",
-                                  "token": {
-                                    "value": "a",
-                                    "line": 33,
-                                    "column": 33
-                                  },
-                                  "children": []
-                                }
-                              ]
-                            },
-                            {
-                              "kinds": [],
-                              "nativeNode": "TOKEN",
-                              "token": {
-                                "value": ")",
-                                "line": 33,
-                                "column": 34
-                              },
-                              "children": []
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "kinds": [],
-                      "nativeNode": "TOKEN",
-                      "token": {
-                        "value": ";",
-                        "line": 33,
-                        "column": 35
-                      },
-                      "children": []
-                    }
-                  ]
-                },
-                {
-                  "kinds": [
-                    "STATEMENT"
-                  ],
-                  "nativeNode": "EXPRESSION_STATEMENT",
-                  "children": [
-                    {
-                      "kinds": [],
-                      "nativeNode": "METHOD_INVOCATION",
-                      "children": [
-                        {
-                          "kinds": [],
-                          "nativeNode": "MEMBER_SELECT",
-                          "children": [
-                            {
-                              "kinds": [],
-                              "nativeNode": "MEMBER_SELECT",
-                              "children": [
-                                {
-                                  "kinds": [],
-                                  "nativeNode": "MEMBER_SELECT",
-                                  "children": [
-                                    {
-                                      "kinds": [
-                                        "IDENTIFIER"
-                                      ],
-                                      "nativeNode": "IDENTIFIER",
-                                      "children": [
-                                        {
-                                          "kinds": [],
-                                          "nativeNode": "TOKEN",
-                                          "token": {
-                                            "value": "java",
-                                            "line": 34,
-                                            "column": 5
-                                          },
-                                          "children": []
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "kinds": [],
-                                      "nativeNode": "TOKEN",
-                                      "token": {
-                                        "value": ".",
-                                        "line": 34,
-                                        "column": 9
-                                      },
-                                      "children": []
-                                    },
-                                    {
-                                      "kinds": [
-                                        "IDENTIFIER"
-                                      ],
-                                      "nativeNode": "IDENTIFIER",
-                                      "children": [
-                                        {
-                                          "kinds": [],
-                                          "nativeNode": "TOKEN",
-                                          "token": {
-                                            "value": "util",
-                                            "line": 34,
-                                            "column": 10
-                                          },
-                                          "children": []
-                                        }
-                                      ]
-                                    }
-                                  ]
-                                },
-                                {
-                                  "kinds": [],
-                                  "nativeNode": "TOKEN",
-                                  "token": {
-                                    "value": ".",
-                                    "line": 34,
-                                    "column": 14
-                                  },
-                                  "children": []
-                                },
-                                {
-                                  "kinds": [
-                                    "IDENTIFIER"
-                                  ],
-                                  "nativeNode": "IDENTIFIER",
-                                  "children": [
-                                    {
-                                      "kinds": [],
-                                      "nativeNode": "TOKEN",
-                                      "token": {
-                                        "value": "Objects",
-                                        "line": 34,
-                                        "column": 15
-                                      },
-                                      "children": []
-                                    }
-                                  ]
-                                }
-                              ]
-                            },
-                            {
-                              "kinds": [],
-                              "nativeNode": "TOKEN",
-                              "token": {
-                                "value": ".",
-                                "line": 34,
-                                "column": 22
-                              },
-                              "children": []
-                            },
-                            {
-                              "kinds": [
-                                "IDENTIFIER"
-                              ],
-                              "nativeNode": "IDENTIFIER",
-                              "children": [
-                                {
-                                  "kinds": [],
-                                  "nativeNode": "TOKEN",
-                                  "token": {
-                                    "value": "equals",
-                                    "line": 34,
-                                    "column": 23
-                                  },
-                                  "children": []
-                                }
-                              ]
-                            }
-                          ]
-                        },
-                        {
-                          "kinds": [],
-                          "nativeNode": "ARGUMENTS",
-                          "children": [
-                            {
-                              "kinds": [],
-                              "nativeNode": "TOKEN",
-                              "token": {
-                                "value": "(",
-                                "line": 34,
-                                "column": 29
-                              },
-                              "children": []
-                            },
-                            {
-                              "kinds": [
-                                "IDENTIFIER"
-                              ],
-                              "nativeNode": "IDENTIFIER",
-                              "children": [
-                                {
-                                  "kinds": [],
-                                  "nativeNode": "TOKEN",
-                                  "token": {
-                                    "value": "a",
-                                    "line": 34,
-                                    "column": 30
-                                  },
-                                  "children": []
-                                }
-                              ]
-                            },
-                            {
-                              "kinds": [],
-                              "nativeNode": "TOKEN",
-                              "token": {
-                                "value": ",",
-                                "line": 34,
-                                "column": 31
-                              },
-                              "children": []
-                            },
-                            {
-                              "kinds": [
-                                "IDENTIFIER"
-                              ],
-                              "nativeNode": "IDENTIFIER",
-                              "children": [
-                                {
-                                  "kinds": [],
-                                  "nativeNode": "TOKEN",
-                                  "token": {
-                                    "value": "b",
-                                    "line": 34,
-                                    "column": 33
-                                  },
-                                  "children": []
-                                }
-                              ]
-                            },
-                            {
-                              "kinds": [],
-                              "nativeNode": "TOKEN",
-                              "token": {
-                                "value": ")",
-                                "line": 34,
-                                "column": 34
-                              },
-                              "children": []
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "kinds": [],
-                      "nativeNode": "TOKEN",
-                      "token": {
-                        "value": ";",
-                        "line": 34,
-                        "column": 35
-                      },
-                      "children": []
-                    }
-                  ]
-                },
-                {
-                  "kinds": [
-                    "STATEMENT"
-                  ],
-                  "nativeNode": "EXPRESSION_STATEMENT",
-                  "children": [
-                    {
-                      "kinds": [],
-                      "nativeNode": "METHOD_INVOCATION",
-                      "children": [
-                        {
-                          "kinds": [],
-                          "nativeNode": "MEMBER_SELECT",
-                          "children": [
-                            {
-                              "kinds": [],
-                              "nativeNode": "MEMBER_SELECT",
-                              "children": [
-                                {
-                                  "kinds": [],
-                                  "nativeNode": "MEMBER_SELECT",
-                                  "children": [
-                                    {
-                                      "kinds": [
-                                        "IDENTIFIER"
-                                      ],
-                                      "nativeNode": "IDENTIFIER",
-                                      "children": [
-                                        {
-                                          "kinds": [],
-                                          "nativeNode": "TOKEN",
-                                          "token": {
-                                            "value": "java",
-                                            "line": 35,
-                                            "column": 5
-                                          },
-                                          "children": []
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "kinds": [],
-                                      "nativeNode": "TOKEN",
-                                      "token": {
-                                        "value": ".",
-                                        "line": 35,
-                                        "column": 9
-                                      },
-                                      "children": []
-                                    },
-                                    {
-                                      "kinds": [
-                                        "IDENTIFIER"
-                                      ],
-                                      "nativeNode": "IDENTIFIER",
-                                      "children": [
-                                        {
-                                          "kinds": [],
-                                          "nativeNode": "TOKEN",
-                                          "token": {
-                                            "value": "util",
-                                            "line": 35,
-                                            "column": 10
-                                          },
-                                          "children": []
-                                        }
-                                      ]
-                                    }
-                                  ]
-                                },
-                                {
-                                  "kinds": [],
-                                  "nativeNode": "TOKEN",
-                                  "token": {
-                                    "value": ".",
-                                    "line": 35,
-                                    "column": 14
-                                  },
-                                  "children": []
-                                },
-                                {
-                                  "kinds": [
-                                    "IDENTIFIER"
-                                  ],
-                                  "nativeNode": "IDENTIFIER",
-                                  "children": [
-                                    {
-                                      "kinds": [],
-                                      "nativeNode": "TOKEN",
-                                      "token": {
-                                        "value": "Objects",
-                                        "line": 35,
-                                        "column": 15
-                                      },
-                                      "children": []
-                                    }
-                                  ]
-                                }
-                              ]
-                            },
-                            {
-                              "kinds": [],
-                              "nativeNode": "TOKEN",
-                              "token": {
-                                "value": ".",
-                                "line": 35,
-                                "column": 22
-                              },
-                              "children": []
-                            },
-                            {
-                              "kinds": [
-                                "IDENTIFIER"
-                              ],
-                              "nativeNode": "IDENTIFIER",
-                              "children": [
-                                {
-                                  "kinds": [],
-                                  "nativeNode": "TOKEN",
-                                  "token": {
-                                    "value": "deepEquals",
-                                    "line": 35,
-                                    "column": 23
-                                  },
-                                  "children": []
-                                }
-                              ]
-                            }
-                          ]
-                        },
-                        {
-                          "kinds": [],
-                          "nativeNode": "ARGUMENTS",
-                          "children": [
-                            {
-                              "kinds": [],
-                              "nativeNode": "TOKEN",
-                              "token": {
-                                "value": "(",
-                                "line": 35,
-                                "column": 33
-                              },
-                              "children": []
-                            },
-                            {
-                              "kinds": [
-                                "IDENTIFIER"
-                              ],
-                              "nativeNode": "IDENTIFIER",
-                              "children": [
-                                {
-                                  "kinds": [],
-                                  "nativeNode": "TOKEN",
-                                  "token": {
-                                    "value": "a",
-                                    "line": 35,
-                                    "column": 34
-                                  },
-                                  "children": []
-                                }
-                              ]
-                            },
-                            {
-                              "kinds": [],
-                              "nativeNode": "TOKEN",
-                              "token": {
-                                "value": ",",
-                                "line": 35,
-                                "column": 35
-                              },
-                              "children": []
-                            },
-                            {
-                              "kinds": [
-                                "IDENTIFIER"
-                              ],
-                              "nativeNode": "IDENTIFIER",
-                              "children": [
-                                {
-                                  "kinds": [],
-                                  "nativeNode": "TOKEN",
-                                  "token": {
-                                    "value": "a",
-                                    "line": 35,
-                                    "column": 37
-                                  },
-                                  "children": []
-                                }
-                              ]
-                            },
-                            {
-                              "kinds": [],
-                              "nativeNode": "TOKEN",
-                              "token": {
-                                "value": ")",
-                                "line": 35,
-                                "column": 38
-                              },
-                              "children": []
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "kinds": [],
-                      "nativeNode": "TOKEN",
-                      "token": {
-                        "value": ";",
-                        "line": 35,
-                        "column": 39
-                      },
-                      "children": []
-                    }
-                  ]
-                },
-                {
-                  "kinds": [
-                    "STATEMENT"
-                  ],
-                  "nativeNode": "EXPRESSION_STATEMENT",
-                  "children": [
-                    {
-                      "kinds": [],
-                      "nativeNode": "METHOD_INVOCATION",
-                      "children": [
-                        {
-                          "kinds": [],
-                          "nativeNode": "MEMBER_SELECT",
-                          "children": [
-                            {
-                              "kinds": [],
-                              "nativeNode": "MEMBER_SELECT",
-                              "children": [
-                                {
-                                  "kinds": [],
-                                  "nativeNode": "MEMBER_SELECT",
-                                  "children": [
-                                    {
-                                      "kinds": [
-                                        "IDENTIFIER"
-                                      ],
-                                      "nativeNode": "IDENTIFIER",
-                                      "children": [
-                                        {
-                                          "kinds": [],
-                                          "nativeNode": "TOKEN",
-                                          "token": {
-                                            "value": "java",
                                             "line": 36,
                                             "column": 5
                                           },
@@ -4435,7 +4017,7 @@
                                   "kinds": [],
                                   "nativeNode": "TOKEN",
                                   "token": {
-                                    "value": "deepEquals",
+                                    "value": "equals",
                                     "line": 36,
                                     "column": 23
                                   },
@@ -4455,7 +4037,7 @@
                               "token": {
                                 "value": "(",
                                 "line": 36,
-                                "column": 33
+                                "column": 29
                               },
                               "children": []
                             },
@@ -4471,7 +4053,7 @@
                                   "token": {
                                     "value": "a",
                                     "line": 36,
-                                    "column": 34
+                                    "column": 30
                                   },
                                   "children": []
                                 }
@@ -4483,7 +4065,7 @@
                               "token": {
                                 "value": ",",
                                 "line": 36,
-                                "column": 35
+                                "column": 31
                               },
                               "children": []
                             },
@@ -4497,9 +4079,9 @@
                                   "kinds": [],
                                   "nativeNode": "TOKEN",
                                   "token": {
-                                    "value": "b",
+                                    "value": "a",
                                     "line": 36,
-                                    "column": 37
+                                    "column": 33
                                   },
                                   "children": []
                                 }
@@ -4511,7 +4093,7 @@
                               "token": {
                                 "value": ")",
                                 "line": 36,
-                                "column": 38
+                                "column": 34
                               },
                               "children": []
                             }
@@ -4525,7 +4107,7 @@
                       "token": {
                         "value": ";",
                         "line": 36,
-                        "column": 39
+                        "column": 35
                       },
                       "children": []
                     }
@@ -4637,6 +4219,654 @@
                               "token": {
                                 "value": ".",
                                 "line": 37,
+                                "column": 22
+                              },
+                              "children": []
+                            },
+                            {
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
+                              "nativeNode": "IDENTIFIER",
+                              "children": [
+                                {
+                                  "kinds": [],
+                                  "nativeNode": "TOKEN",
+                                  "token": {
+                                    "value": "equals",
+                                    "line": 37,
+                                    "column": 23
+                                  },
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "kinds": [],
+                          "nativeNode": "ARGUMENTS",
+                          "children": [
+                            {
+                              "kinds": [],
+                              "nativeNode": "TOKEN",
+                              "token": {
+                                "value": "(",
+                                "line": 37,
+                                "column": 29
+                              },
+                              "children": []
+                            },
+                            {
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
+                              "nativeNode": "IDENTIFIER",
+                              "children": [
+                                {
+                                  "kinds": [],
+                                  "nativeNode": "TOKEN",
+                                  "token": {
+                                    "value": "a",
+                                    "line": 37,
+                                    "column": 30
+                                  },
+                                  "children": []
+                                }
+                              ]
+                            },
+                            {
+                              "kinds": [],
+                              "nativeNode": "TOKEN",
+                              "token": {
+                                "value": ",",
+                                "line": 37,
+                                "column": 31
+                              },
+                              "children": []
+                            },
+                            {
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
+                              "nativeNode": "IDENTIFIER",
+                              "children": [
+                                {
+                                  "kinds": [],
+                                  "nativeNode": "TOKEN",
+                                  "token": {
+                                    "value": "b",
+                                    "line": 37,
+                                    "column": 33
+                                  },
+                                  "children": []
+                                }
+                              ]
+                            },
+                            {
+                              "kinds": [],
+                              "nativeNode": "TOKEN",
+                              "token": {
+                                "value": ")",
+                                "line": 37,
+                                "column": 34
+                              },
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [],
+                      "nativeNode": "TOKEN",
+                      "token": {
+                        "value": ";",
+                        "line": 37,
+                        "column": 35
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "kinds": [
+                    "STATEMENT"
+                  ],
+                  "nativeNode": "EXPRESSION_STATEMENT",
+                  "children": [
+                    {
+                      "kinds": [],
+                      "nativeNode": "METHOD_INVOCATION",
+                      "children": [
+                        {
+                          "kinds": [],
+                          "nativeNode": "MEMBER_SELECT",
+                          "children": [
+                            {
+                              "kinds": [],
+                              "nativeNode": "MEMBER_SELECT",
+                              "children": [
+                                {
+                                  "kinds": [],
+                                  "nativeNode": "MEMBER_SELECT",
+                                  "children": [
+                                    {
+                                      "kinds": [
+                                        "IDENTIFIER"
+                                      ],
+                                      "nativeNode": "IDENTIFIER",
+                                      "children": [
+                                        {
+                                          "kinds": [],
+                                          "nativeNode": "TOKEN",
+                                          "token": {
+                                            "value": "java",
+                                            "line": 38,
+                                            "column": 5
+                                          },
+                                          "children": []
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "kinds": [],
+                                      "nativeNode": "TOKEN",
+                                      "token": {
+                                        "value": ".",
+                                        "line": 38,
+                                        "column": 9
+                                      },
+                                      "children": []
+                                    },
+                                    {
+                                      "kinds": [
+                                        "IDENTIFIER"
+                                      ],
+                                      "nativeNode": "IDENTIFIER",
+                                      "children": [
+                                        {
+                                          "kinds": [],
+                                          "nativeNode": "TOKEN",
+                                          "token": {
+                                            "value": "util",
+                                            "line": 38,
+                                            "column": 10
+                                          },
+                                          "children": []
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "kinds": [],
+                                  "nativeNode": "TOKEN",
+                                  "token": {
+                                    "value": ".",
+                                    "line": 38,
+                                    "column": 14
+                                  },
+                                  "children": []
+                                },
+                                {
+                                  "kinds": [
+                                    "IDENTIFIER"
+                                  ],
+                                  "nativeNode": "IDENTIFIER",
+                                  "children": [
+                                    {
+                                      "kinds": [],
+                                      "nativeNode": "TOKEN",
+                                      "token": {
+                                        "value": "Objects",
+                                        "line": 38,
+                                        "column": 15
+                                      },
+                                      "children": []
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "kinds": [],
+                              "nativeNode": "TOKEN",
+                              "token": {
+                                "value": ".",
+                                "line": 38,
+                                "column": 22
+                              },
+                              "children": []
+                            },
+                            {
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
+                              "nativeNode": "IDENTIFIER",
+                              "children": [
+                                {
+                                  "kinds": [],
+                                  "nativeNode": "TOKEN",
+                                  "token": {
+                                    "value": "deepEquals",
+                                    "line": 38,
+                                    "column": 23
+                                  },
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "kinds": [],
+                          "nativeNode": "ARGUMENTS",
+                          "children": [
+                            {
+                              "kinds": [],
+                              "nativeNode": "TOKEN",
+                              "token": {
+                                "value": "(",
+                                "line": 38,
+                                "column": 33
+                              },
+                              "children": []
+                            },
+                            {
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
+                              "nativeNode": "IDENTIFIER",
+                              "children": [
+                                {
+                                  "kinds": [],
+                                  "nativeNode": "TOKEN",
+                                  "token": {
+                                    "value": "a",
+                                    "line": 38,
+                                    "column": 34
+                                  },
+                                  "children": []
+                                }
+                              ]
+                            },
+                            {
+                              "kinds": [],
+                              "nativeNode": "TOKEN",
+                              "token": {
+                                "value": ",",
+                                "line": 38,
+                                "column": 35
+                              },
+                              "children": []
+                            },
+                            {
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
+                              "nativeNode": "IDENTIFIER",
+                              "children": [
+                                {
+                                  "kinds": [],
+                                  "nativeNode": "TOKEN",
+                                  "token": {
+                                    "value": "a",
+                                    "line": 38,
+                                    "column": 37
+                                  },
+                                  "children": []
+                                }
+                              ]
+                            },
+                            {
+                              "kinds": [],
+                              "nativeNode": "TOKEN",
+                              "token": {
+                                "value": ")",
+                                "line": 38,
+                                "column": 38
+                              },
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [],
+                      "nativeNode": "TOKEN",
+                      "token": {
+                        "value": ";",
+                        "line": 38,
+                        "column": 39
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "kinds": [
+                    "STATEMENT"
+                  ],
+                  "nativeNode": "EXPRESSION_STATEMENT",
+                  "children": [
+                    {
+                      "kinds": [],
+                      "nativeNode": "METHOD_INVOCATION",
+                      "children": [
+                        {
+                          "kinds": [],
+                          "nativeNode": "MEMBER_SELECT",
+                          "children": [
+                            {
+                              "kinds": [],
+                              "nativeNode": "MEMBER_SELECT",
+                              "children": [
+                                {
+                                  "kinds": [],
+                                  "nativeNode": "MEMBER_SELECT",
+                                  "children": [
+                                    {
+                                      "kinds": [
+                                        "IDENTIFIER"
+                                      ],
+                                      "nativeNode": "IDENTIFIER",
+                                      "children": [
+                                        {
+                                          "kinds": [],
+                                          "nativeNode": "TOKEN",
+                                          "token": {
+                                            "value": "java",
+                                            "line": 39,
+                                            "column": 5
+                                          },
+                                          "children": []
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "kinds": [],
+                                      "nativeNode": "TOKEN",
+                                      "token": {
+                                        "value": ".",
+                                        "line": 39,
+                                        "column": 9
+                                      },
+                                      "children": []
+                                    },
+                                    {
+                                      "kinds": [
+                                        "IDENTIFIER"
+                                      ],
+                                      "nativeNode": "IDENTIFIER",
+                                      "children": [
+                                        {
+                                          "kinds": [],
+                                          "nativeNode": "TOKEN",
+                                          "token": {
+                                            "value": "util",
+                                            "line": 39,
+                                            "column": 10
+                                          },
+                                          "children": []
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "kinds": [],
+                                  "nativeNode": "TOKEN",
+                                  "token": {
+                                    "value": ".",
+                                    "line": 39,
+                                    "column": 14
+                                  },
+                                  "children": []
+                                },
+                                {
+                                  "kinds": [
+                                    "IDENTIFIER"
+                                  ],
+                                  "nativeNode": "IDENTIFIER",
+                                  "children": [
+                                    {
+                                      "kinds": [],
+                                      "nativeNode": "TOKEN",
+                                      "token": {
+                                        "value": "Objects",
+                                        "line": 39,
+                                        "column": 15
+                                      },
+                                      "children": []
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "kinds": [],
+                              "nativeNode": "TOKEN",
+                              "token": {
+                                "value": ".",
+                                "line": 39,
+                                "column": 22
+                              },
+                              "children": []
+                            },
+                            {
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
+                              "nativeNode": "IDENTIFIER",
+                              "children": [
+                                {
+                                  "kinds": [],
+                                  "nativeNode": "TOKEN",
+                                  "token": {
+                                    "value": "deepEquals",
+                                    "line": 39,
+                                    "column": 23
+                                  },
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "kinds": [],
+                          "nativeNode": "ARGUMENTS",
+                          "children": [
+                            {
+                              "kinds": [],
+                              "nativeNode": "TOKEN",
+                              "token": {
+                                "value": "(",
+                                "line": 39,
+                                "column": 33
+                              },
+                              "children": []
+                            },
+                            {
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
+                              "nativeNode": "IDENTIFIER",
+                              "children": [
+                                {
+                                  "kinds": [],
+                                  "nativeNode": "TOKEN",
+                                  "token": {
+                                    "value": "a",
+                                    "line": 39,
+                                    "column": 34
+                                  },
+                                  "children": []
+                                }
+                              ]
+                            },
+                            {
+                              "kinds": [],
+                              "nativeNode": "TOKEN",
+                              "token": {
+                                "value": ",",
+                                "line": 39,
+                                "column": 35
+                              },
+                              "children": []
+                            },
+                            {
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
+                              "nativeNode": "IDENTIFIER",
+                              "children": [
+                                {
+                                  "kinds": [],
+                                  "nativeNode": "TOKEN",
+                                  "token": {
+                                    "value": "b",
+                                    "line": 39,
+                                    "column": 37
+                                  },
+                                  "children": []
+                                }
+                              ]
+                            },
+                            {
+                              "kinds": [],
+                              "nativeNode": "TOKEN",
+                              "token": {
+                                "value": ")",
+                                "line": 39,
+                                "column": 38
+                              },
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [],
+                      "nativeNode": "TOKEN",
+                      "token": {
+                        "value": ";",
+                        "line": 39,
+                        "column": 39
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "kinds": [
+                    "STATEMENT"
+                  ],
+                  "nativeNode": "EXPRESSION_STATEMENT",
+                  "children": [
+                    {
+                      "kinds": [],
+                      "nativeNode": "METHOD_INVOCATION",
+                      "children": [
+                        {
+                          "kinds": [],
+                          "nativeNode": "MEMBER_SELECT",
+                          "children": [
+                            {
+                              "kinds": [],
+                              "nativeNode": "MEMBER_SELECT",
+                              "children": [
+                                {
+                                  "kinds": [],
+                                  "nativeNode": "MEMBER_SELECT",
+                                  "children": [
+                                    {
+                                      "kinds": [
+                                        "IDENTIFIER"
+                                      ],
+                                      "nativeNode": "IDENTIFIER",
+                                      "children": [
+                                        {
+                                          "kinds": [],
+                                          "nativeNode": "TOKEN",
+                                          "token": {
+                                            "value": "java",
+                                            "line": 40,
+                                            "column": 5
+                                          },
+                                          "children": []
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "kinds": [],
+                                      "nativeNode": "TOKEN",
+                                      "token": {
+                                        "value": ".",
+                                        "line": 40,
+                                        "column": 9
+                                      },
+                                      "children": []
+                                    },
+                                    {
+                                      "kinds": [
+                                        "IDENTIFIER"
+                                      ],
+                                      "nativeNode": "IDENTIFIER",
+                                      "children": [
+                                        {
+                                          "kinds": [],
+                                          "nativeNode": "TOKEN",
+                                          "token": {
+                                            "value": "util",
+                                            "line": 40,
+                                            "column": 10
+                                          },
+                                          "children": []
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "kinds": [],
+                                  "nativeNode": "TOKEN",
+                                  "token": {
+                                    "value": ".",
+                                    "line": 40,
+                                    "column": 14
+                                  },
+                                  "children": []
+                                },
+                                {
+                                  "kinds": [
+                                    "IDENTIFIER"
+                                  ],
+                                  "nativeNode": "IDENTIFIER",
+                                  "children": [
+                                    {
+                                      "kinds": [],
+                                      "nativeNode": "TOKEN",
+                                      "token": {
+                                        "value": "Objects",
+                                        "line": 40,
+                                        "column": 15
+                                      },
+                                      "children": []
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "kinds": [],
+                              "nativeNode": "TOKEN",
+                              "token": {
+                                "value": ".",
+                                "line": 40,
                                 "column": 22
                               },
                               "children": []
@@ -4652,7 +4882,7 @@
                                   "nativeNode": "TOKEN",
                                   "token": {
                                     "value": "isNull",
-                                    "line": 37,
+                                    "line": 40,
                                     "column": 23
                                   },
                                   "children": []
@@ -4670,7 +4900,7 @@
                               "nativeNode": "TOKEN",
                               "token": {
                                 "value": "(",
-                                "line": 37,
+                                "line": 40,
                                 "column": 29
                               },
                               "children": []
@@ -4686,7 +4916,7 @@
                                   "nativeNode": "TOKEN",
                                   "token": {
                                     "value": "a",
-                                    "line": 37,
+                                    "line": 40,
                                     "column": 30
                                   },
                                   "children": []
@@ -4698,7 +4928,7 @@
                               "nativeNode": "TOKEN",
                               "token": {
                                 "value": ")",
-                                "line": 37,
+                                "line": 40,
                                 "column": 31
                               },
                               "children": []
@@ -4712,7 +4942,7 @@
                       "nativeNode": "TOKEN",
                       "token": {
                         "value": ";",
-                        "line": 37,
+                        "line": 40,
                         "column": 32
                       },
                       "children": []
@@ -4724,7 +4954,7 @@
                   "nativeNode": "TOKEN",
                   "token": {
                     "value": "}",
-                    "line": 38,
+                    "line": 41,
                     "column": 3
                   },
                   "children": []
@@ -4738,7 +4968,7 @@
           "nativeNode": "TOKEN",
           "token": {
             "value": "}",
-            "line": 39,
+            "line": 42,
             "column": 1
           },
           "children": []
@@ -4750,7 +4980,7 @@
       "nativeNode": "TOKEN",
       "token": {
         "value": "",
-        "line": 40,
+        "line": 43,
         "column": 1
       },
       "children": []

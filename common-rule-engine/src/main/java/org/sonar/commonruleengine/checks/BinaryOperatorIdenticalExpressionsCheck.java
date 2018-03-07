@@ -19,9 +19,17 @@ public class BinaryOperatorIdenticalExpressionsCheck extends Check {
   @Override
   public void visitNode(UastNode node) {
     BinaryExpressionLike binaryExpression = BinaryExpressionLike.from(node);
-    if (binaryExpression != null && syntacticallyEquivalent(binaryExpression.leftOperand, binaryExpression.rightOperand)) {
+    if (binaryExpression != null
+      && !isExcluded(binaryExpression)
+      && syntacticallyEquivalent(binaryExpression.leftOperand, binaryExpression.rightOperand)) {
       reportIssue(node, "Correct one of the identical argument sub-expressions.");
     }
+  }
+
+  private static boolean isExcluded(BinaryExpressionLike binaryExpression) {
+    String operator = binaryExpression.operatorToken.value;
+    // "=" not considered as binary operator for Java and Go, might be for other languages?
+    return "+".equals(operator) || "*".equals(operator) || "=".equals(operator);
   }
 
   private static class BinaryExpressionLike {

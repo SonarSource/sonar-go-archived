@@ -24,6 +24,9 @@ class A {
     j = 12 - k -k; //case why minus is excluded.
     j = k - k; // Noncompliant
     j = k*3/12%2 - k*3/12%2; // Noncompliant
+
+    int v1 = 1024 * 1024; // Compliant
+    int v2 = 1 + 1; // Compliant
   }
 
   void fun(Object a, Object b) {
