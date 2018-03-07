@@ -1560,6 +1560,7 @@
                             },
                             {
                               "kinds": [
+                                "IF",
                                 "STATEMENT"
                               ],
                               "nativeNode": "IF_STATEMENT",
@@ -1585,7 +1586,9 @@
                                   "children": []
                                 },
                                 {
-                                  "kinds": [],
+                                  "kinds": [
+                                    "CONDITION"
+                                  ],
                                   "nativeNode": "EQUAL_TO",
                                   "children": [
                                     {
@@ -2334,6 +2337,7 @@
                             },
                             {
                               "kinds": [
+                                "IF",
                                 "STATEMENT"
                               ],
                               "nativeNode": "IF_STATEMENT",
@@ -2359,7 +2363,9 @@
                                   "children": []
                                 },
                                 {
-                                  "kinds": [],
+                                  "kinds": [
+                                    "CONDITION"
+                                  ],
                                   "nativeNode": "EQUAL_TO",
                                   "children": [
                                     {

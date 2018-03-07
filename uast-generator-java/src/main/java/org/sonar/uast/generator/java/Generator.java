@@ -23,6 +23,7 @@ import org.sonar.plugins.java.api.tree.BaseTreeVisitor;
 import org.sonar.plugins.java.api.tree.BinaryExpressionTree;
 import org.sonar.plugins.java.api.tree.CompilationUnitTree;
 import org.sonar.plugins.java.api.tree.ExpressionTree;
+import org.sonar.plugins.java.api.tree.IfStatementTree;
 import org.sonar.plugins.java.api.tree.MethodTree;
 import org.sonar.plugins.java.api.tree.StatementTree;
 import org.sonar.plugins.java.api.tree.SyntaxToken;
@@ -143,6 +144,9 @@ public class Generator {
       case STRING_LITERAL:
         result.add(UastNode.Kind.LITERAL);
         break;
+      case IF_STATEMENT:
+        result.add(UastNode.Kind.IF);
+        break;
       default:
         break;
     }
@@ -181,6 +185,16 @@ public class Generator {
     public void visitMethod(MethodTree tree) {
       tree.parameters().forEach(p -> treeUastNodeMap.get(p).kinds.add(UastNode.Kind.PARAMETER));
       super.visitMethod(tree);
+    }
+
+    @Override
+    public void visitIfStatement(IfStatementTree tree) {
+      addKind(tree.condition(), UastNode.Kind.CONDITION);
+      StatementTree elseStatement = tree.elseStatement();
+      if (elseStatement != null) {
+        addKind(elseStatement, UastNode.Kind.ELSE);
+      }
+      super.visitIfStatement(tree);
     }
   }
 
