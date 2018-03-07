@@ -1,25 +1,31 @@
 #!/usr/bin/env bash
 
-SRC_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd ../../../ruling-test-sources && pwd )"
+set -euo pipefail
 
-function display_code() {
+SRC_DIR="$( cd "$( dirname "$0" )" && cd ../../../ruling-test-sources && pwd )"
+
+display_code() {
   local FILE_PATH="$1"
   echo "${FILE_PATH}"
   shift
-  while [ -n "$1" ]; do
+  while [ $# != 0 ]; do
     local POS="$1"
     local LINE="${POS%:*}"
     local COLUMN="${POS#*:}"
-    local LINE_BEFORE=$(( $LINE - 4 ))
-    LINE_BEFORE=$(( $LINE_BEFORE < 1 ? 1 : $LINE_BEFORE ))
-    cat -n "${FILE_PATH}" | sed -n "${LINE_BEFORE},${LINE}p" | sed "s|\t| |g"
-    for ((i=-5; i<=$COLUMN; i++)); do echo -n ' '; done
+    local LINE_BEFORE=$(( LINE - 4 ))
+    ((LINE_BEFORE = LINE_BEFORE < 1 ? 1 : LINE_BEFORE))
+    cat -n "${FILE_PATH}" | sed -ne "s|\t| |g" -e "${LINE_BEFORE},${LINE}p"
+
+    local indent_count
+    ((indent_count = COLUMN + 6))
+    printf "%${indent_count}s"
+
     echo '^--'
     shift
   done
   echo
 }
 
-source <(
-  cat "$@" | sed "s|^|display_code \"${SRC_DIR}/|;s|:|\"|"
-)
+cat "$@" | while IFS= read -r line; do
+    display_code "${SRC_DIR}/"${line/:/}
+done
