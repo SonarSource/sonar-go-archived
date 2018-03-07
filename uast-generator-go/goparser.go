@@ -40,6 +40,7 @@ const (
 	PARAMETER         Kind = "PARAMETER"
 	RESULT_LIST       Kind = "RESULT_LIST"
 	RESULT            Kind = "RESULT"
+	BINARY_EXPRESSION Kind = "BINARY_EXPRESSION"
 	UNSUPPORTED       Kind = "UNSUPPORTED"
 )
 
@@ -312,7 +313,7 @@ func mapExpr(astNode ast.Expr) *Node {
 
 func mapBinaryExpr(expr *ast.BinaryExpr) *Node {
 	return &Node{
-		Kinds: kinds(expr),
+		Kinds: kinds(BINARY_EXPRESSION),
 		Children: children(
 			mapExpr(expr.X),
 			mapToken(expr.Op, expr.OpPos),
