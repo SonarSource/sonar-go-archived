@@ -115,7 +115,7 @@ func Test_mapFuncDecl_complete(t *testing.T) {
 
 	intParamsNames := intParams.Children[0]
 	expectChildrenCount(t, intParamsNames, 2)
-	expectNativeNode(t, intParamsNames, "[]ast.Ident")
+	expectNativeNode(t, intParamsNames, "[]*ast.Ident")
 
 	n1 := intParamsNames.Children[0]
 	expectChildrenCount(t, n1, 0)
@@ -134,7 +134,7 @@ func Test_mapFuncDecl_complete(t *testing.T) {
 
 	stringParamsNames := stringParams.Children[0]
 	expectChildrenCount(t, stringParamsNames, 1)
-	expectNativeNode(t, stringParamsNames, "[]ast.Ident")
+	expectNativeNode(t, stringParamsNames, "[]*ast.Ident")
 
 	s1 := stringParamsNames.Children[0]
 	expectChildrenCount(t, s1, 0)
@@ -158,7 +158,7 @@ func Test_mapFuncDecl_complete(t *testing.T) {
 
 	intResultsNames := intResults.Children[0]
 	expectChildrenCount(t, intResultsNames, 1)
-	expectNativeNode(t, intResultsNames, "[]ast.Ident")
+	expectNativeNode(t, intResultsNames, "[]*ast.Ident")
 
 	n := intResultsNames.Children[0]
 	expectChildrenCount(t, n, 0)

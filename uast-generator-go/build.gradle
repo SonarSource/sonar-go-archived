@@ -7,7 +7,12 @@ golang {
   goVersion = '1.10'
 }
 
+task generateSource(type: com.github.blindpirate.gogradle.Go) {
+    go 'run generate_source.go'
+}
+
 build.dependsOn check
+installDependencies.dependsOn generateSource
 
 build {
   targetPlatform = ['linux-amd64', 'windows-amd64', 'darwin-amd64']

@@ -1,5 +1,7 @@
 package main
 
+//go:generate go run generate_source.go
+
 import (
 	"encoding/json"
 	"fmt"
@@ -106,36 +108,6 @@ type NodeList interface {
 	Len() int
 	NativeNode() string
 }
-
-type ExprList []ast.Expr
-
-func (items ExprList) At(i int) ast.Node  { return items[i] }
-func (items ExprList) Len() int           { return len(items) }
-func (items ExprList) NativeNode() string { return nativeNode([]ast.Expr{}) }
-
-type StmtList []ast.Stmt
-
-func (items StmtList) At(i int) ast.Node  { return items[i] }
-func (items StmtList) Len() int           { return len(items) }
-func (items StmtList) NativeNode() string { return nativeNode([]ast.Stmt{}) }
-
-type DeclList []ast.Decl
-
-func (items DeclList) At(i int) ast.Node  { return items[i] }
-func (items DeclList) Len() int           { return len(items) }
-func (items DeclList) NativeNode() string { return nativeNode([]ast.Decl{}) }
-
-type FieldList []*ast.Field
-
-func (items FieldList) At(i int) ast.Node  { return items[i] }
-func (items FieldList) Len() int           { return len(items) }
-func (items FieldList) NativeNode() string { return nativeNode([]ast.Field{}) }
-
-type IdentList []*ast.Ident
-
-func (items IdentList) At(i int) ast.Node  { return items[i] }
-func (items IdentList) Len() int           { return len(items) }
-func (items IdentList) NativeNode() string { return nativeNode([]ast.Ident{}) }
 
 func childrenFromNodeList(nodeList NodeList) []*Node {
 	children := children()
