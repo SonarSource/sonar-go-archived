@@ -10,9 +10,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -28,16 +28,21 @@ import org.sonar.uast.UastNode;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 @EnabledIfEnvironmentVariable(named = "ruling", matches = "true")
 class GoRulingTest {
 
   public static final Path GO_SOURCE_DIRECTORY = Paths.get("src", "test", "ruling-test-sources");
-  public static final Path GO_EXPECTED_DIRECTORY = Paths.get("src","test", "resources", "go", "expected");
+  public static final Path GO_EXPECTED_DIRECTORY = Paths.get("src", "test", "resources", "go", "expected");
   public static final Path GO_ACTUAL_DIRECTORY = Paths.get("build", "tmp", "actual", "go");
 
   @Test
   void ruling() throws IOException {
+    if (!Files.exists(GO_SOURCE_DIRECTORY.resolve("README.md"))) {
+      fail(GO_SOURCE_DIRECTORY + " submodule does not contains 'README.md'," +
+        " you probably need to do a 'git submodule update --init'");
+    }
     Files.createDirectories(GO_ACTUAL_DIRECTORY);
     Map<String, Map<String, List<String>>> issuesPreRulePreFile = new ConcurrentHashMap<>();
     try (Stream<Path> files = Files.walk(GO_SOURCE_DIRECTORY)) {
@@ -60,7 +65,7 @@ class GoRulingTest {
   }
 
   @Test
-  void metrics() throws IOException {
+  void metrics() {
     UastNode uast = getGoUast(GO_SOURCE_DIRECTORY.resolve("samples").resolve("SelfAssignement.go"));
     Engine engine = new Engine(Collections.emptyList());
     Metrics metrics = engine.scan(uast).metrics;
@@ -104,19 +109,15 @@ class GoRulingTest {
   }
 
   void analyze(Map<String, Map<String, List<String>>> issuesPreRulePreFile, Path path) {
-    try {
-      UastNode uast = getGoUast(path);
-      Engine engine = new Engine();
-      for (Issue issue : engine.scan(uast).issues) {
-        String ruleName = issue.getRule().getClass().getSimpleName();
-        String filename = GO_SOURCE_DIRECTORY.relativize(path).toString().replace('\\', '/');
-        issuesPreRulePreFile
-          .computeIfAbsent(ruleName, key -> new ConcurrentHashMap<>())
-          .computeIfAbsent(filename, key -> new ArrayList<>())
-          .add(" " + getNodeLocation(issue));
-      }
-    } catch (IOException e) {
-      throw new RuntimeException(e.getMessage(), e);
+    UastNode uast = getGoUast(path);
+    Engine engine = new Engine();
+    for (Issue issue : engine.scan(uast).issues) {
+      String ruleName = issue.getRule().getClass().getSimpleName();
+      String filename = GO_SOURCE_DIRECTORY.relativize(path).toString().replace('\\', '/');
+      issuesPreRulePreFile
+        .computeIfAbsent(ruleName, key -> new ConcurrentHashMap<>())
+        .computeIfAbsent(filename, key -> new ArrayList<>())
+        .add(" " + getNodeLocation(issue));
     }
   }
 
@@ -131,16 +132,20 @@ class GoRulingTest {
     return "unknown";
   }
 
-  private UastNode getGoUast(Path path) throws IOException {
-    ProcessBuilder builder = new ProcessBuilder(goParserPath(), path.toAbsolutePath().toString());
-    builder.redirectErrorStream(true);
-    Process process = builder.start();
-    try (InputStream inputStream = process.getInputStream()) {
-      String jsonOrError = CharStreams.toString(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
-      if (!jsonOrError.startsWith("{")) {
-        throw new IllegalArgumentException("Invalid file " + path + " :\n" + jsonOrError);
+  private UastNode getGoUast(Path path) {
+    try {
+      ProcessBuilder builder = new ProcessBuilder(goParserPath(), path.toAbsolutePath().toString());
+      builder.redirectErrorStream(true);
+      Process process = builder.start();
+      try (InputStream inputStream = process.getInputStream()) {
+        String jsonOrError = CharStreams.toString(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
+        if (!jsonOrError.startsWith("{")) {
+          throw new IllegalArgumentException("Invalid file " + path + " :\n" + jsonOrError);
+        }
+        return Uast.from(new StringReader(jsonOrError));
       }
-      return Uast.from(new StringReader(jsonOrError));
+    } catch (IOException e) {
+      throw new IllegalStateException(e.getClass().getSimpleName() + " for '" + path + "': " + e.getMessage(), e);
     }
   }
 
