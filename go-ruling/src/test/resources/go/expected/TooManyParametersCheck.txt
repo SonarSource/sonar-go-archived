@@ -1,0 +1,88 @@
+kubernetes/cmd/libs/go2idl/client-gen/generators/client_generator.go: 68:6
+kubernetes/federation/pkg/federation-controller/util/planner/planner_test.go: 46:6
+kubernetes/federation/pkg/kubefed/init/init.go: 449:6 557:6 684:6 858:6
+kubernetes/federation/pkg/kubefed/init/init_test.go: 624:6 1325:6
+kubernetes/federation/pkg/kubefed/join.go: 321:6 344:6 537:6 646:6
+kubernetes/pkg/api/unversioned/time.go: 55:6
+kubernetes/pkg/apis/meta/v1/time.go: 59:6
+kubernetes/pkg/client/tests/remotecommand_test.go: 59:25 63:25 67:25 110:6
+kubernetes/pkg/cloudprovider/providers/aws/aws_loadbalancer.go: 65:17
+kubernetes/pkg/cloudprovider/providers/gce/gce.go: 245:6
+kubernetes/pkg/controller/daemon/daemoncontroller.go: 855:6
+kubernetes/pkg/controller/node/nodecontroller.go: 199:6
+kubernetes/pkg/controller/node/nodecontroller_test.go: 65:6
+kubernetes/pkg/controller/podautoscaler/horizontal.go: 101:6
+kubernetes/pkg/controller/volume/attachdetach/attach_detach_controller.go: 81:6
+kubernetes/pkg/controller/volume/attachdetach/cache/actual_state_of_world_test.go: 1168:6
+kubernetes/pkg/controller/volume/attachdetach/reconciler/reconciler.go: 60:6
+kubernetes/pkg/controller/volume/persistentvolume/framework_test.go: 626:6 713:6
+kubernetes/pkg/kubeapiserver/default_storage_factory_builder.go: 35:6
+kubernetes/pkg/kubectl/cmd/apply.go: 507:6
+kubernetes/pkg/kubectl/cmd/attach.go: 98:29
+kubernetes/pkg/kubectl/cmd/attach_test.go: 48:28
+kubernetes/pkg/kubectl/cmd/delete.go: 247:6
+kubernetes/pkg/kubectl/cmd/exec.go: 103:31
+kubernetes/pkg/kubectl/cmd/exec_test.go: 47:30
+kubernetes/pkg/kubectl/rolling_updater.go: 682:6
+kubernetes/pkg/kubelet/container/testing/fake_runtime.go: 314:38
+kubernetes/pkg/kubelet/container/testing/runtime_mock.go: 93:16
+kubernetes/pkg/kubelet/dockershim/docker_service.go: 149:6
+kubernetes/pkg/kubelet/dockershim/docker_streaming.go: 53:28
+kubernetes/pkg/kubelet/dockershim/exec.go: 66:28 137:27
+kubernetes/pkg/kubelet/eviction/eviction_manager.go: 96:6
+kubernetes/pkg/kubelet/kubelet_pods.go: 1443:20 1461:20
+kubernetes/pkg/kubelet/kubelet_test.go: 746:6
+kubernetes/pkg/kubelet/kuberuntime/kuberuntime_manager.go: 122:6
+kubernetes/pkg/kubelet/rkt/rkt.go: 223:6 557:6 2156:19
+kubernetes/pkg/kubelet/rkt/rkt_test.go: 76:6
+kubernetes/pkg/kubelet/server/portforward/httpstream.go: 36:6
+kubernetes/pkg/kubelet/server/portforward/portforward.go: 41:6
+kubernetes/pkg/kubelet/server/portforward/websocket.go: 96:6
+kubernetes/pkg/kubelet/server/remotecommand/attach.go: 41:6
+kubernetes/pkg/kubelet/server/remotecommand/exec.go: 44:6
+kubernetes/pkg/kubelet/server/server.go: 121:6
+kubernetes/pkg/kubelet/server/server_test.go: 139:24 143:24
+kubernetes/pkg/kubelet/server/streaming/server.go: 334:22 338:22
+kubernetes/pkg/kubelet/volumemanager/populator/desired_state_of_world_populator.go: 78:6
+kubernetes/pkg/kubelet/volumemanager/reconciler/reconciler.go: 90:6
+kubernetes/pkg/kubelet/volumemanager/volume_manager.go: 147:6
+kubernetes/pkg/kubemark/hollow_kubelet.go: 50:6
+kubernetes/pkg/kubemark/hollow_proxy.go: 63:6
+kubernetes/pkg/proxy/iptables/proxier.go: 445:6
+kubernetes/pkg/proxy/userspace/proxier.go: 156:6 164:6 185:6 986:25
+kubernetes/pkg/proxy/winuserspace/proxysocket.go: 361:6
+kubernetes/plugin/cmd/kube-scheduler/app/configurator.go: 76:6
+kubernetes/plugin/pkg/scheduler/factory/factory.go: 106:6
+kubernetes/staging/src/k8s.io/apimachinery/pkg/apis/meta/v1/micro_time.go: 59:6
+kubernetes/staging/src/k8s.io/apimachinery/pkg/apis/meta/v1/time.go: 59:6
+kubernetes/staging/src/k8s.io/apimachinery/pkg/runtime/serializer/versioning/versioning.go: 54:6
+kubernetes/staging/src/k8s.io/apiserver/pkg/admission/attributes.go: 37:6
+kubernetes/staging/src/k8s.io/apiserver/pkg/endpoints/handlers/rest.go: 613:6
+kubernetes/staging/src/k8s.io/apiserver/pkg/endpoints/installer.go: 863:6
+kubernetes/staging/src/k8s.io/apiserver/pkg/registry/generic/storage_decorator.go: 43:6
+kubernetes/staging/src/k8s.io/apiserver/pkg/storage/etcd/etcd_watcher.go: 108:6
+kubernetes/staging/src/k8s.io/apiserver/plugin/pkg/authenticator/token/oidc/oidc_test.go: 36:6 57:6 61:6 65:6
+kubernetes/staging/src/k8s.io/client-go/rest/request.go: 122:6
+kubernetes/test/e2e/common/autoscaling_utils.go: 102:6 108:6 120:6 420:6
+kubernetes/test/e2e/framework/networking_utils.go: 174:37
+kubernetes/test/e2e/perf/density.go: 817:6
+kubernetes/test/e2e/perf/load.go: 404:6
+kubernetes/test/e2e_node/remote/node_conformance.go: 261:29
+kubernetes/test/e2e_node/remote/node_e2e.go: 186:25
+kubernetes/test/e2e_node/remote/remote.go: 66:6
+kubernetes/test/e2e_node/services/server.go: 71:6
+kubernetes/test/integration/garbagecollector/garbage_collector_test.go: 300:6
+kubernetes/test/utils/deployment.go: 145:6
+kubernetes/vendor/github.com/Microsoft/go-winio/zsyscall_windows.go: 143:6 152:6
+kubernetes/vendor/github.com/go-openapi/validate/schema_props.go: 45:6
+kubernetes/vendor/github.com/google/cadvisor/container/docker/handler.go: 142:6
+kubernetes/vendor/github.com/google/cadvisor/container/rkt/handler.go: 75:6
+kubernetes/vendor/github.com/ugorji/go/codec/codecgen/gen.go: 85:6
+kubernetes/vendor/github.com/xanzy/go-cloudstack/cloudstack/BaremetalService.go: 302:28
+kubernetes/vendor/golang.org/x/crypto/ed25519/internal/edwards25519/edwards25519.go: 258:6
+kubernetes/vendor/golang.org/x/crypto/pkcs12/pbkdf.go: 33:6
+kubernetes/vendor/golang.org/x/sys/unix/gccgo.go: 31:6
+kubernetes/vendor/golang.org/x/sys/windows/syscall_windows.go: 702:6
+kubernetes/vendor/golang.org/x/sys/windows/zsyscall_windows.go: 223:6 260:6 358:6 859:6 1342:6 1423:6 1493:6 1501:6 1596:6 1683:6 1816:6 1828:6 1857:6 1869:6 2181:6
+kubernetes/vendor/gopkg.in/gcfg.v1/set.go: 216:6
+samples/TooManyParameters.go: 4:6
