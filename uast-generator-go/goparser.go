@@ -24,7 +24,9 @@ const (
 	RPAREN            Kind = "RPAREN"
 	ARGS_LIST         Kind = "ARGS_LIST"
 	CALL              Kind = "CALL"
-	IF_STMT           Kind = "IF_STMT"
+	IF                Kind = "IF"
+	ELSE              Kind = "ELSE"
+	CONDITION         Kind = "CONDITION"
 	DECL_LIST         Kind = "DECL_LIST"
 	STATEMENT         Kind = "STATEMENT"
 	ASSIGNMENT        Kind = "ASSIGNMENT"
@@ -69,7 +71,7 @@ func kind(k interface{}) Kind {
 	case *ast.BlockStmt:
 		return BLOCK
 	case *ast.IfStmt:
-		return IF_STMT
+		return IF
 	case *ast.Ident:
 		return IDENTIFIER
 	case *ast.AssignStmt:
@@ -243,13 +245,24 @@ func mapStmt(astNode ast.Stmt) *Node {
 }
 
 func mapIfStmt(stmt *ast.IfStmt) *Node {
+	var conditionChildren []*Node
+	if stmt.Init != nil {
+		conditionChildren = children(mapStmt(stmt.Init), mapExpr(stmt.Cond))
+	} else {
+		conditionChildren = children(mapExpr(stmt.Cond))
+	}
+	condition := &Node{
+		Kinds:    kinds(CONDITION),
+		Children: conditionChildren,
+	}
+	elseStmt := mapStmt(stmt.Else)
+	elseStmt.Kinds = append(elseStmt.Kinds, ELSE)
 	return &Node{
 		Kinds: kinds(stmt),
 		Children: children(
-			mapStmt(stmt.Init),
-			mapExpr(stmt.Cond),
+			condition,
 			mapStmt(stmt.Body),
-			mapStmt(stmt.Else),
+			elseStmt,
 		),
 		NativeNode: nativeNode(stmt),
 	}

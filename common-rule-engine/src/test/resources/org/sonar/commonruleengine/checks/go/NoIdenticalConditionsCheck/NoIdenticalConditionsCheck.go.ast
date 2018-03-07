@@ -1,0 +1,1405 @@
+(*ast.File) {
+  Doc: (*ast.CommentGroup)(nil),
+  Package: token.Pos(1),
+  Name: (*ast.Ident) {
+      NamePos: token.Pos(9),
+      Name: "test",
+      Obj: (*ast.Object)(nil)
+    },
+  Decls: []ast.Decl{
+    (*ast.FuncDecl) {
+        Doc: (*ast.CommentGroup)(nil),
+        Recv: (*ast.FieldList)(nil),
+        Name: (*ast.Ident) {
+            NamePos: token.Pos(20),
+            Name: "example",
+            Obj: (*ast.Object) {
+                Kind: ast.ObjKind(5),
+                Name: "example",
+                Decl: <REC(*ast.FuncDecl)>,
+                Data: interface{}(nil),
+                Type: interface{}(nil)
+              }
+          },
+        Type: (*ast.FuncType) {
+            Func: token.Pos(15),
+            Params: (*ast.FieldList) {
+                Opening: token.Pos(27),
+                List: []*ast.Field{
+                  (*ast.Field) {
+                      Doc: (*ast.CommentGroup)(nil),
+                      Names: []*ast.Ident{
+                        (*ast.Ident) {
+                            NamePos: token.Pos(28),
+                            Name: "condition1",
+                            Obj: (*ast.Object) {
+                                Kind: ast.ObjKind(4),
+                                Name: "condition1",
+                                Decl: <REC(*ast.Field)>,
+                                Data: interface{}(nil),
+                                Type: interface{}(nil)
+                              }
+                          },
+                        (*ast.Ident) {
+                            NamePos: token.Pos(40),
+                            Name: "condition2",
+                            Obj: (*ast.Object) {
+                                Kind: ast.ObjKind(4),
+                                Name: "condition2",
+                                Decl: <REC(*ast.Field)>,
+                                Data: interface{}(nil),
+                                Type: interface{}(nil)
+                              }
+                          }
+                        },
+                      Type: (*ast.Ident) {
+                          NamePos: token.Pos(51),
+                          Name: "bool",
+                          Obj: (*ast.Object)(nil)
+                        },
+                      Tag: (*ast.BasicLit)(nil),
+                      Comment: (*ast.CommentGroup)(nil)
+                    }
+                  },
+                Closing: token.Pos(55)
+              },
+            Results: (*ast.FieldList)(nil)
+          },
+        Body: (*ast.BlockStmt) {
+            Lbrace: token.Pos(57),
+            List: []ast.Stmt{
+              (*ast.IfStmt) {
+                  If: token.Pos(60),
+                  Init: ast.Stmt(nil),
+                  Cond: (*ast.Ident) {
+                      NamePos: token.Pos(63),
+                      Name: "condition1",
+                      Obj: (*ast.Object) {
+                          Kind: ast.ObjKind(4),
+                          Name: "condition1",
+                          Decl: (*ast.Field) {
+                              Doc: (*ast.CommentGroup)(nil),
+                              Names: []*ast.Ident{
+                                (*ast.Ident) {
+                                    NamePos: token.Pos(28),
+                                    Name: "condition1",
+                                    Obj: <REC(*ast.Object)>
+                                  },
+                                (*ast.Ident) {
+                                    NamePos: token.Pos(40),
+                                    Name: "condition2",
+                                    Obj: (*ast.Object) {
+                                        Kind: ast.ObjKind(4),
+                                        Name: "condition2",
+                                        Decl: <REC(*ast.Field)>,
+                                        Data: interface{}(nil),
+                                        Type: interface{}(nil)
+                                      }
+                                  }
+                                },
+                              Type: (*ast.Ident) {
+                                  NamePos: token.Pos(51),
+                                  Name: "bool",
+                                  Obj: (*ast.Object)(nil)
+                                },
+                              Tag: (*ast.BasicLit)(nil),
+                              Comment: (*ast.CommentGroup)(nil)
+                            },
+                          Data: interface{}(nil),
+                          Type: interface{}(nil)
+                        }
+                    },
+                  Body: (*ast.BlockStmt) {
+                      Lbrace: token.Pos(74),
+                      List: []ast.Stmt(nil),
+                      Rbrace: token.Pos(77)
+                    },
+                  Else: (*ast.IfStmt) {
+                      If: token.Pos(84),
+                      Init: ast.Stmt(nil),
+                      Cond: (*ast.Ident) {
+                          NamePos: token.Pos(87),
+                          Name: "condition1",
+                          Obj: (*ast.Object) {
+                              Kind: ast.ObjKind(4),
+                              Name: "condition1",
+                              Decl: (*ast.Field) {
+                                  Doc: (*ast.CommentGroup)(nil),
+                                  Names: []*ast.Ident{
+                                    (*ast.Ident) {
+                                        NamePos: token.Pos(28),
+                                        Name: "condition1",
+                                        Obj: <REC(*ast.Object)>
+                                      },
+                                    (*ast.Ident) {
+                                        NamePos: token.Pos(40),
+                                        Name: "condition2",
+                                        Obj: (*ast.Object) {
+                                            Kind: ast.ObjKind(4),
+                                            Name: "condition2",
+                                            Decl: <REC(*ast.Field)>,
+                                            Data: interface{}(nil),
+                                            Type: interface{}(nil)
+                                          }
+                                      }
+                                    },
+                                  Type: (*ast.Ident) {
+                                      NamePos: token.Pos(51),
+                                      Name: "bool",
+                                      Obj: (*ast.Object)(nil)
+                                    },
+                                  Tag: (*ast.BasicLit)(nil),
+                                  Comment: (*ast.CommentGroup)(nil)
+                                },
+                              Data: interface{}(nil),
+                              Type: interface{}(nil)
+                            }
+                        },
+                      Body: (*ast.BlockStmt) {
+                          Lbrace: token.Pos(98),
+                          List: []ast.Stmt(nil),
+                          Rbrace: token.Pos(117)
+                        },
+                      Else: ast.Stmt(nil)
+                    }
+                },
+              (*ast.IfStmt) {
+                  If: token.Pos(121),
+                  Init: ast.Stmt(nil),
+                  Cond: (*ast.Ident) {
+                      NamePos: token.Pos(124),
+                      Name: "condition2",
+                      Obj: (*ast.Object) {
+                          Kind: ast.ObjKind(4),
+                          Name: "condition2",
+                          Decl: (*ast.Field) {
+                              Doc: (*ast.CommentGroup)(nil),
+                              Names: []*ast.Ident{
+                                (*ast.Ident) {
+                                    NamePos: token.Pos(28),
+                                    Name: "condition1",
+                                    Obj: (*ast.Object) {
+                                        Kind: ast.ObjKind(4),
+                                        Name: "condition1",
+                                        Decl: <REC(*ast.Field)>,
+                                        Data: interface{}(nil),
+                                        Type: interface{}(nil)
+                                      }
+                                  },
+                                (*ast.Ident) {
+                                    NamePos: token.Pos(40),
+                                    Name: "condition2",
+                                    Obj: <REC(*ast.Object)>
+                                  }
+                                },
+                              Type: (*ast.Ident) {
+                                  NamePos: token.Pos(51),
+                                  Name: "bool",
+                                  Obj: (*ast.Object)(nil)
+                                },
+                              Tag: (*ast.BasicLit)(nil),
+                              Comment: (*ast.CommentGroup)(nil)
+                            },
+                          Data: interface{}(nil),
+                          Type: interface{}(nil)
+                        }
+                    },
+                  Body: (*ast.BlockStmt) {
+                      Lbrace: token.Pos(135),
+                      List: []ast.Stmt(nil),
+                      Rbrace: token.Pos(138)
+                    },
+                  Else: (*ast.IfStmt) {
+                      If: token.Pos(145),
+                      Init: ast.Stmt(nil),
+                      Cond: (*ast.Ident) {
+                          NamePos: token.Pos(148),
+                          Name: "condition1",
+                          Obj: (*ast.Object) {
+                              Kind: ast.ObjKind(4),
+                              Name: "condition1",
+                              Decl: (*ast.Field) {
+                                  Doc: (*ast.CommentGroup)(nil),
+                                  Names: []*ast.Ident{
+                                    (*ast.Ident) {
+                                        NamePos: token.Pos(28),
+                                        Name: "condition1",
+                                        Obj: <REC(*ast.Object)>
+                                      },
+                                    (*ast.Ident) {
+                                        NamePos: token.Pos(40),
+                                        Name: "condition2",
+                                        Obj: (*ast.Object) {
+                                            Kind: ast.ObjKind(4),
+                                            Name: "condition2",
+                                            Decl: <REC(*ast.Field)>,
+                                            Data: interface{}(nil),
+                                            Type: interface{}(nil)
+                                          }
+                                      }
+                                    },
+                                  Type: (*ast.Ident) {
+                                      NamePos: token.Pos(51),
+                                      Name: "bool",
+                                      Obj: (*ast.Object)(nil)
+                                    },
+                                  Tag: (*ast.BasicLit)(nil),
+                                  Comment: (*ast.CommentGroup)(nil)
+                                },
+                              Data: interface{}(nil),
+                              Type: interface{}(nil)
+                            }
+                        },
+                      Body: (*ast.BlockStmt) {
+                          Lbrace: token.Pos(159),
+                          List: []ast.Stmt(nil),
+                          Rbrace: token.Pos(162)
+                        },
+                      Else: (*ast.IfStmt) {
+                          If: token.Pos(169),
+                          Init: ast.Stmt(nil),
+                          Cond: (*ast.Ident) {
+                              NamePos: token.Pos(172),
+                              Name: "condition1",
+                              Obj: (*ast.Object) {
+                                  Kind: ast.ObjKind(4),
+                                  Name: "condition1",
+                                  Decl: (*ast.Field) {
+                                      Doc: (*ast.CommentGroup)(nil),
+                                      Names: []*ast.Ident{
+                                        (*ast.Ident) {
+                                            NamePos: token.Pos(28),
+                                            Name: "condition1",
+                                            Obj: <REC(*ast.Object)>
+                                          },
+                                        (*ast.Ident) {
+                                            NamePos: token.Pos(40),
+                                            Name: "condition2",
+                                            Obj: (*ast.Object) {
+                                                Kind: ast.ObjKind(4),
+                                                Name: "condition2",
+                                                Decl: <REC(*ast.Field)>,
+                                                Data: interface{}(nil),
+                                                Type: interface{}(nil)
+                                              }
+                                          }
+                                        },
+                                      Type: (*ast.Ident) {
+                                          NamePos: token.Pos(51),
+                                          Name: "bool",
+                                          Obj: (*ast.Object)(nil)
+                                        },
+                                      Tag: (*ast.BasicLit)(nil),
+                                      Comment: (*ast.CommentGroup)(nil)
+                                    },
+                                  Data: interface{}(nil),
+                                  Type: interface{}(nil)
+                                }
+                            },
+                          Body: (*ast.BlockStmt) {
+                              Lbrace: token.Pos(183),
+                              List: []ast.Stmt(nil),
+                              Rbrace: token.Pos(202)
+                            },
+                          Else: ast.Stmt(nil)
+                        }
+                    }
+                },
+              (*ast.IfStmt) {
+                  If: token.Pos(206),
+                  Init: ast.Stmt(nil),
+                  Cond: (*ast.Ident) {
+                      NamePos: token.Pos(209),
+                      Name: "condition1",
+                      Obj: (*ast.Object) {
+                          Kind: ast.ObjKind(4),
+                          Name: "condition1",
+                          Decl: (*ast.Field) {
+                              Doc: (*ast.CommentGroup)(nil),
+                              Names: []*ast.Ident{
+                                (*ast.Ident) {
+                                    NamePos: token.Pos(28),
+                                    Name: "condition1",
+                                    Obj: <REC(*ast.Object)>
+                                  },
+                                (*ast.Ident) {
+                                    NamePos: token.Pos(40),
+                                    Name: "condition2",
+                                    Obj: (*ast.Object) {
+                                        Kind: ast.ObjKind(4),
+                                        Name: "condition2",
+                                        Decl: <REC(*ast.Field)>,
+                                        Data: interface{}(nil),
+                                        Type: interface{}(nil)
+                                      }
+                                  }
+                                },
+                              Type: (*ast.Ident) {
+                                  NamePos: token.Pos(51),
+                                  Name: "bool",
+                                  Obj: (*ast.Object)(nil)
+                                },
+                              Tag: (*ast.BasicLit)(nil),
+                              Comment: (*ast.CommentGroup)(nil)
+                            },
+                          Data: interface{}(nil),
+                          Type: interface{}(nil)
+                        }
+                    },
+                  Body: (*ast.BlockStmt) {
+                      Lbrace: token.Pos(220),
+                      List: []ast.Stmt(nil),
+                      Rbrace: token.Pos(223)
+                    },
+                  Else: (*ast.IfStmt) {
+                      If: token.Pos(230),
+                      Init: ast.Stmt(nil),
+                      Cond: (*ast.Ident) {
+                          NamePos: token.Pos(233),
+                          Name: "condition2",
+                          Obj: (*ast.Object) {
+                              Kind: ast.ObjKind(4),
+                              Name: "condition2",
+                              Decl: (*ast.Field) {
+                                  Doc: (*ast.CommentGroup)(nil),
+                                  Names: []*ast.Ident{
+                                    (*ast.Ident) {
+                                        NamePos: token.Pos(28),
+                                        Name: "condition1",
+                                        Obj: (*ast.Object) {
+                                            Kind: ast.ObjKind(4),
+                                            Name: "condition1",
+                                            Decl: <REC(*ast.Field)>,
+                                            Data: interface{}(nil),
+                                            Type: interface{}(nil)
+                                          }
+                                      },
+                                    (*ast.Ident) {
+                                        NamePos: token.Pos(40),
+                                        Name: "condition2",
+                                        Obj: <REC(*ast.Object)>
+                                      }
+                                    },
+                                  Type: (*ast.Ident) {
+                                      NamePos: token.Pos(51),
+                                      Name: "bool",
+                                      Obj: (*ast.Object)(nil)
+                                    },
+                                  Tag: (*ast.BasicLit)(nil),
+                                  Comment: (*ast.CommentGroup)(nil)
+                                },
+                              Data: interface{}(nil),
+                              Type: interface{}(nil)
+                            }
+                        },
+                      Body: (*ast.BlockStmt) {
+                          Lbrace: token.Pos(244),
+                          List: []ast.Stmt(nil),
+                          Rbrace: token.Pos(247)
+                        },
+                      Else: (*ast.IfStmt) {
+                          If: token.Pos(254),
+                          Init: ast.Stmt(nil),
+                          Cond: (*ast.Ident) {
+                              NamePos: token.Pos(257),
+                              Name: "condition1",
+                              Obj: (*ast.Object) {
+                                  Kind: ast.ObjKind(4),
+                                  Name: "condition1",
+                                  Decl: (*ast.Field) {
+                                      Doc: (*ast.CommentGroup)(nil),
+                                      Names: []*ast.Ident{
+                                        (*ast.Ident) {
+                                            NamePos: token.Pos(28),
+                                            Name: "condition1",
+                                            Obj: <REC(*ast.Object)>
+                                          },
+                                        (*ast.Ident) {
+                                            NamePos: token.Pos(40),
+                                            Name: "condition2",
+                                            Obj: (*ast.Object) {
+                                                Kind: ast.ObjKind(4),
+                                                Name: "condition2",
+                                                Decl: <REC(*ast.Field)>,
+                                                Data: interface{}(nil),
+                                                Type: interface{}(nil)
+                                              }
+                                          }
+                                        },
+                                      Type: (*ast.Ident) {
+                                          NamePos: token.Pos(51),
+                                          Name: "bool",
+                                          Obj: (*ast.Object)(nil)
+                                        },
+                                      Tag: (*ast.BasicLit)(nil),
+                                      Comment: (*ast.CommentGroup)(nil)
+                                    },
+                                  Data: interface{}(nil),
+                                  Type: interface{}(nil)
+                                }
+                            },
+                          Body: (*ast.BlockStmt) {
+                              Lbrace: token.Pos(268),
+                              List: []ast.Stmt(nil),
+                              Rbrace: token.Pos(441)
+                            },
+                          Else: ast.Stmt(nil)
+                        }
+                    }
+                }
+              },
+            Rbrace: token.Pos(443)
+          }
+      },
+    (*ast.FuncDecl) {
+        Doc: (*ast.CommentGroup)(nil),
+        Recv: (*ast.FieldList)(nil),
+        Name: (*ast.Ident) {
+            NamePos: token.Pos(451),
+            Name: "ifInitializer",
+            Obj: (*ast.Object) {
+                Kind: ast.ObjKind(5),
+                Name: "ifInitializer",
+                Decl: <REC(*ast.FuncDecl)>,
+                Data: interface{}(nil),
+                Type: interface{}(nil)
+              }
+          },
+        Type: (*ast.FuncType) {
+            Func: token.Pos(446),
+            Params: (*ast.FieldList) {
+                Opening: token.Pos(464),
+                List: []*ast.Field{
+                  (*ast.Field) {
+                      Doc: (*ast.CommentGroup)(nil),
+                      Names: []*ast.Ident{
+                        (*ast.Ident) {
+                            NamePos: token.Pos(465),
+                            Name: "x",
+                            Obj: (*ast.Object) {
+                                Kind: ast.ObjKind(4),
+                                Name: "x",
+                                Decl: <REC(*ast.Field)>,
+                                Data: interface{}(nil),
+                                Type: interface{}(nil)
+                              }
+                          }
+                        },
+                      Type: (*ast.Ident) {
+                          NamePos: token.Pos(467),
+                          Name: "int",
+                          Obj: (*ast.Object)(nil)
+                        },
+                      Tag: (*ast.BasicLit)(nil),
+                      Comment: (*ast.CommentGroup)(nil)
+                    }
+                  },
+                Closing: token.Pos(470)
+              },
+            Results: (*ast.FieldList)(nil)
+          },
+        Body: (*ast.BlockStmt) {
+            Lbrace: token.Pos(473),
+            List: []ast.Stmt{
+              (*ast.IfStmt) {
+                  If: token.Pos(476),
+                  Init: (*ast.AssignStmt) {
+                      Lhs: []ast.Expr{
+                        (*ast.Ident) {
+                            NamePos: token.Pos(479),
+                            Name: "x",
+                            Obj: (*ast.Object) {
+                                Kind: ast.ObjKind(4),
+                                Name: "x",
+                                Decl: (*ast.Field) {
+                                    Doc: (*ast.CommentGroup)(nil),
+                                    Names: []*ast.Ident{
+                                      (*ast.Ident) {
+                                          NamePos: token.Pos(465),
+                                          Name: "x",
+                                          Obj: <REC(*ast.Object)>
+                                        }
+                                      },
+                                    Type: (*ast.Ident) {
+                                        NamePos: token.Pos(467),
+                                        Name: "int",
+                                        Obj: (*ast.Object)(nil)
+                                      },
+                                    Tag: (*ast.BasicLit)(nil),
+                                    Comment: (*ast.CommentGroup)(nil)
+                                  },
+                                Data: interface{}(nil),
+                                Type: interface{}(nil)
+                              }
+                          }
+                        },
+                      TokPos: token.Pos(481),
+                      Tok: token.Token(42),
+                      Rhs: []ast.Expr{
+                        (*ast.BasicLit) {
+                            ValuePos: token.Pos(483),
+                            Kind: token.Token(5),
+                            Value: "3"
+                          }
+                        }
+                    },
+                  Cond: (*ast.BinaryExpr) {
+                      X: (*ast.Ident) {
+                          NamePos: token.Pos(485),
+                          Name: "x",
+                          Obj: (*ast.Object) {
+                              Kind: ast.ObjKind(4),
+                              Name: "x",
+                              Decl: (*ast.Field) {
+                                  Doc: (*ast.CommentGroup)(nil),
+                                  Names: []*ast.Ident{
+                                    (*ast.Ident) {
+                                        NamePos: token.Pos(465),
+                                        Name: "x",
+                                        Obj: <REC(*ast.Object)>
+                                      }
+                                    },
+                                  Type: (*ast.Ident) {
+                                      NamePos: token.Pos(467),
+                                      Name: "int",
+                                      Obj: (*ast.Object)(nil)
+                                    },
+                                  Tag: (*ast.BasicLit)(nil),
+                                  Comment: (*ast.CommentGroup)(nil)
+                                },
+                              Data: interface{}(nil),
+                              Type: interface{}(nil)
+                            }
+                        },
+                      OpPos: token.Pos(487),
+                      Op: token.Token(41),
+                      Y: (*ast.BasicLit) {
+                          ValuePos: token.Pos(489),
+                          Kind: token.Token(5),
+                          Value: "0"
+                        }
+                    },
+                  Body: (*ast.BlockStmt) {
+                      Lbrace: token.Pos(491),
+                      List: []ast.Stmt(nil),
+                      Rbrace: token.Pos(495)
+                    },
+                  Else: (*ast.IfStmt) {
+                      If: token.Pos(502),
+                      Init: (*ast.AssignStmt) {
+                          Lhs: []ast.Expr{
+                            (*ast.Ident) {
+                                NamePos: token.Pos(505),
+                                Name: "x",
+                                Obj: (*ast.Object) {
+                                    Kind: ast.ObjKind(4),
+                                    Name: "x",
+                                    Decl: (*ast.Field) {
+                                        Doc: (*ast.CommentGroup)(nil),
+                                        Names: []*ast.Ident{
+                                          (*ast.Ident) {
+                                              NamePos: token.Pos(465),
+                                              Name: "x",
+                                              Obj: <REC(*ast.Object)>
+                                            }
+                                          },
+                                        Type: (*ast.Ident) {
+                                            NamePos: token.Pos(467),
+                                            Name: "int",
+                                            Obj: (*ast.Object)(nil)
+                                          },
+                                        Tag: (*ast.BasicLit)(nil),
+                                        Comment: (*ast.CommentGroup)(nil)
+                                      },
+                                    Data: interface{}(nil),
+                                    Type: interface{}(nil)
+                                  }
+                              }
+                            },
+                          TokPos: token.Pos(507),
+                          Tok: token.Token(42),
+                          Rhs: []ast.Expr{
+                            (*ast.UnaryExpr) {
+                                OpPos: token.Pos(509),
+                                Op: token.Token(13),
+                                X: (*ast.BasicLit) {
+                                    ValuePos: token.Pos(510),
+                                    Kind: token.Token(5),
+                                    Value: "1"
+                                  }
+                              }
+                            }
+                        },
+                      Cond: (*ast.BinaryExpr) {
+                          X: (*ast.Ident) {
+                              NamePos: token.Pos(512),
+                              Name: "x",
+                              Obj: (*ast.Object) {
+                                  Kind: ast.ObjKind(4),
+                                  Name: "x",
+                                  Decl: (*ast.Field) {
+                                      Doc: (*ast.CommentGroup)(nil),
+                                      Names: []*ast.Ident{
+                                        (*ast.Ident) {
+                                            NamePos: token.Pos(465),
+                                            Name: "x",
+                                            Obj: <REC(*ast.Object)>
+                                          }
+                                        },
+                                      Type: (*ast.Ident) {
+                                          NamePos: token.Pos(467),
+                                          Name: "int",
+                                          Obj: (*ast.Object)(nil)
+                                        },
+                                      Tag: (*ast.BasicLit)(nil),
+                                      Comment: (*ast.CommentGroup)(nil)
+                                    },
+                                  Data: interface{}(nil),
+                                  Type: interface{}(nil)
+                                }
+                            },
+                          OpPos: token.Pos(514),
+                          Op: token.Token(41),
+                          Y: (*ast.BasicLit) {
+                              ValuePos: token.Pos(516),
+                              Kind: token.Token(5),
+                              Value: "0"
+                            }
+                        },
+                      Body: (*ast.BlockStmt) {
+                          Lbrace: token.Pos(518),
+                          List: []ast.Stmt(nil),
+                          Rbrace: token.Pos(590)
+                        },
+                      Else: ast.Stmt(nil)
+                    }
+                }
+              },
+            Rbrace: token.Pos(592)
+          }
+      }
+    },
+  Scope: (*ast.Scope) {
+      Outer: (*ast.Scope)(nil),
+      Objects: map[string]*ast.Object{
+        "example": (*ast.Object) {
+              Kind: ast.ObjKind(5),
+              Name: "example",
+              Decl: (*ast.FuncDecl) {
+                  Doc: (*ast.CommentGroup)(nil),
+                  Recv: (*ast.FieldList)(nil),
+                  Name: (*ast.Ident) {
+                      NamePos: token.Pos(20),
+                      Name: "example",
+                      Obj: <REC(*ast.Object)>
+                    },
+                  Type: (*ast.FuncType) {
+                      Func: token.Pos(15),
+                      Params: (*ast.FieldList) {
+                          Opening: token.Pos(27),
+                          List: []*ast.Field{
+                            (*ast.Field) {
+                                Doc: (*ast.CommentGroup)(nil),
+                                Names: []*ast.Ident{
+                                  (*ast.Ident) {
+                                      NamePos: token.Pos(28),
+                                      Name: "condition1",
+                                      Obj: (*ast.Object) {
+                                          Kind: ast.ObjKind(4),
+                                          Name: "condition1",
+                                          Decl: <REC(*ast.Field)>,
+                                          Data: interface{}(nil),
+                                          Type: interface{}(nil)
+                                        }
+                                    },
+                                  (*ast.Ident) {
+                                      NamePos: token.Pos(40),
+                                      Name: "condition2",
+                                      Obj: (*ast.Object) {
+                                          Kind: ast.ObjKind(4),
+                                          Name: "condition2",
+                                          Decl: <REC(*ast.Field)>,
+                                          Data: interface{}(nil),
+                                          Type: interface{}(nil)
+                                        }
+                                    }
+                                  },
+                                Type: (*ast.Ident) {
+                                    NamePos: token.Pos(51),
+                                    Name: "bool",
+                                    Obj: (*ast.Object)(nil)
+                                  },
+                                Tag: (*ast.BasicLit)(nil),
+                                Comment: (*ast.CommentGroup)(nil)
+                              }
+                            },
+                          Closing: token.Pos(55)
+                        },
+                      Results: (*ast.FieldList)(nil)
+                    },
+                  Body: (*ast.BlockStmt) {
+                      Lbrace: token.Pos(57),
+                      List: []ast.Stmt{
+                        (*ast.IfStmt) {
+                            If: token.Pos(60),
+                            Init: ast.Stmt(nil),
+                            Cond: (*ast.Ident) {
+                                NamePos: token.Pos(63),
+                                Name: "condition1",
+                                Obj: (*ast.Object) {
+                                    Kind: ast.ObjKind(4),
+                                    Name: "condition1",
+                                    Decl: (*ast.Field) {
+                                        Doc: (*ast.CommentGroup)(nil),
+                                        Names: []*ast.Ident{
+                                          (*ast.Ident) {
+                                              NamePos: token.Pos(28),
+                                              Name: "condition1",
+                                              Obj: <REC(*ast.Object)>
+                                            },
+                                          (*ast.Ident) {
+                                              NamePos: token.Pos(40),
+                                              Name: "condition2",
+                                              Obj: (*ast.Object) {
+                                                  Kind: ast.ObjKind(4),
+                                                  Name: "condition2",
+                                                  Decl: <REC(*ast.Field)>,
+                                                  Data: interface{}(nil),
+                                                  Type: interface{}(nil)
+                                                }
+                                            }
+                                          },
+                                        Type: (*ast.Ident) {
+                                            NamePos: token.Pos(51),
+                                            Name: "bool",
+                                            Obj: (*ast.Object)(nil)
+                                          },
+                                        Tag: (*ast.BasicLit)(nil),
+                                        Comment: (*ast.CommentGroup)(nil)
+                                      },
+                                    Data: interface{}(nil),
+                                    Type: interface{}(nil)
+                                  }
+                              },
+                            Body: (*ast.BlockStmt) {
+                                Lbrace: token.Pos(74),
+                                List: []ast.Stmt(nil),
+                                Rbrace: token.Pos(77)
+                              },
+                            Else: (*ast.IfStmt) {
+                                If: token.Pos(84),
+                                Init: ast.Stmt(nil),
+                                Cond: (*ast.Ident) {
+                                    NamePos: token.Pos(87),
+                                    Name: "condition1",
+                                    Obj: (*ast.Object) {
+                                        Kind: ast.ObjKind(4),
+                                        Name: "condition1",
+                                        Decl: (*ast.Field) {
+                                            Doc: (*ast.CommentGroup)(nil),
+                                            Names: []*ast.Ident{
+                                              (*ast.Ident) {
+                                                  NamePos: token.Pos(28),
+                                                  Name: "condition1",
+                                                  Obj: <REC(*ast.Object)>
+                                                },
+                                              (*ast.Ident) {
+                                                  NamePos: token.Pos(40),
+                                                  Name: "condition2",
+                                                  Obj: (*ast.Object) {
+                                                      Kind: ast.ObjKind(4),
+                                                      Name: "condition2",
+                                                      Decl: <REC(*ast.Field)>,
+                                                      Data: interface{}(nil),
+                                                      Type: interface{}(nil)
+                                                    }
+                                                }
+                                              },
+                                            Type: (*ast.Ident) {
+                                                NamePos: token.Pos(51),
+                                                Name: "bool",
+                                                Obj: (*ast.Object)(nil)
+                                              },
+                                            Tag: (*ast.BasicLit)(nil),
+                                            Comment: (*ast.CommentGroup)(nil)
+                                          },
+                                        Data: interface{}(nil),
+                                        Type: interface{}(nil)
+                                      }
+                                  },
+                                Body: (*ast.BlockStmt) {
+                                    Lbrace: token.Pos(98),
+                                    List: []ast.Stmt(nil),
+                                    Rbrace: token.Pos(117)
+                                  },
+                                Else: ast.Stmt(nil)
+                              }
+                          },
+                        (*ast.IfStmt) {
+                            If: token.Pos(121),
+                            Init: ast.Stmt(nil),
+                            Cond: (*ast.Ident) {
+                                NamePos: token.Pos(124),
+                                Name: "condition2",
+                                Obj: (*ast.Object) {
+                                    Kind: ast.ObjKind(4),
+                                    Name: "condition2",
+                                    Decl: (*ast.Field) {
+                                        Doc: (*ast.CommentGroup)(nil),
+                                        Names: []*ast.Ident{
+                                          (*ast.Ident) {
+                                              NamePos: token.Pos(28),
+                                              Name: "condition1",
+                                              Obj: (*ast.Object) {
+                                                  Kind: ast.ObjKind(4),
+                                                  Name: "condition1",
+                                                  Decl: <REC(*ast.Field)>,
+                                                  Data: interface{}(nil),
+                                                  Type: interface{}(nil)
+                                                }
+                                            },
+                                          (*ast.Ident) {
+                                              NamePos: token.Pos(40),
+                                              Name: "condition2",
+                                              Obj: <REC(*ast.Object)>
+                                            }
+                                          },
+                                        Type: (*ast.Ident) {
+                                            NamePos: token.Pos(51),
+                                            Name: "bool",
+                                            Obj: (*ast.Object)(nil)
+                                          },
+                                        Tag: (*ast.BasicLit)(nil),
+                                        Comment: (*ast.CommentGroup)(nil)
+                                      },
+                                    Data: interface{}(nil),
+                                    Type: interface{}(nil)
+                                  }
+                              },
+                            Body: (*ast.BlockStmt) {
+                                Lbrace: token.Pos(135),
+                                List: []ast.Stmt(nil),
+                                Rbrace: token.Pos(138)
+                              },
+                            Else: (*ast.IfStmt) {
+                                If: token.Pos(145),
+                                Init: ast.Stmt(nil),
+                                Cond: (*ast.Ident) {
+                                    NamePos: token.Pos(148),
+                                    Name: "condition1",
+                                    Obj: (*ast.Object) {
+                                        Kind: ast.ObjKind(4),
+                                        Name: "condition1",
+                                        Decl: (*ast.Field) {
+                                            Doc: (*ast.CommentGroup)(nil),
+                                            Names: []*ast.Ident{
+                                              (*ast.Ident) {
+                                                  NamePos: token.Pos(28),
+                                                  Name: "condition1",
+                                                  Obj: <REC(*ast.Object)>
+                                                },
+                                              (*ast.Ident) {
+                                                  NamePos: token.Pos(40),
+                                                  Name: "condition2",
+                                                  Obj: (*ast.Object) {
+                                                      Kind: ast.ObjKind(4),
+                                                      Name: "condition2",
+                                                      Decl: <REC(*ast.Field)>,
+                                                      Data: interface{}(nil),
+                                                      Type: interface{}(nil)
+                                                    }
+                                                }
+                                              },
+                                            Type: (*ast.Ident) {
+                                                NamePos: token.Pos(51),
+                                                Name: "bool",
+                                                Obj: (*ast.Object)(nil)
+                                              },
+                                            Tag: (*ast.BasicLit)(nil),
+                                            Comment: (*ast.CommentGroup)(nil)
+                                          },
+                                        Data: interface{}(nil),
+                                        Type: interface{}(nil)
+                                      }
+                                  },
+                                Body: (*ast.BlockStmt) {
+                                    Lbrace: token.Pos(159),
+                                    List: []ast.Stmt(nil),
+                                    Rbrace: token.Pos(162)
+                                  },
+                                Else: (*ast.IfStmt) {
+                                    If: token.Pos(169),
+                                    Init: ast.Stmt(nil),
+                                    Cond: (*ast.Ident) {
+                                        NamePos: token.Pos(172),
+                                        Name: "condition1",
+                                        Obj: (*ast.Object) {
+                                            Kind: ast.ObjKind(4),
+                                            Name: "condition1",
+                                            Decl: (*ast.Field) {
+                                                Doc: (*ast.CommentGroup)(nil),
+                                                Names: []*ast.Ident{
+                                                  (*ast.Ident) {
+                                                      NamePos: token.Pos(28),
+                                                      Name: "condition1",
+                                                      Obj: <REC(*ast.Object)>
+                                                    },
+                                                  (*ast.Ident) {
+                                                      NamePos: token.Pos(40),
+                                                      Name: "condition2",
+                                                      Obj: (*ast.Object) {
+                                                          Kind: ast.ObjKind(4),
+                                                          Name: "condition2",
+                                                          Decl: <REC(*ast.Field)>,
+                                                          Data: interface{}(nil),
+                                                          Type: interface{}(nil)
+                                                        }
+                                                    }
+                                                  },
+                                                Type: (*ast.Ident) {
+                                                    NamePos: token.Pos(51),
+                                                    Name: "bool",
+                                                    Obj: (*ast.Object)(nil)
+                                                  },
+                                                Tag: (*ast.BasicLit)(nil),
+                                                Comment: (*ast.CommentGroup)(nil)
+                                              },
+                                            Data: interface{}(nil),
+                                            Type: interface{}(nil)
+                                          }
+                                      },
+                                    Body: (*ast.BlockStmt) {
+                                        Lbrace: token.Pos(183),
+                                        List: []ast.Stmt(nil),
+                                        Rbrace: token.Pos(202)
+                                      },
+                                    Else: ast.Stmt(nil)
+                                  }
+                              }
+                          },
+                        (*ast.IfStmt) {
+                            If: token.Pos(206),
+                            Init: ast.Stmt(nil),
+                            Cond: (*ast.Ident) {
+                                NamePos: token.Pos(209),
+                                Name: "condition1",
+                                Obj: (*ast.Object) {
+                                    Kind: ast.ObjKind(4),
+                                    Name: "condition1",
+                                    Decl: (*ast.Field) {
+                                        Doc: (*ast.CommentGroup)(nil),
+                                        Names: []*ast.Ident{
+                                          (*ast.Ident) {
+                                              NamePos: token.Pos(28),
+                                              Name: "condition1",
+                                              Obj: <REC(*ast.Object)>
+                                            },
+                                          (*ast.Ident) {
+                                              NamePos: token.Pos(40),
+                                              Name: "condition2",
+                                              Obj: (*ast.Object) {
+                                                  Kind: ast.ObjKind(4),
+                                                  Name: "condition2",
+                                                  Decl: <REC(*ast.Field)>,
+                                                  Data: interface{}(nil),
+                                                  Type: interface{}(nil)
+                                                }
+                                            }
+                                          },
+                                        Type: (*ast.Ident) {
+                                            NamePos: token.Pos(51),
+                                            Name: "bool",
+                                            Obj: (*ast.Object)(nil)
+                                          },
+                                        Tag: (*ast.BasicLit)(nil),
+                                        Comment: (*ast.CommentGroup)(nil)
+                                      },
+                                    Data: interface{}(nil),
+                                    Type: interface{}(nil)
+                                  }
+                              },
+                            Body: (*ast.BlockStmt) {
+                                Lbrace: token.Pos(220),
+                                List: []ast.Stmt(nil),
+                                Rbrace: token.Pos(223)
+                              },
+                            Else: (*ast.IfStmt) {
+                                If: token.Pos(230),
+                                Init: ast.Stmt(nil),
+                                Cond: (*ast.Ident) {
+                                    NamePos: token.Pos(233),
+                                    Name: "condition2",
+                                    Obj: (*ast.Object) {
+                                        Kind: ast.ObjKind(4),
+                                        Name: "condition2",
+                                        Decl: (*ast.Field) {
+                                            Doc: (*ast.CommentGroup)(nil),
+                                            Names: []*ast.Ident{
+                                              (*ast.Ident) {
+                                                  NamePos: token.Pos(28),
+                                                  Name: "condition1",
+                                                  Obj: (*ast.Object) {
+                                                      Kind: ast.ObjKind(4),
+                                                      Name: "condition1",
+                                                      Decl: <REC(*ast.Field)>,
+                                                      Data: interface{}(nil),
+                                                      Type: interface{}(nil)
+                                                    }
+                                                },
+                                              (*ast.Ident) {
+                                                  NamePos: token.Pos(40),
+                                                  Name: "condition2",
+                                                  Obj: <REC(*ast.Object)>
+                                                }
+                                              },
+                                            Type: (*ast.Ident) {
+                                                NamePos: token.Pos(51),
+                                                Name: "bool",
+                                                Obj: (*ast.Object)(nil)
+                                              },
+                                            Tag: (*ast.BasicLit)(nil),
+                                            Comment: (*ast.CommentGroup)(nil)
+                                          },
+                                        Data: interface{}(nil),
+                                        Type: interface{}(nil)
+                                      }
+                                  },
+                                Body: (*ast.BlockStmt) {
+                                    Lbrace: token.Pos(244),
+                                    List: []ast.Stmt(nil),
+                                    Rbrace: token.Pos(247)
+                                  },
+                                Else: (*ast.IfStmt) {
+                                    If: token.Pos(254),
+                                    Init: ast.Stmt(nil),
+                                    Cond: (*ast.Ident) {
+                                        NamePos: token.Pos(257),
+                                        Name: "condition1",
+                                        Obj: (*ast.Object) {
+                                            Kind: ast.ObjKind(4),
+                                            Name: "condition1",
+                                            Decl: (*ast.Field) {
+                                                Doc: (*ast.CommentGroup)(nil),
+                                                Names: []*ast.Ident{
+                                                  (*ast.Ident) {
+                                                      NamePos: token.Pos(28),
+                                                      Name: "condition1",
+                                                      Obj: <REC(*ast.Object)>
+                                                    },
+                                                  (*ast.Ident) {
+                                                      NamePos: token.Pos(40),
+                                                      Name: "condition2",
+                                                      Obj: (*ast.Object) {
+                                                          Kind: ast.ObjKind(4),
+                                                          Name: "condition2",
+                                                          Decl: <REC(*ast.Field)>,
+                                                          Data: interface{}(nil),
+                                                          Type: interface{}(nil)
+                                                        }
+                                                    }
+                                                  },
+                                                Type: (*ast.Ident) {
+                                                    NamePos: token.Pos(51),
+                                                    Name: "bool",
+                                                    Obj: (*ast.Object)(nil)
+                                                  },
+                                                Tag: (*ast.BasicLit)(nil),
+                                                Comment: (*ast.CommentGroup)(nil)
+                                              },
+                                            Data: interface{}(nil),
+                                            Type: interface{}(nil)
+                                          }
+                                      },
+                                    Body: (*ast.BlockStmt) {
+                                        Lbrace: token.Pos(268),
+                                        List: []ast.Stmt(nil),
+                                        Rbrace: token.Pos(441)
+                                      },
+                                    Else: ast.Stmt(nil)
+                                  }
+                              }
+                          }
+                        },
+                      Rbrace: token.Pos(443)
+                    }
+                },
+              Data: interface{}(nil),
+              Type: interface{}(nil)
+            },
+        "ifInitializer": (*ast.Object) {
+              Kind: ast.ObjKind(5),
+              Name: "ifInitializer",
+              Decl: (*ast.FuncDecl) {
+                  Doc: (*ast.CommentGroup)(nil),
+                  Recv: (*ast.FieldList)(nil),
+                  Name: (*ast.Ident) {
+                      NamePos: token.Pos(451),
+                      Name: "ifInitializer",
+                      Obj: <REC(*ast.Object)>
+                    },
+                  Type: (*ast.FuncType) {
+                      Func: token.Pos(446),
+                      Params: (*ast.FieldList) {
+                          Opening: token.Pos(464),
+                          List: []*ast.Field{
+                            (*ast.Field) {
+                                Doc: (*ast.CommentGroup)(nil),
+                                Names: []*ast.Ident{
+                                  (*ast.Ident) {
+                                      NamePos: token.Pos(465),
+                                      Name: "x",
+                                      Obj: (*ast.Object) {
+                                          Kind: ast.ObjKind(4),
+                                          Name: "x",
+                                          Decl: <REC(*ast.Field)>,
+                                          Data: interface{}(nil),
+                                          Type: interface{}(nil)
+                                        }
+                                    }
+                                  },
+                                Type: (*ast.Ident) {
+                                    NamePos: token.Pos(467),
+                                    Name: "int",
+                                    Obj: (*ast.Object)(nil)
+                                  },
+                                Tag: (*ast.BasicLit)(nil),
+                                Comment: (*ast.CommentGroup)(nil)
+                              }
+                            },
+                          Closing: token.Pos(470)
+                        },
+                      Results: (*ast.FieldList)(nil)
+                    },
+                  Body: (*ast.BlockStmt) {
+                      Lbrace: token.Pos(473),
+                      List: []ast.Stmt{
+                        (*ast.IfStmt) {
+                            If: token.Pos(476),
+                            Init: (*ast.AssignStmt) {
+                                Lhs: []ast.Expr{
+                                  (*ast.Ident) {
+                                      NamePos: token.Pos(479),
+                                      Name: "x",
+                                      Obj: (*ast.Object) {
+                                          Kind: ast.ObjKind(4),
+                                          Name: "x",
+                                          Decl: (*ast.Field) {
+                                              Doc: (*ast.CommentGroup)(nil),
+                                              Names: []*ast.Ident{
+                                                (*ast.Ident) {
+                                                    NamePos: token.Pos(465),
+                                                    Name: "x",
+                                                    Obj: <REC(*ast.Object)>
+                                                  }
+                                                },
+                                              Type: (*ast.Ident) {
+                                                  NamePos: token.Pos(467),
+                                                  Name: "int",
+                                                  Obj: (*ast.Object)(nil)
+                                                },
+                                              Tag: (*ast.BasicLit)(nil),
+                                              Comment: (*ast.CommentGroup)(nil)
+                                            },
+                                          Data: interface{}(nil),
+                                          Type: interface{}(nil)
+                                        }
+                                    }
+                                  },
+                                TokPos: token.Pos(481),
+                                Tok: token.Token(42),
+                                Rhs: []ast.Expr{
+                                  (*ast.BasicLit) {
+                                      ValuePos: token.Pos(483),
+                                      Kind: token.Token(5),
+                                      Value: "3"
+                                    }
+                                  }
+                              },
+                            Cond: (*ast.BinaryExpr) {
+                                X: (*ast.Ident) {
+                                    NamePos: token.Pos(485),
+                                    Name: "x",
+                                    Obj: (*ast.Object) {
+                                        Kind: ast.ObjKind(4),
+                                        Name: "x",
+                                        Decl: (*ast.Field) {
+                                            Doc: (*ast.CommentGroup)(nil),
+                                            Names: []*ast.Ident{
+                                              (*ast.Ident) {
+                                                  NamePos: token.Pos(465),
+                                                  Name: "x",
+                                                  Obj: <REC(*ast.Object)>
+                                                }
+                                              },
+                                            Type: (*ast.Ident) {
+                                                NamePos: token.Pos(467),
+                                                Name: "int",
+                                                Obj: (*ast.Object)(nil)
+                                              },
+                                            Tag: (*ast.BasicLit)(nil),
+                                            Comment: (*ast.CommentGroup)(nil)
+                                          },
+                                        Data: interface{}(nil),
+                                        Type: interface{}(nil)
+                                      }
+                                  },
+                                OpPos: token.Pos(487),
+                                Op: token.Token(41),
+                                Y: (*ast.BasicLit) {
+                                    ValuePos: token.Pos(489),
+                                    Kind: token.Token(5),
+                                    Value: "0"
+                                  }
+                              },
+                            Body: (*ast.BlockStmt) {
+                                Lbrace: token.Pos(491),
+                                List: []ast.Stmt(nil),
+                                Rbrace: token.Pos(495)
+                              },
+                            Else: (*ast.IfStmt) {
+                                If: token.Pos(502),
+                                Init: (*ast.AssignStmt) {
+                                    Lhs: []ast.Expr{
+                                      (*ast.Ident) {
+                                          NamePos: token.Pos(505),
+                                          Name: "x",
+                                          Obj: (*ast.Object) {
+                                              Kind: ast.ObjKind(4),
+                                              Name: "x",
+                                              Decl: (*ast.Field) {
+                                                  Doc: (*ast.CommentGroup)(nil),
+                                                  Names: []*ast.Ident{
+                                                    (*ast.Ident) {
+                                                        NamePos: token.Pos(465),
+                                                        Name: "x",
+                                                        Obj: <REC(*ast.Object)>
+                                                      }
+                                                    },
+                                                  Type: (*ast.Ident) {
+                                                      NamePos: token.Pos(467),
+                                                      Name: "int",
+                                                      Obj: (*ast.Object)(nil)
+                                                    },
+                                                  Tag: (*ast.BasicLit)(nil),
+                                                  Comment: (*ast.CommentGroup)(nil)
+                                                },
+                                              Data: interface{}(nil),
+                                              Type: interface{}(nil)
+                                            }
+                                        }
+                                      },
+                                    TokPos: token.Pos(507),
+                                    Tok: token.Token(42),
+                                    Rhs: []ast.Expr{
+                                      (*ast.UnaryExpr) {
+                                          OpPos: token.Pos(509),
+                                          Op: token.Token(13),
+                                          X: (*ast.BasicLit) {
+                                              ValuePos: token.Pos(510),
+                                              Kind: token.Token(5),
+                                              Value: "1"
+                                            }
+                                        }
+                                      }
+                                  },
+                                Cond: (*ast.BinaryExpr) {
+                                    X: (*ast.Ident) {
+                                        NamePos: token.Pos(512),
+                                        Name: "x",
+                                        Obj: (*ast.Object) {
+                                            Kind: ast.ObjKind(4),
+                                            Name: "x",
+                                            Decl: (*ast.Field) {
+                                                Doc: (*ast.CommentGroup)(nil),
+                                                Names: []*ast.Ident{
+                                                  (*ast.Ident) {
+                                                      NamePos: token.Pos(465),
+                                                      Name: "x",
+                                                      Obj: <REC(*ast.Object)>
+                                                    }
+                                                  },
+                                                Type: (*ast.Ident) {
+                                                    NamePos: token.Pos(467),
+                                                    Name: "int",
+                                                    Obj: (*ast.Object)(nil)
+                                                  },
+                                                Tag: (*ast.BasicLit)(nil),
+                                                Comment: (*ast.CommentGroup)(nil)
+                                              },
+                                            Data: interface{}(nil),
+                                            Type: interface{}(nil)
+                                          }
+                                      },
+                                    OpPos: token.Pos(514),
+                                    Op: token.Token(41),
+                                    Y: (*ast.BasicLit) {
+                                        ValuePos: token.Pos(516),
+                                        Kind: token.Token(5),
+                                        Value: "0"
+                                      }
+                                  },
+                                Body: (*ast.BlockStmt) {
+                                    Lbrace: token.Pos(518),
+                                    List: []ast.Stmt(nil),
+                                    Rbrace: token.Pos(590)
+                                  },
+                                Else: ast.Stmt(nil)
+                              }
+                          }
+                        },
+                      Rbrace: token.Pos(592)
+                    }
+                },
+              Data: interface{}(nil),
+              Type: interface{}(nil)
+            }
+        }
+    },
+  Imports: []*ast.ImportSpec(nil),
+  Unresolved: []*ast.Ident{
+    (*ast.Ident) {
+        NamePos: token.Pos(51),
+        Name: "bool",
+        Obj: (*ast.Object)(nil)
+      },
+    (*ast.Ident) {
+        NamePos: token.Pos(467),
+        Name: "int",
+        Obj: (*ast.Object)(nil)
+      }
+    },
+  Comments: []*ast.CommentGroup{
+    (*ast.CommentGroup) {
+        List: []*ast.Comment{
+          (*ast.Comment) {
+              Slash: token.Pos(100),
+              Text: "// Noncompliant"
+            }
+          }
+      },
+    (*ast.CommentGroup) {
+        List: []*ast.Comment{
+          (*ast.Comment) {
+              Slash: token.Pos(185),
+              Text: "// Noncompliant"
+            }
+          }
+      },
+    (*ast.CommentGroup) {
+        List: []*ast.Comment{
+          (*ast.Comment) {
+              Slash: token.Pos(270),
+              Text: "// Noncompliant [[secondary=12]] {{This branch can not be reached because the condition duplicates a previous condition in the same sequence of \"if/else if\" statements}}"
+            }
+          }
+      },
+    (*ast.CommentGroup) {
+        List: []*ast.Comment{
+          (*ast.Comment) {
+              Slash: token.Pos(520),
+              Text: "// Compliant, initializer has to be considered as part of condition"
+            }
+          }
+      }
+    }
+}

@@ -269,8 +269,8 @@ func Test_mapIfStmt(t *testing.T) {
 	uast := mapNode(blockStmt.List[1].(*ast.IfStmt))
 	fixPositions(uast, fileSet)
 
-	expectKinds(t, uast, kinds(IF_STMT, STATEMENT))
-	expectChildrenCount(t, uast, 4)
+	expectKinds(t, uast, kinds(IF, STATEMENT))
+	expectChildrenCount(t, uast, 3)
 	expectNativeNode(t, uast, "*ast.IfStmt")
 	expectToken(t, uast, nil)
 }

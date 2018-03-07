@@ -1,0 +1,1 @@
+samples/NoIdenticalConditions.go: 6:12
