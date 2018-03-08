@@ -305,8 +305,8 @@ func main() {
 	expectedOperators := []string{"||", "&&", "==", "!=", "<", "<=", ">", ">=", "+", "-", "|", "^", "*", "/", "%", "<<", ">>", "&", "&^"}
 	fileSet, astFile := astFromString(source)
 	blockStmt := astFile.Decls[0].(*ast.FuncDecl).Body
-	for i := 0; i < len(blockStmt.List); i++ {
-		binaryExpr := blockStmt.List[i].(*ast.AssignStmt).Rhs[0]
+	for i, stmt := range blockStmt.List {
+		binaryExpr := stmt.(*ast.AssignStmt).Rhs[0]
 		uast := mapNode(binaryExpr)
 		fixPositions(uast, fileSet)
 

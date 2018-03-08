@@ -315,7 +315,7 @@ func mapExpr(astNode ast.Expr) *Node {
 
 func mapBinaryExpr(expr *ast.BinaryExpr) *Node {
 	return &Node{
-		Kinds: kinds(kind(expr)),
+		Kinds: kinds(expr),
 		Children: children(
 			mapExpr(expr.X),
 			mapToken(expr.Op, expr.OpPos),
