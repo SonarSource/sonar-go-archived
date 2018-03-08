@@ -46,7 +46,7 @@
                   "children": [
                     {
                       "kinds": [
-                        "FIELD"
+                        "*ast.Field"
                       ],
                       "nativeNode": "*ast.Field",
                       "children": [
@@ -54,7 +54,7 @@
                           "kinds": [
                             "[]*ast.Ident"
                           ],
-                          "nativeNode": "[]ast.Ident",
+                          "nativeNode": "[]*ast.Ident",
                           "children": [
                             {
                               "kinds": [
@@ -216,7 +216,7 @@
                   "children": [
                     {
                       "kinds": [
-                        "FIELD"
+                        "*ast.Field"
                       ],
                       "nativeNode": "*ast.Field",
                       "children": [
@@ -224,7 +224,7 @@
                           "kinds": [
                             "[]*ast.Ident"
                           ],
-                          "nativeNode": "[]ast.Ident",
+                          "nativeNode": "[]*ast.Ident",
                           "children": [
                             {
                               "kinds": [
@@ -291,7 +291,7 @@
                     },
                     {
                       "kinds": [
-                        "FIELD"
+                        "*ast.Field"
                       ],
                       "nativeNode": "*ast.Field",
                       "children": [
@@ -299,7 +299,7 @@
                           "kinds": [
                             "[]*ast.Ident"
                           ],
-                          "nativeNode": "[]ast.Ident",
+                          "nativeNode": "[]*ast.Ident",
                           "children": [
                             {
                               "kinds": [
@@ -413,7 +413,7 @@
                   "children": [
                     {
                       "kinds": [
-                        "FIELD"
+                        "*ast.Field"
                       ],
                       "nativeNode": "*ast.Field",
                       "children": [
@@ -421,7 +421,7 @@
                           "kinds": [
                             "[]*ast.Ident"
                           ],
-                          "nativeNode": "[]ast.Ident",
+                          "nativeNode": "[]*ast.Ident",
                           "children": [
                             {
                               "kinds": [
@@ -571,7 +571,7 @@
                   "children": [
                     {
                       "kinds": [
-                        "FIELD"
+                        "*ast.Field"
                       ],
                       "nativeNode": "*ast.Field",
                       "children": [
@@ -579,7 +579,7 @@
                           "kinds": [
                             "[]*ast.Ident"
                           ],
-                          "nativeNode": "[]ast.Ident",
+                          "nativeNode": "[]*ast.Ident",
                           "children": [
                             {
                               "kinds": [
@@ -646,7 +646,7 @@
                     },
                     {
                       "kinds": [
-                        "FIELD"
+                        "*ast.Field"
                       ],
                       "nativeNode": "*ast.Field",
                       "children": [
@@ -654,7 +654,7 @@
                           "kinds": [
                             "[]*ast.Ident"
                           ],
-                          "nativeNode": "[]ast.Ident",
+                          "nativeNode": "[]*ast.Ident",
                           "children": [
                             {
                               "kinds": [
