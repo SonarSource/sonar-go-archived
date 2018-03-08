@@ -26,7 +26,7 @@ public class NoIdenticalConditionsCheck extends Check {
     IfLike elseIf = IfLike.from(ifLike.elseNode());
     while (elseIf != null) {
       if (syntacticallyEquivalent(condition, elseIf.condition())) {
-        reportIssue(elseIf.condition(), "Unreachable branch because of the same condition before. " + condition.joinTokens());
+        reportIssue(elseIf.condition(), "This condition is same as one already tested on line " + condition.firstToken().line + ".");
       }
       elseIf = IfLike.from(elseIf.elseNode());
     }
