@@ -20,6 +20,7 @@ import org.sonar.java.ast.parser.JavaParser;
 import org.sonar.java.model.JavaTree;
 import org.sonar.plugins.java.api.tree.AssignmentExpressionTree;
 import org.sonar.plugins.java.api.tree.BaseTreeVisitor;
+import org.sonar.plugins.java.api.tree.BinaryExpressionTree;
 import org.sonar.plugins.java.api.tree.CompilationUnitTree;
 import org.sonar.plugins.java.api.tree.ExpressionTree;
 import org.sonar.plugins.java.api.tree.MethodTree;
@@ -147,6 +148,9 @@ public class Generator {
     }
     if (tree instanceof StatementTree) {
       result.add(UastNode.Kind.STATEMENT);
+    }
+    if (tree instanceof BinaryExpressionTree) {
+      result.add(UastNode.Kind.BINARY_EXPRESSION);
     }
     return result;
   }

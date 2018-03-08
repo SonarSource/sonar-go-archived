@@ -275,6 +275,48 @@ func Test_mapIfStmt(t *testing.T) {
 	expectToken(t, uast, nil)
 }
 
+func Test_mapBinaryOperator(t *testing.T) {
+	source := `package main
+func main() {
+	v1 := true || false
+	v2 := true && false
+	// rel op
+	v3 := 1 == 2
+	v4 := 1 != 2
+	v5 := 1 < 2
+	v6 := 1 <= 2
+	v7 := 1 > 2
+	v8 := 1 >= 2
+	// add_op
+	v9 := 1 + 2
+	v10 := 1 - 2
+	v11 := 1 | 2
+	v12 := 1 ^ 2
+	// mul_op
+	v13 := 1 * 2
+	v14 := 1 / 2
+	v15 := 1 % 2
+	v16 := 1 << 2
+	v17 := 1 >> 2
+	v18 := 1 & 2
+	v19 := 1 &^ 2
+}
+`
+	expectedOperators := []string{"||", "&&", "==", "!=", "<", "<=", ">", ">=", "+", "-", "|", "^", "*", "/", "%", "<<", ">>", "&", "&^"}
+	fileSet, astFile := astFromString(source)
+	blockStmt := astFile.Decls[0].(*ast.FuncDecl).Body
+	for i, stmt := range blockStmt.List {
+		binaryExpr := stmt.(*ast.AssignStmt).Rhs[0]
+		uast := mapNode(binaryExpr)
+		fixPositions(uast, fileSet)
+
+		expectKinds(t, uast, kinds(BINARY_EXPRESSION))
+		expectChildrenCount(t, uast, 3)
+		expectNativeNode(t, uast, "*ast.BinaryExpr")
+		expectEquals(t, uast.Children[1].Token.Value, expectedOperators[i])
+	}
+}
+
 func astFromString(source string) (*token.FileSet, *ast.File) {
 	fileSet := token.NewFileSet()
 	sourceFileName := "main.go"
@@ -283,6 +325,12 @@ func astFromString(source string) (*token.FileSet, *ast.File) {
 		panic(err)
 	}
 	return fileSet, astFile
+}
+
+func expectEquals(t *testing.T, actual string, expected string) {
+	if expected != actual {
+		t.Fatalf("got '%v'; expected '%v'", actual, expected)
+	}
 }
 
 func expectKinds(t *testing.T, actual *Node, expected []Kind) {

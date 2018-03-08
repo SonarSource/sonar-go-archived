@@ -40,6 +40,7 @@ const (
 	PARAMETER         Kind = "PARAMETER"
 	RESULT_LIST       Kind = "RESULT_LIST"
 	RESULT            Kind = "RESULT"
+	BINARY_EXPRESSION Kind = "BINARY_EXPRESSION"
 	UNSUPPORTED       Kind = "UNSUPPORTED"
 )
 
@@ -77,6 +78,8 @@ func kind(k interface{}) Kind {
 		return LITERAL
 	case *ast.ExprStmt:
 		return EXPRESSION
+	case *ast.BinaryExpr:
+		return BINARY_EXPRESSION
 	case *ast.CallExpr:
 		return CALL
 	case *ast.SelectorExpr:
