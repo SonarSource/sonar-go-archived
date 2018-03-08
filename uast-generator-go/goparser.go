@@ -78,6 +78,8 @@ func kind(k interface{}) Kind {
 		return LITERAL
 	case *ast.ExprStmt:
 		return EXPRESSION
+	case *ast.BinaryExpr:
+		return BINARY_EXPRESSION
 	case *ast.CallExpr:
 		return CALL
 	case *ast.SelectorExpr:
@@ -313,7 +315,7 @@ func mapExpr(astNode ast.Expr) *Node {
 
 func mapBinaryExpr(expr *ast.BinaryExpr) *Node {
 	return &Node{
-		Kinds: kinds(BINARY_EXPRESSION),
+		Kinds: kinds(kind(expr)),
 		Children: children(
 			mapExpr(expr.X),
 			mapToken(expr.Op, expr.OpPos),

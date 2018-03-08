@@ -7,11 +7,11 @@ public class CheckList {
 
   public static List<Class<? extends Check>> getChecks() {
     return Arrays.asList(
+      BinaryOperatorIdenticalExpressionsCheck.class,
       NoIdenticalFunctionsCheck.class,
       NoHardcodedCredentialsCheck.class,
       NoSelfAssignmentCheck.class,
-      TooManyParametersCheck.class,
-      BinaryOperatorIdenticalExpressionsCheck.class
+      TooManyParametersCheck.class
     );
   }
 
