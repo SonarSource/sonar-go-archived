@@ -35,7 +35,7 @@ public class NoIdenticalFunctionsCheck extends Check {
       }
       for (FunctionLike function : functions) {
         if (syntacticallyEquivalent(thisFunction.body(), function.body()) && syntacticallyEquivalent(thisFunction.parameters(), function.parameters())) {
-          reportIssue(node, "Function is identical with function on line " + function.node().firstToken().token.line);
+          reportIssue(node, "Function is identical with function on line " + function.node().firstToken().line);
           break;
         }
       }

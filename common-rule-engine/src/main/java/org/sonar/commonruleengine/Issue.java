@@ -28,7 +28,7 @@ public class Issue {
   }
 
   public int getLine() {
-    return node.firstToken().token.line;
+    return node.firstToken().line;
   }
 
   @Override

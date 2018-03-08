@@ -124,14 +124,14 @@ public final class UastNode {
     children.forEach(child -> child.getDescendants(kind, consumer));
   }
 
-  public UastNode firstToken() {
+  public Token firstToken() {
     if (token != null) {
-      return this;
+      return this.token;
     }
     for (UastNode child : children) {
-      UastNode uastNode = child.firstToken();
-      if (uastNode != null) {
-        return uastNode;
+      Token token = child.firstToken();
+      if (token != null) {
+        return token;
       }
     }
     return null;
@@ -157,7 +157,7 @@ public final class UastNode {
     if (token != null) {
       return token.toString();
     }
-    UastNode firstToken = firstToken();
-    return kinds.toString() + (firstToken != null ? firstToken.toString() : "");
+    Token firstToken = firstToken();
+    return kinds.toString() + (firstToken != null ? firstToken.value : "");
   }
 }
