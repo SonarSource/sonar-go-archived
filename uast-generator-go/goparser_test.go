@@ -100,7 +100,7 @@ func Test_mapFuncDecl_complete(t *testing.T) {
 	expectKinds(t, uast.Children[2], kinds(BLOCK))
 
 	funcType := uast.Children[1]
-	expectKinds(t, funcType, kinds(kind(&ast.FuncType{})))
+	expectKinds(t, funcType, kinds(&ast.FuncType{}))
 	expectChildrenCount(t, funcType, 2)
 
 	params := funcType.Children[0]
@@ -109,7 +109,7 @@ func Test_mapFuncDecl_complete(t *testing.T) {
 	expectNativeNode(t, params, "*ast.FieldList")
 
 	intParams := params.Children[0]
-	expectKinds(t, intParams, kinds(kind(&ast.Field{})))
+	expectKinds(t, intParams, kinds(&ast.Field{}))
 	expectChildrenCount(t, intParams, 2)
 	expectNativeNode(t, intParams, "*ast.Field")
 
