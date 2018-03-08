@@ -109,7 +109,7 @@ func Test_mapFuncDecl_complete(t *testing.T) {
 	expectNativeNode(t, params, "*ast.FieldList")
 
 	intParams := params.Children[0]
-	expectKinds(t, intParams, kinds(FIELD))
+	expectKinds(t, intParams, kinds(kind(&ast.Field{})))
 	expectChildrenCount(t, intParams, 2)
 	expectNativeNode(t, intParams, "*ast.Field")
 
@@ -128,7 +128,7 @@ func Test_mapFuncDecl_complete(t *testing.T) {
 	expectNativeNode(t, intParamsType, "*ast.Ident")
 
 	stringParams := params.Children[1]
-	expectKinds(t, stringParams, kinds(FIELD))
+	expectKinds(t, stringParams, kinds(&ast.Field{}))
 	expectChildrenCount(t, stringParams, 2)
 	expectNativeNode(t, stringParams, "*ast.Field")
 
@@ -152,7 +152,7 @@ func Test_mapFuncDecl_complete(t *testing.T) {
 	expectNativeNode(t, results, "*ast.FieldList")
 
 	intResults := results.Children[0]
-	expectKinds(t, intResults, kinds(FIELD))
+	expectKinds(t, intResults, kinds(&ast.Field{}))
 	expectChildrenCount(t, intResults, 2)
 	expectNativeNode(t, intResults, "*ast.Field")
 

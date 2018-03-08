@@ -38,7 +38,6 @@ const (
 	EXPRESSION        Kind = "EXPRESSION"
 	PARAMETER_LIST    Kind = "PARAMETER_LIST"
 	PARAMETER         Kind = "PARAMETER"
-	FIELD             Kind = "FIELD"
 	RESULT_LIST       Kind = "RESULT_LIST"
 	RESULT            Kind = "RESULT"
 	UNSUPPORTED       Kind = "UNSUPPORTED"
@@ -169,7 +168,7 @@ func mapFuncDecl(funcDecl *ast.FuncDecl) *Node {
 
 func mapFuncType(funcType *ast.FuncType) *Node {
 	return &Node{
-		Kinds:      kinds(kind(funcType)),
+		Kinds:      kinds(funcType),
 		Children:   children(mapParamsList(funcType.Params), mapResultsList(funcType.Results)),
 		NativeNode: nativeNode(funcType),
 	}
@@ -202,7 +201,7 @@ func mapFieldList(listKind, itemKind Kind, fieldList *ast.FieldList) *Node {
 
 func mapField(field *ast.Field) *Node {
 	return &Node{
-		Kinds:      kinds(kind(FIELD)),
+		Kinds:      kinds(field),
 		Children:   children(mapIdentList(field.Names), mapExpr(field.Type)),
 		NativeNode: nativeNode(field),
 	}
