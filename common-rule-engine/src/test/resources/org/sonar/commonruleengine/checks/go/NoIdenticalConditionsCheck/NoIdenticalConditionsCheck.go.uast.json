@@ -17,6 +17,12 @@
       "children": [
         {
           "kinds": [
+            "UNSUPPORTED"
+          ],
+          "nativeNode": "*ast.GenDecl"
+        },
+        {
+          "kinds": [
             "FUNCTION"
           ],
           "nativeNode": "*ast.FuncDecl",
@@ -27,7 +33,7 @@
               ],
               "token": {
                 "value": "example",
-                "line": 3,
+                "line": 5,
                 "column": 6
               },
               "nativeNode": "*ast.Ident"
@@ -46,7 +52,7 @@
                   "children": [
                     {
                       "kinds": [
-                        "FIELD"
+                        "*ast.Field"
                       ],
                       "nativeNode": "*ast.Field",
                       "children": [
@@ -54,7 +60,7 @@
                           "kinds": [
                             "[]*ast.Ident"
                           ],
-                          "nativeNode": "[]ast.Ident",
+                          "nativeNode": "[]*ast.Ident",
                           "children": [
                             {
                               "kinds": [
@@ -63,7 +69,7 @@
                               ],
                               "token": {
                                 "value": "condition1",
-                                "line": 3,
+                                "line": 5,
                                 "column": 14
                               },
                               "nativeNode": "*ast.Ident"
@@ -75,7 +81,7 @@
                               ],
                               "token": {
                                 "value": "condition2",
-                                "line": 3,
+                                "line": 5,
                                 "column": 26
                               },
                               "nativeNode": "*ast.Ident"
@@ -88,7 +94,7 @@
                           ],
                           "token": {
                             "value": "bool",
-                            "line": 3,
+                            "line": 5,
                             "column": 37
                           },
                           "nativeNode": "*ast.Ident"
@@ -129,7 +135,7 @@
                           ],
                           "token": {
                             "value": "condition1",
-                            "line": 4,
+                            "line": 6,
                             "column": 5
                           },
                           "nativeNode": "*ast.Ident"
@@ -161,7 +167,7 @@
                               ],
                               "token": {
                                 "value": "condition1",
-                                "line": 5,
+                                "line": 7,
                                 "column": 12
                               },
                               "nativeNode": "*ast.Ident"
@@ -203,7 +209,7 @@
                           ],
                           "token": {
                             "value": "condition2",
-                            "line": 8,
+                            "line": 10,
                             "column": 5
                           },
                           "nativeNode": "*ast.Ident"
@@ -235,7 +241,7 @@
                               ],
                               "token": {
                                 "value": "condition1",
-                                "line": 9,
+                                "line": 11,
                                 "column": 12
                               },
                               "nativeNode": "*ast.Ident"
@@ -267,7 +273,7 @@
                                   ],
                                   "token": {
                                     "value": "condition1",
-                                    "line": 10,
+                                    "line": 12,
                                     "column": 12
                                   },
                                   "nativeNode": "*ast.Ident"
@@ -311,7 +317,7 @@
                           ],
                           "token": {
                             "value": "condition1",
-                            "line": 13,
+                            "line": 15,
                             "column": 5
                           },
                           "nativeNode": "*ast.Ident"
@@ -343,7 +349,7 @@
                               ],
                               "token": {
                                 "value": "condition2",
-                                "line": 14,
+                                "line": 16,
                                 "column": 12
                               },
                               "nativeNode": "*ast.Ident"
@@ -375,7 +381,7 @@
                                   ],
                                   "token": {
                                     "value": "condition1",
-                                    "line": 15,
+                                    "line": 17,
                                     "column": 12
                                   },
                                   "nativeNode": "*ast.Ident"
@@ -417,7 +423,7 @@
               ],
               "token": {
                 "value": "ifInitializer",
-                "line": 19,
+                "line": 21,
                 "column": 6
               },
               "nativeNode": "*ast.Ident"
@@ -436,7 +442,7 @@
                   "children": [
                     {
                       "kinds": [
-                        "FIELD"
+                        "*ast.Field"
                       ],
                       "nativeNode": "*ast.Field",
                       "children": [
@@ -444,7 +450,7 @@
                           "kinds": [
                             "[]*ast.Ident"
                           ],
-                          "nativeNode": "[]ast.Ident",
+                          "nativeNode": "[]*ast.Ident",
                           "children": [
                             {
                               "kinds": [
@@ -453,7 +459,7 @@
                               ],
                               "token": {
                                 "value": "x",
-                                "line": 19,
+                                "line": 21,
                                 "column": 20
                               },
                               "nativeNode": "*ast.Ident"
@@ -466,7 +472,7 @@
                           ],
                           "token": {
                             "value": "int",
-                            "line": 19,
+                            "line": 21,
                             "column": 22
                           },
                           "nativeNode": "*ast.Ident"
@@ -520,7 +526,7 @@
                                   ],
                                   "token": {
                                     "value": "x",
-                                    "line": 20,
+                                    "line": 22,
                                     "column": 5
                                   },
                                   "nativeNode": "*ast.Ident"
@@ -533,7 +539,7 @@
                               ],
                               "token": {
                                 "value": "=",
-                                "line": 20,
+                                "line": 22,
                                 "column": 7
                               },
                               "nativeNode": "token.Token"
@@ -550,7 +556,7 @@
                                   ],
                                   "token": {
                                     "value": "3",
-                                    "line": 20,
+                                    "line": 22,
                                     "column": 9
                                   },
                                   "nativeNode": "*ast.BasicLit"
@@ -561,7 +567,7 @@
                         },
                         {
                           "kinds": [
-                            "*ast.BinaryExpr"
+                            "BINARY_EXPRESSION"
                           ],
                           "nativeNode": "*ast.BinaryExpr",
                           "children": [
@@ -571,7 +577,7 @@
                               ],
                               "token": {
                                 "value": "x",
-                                "line": 20,
+                                "line": 22,
                                 "column": 11
                               },
                               "nativeNode": "*ast.Ident"
@@ -582,7 +588,7 @@
                               ],
                               "token": {
                                 "value": "\u003e",
-                                "line": 20,
+                                "line": 22,
                                 "column": 13
                               },
                               "nativeNode": "token.Token"
@@ -593,7 +599,7 @@
                               ],
                               "token": {
                                 "value": "0",
-                                "line": 20,
+                                "line": 22,
                                 "column": 15
                               },
                               "nativeNode": "*ast.BasicLit"
@@ -640,7 +646,7 @@
                                       ],
                                       "token": {
                                         "value": "x",
-                                        "line": 22,
+                                        "line": 24,
                                         "column": 12
                                       },
                                       "nativeNode": "*ast.Ident"
@@ -653,7 +659,7 @@
                                   ],
                                   "token": {
                                     "value": "=",
-                                    "line": 22,
+                                    "line": 24,
                                     "column": 14
                                   },
                                   "nativeNode": "token.Token"
@@ -676,7 +682,7 @@
                             },
                             {
                               "kinds": [
-                                "*ast.BinaryExpr"
+                                "BINARY_EXPRESSION"
                               ],
                               "nativeNode": "*ast.BinaryExpr",
                               "children": [
@@ -686,7 +692,7 @@
                                   ],
                                   "token": {
                                     "value": "x",
-                                    "line": 22,
+                                    "line": 24,
                                     "column": 19
                                   },
                                   "nativeNode": "*ast.Ident"
@@ -697,7 +703,7 @@
                                   ],
                                   "token": {
                                     "value": "\u003e",
-                                    "line": 22,
+                                    "line": 24,
                                     "column": 21
                                   },
                                   "nativeNode": "token.Token"
@@ -708,7 +714,7 @@
                                   ],
                                   "token": {
                                     "value": "0",
-                                    "line": 22,
+                                    "line": 24,
                                     "column": 23
                                   },
                                   "nativeNode": "*ast.BasicLit"

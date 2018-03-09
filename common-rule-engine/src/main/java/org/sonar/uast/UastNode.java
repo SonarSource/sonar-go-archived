@@ -1,5 +1,6 @@
 package org.sonar.uast;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -79,6 +80,7 @@ public final class UastNode {
     ASSIGNMENT_VALUE,
     BINARY_EXPRESSION,
     BLOCK,
+    CASE,
     CLASS,
     COMMENT,
     COMPILATION_UNIT,
@@ -91,6 +93,7 @@ public final class UastNode {
     LITERAL,
     PARAMETER,
     STATEMENT,
+    SWITCH,
     UNSUPPORTED,
     ;
 
@@ -105,7 +108,7 @@ public final class UastNode {
   }
 
   public List<UastNode> getChildren(Kind... kinds) {
-    return children.stream()
+    List<UastNode> children = this.children.stream()
       .filter(child -> {
         for (Kind kind : kinds) {
           if (child.kinds.contains(kind)) {
@@ -115,6 +118,7 @@ public final class UastNode {
         return false;
       })
       .collect(Collectors.toList());
+    return Collections.unmodifiableList(children);
   }
 
   public void getDescendants(Kind kind, Consumer<UastNode> consumer) {

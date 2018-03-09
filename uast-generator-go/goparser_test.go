@@ -317,6 +317,42 @@ func main() {
 	}
 }
 
+func Test_mapCaseClause(t *testing.T) {
+	source := `package main
+func main(i int) {
+	switch i {
+		case 1,2,3: fmt.Println("a")
+		case 3,4,5: fmt.Printlnt("b")
+	}
+}
+`
+	_, astFile := astFromString(source)
+	blockStmt := astFile.Decls[0].(*ast.FuncDecl).Body
+	switchStmt := blockStmt.List[0].(*ast.SwitchStmt)
+	conditionCounter := 0
+	for _, caseNode := range switchStmt.Body.List {
+		caseClause := mapCaseClause(caseNode.(*ast.CaseClause))
+		expectKinds(t, caseClause, kinds(CASE))
+		for _, children := range caseClause.Children {
+			if children.hasKind(CONDITION) {
+				conditionCounter++
+			}
+		}
+	}
+	if conditionCounter != 6 {
+		t.Fatalf("got %v conditions; expected %v", 6, conditionCounter)
+	}
+}
+
+func (n *Node) hasKind(kind Kind) bool {
+	for _, k := range n.Kinds {
+		if k == kind {
+			return true
+		}
+	}
+	return false
+}
+
 func astFromString(source string) (*token.FileSet, *ast.File) {
 	fileSet := token.NewFileSet()
 	sourceFileName := "main.go"

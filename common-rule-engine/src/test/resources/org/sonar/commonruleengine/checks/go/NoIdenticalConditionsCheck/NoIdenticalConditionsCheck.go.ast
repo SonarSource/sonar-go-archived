@@ -7,11 +7,31 @@
       Obj: (*ast.Object)(nil)
     },
   Decls: []ast.Decl{
+    (*ast.GenDecl) {
+        Doc: (*ast.CommentGroup)(nil),
+        TokPos: token.Pos(15),
+        Tok: token.Token(75),
+        Lparen: token.Pos(0),
+        Specs: []ast.Spec{
+          (*ast.ImportSpec) {
+              Doc: (*ast.CommentGroup)(nil),
+              Name: (*ast.Ident)(nil),
+              Path: (*ast.BasicLit) {
+                  ValuePos: token.Pos(22),
+                  Kind: token.Token(9),
+                  Value: "\"fmt\""
+                },
+              Comment: (*ast.CommentGroup)(nil),
+              EndPos: token.Pos(0)
+            }
+          },
+        Rparen: token.Pos(0)
+      },
     (*ast.FuncDecl) {
         Doc: (*ast.CommentGroup)(nil),
         Recv: (*ast.FieldList)(nil),
         Name: (*ast.Ident) {
-            NamePos: token.Pos(20),
+            NamePos: token.Pos(34),
             Name: "example",
             Obj: (*ast.Object) {
                 Kind: ast.ObjKind(5),
@@ -22,15 +42,15 @@
               }
           },
         Type: (*ast.FuncType) {
-            Func: token.Pos(15),
+            Func: token.Pos(29),
             Params: (*ast.FieldList) {
-                Opening: token.Pos(27),
+                Opening: token.Pos(41),
                 List: []*ast.Field{
                   (*ast.Field) {
                       Doc: (*ast.CommentGroup)(nil),
                       Names: []*ast.Ident{
                         (*ast.Ident) {
-                            NamePos: token.Pos(28),
+                            NamePos: token.Pos(42),
                             Name: "condition1",
                             Obj: (*ast.Object) {
                                 Kind: ast.ObjKind(4),
@@ -41,7 +61,7 @@
                               }
                           },
                         (*ast.Ident) {
-                            NamePos: token.Pos(40),
+                            NamePos: token.Pos(54),
                             Name: "condition2",
                             Obj: (*ast.Object) {
                                 Kind: ast.ObjKind(4),
@@ -53,7 +73,7 @@
                           }
                         },
                       Type: (*ast.Ident) {
-                          NamePos: token.Pos(51),
+                          NamePos: token.Pos(65),
                           Name: "bool",
                           Obj: (*ast.Object)(nil)
                         },
@@ -61,18 +81,18 @@
                       Comment: (*ast.CommentGroup)(nil)
                     }
                   },
-                Closing: token.Pos(55)
+                Closing: token.Pos(69)
               },
             Results: (*ast.FieldList)(nil)
           },
         Body: (*ast.BlockStmt) {
-            Lbrace: token.Pos(57),
+            Lbrace: token.Pos(71),
             List: []ast.Stmt{
               (*ast.IfStmt) {
-                  If: token.Pos(60),
+                  If: token.Pos(74),
                   Init: ast.Stmt(nil),
                   Cond: (*ast.Ident) {
-                      NamePos: token.Pos(63),
+                      NamePos: token.Pos(77),
                       Name: "condition1",
                       Obj: (*ast.Object) {
                           Kind: ast.ObjKind(4),
@@ -81,12 +101,12 @@
                               Doc: (*ast.CommentGroup)(nil),
                               Names: []*ast.Ident{
                                 (*ast.Ident) {
-                                    NamePos: token.Pos(28),
+                                    NamePos: token.Pos(42),
                                     Name: "condition1",
                                     Obj: <REC(*ast.Object)>
                                   },
                                 (*ast.Ident) {
-                                    NamePos: token.Pos(40),
+                                    NamePos: token.Pos(54),
                                     Name: "condition2",
                                     Obj: (*ast.Object) {
                                         Kind: ast.ObjKind(4),
@@ -98,7 +118,7 @@
                                   }
                                 },
                               Type: (*ast.Ident) {
-                                  NamePos: token.Pos(51),
+                                  NamePos: token.Pos(65),
                                   Name: "bool",
                                   Obj: (*ast.Object)(nil)
                                 },
@@ -110,15 +130,15 @@
                         }
                     },
                   Body: (*ast.BlockStmt) {
-                      Lbrace: token.Pos(74),
+                      Lbrace: token.Pos(88),
                       List: []ast.Stmt(nil),
-                      Rbrace: token.Pos(77)
+                      Rbrace: token.Pos(91)
                     },
                   Else: (*ast.IfStmt) {
-                      If: token.Pos(84),
+                      If: token.Pos(98),
                       Init: ast.Stmt(nil),
                       Cond: (*ast.Ident) {
-                          NamePos: token.Pos(87),
+                          NamePos: token.Pos(101),
                           Name: "condition1",
                           Obj: (*ast.Object) {
                               Kind: ast.ObjKind(4),
@@ -127,12 +147,12 @@
                                   Doc: (*ast.CommentGroup)(nil),
                                   Names: []*ast.Ident{
                                     (*ast.Ident) {
-                                        NamePos: token.Pos(28),
+                                        NamePos: token.Pos(42),
                                         Name: "condition1",
                                         Obj: <REC(*ast.Object)>
                                       },
                                     (*ast.Ident) {
-                                        NamePos: token.Pos(40),
+                                        NamePos: token.Pos(54),
                                         Name: "condition2",
                                         Obj: (*ast.Object) {
                                             Kind: ast.ObjKind(4),
@@ -144,7 +164,7 @@
                                       }
                                     },
                                   Type: (*ast.Ident) {
-                                      NamePos: token.Pos(51),
+                                      NamePos: token.Pos(65),
                                       Name: "bool",
                                       Obj: (*ast.Object)(nil)
                                     },
@@ -156,18 +176,18 @@
                             }
                         },
                       Body: (*ast.BlockStmt) {
-                          Lbrace: token.Pos(98),
+                          Lbrace: token.Pos(112),
                           List: []ast.Stmt(nil),
-                          Rbrace: token.Pos(117)
+                          Rbrace: token.Pos(131)
                         },
                       Else: ast.Stmt(nil)
                     }
                 },
               (*ast.IfStmt) {
-                  If: token.Pos(121),
+                  If: token.Pos(135),
                   Init: ast.Stmt(nil),
                   Cond: (*ast.Ident) {
-                      NamePos: token.Pos(124),
+                      NamePos: token.Pos(138),
                       Name: "condition2",
                       Obj: (*ast.Object) {
                           Kind: ast.ObjKind(4),
@@ -176,7 +196,7 @@
                               Doc: (*ast.CommentGroup)(nil),
                               Names: []*ast.Ident{
                                 (*ast.Ident) {
-                                    NamePos: token.Pos(28),
+                                    NamePos: token.Pos(42),
                                     Name: "condition1",
                                     Obj: (*ast.Object) {
                                         Kind: ast.ObjKind(4),
@@ -187,13 +207,13 @@
                                       }
                                   },
                                 (*ast.Ident) {
-                                    NamePos: token.Pos(40),
+                                    NamePos: token.Pos(54),
                                     Name: "condition2",
                                     Obj: <REC(*ast.Object)>
                                   }
                                 },
                               Type: (*ast.Ident) {
-                                  NamePos: token.Pos(51),
+                                  NamePos: token.Pos(65),
                                   Name: "bool",
                                   Obj: (*ast.Object)(nil)
                                 },
@@ -205,15 +225,15 @@
                         }
                     },
                   Body: (*ast.BlockStmt) {
-                      Lbrace: token.Pos(135),
+                      Lbrace: token.Pos(149),
                       List: []ast.Stmt(nil),
-                      Rbrace: token.Pos(138)
+                      Rbrace: token.Pos(152)
                     },
                   Else: (*ast.IfStmt) {
-                      If: token.Pos(145),
+                      If: token.Pos(159),
                       Init: ast.Stmt(nil),
                       Cond: (*ast.Ident) {
-                          NamePos: token.Pos(148),
+                          NamePos: token.Pos(162),
                           Name: "condition1",
                           Obj: (*ast.Object) {
                               Kind: ast.ObjKind(4),
@@ -222,12 +242,12 @@
                                   Doc: (*ast.CommentGroup)(nil),
                                   Names: []*ast.Ident{
                                     (*ast.Ident) {
-                                        NamePos: token.Pos(28),
+                                        NamePos: token.Pos(42),
                                         Name: "condition1",
                                         Obj: <REC(*ast.Object)>
                                       },
                                     (*ast.Ident) {
-                                        NamePos: token.Pos(40),
+                                        NamePos: token.Pos(54),
                                         Name: "condition2",
                                         Obj: (*ast.Object) {
                                             Kind: ast.ObjKind(4),
@@ -239,7 +259,7 @@
                                       }
                                     },
                                   Type: (*ast.Ident) {
-                                      NamePos: token.Pos(51),
+                                      NamePos: token.Pos(65),
                                       Name: "bool",
                                       Obj: (*ast.Object)(nil)
                                     },
@@ -251,15 +271,15 @@
                             }
                         },
                       Body: (*ast.BlockStmt) {
-                          Lbrace: token.Pos(159),
+                          Lbrace: token.Pos(173),
                           List: []ast.Stmt(nil),
-                          Rbrace: token.Pos(162)
+                          Rbrace: token.Pos(176)
                         },
                       Else: (*ast.IfStmt) {
-                          If: token.Pos(169),
+                          If: token.Pos(183),
                           Init: ast.Stmt(nil),
                           Cond: (*ast.Ident) {
-                              NamePos: token.Pos(172),
+                              NamePos: token.Pos(186),
                               Name: "condition1",
                               Obj: (*ast.Object) {
                                   Kind: ast.ObjKind(4),
@@ -268,12 +288,12 @@
                                       Doc: (*ast.CommentGroup)(nil),
                                       Names: []*ast.Ident{
                                         (*ast.Ident) {
-                                            NamePos: token.Pos(28),
+                                            NamePos: token.Pos(42),
                                             Name: "condition1",
                                             Obj: <REC(*ast.Object)>
                                           },
                                         (*ast.Ident) {
-                                            NamePos: token.Pos(40),
+                                            NamePos: token.Pos(54),
                                             Name: "condition2",
                                             Obj: (*ast.Object) {
                                                 Kind: ast.ObjKind(4),
@@ -285,7 +305,7 @@
                                           }
                                         },
                                       Type: (*ast.Ident) {
-                                          NamePos: token.Pos(51),
+                                          NamePos: token.Pos(65),
                                           Name: "bool",
                                           Obj: (*ast.Object)(nil)
                                         },
@@ -297,19 +317,19 @@
                                 }
                             },
                           Body: (*ast.BlockStmt) {
-                              Lbrace: token.Pos(183),
+                              Lbrace: token.Pos(197),
                               List: []ast.Stmt(nil),
-                              Rbrace: token.Pos(202)
+                              Rbrace: token.Pos(216)
                             },
                           Else: ast.Stmt(nil)
                         }
                     }
                 },
               (*ast.IfStmt) {
-                  If: token.Pos(206),
+                  If: token.Pos(220),
                   Init: ast.Stmt(nil),
                   Cond: (*ast.Ident) {
-                      NamePos: token.Pos(209),
+                      NamePos: token.Pos(223),
                       Name: "condition1",
                       Obj: (*ast.Object) {
                           Kind: ast.ObjKind(4),
@@ -318,12 +338,12 @@
                               Doc: (*ast.CommentGroup)(nil),
                               Names: []*ast.Ident{
                                 (*ast.Ident) {
-                                    NamePos: token.Pos(28),
+                                    NamePos: token.Pos(42),
                                     Name: "condition1",
                                     Obj: <REC(*ast.Object)>
                                   },
                                 (*ast.Ident) {
-                                    NamePos: token.Pos(40),
+                                    NamePos: token.Pos(54),
                                     Name: "condition2",
                                     Obj: (*ast.Object) {
                                         Kind: ast.ObjKind(4),
@@ -335,7 +355,7 @@
                                   }
                                 },
                               Type: (*ast.Ident) {
-                                  NamePos: token.Pos(51),
+                                  NamePos: token.Pos(65),
                                   Name: "bool",
                                   Obj: (*ast.Object)(nil)
                                 },
@@ -347,15 +367,15 @@
                         }
                     },
                   Body: (*ast.BlockStmt) {
-                      Lbrace: token.Pos(220),
+                      Lbrace: token.Pos(234),
                       List: []ast.Stmt(nil),
-                      Rbrace: token.Pos(223)
+                      Rbrace: token.Pos(237)
                     },
                   Else: (*ast.IfStmt) {
-                      If: token.Pos(230),
+                      If: token.Pos(244),
                       Init: ast.Stmt(nil),
                       Cond: (*ast.Ident) {
-                          NamePos: token.Pos(233),
+                          NamePos: token.Pos(247),
                           Name: "condition2",
                           Obj: (*ast.Object) {
                               Kind: ast.ObjKind(4),
@@ -364,7 +384,7 @@
                                   Doc: (*ast.CommentGroup)(nil),
                                   Names: []*ast.Ident{
                                     (*ast.Ident) {
-                                        NamePos: token.Pos(28),
+                                        NamePos: token.Pos(42),
                                         Name: "condition1",
                                         Obj: (*ast.Object) {
                                             Kind: ast.ObjKind(4),
@@ -375,13 +395,13 @@
                                           }
                                       },
                                     (*ast.Ident) {
-                                        NamePos: token.Pos(40),
+                                        NamePos: token.Pos(54),
                                         Name: "condition2",
                                         Obj: <REC(*ast.Object)>
                                       }
                                     },
                                   Type: (*ast.Ident) {
-                                      NamePos: token.Pos(51),
+                                      NamePos: token.Pos(65),
                                       Name: "bool",
                                       Obj: (*ast.Object)(nil)
                                     },
@@ -393,15 +413,15 @@
                             }
                         },
                       Body: (*ast.BlockStmt) {
-                          Lbrace: token.Pos(244),
+                          Lbrace: token.Pos(258),
                           List: []ast.Stmt(nil),
-                          Rbrace: token.Pos(247)
+                          Rbrace: token.Pos(261)
                         },
                       Else: (*ast.IfStmt) {
-                          If: token.Pos(254),
+                          If: token.Pos(268),
                           Init: ast.Stmt(nil),
                           Cond: (*ast.Ident) {
-                              NamePos: token.Pos(257),
+                              NamePos: token.Pos(271),
                               Name: "condition1",
                               Obj: (*ast.Object) {
                                   Kind: ast.ObjKind(4),
@@ -410,12 +430,12 @@
                                       Doc: (*ast.CommentGroup)(nil),
                                       Names: []*ast.Ident{
                                         (*ast.Ident) {
-                                            NamePos: token.Pos(28),
+                                            NamePos: token.Pos(42),
                                             Name: "condition1",
                                             Obj: <REC(*ast.Object)>
                                           },
                                         (*ast.Ident) {
-                                            NamePos: token.Pos(40),
+                                            NamePos: token.Pos(54),
                                             Name: "condition2",
                                             Obj: (*ast.Object) {
                                                 Kind: ast.ObjKind(4),
@@ -427,7 +447,7 @@
                                           }
                                         },
                                       Type: (*ast.Ident) {
-                                          NamePos: token.Pos(51),
+                                          NamePos: token.Pos(65),
                                           Name: "bool",
                                           Obj: (*ast.Object)(nil)
                                         },
@@ -439,23 +459,23 @@
                                 }
                             },
                           Body: (*ast.BlockStmt) {
-                              Lbrace: token.Pos(268),
+                              Lbrace: token.Pos(282),
                               List: []ast.Stmt(nil),
-                              Rbrace: token.Pos(441)
+                              Rbrace: token.Pos(455)
                             },
                           Else: ast.Stmt(nil)
                         }
                     }
                 }
               },
-            Rbrace: token.Pos(443)
+            Rbrace: token.Pos(457)
           }
       },
     (*ast.FuncDecl) {
         Doc: (*ast.CommentGroup)(nil),
         Recv: (*ast.FieldList)(nil),
         Name: (*ast.Ident) {
-            NamePos: token.Pos(451),
+            NamePos: token.Pos(465),
             Name: "ifInitializer",
             Obj: (*ast.Object) {
                 Kind: ast.ObjKind(5),
@@ -466,15 +486,15 @@
               }
           },
         Type: (*ast.FuncType) {
-            Func: token.Pos(446),
+            Func: token.Pos(460),
             Params: (*ast.FieldList) {
-                Opening: token.Pos(464),
+                Opening: token.Pos(478),
                 List: []*ast.Field{
                   (*ast.Field) {
                       Doc: (*ast.CommentGroup)(nil),
                       Names: []*ast.Ident{
                         (*ast.Ident) {
-                            NamePos: token.Pos(465),
+                            NamePos: token.Pos(479),
                             Name: "x",
                             Obj: (*ast.Object) {
                                 Kind: ast.ObjKind(4),
@@ -486,7 +506,7 @@
                           }
                         },
                       Type: (*ast.Ident) {
-                          NamePos: token.Pos(467),
+                          NamePos: token.Pos(481),
                           Name: "int",
                           Obj: (*ast.Object)(nil)
                         },
@@ -494,19 +514,19 @@
                       Comment: (*ast.CommentGroup)(nil)
                     }
                   },
-                Closing: token.Pos(470)
+                Closing: token.Pos(484)
               },
             Results: (*ast.FieldList)(nil)
           },
         Body: (*ast.BlockStmt) {
-            Lbrace: token.Pos(473),
+            Lbrace: token.Pos(487),
             List: []ast.Stmt{
               (*ast.IfStmt) {
-                  If: token.Pos(476),
+                  If: token.Pos(490),
                   Init: (*ast.AssignStmt) {
                       Lhs: []ast.Expr{
                         (*ast.Ident) {
-                            NamePos: token.Pos(479),
+                            NamePos: token.Pos(493),
                             Name: "x",
                             Obj: (*ast.Object) {
                                 Kind: ast.ObjKind(4),
@@ -515,13 +535,13 @@
                                     Doc: (*ast.CommentGroup)(nil),
                                     Names: []*ast.Ident{
                                       (*ast.Ident) {
-                                          NamePos: token.Pos(465),
+                                          NamePos: token.Pos(479),
                                           Name: "x",
                                           Obj: <REC(*ast.Object)>
                                         }
                                       },
                                     Type: (*ast.Ident) {
-                                        NamePos: token.Pos(467),
+                                        NamePos: token.Pos(481),
                                         Name: "int",
                                         Obj: (*ast.Object)(nil)
                                       },
@@ -533,11 +553,11 @@
                               }
                           }
                         },
-                      TokPos: token.Pos(481),
+                      TokPos: token.Pos(495),
                       Tok: token.Token(42),
                       Rhs: []ast.Expr{
                         (*ast.BasicLit) {
-                            ValuePos: token.Pos(483),
+                            ValuePos: token.Pos(497),
                             Kind: token.Token(5),
                             Value: "3"
                           }
@@ -545,7 +565,7 @@
                     },
                   Cond: (*ast.BinaryExpr) {
                       X: (*ast.Ident) {
-                          NamePos: token.Pos(485),
+                          NamePos: token.Pos(499),
                           Name: "x",
                           Obj: (*ast.Object) {
                               Kind: ast.ObjKind(4),
@@ -554,13 +574,13 @@
                                   Doc: (*ast.CommentGroup)(nil),
                                   Names: []*ast.Ident{
                                     (*ast.Ident) {
-                                        NamePos: token.Pos(465),
+                                        NamePos: token.Pos(479),
                                         Name: "x",
                                         Obj: <REC(*ast.Object)>
                                       }
                                     },
                                   Type: (*ast.Ident) {
-                                      NamePos: token.Pos(467),
+                                      NamePos: token.Pos(481),
                                       Name: "int",
                                       Obj: (*ast.Object)(nil)
                                     },
@@ -571,25 +591,25 @@
                               Type: interface{}(nil)
                             }
                         },
-                      OpPos: token.Pos(487),
+                      OpPos: token.Pos(501),
                       Op: token.Token(41),
                       Y: (*ast.BasicLit) {
-                          ValuePos: token.Pos(489),
+                          ValuePos: token.Pos(503),
                           Kind: token.Token(5),
                           Value: "0"
                         }
                     },
                   Body: (*ast.BlockStmt) {
-                      Lbrace: token.Pos(491),
+                      Lbrace: token.Pos(505),
                       List: []ast.Stmt(nil),
-                      Rbrace: token.Pos(495)
+                      Rbrace: token.Pos(509)
                     },
                   Else: (*ast.IfStmt) {
-                      If: token.Pos(502),
+                      If: token.Pos(516),
                       Init: (*ast.AssignStmt) {
                           Lhs: []ast.Expr{
                             (*ast.Ident) {
-                                NamePos: token.Pos(505),
+                                NamePos: token.Pos(519),
                                 Name: "x",
                                 Obj: (*ast.Object) {
                                     Kind: ast.ObjKind(4),
@@ -598,13 +618,13 @@
                                         Doc: (*ast.CommentGroup)(nil),
                                         Names: []*ast.Ident{
                                           (*ast.Ident) {
-                                              NamePos: token.Pos(465),
+                                              NamePos: token.Pos(479),
                                               Name: "x",
                                               Obj: <REC(*ast.Object)>
                                             }
                                           },
                                         Type: (*ast.Ident) {
-                                            NamePos: token.Pos(467),
+                                            NamePos: token.Pos(481),
                                             Name: "int",
                                             Obj: (*ast.Object)(nil)
                                           },
@@ -616,14 +636,14 @@
                                   }
                               }
                             },
-                          TokPos: token.Pos(507),
+                          TokPos: token.Pos(521),
                           Tok: token.Token(42),
                           Rhs: []ast.Expr{
                             (*ast.UnaryExpr) {
-                                OpPos: token.Pos(509),
+                                OpPos: token.Pos(523),
                                 Op: token.Token(13),
                                 X: (*ast.BasicLit) {
-                                    ValuePos: token.Pos(510),
+                                    ValuePos: token.Pos(524),
                                     Kind: token.Token(5),
                                     Value: "1"
                                   }
@@ -632,7 +652,7 @@
                         },
                       Cond: (*ast.BinaryExpr) {
                           X: (*ast.Ident) {
-                              NamePos: token.Pos(512),
+                              NamePos: token.Pos(526),
                               Name: "x",
                               Obj: (*ast.Object) {
                                   Kind: ast.ObjKind(4),
@@ -641,13 +661,13 @@
                                       Doc: (*ast.CommentGroup)(nil),
                                       Names: []*ast.Ident{
                                         (*ast.Ident) {
-                                            NamePos: token.Pos(465),
+                                            NamePos: token.Pos(479),
                                             Name: "x",
                                             Obj: <REC(*ast.Object)>
                                           }
                                         },
                                       Type: (*ast.Ident) {
-                                          NamePos: token.Pos(467),
+                                          NamePos: token.Pos(481),
                                           Name: "int",
                                           Obj: (*ast.Object)(nil)
                                         },
@@ -658,24 +678,24 @@
                                   Type: interface{}(nil)
                                 }
                             },
-                          OpPos: token.Pos(514),
+                          OpPos: token.Pos(528),
                           Op: token.Token(41),
                           Y: (*ast.BasicLit) {
-                              ValuePos: token.Pos(516),
+                              ValuePos: token.Pos(530),
                               Kind: token.Token(5),
                               Value: "0"
                             }
                         },
                       Body: (*ast.BlockStmt) {
-                          Lbrace: token.Pos(518),
+                          Lbrace: token.Pos(532),
                           List: []ast.Stmt(nil),
-                          Rbrace: token.Pos(590)
+                          Rbrace: token.Pos(604)
                         },
                       Else: ast.Stmt(nil)
                     }
                 }
               },
-            Rbrace: token.Pos(592)
+            Rbrace: token.Pos(606)
           }
       }
     },
@@ -689,20 +709,20 @@
                   Doc: (*ast.CommentGroup)(nil),
                   Recv: (*ast.FieldList)(nil),
                   Name: (*ast.Ident) {
-                      NamePos: token.Pos(20),
+                      NamePos: token.Pos(34),
                       Name: "example",
                       Obj: <REC(*ast.Object)>
                     },
                   Type: (*ast.FuncType) {
-                      Func: token.Pos(15),
+                      Func: token.Pos(29),
                       Params: (*ast.FieldList) {
-                          Opening: token.Pos(27),
+                          Opening: token.Pos(41),
                           List: []*ast.Field{
                             (*ast.Field) {
                                 Doc: (*ast.CommentGroup)(nil),
                                 Names: []*ast.Ident{
                                   (*ast.Ident) {
-                                      NamePos: token.Pos(28),
+                                      NamePos: token.Pos(42),
                                       Name: "condition1",
                                       Obj: (*ast.Object) {
                                           Kind: ast.ObjKind(4),
@@ -713,7 +733,7 @@
                                         }
                                     },
                                   (*ast.Ident) {
-                                      NamePos: token.Pos(40),
+                                      NamePos: token.Pos(54),
                                       Name: "condition2",
                                       Obj: (*ast.Object) {
                                           Kind: ast.ObjKind(4),
@@ -725,7 +745,7 @@
                                     }
                                   },
                                 Type: (*ast.Ident) {
-                                    NamePos: token.Pos(51),
+                                    NamePos: token.Pos(65),
                                     Name: "bool",
                                     Obj: (*ast.Object)(nil)
                                   },
@@ -733,18 +753,18 @@
                                 Comment: (*ast.CommentGroup)(nil)
                               }
                             },
-                          Closing: token.Pos(55)
+                          Closing: token.Pos(69)
                         },
                       Results: (*ast.FieldList)(nil)
                     },
                   Body: (*ast.BlockStmt) {
-                      Lbrace: token.Pos(57),
+                      Lbrace: token.Pos(71),
                       List: []ast.Stmt{
                         (*ast.IfStmt) {
-                            If: token.Pos(60),
+                            If: token.Pos(74),
                             Init: ast.Stmt(nil),
                             Cond: (*ast.Ident) {
-                                NamePos: token.Pos(63),
+                                NamePos: token.Pos(77),
                                 Name: "condition1",
                                 Obj: (*ast.Object) {
                                     Kind: ast.ObjKind(4),
@@ -753,12 +773,12 @@
                                         Doc: (*ast.CommentGroup)(nil),
                                         Names: []*ast.Ident{
                                           (*ast.Ident) {
-                                              NamePos: token.Pos(28),
+                                              NamePos: token.Pos(42),
                                               Name: "condition1",
                                               Obj: <REC(*ast.Object)>
                                             },
                                           (*ast.Ident) {
-                                              NamePos: token.Pos(40),
+                                              NamePos: token.Pos(54),
                                               Name: "condition2",
                                               Obj: (*ast.Object) {
                                                   Kind: ast.ObjKind(4),
@@ -770,7 +790,7 @@
                                             }
                                           },
                                         Type: (*ast.Ident) {
-                                            NamePos: token.Pos(51),
+                                            NamePos: token.Pos(65),
                                             Name: "bool",
                                             Obj: (*ast.Object)(nil)
                                           },
@@ -782,15 +802,15 @@
                                   }
                               },
                             Body: (*ast.BlockStmt) {
-                                Lbrace: token.Pos(74),
+                                Lbrace: token.Pos(88),
                                 List: []ast.Stmt(nil),
-                                Rbrace: token.Pos(77)
+                                Rbrace: token.Pos(91)
                               },
                             Else: (*ast.IfStmt) {
-                                If: token.Pos(84),
+                                If: token.Pos(98),
                                 Init: ast.Stmt(nil),
                                 Cond: (*ast.Ident) {
-                                    NamePos: token.Pos(87),
+                                    NamePos: token.Pos(101),
                                     Name: "condition1",
                                     Obj: (*ast.Object) {
                                         Kind: ast.ObjKind(4),
@@ -799,12 +819,12 @@
                                             Doc: (*ast.CommentGroup)(nil),
                                             Names: []*ast.Ident{
                                               (*ast.Ident) {
-                                                  NamePos: token.Pos(28),
+                                                  NamePos: token.Pos(42),
                                                   Name: "condition1",
                                                   Obj: <REC(*ast.Object)>
                                                 },
                                               (*ast.Ident) {
-                                                  NamePos: token.Pos(40),
+                                                  NamePos: token.Pos(54),
                                                   Name: "condition2",
                                                   Obj: (*ast.Object) {
                                                       Kind: ast.ObjKind(4),
@@ -816,7 +836,7 @@
                                                 }
                                               },
                                             Type: (*ast.Ident) {
-                                                NamePos: token.Pos(51),
+                                                NamePos: token.Pos(65),
                                                 Name: "bool",
                                                 Obj: (*ast.Object)(nil)
                                               },
@@ -828,18 +848,18 @@
                                       }
                                   },
                                 Body: (*ast.BlockStmt) {
-                                    Lbrace: token.Pos(98),
+                                    Lbrace: token.Pos(112),
                                     List: []ast.Stmt(nil),
-                                    Rbrace: token.Pos(117)
+                                    Rbrace: token.Pos(131)
                                   },
                                 Else: ast.Stmt(nil)
                               }
                           },
                         (*ast.IfStmt) {
-                            If: token.Pos(121),
+                            If: token.Pos(135),
                             Init: ast.Stmt(nil),
                             Cond: (*ast.Ident) {
-                                NamePos: token.Pos(124),
+                                NamePos: token.Pos(138),
                                 Name: "condition2",
                                 Obj: (*ast.Object) {
                                     Kind: ast.ObjKind(4),
@@ -848,7 +868,7 @@
                                         Doc: (*ast.CommentGroup)(nil),
                                         Names: []*ast.Ident{
                                           (*ast.Ident) {
-                                              NamePos: token.Pos(28),
+                                              NamePos: token.Pos(42),
                                               Name: "condition1",
                                               Obj: (*ast.Object) {
                                                   Kind: ast.ObjKind(4),
@@ -859,13 +879,13 @@
                                                 }
                                             },
                                           (*ast.Ident) {
-                                              NamePos: token.Pos(40),
+                                              NamePos: token.Pos(54),
                                               Name: "condition2",
                                               Obj: <REC(*ast.Object)>
                                             }
                                           },
                                         Type: (*ast.Ident) {
-                                            NamePos: token.Pos(51),
+                                            NamePos: token.Pos(65),
                                             Name: "bool",
                                             Obj: (*ast.Object)(nil)
                                           },
@@ -877,15 +897,15 @@
                                   }
                               },
                             Body: (*ast.BlockStmt) {
-                                Lbrace: token.Pos(135),
+                                Lbrace: token.Pos(149),
                                 List: []ast.Stmt(nil),
-                                Rbrace: token.Pos(138)
+                                Rbrace: token.Pos(152)
                               },
                             Else: (*ast.IfStmt) {
-                                If: token.Pos(145),
+                                If: token.Pos(159),
                                 Init: ast.Stmt(nil),
                                 Cond: (*ast.Ident) {
-                                    NamePos: token.Pos(148),
+                                    NamePos: token.Pos(162),
                                     Name: "condition1",
                                     Obj: (*ast.Object) {
                                         Kind: ast.ObjKind(4),
@@ -894,12 +914,12 @@
                                             Doc: (*ast.CommentGroup)(nil),
                                             Names: []*ast.Ident{
                                               (*ast.Ident) {
-                                                  NamePos: token.Pos(28),
+                                                  NamePos: token.Pos(42),
                                                   Name: "condition1",
                                                   Obj: <REC(*ast.Object)>
                                                 },
                                               (*ast.Ident) {
-                                                  NamePos: token.Pos(40),
+                                                  NamePos: token.Pos(54),
                                                   Name: "condition2",
                                                   Obj: (*ast.Object) {
                                                       Kind: ast.ObjKind(4),
@@ -911,7 +931,7 @@
                                                 }
                                               },
                                             Type: (*ast.Ident) {
-                                                NamePos: token.Pos(51),
+                                                NamePos: token.Pos(65),
                                                 Name: "bool",
                                                 Obj: (*ast.Object)(nil)
                                               },
@@ -923,15 +943,15 @@
                                       }
                                   },
                                 Body: (*ast.BlockStmt) {
-                                    Lbrace: token.Pos(159),
+                                    Lbrace: token.Pos(173),
                                     List: []ast.Stmt(nil),
-                                    Rbrace: token.Pos(162)
+                                    Rbrace: token.Pos(176)
                                   },
                                 Else: (*ast.IfStmt) {
-                                    If: token.Pos(169),
+                                    If: token.Pos(183),
                                     Init: ast.Stmt(nil),
                                     Cond: (*ast.Ident) {
-                                        NamePos: token.Pos(172),
+                                        NamePos: token.Pos(186),
                                         Name: "condition1",
                                         Obj: (*ast.Object) {
                                             Kind: ast.ObjKind(4),
@@ -940,12 +960,12 @@
                                                 Doc: (*ast.CommentGroup)(nil),
                                                 Names: []*ast.Ident{
                                                   (*ast.Ident) {
-                                                      NamePos: token.Pos(28),
+                                                      NamePos: token.Pos(42),
                                                       Name: "condition1",
                                                       Obj: <REC(*ast.Object)>
                                                     },
                                                   (*ast.Ident) {
-                                                      NamePos: token.Pos(40),
+                                                      NamePos: token.Pos(54),
                                                       Name: "condition2",
                                                       Obj: (*ast.Object) {
                                                           Kind: ast.ObjKind(4),
@@ -957,7 +977,7 @@
                                                     }
                                                   },
                                                 Type: (*ast.Ident) {
-                                                    NamePos: token.Pos(51),
+                                                    NamePos: token.Pos(65),
                                                     Name: "bool",
                                                     Obj: (*ast.Object)(nil)
                                                   },
@@ -969,19 +989,19 @@
                                           }
                                       },
                                     Body: (*ast.BlockStmt) {
-                                        Lbrace: token.Pos(183),
+                                        Lbrace: token.Pos(197),
                                         List: []ast.Stmt(nil),
-                                        Rbrace: token.Pos(202)
+                                        Rbrace: token.Pos(216)
                                       },
                                     Else: ast.Stmt(nil)
                                   }
                               }
                           },
                         (*ast.IfStmt) {
-                            If: token.Pos(206),
+                            If: token.Pos(220),
                             Init: ast.Stmt(nil),
                             Cond: (*ast.Ident) {
-                                NamePos: token.Pos(209),
+                                NamePos: token.Pos(223),
                                 Name: "condition1",
                                 Obj: (*ast.Object) {
                                     Kind: ast.ObjKind(4),
@@ -990,12 +1010,12 @@
                                         Doc: (*ast.CommentGroup)(nil),
                                         Names: []*ast.Ident{
                                           (*ast.Ident) {
-                                              NamePos: token.Pos(28),
+                                              NamePos: token.Pos(42),
                                               Name: "condition1",
                                               Obj: <REC(*ast.Object)>
                                             },
                                           (*ast.Ident) {
-                                              NamePos: token.Pos(40),
+                                              NamePos: token.Pos(54),
                                               Name: "condition2",
                                               Obj: (*ast.Object) {
                                                   Kind: ast.ObjKind(4),
@@ -1007,7 +1027,7 @@
                                             }
                                           },
                                         Type: (*ast.Ident) {
-                                            NamePos: token.Pos(51),
+                                            NamePos: token.Pos(65),
                                             Name: "bool",
                                             Obj: (*ast.Object)(nil)
                                           },
@@ -1019,15 +1039,15 @@
                                   }
                               },
                             Body: (*ast.BlockStmt) {
-                                Lbrace: token.Pos(220),
+                                Lbrace: token.Pos(234),
                                 List: []ast.Stmt(nil),
-                                Rbrace: token.Pos(223)
+                                Rbrace: token.Pos(237)
                               },
                             Else: (*ast.IfStmt) {
-                                If: token.Pos(230),
+                                If: token.Pos(244),
                                 Init: ast.Stmt(nil),
                                 Cond: (*ast.Ident) {
-                                    NamePos: token.Pos(233),
+                                    NamePos: token.Pos(247),
                                     Name: "condition2",
                                     Obj: (*ast.Object) {
                                         Kind: ast.ObjKind(4),
@@ -1036,7 +1056,7 @@
                                             Doc: (*ast.CommentGroup)(nil),
                                             Names: []*ast.Ident{
                                               (*ast.Ident) {
-                                                  NamePos: token.Pos(28),
+                                                  NamePos: token.Pos(42),
                                                   Name: "condition1",
                                                   Obj: (*ast.Object) {
                                                       Kind: ast.ObjKind(4),
@@ -1047,13 +1067,13 @@
                                                     }
                                                 },
                                               (*ast.Ident) {
-                                                  NamePos: token.Pos(40),
+                                                  NamePos: token.Pos(54),
                                                   Name: "condition2",
                                                   Obj: <REC(*ast.Object)>
                                                 }
                                               },
                                             Type: (*ast.Ident) {
-                                                NamePos: token.Pos(51),
+                                                NamePos: token.Pos(65),
                                                 Name: "bool",
                                                 Obj: (*ast.Object)(nil)
                                               },
@@ -1065,15 +1085,15 @@
                                       }
                                   },
                                 Body: (*ast.BlockStmt) {
-                                    Lbrace: token.Pos(244),
+                                    Lbrace: token.Pos(258),
                                     List: []ast.Stmt(nil),
-                                    Rbrace: token.Pos(247)
+                                    Rbrace: token.Pos(261)
                                   },
                                 Else: (*ast.IfStmt) {
-                                    If: token.Pos(254),
+                                    If: token.Pos(268),
                                     Init: ast.Stmt(nil),
                                     Cond: (*ast.Ident) {
-                                        NamePos: token.Pos(257),
+                                        NamePos: token.Pos(271),
                                         Name: "condition1",
                                         Obj: (*ast.Object) {
                                             Kind: ast.ObjKind(4),
@@ -1082,12 +1102,12 @@
                                                 Doc: (*ast.CommentGroup)(nil),
                                                 Names: []*ast.Ident{
                                                   (*ast.Ident) {
-                                                      NamePos: token.Pos(28),
+                                                      NamePos: token.Pos(42),
                                                       Name: "condition1",
                                                       Obj: <REC(*ast.Object)>
                                                     },
                                                   (*ast.Ident) {
-                                                      NamePos: token.Pos(40),
+                                                      NamePos: token.Pos(54),
                                                       Name: "condition2",
                                                       Obj: (*ast.Object) {
                                                           Kind: ast.ObjKind(4),
@@ -1099,7 +1119,7 @@
                                                     }
                                                   },
                                                 Type: (*ast.Ident) {
-                                                    NamePos: token.Pos(51),
+                                                    NamePos: token.Pos(65),
                                                     Name: "bool",
                                                     Obj: (*ast.Object)(nil)
                                                   },
@@ -1111,16 +1131,16 @@
                                           }
                                       },
                                     Body: (*ast.BlockStmt) {
-                                        Lbrace: token.Pos(268),
+                                        Lbrace: token.Pos(282),
                                         List: []ast.Stmt(nil),
-                                        Rbrace: token.Pos(441)
+                                        Rbrace: token.Pos(455)
                                       },
                                     Else: ast.Stmt(nil)
                                   }
                               }
                           }
                         },
-                      Rbrace: token.Pos(443)
+                      Rbrace: token.Pos(457)
                     }
                 },
               Data: interface{}(nil),
@@ -1133,20 +1153,20 @@
                   Doc: (*ast.CommentGroup)(nil),
                   Recv: (*ast.FieldList)(nil),
                   Name: (*ast.Ident) {
-                      NamePos: token.Pos(451),
+                      NamePos: token.Pos(465),
                       Name: "ifInitializer",
                       Obj: <REC(*ast.Object)>
                     },
                   Type: (*ast.FuncType) {
-                      Func: token.Pos(446),
+                      Func: token.Pos(460),
                       Params: (*ast.FieldList) {
-                          Opening: token.Pos(464),
+                          Opening: token.Pos(478),
                           List: []*ast.Field{
                             (*ast.Field) {
                                 Doc: (*ast.CommentGroup)(nil),
                                 Names: []*ast.Ident{
                                   (*ast.Ident) {
-                                      NamePos: token.Pos(465),
+                                      NamePos: token.Pos(479),
                                       Name: "x",
                                       Obj: (*ast.Object) {
                                           Kind: ast.ObjKind(4),
@@ -1158,7 +1178,7 @@
                                     }
                                   },
                                 Type: (*ast.Ident) {
-                                    NamePos: token.Pos(467),
+                                    NamePos: token.Pos(481),
                                     Name: "int",
                                     Obj: (*ast.Object)(nil)
                                   },
@@ -1166,19 +1186,19 @@
                                 Comment: (*ast.CommentGroup)(nil)
                               }
                             },
-                          Closing: token.Pos(470)
+                          Closing: token.Pos(484)
                         },
                       Results: (*ast.FieldList)(nil)
                     },
                   Body: (*ast.BlockStmt) {
-                      Lbrace: token.Pos(473),
+                      Lbrace: token.Pos(487),
                       List: []ast.Stmt{
                         (*ast.IfStmt) {
-                            If: token.Pos(476),
+                            If: token.Pos(490),
                             Init: (*ast.AssignStmt) {
                                 Lhs: []ast.Expr{
                                   (*ast.Ident) {
-                                      NamePos: token.Pos(479),
+                                      NamePos: token.Pos(493),
                                       Name: "x",
                                       Obj: (*ast.Object) {
                                           Kind: ast.ObjKind(4),
@@ -1187,13 +1207,13 @@
                                               Doc: (*ast.CommentGroup)(nil),
                                               Names: []*ast.Ident{
                                                 (*ast.Ident) {
-                                                    NamePos: token.Pos(465),
+                                                    NamePos: token.Pos(479),
                                                     Name: "x",
                                                     Obj: <REC(*ast.Object)>
                                                   }
                                                 },
                                               Type: (*ast.Ident) {
-                                                  NamePos: token.Pos(467),
+                                                  NamePos: token.Pos(481),
                                                   Name: "int",
                                                   Obj: (*ast.Object)(nil)
                                                 },
@@ -1205,11 +1225,11 @@
                                         }
                                     }
                                   },
-                                TokPos: token.Pos(481),
+                                TokPos: token.Pos(495),
                                 Tok: token.Token(42),
                                 Rhs: []ast.Expr{
                                   (*ast.BasicLit) {
-                                      ValuePos: token.Pos(483),
+                                      ValuePos: token.Pos(497),
                                       Kind: token.Token(5),
                                       Value: "3"
                                     }
@@ -1217,7 +1237,7 @@
                               },
                             Cond: (*ast.BinaryExpr) {
                                 X: (*ast.Ident) {
-                                    NamePos: token.Pos(485),
+                                    NamePos: token.Pos(499),
                                     Name: "x",
                                     Obj: (*ast.Object) {
                                         Kind: ast.ObjKind(4),
@@ -1226,13 +1246,13 @@
                                             Doc: (*ast.CommentGroup)(nil),
                                             Names: []*ast.Ident{
                                               (*ast.Ident) {
-                                                  NamePos: token.Pos(465),
+                                                  NamePos: token.Pos(479),
                                                   Name: "x",
                                                   Obj: <REC(*ast.Object)>
                                                 }
                                               },
                                             Type: (*ast.Ident) {
-                                                NamePos: token.Pos(467),
+                                                NamePos: token.Pos(481),
                                                 Name: "int",
                                                 Obj: (*ast.Object)(nil)
                                               },
@@ -1243,25 +1263,25 @@
                                         Type: interface{}(nil)
                                       }
                                   },
-                                OpPos: token.Pos(487),
+                                OpPos: token.Pos(501),
                                 Op: token.Token(41),
                                 Y: (*ast.BasicLit) {
-                                    ValuePos: token.Pos(489),
+                                    ValuePos: token.Pos(503),
                                     Kind: token.Token(5),
                                     Value: "0"
                                   }
                               },
                             Body: (*ast.BlockStmt) {
-                                Lbrace: token.Pos(491),
+                                Lbrace: token.Pos(505),
                                 List: []ast.Stmt(nil),
-                                Rbrace: token.Pos(495)
+                                Rbrace: token.Pos(509)
                               },
                             Else: (*ast.IfStmt) {
-                                If: token.Pos(502),
+                                If: token.Pos(516),
                                 Init: (*ast.AssignStmt) {
                                     Lhs: []ast.Expr{
                                       (*ast.Ident) {
-                                          NamePos: token.Pos(505),
+                                          NamePos: token.Pos(519),
                                           Name: "x",
                                           Obj: (*ast.Object) {
                                               Kind: ast.ObjKind(4),
@@ -1270,13 +1290,13 @@
                                                   Doc: (*ast.CommentGroup)(nil),
                                                   Names: []*ast.Ident{
                                                     (*ast.Ident) {
-                                                        NamePos: token.Pos(465),
+                                                        NamePos: token.Pos(479),
                                                         Name: "x",
                                                         Obj: <REC(*ast.Object)>
                                                       }
                                                     },
                                                   Type: (*ast.Ident) {
-                                                      NamePos: token.Pos(467),
+                                                      NamePos: token.Pos(481),
                                                       Name: "int",
                                                       Obj: (*ast.Object)(nil)
                                                     },
@@ -1288,14 +1308,14 @@
                                             }
                                         }
                                       },
-                                    TokPos: token.Pos(507),
+                                    TokPos: token.Pos(521),
                                     Tok: token.Token(42),
                                     Rhs: []ast.Expr{
                                       (*ast.UnaryExpr) {
-                                          OpPos: token.Pos(509),
+                                          OpPos: token.Pos(523),
                                           Op: token.Token(13),
                                           X: (*ast.BasicLit) {
-                                              ValuePos: token.Pos(510),
+                                              ValuePos: token.Pos(524),
                                               Kind: token.Token(5),
                                               Value: "1"
                                             }
@@ -1304,7 +1324,7 @@
                                   },
                                 Cond: (*ast.BinaryExpr) {
                                     X: (*ast.Ident) {
-                                        NamePos: token.Pos(512),
+                                        NamePos: token.Pos(526),
                                         Name: "x",
                                         Obj: (*ast.Object) {
                                             Kind: ast.ObjKind(4),
@@ -1313,13 +1333,13 @@
                                                 Doc: (*ast.CommentGroup)(nil),
                                                 Names: []*ast.Ident{
                                                   (*ast.Ident) {
-                                                      NamePos: token.Pos(465),
+                                                      NamePos: token.Pos(479),
                                                       Name: "x",
                                                       Obj: <REC(*ast.Object)>
                                                     }
                                                   },
                                                 Type: (*ast.Ident) {
-                                                    NamePos: token.Pos(467),
+                                                    NamePos: token.Pos(481),
                                                     Name: "int",
                                                     Obj: (*ast.Object)(nil)
                                                   },
@@ -1330,24 +1350,24 @@
                                             Type: interface{}(nil)
                                           }
                                       },
-                                    OpPos: token.Pos(514),
+                                    OpPos: token.Pos(528),
                                     Op: token.Token(41),
                                     Y: (*ast.BasicLit) {
-                                        ValuePos: token.Pos(516),
+                                        ValuePos: token.Pos(530),
                                         Kind: token.Token(5),
                                         Value: "0"
                                       }
                                   },
                                 Body: (*ast.BlockStmt) {
-                                    Lbrace: token.Pos(518),
+                                    Lbrace: token.Pos(532),
                                     List: []ast.Stmt(nil),
-                                    Rbrace: token.Pos(590)
+                                    Rbrace: token.Pos(604)
                                   },
                                 Else: ast.Stmt(nil)
                               }
                           }
                         },
-                      Rbrace: token.Pos(592)
+                      Rbrace: token.Pos(606)
                     }
                 },
               Data: interface{}(nil),
@@ -1355,15 +1375,27 @@
             }
         }
     },
-  Imports: []*ast.ImportSpec(nil),
+  Imports: []*ast.ImportSpec{
+    (*ast.ImportSpec) {
+        Doc: (*ast.CommentGroup)(nil),
+        Name: (*ast.Ident)(nil),
+        Path: (*ast.BasicLit) {
+            ValuePos: token.Pos(22),
+            Kind: token.Token(9),
+            Value: "\"fmt\""
+          },
+        Comment: (*ast.CommentGroup)(nil),
+        EndPos: token.Pos(0)
+      }
+    },
   Unresolved: []*ast.Ident{
     (*ast.Ident) {
-        NamePos: token.Pos(51),
+        NamePos: token.Pos(65),
         Name: "bool",
         Obj: (*ast.Object)(nil)
       },
     (*ast.Ident) {
-        NamePos: token.Pos(467),
+        NamePos: token.Pos(481),
         Name: "int",
         Obj: (*ast.Object)(nil)
       }
@@ -1372,7 +1404,7 @@
     (*ast.CommentGroup) {
         List: []*ast.Comment{
           (*ast.Comment) {
-              Slash: token.Pos(100),
+              Slash: token.Pos(114),
               Text: "// Noncompliant"
             }
           }
@@ -1380,7 +1412,7 @@
     (*ast.CommentGroup) {
         List: []*ast.Comment{
           (*ast.Comment) {
-              Slash: token.Pos(185),
+              Slash: token.Pos(199),
               Text: "// Noncompliant"
             }
           }
@@ -1388,7 +1420,7 @@
     (*ast.CommentGroup) {
         List: []*ast.Comment{
           (*ast.Comment) {
-              Slash: token.Pos(270),
+              Slash: token.Pos(284),
               Text: "// Noncompliant [[secondary=12]] {{This branch can not be reached because the condition duplicates a previous condition in the same sequence of \"if/else if\" statements}}"
             }
           }
@@ -1396,7 +1428,7 @@
     (*ast.CommentGroup) {
         List: []*ast.Comment{
           (*ast.Comment) {
-              Slash: token.Pos(520),
+              Slash: token.Pos(534),
               Text: "// Compliant, initializer has to be considered as part of condition"
             }
           }

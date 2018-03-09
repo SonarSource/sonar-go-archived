@@ -11,4 +11,9 @@ class NoIdenticalConditionsCheckTest {
   void test() throws Exception {
     checkRuleOnGo(new NoIdenticalConditionsCheck());
   }
+
+  @Test
+  void test_switch() throws Exception {
+    checkRuleOnGo(new NoIdenticalConditionsCheck(), "NoIdenticalConditionsCheckSwitch.go");
+  }
 }

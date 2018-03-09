@@ -531,7 +531,7 @@
                       "children": [
                         {
                           "kinds": [
-                            "*ast.BinaryExpr"
+                            "BINARY_EXPRESSION"
                           ],
                           "nativeNode": "*ast.BinaryExpr",
                           "children": [

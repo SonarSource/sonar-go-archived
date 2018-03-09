@@ -1,5 +1,7 @@
 package test
 
+import "fmt"
+
 func example(condition1, condition2 bool) {
 	if condition1 {
 	} else if condition1 { // Noncompliant
@@ -23,3 +25,5 @@ func ifInitializer(x int)  {
 
 	}
 }
+
+
