@@ -1,9 +1,11 @@
 buildscript {
     repositories {
+        jcenter()
         mavenCentral()
     }
     dependencies {
         classpath 'org.junit.platform:junit-platform-gradle-plugin:1.1.0'
+        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.2'
     }
 }
 
@@ -13,6 +15,7 @@ repositories {
 
 apply plugin: 'java-library'
 apply plugin: 'org.junit.platform.gradle.plugin'
+apply plugin: 'com.github.johnrengelman.shadow'
 
 ext.junitJupiterVersion  = '5.1.0'
 ext.gsonVersion  = '2.8.2'
@@ -37,3 +40,11 @@ dependencies {
     testCompile "org.junit.jupiter:junit-jupiter-params:${junitJupiterVersion}"
     testRuntime "org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}"
 }
+
+shadowJar {
+    manifest     { attributes('Main-Class': 'org.sonar.commonruleengine.Engine')   }
+    dependencies { include(dependency('com.google.code.gson:gson')) }
+}
+
+artifacts { shadowJar }
+build.dependsOn shadowJar
