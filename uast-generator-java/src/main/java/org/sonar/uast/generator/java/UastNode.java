@@ -27,9 +27,11 @@ class UastNode {
     ASSIGNMENT_VALUE,
     BLOCK,
     BINARY_EXPRESSION,
+    CASE,
     CLASS,
     COMPILATION_UNIT,
     CONDITION,
+    DEFAULT_CASE,
     ELSE,
     EOF,
     FUNCTION,
@@ -38,6 +40,7 @@ class UastNode {
     LITERAL,
     PARAMETER,
     STATEMENT,
+    SWITCH
     ;
   }
 

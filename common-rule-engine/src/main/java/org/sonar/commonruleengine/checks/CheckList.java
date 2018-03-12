@@ -16,6 +16,7 @@ public class CheckList {
       NoIdenticalFunctionsCheck.class,
       NoHardcodedCredentialsCheck.class,
       NoSelfAssignmentCheck.class,
+      SwitchWithoutDefaultCheck.class,
       TooManyParametersCheck.class
     );
   }

@@ -1,0 +1,709 @@
+kubernetes/cluster/images/etcd/rollback/rollback.go: 279:4
+kubernetes/cmd/kube-controller-manager/app/plugins.go: 131:3
+kubernetes/cmd/kube-proxy/app/server.go: 88:2
+kubernetes/cmd/kubeadm/app/preflight/checks.go: 529:3
+kubernetes/cmd/kubeadm/app/util/version_test.go: 115:3
+kubernetes/cmd/kubeadm/test/cmd/version_test.go: 105:4
+kubernetes/cmd/libs/go2idl/client-gen/types/helpers.go: 57:2
+kubernetes/cmd/libs/go2idl/conversion-gen/generators/conversion.go: 349:2 353:3 785:4
+kubernetes/cmd/libs/go2idl/go-to-protobuf/protobuf/cmd.go: 154:3
+kubernetes/cmd/libs/go2idl/go-to-protobuf/protobuf/generator.go: 224:2 306:3 444:2 450:3 597:3
+kubernetes/cmd/libs/go2idl/go-to-protobuf/protobuf/package.go: 110:2
+kubernetes/cmd/libs/go2idl/go-to-protobuf/protobuf/parser.go: 115:2 132:3 154:2 182:2 199:4 204:7 216:3 229:4 290:2 306:2 313:4 333:2 340:4
+kubernetes/cmd/libs/go2idl/openapi-gen/generators/openapi.go: 339:2
+kubernetes/cmd/mungedocs/kubectl_dash_f.go: 57:3
+kubernetes/cmd/mungedocs/util.go: 150:3
+kubernetes/federation/pkg/dnsprovider/providers/aws/route53/stubs/route53api.go: 82:3
+kubernetes/federation/pkg/dnsprovider/providers/coredns/rrchangeset.go: 82:3
+kubernetes/federation/pkg/federatedtypes/crudtester/crudtester.go: 161:3 184:3
+kubernetes/federation/pkg/federation-controller/ingress/ingress_controller.go: 775:3
+kubernetes/federation/pkg/federation-controller/service/servicecontroller.go: 289:2 552:2
+kubernetes/federation/pkg/federation-controller/sync/controller.go: 264:3
+kubernetes/federation/pkg/federation-controller/util/clusterselector/clusterselector.go: 65:2
+kubernetes/federation/pkg/federation-controller/util/federated_updater.go: 110:4
+kubernetes/federation/pkg/kubefed/init/init_test.go: 1205:5 1260:5
+kubernetes/pkg/api/helper/helpers.go: 323:3
+kubernetes/pkg/api/persistentvolume/util.go: 35:2
+kubernetes/pkg/api/pod/util.go: 52:3 134:3
+kubernetes/pkg/api/resource/helpers.go: 86:2
+kubernetes/pkg/api/serialization_proto_test.go: 81:2
+kubernetes/pkg/api/testing/fuzzer.go: 484:5 694:4
+kubernetes/pkg/api/v1/conversion.go: 37:3 39:4 44:4 50:4 55:4 61:4 66:4 72:4 77:4 83:4 88:4 94:4 99:4 105:4 110:4 116:4 121:4
+kubernetes/pkg/api/v1/helper/helpers.go: 140:3
+kubernetes/pkg/api/v1/pod/util.go: 35:2 140:3 222:3
+kubernetes/pkg/api/v1/resource/helpers.go: 151:2
+kubernetes/pkg/api/v1/validation/validation.go: 127:2
+kubernetes/pkg/api/validation/schema.go: 102:3
+kubernetes/pkg/api/validation/validation.go: 1715:2 2813:2 4167:2
+kubernetes/pkg/apimachinery/tests/api_meta_scheme_test.go: 45:3
+kubernetes/pkg/apimachinery/tests/runtime_serializer_protobuf_protobuf_test.go: 167:3 255:3 331:3
+kubernetes/pkg/apis/rbac/helpers.go: 231:5
+kubernetes/pkg/apis/rbac/v1alpha1/defaults.go: 39:3
+kubernetes/pkg/apis/rbac/v1beta1/defaults.go: 39:3
+kubernetes/pkg/client/conditions/conditions.go: 40:2 44:2 46:3 59:2 63:2 65:3 77:2 81:2 83:3 96:2 100:2 116:3 120:3 156:2 160:2
+kubernetes/pkg/client/informers/informers_generated/externalversions/generic.go: 68:2
+kubernetes/pkg/client/informers/informers_generated/internalversion/generic.go: 64:2
+kubernetes/pkg/client/leaderelection/leaderelection_test.go: 231:3
+kubernetes/pkg/client/unversioned/conditions.go: 157:2 161:2 163:3 176:2 180:2 182:3 194:2 198:2 200:3 213:2 217:2 233:3 237:3 273:2 277:2
+kubernetes/pkg/client/unversioned/helper_test.go: 64:3 111:3 165:3
+kubernetes/pkg/cloudprovider/providers/aws/aws.go: 2315:4
+kubernetes/pkg/cloudprovider/providers/vsphere/vsphere.go: 973:3
+kubernetes/pkg/controller/daemon/daemoncontroller.go: 737:3 1007:3 1125:3
+kubernetes/pkg/controller/deployment/deployment_controller.go: 684:2
+kubernetes/pkg/controller/deployment/progress.go: 96:3
+kubernetes/pkg/controller/deployment/rolling_test.go: 361:4
+kubernetes/pkg/controller/deployment/sync.go: 325:2 440:3
+kubernetes/pkg/controller/garbagecollector/garbagecollector.go: 222:2 298:2
+kubernetes/pkg/controller/garbagecollector/graph_builder.go: 474:2
+kubernetes/pkg/controller/namespace/deletion/namespaced_resources_deleter.go: 539:2
+kubernetes/pkg/controller/node/nodecontroller.go: 801:2
+kubernetes/pkg/controller/node/rate_limited_queue_test.go: 189:3
+kubernetes/pkg/controller/serviceaccount/serviceaccounts_controller.go: 202:3
+kubernetes/pkg/controller/statefulset/stateful_pod_control.go: 188:3
+kubernetes/pkg/controller/statefulset/stateful_set_control_test.go: 2071:2
+kubernetes/pkg/controller/volume/persistentvolume/framework_test.go: 170:2 416:3 1039:4
+kubernetes/pkg/fieldpath/fieldpath.go: 45:2
+kubernetes/pkg/kubeapiserver/authenticator/config.go: 202:2
+kubernetes/pkg/kubectl/cmd/annotate_test.go: 162:3
+kubernetes/pkg/kubectl/cmd/apply.go: 575:2
+kubernetes/pkg/kubectl/cmd/apply_set_last_applied.go: 225:2
+kubernetes/pkg/kubectl/cmd/apply_view_last_applied.go: 138:3
+kubernetes/pkg/kubectl/cmd/attach.go: 149:2
+kubernetes/pkg/kubectl/cmd/config/config_test.go: 929:2
+kubernetes/pkg/kubectl/cmd/config/navigation_step_parser.go: 45:3
+kubernetes/pkg/kubectl/cmd/config/set.go: 138:2
+kubernetes/pkg/kubectl/cmd/drain.go: 270:2
+kubernetes/pkg/kubectl/cmd/patch.go: 123:2
+kubernetes/pkg/kubectl/cmd/rollingupdate.go: 401:2
+kubernetes/pkg/kubectl/cmd/run.go: 215:3
+kubernetes/pkg/kubectl/cmd/set/set_subject_test.go: 315:3
+kubernetes/pkg/kubectl/cmd/taint.go: 226:3
+kubernetes/pkg/kubectl/cmd/testdata/edit/record.go: 77:3
+kubernetes/pkg/kubectl/cmd/testing/fake.go: 419:2
+kubernetes/pkg/kubectl/cmd/util/factory_client_access.go: 494:2 587:2
+kubernetes/pkg/kubectl/cmd/util/factory_test.go: 607:5
+kubernetes/pkg/kubectl/cmd/util/helpers.go: 210:2 223:2 226:3 265:2 628:3 749:2
+kubernetes/pkg/kubectl/deployment_test.go: 121:3 231:3
+kubernetes/pkg/kubectl/history.go: 55:2
+kubernetes/pkg/kubectl/namespace_test.go: 77:3
+kubernetes/pkg/kubectl/proxy_server.go: 222:2
+kubernetes/pkg/kubectl/resource/builder_test.go: 376:4 841:4
+kubernetes/pkg/kubectl/resource/result.go: 270:3
+kubernetes/pkg/kubectl/resource_filter.go: 48:2 75:2
+kubernetes/pkg/kubectl/rolebinding.go: 119:2
+kubernetes/pkg/kubectl/rolebinding_test.go: 118:3
+kubernetes/pkg/kubectl/rollback.go: 56:2
+kubernetes/pkg/kubectl/rolling_updater.go: 436:4
+kubernetes/pkg/kubectl/rolling_updater_test.go: 760:4 795:5 1209:3
+kubernetes/pkg/kubectl/rollout_status.go: 38:2
+kubernetes/pkg/kubectl/scale.go: 54:2 128:3
+kubernetes/pkg/kubectl/scale_test.go: 42:2 272:2 535:2
+kubernetes/pkg/kubectl/service.go: 157:4
+kubernetes/pkg/kubectl/sorting_printer.go: 85:2 100:3
+kubernetes/pkg/kubectl/stop.go: 71:2
+kubernetes/pkg/kubelet/cm/cgroup_manager_linux.go: 123:2
+kubernetes/pkg/kubelet/cm/container_manager_linux.go: 334:3
+kubernetes/pkg/kubelet/cm/node_container_manager.go: 215:3
+kubernetes/pkg/kubelet/cm/pod_container_manager_linux.go: 99:2
+kubernetes/pkg/kubelet/cm/qos_container_manager_linux.go: 273:3 294:3
+kubernetes/pkg/kubelet/config/file_linux.go: 111:2
+kubernetes/pkg/kubelet/container/helpers.go: 259:2
+kubernetes/pkg/kubelet/dockershim/docker_sandbox.go: 649:2
+kubernetes/pkg/kubelet/dockershim/docker_service.go: 467:2
+kubernetes/pkg/kubelet/dockershim/libdocker/fake_client.go: 138:2
+kubernetes/pkg/kubelet/eviction/helpers.go: 804:3
+kubernetes/pkg/kubelet/kubelet.go: 340:5 1178:4 1880:3
+kubernetes/pkg/kubelet/kubelet_node_status.go: 1000:3
+kubernetes/pkg/kubelet/kubelet_node_status_test.go: 150:3
+kubernetes/pkg/kubelet/kubelet_pods.go: 396:3 449:3 542:4 650:2
+kubernetes/pkg/kubelet/kuberuntime/helpers.go: 75:2 91:2
+kubernetes/pkg/kubelet/kuberuntime/kuberuntime_container.go: 551:2
+kubernetes/pkg/kubelet/network/cni/cni.go: 100:2
+kubernetes/pkg/kubelet/prober/common_test.go: 91:2
+kubernetes/pkg/kubelet/prober/prober_test.go: 285:4
+kubernetes/pkg/kubelet/prober/worker.go: 85:2
+kubernetes/pkg/kubelet/prober/worker_test.go: 295:2
+kubernetes/pkg/kubelet/qos/policy.go: 44:2
+kubernetes/pkg/kubelet/rkt/rkt.go: 701:3 1672:2 1903:3 2307:2
+kubernetes/pkg/kubelet/server/auth.go: 68:2 99:2
+kubernetes/pkg/kubelet/server/portforward/httpstream.go: 193:3 282:2
+kubernetes/pkg/kubelet/server/remotecommand/httpstream.go: 151:2
+kubernetes/pkg/kubelet/server/stats/summary_test.go: 242:4 250:4 268:5
+kubernetes/pkg/kubelet/server/streaming/server_test.go: 271:2
+kubernetes/pkg/printers/customcolumn.go: 205:2
+kubernetes/pkg/printers/humanreadable.go: 405:4 833:2
+kubernetes/pkg/printers/internalversion/describe.go: 1003:3 1223:3 1248:3 1306:2 1801:3 2852:3
+kubernetes/pkg/printers/internalversion/printers.go: 281:2 704:2
+kubernetes/pkg/printers/json.go: 40:2 84:2
+kubernetes/pkg/proxy/userspace/proxysocket.go: 54:2
+kubernetes/pkg/proxy/winuserspace/proxysocket.go: 87:2
+kubernetes/pkg/quota/evaluator/core/persistent_volume_claims_test.go: 189:3
+kubernetes/pkg/quota/evaluator/core/pods.go: 228:2
+kubernetes/pkg/quota/evaluator/core/pods_test.go: 97:3
+kubernetes/pkg/quota/evaluator/core/services.go: 139:2 162:2 171:2
+kubernetes/pkg/quota/evaluator/core/services_test.go: 205:3
+kubernetes/pkg/registry/core/service/allocator/storage/storage.go: 199:4
+kubernetes/pkg/registry/core/service/rest.go: 299:2
+kubernetes/pkg/registry/rbac/reconciliation/reconcile_role.go: 188:2
+kubernetes/pkg/registry/rbac/reconciliation/reconcile_rolebindings.go: 206:2
+kubernetes/pkg/registry/rbac/rest/storage_rbac.go: 172:5 200:5 231:6 261:6
+kubernetes/pkg/security/podsecuritypolicy/util/util.go: 75:2
+kubernetes/pkg/serviceaccount/jwt.go: 220:4
+kubernetes/pkg/util/iptables/iptables.go: 604:3
+kubernetes/pkg/util/mount/mount_linux.go: 344:3
+kubernetes/pkg/util/term/term_writer.go: 56:2
+kubernetes/pkg/util/version/version.go: 157:3 173:2
+kubernetes/pkg/util/version/version_test.go: 47:3
+kubernetes/pkg/volume/azure_dd/azure_common_test.go: 69:2
+kubernetes/pkg/volume/downwardapi/downwardapi_test.go: 386:2
+kubernetes/pkg/volume/fc/fc_util_test.go: 55:2
+kubernetes/pkg/volume/glusterfs/glusterfs.go: 245:2
+kubernetes/pkg/volume/nfs/nfs.go: 196:2
+kubernetes/pkg/volume/projected/projected_test.go: 1007:2
+kubernetes/pkg/volume/quobyte/quobyte.go: 451:3
+kubernetes/pkg/volume/rbd/rbd.go: 203:3
+kubernetes/pkg/volume/storageos/storageos.go: 183:3 454:2 731:3
+kubernetes/pkg/volume/util.go: 103:3 108:4
+kubernetes/pkg/volume/util/device_util_linux_test.go: 31:2
+kubernetes/pkg/volume/vsphere_volume/vsphere_volume_util.go: 203:2
+kubernetes/plugin/pkg/admission/initialization/initialization.go: 140:2
+kubernetes/plugin/pkg/admission/limitranger/admission.go: 403:2
+kubernetes/plugin/pkg/auth/authorizer/node/node_authorizer.go: 82:3
+kubernetes/plugin/pkg/auth/authorizer/rbac/bootstrappolicy/policy_test.go: 54:3
+kubernetes/plugin/pkg/auth/authorizer/rbac/rbac_test.go: 84:2
+kubernetes/staging/src/k8s.io/apiextensions-apiserver/examples/client-go/client/cr.go: 65:4
+kubernetes/staging/src/k8s.io/apiextensions-apiserver/pkg/apiserver/customresource_handler.go: 303:2
+kubernetes/staging/src/k8s.io/apiextensions-apiserver/pkg/client/informers/externalversions/generic.go: 53:2
+kubernetes/staging/src/k8s.io/apiextensions-apiserver/pkg/client/informers/internalversion/generic.go: 53:2
+kubernetes/staging/src/k8s.io/apimachinery/pkg/api/errors/errors.go: 87:2 331:2 428:2 438:2 460:2 463:4 473:2
+kubernetes/staging/src/k8s.io/apimachinery/pkg/api/meta/errors.go: 34:2 54:2
+kubernetes/staging/src/k8s.io/apimachinery/pkg/api/meta/multirestmapper_test.go: 64:3 131:3 198:3 247:3 303:3
+kubernetes/staging/src/k8s.io/apimachinery/pkg/api/meta/priority_test.go: 299:3
+kubernetes/staging/src/k8s.io/apimachinery/pkg/api/meta/restmapper.go: 159:2
+kubernetes/staging/src/k8s.io/apimachinery/pkg/api/resource/amount.go: 228:2
+kubernetes/staging/src/k8s.io/apimachinery/pkg/api/resource/math.go: 62:2
+kubernetes/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go: 165:3 251:3 296:2
+kubernetes/staging/src/k8s.io/apimachinery/pkg/api/resource/suffix.go: 89:2 138:2 156:2
+kubernetes/staging/src/k8s.io/apimachinery/pkg/api/validation/objectmeta.go: 328:2
+kubernetes/staging/src/k8s.io/apimachinery/pkg/conversion/cloner.go: 140:2
+kubernetes/staging/src/k8s.io/apimachinery/pkg/conversion/converter.go: 692:2 731:3
+kubernetes/staging/src/k8s.io/apimachinery/pkg/conversion/queryparams/convert.go: 173:3
+kubernetes/staging/src/k8s.io/apimachinery/pkg/conversion/unstructured/converter.go: 158:4 160:5 166:5 173:5 180:5 611:2
+kubernetes/staging/src/k8s.io/apimachinery/pkg/fields/selector.go: 339:3
+kubernetes/staging/src/k8s.io/apimachinery/pkg/labels/selector.go: 256:2 275:2 285:2 392:2 525:3 538:3 606:2
+kubernetes/staging/src/k8s.io/apimachinery/pkg/runtime/helper.go: 158:3
+kubernetes/staging/src/k8s.io/apimachinery/pkg/runtime/scheme_test.go: 866:3
+kubernetes/staging/src/k8s.io/apimachinery/pkg/runtime/serializer/json/json_test.go: 210:3
+kubernetes/staging/src/k8s.io/apimachinery/pkg/runtime/serializer/protobuf/protobuf.go: 107:2
+kubernetes/staging/src/k8s.io/apimachinery/pkg/runtime/serializer/recognizer/recognizer.go: 67:3
+kubernetes/staging/src/k8s.io/apimachinery/pkg/runtime/serializer/versioning/versioning.go: 183:2
+kubernetes/staging/src/k8s.io/apimachinery/pkg/runtime/serializer/versioning/versioning_test.go: 247:3 269:3
+kubernetes/staging/src/k8s.io/apimachinery/pkg/util/errors/errors.go: 173:3
+kubernetes/staging/src/k8s.io/apimachinery/pkg/util/httpstream/spdy/roundtripper.go: 162:2
+kubernetes/staging/src/k8s.io/apimachinery/pkg/util/intstr/intstr.go: 165:2
+kubernetes/staging/src/k8s.io/apimachinery/pkg/util/json/json.go: 63:3 83:3
+kubernetes/staging/src/k8s.io/apimachinery/pkg/util/jsonmergepatch/patch.go: 113:3
+kubernetes/staging/src/k8s.io/apimachinery/pkg/util/net/http.go: 67:2
+kubernetes/staging/src/k8s.io/apimachinery/pkg/util/strategicpatch/patch.go: 733:3 1127:3
+kubernetes/staging/src/k8s.io/apimachinery/pkg/util/wait/wait_test.go: 444:3
+kubernetes/staging/src/k8s.io/apimachinery/pkg/util/yaml/decoder_test.go: 231:4 242:3
+kubernetes/staging/src/k8s.io/apimachinery/third_party/forked/golang/reflect/deep_equal.go: 117:3 260:3
+kubernetes/staging/src/k8s.io/apiserver/pkg/admission/plugin/namespace/lifecycle/admission.go: 166:3
+kubernetes/staging/src/k8s.io/apiserver/pkg/authentication/token/tokenfile/tokenfile_test.go: 100:3
+kubernetes/staging/src/k8s.io/apiserver/pkg/endpoints/apiserver_test.go: 2325:3
+kubernetes/staging/src/k8s.io/apiserver/pkg/endpoints/filters/impersonation_test.go: 39:2
+kubernetes/staging/src/k8s.io/apiserver/pkg/endpoints/handlers/negotiation/negotiate.go: 279:4
+kubernetes/staging/src/k8s.io/apiserver/pkg/endpoints/handlers/negotiation/negotiate_test.go: 216:3
+kubernetes/staging/src/k8s.io/apiserver/pkg/endpoints/handlers/proxy.go: 273:2
+kubernetes/staging/src/k8s.io/apiserver/pkg/endpoints/handlers/responsewriters/status.go: 42:4 53:3
+kubernetes/staging/src/k8s.io/apiserver/pkg/endpoints/handlers/rest.go: 671:4
+kubernetes/staging/src/k8s.io/apiserver/pkg/endpoints/handlers/rest_test.go: 243:3
+kubernetes/staging/src/k8s.io/apiserver/pkg/endpoints/installer.go: 279:2 634:4 897:2
+kubernetes/staging/src/k8s.io/apiserver/pkg/endpoints/request/requestinfo.go: 186:2
+kubernetes/staging/src/k8s.io/apiserver/pkg/registry/generic/registry/decorated_watcher.go: 52:4
+kubernetes/staging/src/k8s.io/apiserver/pkg/registry/generic/registry/store.go: 367:4 647:3 663:3 690:3 706:3
+kubernetes/staging/src/k8s.io/apiserver/pkg/registry/generic/rest/response_checker.go: 56:3
+kubernetes/staging/src/k8s.io/apiserver/pkg/server/config.go: 262:4
+kubernetes/staging/src/k8s.io/apiserver/pkg/server/filters/cors_test.go: 150:3
+kubernetes/staging/src/k8s.io/apiserver/pkg/server/genericapiserver_test.go: 289:4
+kubernetes/staging/src/k8s.io/apiserver/pkg/server/handler.go: 134:3
+kubernetes/staging/src/k8s.io/apiserver/pkg/server/openapi/openapi.go: 226:5
+kubernetes/staging/src/k8s.io/apiserver/pkg/storage/cacher.go: 861:2
+kubernetes/staging/src/k8s.io/apiserver/pkg/storage/etcd/etcd_watcher.go: 409:2
+kubernetes/staging/src/k8s.io/apiserver/pkg/storage/etcd3/store_test.go: 427:3
+kubernetes/staging/src/k8s.io/apiserver/pkg/storage/etcd3/watcher.go: 301:3
+kubernetes/staging/src/k8s.io/apiserver/pkg/storage/etcd3/watcher_test.go: 363:4
+kubernetes/staging/src/k8s.io/apiserver/pkg/storage/util_test.go: 39:3
+kubernetes/staging/src/k8s.io/apiserver/pkg/storage/value/encrypt/aes/aes_test.go: 361:5
+kubernetes/staging/src/k8s.io/apiserver/pkg/storage/value/encrypt/secretbox/secretbox_test.go: 179:5
+kubernetes/staging/src/k8s.io/apiserver/pkg/util/proxy/proxy_test.go: 225:4
+kubernetes/staging/src/k8s.io/apiserver/pkg/util/webhook/webhook_test.go: 443:3
+kubernetes/staging/src/k8s.io/apiserver/pkg/util/wsstream/conn.go: 202:3 277:2 326:2
+kubernetes/staging/src/k8s.io/client-go/informers/generic.go: 68:2
+kubernetes/staging/src/k8s.io/client-go/pkg/api/helper/helpers.go: 323:3
+kubernetes/staging/src/k8s.io/client-go/pkg/api/v1/conversion.go: 37:3 39:4 44:4 50:4 55:4 61:4 66:4 72:4 77:4 83:4 88:4 94:4 99:4 105:4 110:4 116:4 121:4
+kubernetes/staging/src/k8s.io/client-go/pkg/api/v1/resource/helpers.go: 151:2
+kubernetes/staging/src/k8s.io/client-go/pkg/apis/rbac/helpers.go: 230:5
+kubernetes/staging/src/k8s.io/client-go/pkg/apis/rbac/v1alpha1/defaults.go: 39:3
+kubernetes/staging/src/k8s.io/client-go/pkg/apis/rbac/v1beta1/defaults.go: 39:3
+kubernetes/staging/src/k8s.io/client-go/rest/client_test.go: 223:2
+kubernetes/staging/src/k8s.io/client-go/rest/request.go: 142:2 942:4 956:2 1123:2 1161:2 1196:2
+kubernetes/staging/src/k8s.io/client-go/rest/url_utils_test.go: 45:3
+kubernetes/staging/src/k8s.io/client-go/third_party/forked/golang/template/exec.go: 48:4 59:2
+kubernetes/staging/src/k8s.io/client-go/third_party/forked/golang/template/funcs.go: 89:2 161:2 285:2 558:2
+kubernetes/staging/src/k8s.io/client-go/tools/cache/controller.go: 300:5 367:5
+kubernetes/staging/src/k8s.io/client-go/tools/cache/controller_test.go: 269:5
+kubernetes/staging/src/k8s.io/client-go/tools/cache/shared_informer.go: 342:3
+kubernetes/staging/src/k8s.io/client-go/tools/cache/store.go: 97:2
+kubernetes/staging/src/k8s.io/client-go/tools/cache/testing/fake_controller_source.go: 137:2
+kubernetes/staging/src/k8s.io/client-go/tools/clientcmd/merged_client_builder.go: 107:2
+kubernetes/staging/src/k8s.io/client-go/tools/clientcmd/validation.go: 61:2 96:2
+kubernetes/staging/src/k8s.io/client-go/tools/portforward/portforward.go: 280:3
+kubernetes/staging/src/k8s.io/client-go/tools/record/event.go: 280:2
+kubernetes/staging/src/k8s.io/client-go/tools/remotecommand/remotecommand.go: 163:2
+kubernetes/staging/src/k8s.io/client-go/transport/round_trippers.go: 43:2 64:2
+kubernetes/staging/src/k8s.io/client-go/transport/transport_test.go: 174:3 183:3 194:4
+kubernetes/staging/src/k8s.io/client-go/util/cert/pem.go: 83:3
+kubernetes/staging/src/k8s.io/client-go/util/jsonpath/parser.go: 254:3 339:3 377:3 424:2
+kubernetes/staging/src/k8s.io/client-go/util/jsonpath/parser_test.go: 68:2
+kubernetes/staging/src/k8s.io/kube-aggregator/pkg/client/informers/externalversions/generic.go: 53:2
+kubernetes/staging/src/k8s.io/kube-aggregator/pkg/client/informers/internalversion/generic.go: 53:2
+kubernetes/staging/src/k8s.io/kube-aggregator/pkg/controllers/autoregister/autoregister_controller.go: 229:2
+kubernetes/test/e2e/audit.go: 157:3
+kubernetes/test/e2e/common/pods.go: 242:5
+kubernetes/test/e2e/deployment.go: 1195:2
+kubernetes/test/e2e/e2e.go: 67:2 141:2
+kubernetes/test/e2e/framework/jobs_util.go: 89:2
+kubernetes/test/e2e/framework/metrics_util.go: 263:2 318:3 466:3
+kubernetes/test/e2e/framework/service_util.go: 1338:2
+kubernetes/test/e2e/framework/util.go: 1204:3 1243:2 1307:3 1333:3 1351:3 1438:3 1442:3 2157:2
+kubernetes/test/e2e/ha_master.go: 157:3
+kubernetes/test/e2e/perf/density.go: 429:3
+kubernetes/test/e2e/resource_quota.go: 554:2
+kubernetes/test/e2e/stackdriver_monitoring.go: 123:4
+kubernetes/test/e2e/statefulset.go: 811:5
+kubernetes/test/e2e/storage/volume_provisioning.go: 757:2
+kubernetes/test/e2e/upgrades/sysctl.go: 54:2
+kubernetes/test/e2e_node/apparmor_test.go: 155:4 159:4
+kubernetes/test/e2e_node/image_list.go: 100:2
+kubernetes/test/e2e_node/remote/node_e2e.go: 175:2
+kubernetes/test/e2e_node/system/kernel_validator.go: 122:3
+kubernetes/test/e2e_node/system/package_validator.go: 258:4 297:2
+kubernetes/test/e2e_node/system/validators.go: 67:2
+kubernetes/test/integration/master/master_test.go: 638:5
+kubernetes/test/integration/quota/quota_test.go: 161:3 219:3
+kubernetes/test/integration/serviceaccount/service_account_test.go: 392:5 550:3 567:3
+kubernetes/test/list/main.go: 186:2
+kubernetes/third_party/forked/etcd221/wal/repair.go: 47:4
+kubernetes/third_party/forked/etcd237/wal/repair.go: 47:4
+kubernetes/third_party/forked/golang/reflect/deep_equal.go: 117:3 260:3
+kubernetes/third_party/forked/golang/template/exec.go: 48:4 59:2
+kubernetes/third_party/forked/golang/template/funcs.go: 89:2 161:2 285:2 558:2
+kubernetes/vendor/bitbucket.org/bertimus9/systemstat/systemstat_linux.go: 59:3 106:4 223:3
+kubernetes/vendor/github.com/Azure/azure-sdk-for-go/storage/authorization.go: 220:2
+kubernetes/vendor/github.com/Azure/azure-sdk-for-go/storage/client.go: 297:3
+kubernetes/vendor/github.com/Azure/go-ansiterm/csi_entry_state.go: 15:2 31:2 35:3
+kubernetes/vendor/github.com/Azure/go-ansiterm/csi_param_state.go: 15:2 32:2
+kubernetes/vendor/github.com/Azure/go-ansiterm/escape_intermediate_state.go: 14:2 30:2
+kubernetes/vendor/github.com/Azure/go-ansiterm/escape_state.go: 14:2 34:2
+kubernetes/vendor/github.com/Azure/go-ansiterm/ground_state.go: 15:2
+kubernetes/vendor/github.com/Azure/go-ansiterm/osc_string_state.go: 14:2
+kubernetes/vendor/github.com/Azure/go-ansiterm/parser_action_helpers.go: 69:2
+kubernetes/vendor/github.com/Azure/go-ansiterm/parser_actions.go: 27:2
+kubernetes/vendor/github.com/Azure/go-ansiterm/states.go: 28:2
+kubernetes/vendor/github.com/Azure/go-ansiterm/winterm/ansi.go: 121:2
+kubernetes/vendor/github.com/Azure/go-ansiterm/winterm/api.go: 284:2
+kubernetes/vendor/github.com/Azure/go-ansiterm/winterm/attr_translation.go: 17:2
+kubernetes/vendor/github.com/Azure/go-ansiterm/winterm/cursor_helpers.go: 56:2
+kubernetes/vendor/github.com/Azure/go-ansiterm/winterm/win_event_handler.go: 450:2 507:2
+kubernetes/vendor/github.com/Microsoft/go-winio/zsyscall_windows.go: 27:2
+kubernetes/vendor/github.com/PuerkitoBio/urlesc/urlesc.go: 34:2 43:3
+kubernetes/vendor/github.com/Sirupsen/logrus/logrus.go: 16:2 36:2
+kubernetes/vendor/github.com/abbot/go-http-auth/digest.go: 128:2
+kubernetes/vendor/github.com/appc/spec/schema/types/resource/amount.go: 227:2
+kubernetes/vendor/github.com/appc/spec/schema/types/resource/math.go: 62:2
+kubernetes/vendor/github.com/appc/spec/schema/types/resource/quantity.go: 163:3 249:3 294:2
+kubernetes/vendor/github.com/appc/spec/schema/types/resource/suffix.go: 89:2 138:2 156:2
+kubernetes/vendor/github.com/appc/spec/schema/types/volume.go: 136:2
+kubernetes/vendor/github.com/asaskevich/govalidator/validator.go: 671:2 862:2 901:2
+kubernetes/vendor/github.com/aws/aws-sdk-go/aws/awsutil/prettify.go: 105:3
+kubernetes/vendor/github.com/aws/aws-sdk-go/aws/awsutil/string_value.go: 83:3
+kubernetes/vendor/github.com/aws/aws-sdk-go/aws/request/request.go: 299:2
+kubernetes/vendor/github.com/aws/aws-sdk-go/aws/request/request_pagination.go: 34:3
+kubernetes/vendor/github.com/aws/aws-sdk-go/aws/session/session.go: 193:2
+kubernetes/vendor/github.com/aws/aws-sdk-go/aws/types.go: 32:2 46:2 63:2
+kubernetes/vendor/github.com/aws/aws-sdk-go/private/protocol/idempotency.go: 21:2
+kubernetes/vendor/github.com/aws/aws-sdk-go/private/protocol/json/jsonutil/build.go: 37:3
+kubernetes/vendor/github.com/aws/aws-sdk-go/private/protocol/json/jsonutil/unmarshal.go: 41:3
+kubernetes/vendor/github.com/aws/aws-sdk-go/private/protocol/query/queryutil/queryutil.go: 44:3
+kubernetes/vendor/github.com/aws/aws-sdk-go/private/protocol/rest/unmarshal.go: 110:4 139:2 147:2
+kubernetes/vendor/github.com/aws/aws-sdk-go/private/protocol/xml/xmlutil/build.go: 61:3
+kubernetes/vendor/github.com/aws/aws-sdk-go/private/protocol/xml/xmlutil/unmarshal.go: 50:3
+kubernetes/vendor/github.com/aws/aws-sdk-go/private/protocol/xml/xmlutil/xml_to_struct.go: 50:3
+kubernetes/vendor/github.com/aws/aws-sdk-go/service/route53/customizations.go: 19:3
+kubernetes/vendor/github.com/aws/aws-sdk-go/service/sts/customizations.go: 7:3
+kubernetes/vendor/github.com/blang/semver/range.go: 341:5 364:6 385:2
+kubernetes/vendor/github.com/chai2010/gettext-go/gettext/domain.go: 35:2
+kubernetes/vendor/github.com/chai2010/gettext-go/gettext/mo/util.go: 31:4
+kubernetes/vendor/github.com/chai2010/gettext-go/gettext/po/comment.go: 100:4
+kubernetes/vendor/github.com/chai2010/gettext-go/gettext/po/util.go: 31:4
+kubernetes/vendor/github.com/cloudflare/cfssl/errors/error.go: 221:3 393:2 403:4
+kubernetes/vendor/github.com/cloudflare/cfssl/helpers/derhelpers/derhelpers.go: 33:2
+kubernetes/vendor/github.com/cloudflare/cfssl/helpers/helpers.go: 97:2 389:2
+kubernetes/vendor/github.com/cloudflare/cfssl/log/log.go: 77:4
+kubernetes/vendor/github.com/codedellemc/goscaleio/device.go: 103:3
+kubernetes/vendor/github.com/codedellemc/goscaleio/sdc.go: 65:3
+kubernetes/vendor/github.com/codedellemc/goscaleio/sds.go: 115:3
+kubernetes/vendor/github.com/containernetworking/cni/libcni/conf.go: 153:2
+kubernetes/vendor/github.com/containernetworking/cni/pkg/types/current/types.go: 196:2
+kubernetes/vendor/github.com/coreos/etcd/auth/range_perm_cache.go: 123:4
+kubernetes/vendor/github.com/coreos/etcd/client/auth_role.go: 177:2
+kubernetes/vendor/github.com/coreos/etcd/clientv3/client.go: 403:2
+kubernetes/vendor/github.com/coreos/etcd/clientv3/op.go: 120:2 148:2 176:2
+kubernetes/vendor/github.com/coreos/etcd/clientv3/watch.go: 82:2
+kubernetes/vendor/github.com/coreos/etcd/etcdserver/api/v2http/client.go: 207:2 238:3
+kubernetes/vendor/github.com/coreos/etcd/etcdserver/api/v2http/client_auth.go: 254:2 410:2 523:2
+kubernetes/vendor/github.com/coreos/etcd/etcdserver/apply.go: 316:3 328:3 425:2 449:2
+kubernetes/vendor/github.com/coreos/etcd/etcdserver/apply_auth.go: 97:3
+kubernetes/vendor/github.com/coreos/etcd/etcdserver/server.go: 1360:2
+kubernetes/vendor/github.com/coreos/etcd/etcdserver/v2_server.go: 110:2
+kubernetes/vendor/github.com/coreos/etcd/mvcc/watcher_group.go: 266:2
+kubernetes/vendor/github.com/coreos/etcd/proxy/grpcproxy/kv.go: 47:3 88:3 154:2
+kubernetes/vendor/github.com/coreos/etcd/raft/raft.go: 681:2 787:2 834:4 862:2 879:5 998:2 1014:3 1031:2
+kubernetes/vendor/github.com/coreos/etcd/store/stats.go: 114:2
+kubernetes/vendor/github.com/coreos/etcd/wal/repair.go: 43:4
+kubernetes/vendor/github.com/coreos/go-systemd/dbus/subscription.go: 78:4
+kubernetes/vendor/github.com/coreos/pkg/capnslog/logmap.go: 100:2
+kubernetes/vendor/github.com/davecgh/go-spew/spew/common.go: 114:2 258:2 296:2
+kubernetes/vendor/github.com/davecgh/go-spew/spew/dump.go: 172:3 279:2
+kubernetes/vendor/github.com/dgrijalva/jwt-go/map_claims.go: 23:2 36:2 56:2
+kubernetes/vendor/github.com/docker/docker/pkg/system/meminfo_linux.go: 46:3
+kubernetes/vendor/github.com/docker/docker/pkg/term/windows/console.go: 75:2
+kubernetes/vendor/github.com/docker/engine-api/client/request.go: 179:2
+kubernetes/vendor/github.com/elazarl/goproxy/https.go: 92:2
+kubernetes/vendor/github.com/emicklei/go-restful-swagger12/model_builder.go: 185:2
+kubernetes/vendor/github.com/emicklei/go-restful-swagger12/model_property_ext.go: 63:2
+kubernetes/vendor/github.com/emicklei/go-restful-swagger12/swagger_webservice.go: 402:2
+kubernetes/vendor/github.com/emicklei/go-restful/container.go: 252:4
+kubernetes/vendor/github.com/evanphx/json-patch/merge.go: 213:2
+kubernetes/vendor/github.com/exponent-io/jsonpath/decoder.go: 66:2 95:3 106:2 108:3 133:3 143:3
+kubernetes/vendor/github.com/fsnotify/fsnotify/windows.go: 408:5 438:3 459:4 548:2
+kubernetes/vendor/github.com/garyburd/redigo/redis/conn.go: 421:2
+kubernetes/vendor/github.com/garyburd/redigo/redis/pubsub.go: 117:2
+kubernetes/vendor/github.com/garyburd/redigo/redis/reply.go: 39:2 70:2 99:2 128:2 153:2 179:2 205:2 235:2 254:2 284:2
+kubernetes/vendor/github.com/garyburd/redigo/redis/scan.go: 294:4 534:4
+kubernetes/vendor/github.com/ghodss/yaml/yaml.go: 148:5 253:4
+kubernetes/vendor/github.com/go-ini/ini/ini.go: 171:2 966:3 1187:4
+kubernetes/vendor/github.com/go-openapi/runtime/text.go: 43:3
+kubernetes/vendor/github.com/go-openapi/spec/expander.go: 370:3
+kubernetes/vendor/github.com/go-openapi/swag/util.go: 292:2
+kubernetes/vendor/github.com/go-openapi/validate/formats.go: 40:3
+kubernetes/vendor/github.com/go-openapi/validate/spec.go: 88:2
+kubernetes/vendor/github.com/go-openapi/validate/type.go: 90:3
+kubernetes/vendor/github.com/go-openapi/validate/validator.go: 149:2 396:2 472:2 486:2 536:2
+kubernetes/vendor/github.com/godbus/dbus/auth.go: 148:4
+kubernetes/vendor/github.com/godbus/dbus/conn.go: 282:4
+kubernetes/vendor/github.com/godbus/dbus/dbus.go: 173:2 183:2 200:2
+kubernetes/vendor/github.com/godbus/dbus/message.go: 39:2
+kubernetes/vendor/github.com/godbus/dbus/sig.go: 51:2 176:2 245:2
+kubernetes/vendor/github.com/godbus/dbus/variant.go: 49:2 70:2
+kubernetes/vendor/github.com/godbus/dbus/variant_lexer.go: 191:3 243:3
+kubernetes/vendor/github.com/godbus/dbus/variant_parser.go: 237:3 252:2 320:2 481:3 663:3 695:3
+kubernetes/vendor/github.com/gogo/protobuf/plugin/marshalto/marshalto.go: 294:2 314:2 879:4 909:4
+kubernetes/vendor/github.com/gogo/protobuf/plugin/populate/populate.go: 143:2 174:2 193:2
+kubernetes/vendor/github.com/gogo/protobuf/plugin/size/size.go: 156:2 367:4 391:4
+kubernetes/vendor/github.com/gogo/protobuf/plugin/unmarshal/unmarshal.go: 295:2
+kubernetes/vendor/github.com/gogo/protobuf/proto/encode.go: 535:2 1319:2
+kubernetes/vendor/github.com/gogo/protobuf/proto/equal.go: 164:2
+kubernetes/vendor/github.com/gogo/protobuf/proto/extensions_gogo.go: 150:2
+kubernetes/vendor/github.com/gogo/protobuf/proto/lib.go: 661:3 722:3 742:2 751:3 854:2 877:2
+kubernetes/vendor/github.com/gogo/protobuf/proto/pointer_reflect.go: 207:2 242:2 266:2 285:2 316:2 332:2 355:2 390:2 411:2 427:2 455:2 471:2
+kubernetes/vendor/github.com/gogo/protobuf/proto/properties.go: 313:3
+kubernetes/vendor/github.com/gogo/protobuf/proto/text.go: 555:3
+kubernetes/vendor/github.com/gogo/protobuf/proto/text_parser.go: 110:2 116:2 124:2 132:2 267:2 329:2 423:3 875:2 918:3
+kubernetes/vendor/github.com/gogo/protobuf/protoc-gen-gogo/descriptor/helper.go: 50:2
+kubernetes/vendor/github.com/gogo/protobuf/protoc-gen-gogo/generator/generator.go: 1632:2 1644:3 1874:2 2327:3 2336:4 2510:3 2908:4
+kubernetes/vendor/github.com/golang/glog/glog.go: 691:3
+kubernetes/vendor/github.com/golang/mock/gomock/matchers.go: 62:2
+kubernetes/vendor/github.com/golang/protobuf/jsonpb/jsonpb.go: 107:3 182:3 190:4 411:3 577:3 821:3
+kubernetes/vendor/github.com/golang/protobuf/proto/encode.go: 535:2 1312:2
+kubernetes/vendor/github.com/golang/protobuf/proto/equal.go: 164:2
+kubernetes/vendor/github.com/golang/protobuf/proto/lib.go: 661:3 722:3 742:2 751:3 854:2 877:2
+kubernetes/vendor/github.com/golang/protobuf/proto/pointer_reflect.go: 207:2 242:2 266:2 285:2 316:2 332:2 355:2 390:2 411:2 427:2 455:2 471:2
+kubernetes/vendor/github.com/golang/protobuf/proto/properties.go: 304:3
+kubernetes/vendor/github.com/golang/protobuf/proto/text.go: 496:3
+kubernetes/vendor/github.com/golang/protobuf/proto/text_parser.go: 104:2 110:2 118:2 126:2 261:2 323:2 417:3 757:2 800:3
+kubernetes/vendor/github.com/google/cadvisor/container/docker/handler.go: 196:2
+kubernetes/vendor/github.com/google/cadvisor/manager/manager.go: 1081:5
+kubernetes/vendor/github.com/google/cadvisor/pages/containers.go: 69:2
+kubernetes/vendor/github.com/google/cadvisor/utils/cloudinfo/cloudinfo.go: 59:2 73:2 87:2
+kubernetes/vendor/github.com/google/cadvisor/utils/cpuload/netlink/netlink.go: 209:2
+kubernetes/vendor/github.com/google/certificate-transparency/go/asn1/asn1.go: 533:3 702:3 746:2 790:2 891:2
+kubernetes/vendor/github.com/google/certificate-transparency/go/asn1/common.go: 89:3 132:2 144:2
+kubernetes/vendor/github.com/google/certificate-transparency/go/asn1/marshal.go: 342:2 379:2 390:2
+kubernetes/vendor/github.com/google/certificate-transparency/go/serialization.go: 72:2
+kubernetes/vendor/github.com/google/certificate-transparency/go/types.go: 26:2
+kubernetes/vendor/github.com/google/certificate-transparency/go/x509/pkix/pkix.go: 68:4
+kubernetes/vendor/github.com/google/certificate-transparency/go/x509/verify.go: 45:2
+kubernetes/vendor/github.com/google/certificate-transparency/go/x509/x509.go: 255:2 305:2 340:2 354:2 649:2 891:4 953:6
+kubernetes/vendor/github.com/gophercloud/gophercloud/openstack/compute/v2/flavors/results.go: 66:2
+kubernetes/vendor/github.com/gophercloud/gophercloud/openstack/compute/v2/servers/results.go: 190:2 194:3
+kubernetes/vendor/github.com/gophercloud/gophercloud/openstack/networking/v2/extensions/lbaas_v2/monitors/requests.go: 130:2 132:3 136:3
+kubernetes/vendor/github.com/gophercloud/gophercloud/pagination/pager.go: 159:6
+kubernetes/vendor/github.com/gophercloud/gophercloud/params.go: 230:2 311:6 401:6
+kubernetes/vendor/github.com/gophercloud/gophercloud/provider_client.go: 204:3 293:2
+kubernetes/vendor/github.com/gophercloud/gophercloud/service_client.go: 112:2
+kubernetes/vendor/github.com/gorilla/mux/regexp.go: 184:3
+kubernetes/vendor/github.com/gorilla/websocket/conn.go: 604:2 659:2 750:3
+kubernetes/vendor/github.com/grpc-ecosystem/grpc-gateway/runtime/errors.go: 16:2
+kubernetes/vendor/github.com/grpc-ecosystem/grpc-gateway/runtime/pattern.go: 155:3 204:3
+kubernetes/vendor/github.com/hashicorp/hcl/decoder.go: 118:2 138:2 158:2 160:3 459:2 461:3 580:4
+kubernetes/vendor/github.com/hashicorp/hcl/hcl/parser/parser.go: 263:2
+kubernetes/vendor/github.com/hashicorp/hcl/hcl/scanner/scanner.go: 631:2
+kubernetes/vendor/github.com/hashicorp/hcl/hcl/strconv/quote.go: 33:3 68:6 77:5 128:2 141:2 177:3
+kubernetes/vendor/github.com/hashicorp/hcl/json/parser/parser.go: 104:2 153:2 173:2
+kubernetes/vendor/github.com/hashicorp/hcl/json/scanner/scanner.go: 442:2
+kubernetes/vendor/github.com/hashicorp/hcl/parse.go: 24:2
+kubernetes/vendor/github.com/heketi/heketi/pkg/glusterfs/api/types.go: 216:2
+kubernetes/vendor/github.com/imdario/mergo/map.go: 49:2
+kubernetes/vendor/github.com/imdario/mergo/merge.go: 49:4
+kubernetes/vendor/github.com/imdario/mergo/mergo.go: 37:2
+kubernetes/vendor/github.com/influxdata/influxdb/client/influxdb.go: 799:2
+kubernetes/vendor/github.com/influxdata/influxdb/models/points.go: 318:2 486:3 887:2 1189:3 1365:2 1487:3
+kubernetes/vendor/github.com/influxdata/influxdb/pkg/escape/bytes.go: 72:4
+kubernetes/vendor/github.com/jmespath/go-jmespath/functions.go: 350:3
+kubernetes/vendor/github.com/jmespath/go-jmespath/interpreter.go: 32:2 42:3 56:3
+kubernetes/vendor/github.com/jmespath/go-jmespath/parser.go: 221:2 318:2
+kubernetes/vendor/github.com/jmespath/go-jmespath/util.go: 14:2 28:2
+kubernetes/vendor/github.com/kardianos/osext/osext_procfs.go: 18:2
+kubernetes/vendor/github.com/kardianos/osext/osext_sysctl.go: 21:2
+kubernetes/vendor/github.com/libopenstorage/openstorage/api/spec/spec_handler.go: 58:2
+kubernetes/vendor/github.com/magiconair/properties/lex.go: 30:2
+kubernetes/vendor/github.com/magiconair/properties/parser.go: 26:3 44:3
+kubernetes/vendor/github.com/mailru/easyjson/jlexer/lexer.go: 253:3 498:3 897:2
+kubernetes/vendor/github.com/miekg/dns/client.go: 337:2 386:2
+kubernetes/vendor/github.com/miekg/dns/clientconfig.go: 46:3 73:5
+kubernetes/vendor/github.com/miekg/dns/dnssec.go: 326:2 339:3 537:2 616:3
+kubernetes/vendor/github.com/miekg/dns/dnssec_keygen.go: 20:2 66:3 100:2
+kubernetes/vendor/github.com/miekg/dns/dnssec_keyscan.go: 99:3 105:4 136:3 155:3 180:3
+kubernetes/vendor/github.com/miekg/dns/dnssec_privkey.go: 56:3
+kubernetes/vendor/github.com/miekg/dns/edns.go: 45:3
+kubernetes/vendor/github.com/miekg/dns/format.go: 23:2 72:3
+kubernetes/vendor/github.com/miekg/dns/generate.go: 152:2
+kubernetes/vendor/github.com/miekg/dns/labels.go: 139:3
+kubernetes/vendor/github.com/miekg/dns/msg.go: 167:2 996:2 1042:2
+kubernetes/vendor/github.com/miekg/dns/privaterr.go: 42:2 119:4
+kubernetes/vendor/github.com/miekg/dns/rawmsg.go: 18:3
+kubernetes/vendor/github.com/miekg/dns/scan.go: 209:3 548:5 773:4 876:2 918:2 929:2
+kubernetes/vendor/github.com/miekg/dns/scan_rr.go: 77:2 691:3 990:4
+kubernetes/vendor/github.com/miekg/dns/server.go: 322:2 681:2
+kubernetes/vendor/github.com/miekg/dns/sig0.go: 186:2
+kubernetes/vendor/github.com/miekg/dns/tlsa.go: 16:2 18:3 26:3 36:3
+kubernetes/vendor/github.com/miekg/dns/types.go: 473:2 481:2 1232:2
+kubernetes/vendor/github.com/miekg/dns/udp.go: 27:2
+kubernetes/vendor/github.com/mistifyio/go-zfs/utils.go: 99:2 312:2
+kubernetes/vendor/github.com/mitchellh/mapstructure/decode_hooks.go: 129:2 131:3
+kubernetes/vendor/github.com/mitchellh/mapstructure/mapstructure.go: 490:4
+kubernetes/vendor/github.com/onsi/ginkgo/ginkgo/convert/ginkgo_ast_nodes.go: 53:3
+kubernetes/vendor/github.com/onsi/ginkgo/ginkgo/convert/test_finder.go: 22:3
+kubernetes/vendor/github.com/onsi/ginkgo/ginkgo/convert/testing_t_rewriter.go: 54:3
+kubernetes/vendor/github.com/onsi/ginkgo/ginkgo/nodot/nodot.go: 182:3 184:4
+kubernetes/vendor/github.com/onsi/ginkgo/internal/leafnodes/runner.go: 37:2
+kubernetes/vendor/github.com/onsi/ginkgo/internal/leafnodes/synchronized_before_suite_node.go: 100:3
+kubernetes/vendor/github.com/onsi/ginkgo/internal/remote/aggregator.go: 197:2
+kubernetes/vendor/github.com/onsi/ginkgo/internal/spec/spec.go: 189:3
+kubernetes/vendor/github.com/onsi/ginkgo/reporters/default_reporter.go: 57:2
+kubernetes/vendor/github.com/onsi/ginkgo/reporters/stenographer/stenographer.go: 220:2 400:2 457:4
+kubernetes/vendor/github.com/onsi/ginkgo/reporters/stenographer/support/go-colorable/colorable_windows.go: 402:3 486:4 504:4 527:6 690:2
+kubernetes/vendor/github.com/onsi/gomega/format/format.go: 118:4 257:2
+kubernetes/vendor/github.com/onsi/gomega/matchers/be_numerically_matcher.go: 68:2 85:2 104:2
+kubernetes/vendor/github.com/onsi/gomega/matchers/be_temporally_matcher.go: 49:2
+kubernetes/vendor/github.com/onsi/gomega/matchers/type_support.go: 170:2
+kubernetes/vendor/github.com/opencontainers/runc/libcontainer/cgroups/fs/cpu.go: 113:3
+kubernetes/vendor/github.com/opencontainers/runc/libcontainer/configs/namespaces_unix.go: 27:2
+kubernetes/vendor/github.com/opencontainers/runc/libcontainer/container_linux.go: 161:3 439:2 628:3 678:3 765:3 1008:2 1113:2
+kubernetes/vendor/github.com/opencontainers/runc/libcontainer/init_linux.go: 77:2
+kubernetes/vendor/github.com/opencontainers/runc/libcontainer/selinux/selinux.go: 276:2
+kubernetes/vendor/github.com/opencontainers/runc/libcontainer/state_linux.go: 85:2 112:2 152:2 178:2 214:2
+kubernetes/vendor/github.com/opencontainers/runc/libcontainer/system/xattrs_linux.go: 52:2
+kubernetes/vendor/github.com/pborman/uuid/dce.go: 75:2
+kubernetes/vendor/github.com/pborman/uuid/uuid.go: 136:2
+kubernetes/vendor/github.com/pelletier/go-toml/lexer.go: 130:3 169:3
+kubernetes/vendor/github.com/pelletier/go-toml/match.go: 182:5 214:2
+kubernetes/vendor/github.com/pelletier/go-toml/parser.go: 239:2
+kubernetes/vendor/github.com/pelletier/go-toml/querylexer.go: 122:3
+kubernetes/vendor/github.com/pelletier/go-toml/queryparser.go: 106:2 111:3 125:3
+kubernetes/vendor/github.com/pelletier/go-toml/token.go: 103:2
+kubernetes/vendor/github.com/pelletier/go-toml/toml.go: 186:3
+kubernetes/vendor/github.com/pelletier/go-toml/tomltree_conversions.go: 128:3
+kubernetes/vendor/github.com/pkg/errors/errors.go: 122:2 143:2 199:2
+kubernetes/vendor/github.com/pkg/errors/stack.go: 52:2 83:2 104:2 106:3
+kubernetes/vendor/github.com/pkg/sftp/attrs.go: 170:2
+kubernetes/vendor/github.com/pkg/sftp/client.go: 494:3 825:6 1106:2
+kubernetes/vendor/github.com/pkg/sftp/server.go: 190:3 556:2
+kubernetes/vendor/github.com/prometheus/client_golang/prometheus/metric.go: 110:2
+kubernetes/vendor/github.com/prometheus/client_golang/prometheus/promhttp/delegator_1_8.go: 39:2
+kubernetes/vendor/github.com/prometheus/client_golang/prometheus/promhttp/http.go: 90:4 116:5
+kubernetes/vendor/github.com/prometheus/common/expfmt/decode.go: 52:2 75:2 187:2
+kubernetes/vendor/github.com/prometheus/common/expfmt/encode.go: 45:4 65:2
+kubernetes/vendor/github.com/prometheus/common/expfmt/text_parse.go: 150:2 211:2 409:3 428:3
+kubernetes/vendor/github.com/prometheus/common/model/time.go: 215:2
+kubernetes/vendor/github.com/prometheus/common/model/value.go: 285:2
+kubernetes/vendor/github.com/prometheus/procfs/ipvs.go: 158:3
+kubernetes/vendor/github.com/prometheus/procfs/mountstats.go: 322:3
+kubernetes/vendor/github.com/prometheus/procfs/proc_limits.go: 86:3
+kubernetes/vendor/github.com/prometheus/procfs/xfrm.go: 125:3
+kubernetes/vendor/github.com/prometheus/procfs/xfs/parse.go: 90:3
+kubernetes/vendor/github.com/quobyte/api/rpc_client.go: 37:2
+kubernetes/vendor/github.com/rackspace/gophercloud/params.go: 66:2 140:6 227:6
+kubernetes/vendor/github.com/rackspace/gophercloud/provider_client.go: 253:2
+kubernetes/vendor/github.com/rackspace/gophercloud/testhelper/convenience.go: 84:3
+kubernetes/vendor/github.com/rancher/go-rancher/client/schemas.go: 63:3
+kubernetes/vendor/github.com/robfig/cron/parser.go: 318:2
+kubernetes/vendor/github.com/russross/blackfriday/block.go: 530:3 1149:3
+kubernetes/vendor/github.com/russross/blackfriday/html.go: 756:3 823:3
+kubernetes/vendor/github.com/russross/blackfriday/inline.go: 245:3 391:6 431:5 872:2
+kubernetes/vendor/github.com/russross/blackfriday/latex.go: 78:2
+kubernetes/vendor/github.com/samuel/go-zookeeper/zk/conn.go: 260:3 376:3 583:4
+kubernetes/vendor/github.com/samuel/go-zookeeper/zk/structs.go: 565:2 603:2
+kubernetes/vendor/github.com/satori/uuid/uuid.go: 179:2 312:2 425:2
+kubernetes/vendor/github.com/spf13/afero/cacheOnReadFs.go: 89:2 110:2 144:2 165:2 181:2 225:2
+kubernetes/vendor/github.com/spf13/afero/mem/file.go: 206:2
+kubernetes/vendor/github.com/spf13/cast/caste.go: 449:2
+kubernetes/vendor/github.com/spf13/cobra/bash_completions.go: 319:3 472:4
+kubernetes/vendor/github.com/spf13/cobra/cobra.go: 76:2 87:2 104:2
+kubernetes/vendor/github.com/spf13/cobra/command.go: 375:4
+kubernetes/vendor/github.com/spf13/pflag/flag.go: 440:3 476:2 965:3 994:3
+kubernetes/vendor/github.com/spf13/viper/util.go: 137:2
+kubernetes/vendor/github.com/spf13/viper/viper.go: 513:2
+kubernetes/vendor/github.com/square/go-jose/asymmetric.go: 167:2 189:2 257:2 297:2 325:2 430:2
+kubernetes/vendor/github.com/square/go-jose/cipher/cbc_hmac.go: 47:2
+kubernetes/vendor/github.com/square/go-jose/crypter.go: 173:2
+kubernetes/vendor/github.com/square/go-jose/json/decode.go: 392:3 477:2 790:3
+kubernetes/vendor/github.com/square/go-jose/json/encode.go: 283:2 1052:6
+kubernetes/vendor/github.com/square/go-jose/json/scanner.go: 42:4 211:2 286:2 348:2
+kubernetes/vendor/github.com/square/go-jose/json/stream.go: 258:2 284:2 292:2 422:2
+kubernetes/vendor/github.com/square/go-jose/jwk.go: 329:2
+kubernetes/vendor/github.com/square/go-jose/symmetric.go: 219:2 261:2
+kubernetes/vendor/github.com/storageos/go-api/client.go: 487:2
+kubernetes/vendor/github.com/stretchr/objx/accessors.go: 54:2
+kubernetes/vendor/github.com/stretchr/objx/value.go: 22:2
+kubernetes/vendor/github.com/stretchr/testify/assert/assertions.go: 359:2
+kubernetes/vendor/github.com/stretchr/testify/mock/mock.go: 301:3
+kubernetes/vendor/github.com/syndtr/gocapability/capability/capability_linux.go: 134:2 147:2 251:2 268:2 517:2 530:2
+kubernetes/vendor/github.com/syndtr/gocapability/capability/enum.go: 12:2
+kubernetes/vendor/github.com/syndtr/gocapability/capability/enum_gen.go: 6:2
+kubernetes/vendor/github.com/ugorji/go/codec/binc.go: 686:4
+kubernetes/vendor/github.com/ugorji/go/codec/codecgen/gen.go: 187:6 217:7
+kubernetes/vendor/github.com/ugorji/go/codec/encode.go: 454:3 577:5 1174:2
+kubernetes/vendor/github.com/ugorji/go/codec/gen.go: 394:2 614:2
+kubernetes/vendor/github.com/ugorji/go/codec/helper.go: 904:3
+kubernetes/vendor/github.com/ugorji/go/codec/helper_internal.go: 33:2
+kubernetes/vendor/github.com/ugorji/go/codec/simple.go: 328:2
+kubernetes/vendor/github.com/vishvananda/netlink/addr_linux.go: 101:4
+kubernetes/vendor/github.com/vishvananda/netlink/filter_linux.go: 111:4 121:5 149:3 167:5 180:7
+kubernetes/vendor/github.com/vishvananda/netlink/link_linux.go: 317:3 483:3 490:5 520:6 638:3 648:3 714:4
+kubernetes/vendor/github.com/vishvananda/netlink/neigh_linux.go: 180:3
+kubernetes/vendor/github.com/vishvananda/netlink/nl/nl_linux.go: 351:2
+kubernetes/vendor/github.com/vishvananda/netlink/protinfo_linux.go: 41:5
+kubernetes/vendor/github.com/vishvananda/netlink/qdisc_linux.go: 114:4 130:5 180:3
+kubernetes/vendor/github.com/vishvananda/netlink/route_linux.go: 143:4 206:4
+kubernetes/vendor/github.com/vishvananda/netlink/xfrm.go: 21:2 51:2
+kubernetes/vendor/github.com/vishvananda/netlink/xfrm_policy.go: 21:2
+kubernetes/vendor/github.com/vishvananda/netlink/xfrm_policy_linux.go: 109:4
+kubernetes/vendor/github.com/vishvananda/netlink/xfrm_state.go: 23:2
+kubernetes/vendor/github.com/vishvananda/netlink/xfrm_state_linux.go: 145:4
+kubernetes/vendor/github.com/vmware/govmomi/find/finder.go: 103:3 657:3 731:3 809:3 915:3 955:3 992:3
+kubernetes/vendor/github.com/vmware/govmomi/find/recurser.go: 62:2
+kubernetes/vendor/github.com/vmware/govmomi/list/lister.go: 137:5 214:4
+kubernetes/vendor/github.com/vmware/govmomi/object/host_certificate_info.go: 165:3
+kubernetes/vendor/github.com/vmware/govmomi/object/http_nfc_lease.go: 111:4
+kubernetes/vendor/github.com/vmware/govmomi/object/virtual_device_list.go: 380:2
+kubernetes/vendor/github.com/vmware/govmomi/session/keep_alive.go: 119:2
+kubernetes/vendor/github.com/vmware/govmomi/session/manager.go: 132:4
+kubernetes/vendor/github.com/vmware/govmomi/vim25/mo/ancestors.go: 118:5
+kubernetes/vendor/github.com/vmware/govmomi/vim25/mo/retrieve.go: 29:2 31:3
+kubernetes/vendor/github.com/vmware/govmomi/vim25/soap/error.go: 66:2
+kubernetes/vendor/github.com/vmware/govmomi/vim25/types/fault.go: 25:3
+kubernetes/vendor/github.com/vmware/govmomi/vim25/xml/extras.go: 52:2
+kubernetes/vendor/github.com/vmware/govmomi/vim25/xml/marshal.go: 195:2 513:3 683:2 729:3 736:3 758:4 822:4 934:2
+kubernetes/vendor/github.com/vmware/govmomi/vim25/xml/read.go: 213:3 489:4 543:3 606:2 613:2 637:2 655:4 743:3 772:3
+kubernetes/vendor/github.com/vmware/govmomi/vim25/xml/typeinfo.go: 131:4
+kubernetes/vendor/github.com/vmware/govmomi/vim25/xml/xml.go: 119:2 260:2 303:2 438:2 533:2 604:3 666:4
+kubernetes/vendor/golang.org/x/crypto/pkcs12/pkcs12.go: 225:3
+kubernetes/vendor/golang.org/x/crypto/ssh/channel.go: 121:2 399:2
+kubernetes/vendor/golang.org/x/crypto/ssh/keys.go: 41:2 470:2 538:2 694:2 705:3
+kubernetes/vendor/golang.org/x/crypto/ssh/messages.go: 437:3
+kubernetes/vendor/golang.org/x/crypto/ssh/mux.go: 229:2
+kubernetes/vendor/golang.org/x/crypto/ssh/server.go: 226:2
+kubernetes/vendor/golang.org/x/crypto/ssh/terminal/terminal.go: 146:3 171:3 188:3 787:2
+kubernetes/vendor/golang.org/x/crypto/ssh/transport.go: 100:3
+kubernetes/vendor/golang.org/x/net/context/pre_go17.go: 37:2
+kubernetes/vendor/golang.org/x/net/html/const.go: 95:2
+kubernetes/vendor/golang.org/x/net/html/foreign.go: 24:3 38:2 51:3 63:2
+kubernetes/vendor/golang.org/x/net/html/parse.go: 140:3 194:4 228:3 457:2 484:2 522:2 530:3 565:2 577:3 627:2 639:3 702:2 705:3 759:4 1179:2 1208:2 1214:3 1222:3 1272:4 1283:3 1314:2 1316:3 1334:3 1360:2 1381:3 1391:3 1413:2 1415:3 1433:3 1465:2 1467:3 1483:3 1516:2 1518:3 1536:3 1565:2 1572:3 1604:3 1637:2 1639:3 1655:2 1702:4 1712:3 1725:3 1752:4 1762:3 1769:3 1782:2 1820:4 1831:3 1866:5
+kubernetes/vendor/golang.org/x/net/html/render.go: 105:5 186:3
+kubernetes/vendor/golang.org/x/net/html/token.go: 42:2 101:2 381:2 414:2 456:2 469:2 482:2 528:2 540:2 553:2 566:2 618:3 788:2 853:3 875:3 936:4 1019:3 1114:2 1136:3 1152:3 1168:2 1213:3
+kubernetes/vendor/golang.org/x/net/http2/frame.go: 535:2 1506:2
+kubernetes/vendor/golang.org/x/net/http2/hpack/hpack.go: 350:2
+kubernetes/vendor/golang.org/x/net/http2/http2.go: 130:2 317:2
+kubernetes/vendor/golang.org/x/net/http2/server.go: 916:2 947:3 1004:3 1022:3 2501:3
+kubernetes/vendor/golang.org/x/net/http2/transport.go: 653:3 965:4 1127:3
+kubernetes/vendor/golang.org/x/net/http2/write.go: 52:2
+kubernetes/vendor/golang.org/x/net/http2/writesched.go: 209:2
+kubernetes/vendor/golang.org/x/net/idna/punycode.go: 165:2 177:2
+kubernetes/vendor/golang.org/x/net/proxy/proxy.go: 80:2
+kubernetes/vendor/golang.org/x/net/trace/trace.go: 216:4
+kubernetes/vendor/golang.org/x/net/websocket/hybi.go: 144:2 284:2 541:2
+kubernetes/vendor/golang.org/x/net/websocket/websocket.go: 371:2 381:2
+kubernetes/vendor/golang.org/x/oauth2/token.go: 106:2
+kubernetes/vendor/golang.org/x/sys/unix/syscall_bsd.go: 210:2
+kubernetes/vendor/golang.org/x/sys/unix/syscall_linux.go: 420:2
+kubernetes/vendor/golang.org/x/sys/unix/syscall_solaris.go: 379:2
+kubernetes/vendor/golang.org/x/sys/unix/syscall_unix.go: 39:2
+kubernetes/vendor/golang.org/x/sys/windows/exec_windows.go: 25:3
+kubernetes/vendor/golang.org/x/sys/windows/syscall_windows.go: 207:2 282:2 620:2
+kubernetes/vendor/golang.org/x/text/cases/gen.go: 127:3 164:3 237:2 665:3 691:3
+kubernetes/vendor/golang.org/x/text/cases/tables.go: 54:2 139:2
+kubernetes/vendor/golang.org/x/text/encoding/internal/identifier/gen.go: 90:5 124:4
+kubernetes/vendor/golang.org/x/text/encoding/unicode/unicode.go: 269:2
+kubernetes/vendor/golang.org/x/text/internal/tag/tag.go: 54:3 61:2
+kubernetes/vendor/golang.org/x/text/language/language.go: 243:5
+kubernetes/vendor/golang.org/x/text/language/lookup.go: 293:2
+kubernetes/vendor/golang.org/x/text/language/parse.go: 647:3
+kubernetes/vendor/golang.org/x/text/secure/bidirule/bidirule.go: 131:3 146:3 192:2
+kubernetes/vendor/golang.org/x/text/secure/precis/gen.go: 66:3 73:3 91:3 117:3
+kubernetes/vendor/golang.org/x/text/secure/precis/tables.go: 13:2 98:2
+kubernetes/vendor/golang.org/x/text/transform/transform.go: 222:3
+kubernetes/vendor/golang.org/x/text/unicode/bidi/bracket.go: 139:3
+kubernetes/vendor/golang.org/x/text/unicode/bidi/core.go: 599:3 977:2 986:2
+kubernetes/vendor/golang.org/x/text/unicode/bidi/prop.go: 87:2 150:2
+kubernetes/vendor/golang.org/x/text/unicode/bidi/tables.go: 19:2 104:2
+kubernetes/vendor/golang.org/x/text/unicode/norm/composition.go: 351:2 373:2
+kubernetes/vendor/golang.org/x/text/unicode/norm/iter.go: 269:4
+kubernetes/vendor/golang.org/x/text/unicode/norm/maketables.go: 76:2 512:3
+kubernetes/vendor/golang.org/x/text/unicode/norm/normalize.go: 292:3
+kubernetes/vendor/golang.org/x/text/unicode/norm/tables.go: 2730:2 2815:2 4351:2 4436:2
+kubernetes/vendor/golang.org/x/text/width/tables.go: 13:2 98:2
+kubernetes/vendor/golang.org/x/tools/container/intsets/sparse.go: 437:2 453:3 542:2 622:2 735:2 839:3
+kubernetes/vendor/google.golang.org/api/gensupport/json.go: 169:2
+kubernetes/vendor/google.golang.org/grpc/clientconn.go: 814:3
+kubernetes/vendor/google.golang.org/grpc/rpc_util.go: 401:3 426:2 440:2
+kubernetes/vendor/google.golang.org/grpc/transport/http2_client.go: 119:2 131:2 533:2 980:3
+kubernetes/vendor/google.golang.org/grpc/transport/transport.go: 560:2
+kubernetes/vendor/gopkg.in/gcfg.v1/read.go: 23:4
+kubernetes/vendor/gopkg.in/gcfg.v1/scanner/errors.go: 91:2
+kubernetes/vendor/gopkg.in/gcfg.v1/scanner/scanner.go: 66:3 226:3
+kubernetes/vendor/gopkg.in/gcfg.v1/types/int.go: 50:2
+kubernetes/vendor/gopkg.in/gcfg.v1/types/scan.go: 15:2
+kubernetes/vendor/gopkg.in/inf.v0/dec.go: 400:2
+kubernetes/vendor/gopkg.in/yaml.v2/decode.go: 278:2 365:2 382:3 413:3 436:3 442:3
+kubernetes/vendor/gopkg.in/yaml.v2/emitterc.go: 159:3 892:2 1026:4 1042:4 1140:2 1444:4
+kubernetes/vendor/gopkg.in/yaml.v2/encode.go: 287:2
+kubernetes/vendor/gopkg.in/yaml.v2/resolve.go: 76:2 89:3
+kubernetes/vendor/gopkg.in/yaml.v2/sorter.go: 74:2 93:2
+kubernetes/vendor/gopkg.in/yaml.v2/writerc.go: 48:3
+kubernetes/vendor/gopkg.in/yaml.v2/yaml.go: 316:2
+kubernetes/vendor/gopkg.in/yaml.v2/yamlh.go: 144:2 439:2
+kubernetes/vendor/k8s.io/gengo/examples/defaulter-gen/generators/defaulter.go: 149:3 409:2 435:2
+kubernetes/vendor/k8s.io/gengo/examples/set-gen/generators/sets.go: 100:4

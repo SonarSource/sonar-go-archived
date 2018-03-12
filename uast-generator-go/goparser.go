@@ -55,6 +55,7 @@ const (
 	BINARY_EXPRESSION  Kind = "BINARY_EXPRESSION"
 	SWITCH             Kind = "SWITCH"
 	CASE               Kind = "CASE"
+	DEFAULT_CASE       Kind = "DEFAULT_CASE"
 	UNSUPPORTED        Kind = "UNSUPPORTED"
 )
 
@@ -329,12 +330,14 @@ func (t *UastMapper) createUastTokenFromPosAstToken(kinds []Kind, pos token.Pos,
 	return t.createUastExpectedToken(kinds, pos, tok.String(), nativeNode)
 }
 
-func (t *UastMapper) createCaseOrDefaultToken(pos token.Pos, isDefault bool, nativeNode string) *Node {
+func (t *UastMapper) handleSwitchCase(casePos token.Pos, isDefault bool, children []*Node, kinds []Kind) ([]*Node, []Kind) {
 	tok := token.CASE
 	if isDefault {
 		tok = token.DEFAULT
+		kinds = append(kinds, DEFAULT_CASE)
 	}
-	return t.createUastTokenFromPosAstToken(nil, pos, tok, nativeNode)
+	children = t.appendNode(children, t.createUastTokenFromPosAstToken(nil, casePos, tok, "Case"))
+	return children, kinds
 }
 
 func (t *UastMapper) createUastExpectedToken(kinds []Kind, pos token.Pos, expectedValue string, nativeNode string) *Node {
