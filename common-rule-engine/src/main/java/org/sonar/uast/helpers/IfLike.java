@@ -9,10 +9,12 @@ public class IfLike {
 
   private final UastNode node;
   private final UastNode condition;
+  private final UastNode elseNode;
 
-  public IfLike(UastNode node, UastNode condition) {
+  public IfLike(UastNode node, UastNode condition, @Nullable UastNode elseNode) {
     this.node = node;
     this.condition = condition;
+    this.elseNode = elseNode;
   }
 
   @CheckForNull
@@ -22,8 +24,9 @@ public class IfLike {
     }
     if (node.kinds.contains(UastNode.Kind.IF)) {
       Optional<UastNode> condition = node.getChild(UastNode.Kind.CONDITION);
+      UastNode elseNode = node.getChild(UastNode.Kind.ELSE).orElse(null);
       if (condition.isPresent()) {
-        return new IfLike(node, condition.get());
+        return new IfLike(node, condition.get(), elseNode);
       }
     }
     return null;
@@ -39,7 +42,7 @@ public class IfLike {
 
   @CheckForNull
   public UastNode elseNode() {
-    return node.getChild(UastNode.Kind.ELSE).orElse(null);
+    return elseNode;
   }
 
 }
