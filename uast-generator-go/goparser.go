@@ -24,7 +24,9 @@ const (
 	RPAREN            Kind = "RPAREN"
 	ARGS_LIST         Kind = "ARGS_LIST"
 	CALL              Kind = "CALL"
-	IF_STMT           Kind = "IF_STMT"
+	IF                Kind = "IF"
+	ELSE              Kind = "ELSE"
+	CONDITION         Kind = "CONDITION"
 	DECL_LIST         Kind = "DECL_LIST"
 	STATEMENT         Kind = "STATEMENT"
 	ASSIGNMENT        Kind = "ASSIGNMENT"
@@ -41,6 +43,8 @@ const (
 	RESULT_LIST       Kind = "RESULT_LIST"
 	RESULT            Kind = "RESULT"
 	BINARY_EXPRESSION Kind = "BINARY_EXPRESSION"
+	SWITCH            Kind = "SWITCH"
+	CASE              Kind = "CASE"
 	UNSUPPORTED       Kind = "UNSUPPORTED"
 )
 
@@ -69,7 +73,7 @@ func kind(k interface{}) Kind {
 	case *ast.BlockStmt:
 		return BLOCK
 	case *ast.IfStmt:
-		return IF_STMT
+		return IF
 	case *ast.Ident:
 		return IDENTIFIER
 	case *ast.AssignStmt:
@@ -84,6 +88,10 @@ func kind(k interface{}) Kind {
 		return CALL
 	case *ast.SelectorExpr:
 		return SELECTOR_EXPR
+	case *ast.SwitchStmt:
+		return SWITCH
+	case *ast.CaseClause:
+		return CASE
 	case token.Token:
 		return TOKEN
 	case Kind:
@@ -233,6 +241,10 @@ func mapStmt(astNode ast.Stmt) *Node {
 		node = mapIfStmt(v)
 	case *ast.BlockStmt:
 		return mapBlockStmt(v)
+	case *ast.SwitchStmt:
+		return mapSwitchStmt(v)
+	case *ast.CaseClause:
+		return mapCaseClause(v)
 	default:
 		return mapUnsupported(v)
 	}
@@ -242,14 +254,54 @@ func mapStmt(astNode ast.Stmt) *Node {
 	return node
 }
 
+func mapCaseClause(clause *ast.CaseClause) *Node {
+	children := []*Node{mapToken(token.CASE, clause.Case)}
+	for _, cond := range clause.List {
+		uastCond := mapExpr(cond)
+		uastCond.Kinds = append(uastCond.Kinds, CONDITION)
+		children = append(children, uastCond)
+	}
+	children = append(children, mapToken(token.COLON, clause.Colon))
+	children = append(children, childrenFromNodeList(StmtList(clause.Body))...)
+	return &Node{
+		Kinds:    kinds(clause),
+		Children: children,
+	}
+}
+
+func mapSwitchStmt(stmt *ast.SwitchStmt) *Node {
+	children := []*Node{mapToken(token.SWITCH, stmt.Switch)}
+	if stmt.Init != nil {
+		children = append(children, mapStmt(stmt.Init))
+	}
+	children = append(children, mapExpr(stmt.Tag))
+	// case clauses are direct children of switch statement, body is skipped
+	children = append(children, mapStmt(stmt.Body).Children...)
+	return &Node{
+		Kinds:    kinds(stmt),
+		Children: children,
+	}
+}
+
 func mapIfStmt(stmt *ast.IfStmt) *Node {
+	var conditionChildren []*Node
+	if stmt.Init != nil {
+		conditionChildren = children(mapStmt(stmt.Init), mapExpr(stmt.Cond))
+	} else {
+		conditionChildren = children(mapExpr(stmt.Cond))
+	}
+	condition := &Node{
+		Kinds:    kinds(CONDITION),
+		Children: conditionChildren,
+	}
+	elseStmt := mapStmt(stmt.Else)
+	elseStmt.Kinds = append(elseStmt.Kinds, ELSE)
 	return &Node{
 		Kinds: kinds(stmt),
 		Children: children(
-			mapStmt(stmt.Init),
-			mapExpr(stmt.Cond),
+			condition,
 			mapStmt(stmt.Body),
-			mapStmt(stmt.Else),
+			elseStmt,
 		),
 		NativeNode: nativeNode(stmt),
 	}

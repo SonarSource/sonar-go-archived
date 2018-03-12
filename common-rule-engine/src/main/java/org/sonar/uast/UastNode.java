@@ -1,5 +1,6 @@
 package org.sonar.uast;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -79,15 +80,20 @@ public final class UastNode {
     ASSIGNMENT_VALUE,
     BINARY_EXPRESSION,
     BLOCK,
+    CASE,
     CLASS,
     COMMENT,
     COMPILATION_UNIT,
+    CONDITION,
+    ELSE,
     EOF,
     FUNCTION,
     IDENTIFIER,
+    IF,
     LITERAL,
     PARAMETER,
     STATEMENT,
+    SWITCH,
     UNSUPPORTED,
     ;
 
@@ -102,7 +108,7 @@ public final class UastNode {
   }
 
   public List<UastNode> getChildren(Kind... kinds) {
-    return children.stream()
+    List<UastNode> children = this.children.stream()
       .filter(child -> {
         for (Kind kind : kinds) {
           if (child.kinds.contains(kind)) {
@@ -112,6 +118,7 @@ public final class UastNode {
         return false;
       })
       .collect(Collectors.toList());
+    return Collections.unmodifiableList(children);
   }
 
   public void getDescendants(Kind kind, Consumer<UastNode> consumer) {
@@ -121,14 +128,14 @@ public final class UastNode {
     children.forEach(child -> child.getDescendants(kind, consumer));
   }
 
-  public UastNode firstToken() {
+  public Token firstToken() {
     if (token != null) {
-      return this;
+      return this.token;
     }
     for (UastNode child : children) {
-      UastNode uastNode = child.firstToken();
-      if (uastNode != null) {
-        return uastNode;
+      Token token = child.firstToken();
+      if (token != null) {
+        return token;
       }
     }
     return null;
@@ -154,7 +161,7 @@ public final class UastNode {
     if (token != null) {
       return token.toString();
     }
-    UastNode firstToken = firstToken();
-    return kinds.toString() + (firstToken != null ? firstToken.toString() : "");
+    Token firstToken = firstToken();
+    return kinds.toString() + (firstToken != null ? firstToken.value : "");
   }
 }

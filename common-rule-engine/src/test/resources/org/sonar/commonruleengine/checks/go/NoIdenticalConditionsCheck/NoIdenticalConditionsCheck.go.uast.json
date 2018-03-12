@@ -1,0 +1,750 @@
+{
+  "kinds": [
+    "COMPILATION_UNIT"
+  ],
+  "token": {
+    "value": "test",
+    "line": 1,
+    "column": 1
+  },
+  "nativeNode": "*ast.File",
+  "children": [
+    {
+      "kinds": [
+        "DECL_LIST"
+      ],
+      "nativeNode": "[]ast.Decl",
+      "children": [
+        {
+          "kinds": [
+            "UNSUPPORTED"
+          ],
+          "nativeNode": "*ast.GenDecl"
+        },
+        {
+          "kinds": [
+            "FUNCTION"
+          ],
+          "nativeNode": "*ast.FuncDecl",
+          "children": [
+            {
+              "kinds": [
+                "IDENTIFIER"
+              ],
+              "token": {
+                "value": "example",
+                "line": 5,
+                "column": 6
+              },
+              "nativeNode": "*ast.Ident"
+            },
+            {
+              "kinds": [
+                "*ast.FuncType"
+              ],
+              "nativeNode": "*ast.FuncType",
+              "children": [
+                {
+                  "kinds": [
+                    "PARAMETER_LIST"
+                  ],
+                  "nativeNode": "*ast.FieldList",
+                  "children": [
+                    {
+                      "kinds": [
+                        "*ast.Field"
+                      ],
+                      "nativeNode": "*ast.Field",
+                      "children": [
+                        {
+                          "kinds": [
+                            "[]*ast.Ident"
+                          ],
+                          "nativeNode": "[]*ast.Ident",
+                          "children": [
+                            {
+                              "kinds": [
+                                "IDENTIFIER",
+                                "PARAMETER"
+                              ],
+                              "token": {
+                                "value": "condition1",
+                                "line": 5,
+                                "column": 14
+                              },
+                              "nativeNode": "*ast.Ident"
+                            },
+                            {
+                              "kinds": [
+                                "IDENTIFIER",
+                                "PARAMETER"
+                              ],
+                              "token": {
+                                "value": "condition2",
+                                "line": 5,
+                                "column": 26
+                              },
+                              "nativeNode": "*ast.Ident"
+                            }
+                          ]
+                        },
+                        {
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
+                          "token": {
+                            "value": "bool",
+                            "line": 5,
+                            "column": 37
+                          },
+                          "nativeNode": "*ast.Ident"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kinds": [
+                    "RESULT_LIST"
+                  ],
+                  "nativeNode": "*ast.FieldList"
+                }
+              ]
+            },
+            {
+              "kinds": [
+                "BLOCK"
+              ],
+              "nativeNode": "*ast.BlockStmt",
+              "children": [
+                {
+                  "kinds": [
+                    "IF",
+                    "STATEMENT"
+                  ],
+                  "nativeNode": "*ast.IfStmt",
+                  "children": [
+                    {
+                      "kinds": [
+                        "CONDITION"
+                      ],
+                      "children": [
+                        {
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
+                          "token": {
+                            "value": "condition1",
+                            "line": 6,
+                            "column": 5
+                          },
+                          "nativeNode": "*ast.Ident"
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [
+                        "BLOCK"
+                      ],
+                      "nativeNode": "*ast.BlockStmt"
+                    },
+                    {
+                      "kinds": [
+                        "IF",
+                        "STATEMENT",
+                        "ELSE"
+                      ],
+                      "nativeNode": "*ast.IfStmt",
+                      "children": [
+                        {
+                          "kinds": [
+                            "CONDITION"
+                          ],
+                          "children": [
+                            {
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
+                              "token": {
+                                "value": "condition1",
+                                "line": 7,
+                                "column": 12
+                              },
+                              "nativeNode": "*ast.Ident"
+                            }
+                          ]
+                        },
+                        {
+                          "kinds": [
+                            "BLOCK"
+                          ],
+                          "nativeNode": "*ast.BlockStmt"
+                        },
+                        {
+                          "kinds": [
+                            "UNSUPPORTED",
+                            "ELSE"
+                          ],
+                          "nativeNode": "\u003cnil\u003e"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kinds": [
+                    "IF",
+                    "STATEMENT"
+                  ],
+                  "nativeNode": "*ast.IfStmt",
+                  "children": [
+                    {
+                      "kinds": [
+                        "CONDITION"
+                      ],
+                      "children": [
+                        {
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
+                          "token": {
+                            "value": "condition2",
+                            "line": 10,
+                            "column": 5
+                          },
+                          "nativeNode": "*ast.Ident"
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [
+                        "BLOCK"
+                      ],
+                      "nativeNode": "*ast.BlockStmt"
+                    },
+                    {
+                      "kinds": [
+                        "IF",
+                        "STATEMENT",
+                        "ELSE"
+                      ],
+                      "nativeNode": "*ast.IfStmt",
+                      "children": [
+                        {
+                          "kinds": [
+                            "CONDITION"
+                          ],
+                          "children": [
+                            {
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
+                              "token": {
+                                "value": "condition1",
+                                "line": 11,
+                                "column": 12
+                              },
+                              "nativeNode": "*ast.Ident"
+                            }
+                          ]
+                        },
+                        {
+                          "kinds": [
+                            "BLOCK"
+                          ],
+                          "nativeNode": "*ast.BlockStmt"
+                        },
+                        {
+                          "kinds": [
+                            "IF",
+                            "STATEMENT",
+                            "ELSE"
+                          ],
+                          "nativeNode": "*ast.IfStmt",
+                          "children": [
+                            {
+                              "kinds": [
+                                "CONDITION"
+                              ],
+                              "children": [
+                                {
+                                  "kinds": [
+                                    "IDENTIFIER"
+                                  ],
+                                  "token": {
+                                    "value": "condition1",
+                                    "line": 12,
+                                    "column": 12
+                                  },
+                                  "nativeNode": "*ast.Ident"
+                                }
+                              ]
+                            },
+                            {
+                              "kinds": [
+                                "BLOCK"
+                              ],
+                              "nativeNode": "*ast.BlockStmt"
+                            },
+                            {
+                              "kinds": [
+                                "UNSUPPORTED",
+                                "ELSE"
+                              ],
+                              "nativeNode": "\u003cnil\u003e"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kinds": [
+                    "IF",
+                    "STATEMENT"
+                  ],
+                  "nativeNode": "*ast.IfStmt",
+                  "children": [
+                    {
+                      "kinds": [
+                        "CONDITION"
+                      ],
+                      "children": [
+                        {
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
+                          "token": {
+                            "value": "condition1",
+                            "line": 15,
+                            "column": 5
+                          },
+                          "nativeNode": "*ast.Ident"
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [
+                        "BLOCK"
+                      ],
+                      "nativeNode": "*ast.BlockStmt"
+                    },
+                    {
+                      "kinds": [
+                        "IF",
+                        "STATEMENT",
+                        "ELSE"
+                      ],
+                      "nativeNode": "*ast.IfStmt",
+                      "children": [
+                        {
+                          "kinds": [
+                            "CONDITION"
+                          ],
+                          "children": [
+                            {
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
+                              "token": {
+                                "value": "condition2",
+                                "line": 16,
+                                "column": 12
+                              },
+                              "nativeNode": "*ast.Ident"
+                            }
+                          ]
+                        },
+                        {
+                          "kinds": [
+                            "BLOCK"
+                          ],
+                          "nativeNode": "*ast.BlockStmt"
+                        },
+                        {
+                          "kinds": [
+                            "IF",
+                            "STATEMENT",
+                            "ELSE"
+                          ],
+                          "nativeNode": "*ast.IfStmt",
+                          "children": [
+                            {
+                              "kinds": [
+                                "CONDITION"
+                              ],
+                              "children": [
+                                {
+                                  "kinds": [
+                                    "IDENTIFIER"
+                                  ],
+                                  "token": {
+                                    "value": "condition1",
+                                    "line": 17,
+                                    "column": 12
+                                  },
+                                  "nativeNode": "*ast.Ident"
+                                }
+                              ]
+                            },
+                            {
+                              "kinds": [
+                                "BLOCK"
+                              ],
+                              "nativeNode": "*ast.BlockStmt"
+                            },
+                            {
+                              "kinds": [
+                                "UNSUPPORTED",
+                                "ELSE"
+                              ],
+                              "nativeNode": "\u003cnil\u003e"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kinds": [
+            "FUNCTION"
+          ],
+          "nativeNode": "*ast.FuncDecl",
+          "children": [
+            {
+              "kinds": [
+                "IDENTIFIER"
+              ],
+              "token": {
+                "value": "ifInitializer",
+                "line": 21,
+                "column": 6
+              },
+              "nativeNode": "*ast.Ident"
+            },
+            {
+              "kinds": [
+                "*ast.FuncType"
+              ],
+              "nativeNode": "*ast.FuncType",
+              "children": [
+                {
+                  "kinds": [
+                    "PARAMETER_LIST"
+                  ],
+                  "nativeNode": "*ast.FieldList",
+                  "children": [
+                    {
+                      "kinds": [
+                        "*ast.Field"
+                      ],
+                      "nativeNode": "*ast.Field",
+                      "children": [
+                        {
+                          "kinds": [
+                            "[]*ast.Ident"
+                          ],
+                          "nativeNode": "[]*ast.Ident",
+                          "children": [
+                            {
+                              "kinds": [
+                                "IDENTIFIER",
+                                "PARAMETER"
+                              ],
+                              "token": {
+                                "value": "x",
+                                "line": 21,
+                                "column": 20
+                              },
+                              "nativeNode": "*ast.Ident"
+                            }
+                          ]
+                        },
+                        {
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
+                          "token": {
+                            "value": "int",
+                            "line": 21,
+                            "column": 22
+                          },
+                          "nativeNode": "*ast.Ident"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kinds": [
+                    "RESULT_LIST"
+                  ],
+                  "nativeNode": "*ast.FieldList"
+                }
+              ]
+            },
+            {
+              "kinds": [
+                "BLOCK"
+              ],
+              "nativeNode": "*ast.BlockStmt",
+              "children": [
+                {
+                  "kinds": [
+                    "IF",
+                    "STATEMENT"
+                  ],
+                  "nativeNode": "*ast.IfStmt",
+                  "children": [
+                    {
+                      "kinds": [
+                        "CONDITION"
+                      ],
+                      "children": [
+                        {
+                          "kinds": [
+                            "ASSIGNMENT",
+                            "STATEMENT"
+                          ],
+                          "nativeNode": "*ast.AssignStmt",
+                          "children": [
+                            {
+                              "kinds": [
+                                "ASSIGNMENT_TARGET"
+                              ],
+                              "nativeNode": "[]ast.Expr",
+                              "children": [
+                                {
+                                  "kinds": [
+                                    "IDENTIFIER"
+                                  ],
+                                  "token": {
+                                    "value": "x",
+                                    "line": 22,
+                                    "column": 5
+                                  },
+                                  "nativeNode": "*ast.Ident"
+                                }
+                              ]
+                            },
+                            {
+                              "kinds": [
+                                "TOKEN"
+                              ],
+                              "token": {
+                                "value": "=",
+                                "line": 22,
+                                "column": 7
+                              },
+                              "nativeNode": "token.Token"
+                            },
+                            {
+                              "kinds": [
+                                "ASSIGNMENT_VALUE"
+                              ],
+                              "nativeNode": "[]ast.Expr",
+                              "children": [
+                                {
+                                  "kinds": [
+                                    "LITERAL"
+                                  ],
+                                  "token": {
+                                    "value": "3",
+                                    "line": 22,
+                                    "column": 9
+                                  },
+                                  "nativeNode": "*ast.BasicLit"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "kinds": [
+                            "BINARY_EXPRESSION"
+                          ],
+                          "nativeNode": "*ast.BinaryExpr",
+                          "children": [
+                            {
+                              "kinds": [
+                                "IDENTIFIER"
+                              ],
+                              "token": {
+                                "value": "x",
+                                "line": 22,
+                                "column": 11
+                              },
+                              "nativeNode": "*ast.Ident"
+                            },
+                            {
+                              "kinds": [
+                                "TOKEN"
+                              ],
+                              "token": {
+                                "value": "\u003e",
+                                "line": 22,
+                                "column": 13
+                              },
+                              "nativeNode": "token.Token"
+                            },
+                            {
+                              "kinds": [
+                                "LITERAL"
+                              ],
+                              "token": {
+                                "value": "0",
+                                "line": 22,
+                                "column": 15
+                              },
+                              "nativeNode": "*ast.BasicLit"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [
+                        "BLOCK"
+                      ],
+                      "nativeNode": "*ast.BlockStmt"
+                    },
+                    {
+                      "kinds": [
+                        "IF",
+                        "STATEMENT",
+                        "ELSE"
+                      ],
+                      "nativeNode": "*ast.IfStmt",
+                      "children": [
+                        {
+                          "kinds": [
+                            "CONDITION"
+                          ],
+                          "children": [
+                            {
+                              "kinds": [
+                                "ASSIGNMENT",
+                                "STATEMENT"
+                              ],
+                              "nativeNode": "*ast.AssignStmt",
+                              "children": [
+                                {
+                                  "kinds": [
+                                    "ASSIGNMENT_TARGET"
+                                  ],
+                                  "nativeNode": "[]ast.Expr",
+                                  "children": [
+                                    {
+                                      "kinds": [
+                                        "IDENTIFIER"
+                                      ],
+                                      "token": {
+                                        "value": "x",
+                                        "line": 24,
+                                        "column": 12
+                                      },
+                                      "nativeNode": "*ast.Ident"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "kinds": [
+                                    "TOKEN"
+                                  ],
+                                  "token": {
+                                    "value": "=",
+                                    "line": 24,
+                                    "column": 14
+                                  },
+                                  "nativeNode": "token.Token"
+                                },
+                                {
+                                  "kinds": [
+                                    "ASSIGNMENT_VALUE"
+                                  ],
+                                  "nativeNode": "[]ast.Expr",
+                                  "children": [
+                                    {
+                                      "kinds": [
+                                        "UNSUPPORTED"
+                                      ],
+                                      "nativeNode": "*ast.UnaryExpr"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "kinds": [
+                                "BINARY_EXPRESSION"
+                              ],
+                              "nativeNode": "*ast.BinaryExpr",
+                              "children": [
+                                {
+                                  "kinds": [
+                                    "IDENTIFIER"
+                                  ],
+                                  "token": {
+                                    "value": "x",
+                                    "line": 24,
+                                    "column": 19
+                                  },
+                                  "nativeNode": "*ast.Ident"
+                                },
+                                {
+                                  "kinds": [
+                                    "TOKEN"
+                                  ],
+                                  "token": {
+                                    "value": "\u003e",
+                                    "line": 24,
+                                    "column": 21
+                                  },
+                                  "nativeNode": "token.Token"
+                                },
+                                {
+                                  "kinds": [
+                                    "LITERAL"
+                                  ],
+                                  "token": {
+                                    "value": "0",
+                                    "line": 24,
+                                    "column": 23
+                                  },
+                                  "nativeNode": "*ast.BasicLit"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "kinds": [
+                            "BLOCK"
+                          ],
+                          "nativeNode": "*ast.BlockStmt"
+                        },
+                        {
+                          "kinds": [
+                            "UNSUPPORTED",
+                            "ELSE"
+                          ],
+                          "nativeNode": "\u003cnil\u003e"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
