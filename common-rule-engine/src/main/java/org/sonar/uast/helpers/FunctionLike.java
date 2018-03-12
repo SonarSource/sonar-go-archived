@@ -1,6 +1,7 @@
 package org.sonar.uast.helpers;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javax.annotation.CheckForNull;
 import org.sonar.uast.UastNode;
@@ -33,8 +34,18 @@ public class FunctionLike {
   }
 
   public List<UastNode> parameters() {
+    List<UastNode> parameters = node.getChildren(UastNode.Kind.PARAMETER);
+    if (!parameters.isEmpty()) {
+      return parameters;
+    }
+    return nestedParameters();
+  }
+
+  private List<UastNode> nestedParameters() {
     List<UastNode> parameters = new ArrayList<>();
-    node.getDescendants(UastNode.Kind.PARAMETER, parameters::add);
-    return parameters;
+    node.children.stream()
+      .filter(child -> !child.kinds.contains(UastNode.Kind.BLOCK))
+      .forEach(child -> child.getDescendants(UastNode.Kind.PARAMETER, parameters::add));
+    return Collections.unmodifiableList(parameters);
   }
 }

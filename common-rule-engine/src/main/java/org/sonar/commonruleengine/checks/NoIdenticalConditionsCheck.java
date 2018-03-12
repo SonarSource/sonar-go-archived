@@ -24,8 +24,7 @@ public class NoIdenticalConditionsCheck extends Check {
   public void visitNode(UastNode node) {
     if (node.kinds.contains(UastNode.Kind.IF)) {
       handleIf(node);
-    }
-    if (node.kinds.contains(UastNode.Kind.SWITCH)) {
+    } else if (node.kinds.contains(UastNode.Kind.SWITCH)) {
       handleSwitch(node);
     }
   }

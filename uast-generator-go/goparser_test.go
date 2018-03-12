@@ -333,14 +333,14 @@ func main(i int) {
 	for _, caseNode := range switchStmt.Body.List {
 		caseClause := mapCaseClause(caseNode.(*ast.CaseClause))
 		expectKinds(t, caseClause, kinds(CASE))
-		for _, children := range caseClause.Children {
-			if children.hasKind(CONDITION) {
+		for _, child := range caseClause.Children {
+			if child.hasKind(CONDITION) {
 				conditionCounter++
 			}
 		}
 	}
 	if conditionCounter != 6 {
-		t.Fatalf("got %v conditions; expected %v", 6, conditionCounter)
+		t.Fatalf("got %v conditions; expected 6", conditionCounter)
 	}
 }
 

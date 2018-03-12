@@ -255,8 +255,7 @@ func mapStmt(astNode ast.Stmt) *Node {
 }
 
 func mapCaseClause(clause *ast.CaseClause) *Node {
-	var children []*Node
-	children = append(children, mapToken(token.CASE, clause.Case))
+	children := []*Node{mapToken(token.CASE, clause.Case)}
 	for _, cond := range clause.List {
 		uastCond := mapExpr(cond)
 		uastCond.Kinds = append(uastCond.Kinds, CONDITION)
@@ -271,8 +270,7 @@ func mapCaseClause(clause *ast.CaseClause) *Node {
 }
 
 func mapSwitchStmt(stmt *ast.SwitchStmt) *Node {
-	var children []*Node
-	children = append(children, mapToken(token.SWITCH, stmt.Switch))
+	children := []*Node{mapToken(token.SWITCH, stmt.Switch)}
 	if stmt.Init != nil {
 		children = append(children, mapStmt(stmt.Init))
 	}
