@@ -1,6 +1,8 @@
 package org.sonar.commonruleengine.checks;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -52,11 +54,12 @@ public class TestUtils {
   }
 
   public static void checkRule(Check check, String filename) throws IOException {
-    UastNode uast = UastUtils.fromClasspath(check.getClass(), filename + ".uast.json");
+    String fullFilename = "src/test/files/checks/" + filename;
+    UastNode uast = UastUtils.fromFile(new File(fullFilename + ".uast.json"));
     Engine engine = new Engine(Collections.singletonList(check));
     List<Issue> issues = engine.scan(uast).issues;
     List<Integer> actualLines = issues.stream().map(Issue::getLine).collect(Collectors.toList());
-    List<Integer> expectedLines = expectedLines(check.getClass().getResourceAsStream(filename));
+    List<Integer> expectedLines = expectedLines(new FileInputStream(new File(fullFilename)));
     assertThat(actualLines).containsExactlyInAnyOrderElementsOf(expectedLines);
   }
 }
