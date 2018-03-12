@@ -18,12 +18,10 @@ func example(condition1, condition2 bool) {
 	}
 }
 
-func ifInitializer(x int)  {
-	if x = 3;x > 0 {
+func ifInitializer(x int) {
+	if x = 3; x > 0 {
 
-	} else if x = -1;x > 0 { // Compliant, initializer has to be considered as part of condition
+	} else if x = -1; x > 0 { // Compliant, initializer has to be considered as part of condition
 
 	}
 }
-
-
