@@ -23,7 +23,6 @@ shopt -s nullglob
 
 for f in */*.go; do
     echo "Generating .ast and .uast.json for $f ..."
-    "$GO_PARSER" -d "$f" > "$f.ast"
     json=$f.uast.json
     if ! "$GO_PARSER" "$f" > "$json" 2>/dev/null; then
         echo "Error: could not parse $f. Run $GO_PARSER manually on it to investigate."
