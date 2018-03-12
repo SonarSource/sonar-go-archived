@@ -1,5 +1,6 @@
 package org.sonar.uast;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -89,6 +90,7 @@ public final class UastNode {
     CASE,
     CLASS,
     COMMENT,
+    DEFAULT_CASE,
     STRUCTURED_COMMENT,
     COMPILATION_UNIT,
     CONDITION,
@@ -118,17 +120,19 @@ public final class UastNode {
   }
 
   public List<UastNode> getChildren(Kind... kinds) {
-    List<UastNode> children = this.children.stream()
-      .filter(child -> {
-        for (Kind kind : kinds) {
-          if (child.kinds.contains(kind)) {
-            return true;
-          }
-        }
-        return false;
-      })
+    List<UastNode> selectedChildren = children.stream()
+      .filter(child -> Arrays.stream(kinds).anyMatch(child.kinds::contains))
       .collect(Collectors.toList());
-    return Collections.unmodifiableList(children);
+    return Collections.unmodifiableList(selectedChildren);
+  }
+
+  public void getDescendants(Kind kind, Consumer<UastNode> consumer, Kind... stopKinds) {
+    if (Arrays.stream(stopKinds).noneMatch(kinds::contains)) {
+      if (kinds.contains(kind)) {
+        consumer.accept(this);
+      }
+      children.forEach(child -> child.getDescendants(kind, consumer, stopKinds));
+    }
   }
 
   public void getDescendants(Kind kind, Consumer<UastNode> consumer) {
@@ -143,9 +147,9 @@ public final class UastNode {
       return this.token;
     }
     for (UastNode child : children) {
-      Token token = child.firstToken();
-      if (token != null) {
-        return token;
+      Token firstToken = child.firstToken();
+      if (firstToken != null) {
+        return firstToken;
       }
     }
     return null;

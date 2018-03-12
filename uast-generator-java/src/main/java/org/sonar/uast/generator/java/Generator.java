@@ -22,6 +22,7 @@ import org.sonar.java.model.JavaTree;
 import org.sonar.plugins.java.api.tree.AssignmentExpressionTree;
 import org.sonar.plugins.java.api.tree.BaseTreeVisitor;
 import org.sonar.plugins.java.api.tree.BinaryExpressionTree;
+import org.sonar.plugins.java.api.tree.CaseLabelTree;
 import org.sonar.plugins.java.api.tree.CompilationUnitTree;
 import org.sonar.plugins.java.api.tree.ExpressionTree;
 import org.sonar.plugins.java.api.tree.IfStatementTree;
@@ -148,6 +149,15 @@ public class Generator {
         break;
       case IF_STATEMENT:
         result.add(UastNode.Kind.IF);
+        break;
+      case SWITCH_STATEMENT:
+        result.add(UastNode.Kind.SWITCH);
+        break;
+      case CASE_LABEL:
+        result.add(UastNode.Kind.CASE);
+        if ("default".equals(((CaseLabelTree) tree).caseOrDefaultKeyword().text())) {
+          result.add(UastNode.Kind.DEFAULT_CASE);
+        }
         break;
       default:
         break;

@@ -40,6 +40,7 @@ import (
 			NewTypeKind((*ast.CallExpr)(nil), "CALL"),
 			NewTypeKind((*ast.SelectorExpr)(nil), "SELECTOR_EXPR"),
 			NewTypeKind((*ast.SwitchStmt)(nil), "SWITCH"),
+			NewTypeKind((*ast.TypeSwitchStmt)(nil), "SWITCH"),
 			NewTypeKind((*ast.CaseClause)(nil), "CASE"),
 			NewTypeKind((*ast.BadDecl)(nil), "UNSUPPORTED"),
 			NewTypeKind((*ast.BadExpr)(nil), "UNSUPPORTED"),
@@ -109,7 +110,8 @@ import (
 		MergeFieldIntoParent: map[string]bool{
 			// The uast node generated for a given field is discarded, but it's kinds and children are
 			// appended to it's parent. This does not apply to array fields, see ArrayFieldCreatingNode
-			"SwitchStmt#Body": true,
+			"SwitchStmt#Body":     true,
+			"TypeSwitchStmt#Body": true,
 		},
 		InsertBeforeField: map[string]string{
 			// Additional code can be placed before the mapping of the referenced field
@@ -122,11 +124,9 @@ import (
 			"File#Package": "children = t.appendNode(children, t.mapPackageDecl(astNode))",
 			"File#Name":    "",
 			// unknown "case" or "default"
-			"CaseClause#Case": "children = t.appendNode(children, " +
-				"t.createCaseOrDefaultToken(astNode.Case, len(astNode.List) == 0, \"Case\"))",
-			"CommClause#Case": "children = t.appendNode(children, " +
-				"t.createCaseOrDefaultToken(astNode.Case, astNode.Comm == nil, \"Case\"))",
-			"IfStmt#Init": "",
+			"CaseClause#Case": "children,kinds = t.handleSwitchCase(astNode.Case, len(astNode.List) == 0, children, kinds)",
+			"CommClause#Case": "children,kinds = t.handleSwitchCase(astNode.Case, astNode.Comm == nil, children, kinds)",
+			"IfStmt#Init":     "",
 			"IfStmt#Cond": "children = t.appendNode(children, " +
 				"t.createAdditionalInitAndCond(astNode.Init, astNode.Cond))",
 		},
