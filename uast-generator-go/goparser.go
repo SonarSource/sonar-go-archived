@@ -3,7 +3,6 @@ package main
 //go:generate go run generate_source.go
 
 import (
-	"encoding/json"
 	"fmt"
 	"go/ast"
 	"go/parser"
@@ -457,12 +456,7 @@ func nativeNode(x interface{}) string {
 }
 
 func PrintJson(node *Node) {
-	b, err := json.MarshalIndent(node, "", "  ")
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	fmt.Println(string(b))
+	fmt.Println(toJson(node))
 }
 
 func readAstFile(filename string) (*token.FileSet, *ast.File) {
