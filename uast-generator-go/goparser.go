@@ -3,12 +3,15 @@ package main
 //go:generate go run generate_source.go
 
 import (
+	"bytes"
+	"errors"
 	"fmt"
 	"go/ast"
 	"go/parser"
 	"go/token"
-	"io"
+	"io/ioutil"
 	"os"
+	"unicode/utf8"
 )
 
 type Kind string
@@ -19,6 +22,9 @@ func (k Kind) String() string {
 
 const (
 	COMPILATION_UNIT  Kind = "COMPILATION_UNIT"
+	COMMENT           Kind = "COMMENT"
+	PACKAGE           Kind = "PACKAGE"
+	EOF               Kind = "EOF"
 	FUNCTION          Kind = "FUNCTION"
 	BLOCK             Kind = "BLOCK"
 	LPAREN            Kind = "LPAREN"
@@ -29,15 +35,14 @@ const (
 	ELSE              Kind = "ELSE"
 	CONDITION         Kind = "CONDITION"
 	DECL_LIST         Kind = "DECL_LIST"
+	CLASS             Kind = "CLASS"
 	STATEMENT         Kind = "STATEMENT"
 	ASSIGNMENT        Kind = "ASSIGNMENT"
 	ASSIGNMENT_TARGET Kind = "ASSIGNMENT_TARGET"
 	ASSIGNMENT_VALUE  Kind = "ASSIGNMENT_VALUE"
-	TOKEN             Kind = "TOKEN"
 	IDENTIFIER        Kind = "IDENTIFIER"
 	SELECTOR_EXPR     Kind = "SELECTOR_EXPR"
 	LITERAL           Kind = "LITERAL"
-	EXPR_LIST         Kind = "EXPR_LIST"
 	EXPRESSION        Kind = "EXPRESSION"
 	PARAMETER_LIST    Kind = "PARAMETER_LIST"
 	PARAMETER         Kind = "PARAMETER"
@@ -50,437 +55,342 @@ const (
 )
 
 type Token struct {
-	Value  string    `json:"value,omitempty"`
-	Line   int       `json:"line"`
-	Column int       `json:"column"`
-	pos    token.Pos // TODO remove this
+	Value  string `json:"value,omitempty"`
+	Line   int    `json:"line"`
+	Column int    `json:"column"`
 }
 
 type Node struct {
-	Kinds      []Kind  `json:"kinds"`
+	Kinds      []Kind  `json:"kinds,omitempty"`
 	Token      *Token  `json:"token,omitempty"`
 	NativeNode string  `json:"nativeNode,omitempty"`
 	Children   []*Node `json:"children,omitempty"`
+	// internal fields
+	offset    int // position of first character belonging to the node
+	endOffset int // position of first character immediately after the node
 }
 
-func kind(k interface{}) Kind {
-	switch v := k.(type) {
-	case *ast.File:
-		return COMPILATION_UNIT
-	case *ast.FuncDecl:
-		return FUNCTION
-	case []ast.Decl:
-		return DECL_LIST
-	case *ast.BlockStmt:
-		return BLOCK
-	case *ast.IfStmt:
-		return IF
-	case *ast.Ident:
-		return IDENTIFIER
-	case *ast.AssignStmt:
-		return ASSIGNMENT
-	case *ast.BasicLit:
-		return LITERAL
-	case *ast.ExprStmt:
-		return EXPRESSION
-	case *ast.BinaryExpr:
-		return BINARY_EXPRESSION
-	case *ast.CallExpr:
-		return CALL
-	case *ast.SelectorExpr:
-		return SELECTOR_EXPR
-	case *ast.SwitchStmt:
-		return SWITCH
-	case *ast.CaseClause:
-		return CASE
-	case token.Token:
-		return TOKEN
-	case Kind:
-		return v
-	default:
-		return Kind(nativeNode(k))
-	}
-}
-
-func kinds(rawItems ...interface{}) []Kind {
-	items := make([]Kind, len(rawItems))
-	for i, v := range rawItems {
-		items[i] = kind(v)
-	}
-	return items
-}
-
-func children(items ...*Node) []*Node {
-	return items
-}
-
-type NodeList interface {
-	At(i int) ast.Node
-	Len() int
-	NativeNode() string
-}
-
-func childrenFromNodeList(nodeList NodeList) []*Node {
-	children := children()
-	for i := 0; i < nodeList.Len(); i++ {
-		if uastNode := mapNode(nodeList.At(i)); uastNode != nil {
-			children = append(children, uastNode)
-		}
-	}
-	return children
-}
-
-func makeNodeFromList(kind Kind, nodeList NodeList) *Node {
-	return &Node{
-		Kinds:      kinds(kind),
-		Children:   childrenFromNodeList(nodeList),
-		NativeNode: nodeList.NativeNode(),
-	}
-}
-
-func toUast(fileSet *token.FileSet, astFile *ast.File) *Node {
-	node := mapFile(astFile)
-	fixPositions(node, fileSet)
-	return node
-}
-
-func mapFile(file *ast.File) *Node {
-	return &Node{
-		Kinds:      kinds(file),
-		Children:   children(mapDeclList(kind(file.Decls), file.Decls)),
-		Token:      mapTokenPos(file.Name.Name, file.Pos()),
-		NativeNode: nativeNode(file),
-	}
-}
-
-func mapDeclList(kind Kind, declList []ast.Decl) *Node {
-	return makeNodeFromList(kind, DeclList(declList))
-}
-
-func mapDecl(decl ast.Decl) *Node {
-	switch v := decl.(type) {
-	case *ast.FuncDecl:
-		return mapFuncDecl(v)
-	default:
-		return mapUnsupported(v)
-	}
-}
-
-func mapFuncDecl(funcDecl *ast.FuncDecl) *Node {
-	children := children(mapExpr(funcDecl.Name), mapFuncType(funcDecl.Type))
-	if funcDecl.Body != nil {
-		children = append(children, mapStmt(funcDecl.Body))
-	}
-	return &Node{
-		Kinds:      kinds(funcDecl),
-		Children:   children,
-		NativeNode: nativeNode(funcDecl),
-	}
-}
-
-func mapFuncType(funcType *ast.FuncType) *Node {
-	return &Node{
-		Kinds:      kinds(funcType),
-		Children:   children(mapParamsList(funcType.Params), mapResultsList(funcType.Results)),
-		NativeNode: nativeNode(funcType),
-	}
-}
-
-func mapParamsList(fields *ast.FieldList) *Node {
-	return mapFieldList(PARAMETER_LIST, PARAMETER, fields)
-}
-
-func mapResultsList(fields *ast.FieldList) *Node {
-	return mapFieldList(RESULT_LIST, RESULT, fields)
-}
-
-func mapFieldList(listKind, itemKind Kind, fieldList *ast.FieldList) *Node {
-	node := &Node{
-		Kinds:      kinds(listKind),
-		NativeNode: nativeNode(fieldList),
-	}
-	if fieldList != nil {
-		node.Children = childrenFromNodeList(FieldList(fieldList.List))
-		for _, field := range node.Children {
-			// see mapField: the first child of a field has the names as children
-			for _, child := range field.Children[0].Children {
-				child.Kinds = append(child.Kinds, itemKind)
-			}
-		}
-	}
-	return node
-}
-
-func mapField(field *ast.Field) *Node {
-	return &Node{
-		Kinds:      kinds(field),
-		Children:   children(mapIdentList(field.Names), mapExpr(field.Type)),
-		NativeNode: nativeNode(field),
-	}
-}
-
-func mapIdentList(idents []*ast.Ident) *Node {
-	return makeNodeFromList(kind(idents), IdentList(idents))
-}
-
-func mapBlockStmt(blockStmt *ast.BlockStmt) *Node {
-	return &Node{
-		Kinds:      kinds(blockStmt),
-		Children:   childrenFromNodeList(StmtList(blockStmt.List)),
-		NativeNode: nativeNode(blockStmt),
-	}
-}
-
-func mapStmt(astNode ast.Stmt) *Node {
-	var node *Node
-	switch v := astNode.(type) {
-	case *ast.AssignStmt:
-		node = mapAssignStmt(v)
-	case *ast.ExprStmt:
-		node = mapExprStmt(v)
-	case *ast.IfStmt:
-		node = mapIfStmt(v)
-	case *ast.BlockStmt:
-		return mapBlockStmt(v)
-	case *ast.SwitchStmt:
-		return mapSwitchStmt(v)
-	case *ast.CaseClause:
-		return mapCaseClause(v)
-	default:
-		return mapUnsupported(v)
-	}
-
-	node.Kinds = append(node.Kinds, STATEMENT)
-
-	return node
-}
-
-func mapCaseClause(clause *ast.CaseClause) *Node {
-	children := []*Node{mapToken(token.CASE, clause.Case)}
-	for _, cond := range clause.List {
-		uastCond := mapExpr(cond)
-		uastCond.Kinds = append(uastCond.Kinds, CONDITION)
-		children = append(children, uastCond)
-	}
-	children = append(children, mapToken(token.COLON, clause.Colon))
-	children = append(children, childrenFromNodeList(StmtList(clause.Body))...)
-	return &Node{
-		Kinds:    kinds(clause),
-		Children: children,
-	}
-}
-
-func mapSwitchStmt(stmt *ast.SwitchStmt) *Node {
-	children := []*Node{mapToken(token.SWITCH, stmt.Switch)}
-	if stmt.Init != nil {
-		children = append(children, mapStmt(stmt.Init))
-	}
-	children = append(children, mapExpr(stmt.Tag))
-	// case clauses are direct children of switch statement, body is skipped
-	children = append(children, mapStmt(stmt.Body).Children...)
-	return &Node{
-		Kinds:    kinds(stmt),
-		Children: children,
-	}
-}
-
-func mapIfStmt(stmt *ast.IfStmt) *Node {
-	var conditionChildren []*Node
-	if stmt.Init != nil {
-		conditionChildren = children(mapStmt(stmt.Init), mapExpr(stmt.Cond))
-	} else {
-		conditionChildren = children(mapExpr(stmt.Cond))
-	}
-	condition := &Node{
-		Kinds:    kinds(CONDITION),
-		Children: conditionChildren,
-	}
-	elseStmt := mapStmt(stmt.Else)
-	elseStmt.Kinds = append(elseStmt.Kinds, ELSE)
-	return &Node{
-		Kinds: kinds(stmt),
-		Children: children(
-			condition,
-			mapStmt(stmt.Body),
-			elseStmt,
-		),
-		NativeNode: nativeNode(stmt),
-	}
-}
-
-func mapAssignStmt(stmt *ast.AssignStmt) *Node {
-	return &Node{
-		Kinds: kinds(stmt),
-		Children: children(
-			mapExprList(ASSIGNMENT_TARGET, stmt.Lhs),
-			mapToken(stmt.Tok, stmt.TokPos),
-			mapExprList(ASSIGNMENT_VALUE, stmt.Rhs),
-		),
-		NativeNode: nativeNode(stmt),
-	}
-}
-
-func mapExprList(kind Kind, exprList []ast.Expr) *Node {
-	return makeNodeFromList(kind, ExprList(exprList))
-}
-
-func mapNode(astNode ast.Node) *Node {
-	switch v := astNode.(type) {
-	case ast.Expr:
-		return mapExpr(v)
-	case ast.Stmt:
-		return mapStmt(v)
-	case ast.Decl:
-		return mapDecl(v)
-	case *ast.Field:
-		return mapField(v)
-	default:
-		return mapUnsupported(astNode)
-	}
-}
-
-func mapUnsupported(node ast.Node) *Node {
-	return &Node{
-		Kinds:      kinds(UNSUPPORTED),
-		Children:   children(),
-		NativeNode: nativeNode(node),
-	}
-}
-
-func mapExpr(astNode ast.Expr) *Node {
-	switch v := astNode.(type) {
-	case *ast.Ident:
-		return mapIdent(v)
-	case *ast.BasicLit:
-		return mapBasicLit(v)
-	case *ast.SelectorExpr:
-		return mapSelectorExpr(v)
-	case *ast.CallExpr:
-		return mapCallExpr(v)
-	case *ast.ParenExpr:
-		return mapParenExpr(v)
-	case *ast.BinaryExpr:
-		return mapBinaryExpr(v)
-	default:
-		return mapUnsupported(v)
-	}
-}
-
-func mapBinaryExpr(expr *ast.BinaryExpr) *Node {
-	return &Node{
-		Kinds: kinds(expr),
-		Children: children(
-			mapExpr(expr.X),
-			mapToken(expr.Op, expr.OpPos),
-			mapExpr(expr.Y),
-		),
-		NativeNode: nativeNode(expr),
-	}
-}
-
-func mapParenExpr(expr *ast.ParenExpr) *Node {
-	return &Node{
-		Kinds: kinds(expr),
-		Children: children(
-			mapLiteralToken(LPAREN, expr.Lparen),
-			mapExpr(expr.X),
-			mapLiteralToken(RPAREN, expr.Rparen),
-		),
-		NativeNode: nativeNode(expr),
-	}
-}
-
-func mapSelectorExpr(expr *ast.SelectorExpr) *Node {
-	return &Node{
-		Kinds:      kinds(expr),
-		Children:   children(mapExpr(expr.X), mapIdent(expr.Sel)),
-		NativeNode: nativeNode(expr),
-	}
-}
-
-func mapIdent(ident *ast.Ident) *Node {
-	return &Node{
-		Kinds:      kinds(ident),
-		Token:      mapTokenPos(ident.Name, ident.Pos()),
-		NativeNode: nativeNode(ident),
-	}
-}
-
-func mapBasicLit(lit *ast.BasicLit) *Node {
-	return &Node{
-		Kinds:      kinds(lit),
-		Token:      mapTokenPos(lit.Value, lit.Pos()),
-		NativeNode: nativeNode(lit),
-	}
-}
-
-func mapToken(tok token.Token, pos token.Pos) *Node {
-	return &Node{
-		Kinds:      kinds(tok),
-		Token:      mapTokenPos(tok.String(), pos),
-		NativeNode: nativeNode(tok),
-	}
-}
-
-func mapLiteralToken(kind Kind, pos token.Pos) *Node {
-	return &Node{
-		Kinds: kinds(kind),
-		Token: mapTokenPos(kind.String(), pos),
-	}
-}
-
-func mapExprStmt(stmt *ast.ExprStmt) *Node {
-	return &Node{
-		Kinds:      kinds(stmt),
-		Children:   children(mapExpr(stmt.X)),
-		NativeNode: nativeNode(stmt),
-	}
-}
-
-func mapCallExpr(callExpr *ast.CallExpr) *Node {
-	return &Node{
-		Kinds: kinds(callExpr),
-		Children: children(
-			mapExpr(callExpr.Fun),
-			mapLiteralToken(LPAREN, callExpr.Lparen),
-			mapExprList(ARGS_LIST, callExpr.Args),
-			mapLiteralToken(RPAREN, callExpr.Rparen),
-		),
-	}
-}
-
-func mapTokenPos(tok string, pos token.Pos) *Token {
-	return &Token{Value: tok, Line: 1, Column: 1, pos: pos}
-}
-
-func nativeNode(x interface{}) string {
-	return fmt.Sprintf("%T", x)
+func toUast(fileSet *token.FileSet, astFile *ast.File, fileContent string) *Node {
+	return NewUastMapper(fileSet, astFile, fileContent).toUast()
 }
 
 func PrintJson(node *Node) {
 	fmt.Println(toJson(node))
 }
 
-func readAstFile(filename string) (*token.FileSet, *ast.File) {
-	fileSet := token.NewFileSet()
-	var src io.Reader = nil
+func readAstFile(filename string) (fileSet *token.FileSet, astFile *ast.File, fileContent string, err error) {
+	var bytes []byte
 	if filename == "-" {
-		src = os.Stdin
+		bytes, err = ioutil.ReadAll(os.Stdin)
+	} else {
+		bytes, err = ioutil.ReadFile(filename)
 	}
-	astFile, err := parser.ParseFile(fileSet, filename, src, parser.ParseComments)
 	if err != nil {
-		panic(err)
+		return
 	}
-	return fileSet, astFile
+	fileContent = string(bytes)
+	fileSet, astFile, err = readAstString(filename, fileContent)
+	return
 }
 
-func fixPositions(node *Node, fileSet *token.FileSet) {
-	if node.Token != nil {
-		position := fileSet.Position(node.Token.pos)
-		node.Token.Line = position.Line
-		node.Token.Column = position.Column
+func readAstString(filename string, fileContent string) (fileSet *token.FileSet, astFile *ast.File, err error) {
+	fileSet = token.NewFileSet()
+	astFile, err = parser.ParseFile(fileSet, filename, fileContent, parser.ParseComments)
+	if err != nil {
+		return
 	}
-	for _, child := range node.Children {
-		fixPositions(child, fileSet)
+	fileSize := fileSet.File(astFile.Pos()).Size()
+	if len(fileContent) != fileSize {
+		err = errors.New(fmt.Sprintf("Unexpected file size, expect %d instead of %d for file %s",
+			len(fileContent), fileSize, filename))
 	}
+	return
+}
+
+type UastMapper struct {
+	astFile     *ast.File
+	fileContent string
+	file        *token.File
+	comments    []*Node
+	commentPos  int
+	paranoiac   bool
+}
+
+func NewUastMapper(fileSet *token.FileSet, astFile *ast.File, fileContent string) *UastMapper {
+	t := &UastMapper{
+		astFile:     astFile,
+		fileContent: fileContent,
+		file:        fileSet.File(astFile.Pos()),
+		paranoiac:   true,
+	}
+	t.comments = t.mapAllComments()
+	t.commentPos = 0
+	return t
+}
+
+func (t *UastMapper) toUast() *Node {
+	compilationUnit := t.mapFile(t.astFile, nil, "")
+	t.addEof(compilationUnit)
+	if t.paranoiac && (compilationUnit.offset < 0 || compilationUnit.endOffset > len(t.fileContent)) {
+		panic("Unexpected compilationUnit" + t.location(compilationUnit.offset, compilationUnit.endOffset))
+	}
+	return compilationUnit
+}
+
+func (t *UastMapper) addEof(compilationUnit *Node) {
+	offset := len(t.fileContent)
+	eofNode := t.createUastToken([]Kind{EOF}, offset, offset, "")
+	compilationUnit.Children = t.appendNode(compilationUnit.Children, eofNode)
+}
+
+func (t *UastMapper) mapAllComments() []*Node {
+	var list []*Node
+	for _, commentGroup := range t.astFile.Comments {
+		for _, comment := range commentGroup.List {
+			node := t.createUastExpectedToken([]Kind{COMMENT}, comment.Pos(), comment.Text, "")
+			list = append(list, node)
+		}
+	}
+	return list
+}
+
+func (t *UastMapper) mapPackageDecl(file *ast.File) *Node {
+	var children []*Node
+	// "package" node is the very first node, header comments are appended before
+	packageNode := t.createUastExpectedToken(nil, file.Package, token.PACKAGE.String(), "")
+	if packageNode != nil {
+		children = t.appendCommentOrMissingToken(children, 0, packageNode.offset)
+		children = append(children, packageNode)
+	}
+	children = t.appendNode(children, t.mapIdent(file.Name, nil, "Name"))
+	return t.createUastNode([]Kind{PACKAGE}, nil, children, "File.Package")
+}
+
+func (t *UastMapper) appendNode(children []*Node, child *Node) []*Node {
+	if child == nil {
+		return children
+	}
+	// Comments are not appended before the first child. They will be appended by an
+	// ancestor node before a non first child (except for the "package" node, it's the
+	// very first node, it has his specific logic to append header comments)
+	if len(children) > 0 {
+		lastChild := children[len(children)-1]
+		children = t.appendCommentOrMissingToken(children, lastChild.endOffset, child.offset)
+		if t.paranoiac && children[len(children)-1].endOffset > child.offset {
+			panic("Invalid token sequence" + t.location(children[len(children)-1].endOffset, child.offset))
+		}
+	}
+	return t.appendNodeCheckOrder(children, child)
+}
+
+func (t *UastMapper) mergeNode(children []*Node, kinds []Kind, child *Node) ([]*Node, []Kind) {
+	if child != nil {
+		kinds = append(kinds, child.Kinds...)
+		for _, grandchild := range child.Children {
+			children = t.appendNode(children, grandchild)
+		}
+	}
+	return children, kinds
+}
+
+func (t *UastMapper) createAdditionalInitAndCond(astInit ast.Stmt, astCond ast.Expr) *Node {
+	var children []*Node
+	children = t.appendNode(children, t.mapStmt(astInit, nil, "Init"))
+	children = t.appendNode(children, t.mapExpr(astCond, nil, "Cond"))
+	return t.createUastNode([]Kind{CONDITION}, nil, children, "InitAndCond")
+}
+
+func (t *UastMapper) appendCommentOrMissingToken(children []*Node, offset, endOffset int) []*Node {
+	if len(t.comments) == 0 {
+		return t.appendMissingToken(children, offset, endOffset)
+	}
+	// when a child append a comment, it move the 'commentPos' forward, so the parent has to rewind
+	for t.commentPos > 0 && t.comments[t.commentPos-1].offset >= offset {
+		t.commentPos--
+	}
+
+	for t.commentPos < len(t.comments) {
+		commentNode := t.comments[t.commentPos]
+		if commentNode.offset >= offset {
+			if commentNode.endOffset <= endOffset {
+				children = t.appendMissingToken(children, offset, commentNode.offset)
+				children = t.appendNodeCheckOrder(children, commentNode)
+				offset = commentNode.endOffset
+			} else {
+				break
+			}
+		}
+		t.commentPos++
+	}
+	return t.appendMissingToken(children, offset, endOffset)
+}
+
+func (t *UastMapper) appendNodeCheckOrder(parentList []*Node, child *Node) []*Node {
+	if child == nil {
+		return parentList
+	}
+	if len(parentList) > 0 {
+		lastChild := parentList[len(parentList)-1]
+		if t.paranoiac && lastChild.endOffset > child.offset {
+			panic("Invalid token sequence" + t.location(lastChild.endOffset, child.offset))
+		}
+	}
+	return append(parentList, child)
+}
+
+func (t *UastMapper) appendNodeList(parentList []*Node, children []*Node, kinds []Kind, nativeNode string) []*Node {
+	// TODO provide the next Token offset, so the last separator can be part of the children
+	return t.appendNode(parentList, t.createUastNode(kinds, nil, children, nativeNode))
+}
+
+func (t *UastMapper) createUastNode(kinds []Kind, astNode ast.Node, children []*Node, nativeNode string) *Node {
+	if len(children) > 0 {
+		return &Node{
+			Kinds:      kinds,
+			Children:   children,
+			NativeNode: nativeNode,
+			offset:     children[0].offset,
+			endOffset:  children[len(children)-1].endOffset,
+		}
+	} else if astNode != nil {
+		offset := t.file.Offset(astNode.Pos())
+		endOffset := t.file.Offset(astNode.End())
+		return t.createUastToken(kinds, offset, endOffset, nativeNode)
+	} else {
+		return nil
+	}
+}
+
+var missingKeywordToken = map[byte]string{
+	',': ",", ';': ";", '.': ".", '[': "[", ']': "]", '=': "=", ':': ":",
+	't': "type", 'r': "range", 'e': "else", 'c': "chan", '<': "<-"}
+
+func (t *UastMapper) appendMissingToken(children []*Node, offset, endOffset int) []*Node {
+	if offset < 0 || endOffset < offset || endOffset > len(t.fileContent) {
+		return nil
+	}
+	for offset < endOffset && t.fileContent[offset] <= ' ' {
+		offset++
+	}
+	for endOffset > offset && t.fileContent[endOffset-1] <= ' ' {
+		endOffset--
+	}
+	for offset < endOffset {
+		tokenLength := len(missingKeywordToken[t.fileContent[offset]])
+		if tokenLength == 0 {
+			if t.paranoiac {
+				location := t.location(offset, endOffset)
+				panic(fmt.Sprintf("Invalid missing token '%s'%s", t.fileContent[offset:endOffset], location))
+			}
+			tokenLength = endOffset - offset
+		}
+		missingToken := t.createUastToken(nil, offset, offset+tokenLength, "")
+		children = t.appendNodeCheckOrder(children, missingToken)
+		offset += tokenLength
+		for offset < endOffset && t.fileContent[offset] <= ' ' {
+			offset++
+		}
+	}
+	return children
+}
+
+func (t *UastMapper) createUastTokenFromPosAstToken(kinds []Kind, pos token.Pos, tok token.Token, nativeNode string) *Node {
+	if !(tok.IsOperator() || tok.IsKeyword()) {
+		if t.paranoiac {
+			offset := t.file.Offset(pos)
+			location := t.location(offset, offset)
+			panic(fmt.Sprintf("Unsupported token '%s'%s", tok.String(), location))
+		}
+		return nil
+	}
+	return t.createUastExpectedToken(kinds, pos, tok.String(), nativeNode)
+}
+
+func (t *UastMapper) createCaseOrDefaultToken(pos token.Pos, isDefault bool, nativeNode string) *Node {
+	tok := token.CASE
+	if isDefault {
+		tok = token.DEFAULT
+	}
+	return t.createUastTokenFromPosAstToken(nil, pos, tok, nativeNode)
+}
+
+func (t *UastMapper) createUastExpectedToken(kinds []Kind, pos token.Pos, expectedValue string, nativeNode string) *Node {
+	if pos == token.NoPos {
+		return nil
+	}
+	offset := t.file.Offset(pos)
+	endOffset := offset + len(expectedValue)
+	node := t.createUastToken(kinds, offset, endOffset, nativeNode)
+	if node != nil && node.Token.Value != expectedValue {
+		if t.paranoiac {
+			location := t.location(offset, endOffset)
+			panic(fmt.Sprintf("Invalid token value '%s' instead of '%s'%s",
+				node.Token.Value, expectedValue, location))
+		}
+		return nil
+	}
+	return node
+}
+
+func (t *UastMapper) createUastToken(kinds []Kind, offset, endOffset int, nativeNode string) *Node {
+	if offset < 0 || endOffset < offset || endOffset > len(t.fileContent) {
+		location := t.location(offset, endOffset)
+		panic("Invalid token" + location)
+	}
+	if endOffset == offset && !(len(kinds) == 1 && kinds[0] == EOF) {
+		if t.paranoiac {
+			location := t.location(offset, endOffset)
+			panic("Invalid empty token" + location)
+		}
+		return nil
+	}
+	position := t.toPosition(offset)
+	if !position.IsValid() {
+		if t.paranoiac {
+			location := t.location(offset, endOffset)
+			panic("Invalid token position" + location)
+		}
+		return nil
+	}
+	line := position.Line
+	lineOffset := offset - position.Column + 1
+	column := utf8.RuneCountInString(t.fileContent[lineOffset:offset]) + 1
+
+	if offset > 0 && offset == len(t.fileContent) && isEndOfLine(t.fileContent[offset-1]) {
+		line++
+		column = 1
+	}
+	return &Node{
+		Kinds: kinds,
+		Token: &Token{
+			Line:   line,
+			Column: column,
+			Value:  t.fileContent[offset:endOffset],
+		},
+		offset:     offset,
+		endOffset:  endOffset,
+		NativeNode: nativeNode,
+	}
+}
+
+func (t *UastMapper) toPosition(offset int) token.Position {
+	position := t.file.Position(t.file.Pos(offset))
+	if t.paranoiac && !position.IsValid() {
+		panic("Invalid offset" + t.location(offset, offset))
+	}
+	return position
+}
+
+func (t *UastMapper) location(offset, endOffset int) string {
+	var out bytes.Buffer
+	out.WriteString(fmt.Sprintf(" at offset %d:%d for file %s", offset, endOffset, t.file.Name()))
+	if offset >= 0 && offset <= t.file.Size() {
+		p := t.file.Position(t.file.Pos(offset))
+		out.WriteString(fmt.Sprintf(":%d:%d", p.Line, p.Column))
+	}
+	return out.String()
+}
+
+func isEndOfLine(ch byte) bool {
+	return ch == '\n' || ch == '\r'
 }

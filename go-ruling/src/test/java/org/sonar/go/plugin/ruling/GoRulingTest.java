@@ -69,14 +69,11 @@ class GoRulingTest {
     UastNode uast = getGoUast(GO_SOURCE_DIRECTORY.resolve("samples").resolve("SelfAssignement.go"));
     Engine engine = new Engine(Collections.emptyList());
     Metrics metrics = engine.scan(uast).metrics;
-    // TODO should be 1
-    assertEquals(0, metrics.numberOfClasses);
+    assertEquals(1, metrics.numberOfClasses);
     assertEquals(1, metrics.numberOfFunctions);
     assertEquals(3, metrics.numberOfStatements);
-    // TODO should be 2, 4, 6, 7, 8, 9, 10
-    assertEquals(new HashSet<>(Arrays.asList(2, 6, 7, 8, 9)), metrics.linesOfCode);
-    // TODO should be 1, 7, 8, 9
-    assertEquals(0, metrics.commentLines.size());
+    assertEquals(new HashSet<>(Arrays.asList(2, 4, 6, 7, 8, 9, 10)), metrics.linesOfCode);
+    assertEquals(new HashSet<>(Arrays.asList(1, 7, 8, 9)), metrics.commentLines);
   }
 
   private String getAndWriteActual(String ruleName, Map<String, List<String>> issuesPreFile) throws IOException {
@@ -129,7 +126,7 @@ class GoRulingTest {
     return "unknown";
   }
 
-  private UastNode getGoUast(Path path) {
+  static UastNode getGoUast(Path path) {
     try {
       ProcessBuilder builder = new ProcessBuilder(goParserPath(), path.toAbsolutePath().toString());
       builder.redirectErrorStream(true);
@@ -139,14 +136,28 @@ class GoRulingTest {
         if (!jsonOrError.startsWith("{")) {
           throw new IllegalArgumentException("Invalid file " + path + " :\n" + jsonOrError);
         }
-        return Uast.from(new StringReader(jsonOrError));
+        UastNode uast = Uast.from(new StringReader(jsonOrError));
+        assertUastCompleteness(path, uast);
+        return uast;
       }
     } catch (IOException e) {
       throw new IllegalStateException(e.getClass().getSimpleName() + " for '" + path + "': " + e.getMessage(), e);
     }
   }
 
-  String goParserPath() {
+  private static void assertUastCompleteness(Path path, UastNode uast) throws IOException {
+    String expectedSourceCode = reformatTabsAndEmptyLines(new String(Files.readAllBytes(path), UTF_8));
+    String regeneratedSourceCode = reformatTabsAndEmptyLines(uast.joinTokens());
+    assertEquals(expectedSourceCode, regeneratedSourceCode);
+  }
+
+  private static String reformatTabsAndEmptyLines(String sourceCode) {
+    return sourceCode
+      .replace('\t', ' ')
+      .replaceAll("(?m)^[\t ]+$", "");
+  }
+
+  static String goParserPath() {
     String name;
     String os = System.getProperty("os.name").toLowerCase();
     if (os.contains("win")) {

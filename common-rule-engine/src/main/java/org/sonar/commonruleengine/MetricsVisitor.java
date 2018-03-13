@@ -28,6 +28,9 @@ public class MetricsVisitor {
   }
 
   public void visitToken(Set<UastNode.Kind> nodeKinds, UastNode.Token token) {
+    if (nodeKinds.contains(UastNode.Kind.EOF)) {
+      return;
+    }
     Set<Integer> lineNumbers = nodeKinds.contains(UastNode.Kind.COMMENT) ? metrics.commentLines : metrics.linesOfCode;
     for (int line = token.line; line <= token.endLine; line++) {
       lineNumbers.add(line);

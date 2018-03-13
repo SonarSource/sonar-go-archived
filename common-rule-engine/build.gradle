@@ -20,6 +20,9 @@ compileJava {
     targetCompatibility = 1.8
 }
 
+test {
+    maxHeapSize = "2024m"
+}
 
 dependencies {
     implementation "org.sonarsource.sonarqube:sonar-plugin-api:${sonarVersion}"

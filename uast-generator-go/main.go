@@ -39,12 +39,15 @@ func parseArgs() Params {
 func main() {
 	params := parseArgs()
 
-	fileSet, astFile := readAstFile(params.path)
+	fileSet, astFile, fileContent, err := readAstFile(params.path)
+	if err != nil {
+		panic(err)
+	}
 
 	if params.dumpAst {
 		fmt.Println(render(astFile))
 	} else {
-		uast := toUast(fileSet, astFile)
+		uast := toUast(fileSet, astFile, fileContent)
 		PrintJson(uast)
 	}
 }

@@ -1,3 +1,10 @@
+kubernetes/pkg/apimachinery/tests/apis_meta_v1_unstructed_unstructure_test.go: 364:3
+kubernetes/test/e2e/chaosmonkey/chaosmonkey.go: 83:3
+kubernetes/test/e2e/framework/nodes_util.go: 242:3
+kubernetes/test/e2e_node/runtime_conformance_test.go: 303:5
+kubernetes/vendor/github.com/Azure/go-autorest/autorest/adal/devicetoken.go: 215:4
+kubernetes/vendor/github.com/appc/spec/schema/types/resource/math.go: 258:3
+kubernetes/vendor/github.com/appc/spec/schema/types/volume.go: 175:3
 kubernetes/vendor/golang.org/x/crypto/ed25519/internal/edwards25519/edwards25519.go: 491:2 492:2 493:2 494:2 495:2 496:2 497:2 498:2 499:2 500:2
 kubernetes/vendor/golang.org/x/net/context/ctxhttp/ctxhttp_pre17.go: 46:2 47:2
 samples/SelfAssignement.go: 7:3 9:3
