@@ -7,6 +7,8 @@ import (
 	"go/ast"
 	"go/parser"
 	"go/token"
+	"io"
+	"os"
 )
 
 type Kind string
@@ -461,7 +463,11 @@ func PrintJson(node *Node) {
 
 func readAstFile(filename string) (*token.FileSet, *ast.File) {
 	fileSet := token.NewFileSet()
-	astFile, err := parser.ParseFile(fileSet, filename, nil, parser.ParseComments)
+	var src io.Reader = nil
+	if filename == "-" {
+		src = os.Stdin
+	}
+	astFile, err := parser.ParseFile(fileSet, filename, src, parser.ParseComments)
 	if err != nil {
 		panic(err)
 	}
