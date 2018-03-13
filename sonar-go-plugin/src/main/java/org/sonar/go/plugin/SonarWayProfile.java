@@ -14,7 +14,7 @@ public class SonarWayProfile implements BuiltInQualityProfilesDefinition {
     JsonProfileDefinition profileDefinition = loadProfileDefinition("Sonar_way_profile.json");
     if (profileDefinition.ruleKeys.isEmpty()) {
       // basic sanity check
-      throw new IllegalStateException("No rules defined in Sonar Way profile");
+      throw new IllegalStateException("No rules defined in Sonar way profile");
     }
     NewBuiltInQualityProfile profile = context.createBuiltInQualityProfile(profileDefinition.name, GoLanguage.KEY);
     profile.setDefault(true);
