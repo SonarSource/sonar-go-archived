@@ -213,7 +213,7 @@ import (
 			(*ast.ValueSpec)(nil),
 		),
 	}
-	context.Execute()
+	context.execute()
 
 	err := ioutil.WriteFile("goparser_generated.go", out.Bytes(), 0644)
 	if err != nil {
@@ -226,9 +226,9 @@ func typeOf(pointer interface{}) reflect.Type {
 }
 
 func typeOfList(pointerList ...interface{}) []reflect.Type {
-	types := []reflect.Type{}
-	for _, structPointer := range pointerList {
-		types = append(types, reflect.TypeOf(structPointer).Elem())
+	types := make([]reflect.Type, len(pointerList))
+	for i, structPointer := range pointerList {
+		types[i] = reflect.TypeOf(structPointer).Elem()
 	}
 	return types
 }
@@ -267,7 +267,7 @@ type AstContext struct {
 	AllAstStruct             []reflect.Type
 }
 
-func (t *AstContext) Execute() {
+func (t *AstContext) execute() {
 	for len(t.TypeQueue) > 0 {
 		nextType := t.TypeQueue[0]
 		t.TypeQueue = t.TypeQueue[1:]

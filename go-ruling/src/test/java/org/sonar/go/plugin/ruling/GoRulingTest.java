@@ -154,7 +154,7 @@ class GoRulingTest {
   private static String reformatTabsAndEmptyLines(String sourceCode) {
     return sourceCode
       .replace('\t', ' ')
-      .replaceAll("(?m)^[\t ]+$", "");
+      .replaceAll("(?m)[\t ]+$", "");
   }
 
   static String goParserPath() {

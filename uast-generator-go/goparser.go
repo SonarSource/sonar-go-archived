@@ -384,7 +384,7 @@ func (t *UastMapper) toPosition(offset int) token.Position {
 func (t *UastMapper) location(offset, endOffset int) string {
 	var out bytes.Buffer
 	out.WriteString(fmt.Sprintf(" at offset %d:%d for file %s", offset, endOffset, t.file.Name()))
-	if offset >= 0 && offset <= t.file.Size() {
+	if 0 <= offset && offset <= t.file.Size() {
 		p := t.file.Position(t.file.Pos(offset))
 		out.WriteString(fmt.Sprintf(":%d:%d", p.Line, p.Column))
 	}
