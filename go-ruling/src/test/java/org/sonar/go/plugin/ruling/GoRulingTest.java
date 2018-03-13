@@ -106,6 +106,9 @@ class GoRulingTest {
   }
 
   void analyze(Map<String, Map<String, List<String>>> issuesPreRulePreFile, Path path) {
+    if (isFileTooBigAndCouldSlowDownTheRuling(path)) {
+      return;
+    }
     UastNode uast = getGoUast(path);
     Engine engine = new Engine();
     for (Issue issue : engine.scan(uast).issues) {
@@ -115,6 +118,14 @@ class GoRulingTest {
         .computeIfAbsent(ruleName, key -> new ConcurrentHashMap<>())
         .computeIfAbsent(filename, key -> new ArrayList<>())
         .add(" " + getNodeLocation(issue));
+    }
+  }
+
+  private boolean isFileTooBigAndCouldSlowDownTheRuling(Path path) {
+    try {
+      return Files.size(path) > 1_000_000L;
+    } catch (IOException e) {
+      throw new IllegalStateException("Can't read the file size" + e.getMessage(), e);
     }
   }
 

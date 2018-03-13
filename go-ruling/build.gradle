@@ -26,6 +26,10 @@ junitPlatformTest.dependsOn(":uast-generator-go:build")
 // disable caching for ruling test
 junitPlatformTest.outputs.upToDateWhen { false }
 
+test {
+    maxHeapSize = "3072m"
+}
+
 dependencies {
     implementation project(":common-rule-engine")
 
