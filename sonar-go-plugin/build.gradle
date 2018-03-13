@@ -4,6 +4,8 @@ plugins {
 
 apply plugin: 'java'
 
+ext.junitJupiterVersion = '5.1.0'
+
 
 dependencies {
     compile project(":common-rule-engine")
@@ -12,6 +14,12 @@ dependencies {
     compile "org.sonarsource.analyzer-commons:sonar-analyzer-commons:1.5.0.178"
     compile "org.sonarsource.sonarqube:sonar-plugin-api:6.7"
     compileOnly 'com.google.code.findbugs:jsr305:1.3.9'
+
+    runtime files(project(':uast-generator-go').buildDir)
+
+    testCompile "org.assertj:assertj-core:3.9.0"
+    testCompile "org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}"
+    testRuntime "org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}"
 }
 
 shadowJar {
@@ -26,6 +34,9 @@ shadowJar {
                 'Plugin-Name': 'SonarGo',
                 'Plugin-License': 'LGPLv3'
         )
+    }
+    dependencies {
+        exclude(dependency("org.sonarsource.sonarqube:sonar-plugin-api:6.7"))
     }
 }
 

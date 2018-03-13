@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.sonar.commonruleengine.checks.Check;
@@ -54,7 +55,7 @@ public class Engine {
     this(initChecks());
   }
 
-  public Engine(List<Check> rules) {
+  public Engine(Collection<Check> rules) {
     engineContext = new EngineContext();
     metricsVisitor = new MetricsVisitor();
     rules.forEach(rule -> rule.initialize(engineContext));
