@@ -311,7 +311,7 @@ func (t *AstContext) visitInterfaceType(interfaceType reflect.Type) {
 	for _, astStruct := range t.getStructTypesThanImplement(interfaceType) {
 		if !t.TypeToIgnore[astStruct.String()] {
 			t.writeLn("\tcase *" + astStruct.String() + ":")
-			t.writeLn("\t\t return t.map" + astStruct.Name() + "(node, kinds, nativeNode)")
+			t.writeLn("\t\treturn t.map" + astStruct.Name() + "(node, kinds, nativeNode)")
 			t.pushType(astStruct)
 		} else {
 			t.writeLn("\t// ignore " + astStruct.String() + " intentionally")
@@ -378,7 +378,7 @@ func (t *AstContext) visitField(fullName string, structType reflect.Type, field 
 	}
 }
 
-func (t *AstContext) visitStructField(fullName string, name string, fieldType reflect.Type) {
+func (t *AstContext) visitStructField(fullName, name string, fieldType reflect.Type) {
 	mappedField := t.mapField(fullName, fieldType, "astNode."+name, name)
 	if t.MergeFieldIntoParent[fullName] {
 		t.writeLn("\tchildren, kinds = t.mergeNode(children, kinds, " + mappedField + ")")
@@ -387,7 +387,7 @@ func (t *AstContext) visitStructField(fullName string, name string, fieldType re
 	}
 }
 
-func (t *AstContext) visitSliceField(fullName string, name string, sliceType reflect.Type) {
+func (t *AstContext) visitSliceField(fullName, name string, sliceType reflect.Type) {
 	elemType := sliceType.Elem()
 	parentListName := "children"
 	createParentList := !t.NoNodeForFieldList[fullName]
