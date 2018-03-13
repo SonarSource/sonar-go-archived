@@ -12,35 +12,51 @@ func fun() string {
 	return a
 }
 `
-	actual := toJson(toUast(astFromString(sample)))
 
-	expected := `{"kinds": ["COMPILATION_UNIT"], "token": {"value":"main","line":1,"column":1}, "nativeNode": "*ast.File", "children": [
-  {"kinds": ["DECL_LIST"], "nativeNode": "[]ast.Decl", "children": [
-    {"kinds": ["FUNCTION"], "nativeNode": "*ast.FuncDecl", "children": [
-      {"kinds": ["IDENTIFIER"], "token": {"value":"fun","line":3,"column":6}, "nativeNode": "*ast.Ident"},
-      {"kinds": ["*ast.FuncType"], "nativeNode": "*ast.FuncType", "children": [
-        {"kinds": ["PARAMETER_LIST"], "nativeNode": "*ast.FieldList"},
-        {"kinds": ["RESULT_LIST"], "nativeNode": "*ast.FieldList", "children": [
-          {"kinds": ["*ast.Field"], "nativeNode": "*ast.Field", "children": [
-            {"kinds": ["[]*ast.Ident"], "nativeNode": "[]*ast.Ident"},
-            {"kinds": ["IDENTIFIER"], "token": {"value":"string","line":3,"column":12}, "nativeNode": "*ast.Ident"}
+	actual := toJson(uastFromString(t, sample, ""))
+
+	expected := `{"kinds": ["COMPILATION_UNIT"], "nativeNode": "(File)", "children": [
+  {"kinds": ["PACKAGE"], "nativeNode": "File.Package", "children": [
+    {"kinds": null, "token": {"value":"package","line":1,"column":1}, "nativeNode": ""},
+    {"kinds": ["IDENTIFIER"], "token": {"value":"main","line":1,"column":9}, "nativeNode": "Name(Ident)"}
+  ]},
+  {"kinds": ["DECL_LIST"], "nativeNode": "Decls([]Decl)", "children": [
+    {"kinds": ["FUNCTION"], "nativeNode": "[0](FuncDecl)", "children": [
+      {"kinds": null, "token": {"value":"func","line":3,"column":1}, "nativeNode": "Type.Func"},
+      {"kinds": ["IDENTIFIER"], "token": {"value":"fun","line":3,"column":6}, "nativeNode": "Name(Ident)"},
+      {"kinds": null, "nativeNode": "Type(FuncType)", "children": [
+        {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
+          {"kinds": null, "token": {"value":"(","line":3,"column":9}, "nativeNode": "Opening"},
+          {"kinds": null, "token": {"value":")","line":3,"column":10}, "nativeNode": "Closing"}
+        ]},
+        {"kinds": ["RESULT_LIST"], "nativeNode": "Results(FieldList)", "children": [
+          {"kinds": null, "nativeNode": "[0](Field)", "children": [
+            {"kinds": ["IDENTIFIER"], "token": {"value":"string","line":3,"column":12}, "nativeNode": "Type(Ident)"}
           ]}
         ]}
       ]},
-      {"kinds": ["BLOCK"], "nativeNode": "*ast.BlockStmt", "children": [
-        {"kinds": ["ASSIGNMENT","STATEMENT"], "nativeNode": "*ast.AssignStmt", "children": [
-          {"kinds": ["ASSIGNMENT_TARGET"], "nativeNode": "[]ast.Expr", "children": [
-            {"kinds": ["IDENTIFIER"], "token": {"value":"a","line":4,"column":2}, "nativeNode": "*ast.Ident"}
+      {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
+        {"kinds": null, "token": {"value":"{","line":3,"column":19}, "nativeNode": "Lbrace"},
+        {"kinds": ["ASSIGNMENT","STATEMENT"], "nativeNode": "[0](AssignStmt)", "children": [
+          {"kinds": ["ASSIGNMENT_TARGET"], "nativeNode": "Lhs([]Expr)", "children": [
+            {"kinds": ["IDENTIFIER"], "token": {"value":"a","line":4,"column":2}, "nativeNode": "[0](Ident)"}
           ]},
-          {"kinds": ["TOKEN"], "token": {"value":":=","line":4,"column":4}, "nativeNode": "token.Token"},
-          {"kinds": ["ASSIGNMENT_VALUE"], "nativeNode": "[]ast.Expr", "children": [
-            {"kinds": ["LITERAL"], "token": {"value":"\"hello \\\"world\\\"\"","line":4,"column":7}, "nativeNode": "*ast.BasicLit"}
+          {"kinds": null, "token": {"value":":=","line":4,"column":4}, "nativeNode": "Tok"},
+          {"kinds": ["ASSIGNMENT_VALUE"], "nativeNode": "Rhs([]Expr)", "children": [
+            {"kinds": ["LITERAL"], "token": {"value":"\"hello \\\"world\\\"\"","line":4,"column":7}, "nativeNode": "[0](BasicLit)"}
           ]}
         ]},
-        {"kinds": ["UNSUPPORTED"], "nativeNode": "*ast.ReturnStmt"}
+        {"kinds": ["STATEMENT"], "nativeNode": "[1](ReturnStmt)", "children": [
+          {"kinds": null, "token": {"value":"return","line":5,"column":2}, "nativeNode": "Return"},
+          {"kinds": null, "nativeNode": "Results([]Expr)", "children": [
+            {"kinds": ["IDENTIFIER"], "token": {"value":"a","line":5,"column":9}, "nativeNode": "[0](Ident)"}
+          ]}
+        ]},
+        {"kinds": null, "token": {"value":"}","line":6,"column":1}, "nativeNode": "Rbrace"}
       ]}
     ]}
-  ]}
+  ]},
+  {"kinds": ["EOF"], "token": {"line":7,"column":1}, "nativeNode": ""}
 ]}`
 
 	if expected != actual {
