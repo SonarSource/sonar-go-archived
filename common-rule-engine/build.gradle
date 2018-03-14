@@ -1,19 +1,7 @@
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.1.0'
-    }
+plugins {
+    id 'java-library'
+    id 'jacoco'
 }
-
-apply plugin: 'java-library'
-apply plugin: 'org.junit.platform.gradle.plugin'
-
-ext.junitJupiterVersion  = '5.1.0'
-ext.gsonVersion  = '2.8.2'
-ext.jsr305Version = '3.0.2'
-ext.sonarVersion = '6.7'
 
 compileJava {
     sourceCompatibility = 1.8
@@ -21,14 +9,21 @@ compileJava {
 }
 
 dependencies {
-    implementation "org.sonarsource.sonarqube:sonar-plugin-api:${sonarVersion}"
+    compile     'com.google.code.gson:gson'
+    compileOnly 'com.google.code.findbugs:jsr305'
+    compile     'org.sonarsource.sonarqube:sonar-plugin-api'
 
-    implementation "com.google.code.gson:gson:${gsonVersion}"
-    implementation "com.google.code.findbugs:jsr305:${jsr305Version}"
+    testCompile 'org.assertj:assertj-core'
 
-    testCompile "org.assertj:assertj-core:3.9.0"
-    testCompile "com.google.guava:guava:24.0-jre"
-    testCompile "org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}"
-    testCompile "org.junit.jupiter:junit-jupiter-params:${junitJupiterVersion}"
-    testRuntime "org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}"
+    testCompile 'org.junit.jupiter:junit-jupiter-api'
+    testCompile 'org.junit.jupiter:junit-jupiter-params'
+    testRuntime 'org.junit.jupiter:junit-jupiter-engine'
+}
+
+
+test {
+    testLogging {
+        exceptionFormat 'full' // log the full stack trace (default is the 1st line of the stack trace)
+        events "skipped", "failed" // verbose log for failed and skipped tests (by default the name of the tests are not logged)
+    }
 }
