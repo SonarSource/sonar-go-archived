@@ -8,6 +8,6 @@ public class Metrics {
   public int numberOfFunctions = 0;
   public int numberOfStatements = 0;
 
-  public Set<Integer> linesOfCode = new HashSet();
-  public Set<Integer> commentLines = new HashSet();
+  public Set<Integer> linesOfCode = new HashSet<>();
+  public Set<Integer> commentLines = new HashSet<>();
 }

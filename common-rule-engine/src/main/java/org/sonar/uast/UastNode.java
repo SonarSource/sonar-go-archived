@@ -143,16 +143,30 @@ public final class UastNode {
 
   public String joinTokens() {
     StringBuilder sb = new StringBuilder();
-    joinTokens(sb);
+    SourcePos pos = kinds.contains(Kind.COMPILATION_UNIT) ? new SourcePos(1,1) : new SourcePos(0,0);
+    joinTokens(sb, pos);
     return sb.toString();
   }
 
-  private void joinTokens(StringBuilder sb) {
+  private void joinTokens(StringBuilder sb, SourcePos pos) {
     if (token != null) {
+      if (pos.line != 0) {
+        while (pos.line < token.line) {
+          sb.append('\n');
+          pos.line++;
+          pos.column = 1;
+        }
+        while (pos.column < token.column) {
+          sb.append(' ');
+          pos.column++;
+        }
+      }
       sb.append(token.value);
+      pos.line = token.endLine;
+      pos.column = token.endColumn + 1;
     }
     for (UastNode child : children) {
-      child.joinTokens(sb);
+      child.joinTokens(sb, pos);
     }
   }
 
@@ -164,4 +178,14 @@ public final class UastNode {
     Token firstToken = firstToken();
     return kinds.toString() + (firstToken != null ? firstToken.value : "");
   }
+
+  private static class SourcePos {
+    int line;
+    int column;
+    public SourcePos(int line, int column) {
+      this.line = line;
+      this.column = column;
+    }
+  }
+
 }

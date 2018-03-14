@@ -8,6 +8,7 @@ import java.io.Reader;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Set;
 import javax.annotation.Nullable;
 
@@ -64,14 +65,16 @@ public final class Uast {
     if (node2.token != null && !node1.token.value.equals(node2.token.value)) {
       return false;
     }
-    if (node1.children.size() != node2.children.size()) {
-      return false;
-    }
     if (node1.kinds.contains(UastNode.Kind.UNSUPPORTED) || node2.kinds.contains(UastNode.Kind.UNSUPPORTED)) {
       return false;
     }
-    Iterator<UastNode> child1 = node1.children.iterator();
-    Iterator<UastNode> child2 = node2.children.iterator();
+    CommentFilteredList list1 = new CommentFilteredList(node1.children);
+    CommentFilteredList list2 = new CommentFilteredList(node2.children);
+    if (list1.computeSize() != list2.computeSize()) {
+      return false;
+    }
+    Iterator<UastNode> child1 = list1.iterator();
+    Iterator<UastNode> child2 = list2.iterator();
     while (child1.hasNext()) {
       if (!syntacticallyEquivalent(child1.next(), child2.next())) {
         return false;
@@ -103,7 +106,7 @@ public final class Uast {
     UastNode.Token token;
     @Nullable
     List<UastNode> children;
- }
+  }
 
   private static class JsonUastToken {
     @Nullable
@@ -113,4 +116,66 @@ public final class Uast {
     @Nullable
     String value;
   }
+
+  private static class CommentFilteredList {
+
+    private final List<UastNode> children;
+
+    private CommentFilteredList(List<UastNode> children) {
+      this.children = children;
+    }
+
+    private int computeSize() {
+      int size = 0;
+      Iterator<UastNode> iterator = iterator();
+      while (iterator.hasNext()) {
+        iterator.next();
+        size++;
+      }
+      return size;
+    }
+
+    private Iterator<UastNode> iterator() {
+      return new FilterIterator(children.iterator());
+    }
+
+    private class FilterIterator implements Iterator<UastNode> {
+
+      private final Iterator<UastNode> iterator;
+
+      private UastNode nextNode;
+
+      private FilterIterator(Iterator<UastNode> iterator) {
+        this.iterator = iterator;
+        this.nextNode = findNext();
+      }
+
+      @Override
+      public boolean hasNext() {
+        return nextNode != null;
+      }
+
+      @Override
+      public UastNode next() {
+        if (nextNode == null) {
+          throw new NoSuchElementException();
+        }
+        UastNode node = nextNode;
+        nextNode = findNext();
+        return node;
+      }
+
+      private UastNode findNext() {
+        while (iterator.hasNext()) {
+          UastNode node = iterator.next();
+          if (!node.kinds.contains(UastNode.Kind.COMMENT)) {
+            return node;
+          }
+        }
+        return null;
+      }
+    }
+
+  }
+
 }

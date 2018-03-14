@@ -1,10 +1,13 @@
 package main
 
 import (
+	"encoding/json"
+	"errors"
+	"fmt"
 	"go/ast"
-	"go/parser"
 	"go/token"
 	"reflect"
+	"strings"
 	"testing"
 )
 
@@ -38,240 +41,208 @@ func (a id) fun(n1, n2 int, s1 string, b1 bool) (n int, s string) {
 )
 
 func Test_mapFile(t *testing.T) {
-	fileSet, astFile := astFromString(example_hello_world)
-	uast := toUast(fileSet, astFile)
+	uast := uastFromString(t, example_hello_world, "")
 
-	expectKinds(t, uast, kinds(COMPILATION_UNIT))
-	expectChildrenCount(t, uast, 1)
-	expectNativeNode(t, uast, "*ast.File")
-	expectToken(t, uast, &Token{Line: 1, Column: 1, Value: "main"})
+	expectKinds(t, uast, []Kind{COMPILATION_UNIT})
+	expectChildrenCount(t, uast, 3)
+	expectNativeNode(t, uast, "(File)")
+	expectToken(t, uast, nil)
 
-	expectKinds(t, uast.Children[0], kinds(DECL_LIST))
+	expectKinds(t, uast.Children[1], []Kind{DECL_LIST})
 }
 
 func Test_mapFuncDecl(t *testing.T) {
-	fileSet, astFile := astFromString(example_hello_world)
-	funcDecl := astFile.Decls[1].(*ast.FuncDecl)
-	uast := mapNode(funcDecl)
-	fixPositions(uast, fileSet)
+	uast := uastFromString(t, example_hello_world, "Decls/[1](FuncDecl)")
 
-	expectKinds(t, uast, kinds(FUNCTION))
-	expectChildrenCount(t, uast, 3)
-	expectNativeNode(t, uast, "*ast.FuncDecl")
+	expectKinds(t, uast, []Kind{FUNCTION})
+	expectChildrenCount(t, uast, 4)
+	expectNativeNode(t, uast, "[1](FuncDecl)")
 	expectToken(t, uast, nil)
 }
 
 func Test_mapFuncDecl_forward_declaration(t *testing.T) {
-	example_with_forward_declaration := "package main\nfunc forward_declaration() int64"
-	fileSet, astFile := astFromString(example_with_forward_declaration)
-	funcDecl := astFile.Decls[0].(*ast.FuncDecl)
-	uast := mapNode(funcDecl)
-	fixPositions(uast, fileSet)
+	uast := uastFromString(t, "package main\nfunc forward_declaration() int64",
+		"Decls/[0](FuncDecl)")
 
-	expectKinds(t, uast, kinds(FUNCTION))
-	expectChildrenCount(t, uast, 2)
-	expectNativeNode(t, uast, "*ast.FuncDecl")
+	expectKinds(t, uast, []Kind{FUNCTION})
+	expectChildrenCount(t, uast, 3)
+	expectNativeNode(t, uast, "[0](FuncDecl)")
 	expectToken(t, uast, nil)
 }
 
 func Test_mapFuncDecl_Name(t *testing.T) {
-	fileSet, astFile := astFromString(example_hello_world)
-	funcDecl := astFile.Decls[1].(*ast.FuncDecl)
-	uast := mapNode(funcDecl).Children[0]
-	fixPositions(uast, fileSet)
+	uast := uastFromString(t, example_hello_world, "Decls/[1](FuncDecl)/Name")
 
-	expectKinds(t, uast, kinds(IDENTIFIER))
+	expectKinds(t, uast, []Kind{IDENTIFIER})
 	expectChildrenCount(t, uast, 0)
-	expectNativeNode(t, uast, "*ast.Ident")
+	expectNativeNode(t, uast, "Name(Ident)")
 	expectToken(t, uast, &Token{Line: 3, Column: 6, Value: "main"})
 }
 
 func Test_mapFuncDecl_complete(t *testing.T) {
-	fileSet, astFile := astFromString(example_with_complete_function)
-	funcDecl := astFile.Decls[1].(*ast.FuncDecl)
-	uast := mapNode(funcDecl)
-	fixPositions(uast, fileSet)
+	uast := uastFromString(t, example_with_complete_function,
+		"Decls/[1](FuncDecl)")
 
-	expectKinds(t, uast, kinds(FUNCTION))
-	expectChildrenCount(t, uast, 3)
-	expectNativeNode(t, uast, "*ast.FuncDecl")
+	expectKinds(t, uast, []Kind{FUNCTION})
+	expectChildrenCount(t, uast, 5)
+	expectNativeNode(t, uast, "[1](FuncDecl)")
 
-	expectKinds(t, uast.Children[0], kinds(IDENTIFIER))
-	expectKinds(t, uast.Children[2], kinds(BLOCK))
+	expectKinds(t, uast.Children[0], nil)
+	expectKinds(t, uast.Children[1], []Kind{PARAMETER_LIST})
+	expectKinds(t, uast.Children[2], []Kind{IDENTIFIER})
+	expectKinds(t, uast.Children[4], []Kind{BLOCK})
 
-	funcType := uast.Children[1]
-	expectKinds(t, funcType, kinds(&ast.FuncType{}))
+	funcType := uast.Children[3]
+	expectKinds(t, funcType, nil)
 	expectChildrenCount(t, funcType, 2)
+	expectNativeNode(t, funcType, "Type(FuncType)")
 
 	params := funcType.Children[0]
-	expectKinds(t, params, kinds(PARAMETER_LIST))
-	expectChildrenCount(t, params, 3)
-	expectNativeNode(t, params, "*ast.FieldList")
+	expectKinds(t, params, []Kind{PARAMETER_LIST})
+	expectChildrenCount(t, params, 7)
+	expectNativeNode(t, params, "Params(FieldList)")
 
-	intParams := params.Children[0]
-	expectKinds(t, intParams, kinds(&ast.Field{}))
+	intParams := params.Children[1]
+	expectKinds(t, intParams, nil)
 	expectChildrenCount(t, intParams, 2)
-	expectNativeNode(t, intParams, "*ast.Field")
+	expectNativeNode(t, intParams, "[0](Field)")
 
 	intParamsNames := intParams.Children[0]
-	expectChildrenCount(t, intParamsNames, 2)
-	expectNativeNode(t, intParamsNames, "[]*ast.Ident")
+	expectChildrenCount(t, intParamsNames, 3)
+	expectNativeNode(t, intParamsNames, "Names([]*Ident)")
 
 	n1 := intParamsNames.Children[0]
 	expectChildrenCount(t, n1, 0)
-	expectKinds(t, n1, kinds(IDENTIFIER, PARAMETER))
+	expectKinds(t, n1, []Kind{PARAMETER, IDENTIFIER})
 	expectToken(t, n1, &Token{Line: 3, Column: 17, Value: "n1"})
 
 	intParamsType := intParams.Children[1]
-	expectKinds(t, intParamsType, kinds(IDENTIFIER))
+	expectKinds(t, intParamsType, []Kind{IDENTIFIER})
+	expectToken(t, intParamsType, &Token{Line: 3, Column: 24, Value: "int"})
 	expectChildrenCount(t, intParamsType, 0)
-	expectNativeNode(t, intParamsType, "*ast.Ident")
+	expectNativeNode(t, intParamsType, "Type(Ident)")
 
-	stringParams := params.Children[1]
-	expectKinds(t, stringParams, kinds(&ast.Field{}))
+	stringParams := params.Children[3]
+	expectKinds(t, stringParams, nil)
+	expectNativeNode(t, stringParams, "[1](Field)")
 	expectChildrenCount(t, stringParams, 2)
-	expectNativeNode(t, stringParams, "*ast.Field")
 
 	stringParamsNames := stringParams.Children[0]
 	expectChildrenCount(t, stringParamsNames, 1)
-	expectNativeNode(t, stringParamsNames, "[]*ast.Ident")
+	expectNativeNode(t, stringParamsNames, "Names([]*Ident)")
 
 	s1 := stringParamsNames.Children[0]
 	expectChildrenCount(t, s1, 0)
-	expectKinds(t, s1, kinds(IDENTIFIER, PARAMETER))
+	expectKinds(t, s1, []Kind{PARAMETER, IDENTIFIER})
 	expectToken(t, s1, &Token{Line: 3, Column: 29, Value: "s1"})
 
 	stringParamsType := stringParams.Children[1]
-	expectKinds(t, stringParamsType, kinds(IDENTIFIER))
+	expectKinds(t, stringParamsType, []Kind{IDENTIFIER})
 	expectChildrenCount(t, stringParamsType, 0)
-	expectNativeNode(t, stringParamsType, "*ast.Ident")
+	expectNativeNode(t, stringParamsType, "Type(Ident)")
 
 	results := funcType.Children[1]
-	expectKinds(t, results, kinds(RESULT_LIST))
-	expectChildrenCount(t, results, 2)
-	expectNativeNode(t, results, "*ast.FieldList")
+	expectKinds(t, results, []Kind{RESULT_LIST})
+	expectChildrenCount(t, results, 5)
+	expectNativeNode(t, results, "Results(FieldList)")
 
-	intResults := results.Children[0]
-	expectKinds(t, intResults, kinds(&ast.Field{}))
+	intResults := results.Children[1]
+	expectKinds(t, intResults, nil)
 	expectChildrenCount(t, intResults, 2)
-	expectNativeNode(t, intResults, "*ast.Field")
+	expectNativeNode(t, intResults, "[0](Field)")
 
 	intResultsNames := intResults.Children[0]
 	expectChildrenCount(t, intResultsNames, 1)
-	expectNativeNode(t, intResultsNames, "[]*ast.Ident")
+	expectNativeNode(t, intResultsNames, "Names([]*Ident)")
 
 	n := intResultsNames.Children[0]
 	expectChildrenCount(t, n, 0)
-	expectKinds(t, n, kinds(IDENTIFIER, RESULT))
+	expectKinds(t, n, []Kind{RESULT, IDENTIFIER})
 	expectToken(t, n, &Token{Line: 3, Column: 50, Value: "n"})
 
 	intResultsType := intResults.Children[1]
-	expectKinds(t, intResultsType, kinds(IDENTIFIER))
+	expectKinds(t, intResultsType, []Kind{IDENTIFIER})
 	expectChildrenCount(t, intResultsType, 0)
-	expectNativeNode(t, intResultsType, "*ast.Ident")
+	expectNativeNode(t, intResultsType, "Type(Ident)")
 }
 
 func Test_mapBlockStmt(t *testing.T) {
-	fileSet, astFile := astFromString(example_with_two_assignments)
-	blockStmt := astFile.Decls[0].(*ast.FuncDecl).Body
-	uast := mapNode(blockStmt)
-	fixPositions(uast, fileSet)
+	uast := uastFromString(t, example_with_two_assignments,
+		"Decls/[0](FuncDecl)/Body")
 
-	expectKinds(t, uast, kinds(BLOCK))
-	expectChildrenCount(t, uast, 2)
-	expectNativeNode(t, uast, "*ast.BlockStmt")
+	expectKinds(t, uast, []Kind{BLOCK})
+	expectChildrenCount(t, uast, 4)
+	expectNativeNode(t, uast, "Body(BlockStmt)")
 	expectToken(t, uast, nil)
 }
 
 func Test_mapAssignStmt(t *testing.T) {
-	fileSet, astFile := astFromString(example_with_two_assignments)
-	blockStmt := astFile.Decls[0].(*ast.FuncDecl).Body
-	uast := mapNode(blockStmt.List[0].(*ast.AssignStmt))
-	fixPositions(uast, fileSet)
+	uast := uastFromString(t, example_with_two_assignments,
+		"Decls/[0](FuncDecl)/Body/[0](AssignStmt)")
 
-	expectKinds(t, uast, kinds(ASSIGNMENT, STATEMENT))
+	expectKinds(t, uast, []Kind{ASSIGNMENT, STATEMENT})
 	expectChildrenCount(t, uast, 3)
-	expectNativeNode(t, uast, "*ast.AssignStmt")
+	expectNativeNode(t, uast, "[0](AssignStmt)")
 	expectToken(t, uast, nil)
 }
 
 func Test_mapExprList(t *testing.T) {
-	fileSet, astFile := astFromString(example_with_two_assignments)
-	blockStmt := astFile.Decls[0].(*ast.FuncDecl).Body
-	uast := mapExprList(EXPR_LIST, blockStmt.List[0].(*ast.AssignStmt).Lhs)
-	fixPositions(uast, fileSet)
+	uast := uastFromString(t, example_with_two_assignments,
+		"Decls/[0](FuncDecl)/Body/[0](AssignStmt)/Lhs")
 
-	expectKinds(t, uast, kinds(EXPR_LIST))
-	expectChildrenCount(t, uast, 2)
-	expectNativeNode(t, uast, "[]ast.Expr")
+	expectKinds(t, uast, []Kind{ASSIGNMENT_TARGET})
+	expectChildrenCount(t, uast, 3)
+	expectNativeNode(t, uast, "Lhs([]Expr)")
 	expectToken(t, uast, nil)
 }
 
 func Test_mapExpr_Ident(t *testing.T) {
-	fileSet, astFile := astFromString(example_with_two_assignments)
-	blockStmt := astFile.Decls[0].(*ast.FuncDecl).Body
-	uast := mapNode(blockStmt.List[0].(*ast.AssignStmt).Lhs[0])
-	fixPositions(uast, fileSet)
+	uast := uastFromString(t, example_with_two_assignments,
+		"Decls/[0](FuncDecl)/Body/[0](AssignStmt)/Lhs/[0](Ident)")
 
-	if uast == nil {
-		t.Fatalf("got nil; expected an identifier")
-	}
-
-	expectKinds(t, uast, kinds(IDENTIFIER))
+	expectKinds(t, uast, []Kind{IDENTIFIER})
 	expectChildrenCount(t, uast, 0)
-	expectNativeNode(t, uast, "*ast.Ident")
+	expectNativeNode(t, uast, "[0](Ident)")
 	expectToken(t, uast, &Token{Line: 3, Column: 2, Value: "a"})
 }
 
 func Test_mapExpr_BasicLit(t *testing.T) {
-	fileSet, astFile := astFromString(example_hello_world)
-	blockStmt := astFile.Decls[1].(*ast.FuncDecl).Body
-	uast := mapNode(blockStmt.List[0].(*ast.AssignStmt).Rhs[0])
-	fixPositions(uast, fileSet)
+	uast := uastFromString(t, example_hello_world,
+		"Decls/[1](FuncDecl)/Body/[0](AssignStmt)/Rhs/[0](BasicLit)")
 
-	if uast == nil {
-		t.Fatalf("got nil; expected a literal")
-	}
-
-	expectKinds(t, uast, kinds(LITERAL))
+	expectKinds(t, uast, []Kind{LITERAL})
 	expectChildrenCount(t, uast, 0)
-	expectNativeNode(t, uast, "*ast.BasicLit")
+	expectNativeNode(t, uast, "[0](BasicLit)")
 	expectToken(t, uast, &Token{Line: 4, Column: 9, Value: "\"hello, world\""})
 }
 
 func Test_mapExprStmt(t *testing.T) {
-	fileSet, astFile := astFromString(example_hello_world)
-	blockStmt := astFile.Decls[1].(*ast.FuncDecl).Body
-	uast := mapNode(blockStmt.List[1].(*ast.ExprStmt))
-	fixPositions(uast, fileSet)
+	uast := uastFromString(t, example_hello_world,
+		"Decls/[1](FuncDecl)/Body/[1](ExprStmt)")
 
-	expectKinds(t, uast, kinds(EXPRESSION, STATEMENT))
+	expectKinds(t, uast, []Kind{EXPRESSION, STATEMENT})
 	expectChildrenCount(t, uast, 1)
-	expectNativeNode(t, uast, "*ast.ExprStmt")
+	expectNativeNode(t, uast, "[1](ExprStmt)")
 	expectToken(t, uast, nil)
 }
 
 func Test_mapCallExpr(t *testing.T) {
-	fileSet, astFile := astFromString(example_hello_world)
-	blockStmt := astFile.Decls[1].(*ast.FuncDecl).Body
-	uast := mapNode(blockStmt.List[1].(*ast.ExprStmt).X.(*ast.CallExpr))
-	fixPositions(uast, fileSet)
+	uast := uastFromString(t, example_hello_world,
+		"Decls/[1](FuncDecl)/Body/[1](ExprStmt)/X(CallExpr)")
 
-	expectKinds(t, uast, kinds(CALL))
+	expectKinds(t, uast, []Kind{CALL})
 	expectChildrenCount(t, uast, 4)
-	expectNativeNode(t, uast, "")
+	expectNativeNode(t, uast, "X(CallExpr)")
 	expectToken(t, uast, nil)
 }
 
 func Test_mapIfStmt(t *testing.T) {
-	fileSet, astFile := astFromString(example_with_if)
-	blockStmt := astFile.Decls[0].(*ast.FuncDecl).Body
-	uast := mapNode(blockStmt.List[1].(*ast.IfStmt))
-	fixPositions(uast, fileSet)
+	uast := uastFromString(t, example_with_if,
+		"Decls/[0](FuncDecl)/Body/[1](IfStmt)")
 
-	expectKinds(t, uast, kinds(IF, STATEMENT))
+	expectKinds(t, uast, []Kind{IF, STATEMENT})
 	expectChildrenCount(t, uast, 3)
-	expectNativeNode(t, uast, "*ast.IfStmt")
+	expectNativeNode(t, uast, "[1](IfStmt)")
 	expectToken(t, uast, nil)
 }
 
@@ -280,19 +251,16 @@ func Test_mapBinaryOperator(t *testing.T) {
 func main() {
 	v1 := true || false
 	v2 := true && false
-	// rel op
 	v3 := 1 == 2
 	v4 := 1 != 2
 	v5 := 1 < 2
 	v6 := 1 <= 2
 	v7 := 1 > 2
 	v8 := 1 >= 2
-	// add_op
 	v9 := 1 + 2
 	v10 := 1 - 2
 	v11 := 1 | 2
 	v12 := 1 ^ 2
-	// mul_op
 	v13 := 1 * 2
 	v14 := 1 / 2
 	v15 := 1 % 2
@@ -303,16 +271,21 @@ func main() {
 }
 `
 	expectedOperators := []string{"||", "&&", "==", "!=", "<", "<=", ">", ">=", "+", "-", "|", "^", "*", "/", "%", "<<", ">>", "&", "&^"}
-	fileSet, astFile := astFromString(source)
-	blockStmt := astFile.Decls[0].(*ast.FuncDecl).Body
-	for i, stmt := range blockStmt.List {
-		binaryExpr := stmt.(*ast.AssignStmt).Rhs[0]
-		uast := mapNode(binaryExpr)
-		fixPositions(uast, fileSet)
+	body := uastFromString(t, source,
+		"Decls/[0](FuncDecl)/Body")
 
-		expectKinds(t, uast, kinds(BINARY_EXPRESSION))
+	expectChildrenCount(t, body, len(expectedOperators)+2)
+	// remove the '{' and '}' child
+	statements := body.Children[1 : len(body.Children)-1]
+
+	for i, stmt := range statements {
+		uast, err := uastQuery(stmt, "Rhs([]Expr)/[0]")
+		if err != nil {
+			t.Fatalf(err.Error())
+		}
+		expectKinds(t, uast, []Kind{BINARY_EXPRESSION})
 		expectChildrenCount(t, uast, 3)
-		expectNativeNode(t, uast, "*ast.BinaryExpr")
+		expectNativeNode(t, uast, "[0](BinaryExpr)")
 		expectEquals(t, uast.Children[1].Token.Value, expectedOperators[i])
 	}
 }
@@ -326,16 +299,17 @@ func main(i int) {
 	}
 }
 `
-	_, astFile := astFromString(source)
-	blockStmt := astFile.Decls[0].(*ast.FuncDecl).Body
-	switchStmt := blockStmt.List[0].(*ast.SwitchStmt)
+	switchStmt := uastFromString(t, source,
+		"Decls/[0](FuncDecl)/Body/[0](SwitchStmt)")
+
 	conditionCounter := 0
-	for _, caseNode := range switchStmt.Body.List {
-		caseClause := mapCaseClause(caseNode.(*ast.CaseClause))
-		expectKinds(t, caseClause, kinds(CASE))
-		for _, child := range caseClause.Children {
-			if child.hasKind(CONDITION) {
-				conditionCounter++
+	for _, switchChild := range switchStmt.Children {
+		if switchChild.hasKind(CASE) {
+			caseClause := switchChild
+			for _, child := range caseClause.Children {
+				if child.hasKind(CONDITION) {
+					conditionCounter++
+				}
 			}
 		}
 	}
@@ -353,14 +327,59 @@ func (n *Node) hasKind(kind Kind) bool {
 	return false
 }
 
-func astFromString(source string) (*token.FileSet, *ast.File) {
-	fileSet := token.NewFileSet()
-	sourceFileName := "main.go"
-	astFile, err := parser.ParseFile(fileSet, sourceFileName, source, parser.ParseComments)
+func astFromString(source string) (fileSet *token.FileSet, astFile *ast.File) {
+	fileSet, astFile, err := readAstString("main.go", source)
 	if err != nil {
 		panic(err)
 	}
-	return fileSet, astFile
+	return
+}
+
+func uastFromString(t *testing.T, source string, nodeQueryPath string) *Node {
+	fileSet, astNode := astFromString(source)
+	uast := toUast(fileSet, astNode, source)
+	node, err := uastQuery(uast, nodeQueryPath)
+	if err != nil {
+		t.Fatalf(err.Error())
+	}
+	return node
+}
+
+func uastQuery(parent *Node, nodeQueryPath string) (*Node, error) {
+	if len(nodeQueryPath) == 0 {
+		return parent, nil
+	}
+	node := parent
+	var bestMatch string
+	for _, pathElem := range strings.Split(nodeQueryPath, "/") {
+		var newNode *Node
+		for _, child := range node.Children {
+			name := child.NativeNode
+			if name != pathElem {
+				// remove the type from the name, ex: "Name(Ident)" => "Name"
+				typeStart := strings.IndexByte(name, '(')
+				if typeStart != -1 {
+					name = name[0:typeStart]
+				}
+			}
+			if name == pathElem {
+				newNode = child
+				if len(bestMatch) > 0 {
+					bestMatch += "/"
+				}
+				bestMatch += pathElem
+				break
+			}
+		}
+		if newNode == nil {
+			data, _ := json.MarshalIndent(node, "", "  ")
+			return nil, errors.New(fmt.Sprintf("Invalid nodeQueryPath '%s' best match '%s'\n"+
+				"The element '%s' not found as child of this node:\n%s",
+				nodeQueryPath, bestMatch, pathElem, string(data)))
+		}
+		node = newNode
+	}
+	return node, nil
 }
 
 func expectEquals(t *testing.T, actual string, expected string) {
