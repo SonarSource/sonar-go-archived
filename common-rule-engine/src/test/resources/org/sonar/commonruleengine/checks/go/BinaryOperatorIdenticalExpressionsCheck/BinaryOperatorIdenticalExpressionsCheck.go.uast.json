@@ -174,9 +174,7 @@
         {"kinds": null, "token": {"value":"{","line":17,"column":12}, "nativeNode": "Lbrace"},
         {"kinds": ["STATEMENT"], "nativeNode": "[0](ReturnStmt)", "children": [
           {"kinds": null, "token": {"value":"return","line":18,"column":2}, "nativeNode": "Return"},
-          {"kinds": null, "nativeNode": "Results([]Expr)", "children": [
-            {"kinds": ["LITERAL"], "token": {"value":"1","line":18,"column":9}, "nativeNode": "[0](BasicLit)"}
-          ]}
+          {"kinds": ["LITERAL"], "token": {"value":"1","line":18,"column":9}, "nativeNode": "[0](BasicLit)"}
         ]},
         {"kinds": null, "token": {"value":";","line":18,"column":10}, "nativeNode": ""},
         {"kinds": null, "token": {"value":"}","line":19,"column":1}, "nativeNode": "Rbrace"}
@@ -195,9 +193,7 @@
         {"kinds": null, "token": {"value":"{","line":21,"column":12}, "nativeNode": "Lbrace"},
         {"kinds": ["STATEMENT"], "nativeNode": "[0](ReturnStmt)", "children": [
           {"kinds": null, "token": {"value":"return","line":22,"column":2}, "nativeNode": "Return"},
-          {"kinds": null, "nativeNode": "Results([]Expr)", "children": [
-            {"kinds": ["LITERAL"], "token": {"value":"1","line":22,"column":9}, "nativeNode": "[0](BasicLit)"}
-          ]}
+          {"kinds": ["LITERAL"], "token": {"value":"1","line":22,"column":9}, "nativeNode": "[0](BasicLit)"}
         ]},
         {"kinds": null, "token": {"value":";","line":22,"column":10}, "nativeNode": ""},
         {"kinds": null, "token": {"value":"}","line":23,"column":1}, "nativeNode": "Rbrace"}

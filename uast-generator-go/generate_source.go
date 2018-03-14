@@ -82,16 +82,29 @@ import (
 			"CaseClause#List[i]":   "CONDITION",
 			"IfStmt#Else":          "ELSE",
 		},
-		NoNodeForFieldList: map[string]bool{
-			// TODO invert the default behavior of a array fields to not create an additional node
-			"FieldListParams#List":  true,
-			"FieldListResults#List": true,
-			"BlockStmt#List":        true,
-			"CaseClause#List":       true,
+		ArrayFieldCreatingNode: map[string]bool{
+			// By default when a field is an array, an intermediate node is not created to store the array elements.
+			// Array elements are appended directly to the parent. And it's not possible to define "kinds" like
+			// "CaseClause#List" because there's no matching node, but only "CaseClause#List[i]".
+			// But adding an entry bellow, change the default behavior and create an intermediate node, and this node
+			// support "kinds" defined in "KindsPerName".
+			"File#Decls":        true,
+			"GenDecl#Specs":     true,
+			"Field#Names":       true,
+			"FieldResult#Names": true,
+			"FieldParam#Names":  true,
+			"ValueSpec#Names":   true,
+			"ValueSpec#Values":  true,
+			"AssignStmt#Lhs":    true,
+			"AssignStmt#Rhs":    true,
+			"CaseClause#Body":   true,
+			"CommClause#Body":   true,
+			"CallExpr#Args":     true,
+			"CompositeLit#Elts": true,
 		},
 		MergeFieldIntoParent: map[string]bool{
 			// The uast node generated for a given field is discarded, but it's kinds and children are
-			// appended to it's parent. This does not apply to array fields, see NoNodeForFieldList
+			// appended to it's parent. This does not apply to array fields, see ArrayFieldCreatingNode
 			"SwitchStmt#Body": true,
 		},
 		InsertBeforeField: map[string]string{
@@ -286,24 +299,24 @@ func NewTypeKind(pointer interface{}, kind string) *TypeKind {
 }
 
 type AstContext struct {
-	Out                   *bytes.Buffer
-	TypeToIgnore          map[string]bool
-	ForceLeafNode         map[string]bool
-	FieldToIgnore         map[string]bool
-	TokenFieldWithPos     map[string]bool
-	MatchingTokenPos      map[string]token.Token
-	KindsPerType          []*TypeKind
-	NoNodeForFieldList    map[string]bool
-	MergeFieldIntoParent  map[string]bool
-	KindsPerTypeException map[reflect.Type]reflect.Type
-	KindsPerName          map[string]string
-	InsertBeforeField     map[string]string
-	OverrideField         map[string]string
-	StructVariations      map[string][]string
-	FieldVariationMap     map[string]string
-	TypeQueue             []reflect.Type
-	TypeProcessed         map[reflect.Type]bool
-	AllAstStruct          []reflect.Type
+	Out                    *bytes.Buffer
+	TypeToIgnore           map[string]bool
+	ForceLeafNode          map[string]bool
+	FieldToIgnore          map[string]bool
+	TokenFieldWithPos      map[string]bool
+	MatchingTokenPos       map[string]token.Token
+	KindsPerType           []*TypeKind
+	ArrayFieldCreatingNode map[string]bool
+	MergeFieldIntoParent   map[string]bool
+	KindsPerTypeException  map[reflect.Type]reflect.Type
+	KindsPerName           map[string]string
+	InsertBeforeField      map[string]string
+	OverrideField          map[string]string
+	StructVariations       map[string][]string
+	FieldVariationMap      map[string]string
+	TypeQueue              []reflect.Type
+	TypeProcessed          map[reflect.Type]bool
+	AllAstStruct           []reflect.Type
 }
 
 func (t *AstContext) execute() {
@@ -429,8 +442,8 @@ func (t *AstContext) visitStructField(fullName, name string, fieldType reflect.T
 func (t *AstContext) visitSliceField(fullName, name string, sliceType reflect.Type) {
 	elemType := sliceType.Elem()
 	parentListName := "children"
-	createParentList := !t.NoNodeForFieldList[fullName]
-	if createParentList {
+	isParentList := t.ArrayFieldCreatingNode[fullName]
+	if isParentList {
 		parentListName = "nodeList" + name
 		t.writeLn("\tvar " + parentListName + " []*Node")
 	}
@@ -438,7 +451,7 @@ func (t *AstContext) visitSliceField(fullName, name string, sliceType reflect.Ty
 	fieldMapping := t.mapField(fullName+"[i]", elemType, "astNode."+name+"[i]", "[\" + strconv.Itoa(i) + \"]")
 	t.writeLn("\t\t" + parentListName + " = t.appendNode(" + parentListName + ", " + fieldMapping + ")")
 	t.writeLn("\t}")
-	if createParentList {
+	if isParentList {
 		kinds := t.getKindsByFullName(fullName)
 		var typeName string
 		if elemType.Kind() == reflect.Ptr {

@@ -48,9 +48,7 @@ func fun() string {
         ]},
         {"kinds": ["STATEMENT"], "nativeNode": "[1](ReturnStmt)", "children": [
           {"kinds": null, "token": {"value":"return","line":5,"column":2}, "nativeNode": "Return"},
-          {"kinds": null, "nativeNode": "Results([]Expr)", "children": [
-            {"kinds": ["IDENTIFIER"], "token": {"value":"a","line":5,"column":9}, "nativeNode": "[0](Ident)"}
-          ]}
+          {"kinds": ["IDENTIFIER"], "token": {"value":"a","line":5,"column":9}, "nativeNode": "[0](Ident)"}
         ]},
         {"kinds": null, "token": {"value":"}","line":6,"column":1}, "nativeNode": "Rbrace"}
       ]}
