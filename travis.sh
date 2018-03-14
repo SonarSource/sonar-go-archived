@@ -34,13 +34,13 @@ export INITIAL_VERSION=$(cat gradle.properties | grep version | awk -F= '{print 
 
 if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     echo 'Build and analyze master'
-    ruling=true ${gradle_cmd} check sonarqube artifactoryPublish \
+    ruling=true ${gradle_cmd} build sonarqube artifactoryPublish \
         ${sonar_analysis} \
         -Dsonar.projectVersion=$INITIAL_VERSION \
 
 elif [ "$TRAVIS_PULL_REQUEST" != "false" ] && [ -n "${GITHUB_TOKEN:-}" ]; then
     echo 'Build and analyze pull request'
-    ruling=true ${gradle_cmd} check sonarqube artifactoryPublish \
+    ruling=true ${gradle_cmd} build sonarqube artifactoryPublish \
         ${sonar_analysis} \
         -Dsonar.analysis.prNumber=$TRAVIS_PULL_REQUEST \
         -Dsonar.pullrequest.key=$TRAVIS_PULL_REQUEST \
@@ -50,6 +50,6 @@ elif [ "$TRAVIS_PULL_REQUEST" != "false" ] && [ -n "${GITHUB_TOKEN:-}" ]; then
         -Dsonar.pullrequest.github.repository=$TRAVIS_REPO_SLUG
 else
     echo 'Build feature branch or external pull request'
-    ${gradle_cmd} -DbuildNumber=$BUILD_NUMBER check artifactoryPublish
+    ${gradle_cmd} -DbuildNumber=$BUILD_NUMBER build artifactoryPublish
 fi
 
