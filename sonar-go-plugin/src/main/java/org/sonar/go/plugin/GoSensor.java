@@ -79,7 +79,7 @@ public class GoSensor implements Sensor {
     fileLinesContext.save();
   }
 
-  private static <T extends Serializable> void saveMetric(SensorContext context, InputFile inputFile, Metric metric, T value) {
+  private static <T extends Serializable> void saveMetric(SensorContext context, InputFile inputFile, Metric<T> metric, T value) {
     context.<T>newMeasure()
       .on(inputFile)
       .forMetric(metric)
