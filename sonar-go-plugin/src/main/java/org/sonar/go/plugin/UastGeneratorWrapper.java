@@ -7,6 +7,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.attribute.PosixFileAttributes;
+import java.nio.file.attribute.PosixFilePermission;
+import java.util.Set;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.uast.Uast;
 import org.sonar.uast.UastNode;
@@ -39,7 +44,17 @@ class UastGeneratorWrapper {
     try (FileOutputStream destStream = new FileOutputStream(dest);
          InputStream streamOfExecutable = getClass().getClassLoader().getResourceAsStream(executable)) {
       copy(streamOfExecutable, destStream);
+      setExecutePermission(dest.toPath());
       return dest.getAbsolutePath();
+    }
+  }
+
+  private void setExecutePermission(Path path) throws IOException {
+    PosixFileAttributes attrs = Files.readAttributes(path, PosixFileAttributes.class);
+    Set<PosixFilePermission> permissions = attrs.permissions();
+    if (!permissions.contains(PosixFilePermission.OWNER_EXECUTE)) {
+      permissions.add(PosixFilePermission.OWNER_EXECUTE);
+      Files.setPosixFilePermissions(path, permissions);
     }
   }
 
