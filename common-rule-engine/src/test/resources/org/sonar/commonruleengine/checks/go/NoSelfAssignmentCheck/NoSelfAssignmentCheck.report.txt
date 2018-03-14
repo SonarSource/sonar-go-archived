@@ -1,0 +1,21 @@
+NoSelfAssignmentCheck in src/test/resources/org/sonar/commonruleengine/checks/go/NoSelfAssignmentCheck/NoSelfAssignmentCheck.go:5:2
+
+func noSelfAssignmentSingle() {
+ a := 1
+ a = a  // Noncompliant {{Remove or correct this useless self-assignment.}}
+ ^ Noncompliant: Remove this self assignment
+
+NoSelfAssignmentCheck in src/test/resources/org/sonar/commonruleengine/checks/go/NoSelfAssignmentCheck/NoSelfAssignmentCheck.go:10:2
+
+func noSelfAssignmentMulti() {
+ a, b := 1, 2  // Compliant
+ b, a = b, a   // Noncompliant {{Remove or correct this useless self-assignment.}}
+ ^ Noncompliant: Remove this self assignment
+
+___ Metrics of src/test/resources/org/sonar/commonruleengine/checks/go/NoSelfAssignmentCheck/NoSelfAssignmentCheck.go ___
+Number Of Classes           : 0
+Number Of Functions         : 5
+Number Of Statements        : 11
+Number Of Lines Of Code     : 17
+Number Of Lines Of Comments : 0
+
