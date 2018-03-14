@@ -27,7 +27,7 @@ import (
 	context := AstContext{
 		Out: &out,
 		KindsPerType: []*TypeKind{
-			// structs
+			// [structs] Define uast "kinds" by Go struct types (write 2 lines to add 2 kinds for the same type)
 			NewTypeKind((*ast.File)(nil), "COMPILATION_UNIT"),
 			NewTypeKind((*ast.FuncDecl)(nil), "FUNCTION"),
 			NewTypeKind((*ast.BlockStmt)(nil), "BLOCK"),
@@ -46,16 +46,24 @@ import (
 			NewTypeKind((*ast.BadStmt)(nil), "UNSUPPORTED"),
 			NewTypeKind((*ast.StructType)(nil), "CLASS"),
 			NewTypeKind((*ast.InterfaceType)(nil), "CLASS"),
-			// interfaces
+
+			// [interfaces] Define uast "kinds" for all "struct" inheriting form the following interfaces
+			// (exceptions can be added to "KindsPerTypeException")
 			NewTypeKind((*ast.Stmt)(nil), "STATEMENT"),
 		},
 		KindsPerTypeException: map[reflect.Type]reflect.Type{
+			// Definitions about "interfaces" in "KindsPerType" are ignored for the following inheritances
 			typeOf((*ast.BlockStmt)(nil)):   typeOf((*ast.Stmt)(nil)),
 			typeOf((*ast.LabeledStmt)(nil)): typeOf((*ast.Stmt)(nil)),
 			typeOf((*ast.CaseClause)(nil)):  typeOf((*ast.Stmt)(nil)),
 			typeOf((*ast.CommClause)(nil)):  typeOf((*ast.Stmt)(nil)),
 		},
 		KindsPerName: map[string]string{
+			// Define uast "kinds" per struct field (in the value, several kinds can be separated by commas)
+			// Notation: for example the field "Decls" of the type "ast.File" is referenced by "File#Decls".
+			// All array elements can be referenced by adding the suffix "[i]", e.g. "CaseClause#List[i]"
+			// Variation: some types can be referenced by an alias defined in "StructVariations" like "FieldParam" and
+			// "FieldResult" instead of "Field"
 			"File#Decls":           "DECL_LIST",
 			"FuncDecl#Recv":        "PARAMETER_LIST",
 			"FuncType#Params":      "PARAMETER_LIST",
@@ -75,19 +83,24 @@ import (
 			"IfStmt#Else":          "ELSE",
 		},
 		NoNodeForFieldList: map[string]bool{
+			// TODO invert the default behavior of a array fields to not create an additional node
 			"FieldListParams#List":  true,
 			"FieldListResults#List": true,
 			"BlockStmt#List":        true,
 			"CaseClause#List":       true,
 		},
 		MergeFieldIntoParent: map[string]bool{
+			// The uast node generated for a given field is discarded, but it's kinds and children are
+			// appended to it's parent. This does not apply to array fields, see NoNodeForFieldList
 			"SwitchStmt#Body": true,
 		},
 		InsertBeforeField: map[string]string{
+			// Additional code can be placed before the mapping of the referenced field
 			"FuncDecl#Recv": "children = t.appendNode(children, " +
 				"t.createUastExpectedToken(nil, astNode.Type.Func, \"func\", \"Type.Func\"))",
 		},
 		OverrideField: map[string]string{
+			// The mapping of each field can be replaced by some custom code. Put function definitions in 'goparser.go'
 			"File#Package": "children = t.appendNode(children, t.mapPackageDecl(astNode))",
 			"File#Name":    "",
 			// unknown "case" or "default"
@@ -100,6 +113,7 @@ import (
 				"t.createAdditionalInitAndCond(astNode.Init, astNode.Cond))",
 		},
 		FieldToIgnore: map[string]bool{
+			// TODO remove, it's redundant with "OverrideField" given an empty value
 			"File#Imports":    true,
 			"File#Unresolved": true,
 
@@ -111,6 +125,7 @@ import (
 			"FuncTypeDecl#Func": true,
 		},
 		ForceLeafNode: map[string]bool{
+			// Fields from the given struct types are ignored, this produce terminal node with token
 			"Ident":    true,
 			"BasicLit": true,
 			"BadStmt":  true,
@@ -118,6 +133,7 @@ import (
 			"BadExpr":  true,
 		},
 		TypeToIgnore: map[string]bool{
+			// All fields of ast.* structs with the following types are ignored
 			"*ast.CommentGroup":      true,
 			"*ast.Object":            true,
 			"*ast.Scope":             true,
@@ -127,6 +143,10 @@ import (
 			"map[string]*ast.Object": true,
 		},
 		TokenFieldWithPos: map[string]bool{
+			// There's a common pattern in the Go ast where 2 fields define one terminal token.
+			// The first field is a "token.Pos" and the second a "token.Token" with the same name without "Pos" suffix.
+			// Reference bellow the "token.Pos" field, and the "token.Token" field will be associated to produce one
+			// token.
 			"GenDecl#TokPos":    true,
 			"AssignStmt#TokPos": true,
 			"BranchStmt#TokPos": true,
@@ -136,13 +156,29 @@ import (
 			"UnaryExpr#OpPos":   true,
 		},
 		StructVariations: map[string][]string{
-			// dissociate to distinguish delimiters '('/'{' and kinds PARAMETER/RESULT
+			// By default one mapping function is generated for each ast.* struct, e.g. "mapFile" for "ast.File"
+			// But if the caller of the mapping function need a specific behavior (like specific: uast kinds,
+			// fields override, token value, ...) then several mapping functions can be generated using the
+			// given suffixes. For example providing the suffix "Result" for the type "Field" will generate
+			// the mapping function "mapFieldResult". And an alias of "Field" called "FieldResult" can be used
+			// to customize this mapping function. For example a field can be referenced by "FieldResult#Names"
+
+			// variations to distinguish delimiters '('/'{' and kinds PARAMETER/RESULT
 			"FieldList": []string{"Params", "Results", "Brace"},
-			"Field":     []string{"", "Result", "Param"},
-			// "func" is consumed from FuncDecl.Type.Func but not from FuncLit or ast.Expr
+
+			// variations for kinds PARAMETER/RESULT
+			"Field": []string{"", "Result", "Param"},
+
+			// "Decl" variation ignore "func" keyword and is called by FuncDecl, because FuncDecl already map the
+			// field FuncDecl.Type.Func.
+			// The default variation called from FuncLit or Expr has no specificity.
 			"FuncType": []string{"", "Decl"},
 		},
 		FieldVariationMap: map[string]string{
+			// Add a suffix to the mapping function of the given field. (suffixes are defined in StructVariations)
+			// For example, the field "StructType#Fields" has a type "ast.FieldList", so by default the mapping
+			// function is "mapFieldList". But by defining a suffix "Brace", then the mapping function will be
+			// "mapFieldListBrace".
 			"StructType#Fields":        "Brace",
 			"InterfaceType#Methods":    "Brace",
 			"FuncType#Params":          "Params",
@@ -155,6 +191,10 @@ import (
 			"FieldListResults#List[i]": "Result",
 		},
 		MatchingTokenPos: map[string]token.Token{
+			// Some ast.* struct fields with type "token.Pos" has no "token.Token" fields to specify their string
+			// value. The bellow list do the mapping. A field can be referenced just by "<field name>" (like "Lbrace")
+			// and will apply to all struct containing such field. Or by "<type name>#<field name>" like "IfStmt#If".
+			// Or by "<type name><variation>#<field name>" like "FieldListParams#Opening".
 			"Lbrace":                   token.LBRACE,
 			"Rbrace":                   token.RBRACE,
 			"Lbrack":                   token.LBRACK,
@@ -187,17 +227,17 @@ import (
 			"StructType#Struct":        token.STRUCT,
 			"InterfaceType#Interface":  token.INTERFACE,
 		},
-		ListWithMissingSeparator: map[string]bool{
-			"FieldList#List":    true,
-			"BlockStmt#List":    true,
-			"CallExpr#Args":     true,
-			"CompositeLit#Elts": true,
-		},
 		TypeQueue: []reflect.Type{
+			// This queue is used to generate all the ast.* struct types. The generation is initiated by pushing
+			// the ast.File type. Other types will be discovered by reflection.
 			typeOf((*ast.File)(nil)),
 		},
 		TypeProcessed: map[reflect.Type]bool{},
-		AllAstStruct: typeOfList((*ast.ArrayType)(nil), (*ast.AssignStmt)(nil), (*ast.BadDecl)(nil),
+		AllAstStruct: typeOfList(
+			// "Go" does not provide a way to enumerate struct types that inherit from a given interface.
+			// But filtering a list of struct types using "struct.Implements(interface)" method is possible.
+			// Generated by: grep 'struct {' go/binary/1.10/go/src/go/ast/ast.go | sed -r 's/^\t*(type )*([^ ]+).*/(*ast.\2)(nil),/' | sort
+			(*ast.ArrayType)(nil), (*ast.AssignStmt)(nil), (*ast.BadDecl)(nil),
 			(*ast.BadExpr)(nil), (*ast.BadStmt)(nil), (*ast.BasicLit)(nil), (*ast.BinaryExpr)(nil),
 			(*ast.BlockStmt)(nil), (*ast.BranchStmt)(nil), (*ast.CallExpr)(nil), (*ast.CaseClause)(nil),
 			(*ast.ChanType)(nil), (*ast.CommClause)(nil), (*ast.CommentGroup)(nil), (*ast.Comment)(nil),
@@ -246,25 +286,24 @@ func NewTypeKind(pointer interface{}, kind string) *TypeKind {
 }
 
 type AstContext struct {
-	Out                      *bytes.Buffer
-	TypeToIgnore             map[string]bool
-	ForceLeafNode            map[string]bool
-	FieldToIgnore            map[string]bool
-	TokenFieldWithPos        map[string]bool
-	MatchingTokenPos         map[string]token.Token
-	KindsPerType             []*TypeKind
-	NoNodeForFieldList       map[string]bool
-	MergeFieldIntoParent     map[string]bool
-	KindsPerTypeException    map[reflect.Type]reflect.Type
-	KindsPerName             map[string]string
-	InsertBeforeField        map[string]string
-	OverrideField            map[string]string
-	ListWithMissingSeparator map[string]bool
-	StructVariations         map[string][]string
-	FieldVariationMap        map[string]string
-	TypeQueue                []reflect.Type
-	TypeProcessed            map[reflect.Type]bool
-	AllAstStruct             []reflect.Type
+	Out                   *bytes.Buffer
+	TypeToIgnore          map[string]bool
+	ForceLeafNode         map[string]bool
+	FieldToIgnore         map[string]bool
+	TokenFieldWithPos     map[string]bool
+	MatchingTokenPos      map[string]token.Token
+	KindsPerType          []*TypeKind
+	NoNodeForFieldList    map[string]bool
+	MergeFieldIntoParent  map[string]bool
+	KindsPerTypeException map[reflect.Type]reflect.Type
+	KindsPerName          map[string]string
+	InsertBeforeField     map[string]string
+	OverrideField         map[string]string
+	StructVariations      map[string][]string
+	FieldVariationMap     map[string]string
+	TypeQueue             []reflect.Type
+	TypeProcessed         map[reflect.Type]bool
+	AllAstStruct          []reflect.Type
 }
 
 func (t *AstContext) execute() {
