@@ -1,43 +1,56 @@
 plugins {
-    id "com.github.johnrengelman.shadow" version "2.0.2"
+    id 'java-library'
+    id 'jacoco'
+    id 'com.github.johnrengelman.shadow' version '2.0.2'
 }
 
-apply plugin: 'java'
-
-ext.junitJupiterVersion = '5.1.0'
-
+compileJava {
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+}
 
 dependencies {
-    compile project(":common-rule-engine")
-
-    compile "com.google.code.gson:gson:2.8.2"
-    compile "org.sonarsource.analyzer-commons:sonar-analyzer-commons:1.5.0.178"
-    compile "org.sonarsource.sonarqube:sonar-plugin-api:6.7"
-    compileOnly 'com.google.code.findbugs:jsr305:1.3.9'
-
+    compile project(':common-rule-engine')
+    // dependency on uast-generator-go binaries
     runtime files(project(':uast-generator-go').buildDir)
 
-    testCompile 'org.mockito:mockito-core:2.15.0'
-    testCompile "org.assertj:assertj-core:3.9.0"
-    testCompile "org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}"
-    testRuntime "org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}"
+    compile     'com.google.code.gson:gson'
+    compileOnly 'com.google.code.findbugs:jsr305'
+    compile     'org.sonarsource.analyzer-commons:sonar-analyzer-commons'
+    compile     'org.sonarsource.sonarqube:sonar-plugin-api'
+
+    testCompile 'org.mockito:mockito-core'
+    testCompile 'org.assertj:assertj-core'
+    testCompile 'org.junit.jupiter:junit-jupiter-api'
+    testRuntime 'org.junit.jupiter:junit-jupiter-engine'
 }
 
-shadowJar {
+test {
+    useJUnitPlatform()
+    testLogging {
+        exceptionFormat 'full' // log the full stack trace (default is the 1st line of the stack trace)
+        events "skipped", "failed" // verbose log for failed and skipped tests (by default the name of the tests are not logged)
+    }
+}
+
+jar {
     manifest {
         attributes(
                 'Plugin-Key': 'go',
-                'Plugin-Version': '1.0-SNAPSHOT',
+                'Plugin-Version': version,
                 'Plugin-Class': 'org.sonar.go.plugin.GoPlugin',
                 'Plugin-ChildFirstClassLoader': 'false',
                 'Sonar-Version': '6.7',
-                'SonarLint-Supported': 'true',
+                'SonarLint-Supported': 'false',
                 'Plugin-Name': 'SonarGo',
-                'Plugin-License': 'LGPLv3'
+                'Plugin-License': 'GNU LGPL 3'
         )
     }
+}
+
+shadowJar {
     dependencies {
-        exclude(dependency("org.sonarsource.sonarqube:sonar-plugin-api:6.7"))
+        exclude(dependency('org.sonarsource.sonarqube:sonar-plugin-api'))
     }
 }
 

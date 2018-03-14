@@ -1,22 +1,7 @@
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.1.0'
-    }
+plugins {
+    id 'java-library'
+    id 'jacoco'
 }
-
-repositories {
-    mavenCentral()
-}
-
-apply plugin: 'java-library'
-apply plugin: 'org.junit.platform.gradle.plugin'
-
-ext.junitJupiterVersion  = '5.1.0'
-ext.gsonVersion  = '2.8.2'
-ext.javaFrontendVersion = '5.1.1.13214'
 
 compileJava {
     sourceCompatibility = 1.8
@@ -24,15 +9,15 @@ compileJava {
 }
 
 dependencies {
-    implementation "com.google.code.gson:gson:${gsonVersion}"
-    implementation("org.sonarsource.java:java-frontend:${javaFrontendVersion}") {
+    compile 'com.google.code.gson:gson'
+    compile('org.sonarsource.java:java-frontend:5.1.1.13214') {
         exclude group: 'junit', module: 'junit'
     }
 
-    testCompile "org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}"
-    testRuntime "org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}"
+    testCompile 'org.junit.jupiter:junit-jupiter-api'
+    testRuntime 'org.junit.jupiter:junit-jupiter-engine'
     // to run tests on eclipse...
-    testCompile "org.junit.platform:junit-platform-launcher:1.1.0"
+    testCompile 'org.junit.platform:junit-platform-launcher'
 }
 
 task generateUast(type: JavaExec) {
@@ -44,3 +29,12 @@ task generateUast(type: JavaExec) {
 }
 
 generateUast.dependsOn build
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        exceptionFormat 'full' // log the full stack trace (default is the 1st line of the stack trace)
+        events "skipped", "failed" // verbose log for failed and skipped tests (by default the name of the tests are not logged)
+    }
+}
+

@@ -1,6 +1,5 @@
 package org.sonar.go.plugin.ruling;
 
-import com.google.common.io.CharStreams;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -143,7 +142,7 @@ class GoRulingTest {
       builder.redirectErrorStream(true);
       Process process = builder.start();
       try (InputStream inputStream = process.getInputStream()) {
-        String jsonOrError = CharStreams.toString(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
+        String jsonOrError = convertStreamToString(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
         if (!jsonOrError.startsWith("{")) {
           throw new IllegalArgumentException("Invalid file " + path + " :\n" + jsonOrError);
         }
@@ -154,6 +153,11 @@ class GoRulingTest {
     } catch (IOException e) {
       throw new IllegalStateException(e.getClass().getSimpleName() + " for '" + path + "': " + e.getMessage(), e);
     }
+  }
+
+  private static String convertStreamToString(java.io.Reader is) {
+    java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
+    return s.hasNext() ? s.next() : "";
   }
 
   private static void assertUastCompleteness(Path path, UastNode uast) throws IOException {

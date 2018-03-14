@@ -36,6 +36,7 @@ class UastGeneratorWrapperTest {
     sensorContext.fileSystem().add(inputFile);
 
     UastNode uast = generator.createUast(inputFile);
-    assertThat(uast.joinTokens()).isEqualTo("mainfoo");
+    assertThat(uast.joinTokens()).isEqualTo("package main\n" +
+      "func foo() {}");
   }
 }
