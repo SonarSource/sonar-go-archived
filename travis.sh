@@ -30,6 +30,7 @@ sonar_analysis="-DbuildNumber=$BUILD_NUMBER \
         -Dsonar.analysis.sha1=$TRAVIS_PULL_REQUEST_SHA \
         -Dsonar.analysis.repository=$TRAVIS_REPO_SLUG "
 
+export INITIAL_VERSION=$(cat gradle.properties | grep version | awk -F= '{print $2}')
 
 if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     echo 'Build and analyze master'
