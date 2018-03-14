@@ -33,6 +33,9 @@ allprojects {
 }
 
 subprojects {
+    // do not publish to Artifactory by default
+    artifactoryPublish.skip = true
+
     apply plugin: 'io.spring.dependency-management'
     dependencyManagement {
         dependencies {
@@ -54,3 +57,34 @@ subprojects {
     }
 }
 
+artifactory {
+    clientConfig.setIncludeEnvVars(true)
+    clientConfig.setEnvVarsExcludePatterns('*password*,*PASSWORD*,*secret*,*MAVEN_CMD_LINE_ARGS*,sun.java.command,*token*,*TOKEN*,*LOGIN*,*login*')
+    contextUrl = System.getenv('ARTIFACTORY_URL')
+    publish {
+        repository {
+            repoKey = System.getenv('ARTIFACTORY_DEPLOY_REPO')
+            username = System.getenv('ARTIFACTORY_DEPLOY_USERNAME')
+            password = System.getenv('ARTIFACTORY_DEPLOY_PASSWORD')
+        }
+        defaults {
+            properties = [
+                    'build.name': 'sonar-go',
+                    'build.number': (System.getenv('BUILD_ID') ?: System.getenv('BUILD_NUMBER')),
+                    'pr.branch.target': System.getenv('PULL_REQUEST_BRANCH_TARGET'),
+                    'pr.number': System.getenv('PULL_REQUEST_NUMBER'),
+                    'vcs.branch': System.getenv('GIT_BRANCH'),
+                    'vcs.revision': System.getenv('GIT_COMMIT'),
+                    'version': version
+            ]
+            publications('mavenJava')
+            publishPom = true
+            publishIvy = false
+        }
+    }
+    clientConfig.info.setBuildNumber(System.getenv('BUILD_NUMBER'))
+    // Define the artifacts to be deployed to https://sonarsource.bintray.com on releases
+    clientConfig.info.addEnvironmentProperty('ARTIFACTS_TO_PUBLISH', "${project.group}:sonar-go-plugin:jar")
+    // The name of this variable is important because it's used by the delivery process when extracting version from Artifactory build info.
+    clientConfig.info.addEnvironmentProperty('PROJECT_VERSION', "${version}")
+}
