@@ -28,14 +28,6 @@ allprojects {
         def repository = project.hasProperty('cix') ? 'sonarsource-qa' : 'sonarsource'
         maven {
             url "https://repox.sonarsource.com/${repository}"
-            def artifactoryUsername = System.env.'ARTIFACTORY_PRIVATE_USERNAME'
-            def artifactoryPassword = System.env.'ARTIFACTORY_PRIVATE_PASSWORD'
-            if (artifactoryUsername && artifactoryPassword) {
-                credentials {
-                    username artifactoryUsername
-                    password artifactoryPassword
-                }
-            }
         }
     }
 }
