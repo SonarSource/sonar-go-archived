@@ -16,15 +16,21 @@ func marshalIndent(dst *bytes.Buffer, node *Node, prefix, indent string) {
 		return
 	}
 
-	dst.WriteString("{\"kinds\": ")
-	writeObject(dst, node.Kinds)
+	dst.WriteByte('{')
 
-	if node.Token != nil {
-		dst.WriteString(", \"token\": ")
-		writeObject(dst, node.Token)
+	if len(node.Kinds) > 0 {
+		dst.WriteString("\"kinds\": ")
+		writeObject(dst, node.Kinds)
+		dst.WriteString(", ")
 	}
 
-	dst.WriteString(", \"nativeNode\": \"" + node.NativeNode + "\"")
+	if node.Token != nil {
+		dst.WriteString("\"token\": ")
+		writeObject(dst, node.Token)
+		dst.WriteString(", ")
+	}
+
+	dst.WriteString("\"nativeNode\": \"" + node.NativeNode + "\"")
 
 	if len(node.Children) > 0 {
 		dst.WriteString(", \"children\": [\n" + prefix)
