@@ -49,6 +49,12 @@ import (
 			// interfaces
 			NewTypeKind((*ast.Stmt)(nil), "STATEMENT"),
 		},
+		KindsPerTypeException: map[reflect.Type]reflect.Type{
+			typeOf((*ast.BlockStmt)(nil)):   typeOf((*ast.Stmt)(nil)),
+			typeOf((*ast.LabeledStmt)(nil)): typeOf((*ast.Stmt)(nil)),
+			typeOf((*ast.CaseClause)(nil)):  typeOf((*ast.Stmt)(nil)),
+			typeOf((*ast.CommClause)(nil)):  typeOf((*ast.Stmt)(nil)),
+		},
 		KindsPerName: map[string]string{
 			"File#Decls":           "DECL_LIST",
 			"FuncDecl#Recv":        "PARAMETER_LIST",
@@ -68,12 +74,6 @@ import (
 			"CaseClause#List[i]":   "CONDITION",
 			"IfStmt#Else":          "ELSE",
 		},
-		KindsPerTypeException: map[reflect.Type]reflect.Type{
-			typeOf((*ast.BlockStmt)(nil)):   typeOf((*ast.Stmt)(nil)),
-			typeOf((*ast.LabeledStmt)(nil)): typeOf((*ast.Stmt)(nil)),
-			typeOf((*ast.CaseClause)(nil)):  typeOf((*ast.Stmt)(nil)),
-			typeOf((*ast.CommClause)(nil)):  typeOf((*ast.Stmt)(nil)),
-		},
 		NoNodeForFieldList: map[string]bool{
 			"FieldListParams#List":  true,
 			"FieldListResults#List": true,
@@ -83,21 +83,21 @@ import (
 		MergeFieldIntoParent: map[string]bool{
 			"SwitchStmt#Body": true,
 		},
-		TypeToIgnore: map[string]bool{
-			"*ast.CommentGroup":      true,
-			"*ast.Object":            true,
-			"*ast.Scope":             true,
-			"bool":                   true,
-			"[]*ast.CommentGroup":    true,
-			"map[string]*ast.File":   true,
-			"map[string]*ast.Object": true,
+		InsertBeforeField: map[string]string{
+			"FuncDecl#Recv": "children = t.appendNode(children, " +
+				"t.createUastExpectedToken(nil, astNode.Type.Func, \"func\", \"Type.Func\"))",
 		},
-		ForceLeafNode: map[string]bool{
-			"Ident":    true,
-			"BasicLit": true,
-			"BadStmt":  true,
-			"BadDecl":  true,
-			"BadExpr":  true,
+		OverrideField: map[string]string{
+			"File#Package": "children = t.appendNode(children, t.mapPackageDecl(astNode))",
+			"File#Name":    "",
+			// unknown "case" or "default"
+			"CaseClause#Case": "children = t.appendNode(children, " +
+				"t.createCaseOrDefaultToken(astNode.Case, len(astNode.List) == 0, \"Case\"))",
+			"CommClause#Case": "children = t.appendNode(children, " +
+				"t.createCaseOrDefaultToken(astNode.Case, astNode.Comm == nil, \"Case\"))",
+			"IfStmt#Init": "",
+			"IfStmt#Cond": "children = t.appendNode(children, " +
+				"t.createAdditionalInitAndCond(astNode.Init, astNode.Cond))",
 		},
 		FieldToIgnore: map[string]bool{
 			"File#Imports":    true,
@@ -109,6 +109,22 @@ import (
 			"ImportSpec#EndPos": true,
 
 			"FuncTypeDecl#Func": true,
+		},
+		ForceLeafNode: map[string]bool{
+			"Ident":    true,
+			"BasicLit": true,
+			"BadStmt":  true,
+			"BadDecl":  true,
+			"BadExpr":  true,
+		},
+		TypeToIgnore: map[string]bool{
+			"*ast.CommentGroup":      true,
+			"*ast.Object":            true,
+			"*ast.Scope":             true,
+			"bool":                   true,
+			"[]*ast.CommentGroup":    true,
+			"map[string]*ast.File":   true,
+			"map[string]*ast.Object": true,
 		},
 		TokenFieldWithPos: map[string]bool{
 			"GenDecl#TokPos":    true,
@@ -170,22 +186,6 @@ import (
 			"TypeSwitchStmt#Switch":    token.SWITCH,
 			"StructType#Struct":        token.STRUCT,
 			"InterfaceType#Interface":  token.INTERFACE,
-		},
-		InsertBeforeField: map[string]string{
-			"FuncDecl#Recv": "children = t.appendNode(children, " +
-				"t.createUastExpectedToken(nil, astNode.Type.Func, \"func\", \"Type.Func\"))",
-		},
-		OverrideField: map[string]string{
-			"File#Package": "children = t.appendNode(children, t.mapPackageDecl(astNode))",
-			"File#Name":    "",
-			// unknown "case" or "default"
-			"CaseClause#Case": "children = t.appendNode(children, " +
-				"t.createCaseOrDefaultToken(astNode.Case, len(astNode.List) == 0, \"Case\"))",
-			"CommClause#Case": "children = t.appendNode(children, " +
-				"t.createCaseOrDefaultToken(astNode.Case, astNode.Comm == nil, \"Case\"))",
-			"IfStmt#Init": "",
-			"IfStmt#Cond": "children = t.appendNode(children, " +
-				"t.createAdditionalInitAndCond(astNode.Init, astNode.Cond))",
 		},
 		ListWithMissingSeparator: map[string]bool{
 			"FieldList#List":    true,
