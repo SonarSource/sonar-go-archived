@@ -1,119 +1,119 @@
 {"kinds": ["COMPILATION_UNIT"], "nativeNode": "(File)", "children": [
   {"kinds": ["PACKAGE"], "nativeNode": "File.Package", "children": [
-    {"kinds": null, "token": {"value":"package","line":1,"column":1}, "nativeNode": ""},
+    {"token": {"value":"package","line":1,"column":1}, "nativeNode": ""},
     {"kinds": ["IDENTIFIER"], "token": {"value":"main","line":1,"column":9}, "nativeNode": "Name(Ident)"}
   ]},
   {"kinds": ["DECL_LIST"], "nativeNode": "Decls([]Decl)", "children": [
     {"kinds": ["FUNCTION"], "nativeNode": "[0](FuncDecl)", "children": [
-      {"kinds": null, "token": {"value":"func","line":3,"column":1}, "nativeNode": "Type.Func"},
+      {"token": {"value":"func","line":3,"column":1}, "nativeNode": "Type.Func"},
       {"kinds": ["IDENTIFIER"], "token": {"value":"nonCompliantFun1","line":3,"column":6}, "nativeNode": "Name(Ident)"},
-      {"kinds": null, "nativeNode": "Type(FuncType)", "children": [
+      {"nativeNode": "Type(FuncType)", "children": [
         {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
-          {"kinds": null, "token": {"value":"(","line":3,"column":22}, "nativeNode": "Opening"},
-          {"kinds": null, "nativeNode": "[0](Field)", "children": [
-            {"kinds": null, "nativeNode": "Names([]*Ident)", "children": [
+          {"token": {"value":"(","line":3,"column":22}, "nativeNode": "Opening"},
+          {"nativeNode": "[0](Field)", "children": [
+            {"nativeNode": "Names([]*Ident)", "children": [
               {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p1","line":3,"column":23}, "nativeNode": "[0](Ident)"},
-              {"kinds": null, "token": {"value":",","line":3,"column":25}, "nativeNode": ""},
+              {"token": {"value":",","line":3,"column":25}, "nativeNode": ""},
               {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p2","line":3,"column":27}, "nativeNode": "[1](Ident)"},
-              {"kinds": null, "token": {"value":",","line":3,"column":29}, "nativeNode": ""},
+              {"token": {"value":",","line":3,"column":29}, "nativeNode": ""},
               {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p3","line":3,"column":31}, "nativeNode": "[2](Ident)"},
-              {"kinds": null, "token": {"value":",","line":3,"column":33}, "nativeNode": ""},
+              {"token": {"value":",","line":3,"column":33}, "nativeNode": ""},
               {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p4","line":3,"column":35}, "nativeNode": "[3](Ident)"}
             ]},
             {"kinds": ["IDENTIFIER"], "token": {"value":"int","line":3,"column":38}, "nativeNode": "Type(Ident)"}
           ]},
-          {"kinds": null, "token": {"value":")","line":3,"column":41}, "nativeNode": "Closing"}
+          {"token": {"value":")","line":3,"column":41}, "nativeNode": "Closing"}
         ]}
       ]},
       {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
-        {"kinds": null, "token": {"value":"{","line":3,"column":43}, "nativeNode": "Lbrace"},
+        {"token": {"value":"{","line":3,"column":43}, "nativeNode": "Lbrace"},
         {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant","line":3,"column":46}, "nativeNode": ""},
-        {"kinds": null, "token": {"value":"}","line":4,"column":1}, "nativeNode": "Rbrace"}
+        {"token": {"value":"}","line":4,"column":1}, "nativeNode": "Rbrace"}
       ]}
     ]},
     {"kinds": ["FUNCTION"], "nativeNode": "[1](FuncDecl)", "children": [
-      {"kinds": null, "token": {"value":"func","line":6,"column":1}, "nativeNode": "Type.Func"},
+      {"token": {"value":"func","line":6,"column":1}, "nativeNode": "Type.Func"},
       {"kinds": ["IDENTIFIER"], "token": {"value":"nonCompliantFun2","line":6,"column":6}, "nativeNode": "Name(Ident)"},
-      {"kinds": null, "nativeNode": "Type(FuncType)", "children": [
+      {"nativeNode": "Type(FuncType)", "children": [
         {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
-          {"kinds": null, "token": {"value":"(","line":6,"column":22}, "nativeNode": "Opening"},
-          {"kinds": null, "nativeNode": "[0](Field)", "children": [
-            {"kinds": null, "nativeNode": "Names([]*Ident)", "children": [
+          {"token": {"value":"(","line":6,"column":22}, "nativeNode": "Opening"},
+          {"nativeNode": "[0](Field)", "children": [
+            {"nativeNode": "Names([]*Ident)", "children": [
               {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p1","line":6,"column":23}, "nativeNode": "[0](Ident)"},
-              {"kinds": null, "token": {"value":",","line":6,"column":25}, "nativeNode": ""},
+              {"token": {"value":",","line":6,"column":25}, "nativeNode": ""},
               {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p2","line":6,"column":27}, "nativeNode": "[1](Ident)"}
             ]},
             {"kinds": ["IDENTIFIER"], "token": {"value":"int","line":6,"column":30}, "nativeNode": "Type(Ident)"}
           ]},
-          {"kinds": null, "token": {"value":",","line":6,"column":33}, "nativeNode": ""},
-          {"kinds": null, "nativeNode": "[1](Field)", "children": [
-            {"kinds": null, "nativeNode": "Names([]*Ident)", "children": [
+          {"token": {"value":",","line":6,"column":33}, "nativeNode": ""},
+          {"nativeNode": "[1](Field)", "children": [
+            {"nativeNode": "Names([]*Ident)", "children": [
               {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p3","line":6,"column":35}, "nativeNode": "[0](Ident)"},
-              {"kinds": null, "token": {"value":",","line":6,"column":37}, "nativeNode": ""},
+              {"token": {"value":",","line":6,"column":37}, "nativeNode": ""},
               {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p4","line":6,"column":39}, "nativeNode": "[1](Ident)"}
             ]},
             {"kinds": ["IDENTIFIER"], "token": {"value":"string","line":6,"column":42}, "nativeNode": "Type(Ident)"}
           ]},
-          {"kinds": null, "token": {"value":")","line":6,"column":48}, "nativeNode": "Closing"}
+          {"token": {"value":")","line":6,"column":48}, "nativeNode": "Closing"}
         ]}
       ]},
       {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
-        {"kinds": null, "token": {"value":"{","line":6,"column":50}, "nativeNode": "Lbrace"},
+        {"token": {"value":"{","line":6,"column":50}, "nativeNode": "Lbrace"},
         {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant","line":6,"column":53}, "nativeNode": ""},
-        {"kinds": null, "token": {"value":"}","line":7,"column":1}, "nativeNode": "Rbrace"}
+        {"token": {"value":"}","line":7,"column":1}, "nativeNode": "Rbrace"}
       ]}
     ]},
     {"kinds": ["FUNCTION"], "nativeNode": "[2](FuncDecl)", "children": [
-      {"kinds": null, "token": {"value":"func","line":9,"column":1}, "nativeNode": "Type.Func"},
+      {"token": {"value":"func","line":9,"column":1}, "nativeNode": "Type.Func"},
       {"kinds": ["IDENTIFIER"], "token": {"value":"compliantFun1","line":9,"column":6}, "nativeNode": "Name(Ident)"},
-      {"kinds": null, "nativeNode": "Type(FuncType)", "children": [
+      {"nativeNode": "Type(FuncType)", "children": [
         {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
-          {"kinds": null, "token": {"value":"(","line":9,"column":19}, "nativeNode": "Opening"},
-          {"kinds": null, "nativeNode": "[0](Field)", "children": [
-            {"kinds": null, "nativeNode": "Names([]*Ident)", "children": [
+          {"token": {"value":"(","line":9,"column":19}, "nativeNode": "Opening"},
+          {"nativeNode": "[0](Field)", "children": [
+            {"nativeNode": "Names([]*Ident)", "children": [
               {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p1","line":9,"column":20}, "nativeNode": "[0](Ident)"},
-              {"kinds": null, "token": {"value":",","line":9,"column":22}, "nativeNode": ""},
+              {"token": {"value":",","line":9,"column":22}, "nativeNode": ""},
               {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p2","line":9,"column":24}, "nativeNode": "[1](Ident)"},
-              {"kinds": null, "token": {"value":",","line":9,"column":26}, "nativeNode": ""},
+              {"token": {"value":",","line":9,"column":26}, "nativeNode": ""},
               {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p3","line":9,"column":28}, "nativeNode": "[2](Ident)"}
             ]},
             {"kinds": ["IDENTIFIER"], "token": {"value":"int","line":9,"column":31}, "nativeNode": "Type(Ident)"}
           ]},
-          {"kinds": null, "token": {"value":")","line":9,"column":34}, "nativeNode": "Closing"}
+          {"token": {"value":")","line":9,"column":34}, "nativeNode": "Closing"}
         ]}
       ]},
       {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
-        {"kinds": null, "token": {"value":"{","line":9,"column":36}, "nativeNode": "Lbrace"},
-        {"kinds": null, "token": {"value":"}","line":10,"column":1}, "nativeNode": "Rbrace"}
+        {"token": {"value":"{","line":9,"column":36}, "nativeNode": "Lbrace"},
+        {"token": {"value":"}","line":10,"column":1}, "nativeNode": "Rbrace"}
       ]}
     ]},
     {"kinds": ["FUNCTION"], "nativeNode": "[3](FuncDecl)", "children": [
-      {"kinds": null, "token": {"value":"func","line":12,"column":1}, "nativeNode": "Type.Func"},
+      {"token": {"value":"func","line":12,"column":1}, "nativeNode": "Type.Func"},
       {"kinds": ["IDENTIFIER"], "token": {"value":"compliantFun2","line":12,"column":6}, "nativeNode": "Name(Ident)"},
-      {"kinds": null, "nativeNode": "Type(FuncType)", "children": [
+      {"nativeNode": "Type(FuncType)", "children": [
         {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
-          {"kinds": null, "token": {"value":"(","line":12,"column":19}, "nativeNode": "Opening"},
-          {"kinds": null, "nativeNode": "[0](Field)", "children": [
-            {"kinds": null, "nativeNode": "Names([]*Ident)", "children": [
+          {"token": {"value":"(","line":12,"column":19}, "nativeNode": "Opening"},
+          {"nativeNode": "[0](Field)", "children": [
+            {"nativeNode": "Names([]*Ident)", "children": [
               {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p1","line":12,"column":20}, "nativeNode": "[0](Ident)"},
-              {"kinds": null, "token": {"value":",","line":12,"column":22}, "nativeNode": ""},
+              {"token": {"value":",","line":12,"column":22}, "nativeNode": ""},
               {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p2","line":12,"column":24}, "nativeNode": "[1](Ident)"}
             ]},
             {"kinds": ["IDENTIFIER"], "token": {"value":"int","line":12,"column":27}, "nativeNode": "Type(Ident)"}
           ]},
-          {"kinds": null, "token": {"value":",","line":12,"column":30}, "nativeNode": ""},
-          {"kinds": null, "nativeNode": "[1](Field)", "children": [
-            {"kinds": null, "nativeNode": "Names([]*Ident)", "children": [
+          {"token": {"value":",","line":12,"column":30}, "nativeNode": ""},
+          {"nativeNode": "[1](Field)", "children": [
+            {"nativeNode": "Names([]*Ident)", "children": [
               {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p3","line":12,"column":32}, "nativeNode": "[0](Ident)"}
             ]},
             {"kinds": ["IDENTIFIER"], "token": {"value":"string","line":12,"column":35}, "nativeNode": "Type(Ident)"}
           ]},
-          {"kinds": null, "token": {"value":")","line":12,"column":41}, "nativeNode": "Closing"}
+          {"token": {"value":")","line":12,"column":41}, "nativeNode": "Closing"}
         ]}
       ]},
       {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
-        {"kinds": null, "token": {"value":"{","line":12,"column":43}, "nativeNode": "Lbrace"},
-        {"kinds": null, "token": {"value":"}","line":13,"column":1}, "nativeNode": "Rbrace"}
+        {"token": {"value":"{","line":12,"column":43}, "nativeNode": "Lbrace"},
+        {"token": {"value":"}","line":13,"column":1}, "nativeNode": "Rbrace"}
       ]}
     ]}
   ]},

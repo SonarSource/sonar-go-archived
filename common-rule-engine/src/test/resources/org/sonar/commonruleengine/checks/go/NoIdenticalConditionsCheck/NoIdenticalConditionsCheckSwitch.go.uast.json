@@ -1,52 +1,52 @@
 {"kinds": ["COMPILATION_UNIT"], "nativeNode": "(File)", "children": [
   {"kinds": ["PACKAGE"], "nativeNode": "File.Package", "children": [
-    {"kinds": null, "token": {"value":"package","line":1,"column":1}, "nativeNode": ""},
+    {"token": {"value":"package","line":1,"column":1}, "nativeNode": ""},
     {"kinds": ["IDENTIFIER"], "token": {"value":"test","line":1,"column":9}, "nativeNode": "Name(Ident)"}
   ]},
   {"kinds": ["DECL_LIST"], "nativeNode": "Decls([]Decl)", "children": [
-    {"kinds": null, "nativeNode": "[0](GenDecl)", "children": [
-      {"kinds": null, "token": {"value":"import","line":3,"column":1}, "nativeNode": "Tok"},
-      {"kinds": null, "nativeNode": "Specs([]Spec)", "children": [
-        {"kinds": null, "nativeNode": "[0](ImportSpec)", "children": [
+    {"nativeNode": "[0](GenDecl)", "children": [
+      {"token": {"value":"import","line":3,"column":1}, "nativeNode": "Tok"},
+      {"nativeNode": "Specs([]Spec)", "children": [
+        {"nativeNode": "[0](ImportSpec)", "children": [
           {"kinds": ["LITERAL"], "token": {"value":"\"fmt\"","line":3,"column":8}, "nativeNode": "Path(BasicLit)"}
         ]}
       ]}
     ]},
     {"kinds": ["FUNCTION"], "nativeNode": "[1](FuncDecl)", "children": [
-      {"kinds": null, "token": {"value":"func","line":5,"column":1}, "nativeNode": "Type.Func"},
+      {"token": {"value":"func","line":5,"column":1}, "nativeNode": "Type.Func"},
       {"kinds": ["IDENTIFIER"], "token": {"value":"FooSwitch","line":5,"column":6}, "nativeNode": "Name(Ident)"},
-      {"kinds": null, "nativeNode": "Type(FuncType)", "children": [
+      {"nativeNode": "Type(FuncType)", "children": [
         {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
-          {"kinds": null, "token": {"value":"(","line":5,"column":15}, "nativeNode": "Opening"},
-          {"kinds": null, "nativeNode": "[0](Field)", "children": [
-            {"kinds": null, "nativeNode": "Names([]*Ident)", "children": [
+          {"token": {"value":"(","line":5,"column":15}, "nativeNode": "Opening"},
+          {"nativeNode": "[0](Field)", "children": [
+            {"nativeNode": "Names([]*Ident)", "children": [
               {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"param","line":5,"column":16}, "nativeNode": "[0](Ident)"}
             ]},
             {"kinds": ["IDENTIFIER"], "token": {"value":"int","line":5,"column":22}, "nativeNode": "Type(Ident)"}
           ]},
-          {"kinds": null, "token": {"value":")","line":5,"column":25}, "nativeNode": "Closing"}
+          {"token": {"value":")","line":5,"column":25}, "nativeNode": "Closing"}
         ]}
       ]},
       {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
-        {"kinds": null, "token": {"value":"{","line":5,"column":27}, "nativeNode": "Lbrace"},
+        {"token": {"value":"{","line":5,"column":27}, "nativeNode": "Lbrace"},
         {"kinds": ["BLOCK","SWITCH","STATEMENT"], "nativeNode": "[0](SwitchStmt)", "children": [
-          {"kinds": null, "token": {"value":"switch","line":6,"column":2}, "nativeNode": "Switch"},
+          {"token": {"value":"switch","line":6,"column":2}, "nativeNode": "Switch"},
           {"kinds": ["IDENTIFIER"], "token": {"value":"true","line":6,"column":9}, "nativeNode": "Tag(Ident)"},
-          {"kinds": null, "token": {"value":"{","line":6,"column":14}, "nativeNode": "Lbrace"},
+          {"token": {"value":"{","line":6,"column":14}, "nativeNode": "Lbrace"},
           {"kinds": ["CASE"], "nativeNode": "[0](CaseClause)", "children": [
-            {"kinds": null, "token": {"value":"case","line":7,"column":2}, "nativeNode": "Case"},
+            {"token": {"value":"case","line":7,"column":2}, "nativeNode": "Case"},
             {"kinds": ["CONDITION","BINARY_EXPRESSION"], "nativeNode": "[0](BinaryExpr)", "children": [
               {"kinds": ["IDENTIFIER"], "token": {"value":"param","line":7,"column":7}, "nativeNode": "X(Ident)"},
-              {"kinds": null, "token": {"value":"\u003e","line":7,"column":13}, "nativeNode": "Op"},
+              {"token": {"value":"\u003e","line":7,"column":13}, "nativeNode": "Op"},
               {"kinds": ["LITERAL"], "token": {"value":"1","line":7,"column":15}, "nativeNode": "Y(BasicLit)"}
             ]},
-            {"kinds": null, "token": {"value":":","line":7,"column":16}, "nativeNode": "Colon"},
-            {"kinds": null, "nativeNode": "Body([]Stmt)", "children": [
+            {"token": {"value":":","line":7,"column":16}, "nativeNode": "Colon"},
+            {"nativeNode": "Body([]Stmt)", "children": [
               {"kinds": ["EXPRESSION","STATEMENT"], "nativeNode": "[0](ExprStmt)", "children": [
                 {"kinds": ["CALL"], "nativeNode": "X(CallExpr)", "children": [
                   {"kinds": ["SELECTOR_EXPR"], "nativeNode": "Fun(SelectorExpr)", "children": [
                     {"kinds": ["IDENTIFIER"], "token": {"value":"fmt","line":8,"column":3}, "nativeNode": "X(Ident)"},
-                    {"kinds": null, "token": {"value":".","line":8,"column":6}, "nativeNode": ""},
+                    {"token": {"value":".","line":8,"column":6}, "nativeNode": ""},
                     {"kinds": ["IDENTIFIER"], "token": {"value":"Println","line":8,"column":7}, "nativeNode": "Sel(Ident)"}
                   ]},
                   {"kinds": ["LPAREN"], "token": {"value":"(","line":8,"column":14}, "nativeNode": "Lparen"},
@@ -59,19 +59,19 @@
             ]}
           ]},
           {"kinds": ["CASE"], "nativeNode": "[1](CaseClause)", "children": [
-            {"kinds": null, "token": {"value":"case","line":9,"column":2}, "nativeNode": "Case"},
+            {"token": {"value":"case","line":9,"column":2}, "nativeNode": "Case"},
             {"kinds": ["CONDITION","BINARY_EXPRESSION"], "nativeNode": "[0](BinaryExpr)", "children": [
               {"kinds": ["IDENTIFIER"], "token": {"value":"param","line":9,"column":7}, "nativeNode": "X(Ident)"},
-              {"kinds": null, "token": {"value":"\u003c","line":9,"column":13}, "nativeNode": "Op"},
+              {"token": {"value":"\u003c","line":9,"column":13}, "nativeNode": "Op"},
               {"kinds": ["LITERAL"], "token": {"value":"1","line":9,"column":15}, "nativeNode": "Y(BasicLit)"}
             ]},
-            {"kinds": null, "token": {"value":":","line":9,"column":16}, "nativeNode": "Colon"},
-            {"kinds": null, "nativeNode": "Body([]Stmt)", "children": [
+            {"token": {"value":":","line":9,"column":16}, "nativeNode": "Colon"},
+            {"nativeNode": "Body([]Stmt)", "children": [
               {"kinds": ["EXPRESSION","STATEMENT"], "nativeNode": "[0](ExprStmt)", "children": [
                 {"kinds": ["CALL"], "nativeNode": "X(CallExpr)", "children": [
                   {"kinds": ["SELECTOR_EXPR"], "nativeNode": "Fun(SelectorExpr)", "children": [
                     {"kinds": ["IDENTIFIER"], "token": {"value":"fmt","line":10,"column":3}, "nativeNode": "X(Ident)"},
-                    {"kinds": null, "token": {"value":".","line":10,"column":6}, "nativeNode": ""},
+                    {"token": {"value":".","line":10,"column":6}, "nativeNode": ""},
                     {"kinds": ["IDENTIFIER"], "token": {"value":"Println","line":10,"column":7}, "nativeNode": "Sel(Ident)"}
                   ]},
                   {"kinds": ["LPAREN"], "token": {"value":"(","line":10,"column":14}, "nativeNode": "Lparen"},
@@ -84,20 +84,20 @@
             ]}
           ]},
           {"kinds": ["CASE"], "nativeNode": "[2](CaseClause)", "children": [
-            {"kinds": null, "token": {"value":"case","line":11,"column":2}, "nativeNode": "Case"},
+            {"token": {"value":"case","line":11,"column":2}, "nativeNode": "Case"},
             {"kinds": ["CONDITION","BINARY_EXPRESSION"], "nativeNode": "[0](BinaryExpr)", "children": [
               {"kinds": ["IDENTIFIER"], "token": {"value":"param","line":11,"column":7}, "nativeNode": "X(Ident)"},
-              {"kinds": null, "token": {"value":"\u003e","line":11,"column":13}, "nativeNode": "Op"},
+              {"token": {"value":"\u003e","line":11,"column":13}, "nativeNode": "Op"},
               {"kinds": ["LITERAL"], "token": {"value":"1","line":11,"column":15}, "nativeNode": "Y(BasicLit)"}
             ]},
-            {"kinds": null, "token": {"value":":","line":11,"column":16}, "nativeNode": "Colon"},
+            {"token": {"value":":","line":11,"column":16}, "nativeNode": "Colon"},
             {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant","line":11,"column":18}, "nativeNode": ""},
-            {"kinds": null, "nativeNode": "Body([]Stmt)", "children": [
+            {"nativeNode": "Body([]Stmt)", "children": [
               {"kinds": ["EXPRESSION","STATEMENT"], "nativeNode": "[0](ExprStmt)", "children": [
                 {"kinds": ["CALL"], "nativeNode": "X(CallExpr)", "children": [
                   {"kinds": ["SELECTOR_EXPR"], "nativeNode": "Fun(SelectorExpr)", "children": [
                     {"kinds": ["IDENTIFIER"], "token": {"value":"fmt","line":12,"column":3}, "nativeNode": "X(Ident)"},
-                    {"kinds": null, "token": {"value":".","line":12,"column":6}, "nativeNode": ""},
+                    {"token": {"value":".","line":12,"column":6}, "nativeNode": ""},
                     {"kinds": ["IDENTIFIER"], "token": {"value":"Println","line":12,"column":7}, "nativeNode": "Sel(Ident)"}
                   ]},
                   {"kinds": ["LPAREN"], "token": {"value":"(","line":12,"column":14}, "nativeNode": "Lparen"},
@@ -109,46 +109,46 @@
               ]}
             ]}
           ]},
-          {"kinds": null, "token": {"value":"}","line":13,"column":2}, "nativeNode": "Rbrace"}
+          {"token": {"value":"}","line":13,"column":2}, "nativeNode": "Rbrace"}
         ]},
-        {"kinds": null, "token": {"value":"}","line":14,"column":1}, "nativeNode": "Rbrace"}
+        {"token": {"value":"}","line":14,"column":1}, "nativeNode": "Rbrace"}
       ]}
     ]},
     {"kinds": ["FUNCTION"], "nativeNode": "[2](FuncDecl)", "children": [
-      {"kinds": null, "token": {"value":"func","line":16,"column":1}, "nativeNode": "Type.Func"},
+      {"token": {"value":"func","line":16,"column":1}, "nativeNode": "Type.Func"},
       {"kinds": ["IDENTIFIER"], "token": {"value":"SwitchWithMultipleConditions","line":16,"column":6}, "nativeNode": "Name(Ident)"},
-      {"kinds": null, "nativeNode": "Type(FuncType)", "children": [
+      {"nativeNode": "Type(FuncType)", "children": [
         {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
-          {"kinds": null, "token": {"value":"(","line":16,"column":34}, "nativeNode": "Opening"},
-          {"kinds": null, "nativeNode": "[0](Field)", "children": [
-            {"kinds": null, "nativeNode": "Names([]*Ident)", "children": [
+          {"token": {"value":"(","line":16,"column":34}, "nativeNode": "Opening"},
+          {"nativeNode": "[0](Field)", "children": [
+            {"nativeNode": "Names([]*Ident)", "children": [
               {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"param","line":16,"column":35}, "nativeNode": "[0](Ident)"}
             ]},
             {"kinds": ["IDENTIFIER"], "token": {"value":"int","line":16,"column":41}, "nativeNode": "Type(Ident)"}
           ]},
-          {"kinds": null, "token": {"value":")","line":16,"column":44}, "nativeNode": "Closing"}
+          {"token": {"value":")","line":16,"column":44}, "nativeNode": "Closing"}
         ]}
       ]},
       {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
-        {"kinds": null, "token": {"value":"{","line":16,"column":46}, "nativeNode": "Lbrace"},
+        {"token": {"value":"{","line":16,"column":46}, "nativeNode": "Lbrace"},
         {"kinds": ["BLOCK","SWITCH","STATEMENT"], "nativeNode": "[0](SwitchStmt)", "children": [
-          {"kinds": null, "token": {"value":"switch","line":17,"column":2}, "nativeNode": "Switch"},
+          {"token": {"value":"switch","line":17,"column":2}, "nativeNode": "Switch"},
           {"kinds": ["IDENTIFIER"], "token": {"value":"param","line":17,"column":9}, "nativeNode": "Tag(Ident)"},
-          {"kinds": null, "token": {"value":"{","line":17,"column":15}, "nativeNode": "Lbrace"},
+          {"token": {"value":"{","line":17,"column":15}, "nativeNode": "Lbrace"},
           {"kinds": ["CASE"], "nativeNode": "[0](CaseClause)", "children": [
-            {"kinds": null, "token": {"value":"case","line":18,"column":2}, "nativeNode": "Case"},
+            {"token": {"value":"case","line":18,"column":2}, "nativeNode": "Case"},
             {"kinds": ["CONDITION","LITERAL"], "token": {"value":"1","line":18,"column":7}, "nativeNode": "[0](BasicLit)"},
-            {"kinds": null, "token": {"value":",","line":18,"column":8}, "nativeNode": ""},
+            {"token": {"value":",","line":18,"column":8}, "nativeNode": ""},
             {"kinds": ["CONDITION","LITERAL"], "token": {"value":"2","line":18,"column":10}, "nativeNode": "[1](BasicLit)"},
-            {"kinds": null, "token": {"value":",","line":18,"column":11}, "nativeNode": ""},
+            {"token": {"value":",","line":18,"column":11}, "nativeNode": ""},
             {"kinds": ["CONDITION","LITERAL"], "token": {"value":"3","line":18,"column":13}, "nativeNode": "[2](BasicLit)"},
-            {"kinds": null, "token": {"value":":","line":18,"column":14}, "nativeNode": "Colon"},
-            {"kinds": null, "nativeNode": "Body([]Stmt)", "children": [
+            {"token": {"value":":","line":18,"column":14}, "nativeNode": "Colon"},
+            {"nativeNode": "Body([]Stmt)", "children": [
               {"kinds": ["EXPRESSION","STATEMENT"], "nativeNode": "[0](ExprStmt)", "children": [
                 {"kinds": ["CALL"], "nativeNode": "X(CallExpr)", "children": [
                   {"kinds": ["SELECTOR_EXPR"], "nativeNode": "Fun(SelectorExpr)", "children": [
                     {"kinds": ["IDENTIFIER"], "token": {"value":"fmt","line":19,"column":3}, "nativeNode": "X(Ident)"},
-                    {"kinds": null, "token": {"value":".","line":19,"column":6}, "nativeNode": ""},
+                    {"token": {"value":".","line":19,"column":6}, "nativeNode": ""},
                     {"kinds": ["IDENTIFIER"], "token": {"value":"Println","line":19,"column":7}, "nativeNode": "Sel(Ident)"}
                   ]},
                   {"kinds": ["LPAREN"], "token": {"value":"(","line":19,"column":14}, "nativeNode": "Lparen"},
@@ -161,20 +161,20 @@
             ]}
           ]},
           {"kinds": ["CASE"], "nativeNode": "[1](CaseClause)", "children": [
-            {"kinds": null, "token": {"value":"case","line":20,"column":2}, "nativeNode": "Case"},
+            {"token": {"value":"case","line":20,"column":2}, "nativeNode": "Case"},
             {"kinds": ["CONDITION","LITERAL"], "token": {"value":"3","line":20,"column":7}, "nativeNode": "[0](BasicLit)"},
-            {"kinds": null, "token": {"value":",","line":20,"column":8}, "nativeNode": ""},
+            {"token": {"value":",","line":20,"column":8}, "nativeNode": ""},
             {"kinds": ["CONDITION","LITERAL"], "token": {"value":"4","line":20,"column":10}, "nativeNode": "[1](BasicLit)"},
-            {"kinds": null, "token": {"value":",","line":20,"column":11}, "nativeNode": ""},
+            {"token": {"value":",","line":20,"column":11}, "nativeNode": ""},
             {"kinds": ["CONDITION","LITERAL"], "token": {"value":"5","line":20,"column":13}, "nativeNode": "[2](BasicLit)"},
-            {"kinds": null, "token": {"value":":","line":20,"column":14}, "nativeNode": "Colon"},
+            {"token": {"value":":","line":20,"column":14}, "nativeNode": "Colon"},
             {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant (3 is duplicated)","line":20,"column":16}, "nativeNode": ""},
-            {"kinds": null, "nativeNode": "Body([]Stmt)", "children": [
+            {"nativeNode": "Body([]Stmt)", "children": [
               {"kinds": ["EXPRESSION","STATEMENT"], "nativeNode": "[0](ExprStmt)", "children": [
                 {"kinds": ["CALL"], "nativeNode": "X(CallExpr)", "children": [
                   {"kinds": ["SELECTOR_EXPR"], "nativeNode": "Fun(SelectorExpr)", "children": [
                     {"kinds": ["IDENTIFIER"], "token": {"value":"fmt","line":21,"column":3}, "nativeNode": "X(Ident)"},
-                    {"kinds": null, "token": {"value":".","line":21,"column":6}, "nativeNode": ""},
+                    {"token": {"value":".","line":21,"column":6}, "nativeNode": ""},
                     {"kinds": ["IDENTIFIER"], "token": {"value":"Println","line":21,"column":7}, "nativeNode": "Sel(Ident)"}
                   ]},
                   {"kinds": ["LPAREN"], "token": {"value":"(","line":21,"column":14}, "nativeNode": "Lparen"},
@@ -186,9 +186,9 @@
               ]}
             ]}
           ]},
-          {"kinds": null, "token": {"value":"}","line":22,"column":2}, "nativeNode": "Rbrace"}
+          {"token": {"value":"}","line":22,"column":2}, "nativeNode": "Rbrace"}
         ]},
-        {"kinds": null, "token": {"value":"}","line":23,"column":1}, "nativeNode": "Rbrace"}
+        {"token": {"value":"}","line":23,"column":1}, "nativeNode": "Rbrace"}
       ]}
     ]}
   ]},
