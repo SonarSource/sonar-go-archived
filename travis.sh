@@ -27,7 +27,6 @@ sonar_analysis="-DbuildNumber=$BUILD_NUMBER \
         -Dsonar.login=$SONAR_TOKEN \
         -Dsonar.analysis.buildNumber=$BUILD_NUMBER \
         -Dsonar.analysis.pipeline=$BUILD_NUMBER \
-        -Dsonar.analysis.sha1=$TRAVIS_PULL_REQUEST_SHA \
         -Dsonar.analysis.repository=$TRAVIS_REPO_SLUG "
 
 # Used by Next
@@ -37,13 +36,15 @@ if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; th
     echo 'Build and analyze master'
     ruling=true ${gradle_cmd} build sonarqube artifactoryPublish \
         ${sonar_analysis} \
-        -Dsonar.projectVersion=$INITIAL_VERSION \
+        -Dsonar.analysis.sha1=$GIT_COMMIT \
+        -Dsonar.projectVersion=$INITIAL_VERSION
 
 elif [ "$TRAVIS_PULL_REQUEST" != "false" ] && [ -n "${GITHUB_TOKEN:-}" ]; then
     echo 'Build and analyze pull request'
     ruling=true ${gradle_cmd} build sonarqube artifactoryPublish \
         ${sonar_analysis} \
         -Dsonar.analysis.prNumber=$TRAVIS_PULL_REQUEST \
+        -Dsonar.analysis.sha1=$TRAVIS_PULL_REQUEST_SHA \
         -Dsonar.pullrequest.key=$TRAVIS_PULL_REQUEST \
         -Dsonar.pullrequest.branch=$TRAVIS_PULL_REQUEST_BRANCH \
         -Dsonar.pullrequest.base=$TRAVIS_BRANCH \
