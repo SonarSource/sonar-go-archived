@@ -43,7 +43,7 @@ func fun() string {
           ]},
           {"token": {"value":":=","line":4,"column":4}, "nativeNode": "Tok"},
           {"kinds": ["ASSIGNMENT_VALUE"], "nativeNode": "Rhs([]Expr)", "children": [
-            {"kinds": ["LITERAL","STRING"], "token": {"value":"\"hello \\\"world\\\"\"","line":4,"column":7}, "nativeNode": "[0](BasicLit)"}
+            {"kinds": ["LITERAL","STRING_LITERAL"], "token": {"value":"\"hello \\\"world\\\"\"","line":4,"column":7}, "nativeNode": "[0](BasicLit)"}
           ]}
         ]},
         {"kinds": ["STATEMENT"], "nativeNode": "[1](ReturnStmt)", "children": [

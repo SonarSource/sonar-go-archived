@@ -28,11 +28,11 @@ public class HighlightingVisitor {
     boolean isATypeDefinition = parentIsATypeDefinition || node.kinds.contains(Kind.TYPE);
     if (token != null) {
       if (node.kinds.contains(Kind.COMMENT)) {
-        highlight(token, node.kinds.contains(Kind.STRUCTURED) ? TypeOfText.STRUCTURED_COMMENT : TypeOfText.COMMENT);
+        highlight(token, node.kinds.contains(Kind.STRUCTURED_COMMENT) ? TypeOfText.STRUCTURED_COMMENT : TypeOfText.COMMENT);
       } else if (node.kinds.contains(Kind.KEYWORD)) {
         highlight(token, TypeOfText.KEYWORD);
       } else if (node.kinds.contains(Kind.LITERAL)) {
-        highlight(token, node.kinds.contains(Kind.STRING) ? TypeOfText.STRING : TypeOfText.CONSTANT);
+        highlight(token, node.kinds.contains(Kind.STRING_LITERAL) ? TypeOfText.STRING : TypeOfText.CONSTANT);
       } else if (isATypeDefinition) {
         highlight(token, TypeOfText.KEYWORD_LIGHT);
       }

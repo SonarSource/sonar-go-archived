@@ -211,7 +211,7 @@ func Test_mapExpr_BasicLit(t *testing.T) {
 	uast := uastFromString(t, example_hello_world,
 		"Decls/[1](FuncDecl)/Body/[0](AssignStmt)/Rhs/[0](BasicLit)")
 
-	expectKinds(t, uast, []Kind{LITERAL, STRING})
+	expectKinds(t, uast, []Kind{LITERAL, STRING_LITERAL})
 	expectChildrenCount(t, uast, 0)
 	expectNativeNode(t, uast, "[0](BasicLit)")
 	expectToken(t, uast, &Token{Line: 4, Column: 9, Value: "\"hello, world\""})
@@ -341,8 +341,8 @@ func main(i int) {
 	expected := "package:[KEYWORD] main:[IDENTIFIER] " +
 		"func:[KEYWORD] main:[IDENTIFIER] (:[] i:[PARAMETER IDENTIFIER] int:[TYPE IDENTIFIER] ):[] {:[]" +
 		" fmt:[IDENTIFIER] .:[] Println:[IDENTIFIER] (:[LPAREN]" +
-		" \"a\":[LITERAL STRING] ,:[]" +
-		" 'b':[LITERAL STRING] ,:[]" +
+		" \"a\":[LITERAL STRING_LITERAL] ,:[]" +
+		" 'b':[LITERAL STRING_LITERAL] ,:[]" +
 		" ):[RPAREN] " +
 		"return:[KEYWORD] 3:[LITERAL] }:[] :[EOF]"
 	if expected != actual {
