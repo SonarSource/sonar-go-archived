@@ -33,13 +33,6 @@ sonar_analysis="-DbuildNumber=$BUILD_NUMBER \
 # Used by Next
 export INITIAL_VERSION=$(cat gradle.properties | grep version | awk -F= '{print $2}')
 
-# Fetch all commit history so that SonarQube has exact blame information
-# for issue auto-assignment
-# This command can fail with "fatal: --unshallow on a complete repository does not make sense"
-# if there are not enough commits in the Git repository (even if Travis executed git clone --depth 50).
-# For this reason errors are ignored with "|| true"
-git fetch --unshallow || true
-
 if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     echo 'Build and analyze master'
     ruling=true ${gradle_cmd} build sonarqube artifactoryPublish \
