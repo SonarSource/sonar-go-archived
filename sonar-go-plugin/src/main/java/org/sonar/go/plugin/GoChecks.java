@@ -2,7 +2,12 @@ package org.sonar.go.plugin;
 
 import java.util.Arrays;
 import java.util.List;
+import org.sonar.commonruleengine.checks.BinaryOperatorIdenticalExpressionsCheck;
 import org.sonar.commonruleengine.checks.NoHardcodedCredentialsCheck;
+import org.sonar.commonruleengine.checks.NoIdenticalConditionsCheck;
+import org.sonar.commonruleengine.checks.NoIdenticalFunctionsCheck;
+import org.sonar.commonruleengine.checks.NoSelfAssignmentCheck;
+import org.sonar.commonruleengine.checks.TooManyParametersCheck;
 
 public class GoChecks {
 
@@ -12,7 +17,12 @@ public class GoChecks {
 
   public static List<Class> getChecks() {
     return Arrays.asList(
-      NoHardcodedCredentialsCheck.class
+      BinaryOperatorIdenticalExpressionsCheck.class,
+      NoIdenticalConditionsCheck.class,
+      NoIdenticalFunctionsCheck.class,
+      NoHardcodedCredentialsCheck.class,
+      NoSelfAssignmentCheck.class,
+      TooManyParametersCheck.class
     );
   }
 
