@@ -9,5 +9,5 @@ Run:
 Run with ruling:
 
     git submodule update --init  # first time
-    ruling=true ./gradlew build
+    ruling=true ./gradlew build --no-daemon
 
