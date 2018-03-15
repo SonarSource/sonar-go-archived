@@ -3,6 +3,7 @@ package NoHardcodedCredentialsCheck
 func test()  {
 	pwd := "supersecret" // Noncompliant
 	myPassword := "supersecret" // Noncompliant
+	myPaSsWord := "supersecret" // Noncompliant
 	myPassword := "" // Empty is OK
 
 	url := "login=user&passwd=secret" // Noncompliant

@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.Locale;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.uast.Uast;
 import org.sonar.uast.UastNode;
@@ -44,7 +45,7 @@ class UastGeneratorWrapper {
     }
   }
 
-  private void copy(InputStream in, OutputStream out) throws IOException {
+  private static void copy(InputStream in, OutputStream out) throws IOException {
     byte[] buffer = new byte[8192];
     int read;
     while ((read = in.read(buffer)) >= 0) {
@@ -52,8 +53,8 @@ class UastGeneratorWrapper {
     }
   }
 
-  private String getExecutableForCurrentOS() {
-    String os = System.getProperty("os.name").toLowerCase();
+  private static String getExecutableForCurrentOS() {
+    String os = System.getProperty("os.name").toLowerCase(Locale.ROOT);
     if (os.contains("win")) {
       return "uast-generator-go-windows-amd64.exe";
     } else if (os.contains("mac")) {

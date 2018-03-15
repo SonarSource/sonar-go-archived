@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.sonar.java.ast.parser.JavaParser;
 import org.sonar.java.model.JavaTree;
 import org.sonar.plugins.java.api.tree.AssignmentExpressionTree;
@@ -34,10 +35,11 @@ public class Generator {
 
   public static void main(String[] args) throws IOException {
     Path path = Paths.get(args[0]);
-    if (Files.isDirectory(path)) {
-      Files.walk(path)
-        .filter(p -> p.toString().endsWith(".java"))
-        .forEach(Generator::createUastFile);
+    if (path.toFile().isDirectory()) {
+      try (Stream<Path> files = Files.walk(path)) {
+        files.filter(p -> p.toString().endsWith(".java"))
+          .forEach(Generator::createUastFile);
+      }
     } else {
       Generator.createUastFile(path);
     }
@@ -59,7 +61,7 @@ public class Generator {
     try {
       return new String(Files.readAllBytes(path), StandardCharsets.UTF_8);
     } catch (IOException e) {
-      throw new RuntimeException(e);
+      throw new GeneratorException(e);
     }
   }
 
@@ -69,7 +71,7 @@ public class Generator {
       String uast = new Generator(source).json();
       Files.write(Paths.get(p.toString() + ".uast.json"), uast.getBytes(StandardCharsets.UTF_8));
     } catch (IOException e) {
-      throw new RuntimeException(e);
+      throw new GeneratorException(e);
     }
   }
 
@@ -82,19 +84,19 @@ public class Generator {
   }
 
   private UastNode visit(Tree tree) {
-    UastNode uast = null;
+    UastNode uastNode = null;
     if (tree.is(Tree.Kind.TOKEN)) {
-      uast = newUastNode(tree, Collections.emptyList());
+      uastNode = newUastNode(tree, Collections.emptyList());
     } else {
       List<Tree> children = ((JavaTree) tree).getChildren();
       if (!children.isEmpty()) {
-        uast = newUastNode(tree, children.stream().map(this::visit).filter(Objects::nonNull).collect(Collectors.toList()));
+        uastNode = newUastNode(tree, children.stream().map(this::visit).filter(Objects::nonNull).collect(Collectors.toList()));
       }
     }
-    if (uast != null) {
-      treeUastNodeMap.put(tree, uast);
+    if (uastNode != null) {
+      treeUastNodeMap.put(tree, uastNode);
     }
-    return uast;
+    return uastNode;
   }
 
   private static UastNode newUastNode(Tree tree, List<UastNode> children) {
@@ -196,10 +198,15 @@ public class Generator {
       }
       super.visitIfStatement(tree);
     }
+
+    private void addKind(Tree tree, UastNode.Kind kind) {
+      treeUastNodeMap.get(tree).kinds.add(kind);
+    }
   }
 
-  private void addKind(Tree tree, UastNode.Kind kind) {
-    treeUastNodeMap.get(tree).kinds.add(kind);
+  static class GeneratorException extends RuntimeException {
+    public GeneratorException(Throwable cause) {
+      super(cause);
+    }
   }
-
 }
