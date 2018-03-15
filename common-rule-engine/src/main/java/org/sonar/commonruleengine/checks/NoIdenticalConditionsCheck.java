@@ -22,15 +22,15 @@ public class NoIdenticalConditionsCheck extends Check {
 
   @Override
   public void visitNode(UastNode node) {
-    if (node.kinds.contains(UastNode.Kind.IF)) {
-      handleIf(node);
-    } else if (node.kinds.contains(UastNode.Kind.SWITCH)) {
-      handleSwitch(node);
-    }
+    handleIf(node);
+    handleSwitch(node);
   }
 
   private void handleSwitch(UastNode node) {
     SwitchLike switchLike = SwitchLike.from(node);
+    if (switchLike == null) {
+      return;
+    }
     List<UastNode> caseNodes = switchLike.caseNodes();
     List<UastNode> allConditions = new ArrayList<>();
     for (UastNode caseNode : caseNodes) {

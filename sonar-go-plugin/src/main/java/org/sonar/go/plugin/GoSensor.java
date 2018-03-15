@@ -2,6 +2,7 @@ package org.sonar.go.plugin;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Objects;
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.batch.fs.TextRange;
@@ -15,6 +16,7 @@ import org.sonar.api.batch.sensor.issue.NewIssue;
 import org.sonar.api.measures.CoreMetrics;
 import org.sonar.api.measures.FileLinesContext;
 import org.sonar.api.measures.FileLinesContextFactory;
+import org.sonar.api.rule.RuleKey;
 import org.sonar.commonruleengine.Engine;
 import org.sonar.commonruleengine.Issue;
 import org.sonar.commonruleengine.Metrics;
@@ -60,9 +62,11 @@ public class GoSensor implements Sensor {
     // TODO improve common rule engine to handle this out of the box
     NewIssue newIssue = context.newIssue();
     TextRange textRange = inputFile.selectLine(issue.getLine());
+    RuleKey ruleKey = checks.ruleKey(issue.getRule());
+    Objects.requireNonNull(ruleKey, "Rule key not found for " + issue.getRule().getClass());
     newIssue
       .at(newIssue.newLocation().on(inputFile).at(textRange).message(issue.getMessage()))
-      .forRule(checks.ruleKey(issue.getRule()))
+      .forRule(ruleKey)
       .save();
   }
 
@@ -87,7 +91,7 @@ public class GoSensor implements Sensor {
       .save();
   }
 
-  private Iterable<InputFile> getInputFiles(SensorContext context) {
+  private static Iterable<InputFile> getInputFiles(SensorContext context) {
     FileSystem fs = context.fileSystem();
     return fs.inputFiles(fs.predicates().hasLanguage(GoLanguage.KEY));
   }

@@ -6,6 +6,10 @@ import org.sonar.commonruleengine.checks.NoHardcodedCredentialsCheck;
 
 public class GoChecks {
 
+  private GoChecks() {
+    // do not instantiate
+  }
+
   public static List<Class> getChecks() {
     return Arrays.asList(
       NoHardcodedCredentialsCheck.class

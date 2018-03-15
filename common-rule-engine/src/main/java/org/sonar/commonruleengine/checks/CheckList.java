@@ -5,6 +5,10 @@ import java.util.List;
 
 public class CheckList {
 
+  private CheckList() {
+    // do not instantiate
+  }
+
   public static List<Class<? extends Check>> getChecks() {
     return Arrays.asList(
       BinaryOperatorIdenticalExpressionsCheck.class,

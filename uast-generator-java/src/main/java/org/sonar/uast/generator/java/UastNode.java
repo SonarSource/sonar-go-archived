@@ -2,6 +2,7 @@ package org.sonar.uast.generator.java;
 
 import java.util.List;
 import java.util.Set;
+import javax.annotation.Nullable;
 
 /**
  * This class copies structure of {@link org.sonar.uast.UastNode}, but we don't want dependency on common-rule-engine project
@@ -12,7 +13,7 @@ class UastNode {
   Token token;
   List<UastNode> children;
 
-  public UastNode(Set<Kind> kinds, String nativeNode, Token token, List<UastNode> children) {
+  public UastNode(Set<Kind> kinds, String nativeNode, @Nullable Token token, List<UastNode> children) {
     this.kinds = kinds;
     this.nativeNode = nativeNode;
     this.token = token;

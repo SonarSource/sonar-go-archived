@@ -36,7 +36,7 @@ public class NoHardcodedCredentialsCheck extends Check {
   @Override
   public void initialize(EngineContext context) {
     super.initialize(context);
-    String[] words = credentialWords.toLowerCase().split(",");
+    String[] words = credentialWords.split(",");
     String pattern = Arrays.stream(words).map(Pattern::quote).collect(Collectors.joining("|"));
     targetPattern = Pattern.compile(pattern, Pattern.CASE_INSENSITIVE);
     pattern = Arrays.stream(words).map(Pattern::quote).map(w -> w + "=[^\\s\"]").collect(Collectors.joining("|"));
@@ -55,7 +55,7 @@ public class NoHardcodedCredentialsCheck extends Check {
     }
   }
 
-  private String removeQuotes(String string) {
+  private static String removeQuotes(String string) {
     if (string.length() >= 2) {
       return string.substring(1, string.length() - 1);
     }
