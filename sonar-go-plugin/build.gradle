@@ -59,9 +59,17 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 }
 
 shadowJar {
+    exclude 'META-INF/**/*'
     dependencies {
         exclude(dependency('org.sonarsource.sonarqube:sonar-plugin-api'))
+        exclude(dependency('org.codehaus.woodstox:.*'))
+        exclude(dependency('org.codehaus.staxmate:.*'))
+        exclude(dependency('com.google.code.findbugs:jsr305'))
     }
+}
+
+artifacts {
+    archives shadowJar
 }
 
 artifactoryPublish.skip false
