@@ -2,6 +2,12 @@ plugins {
   id 'com.github.blindpirate.gogradle' version '0.8.1'
 }
 
+sonarqube {
+  properties {
+    property 'sonar.sources', '.'
+  }
+}
+
 golang {
   packagePath = 'github.com/SonarSource/sonar-go/uast-generator-go'
   goVersion = '1.10'
