@@ -1,6 +1,10 @@
 language: java
 install: true
 jdk: oraclejdk8
+
+git:
+  depth: false  # get full git history for SQ blame info
+
 script: "./travis.sh"
 cache:
   directories:
