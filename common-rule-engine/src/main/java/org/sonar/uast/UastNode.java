@@ -83,6 +83,7 @@ public final class UastNode {
     CASE,
     CLASS,
     COMMENT,
+    STRUCTURED_COMMENT,
     COMPILATION_UNIT,
     CONDITION,
     ELSE,
@@ -90,10 +91,13 @@ public final class UastNode {
     FUNCTION,
     IDENTIFIER,
     IF,
+    KEYWORD,
     LITERAL,
+    STRING_LITERAL,
     PARAMETER,
     STATEMENT,
     SWITCH,
+    TYPE,
     UNSUPPORTED,
     ;
 

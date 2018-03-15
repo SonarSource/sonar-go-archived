@@ -87,7 +87,7 @@ func Test_mapFuncDecl_complete(t *testing.T) {
 	expectChildrenCount(t, uast, 5)
 	expectNativeNode(t, uast, "[1](FuncDecl)")
 
-	expectKinds(t, uast.Children[0], nil)
+	expectKinds(t, uast.Children[0], []Kind{KEYWORD})
 	expectKinds(t, uast.Children[1], []Kind{PARAMETER_LIST})
 	expectKinds(t, uast.Children[2], []Kind{IDENTIFIER})
 	expectKinds(t, uast.Children[4], []Kind{BLOCK})
@@ -117,7 +117,7 @@ func Test_mapFuncDecl_complete(t *testing.T) {
 	expectToken(t, n1, &Token{Line: 3, Column: 17, Value: "n1"})
 
 	intParamsType := intParams.Children[1]
-	expectKinds(t, intParamsType, []Kind{IDENTIFIER})
+	expectKinds(t, intParamsType, []Kind{TYPE, IDENTIFIER})
 	expectToken(t, intParamsType, &Token{Line: 3, Column: 24, Value: "int"})
 	expectChildrenCount(t, intParamsType, 0)
 	expectNativeNode(t, intParamsType, "Type(Ident)")
@@ -137,7 +137,8 @@ func Test_mapFuncDecl_complete(t *testing.T) {
 	expectToken(t, s1, &Token{Line: 3, Column: 29, Value: "s1"})
 
 	stringParamsType := stringParams.Children[1]
-	expectKinds(t, stringParamsType, []Kind{IDENTIFIER})
+	expectKinds(t, stringParamsType, []Kind{TYPE, IDENTIFIER})
+	expectToken(t, stringParamsType, &Token{Line: 3, Column: 32, Value: "string"})
 	expectChildrenCount(t, stringParamsType, 0)
 	expectNativeNode(t, stringParamsType, "Type(Ident)")
 
@@ -161,7 +162,7 @@ func Test_mapFuncDecl_complete(t *testing.T) {
 	expectToken(t, n, &Token{Line: 3, Column: 50, Value: "n"})
 
 	intResultsType := intResults.Children[1]
-	expectKinds(t, intResultsType, []Kind{IDENTIFIER})
+	expectKinds(t, intResultsType, []Kind{TYPE, IDENTIFIER})
 	expectChildrenCount(t, intResultsType, 0)
 	expectNativeNode(t, intResultsType, "Type(Ident)")
 }
@@ -210,7 +211,7 @@ func Test_mapExpr_BasicLit(t *testing.T) {
 	uast := uastFromString(t, example_hello_world,
 		"Decls/[1](FuncDecl)/Body/[0](AssignStmt)/Rhs/[0](BasicLit)")
 
-	expectKinds(t, uast, []Kind{LITERAL})
+	expectKinds(t, uast, []Kind{LITERAL, STRING_LITERAL})
 	expectChildrenCount(t, uast, 0)
 	expectNativeNode(t, uast, "[0](BasicLit)")
 	expectToken(t, uast, &Token{Line: 4, Column: 9, Value: "\"hello, world\""})
@@ -315,6 +316,44 @@ func main(i int) {
 	}
 	if conditionCounter != 6 {
 		t.Fatalf("got %v conditions; expected 6", conditionCounter)
+	}
+}
+
+func Test_highlightingKinds(t *testing.T) {
+	source := `package main
+func main(i int) {
+	fmt.Println(
+      "a",
+      'b',
+    )
+    return 3
+}
+`
+	uast := uastFromString(t, source, "")
+
+	var actualSlice []string
+	uast.visit(func(node *Node) {
+		if node.Token != nil {
+			actualSlice = append(actualSlice, fmt.Sprintf("%s:%v", node.Token.Value, node.Kinds))
+		}
+	})
+	actual := strings.Join(actualSlice, " ")
+	expected := "package:[KEYWORD] main:[IDENTIFIER] " +
+		"func:[KEYWORD] main:[IDENTIFIER] (:[] i:[PARAMETER IDENTIFIER] int:[TYPE IDENTIFIER] ):[] {:[]" +
+		" fmt:[IDENTIFIER] .:[] Println:[IDENTIFIER] (:[LPAREN]" +
+		" \"a\":[LITERAL STRING_LITERAL] ,:[]" +
+		" 'b':[LITERAL STRING_LITERAL] ,:[]" +
+		" ):[RPAREN] " +
+		"return:[KEYWORD] 3:[LITERAL] }:[] :[EOF]"
+	if expected != actual {
+		t.Fatalf("Invalid highlighting kinds, got:\n%v\n\nexpect:\n%v", actual, expected)
+	}
+}
+
+func (n *Node) visit(visitor func(node *Node)) {
+	visitor(n)
+	for _, child := range n.Children {
+		child.visit(visitor)
 	}
 }
 

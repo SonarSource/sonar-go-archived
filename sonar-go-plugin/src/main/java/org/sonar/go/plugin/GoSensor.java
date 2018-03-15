@@ -52,8 +52,9 @@ public class GoSensor implements Sensor {
         Engine.ScanResult scanResult = ruleEngine.scan(uast);
         scanResult.issues.forEach(issue -> reportIssue(issue, context, inputFile));
         saveMetrics(scanResult.metrics, context, inputFile);
+        saveHighlighting(uast, context, inputFile);
       }
-    } catch (IOException e) {
+    } catch (IOException | RuntimeException e) {
       throw new GoPluginException("Error during analysis. Last analyzed file: \"" + lastAnalyzedFile + "\"", e);
     }
   }
@@ -81,6 +82,12 @@ public class GoSensor implements Sensor {
     metrics.linesOfCode.forEach(line -> fileLinesContext.setIntValue(CoreMetrics.NCLOC_DATA_KEY, line, 1));
     metrics.commentLines.forEach(line -> fileLinesContext.setIntValue(CoreMetrics.COMMENT_LINES_DATA_KEY, line, 1));
     fileLinesContext.save();
+  }
+
+  private static void saveHighlighting(UastNode uast, SensorContext context, InputFile inputFile) {
+    HighlightingVisitor highlighting = new HighlightingVisitor(context, inputFile);
+    highlighting.scan(uast);
+    highlighting.save();
   }
 
   private static <T extends Serializable> void saveMetric(SensorContext context, InputFile inputFile, Metric<T> metric, T value) {

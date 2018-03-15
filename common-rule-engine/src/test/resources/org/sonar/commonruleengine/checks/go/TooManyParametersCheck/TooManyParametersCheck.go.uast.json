@@ -1,11 +1,11 @@
 {"kinds": ["COMPILATION_UNIT"], "nativeNode": "(File)", "children": [
   {"kinds": ["PACKAGE"], "nativeNode": "File.Package", "children": [
-    {"token": {"value":"package","line":1,"column":1}, "nativeNode": ""},
+    {"kinds": ["KEYWORD"], "token": {"value":"package","line":1,"column":1}, "nativeNode": ""},
     {"kinds": ["IDENTIFIER"], "token": {"value":"main","line":1,"column":9}, "nativeNode": "Name(Ident)"}
   ]},
   {"kinds": ["DECL_LIST"], "nativeNode": "Decls([]Decl)", "children": [
     {"kinds": ["FUNCTION"], "nativeNode": "[0](FuncDecl)", "children": [
-      {"token": {"value":"func","line":3,"column":1}, "nativeNode": "Type.Func"},
+      {"kinds": ["KEYWORD"], "token": {"value":"func","line":3,"column":1}, "nativeNode": "Type.Func"},
       {"kinds": ["IDENTIFIER"], "token": {"value":"nonCompliantFun1","line":3,"column":6}, "nativeNode": "Name(Ident)"},
       {"nativeNode": "Type(FuncType)", "children": [
         {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
@@ -28,7 +28,7 @@
               {"token": {"value":",","line":3,"column":49}, "nativeNode": ""},
               {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p8","line":3,"column":51}, "nativeNode": "[7](Ident)"}
             ]},
-            {"kinds": ["IDENTIFIER"], "token": {"value":"int","line":3,"column":54}, "nativeNode": "Type(Ident)"}
+            {"kinds": ["TYPE","IDENTIFIER"], "token": {"value":"int","line":3,"column":54}, "nativeNode": "Type(Ident)"}
           ]},
           {"token": {"value":")","line":3,"column":57}, "nativeNode": "Closing"}
         ]}
@@ -40,7 +40,7 @@
       ]}
     ]},
     {"kinds": ["FUNCTION"], "nativeNode": "[1](FuncDecl)", "children": [
-      {"token": {"value":"func","line":6,"column":1}, "nativeNode": "Type.Func"},
+      {"kinds": ["KEYWORD"], "token": {"value":"func","line":6,"column":1}, "nativeNode": "Type.Func"},
       {"kinds": ["IDENTIFIER"], "token": {"value":"nonCompliantFun2","line":6,"column":6}, "nativeNode": "Name(Ident)"},
       {"nativeNode": "Type(FuncType)", "children": [
         {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
@@ -55,7 +55,7 @@
               {"token": {"value":",","line":6,"column":33}, "nativeNode": ""},
               {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p4","line":6,"column":35}, "nativeNode": "[3](Ident)"}
             ]},
-            {"kinds": ["IDENTIFIER"], "token": {"value":"int","line":6,"column":38}, "nativeNode": "Type(Ident)"}
+            {"kinds": ["TYPE","IDENTIFIER"], "token": {"value":"int","line":6,"column":38}, "nativeNode": "Type(Ident)"}
           ]},
           {"token": {"value":",","line":6,"column":41}, "nativeNode": ""},
           {"nativeNode": "[1](Field)", "children": [
@@ -68,7 +68,7 @@
               {"token": {"value":",","line":6,"column":53}, "nativeNode": ""},
               {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p8","line":6,"column":55}, "nativeNode": "[3](Ident)"}
             ]},
-            {"kinds": ["IDENTIFIER"], "token": {"value":"string","line":6,"column":58}, "nativeNode": "Type(Ident)"}
+            {"kinds": ["TYPE","IDENTIFIER"], "token": {"value":"string","line":6,"column":58}, "nativeNode": "Type(Ident)"}
           ]},
           {"token": {"value":")","line":6,"column":64}, "nativeNode": "Closing"}
         ]}
@@ -80,7 +80,7 @@
       ]}
     ]},
     {"kinds": ["FUNCTION"], "nativeNode": "[2](FuncDecl)", "children": [
-      {"token": {"value":"func","line":9,"column":1}, "nativeNode": "Type.Func"},
+      {"kinds": ["KEYWORD"], "token": {"value":"func","line":9,"column":1}, "nativeNode": "Type.Func"},
       {"kinds": ["IDENTIFIER"], "token": {"value":"compliantFun1","line":9,"column":6}, "nativeNode": "Name(Ident)"},
       {"nativeNode": "Type(FuncType)", "children": [
         {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
@@ -101,7 +101,7 @@
               {"token": {"value":",","line":9,"column":42}, "nativeNode": ""},
               {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p7","line":9,"column":44}, "nativeNode": "[6](Ident)"}
             ]},
-            {"kinds": ["IDENTIFIER"], "token": {"value":"int","line":9,"column":47}, "nativeNode": "Type(Ident)"}
+            {"kinds": ["TYPE","IDENTIFIER"], "token": {"value":"int","line":9,"column":47}, "nativeNode": "Type(Ident)"}
           ]},
           {"token": {"value":")","line":9,"column":50}, "nativeNode": "Closing"}
         ]}
@@ -112,7 +112,7 @@
       ]}
     ]},
     {"kinds": ["FUNCTION"], "nativeNode": "[3](FuncDecl)", "children": [
-      {"token": {"value":"func","line":12,"column":1}, "nativeNode": "Type.Func"},
+      {"kinds": ["KEYWORD"], "token": {"value":"func","line":12,"column":1}, "nativeNode": "Type.Func"},
       {"kinds": ["IDENTIFIER"], "token": {"value":"compliantFun2","line":12,"column":6}, "nativeNode": "Name(Ident)"},
       {"nativeNode": "Type(FuncType)", "children": [
         {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
@@ -127,7 +127,7 @@
               {"token": {"value":",","line":12,"column":30}, "nativeNode": ""},
               {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p4","line":12,"column":32}, "nativeNode": "[3](Ident)"}
             ]},
-            {"kinds": ["IDENTIFIER"], "token": {"value":"int","line":12,"column":35}, "nativeNode": "Type(Ident)"}
+            {"kinds": ["TYPE","IDENTIFIER"], "token": {"value":"int","line":12,"column":35}, "nativeNode": "Type(Ident)"}
           ]},
           {"token": {"value":",","line":12,"column":38}, "nativeNode": ""},
           {"nativeNode": "[1](Field)", "children": [
@@ -138,7 +138,7 @@
               {"token": {"value":",","line":12,"column":46}, "nativeNode": ""},
               {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p7","line":12,"column":48}, "nativeNode": "[2](Ident)"}
             ]},
-            {"kinds": ["IDENTIFIER"], "token": {"value":"string","line":12,"column":51}, "nativeNode": "Type(Ident)"}
+            {"kinds": ["TYPE","IDENTIFIER"], "token": {"value":"string","line":12,"column":51}, "nativeNode": "Type(Ident)"}
           ]},
           {"token": {"value":")","line":12,"column":57}, "nativeNode": "Closing"}
         ]}

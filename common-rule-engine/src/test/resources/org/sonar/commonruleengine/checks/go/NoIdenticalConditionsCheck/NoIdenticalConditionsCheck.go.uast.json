@@ -1,19 +1,19 @@
 {"kinds": ["COMPILATION_UNIT"], "nativeNode": "(File)", "children": [
   {"kinds": ["PACKAGE"], "nativeNode": "File.Package", "children": [
-    {"token": {"value":"package","line":1,"column":1}, "nativeNode": ""},
+    {"kinds": ["KEYWORD"], "token": {"value":"package","line":1,"column":1}, "nativeNode": ""},
     {"kinds": ["IDENTIFIER"], "token": {"value":"test","line":1,"column":9}, "nativeNode": "Name(Ident)"}
   ]},
   {"kinds": ["DECL_LIST"], "nativeNode": "Decls([]Decl)", "children": [
     {"nativeNode": "[0](GenDecl)", "children": [
-      {"token": {"value":"import","line":3,"column":1}, "nativeNode": "Tok"},
+      {"kinds": ["KEYWORD"], "token": {"value":"import","line":3,"column":1}, "nativeNode": "Tok"},
       {"nativeNode": "Specs([]Spec)", "children": [
         {"nativeNode": "[0](ImportSpec)", "children": [
-          {"kinds": ["LITERAL"], "token": {"value":"\"fmt\"","line":3,"column":8}, "nativeNode": "Path(BasicLit)"}
+          {"kinds": ["LITERAL","STRING_LITERAL"], "token": {"value":"\"fmt\"","line":3,"column":8}, "nativeNode": "Path(BasicLit)"}
         ]}
       ]}
     ]},
     {"kinds": ["FUNCTION"], "nativeNode": "[1](FuncDecl)", "children": [
-      {"token": {"value":"func","line":5,"column":1}, "nativeNode": "Type.Func"},
+      {"kinds": ["KEYWORD"], "token": {"value":"func","line":5,"column":1}, "nativeNode": "Type.Func"},
       {"kinds": ["IDENTIFIER"], "token": {"value":"example","line":5,"column":6}, "nativeNode": "Name(Ident)"},
       {"nativeNode": "Type(FuncType)", "children": [
         {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
@@ -24,7 +24,7 @@
               {"token": {"value":",","line":5,"column":24}, "nativeNode": ""},
               {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"condition2","line":5,"column":26}, "nativeNode": "[1](Ident)"}
             ]},
-            {"kinds": ["IDENTIFIER"], "token": {"value":"bool","line":5,"column":37}, "nativeNode": "Type(Ident)"}
+            {"kinds": ["TYPE","IDENTIFIER"], "token": {"value":"bool","line":5,"column":37}, "nativeNode": "Type(Ident)"}
           ]},
           {"token": {"value":")","line":5,"column":41}, "nativeNode": "Closing"}
         ]}
@@ -32,7 +32,7 @@
       {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
         {"token": {"value":"{","line":5,"column":43}, "nativeNode": "Lbrace"},
         {"kinds": ["IF","STATEMENT"], "nativeNode": "[0](IfStmt)", "children": [
-          {"token": {"value":"if","line":6,"column":2}, "nativeNode": "If"},
+          {"kinds": ["KEYWORD"], "token": {"value":"if","line":6,"column":2}, "nativeNode": "If"},
           {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
             {"kinds": ["IDENTIFIER"], "token": {"value":"condition1","line":6,"column":5}, "nativeNode": "Cond(Ident)"}
           ]},
@@ -42,7 +42,7 @@
           ]},
           {"token": {"value":"else","line":7,"column":4}, "nativeNode": ""},
           {"kinds": ["ELSE","IF","STATEMENT"], "nativeNode": "Else(IfStmt)", "children": [
-            {"token": {"value":"if","line":7,"column":9}, "nativeNode": "If"},
+            {"kinds": ["KEYWORD"], "token": {"value":"if","line":7,"column":9}, "nativeNode": "If"},
             {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
               {"kinds": ["IDENTIFIER"], "token": {"value":"condition1","line":7,"column":12}, "nativeNode": "Cond(Ident)"}
             ]},
@@ -54,7 +54,7 @@
           ]}
         ]},
         {"kinds": ["IF","STATEMENT"], "nativeNode": "[1](IfStmt)", "children": [
-          {"token": {"value":"if","line":10,"column":2}, "nativeNode": "If"},
+          {"kinds": ["KEYWORD"], "token": {"value":"if","line":10,"column":2}, "nativeNode": "If"},
           {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
             {"kinds": ["IDENTIFIER"], "token": {"value":"condition2","line":10,"column":5}, "nativeNode": "Cond(Ident)"}
           ]},
@@ -64,7 +64,7 @@
           ]},
           {"token": {"value":"else","line":11,"column":4}, "nativeNode": ""},
           {"kinds": ["ELSE","IF","STATEMENT"], "nativeNode": "Else(IfStmt)", "children": [
-            {"token": {"value":"if","line":11,"column":9}, "nativeNode": "If"},
+            {"kinds": ["KEYWORD"], "token": {"value":"if","line":11,"column":9}, "nativeNode": "If"},
             {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
               {"kinds": ["IDENTIFIER"], "token": {"value":"condition1","line":11,"column":12}, "nativeNode": "Cond(Ident)"}
             ]},
@@ -74,7 +74,7 @@
             ]},
             {"token": {"value":"else","line":12,"column":4}, "nativeNode": ""},
             {"kinds": ["ELSE","IF","STATEMENT"], "nativeNode": "Else(IfStmt)", "children": [
-              {"token": {"value":"if","line":12,"column":9}, "nativeNode": "If"},
+              {"kinds": ["KEYWORD"], "token": {"value":"if","line":12,"column":9}, "nativeNode": "If"},
               {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
                 {"kinds": ["IDENTIFIER"], "token": {"value":"condition1","line":12,"column":12}, "nativeNode": "Cond(Ident)"}
               ]},
@@ -87,7 +87,7 @@
           ]}
         ]},
         {"kinds": ["IF","STATEMENT"], "nativeNode": "[2](IfStmt)", "children": [
-          {"token": {"value":"if","line":15,"column":2}, "nativeNode": "If"},
+          {"kinds": ["KEYWORD"], "token": {"value":"if","line":15,"column":2}, "nativeNode": "If"},
           {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
             {"kinds": ["IDENTIFIER"], "token": {"value":"condition1","line":15,"column":5}, "nativeNode": "Cond(Ident)"}
           ]},
@@ -97,7 +97,7 @@
           ]},
           {"token": {"value":"else","line":16,"column":4}, "nativeNode": ""},
           {"kinds": ["ELSE","IF","STATEMENT"], "nativeNode": "Else(IfStmt)", "children": [
-            {"token": {"value":"if","line":16,"column":9}, "nativeNode": "If"},
+            {"kinds": ["KEYWORD"], "token": {"value":"if","line":16,"column":9}, "nativeNode": "If"},
             {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
               {"kinds": ["IDENTIFIER"], "token": {"value":"condition2","line":16,"column":12}, "nativeNode": "Cond(Ident)"}
             ]},
@@ -107,7 +107,7 @@
             ]},
             {"token": {"value":"else","line":17,"column":4}, "nativeNode": ""},
             {"kinds": ["ELSE","IF","STATEMENT"], "nativeNode": "Else(IfStmt)", "children": [
-              {"token": {"value":"if","line":17,"column":9}, "nativeNode": "If"},
+              {"kinds": ["KEYWORD"], "token": {"value":"if","line":17,"column":9}, "nativeNode": "If"},
               {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
                 {"kinds": ["IDENTIFIER"], "token": {"value":"condition1","line":17,"column":12}, "nativeNode": "Cond(Ident)"}
               ]},
@@ -123,7 +123,7 @@
       ]}
     ]},
     {"kinds": ["FUNCTION"], "nativeNode": "[2](FuncDecl)", "children": [
-      {"token": {"value":"func","line":21,"column":1}, "nativeNode": "Type.Func"},
+      {"kinds": ["KEYWORD"], "token": {"value":"func","line":21,"column":1}, "nativeNode": "Type.Func"},
       {"kinds": ["IDENTIFIER"], "token": {"value":"ifInitializer","line":21,"column":6}, "nativeNode": "Name(Ident)"},
       {"nativeNode": "Type(FuncType)", "children": [
         {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
@@ -132,7 +132,7 @@
             {"nativeNode": "Names([]*Ident)", "children": [
               {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"x","line":21,"column":20}, "nativeNode": "[0](Ident)"}
             ]},
-            {"kinds": ["IDENTIFIER"], "token": {"value":"int","line":21,"column":22}, "nativeNode": "Type(Ident)"}
+            {"kinds": ["TYPE","IDENTIFIER"], "token": {"value":"int","line":21,"column":22}, "nativeNode": "Type(Ident)"}
           ]},
           {"token": {"value":")","line":21,"column":25}, "nativeNode": "Closing"}
         ]}
@@ -140,7 +140,7 @@
       {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
         {"token": {"value":"{","line":21,"column":27}, "nativeNode": "Lbrace"},
         {"kinds": ["IF","STATEMENT"], "nativeNode": "[0](IfStmt)", "children": [
-          {"token": {"value":"if","line":22,"column":2}, "nativeNode": "If"},
+          {"kinds": ["KEYWORD"], "token": {"value":"if","line":22,"column":2}, "nativeNode": "If"},
           {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
             {"kinds": ["ASSIGNMENT","STATEMENT"], "nativeNode": "Init(AssignStmt)", "children": [
               {"kinds": ["ASSIGNMENT_TARGET"], "nativeNode": "Lhs([]Expr)", "children": [
@@ -164,7 +164,7 @@
           ]},
           {"token": {"value":"else","line":24,"column":4}, "nativeNode": ""},
           {"kinds": ["ELSE","IF","STATEMENT"], "nativeNode": "Else(IfStmt)", "children": [
-            {"token": {"value":"if","line":24,"column":9}, "nativeNode": "If"},
+            {"kinds": ["KEYWORD"], "token": {"value":"if","line":24,"column":9}, "nativeNode": "If"},
             {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
               {"kinds": ["ASSIGNMENT","STATEMENT"], "nativeNode": "Init(AssignStmt)", "children": [
                 {"kinds": ["ASSIGNMENT_TARGET"], "nativeNode": "Lhs([]Expr)", "children": [
