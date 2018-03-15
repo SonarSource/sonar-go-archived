@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import javax.annotation.Nullable;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.sonar.api.batch.fs.InputFile;
@@ -18,6 +19,7 @@ import org.sonar.api.batch.rule.CheckFactory;
 import org.sonar.api.batch.rule.Checks;
 import org.sonar.api.batch.rule.internal.ActiveRulesBuilder;
 import org.sonar.api.batch.rule.internal.NewActiveRule;
+import org.sonar.api.batch.sensor.highlighting.TypeOfText;
 import org.sonar.api.batch.sensor.internal.DefaultSensorDescriptor;
 import org.sonar.api.batch.sensor.internal.SensorContextTester;
 import org.sonar.api.measures.CoreMetrics;
@@ -120,6 +122,60 @@ class GoSensorTest {
     assertThat(sensorContext.measure(inputFile.key(), CoreMetrics.CLASSES).value()).isEqualTo(2);
     assertThat(sensorContext.measure(inputFile.key(), CoreMetrics.FUNCTIONS).value()).isEqualTo(3);
     assertThat(sensorContext.measure(inputFile.key(), CoreMetrics.STATEMENTS).value()).isEqualTo(4);
+  }
+
+  @Test
+  public void highlighting() throws Exception {
+    InputFile inputFile = createInputFile("lets.go",
+      "//abc\n" +
+        "/*x*/\n" +
+        "package main\n" +
+        "import \"fmt\"\n" +
+        "type class1 struct { }\n" +
+        "func fun2(x string) int {\n" +
+        "  return 42\n" +
+        "}\n");
+    sensorContext.fileSystem().add(inputFile);
+    GoSensor goSensor = getSensor();
+    goSensor.execute(sensorContext);
+
+    String componentKey = "module:lets.go";
+    // //abc
+    assertHighlighting(componentKey, 1, 1, 5, TypeOfText.COMMENT);
+    // /*x*/
+    assertHighlighting(componentKey, 2, 1, 5, TypeOfText.STRUCTURED_COMMENT);
+    // package main
+    assertHighlighting(componentKey, 3, 1, 7, TypeOfText.KEYWORD);
+    assertHighlighting(componentKey, 3, 9, 12, null);
+    // import "fmt"
+    assertHighlighting(componentKey, 4, 1, 6, TypeOfText.KEYWORD);
+    assertHighlighting(componentKey, 4, 8, 12, TypeOfText.STRING);
+    // type class1 struct { }
+    assertHighlighting(componentKey, 5, 1, 4, TypeOfText.KEYWORD);
+    assertHighlighting(componentKey, 5, 6, 11, null);
+    assertHighlighting(componentKey, 5, 13, 18, TypeOfText.KEYWORD);
+    assertHighlighting(componentKey, 5, 20, 22, null);
+    // func fun2(x string) int {
+    assertHighlighting(componentKey, 6, 1, 4, TypeOfText.KEYWORD);
+    assertHighlighting(componentKey, 6, 6, 9, null);
+    assertHighlighting(componentKey, 6, 6, 12, null);
+    assertHighlighting(componentKey, 6, 13, 18, TypeOfText.KEYWORD_LIGHT);
+    assertHighlighting(componentKey, 6, 19, 20, null);
+    assertHighlighting(componentKey, 6, 21, 23, TypeOfText.KEYWORD_LIGHT);
+    //   return 42
+    assertHighlighting(componentKey, 7, 3, 8, TypeOfText.KEYWORD);
+    assertHighlighting(componentKey, 7, 10, 11, TypeOfText.CONSTANT);
+  }
+
+  private void assertHighlighting(String componentKey, int line, int columnFirst, int columnLast, @Nullable TypeOfText type) {
+    for (int column = columnFirst; column <= columnLast; column++) {
+      List<TypeOfText> typeOfTexts = sensorContext.highlightingTypeAt(componentKey, line, column - 1);
+      if (type != null) {
+        assertThat(typeOfTexts).as("Expect highlighting " + type + " at line " + line + " lineOffset " + column).containsExactly(type);
+      } else {
+        assertThat(typeOfTexts).as("Expect no highlighting at line " + line + " lineOffset " + column).containsExactly();
+      }
+    }
   }
 
   private GoSensor getSensor(String... activeRuleArray) {

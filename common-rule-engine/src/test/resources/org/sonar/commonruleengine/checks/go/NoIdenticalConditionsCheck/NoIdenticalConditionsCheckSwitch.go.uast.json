@@ -1,19 +1,19 @@
 {"kinds": ["COMPILATION_UNIT"], "nativeNode": "(File)", "children": [
   {"kinds": ["PACKAGE"], "nativeNode": "File.Package", "children": [
-    {"token": {"value":"package","line":1,"column":1}, "nativeNode": ""},
+    {"kinds": ["KEYWORD"], "token": {"value":"package","line":1,"column":1}, "nativeNode": ""},
     {"kinds": ["IDENTIFIER"], "token": {"value":"test","line":1,"column":9}, "nativeNode": "Name(Ident)"}
   ]},
   {"kinds": ["DECL_LIST"], "nativeNode": "Decls([]Decl)", "children": [
     {"nativeNode": "[0](GenDecl)", "children": [
-      {"token": {"value":"import","line":3,"column":1}, "nativeNode": "Tok"},
+      {"kinds": ["KEYWORD"], "token": {"value":"import","line":3,"column":1}, "nativeNode": "Tok"},
       {"nativeNode": "Specs([]Spec)", "children": [
         {"nativeNode": "[0](ImportSpec)", "children": [
-          {"kinds": ["LITERAL"], "token": {"value":"\"fmt\"","line":3,"column":8}, "nativeNode": "Path(BasicLit)"}
+          {"kinds": ["LITERAL","STRING_LITERAL"], "token": {"value":"\"fmt\"","line":3,"column":8}, "nativeNode": "Path(BasicLit)"}
         ]}
       ]}
     ]},
     {"kinds": ["FUNCTION"], "nativeNode": "[1](FuncDecl)", "children": [
-      {"token": {"value":"func","line":5,"column":1}, "nativeNode": "Type.Func"},
+      {"kinds": ["KEYWORD"], "token": {"value":"func","line":5,"column":1}, "nativeNode": "Type.Func"},
       {"kinds": ["IDENTIFIER"], "token": {"value":"FooSwitch","line":5,"column":6}, "nativeNode": "Name(Ident)"},
       {"nativeNode": "Type(FuncType)", "children": [
         {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
@@ -22,7 +22,7 @@
             {"nativeNode": "Names([]*Ident)", "children": [
               {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"param","line":5,"column":16}, "nativeNode": "[0](Ident)"}
             ]},
-            {"kinds": ["IDENTIFIER"], "token": {"value":"int","line":5,"column":22}, "nativeNode": "Type(Ident)"}
+            {"kinds": ["TYPE","IDENTIFIER"], "token": {"value":"int","line":5,"column":22}, "nativeNode": "Type(Ident)"}
           ]},
           {"token": {"value":")","line":5,"column":25}, "nativeNode": "Closing"}
         ]}
@@ -30,11 +30,11 @@
       {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
         {"token": {"value":"{","line":5,"column":27}, "nativeNode": "Lbrace"},
         {"kinds": ["BLOCK","SWITCH","STATEMENT"], "nativeNode": "[0](SwitchStmt)", "children": [
-          {"token": {"value":"switch","line":6,"column":2}, "nativeNode": "Switch"},
+          {"kinds": ["KEYWORD"], "token": {"value":"switch","line":6,"column":2}, "nativeNode": "Switch"},
           {"kinds": ["IDENTIFIER"], "token": {"value":"true","line":6,"column":9}, "nativeNode": "Tag(Ident)"},
           {"token": {"value":"{","line":6,"column":14}, "nativeNode": "Lbrace"},
           {"kinds": ["CASE"], "nativeNode": "[0](CaseClause)", "children": [
-            {"token": {"value":"case","line":7,"column":2}, "nativeNode": "Case"},
+            {"kinds": ["KEYWORD"], "token": {"value":"case","line":7,"column":2}, "nativeNode": "Case"},
             {"kinds": ["CONDITION","BINARY_EXPRESSION"], "nativeNode": "[0](BinaryExpr)", "children": [
               {"kinds": ["IDENTIFIER"], "token": {"value":"param","line":7,"column":7}, "nativeNode": "X(Ident)"},
               {"token": {"value":"\u003e","line":7,"column":13}, "nativeNode": "Op"},
@@ -51,7 +51,7 @@
                   ]},
                   {"kinds": ["LPAREN"], "token": {"value":"(","line":8,"column":14}, "nativeNode": "Lparen"},
                   {"kinds": ["ARGS_LIST"], "nativeNode": "Args([]Expr)", "children": [
-                    {"kinds": ["LITERAL"], "token": {"value":"\"\u003e1\"","line":8,"column":15}, "nativeNode": "[0](BasicLit)"}
+                    {"kinds": ["LITERAL","STRING_LITERAL"], "token": {"value":"\"\u003e1\"","line":8,"column":15}, "nativeNode": "[0](BasicLit)"}
                   ]},
                   {"kinds": ["RPAREN"], "token": {"value":")","line":8,"column":19}, "nativeNode": "Rparen"}
                 ]}
@@ -59,7 +59,7 @@
             ]}
           ]},
           {"kinds": ["CASE"], "nativeNode": "[1](CaseClause)", "children": [
-            {"token": {"value":"case","line":9,"column":2}, "nativeNode": "Case"},
+            {"kinds": ["KEYWORD"], "token": {"value":"case","line":9,"column":2}, "nativeNode": "Case"},
             {"kinds": ["CONDITION","BINARY_EXPRESSION"], "nativeNode": "[0](BinaryExpr)", "children": [
               {"kinds": ["IDENTIFIER"], "token": {"value":"param","line":9,"column":7}, "nativeNode": "X(Ident)"},
               {"token": {"value":"\u003c","line":9,"column":13}, "nativeNode": "Op"},
@@ -76,7 +76,7 @@
                   ]},
                   {"kinds": ["LPAREN"], "token": {"value":"(","line":10,"column":14}, "nativeNode": "Lparen"},
                   {"kinds": ["ARGS_LIST"], "nativeNode": "Args([]Expr)", "children": [
-                    {"kinds": ["LITERAL"], "token": {"value":"\"\u003c1\"","line":10,"column":15}, "nativeNode": "[0](BasicLit)"}
+                    {"kinds": ["LITERAL","STRING_LITERAL"], "token": {"value":"\"\u003c1\"","line":10,"column":15}, "nativeNode": "[0](BasicLit)"}
                   ]},
                   {"kinds": ["RPAREN"], "token": {"value":")","line":10,"column":19}, "nativeNode": "Rparen"}
                 ]}
@@ -84,7 +84,7 @@
             ]}
           ]},
           {"kinds": ["CASE"], "nativeNode": "[2](CaseClause)", "children": [
-            {"token": {"value":"case","line":11,"column":2}, "nativeNode": "Case"},
+            {"kinds": ["KEYWORD"], "token": {"value":"case","line":11,"column":2}, "nativeNode": "Case"},
             {"kinds": ["CONDITION","BINARY_EXPRESSION"], "nativeNode": "[0](BinaryExpr)", "children": [
               {"kinds": ["IDENTIFIER"], "token": {"value":"param","line":11,"column":7}, "nativeNode": "X(Ident)"},
               {"token": {"value":"\u003e","line":11,"column":13}, "nativeNode": "Op"},
@@ -102,7 +102,7 @@
                   ]},
                   {"kinds": ["LPAREN"], "token": {"value":"(","line":12,"column":14}, "nativeNode": "Lparen"},
                   {"kinds": ["ARGS_LIST"], "nativeNode": "Args([]Expr)", "children": [
-                    {"kinds": ["LITERAL"], "token": {"value":"\"impossible\"","line":12,"column":15}, "nativeNode": "[0](BasicLit)"}
+                    {"kinds": ["LITERAL","STRING_LITERAL"], "token": {"value":"\"impossible\"","line":12,"column":15}, "nativeNode": "[0](BasicLit)"}
                   ]},
                   {"kinds": ["RPAREN"], "token": {"value":")","line":12,"column":27}, "nativeNode": "Rparen"}
                 ]}
@@ -115,7 +115,7 @@
       ]}
     ]},
     {"kinds": ["FUNCTION"], "nativeNode": "[2](FuncDecl)", "children": [
-      {"token": {"value":"func","line":16,"column":1}, "nativeNode": "Type.Func"},
+      {"kinds": ["KEYWORD"], "token": {"value":"func","line":16,"column":1}, "nativeNode": "Type.Func"},
       {"kinds": ["IDENTIFIER"], "token": {"value":"SwitchWithMultipleConditions","line":16,"column":6}, "nativeNode": "Name(Ident)"},
       {"nativeNode": "Type(FuncType)", "children": [
         {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
@@ -124,7 +124,7 @@
             {"nativeNode": "Names([]*Ident)", "children": [
               {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"param","line":16,"column":35}, "nativeNode": "[0](Ident)"}
             ]},
-            {"kinds": ["IDENTIFIER"], "token": {"value":"int","line":16,"column":41}, "nativeNode": "Type(Ident)"}
+            {"kinds": ["TYPE","IDENTIFIER"], "token": {"value":"int","line":16,"column":41}, "nativeNode": "Type(Ident)"}
           ]},
           {"token": {"value":")","line":16,"column":44}, "nativeNode": "Closing"}
         ]}
@@ -132,11 +132,11 @@
       {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
         {"token": {"value":"{","line":16,"column":46}, "nativeNode": "Lbrace"},
         {"kinds": ["BLOCK","SWITCH","STATEMENT"], "nativeNode": "[0](SwitchStmt)", "children": [
-          {"token": {"value":"switch","line":17,"column":2}, "nativeNode": "Switch"},
+          {"kinds": ["KEYWORD"], "token": {"value":"switch","line":17,"column":2}, "nativeNode": "Switch"},
           {"kinds": ["IDENTIFIER"], "token": {"value":"param","line":17,"column":9}, "nativeNode": "Tag(Ident)"},
           {"token": {"value":"{","line":17,"column":15}, "nativeNode": "Lbrace"},
           {"kinds": ["CASE"], "nativeNode": "[0](CaseClause)", "children": [
-            {"token": {"value":"case","line":18,"column":2}, "nativeNode": "Case"},
+            {"kinds": ["KEYWORD"], "token": {"value":"case","line":18,"column":2}, "nativeNode": "Case"},
             {"kinds": ["CONDITION","LITERAL"], "token": {"value":"1","line":18,"column":7}, "nativeNode": "[0](BasicLit)"},
             {"token": {"value":",","line":18,"column":8}, "nativeNode": ""},
             {"kinds": ["CONDITION","LITERAL"], "token": {"value":"2","line":18,"column":10}, "nativeNode": "[1](BasicLit)"},
@@ -153,7 +153,7 @@
                   ]},
                   {"kinds": ["LPAREN"], "token": {"value":"(","line":19,"column":14}, "nativeNode": "Lparen"},
                   {"kinds": ["ARGS_LIST"], "nativeNode": "Args([]Expr)", "children": [
-                    {"kinds": ["LITERAL"], "token": {"value":"\"\u003e1\"","line":19,"column":15}, "nativeNode": "[0](BasicLit)"}
+                    {"kinds": ["LITERAL","STRING_LITERAL"], "token": {"value":"\"\u003e1\"","line":19,"column":15}, "nativeNode": "[0](BasicLit)"}
                   ]},
                   {"kinds": ["RPAREN"], "token": {"value":")","line":19,"column":19}, "nativeNode": "Rparen"}
                 ]}
@@ -161,7 +161,7 @@
             ]}
           ]},
           {"kinds": ["CASE"], "nativeNode": "[1](CaseClause)", "children": [
-            {"token": {"value":"case","line":20,"column":2}, "nativeNode": "Case"},
+            {"kinds": ["KEYWORD"], "token": {"value":"case","line":20,"column":2}, "nativeNode": "Case"},
             {"kinds": ["CONDITION","LITERAL"], "token": {"value":"3","line":20,"column":7}, "nativeNode": "[0](BasicLit)"},
             {"token": {"value":",","line":20,"column":8}, "nativeNode": ""},
             {"kinds": ["CONDITION","LITERAL"], "token": {"value":"4","line":20,"column":10}, "nativeNode": "[1](BasicLit)"},
@@ -179,7 +179,7 @@
                   ]},
                   {"kinds": ["LPAREN"], "token": {"value":"(","line":21,"column":14}, "nativeNode": "Lparen"},
                   {"kinds": ["ARGS_LIST"], "nativeNode": "Args([]Expr)", "children": [
-                    {"kinds": ["LITERAL"], "token": {"value":"\"\u003c1\"","line":21,"column":15}, "nativeNode": "[0](BasicLit)"}
+                    {"kinds": ["LITERAL","STRING_LITERAL"], "token": {"value":"\"\u003c1\"","line":21,"column":15}, "nativeNode": "[0](BasicLit)"}
                   ]},
                   {"kinds": ["RPAREN"], "token": {"value":")","line":21,"column":19}, "nativeNode": "Rparen"}
                 ]}

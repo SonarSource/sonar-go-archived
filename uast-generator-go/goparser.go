@@ -23,6 +23,7 @@ func (k Kind) String() string {
 const (
 	COMPILATION_UNIT  Kind = "COMPILATION_UNIT"
 	COMMENT           Kind = "COMMENT"
+	STRUCTURED        Kind = "STRUCTURED" // COMMENT specifier
 	PACKAGE           Kind = "PACKAGE"
 	EOF               Kind = "EOF"
 	FUNCTION          Kind = "FUNCTION"
@@ -41,8 +42,11 @@ const (
 	ASSIGNMENT_TARGET Kind = "ASSIGNMENT_TARGET"
 	ASSIGNMENT_VALUE  Kind = "ASSIGNMENT_VALUE"
 	IDENTIFIER        Kind = "IDENTIFIER"
+	TYPE              Kind = "TYPE"
+	KEYWORD           Kind = "KEYWORD"
 	SELECTOR_EXPR     Kind = "SELECTOR_EXPR"
 	LITERAL           Kind = "LITERAL"
+	STRING            Kind = "STRING" // LITERAL specifier
 	EXPRESSION        Kind = "EXPRESSION"
 	PARAMETER_LIST    Kind = "PARAMETER_LIST"
 	PARAMETER         Kind = "PARAMETER"
@@ -147,7 +151,13 @@ func (t *UastMapper) mapAllComments() []*Node {
 	var list []*Node
 	for _, commentGroup := range t.astFile.Comments {
 		for _, comment := range commentGroup.List {
-			node := t.createUastExpectedToken([]Kind{COMMENT}, comment.Pos(), comment.Text, "")
+			var kinds []Kind
+			if len(comment.Text) >= 2 && comment.Text[1] == '/' {
+				kinds = []Kind{COMMENT}
+			} else {
+				kinds = []Kind{COMMENT, STRUCTURED}
+			}
+			node := t.createUastExpectedToken(kinds, comment.Pos(), comment.Text, "")
 			list = append(list, node)
 		}
 	}
@@ -157,13 +167,20 @@ func (t *UastMapper) mapAllComments() []*Node {
 func (t *UastMapper) mapPackageDecl(file *ast.File) *Node {
 	var children []*Node
 	// "package" node is the very first node, header comments are appended before
-	packageNode := t.createUastExpectedToken(nil, file.Package, token.PACKAGE.String(), "")
+	packageNode := t.createUastExpectedToken([]Kind{"KEYWORD"}, file.Package, token.PACKAGE.String(), "")
 	if packageNode != nil {
 		children = t.appendCommentOrMissingToken(children, 0, packageNode.offset)
 		children = append(children, packageNode)
 	}
 	children = t.appendNode(children, t.mapIdent(file.Name, nil, "Name"))
 	return t.createUastNode([]Kind{PACKAGE}, nil, children, "File.Package")
+}
+
+func (t *UastMapper) computeBasicLitKinds(tok token.Token) []Kind {
+	if tok == token.STRING || tok == token.CHAR {
+		return []Kind{LITERAL, STRING}
+	}
+	return []Kind{LITERAL}
 }
 
 func (t *UastMapper) appendNode(children []*Node, child *Node) []*Node {
@@ -295,6 +312,9 @@ func (t *UastMapper) appendMissingToken(children []*Node, offset, endOffset int)
 }
 
 func (t *UastMapper) createUastTokenFromPosAstToken(kinds []Kind, pos token.Pos, tok token.Token, nativeNode string) *Node {
+	if pos == token.NoPos {
+		return nil
+	}
 	if !(tok.IsOperator() || tok.IsKeyword()) {
 		if t.paranoiac {
 			offset := t.file.Offset(pos)
@@ -302,6 +322,9 @@ func (t *UastMapper) createUastTokenFromPosAstToken(kinds []Kind, pos token.Pos,
 			panic(fmt.Sprintf("Unsupported token '%s'%s", tok.String(), location))
 		}
 		return nil
+	}
+	if tok.IsKeyword() {
+		kinds = append(kinds, KEYWORD)
 	}
 	return t.createUastExpectedToken(kinds, pos, tok.String(), nativeNode)
 }

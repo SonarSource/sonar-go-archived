@@ -90,11 +90,19 @@ public final class UastNode {
     FUNCTION,
     IDENTIFIER,
     IF,
+    KEYWORD,
     LITERAL,
     PARAMETER,
     STATEMENT,
     SWITCH,
+    TYPE,
     UNSUPPORTED,
+
+    // COMMENT specifier
+    STRUCTURED,
+
+    // LITERAL specifier
+    STRING,
     ;
 
     @Override

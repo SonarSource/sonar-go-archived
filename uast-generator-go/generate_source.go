@@ -7,7 +7,6 @@ package main
 import (
 	"bytes"
 	"go/ast"
-	"go/token"
 	"io/ioutil"
 	"reflect"
 )
@@ -20,6 +19,7 @@ package main
 
 import (
 	"go/ast"
+	"go/token"
 	"strconv"
 )
 `)
@@ -34,7 +34,7 @@ import (
 			NewTypeKind((*ast.IfStmt)(nil), "IF"),
 			NewTypeKind((*ast.Ident)(nil), "IDENTIFIER"),
 			NewTypeKind((*ast.AssignStmt)(nil), "ASSIGNMENT"),
-			NewTypeKind((*ast.BasicLit)(nil), "LITERAL"),
+			NewTypeKind((*ast.BasicLit)(nil), "t.computeBasicLitKinds(astNode.Kind)..."),
 			NewTypeKind((*ast.ExprStmt)(nil), "EXPRESSION"),
 			NewTypeKind((*ast.BinaryExpr)(nil), "BINARY_EXPRESSION"),
 			NewTypeKind((*ast.CallExpr)(nil), "CALL"),
@@ -72,6 +72,10 @@ import (
 			"FuncTypeDecl#Results": "RESULT_LIST",
 			"FieldParam#Names[i]":  "PARAMETER",
 			"FieldResult#Names[i]": "RESULT",
+			"FieldParam#Type":      "TYPE",
+			"FieldResult#Type":     "TYPE",
+			"ValueSpec#Type":       "TYPE",
+			"TypeSpec#Ident":       "TYPE",
 			"ParenExpr#Lparen":     "LPAREN",
 			"ParenExpr#Rparen":     "RPAREN",
 			"CallExpr#Lparen":      "LPAREN",
@@ -110,7 +114,7 @@ import (
 		InsertBeforeField: map[string]string{
 			// Additional code can be placed before the mapping of the referenced field
 			"FuncDecl#Recv": "children = t.appendNode(children, " +
-				"t.createUastExpectedToken(nil, astNode.Type.Func, \"func\", \"Type.Func\"))",
+				"t.createUastTokenFromPosAstToken(nil, astNode.Type.Func, token.FUNC, \"Type.Func\"))",
 		},
 		OverrideField: map[string]string{
 			// The mapping of each field can be replaced by some custom code. Put function definitions in 'goparser.go'
@@ -203,42 +207,42 @@ import (
 			"FieldListParams#List[i]":  "Param",
 			"FieldListResults#List[i]": "Result",
 		},
-		MatchingTokenPos: map[string]token.Token{
+		MatchingTokenPos: map[string]string{
 			// Some ast.* struct fields with type "token.Pos" has no "token.Token" fields to specify their string
 			// value. The bellow list do the mapping. A field can be referenced just by "<field name>" (like "Lbrace")
 			// and will apply to all struct containing such field. Or by "<type name>#<field name>" like "IfStmt#If".
 			// Or by "<type name><variation>#<field name>" like "FieldListParams#Opening".
-			"Lbrace":                   token.LBRACE,
-			"Rbrace":                   token.RBRACE,
-			"Lbrack":                   token.LBRACK,
-			"Rbrack":                   token.RBRACK,
-			"Lparen":                   token.LPAREN,
-			"Rparen":                   token.RPAREN,
-			"Colon":                    token.COLON,
-			"Semicolon":                token.SEMICOLON,
-			"Star":                     token.MUL,
-			"TypeSpec#Assign":          token.ASSIGN,
-			"FieldListParams#Opening":  token.LPAREN,
-			"FieldListParams#Closing":  token.RPAREN,
-			"FieldListResults#Opening": token.LPAREN,
-			"FieldListResults#Closing": token.RPAREN,
-			"FieldListBrace#Opening":   token.LBRACE,
-			"FieldListBrace#Closing":   token.RBRACE,
-			"GoStmt#Go":                token.GO,
-			"IfStmt#If":                token.IF,
-			"SendStmt#Arrow":           token.ARROW,
-			"Ellipsis":                 token.ELLIPSIS,
-			"ForStmt#For":              token.FOR,
-			"RangeStmt#For":            token.FOR,
-			"MapType#Map":              token.MAP,
-			"FuncType#Func":            token.FUNC,
-			"DeferStmt#Defer":          token.DEFER,
-			"ReturnStmt#Return":        token.RETURN,
-			"SelectStmt#Select":        token.SELECT,
-			"SwitchStmt#Switch":        token.SWITCH,
-			"TypeSwitchStmt#Switch":    token.SWITCH,
-			"StructType#Struct":        token.STRUCT,
-			"InterfaceType#Interface":  token.INTERFACE,
+			"Lbrace":                   "token.LBRACE",
+			"Rbrace":                   "token.RBRACE",
+			"Lbrack":                   "token.LBRACK",
+			"Rbrack":                   "token.RBRACK",
+			"Lparen":                   "token.LPAREN",
+			"Rparen":                   "token.RPAREN",
+			"Colon":                    "token.COLON",
+			"Semicolon":                "token.SEMICOLON",
+			"Star":                     "token.MUL",
+			"TypeSpec#Assign":          "token.ASSIGN",
+			"FieldListParams#Opening":  "token.LPAREN",
+			"FieldListParams#Closing":  "token.RPAREN",
+			"FieldListResults#Opening": "token.LPAREN",
+			"FieldListResults#Closing": "token.RPAREN",
+			"FieldListBrace#Opening":   "token.LBRACE",
+			"FieldListBrace#Closing":   "token.RBRACE",
+			"GoStmt#Go":                "token.GO",
+			"IfStmt#If":                "token.IF",
+			"SendStmt#Arrow":           "token.ARROW",
+			"Ellipsis":                 "token.ELLIPSIS",
+			"ForStmt#For":              "token.FOR",
+			"RangeStmt#For":            "token.FOR",
+			"MapType#Map":              "token.MAP",
+			"FuncType#Func":            "token.FUNC",
+			"DeferStmt#Defer":          "token.DEFER",
+			"ReturnStmt#Return":        "token.RETURN",
+			"SelectStmt#Select":        "token.SELECT",
+			"SwitchStmt#Switch":        "token.SWITCH",
+			"TypeSwitchStmt#Switch":    "token.SWITCH",
+			"StructType#Struct":        "token.STRUCT",
+			"InterfaceType#Interface":  "token.INTERFACE",
 		},
 		TypeQueue: []reflect.Type{
 			// This queue is used to generate all the ast.* struct types. The generation is initiated by pushing
@@ -304,7 +308,7 @@ type AstContext struct {
 	ForceLeafNode          map[string]bool
 	FieldToIgnore          map[string]bool
 	TokenFieldWithPos      map[string]bool
-	MatchingTokenPos       map[string]token.Token
+	MatchingTokenPos       map[string]string
 	KindsPerType           []*TypeKind
 	ArrayFieldCreatingNode map[string]bool
 	MergeFieldIntoParent   map[string]bool
@@ -469,22 +473,21 @@ func (t *AstContext) visitIntField(fullName string, field reflect.StructField, f
 		// ignore, will be added by the "token.Token" field
 		return
 	}
-	token := t.MatchingTokenPos[fullName]
-	if token == 0 {
-		token = t.MatchingTokenPos[field.Name]
-	}
 	var tokenPos string
-	var tokenString string
+	var tokenValue string
 	if fieldType.String() == "token.Token" && t.TokenFieldWithPos[fullName+"Pos"] {
 		tokenPos = "astNode." + field.Name + "Pos"
-		tokenString = "astNode." + field.Name + ".String()"
-	} else if fieldType.String() == "token.Pos" && token != 0 {
+		tokenValue = "astNode." + field.Name
+	} else if fieldType.String() == "token.Pos" {
 		tokenPos = "astNode." + field.Name
-		tokenString = "\"" + token.String() + "\""
+		tokenValue = t.MatchingTokenPos[fullName]
+		if len(tokenValue) == 0 {
+			tokenValue = t.MatchingTokenPos[field.Name]
+		}
 	}
-	if len(tokenString) > 0 {
-		arguments := t.getKindsByFullName(fullName) + ", " + tokenPos + ", " + tokenString + ", \"" + field.Name + "\""
-		mappedField := "t.createUastExpectedToken(" + arguments + ")"
+	if len(tokenValue) > 0 {
+		arguments := t.getKindsByFullName(fullName) + ", " + tokenPos + ", " + tokenValue + ", \"" + field.Name + "\""
+		mappedField := "t.createUastTokenFromPosAstToken(" + arguments + ")"
 		if t.MergeFieldIntoParent[fullName] {
 			t.writeLn("\tchildren, kinds = t.mergeNode(children, kinds, " + mappedField + ")")
 		} else {
