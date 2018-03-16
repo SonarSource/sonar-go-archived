@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class IfLikeTest {
 
   @Test
-  void must_have_condition() {
+  void must_have_condition() throws Exception {
     UastNode node = Uast.from(new StringReader("{ kinds: ['IF'], children: [{kinds: ['CONDITION'], token: {value: 'cond', line: 1, column: 1}}] }"));
     IfLike ifLike = IfLike.from(node);
     assertThat(ifLike).isNotNull();
@@ -21,7 +21,7 @@ class IfLikeTest {
   }
 
   @Test
-  void has_else() {
+  void has_else() throws  Exception {
     UastNode node = Uast.from(new StringReader("{ kinds: ['IF'], " +
       "children: [" +
         "{kinds: ['CONDITION'], token: {value: 'cond', line: 1, column: 1}}," +

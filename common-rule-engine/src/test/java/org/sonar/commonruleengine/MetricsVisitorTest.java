@@ -1,5 +1,6 @@
 package org.sonar.commonruleengine;
 
+import java.io.IOException;
 import java.io.StringReader;
 import java.util.Arrays;
 import java.util.Collections;
@@ -13,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class MetricsVisitorTest {
 
   @Test
-  void number_of_classes() {
+  void number_of_classes() throws Exception {
     Metrics metrics = getMetrics("{children:[" +
       "  {kinds:[ 'CLASS' ]}," +
       "  {kinds:[ 'CLASS' ]}" +
@@ -22,7 +23,7 @@ class MetricsVisitorTest {
   }
 
   @Test
-  void number_of_functions() {
+  void number_of_functions() throws Exception {
     Metrics metrics = getMetrics(
       "{ kinds: [\"COMPILATION_UNIT\"],\n" +
         "  children: [\n" +
@@ -39,7 +40,7 @@ class MetricsVisitorTest {
   }
 
   @Test
-  void number_of_statements() {
+  void number_of_statements() throws Exception {
     Metrics metrics = getMetrics("{children:[" +
       "  {kinds:[ 'STATEMENT' ]}," +
       "  {kinds:[ 'STATEMENT' ]}," +
@@ -50,7 +51,7 @@ class MetricsVisitorTest {
   }
 
   @Test
-  void node_with_several_kinds() {
+  void node_with_several_kinds() throws Exception {
     Metrics metrics = getMetrics("{children:[" +
       "  {kinds:[ 'STATEMENT', 'FUNCTION' ]}," +
       "  {kinds:[ 'STATEMENT', 'CLASS' ]}" +
@@ -61,7 +62,7 @@ class MetricsVisitorTest {
   }
 
   @Test
-  void number_of_lines_of_code_and_comments() {
+  void number_of_lines_of_code_and_comments() throws Exception {
     Metrics metrics = getMetrics("{children:[" +
       "  {kinds:[ 'STATEMENT' ], token: {line: 1, column: 2, value: 'a'}}," +
       "  {kinds:[ 'STATEMENT' ], token: {line: 2, column: 2, value: 'b'}}," +
@@ -72,7 +73,7 @@ class MetricsVisitorTest {
     assertEquals(new HashSet<>(Arrays.asList(2, 4, 5)), metrics.commentLines);
   }
 
-  private Metrics getMetrics(String source) {
+  private Metrics getMetrics(String source) throws IOException {
     Engine engine = new Engine(Collections.emptyList());
     UastNode node = Uast.from(new StringReader(source));
     return engine.scan(node).metrics;

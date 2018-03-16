@@ -9,24 +9,28 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class UastTest {
 
   @Test
-  void parse_kind() {
+  void parse_kind() throws Exception {
     UastNode node = Uast.from(new StringReader("{ kinds: [ 'IDENTIFIER', 'UNKNOWN1', 'IDENTIFIER', 'UNKNOWN2' ] }"));
     assertEquals(EnumSet.of(UastNode.Kind.IDENTIFIER), node.kinds);
   }
 
   @Test
-  void parse_native_node() {
+  void parse_native_node() throws Exception  {
     UastNode node = Uast.from(new StringReader("{ nativeNode: 'foo' }"));
     assertEquals("foo", node.nativeNode);
   }
 
   @Test
-  void parse_token() {
+  void parse_token() throws Exception  {
     UastNode node = Uast.from(new StringReader("{ token: { line: 1, column: 1, value: null } }"));
     assertEquals(Collections.emptyList(), node.children);
     assertNotNull(node.token);
@@ -57,7 +61,7 @@ class UastTest {
   }
 
   @Test
-  void parse_children() {
+  void parse_children() throws Exception  {
     UastNode node = Uast.from(new StringReader("{ children: [ { kinds: [ 'EOF' ] } ] }"));
     assertEquals(1, node.children.size());
     assertEquals(EnumSet.of(UastNode.Kind.EOF), node.children.get(0).kinds);
@@ -69,7 +73,7 @@ class UastTest {
     "{ kinds: [], nativeNode: null, token: null, children: null, unknownElement: {} }",
     "{ kinds: [], nativeNode: '', token: null, children: [] }"
   })
-  void parse_null_and_empty(String json) {
+  void parse_null_and_empty(String json) throws Exception  {
     Supplier<String> message = () -> "Assertion error for " + json;
     UastNode node = Uast.from(new StringReader(json));
     assertEquals(Collections.emptySet(), node.kinds, message);
@@ -79,7 +83,7 @@ class UastTest {
   }
 
   @Test
-  void syntactically_equivalent_of_unsupported_node() {
+  void syntactically_equivalent_of_unsupported_node() throws Exception  {
     UastNode node1 = Uast.from(new StringReader("{ children: [ { kinds: [ 'UNSUPPORTED' ] } ] }"));
     UastNode node2 = Uast.from(new StringReader("{ children: [ { kinds: [ 'UNSUPPORTED' ] } ] }"));
     assertFalse(Uast.syntacticallyEquivalent(node1, node2));

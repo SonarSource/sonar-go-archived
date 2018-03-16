@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class SwitchLikeTest {
 
   @Test
-  void test() {
+  void test() throws Exception {
     UastNode node = Uast.from(new StringReader("{ kinds: ['SWITCH'] }"));
     SwitchLike switchLike = SwitchLike.from(node);
     assertThat(switchLike).isNotNull();
