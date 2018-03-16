@@ -17,7 +17,7 @@ class EngineTest {
   private UastNode uast;
 
   @BeforeEach
-  void setUp() {
+  void setUp() throws Exception {
     uast = Uast.from(new InputStreamReader(getClass().getResourceAsStream("/uast.json")));
   }
 

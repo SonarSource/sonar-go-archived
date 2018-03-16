@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class CaseLikeTest {
 
   @Test
-  void test() {
+  void test() throws Exception {
     UastNode node = Uast.from(new StringReader("{ kinds: ['CASE'], children: [{kinds: ['CONDITION']}, {kinds: ['CONDITION']}]}"));
     CaseLike caseLike = CaseLike.from(node);
     assertThat(caseLike).isNotNull();

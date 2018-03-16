@@ -35,13 +35,13 @@ class UastNodeTest {
 
 
   @Test
-  void tokenize() {
+  void tokenize() throws Exception {
     UastNode node = Uast.from(new StringReader("{ token: { line: 12, column: 34, value: 'foo' } }"));
     assertThat(node.joinTokens()).isEqualTo("foo");
   }
 
   @Test
-  void tokenize2() {
+  void tokenize2() throws Exception {
     UastNode uastNode = Uast.from(new InputStreamReader(UastNodeTest.class.getResourceAsStream("/reference.java.uast.json")));
     assertThat(uastNode.joinTokens()).isEqualTo("class A {\n" +
       "  void foo() {\n" +
