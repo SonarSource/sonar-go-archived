@@ -6,13 +6,20 @@ import com.google.gson.stream.JsonToken;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 class Unmarshaller {
+
+  private static final Map<String, UastNode.Kind> KIND_MAP = Arrays.stream(UastNode.Kind.values())
+    .collect(Collectors.toMap(Enum::name, Function.identity()));
 
   private final JsonReader reader;
 
@@ -101,11 +108,9 @@ class Unmarshaller {
     reader.beginArray();
     while (reader.hasNext()) {
       String kindAsString = reader.nextString();
-      try {
-        UastNode.Kind kind = UastNode.Kind.valueOf(kindAsString);
+      UastNode.Kind kind = KIND_MAP.get(kindAsString);
+      if (kind != null) {
         kinds.add(kind);
-      } catch (IllegalArgumentException e) {
-
       }
     }
     reader.endArray();
