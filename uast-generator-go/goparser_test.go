@@ -350,6 +350,21 @@ func main(i int) {
 	}
 }
 
+func Test_emptyStatement(t *testing.T) {
+	source := `package main
+func main() {
+	goto useless_label
+useless_label:
+}
+`
+	uast := uastFromString(t, source, "Decls/[0](FuncDecl)/Body/[1](LabeledStmt)")
+	actual := len(uast.Children)
+	expected := 2 // 'useless_label' ':'
+	if expected != actual {
+		t.Fatalf("Got:%v expect:%v", actual, expected)
+	}
+}
+
 func (n *Node) visit(visitor func(node *Node)) {
 	visitor(n)
 	for _, child := range n.Children {

@@ -113,6 +113,7 @@ import (
 		},
 		InsertBeforeField: map[string]string{
 			// Additional code can be placed before the mapping of the referenced field
+			"EmptyStmt#Semicolon": "if astNode.Implicit {\n\t\treturn nil\n\t}",
 			"FuncDecl#Recv": "children = t.appendNode(children, " +
 				"t.createUastTokenFromPosAstToken(nil, astNode.Type.Func, token.FUNC, \"Type.Func\"))",
 		},
