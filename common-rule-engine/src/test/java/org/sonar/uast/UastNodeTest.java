@@ -49,4 +49,10 @@ class UastNodeTest {
       "  }\n" +
       "}\n");
   }
+
+  @Test
+  void test_utf32_tokens() {
+    UastNode.Token token = new UastNode.Token(1, 1, "𝜶");
+    assertThat(token.endColumn).isEqualTo(token.column);
+  }
 }

@@ -59,12 +59,18 @@ public final class UastNode {
       this.value = value;
       if (value.indexOf('\n') == -1 && value.indexOf('\r') == -1) {
         this.endLine = line;
-        this.endColumn = column + value.length() - 1;
+        this.endColumn = column + codePointCount(value) - 1;
       } else {
         String[] lines = LINE_SPLITTER.split(value, -1);
         this.endLine = line + lines.length - 1;
-        this.endColumn = lines[lines.length - 1].length();
+        this.endColumn = codePointCount(lines[lines.length - 1]);
       }
+    }
+
+    private static int codePointCount(String s) {
+      // handle length of UTF-32 encoded strings properly
+      // s.length() would return 2 for each UTF-32 character, which will mess with column computation
+      return s.codePointCount(0, s.length());
     }
 
     @Override
