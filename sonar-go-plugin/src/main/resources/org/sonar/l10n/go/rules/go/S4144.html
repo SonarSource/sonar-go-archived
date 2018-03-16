@@ -2,29 +2,28 @@
 be confusing to maintainers. In the latter case, one implementation should invoke the other.</p>
 <h2>Noncompliant Code Example</h2>
 <pre>
-private final static String CODE = "bounteous";
-
-public String calculateCode() {
-  doTheThing();
-  return CODE;
+func fun1() (x, y int) {
+  a, b := 1, 2
+  b, a = a, b
+  return a, b
 }
 
-public String getName() {  // Noncompliant
-  doTheThing();
-  return CODE;
+func fun2() (x, y int) {  // Noncompliant; fun1 and fun2 have identical implementations
+  a, b := 1, 2
+  b, a = a, b
+  return a, b
 }
 </pre>
 <h2>Compliant Solution</h2>
 <pre>
-private final static String CODE = "bounteous";
-
-public String getCode() {
-  doTheThing();
-  return CODE;
+func fun1() (x, y int) {
+  a, b := 1, 2
+  b, a = a, b
+  return a, b
 }
 
-public String getName() {
-  return getCode();
+func fun2() (x, y int) {  // Compliant
+  return fun1()
 }
 </pre>
 <h2>Exceptions</h2>
