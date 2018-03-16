@@ -353,10 +353,11 @@ func main(i int) {
 func Test_emptyStatement(t *testing.T) {
 	source := `package main
 func main() {
-  useless_label:
+	goto useless_label
+useless_label:
 }
 `
-	uast := uastFromString(t, source, "Decls/[0](FuncDecl)/Body/[0](LabeledStmt)")
+	uast := uastFromString(t, source, "Decls/[0](FuncDecl)/Body/[1](LabeledStmt)")
 	actual := len(uast.Children)
 	expected := 2 // 'useless_label' ':'
 	if expected != actual {
