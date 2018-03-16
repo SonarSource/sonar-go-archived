@@ -3,13 +3,13 @@ and some other value or variable was intended for the assignment instead.</p>
 <h2>Noncompliant Code Example</h2>
 <pre>
 func (user *User) rename(name string) {
-	name = name  // Noncompliant
+  name = name  // Noncompliant
 }
 </pre>
 <h2>Compliant Solution</h2>
 <pre>
 func (user *User) rename(name string) {
-	user.name = name
+  user.name = name
 }
 </pre>
 <h2>See</h2>
