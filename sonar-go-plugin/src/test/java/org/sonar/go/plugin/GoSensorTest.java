@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.batch.fs.internal.TestInputFileBuilder;
 import org.sonar.api.batch.rule.ActiveRules;
@@ -26,13 +27,21 @@ import org.sonar.api.measures.CoreMetrics;
 import org.sonar.api.measures.FileLinesContext;
 import org.sonar.api.measures.FileLinesContextFactory;
 import org.sonar.api.rule.RuleKey;
+import org.sonar.api.utils.log.LoggerLevel;
 import org.sonar.commonruleengine.checks.Check;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.mockito.Mockito.*;
+import static org.awaitility.Awaitility.await;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.when;
 
 class GoSensorTest {
+
+  @RegisterExtension
+  static JUnit5LogTester logTester = new JUnit5LogTester();
 
   private Path workDir;
   private Path projectDir;
@@ -88,10 +97,29 @@ class GoSensorTest {
 
     sensorContext.fileSystem().add(failingFile);
     GoSensor goSensor = getSensor("S2068");
-    assertThatThrownBy(() -> goSensor.execute(sensorContext))
+    goSensor.execute(sensorContext);
+    assertThat(logTester.logs(LoggerLevel.ERROR)).contains("Failed to analyze 1 file(s). Turn on debug message to see the details. Failed files:\nlets.go");
+  }
+
+  @Test
+  void test_failure_empty_file() throws Exception {
+    InputFile failingFile = createInputFile("lets.go", "");
+    sensorContext.fileSystem().add(failingFile);
+    GoSensor goSensor = getSensor("S2068");
+    goSensor.execute(sensorContext);
+
+    assertThat(logTester.logs(LoggerLevel.ERROR)).contains("Failed to analyze 1 file(s). Turn on debug message to see the details. Failed files:\nlets.go");
+    assertThat(logTester.logs(LoggerLevel.DEBUG)).contains("Error analyzing file lets.go");
+    // test log from external process asynchronously
+    await().until(() -> logTester.logs(LoggerLevel.DEBUG).contains("panic: -:1:1: expected 'package', found 'EOF'"));
+  }
+
+  @Test
+  void test_workdir_failure() {
+    GoSensor goSensor = getSensor("S2068");
+    assertThatThrownBy(() -> goSensor.execute(SensorContextTester.create(workDir)))
       .isInstanceOf(GoSensor.GoPluginException.class)
-      .hasMessage("Error during analysis. Last analyzed file: \"lets.go\"")
-      .hasCause(ioException);
+      .hasMessage("Error initializing UAST generator");
   }
 
   @Test

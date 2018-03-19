@@ -1,8 +1,10 @@
 package org.sonar.go.plugin;
 
-import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.batch.fs.TextRange;
@@ -17,6 +19,8 @@ import org.sonar.api.measures.CoreMetrics;
 import org.sonar.api.measures.FileLinesContext;
 import org.sonar.api.measures.FileLinesContextFactory;
 import org.sonar.api.rule.RuleKey;
+import org.sonar.api.utils.log.Logger;
+import org.sonar.api.utils.log.Loggers;
 import org.sonar.commonruleengine.Engine;
 import org.sonar.commonruleengine.Issue;
 import org.sonar.commonruleengine.Metrics;
@@ -24,6 +28,8 @@ import org.sonar.commonruleengine.checks.Check;
 import org.sonar.uast.UastNode;
 
 public class GoSensor implements Sensor {
+
+  private static final Logger LOG = Loggers.get(GoSensor.class);
 
   private final Checks<Check> checks;
   private final FileLinesContextFactory fileLinesContextFactory;
@@ -43,19 +49,28 @@ public class GoSensor implements Sensor {
   @Override
   public void execute(SensorContext context) {
     Engine ruleEngine = new Engine(checks.all());
-    String lastAnalyzedFile = "no file analyzed";
+    UastGeneratorWrapper uastGenerator;
     try {
-      UastGeneratorWrapper uastGenerator = new UastGeneratorWrapper(context.fileSystem().workDir());
-      for (InputFile inputFile : getInputFiles(context)) {
-        lastAnalyzedFile = inputFile.toString();
-        UastNode uast = uastGenerator.createUast(inputFile);
+      uastGenerator = new UastGeneratorWrapper(context);
+    } catch (Exception e) {
+      throw new GoPluginException("Error initializing UAST generator", e);
+    }
+    List<InputFile> failedFiles = new ArrayList<>();
+    for (InputFile inputFile : getInputFiles(context)) {
+      try {
+        UastNode uast = uastGenerator.createUast(inputFile.inputStream());
         Engine.ScanResult scanResult = ruleEngine.scan(uast);
         scanResult.issues.forEach(issue -> reportIssue(issue, context, inputFile));
         saveMetrics(scanResult.metrics, context, inputFile);
         saveHighlighting(uast, context, inputFile);
+      } catch (Exception e) {
+        failedFiles.add(inputFile);
+        LOG.debug("Error analyzing file " + inputFile.toString(), e);
       }
-    } catch (IOException | RuntimeException e) {
-      throw new GoPluginException("Error during analysis. Last analyzed file: \"" + lastAnalyzedFile + "\"", e);
+    }
+    if (!failedFiles.isEmpty()) {
+      String failedFilesAsString = failedFiles.stream().map(InputFile::toString).collect(Collectors.joining("\n"));
+      LOG.error("Failed to analyze {} file(s). Turn on debug message to see the details. Failed files:\n{}", failedFiles.size(), failedFilesAsString);
     }
   }
 
