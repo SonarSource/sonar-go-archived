@@ -40,211 +40,449 @@ func (a id) fun(n1, n2 int, s1 string, b1 bool) (n int, s string) {
 `
 )
 
+type TestNode struct {
+	kinds      []Kind
+	children   int
+	nativeNode string
+	token      Token
+}
+
+func newTestNode(node *Node) TestNode {
+	testNode := TestNode{
+		kinds:      node.Kinds,
+		nativeNode: node.NativeNode,
+		children:   len(node.Children),
+	}
+
+	if node.Token != nil {
+		testNode.token = *node.Token
+	}
+
+	return testNode
+}
+
 func Test_mapFile(t *testing.T) {
 	uast := uastFromString(t, example_hello_world, "")
 
-	expectKinds(t, uast, []Kind{COMPILATION_UNIT})
-	expectChildrenCount(t, uast, 3)
-	expectNativeNode(t, uast, "(File)")
-	expectToken(t, uast, nil)
+	actual := newTestNode(uast)
+	expected := TestNode{
+		kinds:      []Kind{COMPILATION_UNIT},
+		nativeNode: "(File)",
+		children:   3,
+	}
 
-	expectKinds(t, uast.Children[1], []Kind{DECL_LIST})
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+
+	actual = newTestNode(uast.Children[1])
+	expected = TestNode{
+		kinds:      []Kind{DECL_LIST},
+		nativeNode: "Decls([]Decl)",
+		children:   2,
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
 }
 
 func Test_mapFuncDecl(t *testing.T) {
 	uast := uastFromString(t, example_hello_world, "Decls/[1](FuncDecl)")
 
-	expectKinds(t, uast, []Kind{FUNCTION})
-	expectChildrenCount(t, uast, 4)
-	expectNativeNode(t, uast, "[1](FuncDecl)")
-	expectToken(t, uast, nil)
+	actual := newTestNode(uast)
+	expected := TestNode{
+		kinds:      []Kind{FUNCTION},
+		nativeNode: "[1](FuncDecl)",
+		children:   4,
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
 }
 
 func Test_mapFuncDecl_forward_declaration(t *testing.T) {
 	uast := uastFromString(t, "package main\nfunc forward_declaration() int64",
 		"Decls/[0](FuncDecl)")
 
-	expectKinds(t, uast, []Kind{FUNCTION})
-	expectChildrenCount(t, uast, 3)
-	expectNativeNode(t, uast, "[0](FuncDecl)")
-	expectToken(t, uast, nil)
+	actual := newTestNode(uast)
+	expected := TestNode{
+		kinds:      []Kind{FUNCTION},
+		nativeNode: "[0](FuncDecl)",
+		children:   3,
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
 }
 
 func Test_mapFuncDecl_Name(t *testing.T) {
 	uast := uastFromString(t, example_hello_world, "Decls/[1](FuncDecl)/Name")
 
-	expectKinds(t, uast, []Kind{IDENTIFIER})
-	expectChildrenCount(t, uast, 0)
-	expectNativeNode(t, uast, "Name(Ident)")
-	expectToken(t, uast, &Token{Line: 3, Column: 6, Value: "main"})
+	actual := newTestNode(uast)
+	expected := TestNode{
+		kinds:      []Kind{IDENTIFIER},
+		nativeNode: "Name(Ident)",
+		token:      Token{Value: "main", Line: 3, Column: 6},
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
 }
 
 func Test_mapFuncDecl_complete(t *testing.T) {
 	uast := uastFromString(t, example_with_complete_function,
 		"Decls/[1](FuncDecl)")
 
-	expectKinds(t, uast, []Kind{FUNCTION})
-	expectChildrenCount(t, uast, 5)
-	expectNativeNode(t, uast, "[1](FuncDecl)")
+	actual := newTestNode(uast)
+	expected := TestNode{
+		kinds:      []Kind{FUNCTION},
+		nativeNode: "[1](FuncDecl)",
+		children:   5,
+	}
 
-	expectKinds(t, uast.Children[0], []Kind{KEYWORD})
-	expectKinds(t, uast.Children[1], []Kind{PARAMETER_LIST})
-	expectKinds(t, uast.Children[2], []Kind{IDENTIFIER})
-	expectKinds(t, uast.Children[4], []Kind{BLOCK})
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+
+	actual = newTestNode(uast.Children[0])
+	expected = TestNode{
+		kinds:      []Kind{KEYWORD},
+		nativeNode: "Type.Func",
+		token:      Token{Value: "func", Line: 3, Column: 1},
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+
+	actual = newTestNode(uast.Children[1])
+	expected = TestNode{
+		kinds:      []Kind{PARAMETER_LIST},
+		nativeNode: "Recv(FieldList)",
+		children:   3,
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+
+	actual = newTestNode(uast.Children[2])
+	expected = TestNode{
+		kinds:      []Kind{IDENTIFIER},
+		nativeNode: "Name(Ident)",
+		token:      Token{Value: "fun", Line: 3, Column: 13},
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
 
 	funcType := uast.Children[3]
-	expectKinds(t, funcType, nil)
-	expectChildrenCount(t, funcType, 2)
-	expectNativeNode(t, funcType, "Type(FuncType)")
+	actual = newTestNode(funcType)
+	expected = TestNode{
+		nativeNode: "Type(FuncType)",
+		children:   2,
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
 
 	params := funcType.Children[0]
-	expectKinds(t, params, []Kind{PARAMETER_LIST})
-	expectChildrenCount(t, params, 7)
-	expectNativeNode(t, params, "Params(FieldList)")
+	actual = newTestNode(params)
+	expected = TestNode{
+		kinds:      []Kind{PARAMETER_LIST},
+		nativeNode: "Params(FieldList)",
+		children:   7,
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
 
 	intParams := params.Children[1]
-	expectKinds(t, intParams, nil)
-	expectChildrenCount(t, intParams, 2)
-	expectNativeNode(t, intParams, "[0](Field)")
+	actual = newTestNode(intParams)
+	expected = TestNode{
+		nativeNode: "[0](Field)",
+		children:   2,
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
 
 	intParamsNames := intParams.Children[0]
-	expectChildrenCount(t, intParamsNames, 3)
-	expectNativeNode(t, intParamsNames, "Names([]*Ident)")
+	actual = newTestNode(intParamsNames)
+	expected = TestNode{
+		nativeNode: "Names([]*Ident)",
+		children:   3,
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
 
 	n1 := intParamsNames.Children[0]
-	expectChildrenCount(t, n1, 0)
-	expectKinds(t, n1, []Kind{PARAMETER, IDENTIFIER})
-	expectToken(t, n1, &Token{Line: 3, Column: 17, Value: "n1"})
+	actual = newTestNode(n1)
+	expected = TestNode{
+		kinds:      []Kind{PARAMETER, IDENTIFIER},
+		nativeNode: "[0](Ident)",
+		token:      Token{Value: "n1", Line: 3, Column: 17},
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
 
 	intParamsType := intParams.Children[1]
-	expectKinds(t, intParamsType, []Kind{TYPE, IDENTIFIER})
-	expectToken(t, intParamsType, &Token{Line: 3, Column: 24, Value: "int"})
-	expectChildrenCount(t, intParamsType, 0)
-	expectNativeNode(t, intParamsType, "Type(Ident)")
+	actual = newTestNode(intParamsType)
+	expected = TestNode{
+		kinds:      []Kind{TYPE, IDENTIFIER},
+		nativeNode: "Type(Ident)",
+		token:      Token{Value: "int", Line: 3, Column: 24},
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
 
 	stringParams := params.Children[3]
-	expectKinds(t, stringParams, nil)
-	expectNativeNode(t, stringParams, "[1](Field)")
-	expectChildrenCount(t, stringParams, 2)
+	actual = newTestNode(stringParams)
+	expected = TestNode{
+		nativeNode: "[1](Field)",
+		children:   2,
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
 
 	stringParamsNames := stringParams.Children[0]
-	expectChildrenCount(t, stringParamsNames, 1)
-	expectNativeNode(t, stringParamsNames, "Names([]*Ident)")
+	actual = newTestNode(stringParamsNames)
+	expected = TestNode{
+		nativeNode: "Names([]*Ident)",
+		children:   1,
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
 
 	s1 := stringParamsNames.Children[0]
-	expectChildrenCount(t, s1, 0)
-	expectKinds(t, s1, []Kind{PARAMETER, IDENTIFIER})
-	expectToken(t, s1, &Token{Line: 3, Column: 29, Value: "s1"})
+	actual = newTestNode(s1)
+	expected = TestNode{
+		kinds:      []Kind{PARAMETER, IDENTIFIER},
+		nativeNode: "[0](Ident)",
+		token:      Token{Value: "s1", Line: 3, Column: 29},
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
 
 	stringParamsType := stringParams.Children[1]
-	expectKinds(t, stringParamsType, []Kind{TYPE, IDENTIFIER})
-	expectToken(t, stringParamsType, &Token{Line: 3, Column: 32, Value: "string"})
-	expectChildrenCount(t, stringParamsType, 0)
-	expectNativeNode(t, stringParamsType, "Type(Ident)")
+	actual = newTestNode(stringParamsType)
+	expected = TestNode{
+		kinds:      []Kind{TYPE, IDENTIFIER},
+		nativeNode: "Type(Ident)",
+		token:      Token{Value: "string", Line: 3, Column: 32},
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
 
 	results := funcType.Children[1]
-	expectKinds(t, results, []Kind{RESULT_LIST})
-	expectChildrenCount(t, results, 5)
-	expectNativeNode(t, results, "Results(FieldList)")
+	actual = newTestNode(results)
+	expected = TestNode{
+		kinds:      []Kind{RESULT_LIST},
+		nativeNode: "Results(FieldList)",
+		children:   5,
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
 
 	intResults := results.Children[1]
-	expectKinds(t, intResults, nil)
-	expectChildrenCount(t, intResults, 2)
-	expectNativeNode(t, intResults, "[0](Field)")
+	actual = newTestNode(intResults)
+	expected = TestNode{
+		nativeNode: "[0](Field)",
+		children:   2,
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
 
 	intResultsNames := intResults.Children[0]
-	expectChildrenCount(t, intResultsNames, 1)
-	expectNativeNode(t, intResultsNames, "Names([]*Ident)")
+	actual = newTestNode(intResultsNames)
+	expected = TestNode{
+		nativeNode: "Names([]*Ident)",
+		children:   1,
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
 
 	n := intResultsNames.Children[0]
-	expectChildrenCount(t, n, 0)
-	expectKinds(t, n, []Kind{RESULT, IDENTIFIER})
-	expectToken(t, n, &Token{Line: 3, Column: 50, Value: "n"})
+	actual = newTestNode(n)
+	expected = TestNode{
+		kinds:      []Kind{RESULT, IDENTIFIER},
+		nativeNode: "[0](Ident)",
+		token:      Token{Value: "n", Line: 3, Column: 50},
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
 
 	intResultsType := intResults.Children[1]
-	expectKinds(t, intResultsType, []Kind{TYPE, IDENTIFIER})
-	expectChildrenCount(t, intResultsType, 0)
-	expectNativeNode(t, intResultsType, "Type(Ident)")
+	actual = newTestNode(intResultsType)
+	expected = TestNode{
+		kinds:      []Kind{TYPE, IDENTIFIER},
+		nativeNode: "Type(Ident)",
+		token:      Token{Value: "int", Line: 3, Column: 52},
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
 }
 
 func Test_mapBlockStmt(t *testing.T) {
 	uast := uastFromString(t, example_with_two_assignments,
 		"Decls/[0](FuncDecl)/Body")
 
-	expectKinds(t, uast, []Kind{BLOCK})
-	expectChildrenCount(t, uast, 4)
-	expectNativeNode(t, uast, "Body(BlockStmt)")
-	expectToken(t, uast, nil)
+	actual := newTestNode(uast)
+	expected := TestNode{
+		kinds:      []Kind{BLOCK},
+		nativeNode: "Body(BlockStmt)",
+		children:   4,
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
 }
 
 func Test_mapAssignStmt(t *testing.T) {
 	uast := uastFromString(t, example_with_two_assignments,
 		"Decls/[0](FuncDecl)/Body/[0](AssignStmt)")
 
-	expectKinds(t, uast, []Kind{ASSIGNMENT, STATEMENT})
-	expectChildrenCount(t, uast, 3)
-	expectNativeNode(t, uast, "[0](AssignStmt)")
-	expectToken(t, uast, nil)
+	actual := newTestNode(uast)
+	expected := TestNode{
+		kinds:      []Kind{ASSIGNMENT, STATEMENT},
+		nativeNode: "[0](AssignStmt)",
+		children:   3,
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
 }
 
 func Test_mapExprList(t *testing.T) {
 	uast := uastFromString(t, example_with_two_assignments,
 		"Decls/[0](FuncDecl)/Body/[0](AssignStmt)/Lhs")
 
-	expectKinds(t, uast, []Kind{ASSIGNMENT_TARGET})
-	expectChildrenCount(t, uast, 3)
-	expectNativeNode(t, uast, "Lhs([]Expr)")
-	expectToken(t, uast, nil)
+	actual := newTestNode(uast)
+	expected := TestNode{
+		kinds:      []Kind{ASSIGNMENT_TARGET},
+		nativeNode: "Lhs([]Expr)",
+		children:   3,
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
 }
 
 func Test_mapExpr_Ident(t *testing.T) {
 	uast := uastFromString(t, example_with_two_assignments,
 		"Decls/[0](FuncDecl)/Body/[0](AssignStmt)/Lhs/[0](Ident)")
 
-	expectKinds(t, uast, []Kind{IDENTIFIER})
-	expectChildrenCount(t, uast, 0)
-	expectNativeNode(t, uast, "[0](Ident)")
-	expectToken(t, uast, &Token{Line: 3, Column: 2, Value: "a"})
+	actual := newTestNode(uast)
+	expected := TestNode{
+		kinds:      []Kind{IDENTIFIER},
+		nativeNode: "[0](Ident)",
+		children:   0,
+		token:      Token{Value: "a", Line: 3, Column: 2},
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
 }
 
 func Test_mapExpr_BasicLit(t *testing.T) {
 	uast := uastFromString(t, example_hello_world,
 		"Decls/[1](FuncDecl)/Body/[0](AssignStmt)/Rhs/[0](BasicLit)")
 
-	expectKinds(t, uast, []Kind{LITERAL, STRING_LITERAL})
-	expectChildrenCount(t, uast, 0)
-	expectNativeNode(t, uast, "[0](BasicLit)")
-	expectToken(t, uast, &Token{Line: 4, Column: 9, Value: "\"hello, world\""})
+	actual := newTestNode(uast)
+	expected := TestNode{
+		kinds:      []Kind{LITERAL, STRING_LITERAL},
+		nativeNode: "[0](BasicLit)",
+		children:   0,
+		token:      Token{Value: "\"hello, world\"", Line: 4, Column: 9},
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
 }
 
 func Test_mapExprStmt(t *testing.T) {
 	uast := uastFromString(t, example_hello_world,
 		"Decls/[1](FuncDecl)/Body/[1](ExprStmt)")
 
-	expectKinds(t, uast, []Kind{EXPRESSION, STATEMENT})
-	expectChildrenCount(t, uast, 1)
-	expectNativeNode(t, uast, "[1](ExprStmt)")
-	expectToken(t, uast, nil)
+	actual := newTestNode(uast)
+	expected := TestNode{
+		kinds:      []Kind{EXPRESSION, STATEMENT},
+		nativeNode: "[1](ExprStmt)",
+		children:   1,
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
 }
 
 func Test_mapCallExpr(t *testing.T) {
 	uast := uastFromString(t, example_hello_world,
 		"Decls/[1](FuncDecl)/Body/[1](ExprStmt)/X(CallExpr)")
 
-	expectKinds(t, uast, []Kind{CALL})
-	expectChildrenCount(t, uast, 4)
-	expectNativeNode(t, uast, "X(CallExpr)")
-	expectToken(t, uast, nil)
+	actual := newTestNode(uast)
+	expected := TestNode{
+		kinds:      []Kind{CALL},
+		nativeNode: "X(CallExpr)",
+		children:   4,
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
 }
 
 func Test_mapIfStmt(t *testing.T) {
 	uast := uastFromString(t, example_with_if,
 		"Decls/[0](FuncDecl)/Body/[1](IfStmt)")
 
-	expectKinds(t, uast, []Kind{IF, STATEMENT})
-	expectChildrenCount(t, uast, 3)
-	expectNativeNode(t, uast, "[1](IfStmt)")
-	expectToken(t, uast, nil)
+	actual := newTestNode(uast)
+	expected := TestNode{
+		kinds:      []Kind{IF, STATEMENT},
+		nativeNode: "[1](IfStmt)",
+		children:   3,
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
 }
 
 func Test_mapBinaryOperator(t *testing.T) {
@@ -275,7 +513,17 @@ func main() {
 	body := uastFromString(t, source,
 		"Decls/[0](FuncDecl)/Body")
 
-	expectChildrenCount(t, body, len(expectedOperators)+2)
+	actual := newTestNode(body)
+	expected := TestNode{
+		kinds:      []Kind{BLOCK},
+		nativeNode: "Body(BlockStmt)",
+		children:   21,
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+
 	// remove the '{' and '}' child
 	statements := body.Children[1 : len(body.Children)-1]
 
@@ -284,10 +532,21 @@ func main() {
 		if err != nil {
 			t.Fatalf(err.Error())
 		}
-		expectKinds(t, uast, []Kind{BINARY_EXPRESSION})
-		expectChildrenCount(t, uast, 3)
-		expectNativeNode(t, uast, "[0](BinaryExpr)")
-		expectEquals(t, uast.Children[1].Token.Value, expectedOperators[i])
+
+		actual := newTestNode(uast)
+		expected := TestNode{
+			kinds:      []Kind{BINARY_EXPRESSION},
+			nativeNode: "[0](BinaryExpr)",
+			children:   3,
+		}
+
+		if !reflect.DeepEqual(expected, actual) {
+			t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+		}
+
+		if expected, actual := expectedOperators[i], uast.Children[1].Token.Value; expected != actual {
+			t.Fatalf("got '%v'; expected '%v'", actual, expected)
+		}
 	}
 }
 
@@ -361,7 +620,7 @@ useless_label:
 	actual := len(uast.Children)
 	expected := 2 // 'useless_label' ':'
 	if expected != actual {
-		t.Fatalf("Got:%v expect:%v", actual, expected)
+		t.Fatalf("Got %v; expected %v", actual, expected)
 	}
 }
 
@@ -434,52 +693,4 @@ func uastQuery(parent *Node, nodeQueryPath string) (*Node, error) {
 		node = newNode
 	}
 	return node, nil
-}
-
-func expectEquals(t *testing.T, actual string, expected string) {
-	if expected != actual {
-		t.Fatalf("got '%v'; expected '%v'", actual, expected)
-	}
-}
-
-func expectKinds(t *testing.T, actual *Node, expected []Kind) {
-	if !reflect.DeepEqual(expected, actual.Kinds) {
-		t.Fatalf("got %v as Kinds; expected %v", actual.Kinds, expected)
-	}
-}
-
-func expectChildrenCount(t *testing.T, actual *Node, expected int) {
-	if expected != len(actual.Children) {
-		t.Fatalf("got %v as number of Children; expected %v", len(actual.Children), expected)
-	}
-}
-
-func expectNativeNode(t *testing.T, actual *Node, expected string) {
-	if expected != actual.NativeNode {
-		t.Fatalf("got %v as NativeValue; expected %v", actual.NativeNode, expected)
-	}
-}
-
-func expectToken(t *testing.T, actual *Node, expected *Token) {
-	if actual.Token == nil && expected == nil {
-		return
-	}
-
-	if actual.Token == nil {
-		t.Fatalf("got nil Token; expected %v", expected)
-	}
-
-	if expected == nil {
-		t.Fatalf("got %v; expected nil Token", actual.Token)
-	}
-
-	// copy only fields we want to compare
-	tok := &Token{
-		Line:   actual.Token.Line,
-		Column: actual.Token.Column,
-		Value:  actual.Token.Value,
-	}
-	if !reflect.DeepEqual(expected, tok) {
-		t.Fatalf("got %v; expected %v", tok, expected)
-	}
 }
