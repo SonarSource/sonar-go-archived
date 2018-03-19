@@ -63,6 +63,7 @@ public class GoSensor implements Sensor {
         scanResult.issues.forEach(issue -> reportIssue(issue, context, inputFile));
         saveMetrics(scanResult.metrics, context, inputFile);
         saveHighlighting(uast, context, inputFile);
+        saveCpdTokens(uast, context, inputFile);
       } catch (Exception e) {
         failedFiles.add(inputFile);
         LOG.debug("Error analyzing file " + inputFile.toString(), e);
@@ -103,6 +104,12 @@ public class GoSensor implements Sensor {
     HighlightingVisitor highlighting = new HighlightingVisitor(context, inputFile);
     highlighting.scan(uast);
     highlighting.save();
+  }
+
+  private static void saveCpdTokens(UastNode uast, SensorContext context, InputFile inputFile) {
+    CpdVisitor cpdVisitor = new CpdVisitor(context, inputFile);
+    cpdVisitor.scan(uast);
+    cpdVisitor.save();
   }
 
   private static <T extends Serializable> void saveMetric(SensorContext context, InputFile inputFile, Metric<T> metric, T value) {
