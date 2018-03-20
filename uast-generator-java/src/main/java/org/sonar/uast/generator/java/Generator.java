@@ -97,7 +97,7 @@ public class Generator {
         .map(syntaxTrivia -> newUastNode(syntaxTrivia, Collections.emptyList()))
         .collect(Collectors.toList());
       return Stream.concat(trivia.stream(), Stream.of(uastNode));
-    } else {
+    } else if (!tree.is(Tree.Kind.INFERED_TYPE)) {
       List<Tree> children = ((JavaTree) tree).getChildren();
       if (!children.isEmpty()) {
         uastNode = newUastNode(tree, children.stream().flatMap(this::visit).filter(Objects::nonNull).collect(Collectors.toList()));
