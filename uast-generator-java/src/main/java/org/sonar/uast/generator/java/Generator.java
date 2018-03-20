@@ -147,8 +147,10 @@ public class Generator {
         break;
       case METHOD:
       case CONSTRUCTOR:
-      case LAMBDA_EXPRESSION:
         result.add(UastNode.Kind.FUNCTION);
+        break;
+      case LAMBDA_EXPRESSION:
+        result.add(UastNode.Kind.FUNCTION_LITERAL);
         break;
       case CLASS:
       case ENUM:
