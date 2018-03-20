@@ -27,6 +27,8 @@ import org.sonar.commonruleengine.Metrics;
 import org.sonar.commonruleengine.checks.Check;
 import org.sonar.uast.UastNode;
 
+import static org.sonar.go.plugin.GoCoverageReport.saveCoverageReports;
+
 public class GoSensor implements Sensor {
 
   private static final Logger LOG = Loggers.get(GoSensor.class);
@@ -73,6 +75,7 @@ public class GoSensor implements Sensor {
       String failedFilesAsString = failedFiles.stream().map(InputFile::toString).collect(Collectors.joining("\n"));
       LOG.error("Failed to analyze {} file(s). Turn on debug message to see the details. Failed files:\n{}", failedFiles.size(), failedFilesAsString);
     }
+    saveCoverageReports(context, GoCoverageReport.GoContext.DEFAULT);
   }
 
   private void reportIssue(Issue issue, SensorContext context, InputFile inputFile) {
