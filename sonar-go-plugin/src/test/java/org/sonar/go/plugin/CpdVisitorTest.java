@@ -24,7 +24,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class CpdVisitorTest {
 
   @Test
-  public void test() throws IOException {
+  void test() throws IOException {
     SensorContext context = mock(SensorContext.class);
 
     NewCpdTokensTester newCpdTokensTester = new NewCpdTokensTester();

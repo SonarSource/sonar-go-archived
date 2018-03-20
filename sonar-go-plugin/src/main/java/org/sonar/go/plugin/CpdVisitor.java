@@ -1,10 +1,11 @@
 package org.sonar.go.plugin;
 
 import org.sonar.api.batch.fs.InputFile;
-import org.sonar.api.batch.fs.TextRange;
 import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.batch.sensor.cpd.NewCpdTokens;
 import org.sonar.uast.UastNode;
+
+import static org.sonar.go.plugin.utils.PluginApiUtils.newRange;
 
 public class CpdVisitor {
 
@@ -28,20 +29,12 @@ public class CpdVisitor {
         text = "LITERAL";
       }
 
-      cpdTokens.addToken(textRange(token), text);
+      cpdTokens.addToken(newRange(inputFile, token), text);
     }
 
     for (UastNode child : node.children) {
       scan(child);
     }
-  }
-
-  private TextRange textRange(UastNode.Token token) {
-    return inputFile.newRange(
-      token.line,
-      token.column - 1,
-      token.endLine,
-      token.endColumn);
   }
 
   public void save() {
