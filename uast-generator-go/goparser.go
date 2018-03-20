@@ -21,43 +21,44 @@ func (k Kind) String() string {
 }
 
 const (
-	COMPILATION_UNIT   Kind = "COMPILATION_UNIT"
-	COMMENT            Kind = "COMMENT"
-	STRUCTURED_COMMENT Kind = "STRUCTURED_COMMENT"
-	PACKAGE            Kind = "PACKAGE"
-	EOF                Kind = "EOF"
-	FUNCTION           Kind = "FUNCTION"
-	BLOCK              Kind = "BLOCK"
-	LPAREN             Kind = "LPAREN"
-	RPAREN             Kind = "RPAREN"
-	ARGS_LIST          Kind = "ARGS_LIST"
-	CALL               Kind = "CALL"
-	IF                 Kind = "IF"
-	ELSE               Kind = "ELSE"
-	CONDITION          Kind = "CONDITION"
-	DECLARATION        Kind = "DECLARATION"
-	DECL_LIST          Kind = "DECL_LIST"
-	CLASS              Kind = "CLASS"
-	STATEMENT          Kind = "STATEMENT"
-	ASSIGNMENT         Kind = "ASSIGNMENT"
-	ASSIGNMENT_TARGET  Kind = "ASSIGNMENT_TARGET"
-	ASSIGNMENT_VALUE   Kind = "ASSIGNMENT_VALUE"
-	IDENTIFIER         Kind = "IDENTIFIER"
-	TYPE               Kind = "TYPE"
-	KEYWORD            Kind = "KEYWORD"
-	SELECTOR_EXPR      Kind = "SELECTOR_EXPR"
-	LITERAL            Kind = "LITERAL"
-	STRING_LITERAL     Kind = "STRING_LITERAL"
-	EXPRESSION         Kind = "EXPRESSION"
-	PARAMETER_LIST     Kind = "PARAMETER_LIST"
-	PARAMETER          Kind = "PARAMETER"
-	RESULT_LIST        Kind = "RESULT_LIST"
-	RESULT             Kind = "RESULT"
-	BINARY_EXPRESSION  Kind = "BINARY_EXPRESSION"
-	SWITCH             Kind = "SWITCH"
-	CASE               Kind = "CASE"
-	DEFAULT_CASE       Kind = "DEFAULT_CASE"
-	UNSUPPORTED        Kind = "UNSUPPORTED"
+	COMPILATION_UNIT    Kind = "COMPILATION_UNIT"
+	COMMENT             Kind = "COMMENT"
+	STRUCTURED_COMMENT  Kind = "STRUCTURED_COMMENT"
+	PACKAGE             Kind = "PACKAGE"
+	EOF                 Kind = "EOF"
+	FUNCTION            Kind = "FUNCTION"
+	BLOCK               Kind = "BLOCK"
+	LPAREN              Kind = "LPAREN"
+	RPAREN              Kind = "RPAREN"
+	ARGS_LIST           Kind = "ARGS_LIST"
+	CALL                Kind = "CALL"
+	IF                  Kind = "IF"
+	ELSE                Kind = "ELSE"
+	CONDITION           Kind = "CONDITION"
+	DECLARATION         Kind = "DECLARATION"
+	DECL_LIST           Kind = "DECL_LIST"
+	CLASS               Kind = "CLASS"
+	STATEMENT           Kind = "STATEMENT"
+	ASSIGNMENT          Kind = "ASSIGNMENT"
+	COMPOUND_ASSIGNMENT Kind = "COMPOUND_ASSIGNMENT"
+	ASSIGNMENT_TARGET   Kind = "ASSIGNMENT_TARGET"
+	ASSIGNMENT_VALUE    Kind = "ASSIGNMENT_VALUE"
+	IDENTIFIER          Kind = "IDENTIFIER"
+	TYPE                Kind = "TYPE"
+	KEYWORD             Kind = "KEYWORD"
+	SELECTOR_EXPR       Kind = "SELECTOR_EXPR"
+	LITERAL             Kind = "LITERAL"
+	STRING_LITERAL      Kind = "STRING_LITERAL"
+	EXPRESSION          Kind = "EXPRESSION"
+	PARAMETER_LIST      Kind = "PARAMETER_LIST"
+	PARAMETER           Kind = "PARAMETER"
+	RESULT_LIST         Kind = "RESULT_LIST"
+	RESULT              Kind = "RESULT"
+	BINARY_EXPRESSION   Kind = "BINARY_EXPRESSION"
+	SWITCH              Kind = "SWITCH"
+	CASE                Kind = "CASE"
+	DEFAULT_CASE        Kind = "DEFAULT_CASE"
+	UNSUPPORTED         Kind = "UNSUPPORTED"
 )
 
 type Token struct {
@@ -423,9 +424,12 @@ func isEndOfLine(ch byte) bool {
 }
 
 func (t *UastMapper) computeAssignStmtKinds(tok token.Token) []Kind {
-	if tok == token.DEFINE {
+	switch tok {
+	case token.DEFINE:
 		return []Kind{ASSIGNMENT, DECLARATION}
-	} else {
+	case token.ASSIGN:
 		return []Kind{ASSIGNMENT}
+	default:
+		return []Kind{ASSIGNMENT, COMPOUND_ASSIGNMENT}
 	}
 }

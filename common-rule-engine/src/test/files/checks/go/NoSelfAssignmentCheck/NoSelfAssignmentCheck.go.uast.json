@@ -265,7 +265,37 @@
         ]},
         {"token": {"value":"}","line":33,"column":1}, "nativeNode": "Rbrace"}
       ]}
+    ]},
+    {"kinds": ["FUNCTION"], "nativeNode": "[6](FuncDecl)", "children": [
+      {"kinds": ["KEYWORD"], "token": {"value":"func","line":35,"column":1}, "nativeNode": "Type.Func"},
+      {"kinds": ["IDENTIFIER"], "token": {"value":"compoundAssignment","line":35,"column":6}, "nativeNode": "Name(Ident)"},
+      {"nativeNode": "Type(FuncType)", "children": [
+        {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
+          {"token": {"value":"(","line":35,"column":24}, "nativeNode": "Opening"},
+          {"nativeNode": "[0](Field)", "children": [
+            {"nativeNode": "Names([]*Ident)", "children": [
+              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"x","line":35,"column":25}, "nativeNode": "[0](Ident)"}
+            ]},
+            {"kinds": ["TYPE","IDENTIFIER"], "token": {"value":"int","line":35,"column":27}, "nativeNode": "Type(Ident)"}
+          ]},
+          {"token": {"value":")","line":35,"column":30}, "nativeNode": "Closing"}
+        ]}
+      ]},
+      {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
+        {"token": {"value":"{","line":35,"column":33}, "nativeNode": "Lbrace"},
+        {"kinds": ["ASSIGNMENT","COMPOUND_ASSIGNMENT","STATEMENT"], "nativeNode": "[0](AssignStmt)", "children": [
+          {"kinds": ["ASSIGNMENT_TARGET"], "nativeNode": "Lhs([]Expr)", "children": [
+            {"kinds": ["IDENTIFIER"], "token": {"value":"x","line":36,"column":2}, "nativeNode": "[0](Ident)"}
+          ]},
+          {"token": {"value":"*=","line":36,"column":4}, "nativeNode": "Tok"},
+          {"kinds": ["ASSIGNMENT_VALUE"], "nativeNode": "Rhs([]Expr)", "children": [
+            {"kinds": ["IDENTIFIER"], "token": {"value":"x","line":36,"column":7}, "nativeNode": "[0](Ident)"}
+          ]}
+        ]},
+        {"kinds": ["COMMENT"], "token": {"value":"// Compliant","line":36,"column":10}, "nativeNode": ""},
+        {"token": {"value":"}","line":37,"column":1}, "nativeNode": "Rbrace"}
+      ]}
     ]}
   ]},
-  {"kinds": ["EOF"], "token": {"line":34,"column":1}, "nativeNode": ""}
+  {"kinds": ["EOF"], "token": {"line":38,"column":1}, "nativeNode": ""}
 ]}

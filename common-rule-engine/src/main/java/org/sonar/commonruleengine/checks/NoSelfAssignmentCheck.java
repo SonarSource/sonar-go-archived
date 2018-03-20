@@ -19,7 +19,8 @@ public class NoSelfAssignmentCheck extends Check {
   @Override
   public void visitNode(UastNode node) {
     AssignmentLike assignment = AssignmentLike.from(node);
-    if (assignment != null && !node.kinds.contains(UastNode.Kind.DECLARATION)
+    if (assignment != null
+      && node.isNot(UastNode.Kind.DECLARATION, UastNode.Kind.COMPOUND_ASSIGNMENT)
       && syntacticallyEquivalent(assignment.target(), assignment.value())) {
       reportIssue(node, "Remove this self assignment");
     }

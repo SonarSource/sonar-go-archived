@@ -31,3 +31,7 @@ func declarationIsNotSelfAssignment(x int) {
 		x := x  // Compliant, x is fresh local var shadowing the argument
 	}
 }
+
+func compoundAssignment(x int)  {
+	x *= x  // Compliant
+}
