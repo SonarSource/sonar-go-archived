@@ -5,8 +5,10 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
@@ -47,6 +49,7 @@ class GoSensorTest {
   private Path projectDir;
   private SensorContextTester sensorContext;
   private FileLinesContextFactory fileLinesContextFactory = mock(FileLinesContextFactory.class);
+  private FileLinesContextTester fileLinesContext;
 
   @BeforeEach
   void setUp() throws IOException {
@@ -56,7 +59,7 @@ class GoSensorTest {
     projectDir.toFile().deleteOnExit();
     sensorContext = SensorContextTester.create(workDir);
     sensorContext.fileSystem().setWorkDir(workDir);
-    FileLinesContext fileLinesContext = mock(FileLinesContext.class);
+    fileLinesContext = new FileLinesContextTester();
     when(fileLinesContextFactory.createFor(any(InputFile.class))).thenReturn(fileLinesContext);
   }
 
@@ -71,7 +74,7 @@ class GoSensorTest {
 
   @Test
   void test() throws IOException {
-    InputFile inputFile = createInputFile("lets.go",
+    InputFile inputFile = createInputFile("lets.go", InputFile.Type.MAIN,
       "package main \n" +
         "\n" +
         "func test() {\n" +
@@ -85,7 +88,7 @@ class GoSensorTest {
 
   @Test
   void test_failure() throws Exception {
-    InputFile failingFile = createInputFile("lets.go",
+    InputFile failingFile = createInputFile("lets.go", InputFile.Type.MAIN,
       "package main \n" +
         "\n" +
         "func test() {\n" +
@@ -103,7 +106,7 @@ class GoSensorTest {
 
   @Test
   void test_failure_empty_file() throws Exception {
-    InputFile failingFile = createInputFile("lets.go", "");
+    InputFile failingFile = createInputFile("lets.go", InputFile.Type.MAIN, "");
     sensorContext.fileSystem().add(failingFile);
     GoSensor goSensor = getSensor("S2068");
     goSensor.execute(sensorContext);
@@ -123,8 +126,8 @@ class GoSensorTest {
   }
 
   @Test
-  public void metrics() throws Exception {
-    InputFile inputFile = createInputFile("lets.go",
+  public void metrics() {
+    InputFile inputFile = createInputFile("lets.go", InputFile.Type.MAIN,
       "// This is not a line of code\n" +
         "package main\n" +
         "import \"fmt\"\n" +
@@ -151,11 +154,56 @@ class GoSensorTest {
     assertThat(sensorContext.measure(inputFile.key(), CoreMetrics.CLASSES).value()).isEqualTo(2);
     assertThat(sensorContext.measure(inputFile.key(), CoreMetrics.FUNCTIONS).value()).isEqualTo(3);
     assertThat(sensorContext.measure(inputFile.key(), CoreMetrics.STATEMENTS).value()).isEqualTo(4);
+
+    assertThat(fileLinesContext.saveCount).isEqualTo(1);
+
+    assertThat(fileLinesContext.metrics.keySet()).containsExactlyInAnyOrder(
+      CoreMetrics.COMMENT_LINES_DATA_KEY, CoreMetrics.NCLOC_DATA_KEY, CoreMetrics.EXECUTABLE_LINES_DATA_KEY);
+
+    assertThat(fileLinesContext.metrics.get(CoreMetrics.COMMENT_LINES_DATA_KEY)
+      .toString()).isEqualTo("1:1, 10:1, 15:1");
+
+    assertThat(fileLinesContext.metrics.get(CoreMetrics.NCLOC_DATA_KEY).toString())
+      .isEqualTo("2:1, 3:1, 4:1, 5:1, 6:1, 7:1, 8:1, 9:1, 10:1, 11:1, 12:1, 13:1, 14:1, 15:1, 16:1");
+
+    assertThat(fileLinesContext.metrics.get(CoreMetrics.EXECUTABLE_LINES_DATA_KEY).toString())
+      .isEqualTo("7:1, 10:1, 11:1, 15:1");
+  }
+
+  @Test
+  public void metrics_for_test_file() {
+    InputFile inputFile = createInputFile("lets.go", InputFile.Type.TEST,
+      "// This is not a line of code\n" +
+        "package main\n" +
+        "import \"fmt\"\n" +
+        "func main() {\n" +
+        "  fmt.Println(\"Hello\")\n" +
+        "}\n");
+    sensorContext.fileSystem().add(inputFile);
+    GoSensor goSensor = getSensor();
+    goSensor.execute(sensorContext);
+    assertThat(sensorContext.allIssues()).hasSize(0);
+    assertThat(sensorContext.measure(inputFile.key(), CoreMetrics.NCLOC).value()).isEqualTo(5);
+    assertThat(sensorContext.measure(inputFile.key(), CoreMetrics.COMMENT_LINES).value()).isEqualTo(1);
+    assertThat(sensorContext.measure(inputFile.key(), CoreMetrics.CLASSES).value()).isEqualTo(0);
+    assertThat(sensorContext.measure(inputFile.key(), CoreMetrics.FUNCTIONS).value()).isEqualTo(1);
+    assertThat(sensorContext.measure(inputFile.key(), CoreMetrics.STATEMENTS).value()).isEqualTo(1);
+
+    assertThat(fileLinesContext.saveCount).isEqualTo(1);
+
+    assertThat(fileLinesContext.metrics.keySet()).containsExactlyInAnyOrder(
+      CoreMetrics.COMMENT_LINES_DATA_KEY, CoreMetrics.NCLOC_DATA_KEY);
+
+    assertThat(fileLinesContext.metrics.get(CoreMetrics.COMMENT_LINES_DATA_KEY)
+      .toString()).isEqualTo("1:1");
+
+    assertThat(fileLinesContext.metrics.get(CoreMetrics.NCLOC_DATA_KEY).toString())
+      .isEqualTo("2:1, 3:1, 4:1, 5:1, 6:1");
   }
 
   @Test
   public void highlighting() throws Exception {
-    InputFile inputFile = createInputFile("lets.go",
+    InputFile inputFile = createInputFile("lets.go", InputFile.Type.MAIN,
       "//abc\n" +
         "/*x*/\n" +
         "package main\n" +
@@ -191,7 +239,7 @@ class GoSensorTest {
     assertHighlighting(componentKey, 6, 13, 18, TypeOfText.KEYWORD_LIGHT);
     assertHighlighting(componentKey, 6, 19, 20, null);
     assertHighlighting(componentKey, 6, 21, 23, TypeOfText.KEYWORD_LIGHT);
-    //   return 42
+    // return 42
     assertHighlighting(componentKey, 7, 3, 8, TypeOfText.KEYWORD);
     assertHighlighting(componentKey, 7, 10, 11, TypeOfText.CONSTANT);
   }
@@ -225,12 +273,47 @@ class GoSensorTest {
     return new GoSensor(checkFactory, fileLinesContextFactory);
   }
 
-  private InputFile createInputFile(String filename, String content) {
+  private InputFile createInputFile(String filename, InputFile.Type type, String content) {
     Path filePath = projectDir.resolve(filename);
     return TestInputFileBuilder.create("module", projectDir.toFile(), filePath.toFile())
       .setCharset(StandardCharsets.UTF_8)
       .setLanguage(GoLanguage.KEY)
       .setContents(content)
+      .setType(type)
       .build();
+  }
+
+  private static class FileLinesContextTester implements FileLinesContext {
+    int saveCount = 0;
+    Map<String, StringBuilder> metrics = new HashMap<>();
+
+    @Override
+    public void setIntValue(String metricKey, int line, int value) {
+      setStringValue(metricKey, line, String.valueOf(value));
+    }
+
+    @Override
+    public Integer getIntValue(String metricKey, int line) {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setStringValue(String metricKey, int line, String value) {
+      StringBuilder builder = metrics.computeIfAbsent(metricKey, key -> new StringBuilder());
+      if (builder.length() > 0) {
+        builder.append(", ");
+      }
+      builder.append(line).append(":").append(value);
+    }
+
+    @Override
+    public String getStringValue(String metricKey, int line) {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void save() {
+      saveCount++;
+    }
   }
 }

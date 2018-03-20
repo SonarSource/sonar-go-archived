@@ -73,6 +73,16 @@ class MetricsVisitorTest {
     assertEquals(new HashSet<>(Arrays.asList(2, 4, 5)), metrics.commentLines);
   }
 
+  @Test
+  void executable_lines() throws Exception {
+    Metrics metrics = getMetrics("{children:[" +
+      "  {kinds:[ 'STATEMENT' ], token: {line: 1, column: 2, value: 'a'}}," +
+      "  {kinds:[ 'COMMENT'   ], token: {line: 2, column: 2, value: '// Single line' }}," +
+      "  {kinds:[ 'STATEMENT' ], token: {line: 3, column: 2, value: 'b'}}" +
+      "]}");
+    assertEquals(new HashSet<>(Arrays.asList(1, 3)), metrics.executableLines);
+  }
+
   private Metrics getMetrics(String source) throws IOException {
     Engine engine = new Engine(Collections.emptyList());
     UastNode node = Uast.from(new StringReader(source));

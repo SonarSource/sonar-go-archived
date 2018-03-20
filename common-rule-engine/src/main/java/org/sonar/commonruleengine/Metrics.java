@@ -9,5 +9,6 @@ public class Metrics {
   public int numberOfStatements = 0;
 
   public Set<Integer> linesOfCode = new HashSet<>();
+  public Set<Integer> executableLines = new HashSet<>();
   public Set<Integer> commentLines = new HashSet<>();
 }

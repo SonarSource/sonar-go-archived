@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.fs.InputFile;
@@ -98,10 +99,17 @@ public class GoSensor implements Sensor {
     saveMetric(context, inputFile, CoreMetrics.FUNCTIONS, metrics.numberOfFunctions);
     saveMetric(context, inputFile, CoreMetrics.STATEMENTS, metrics.numberOfStatements);
 
-    FileLinesContext fileLinesContext = fileLinesContextFactory.createFor(inputFile);
-    metrics.linesOfCode.forEach(line -> fileLinesContext.setIntValue(CoreMetrics.NCLOC_DATA_KEY, line, 1));
-    metrics.commentLines.forEach(line -> fileLinesContext.setIntValue(CoreMetrics.COMMENT_LINES_DATA_KEY, line, 1));
-    fileLinesContext.save();
+    FileLinesContext linesContext = fileLinesContextFactory.createFor(inputFile);
+    saveLinesMetrics(linesContext, metrics.linesOfCode, CoreMetrics.NCLOC_DATA_KEY);
+    saveLinesMetrics(linesContext, metrics.commentLines, CoreMetrics.COMMENT_LINES_DATA_KEY);
+    if (inputFile.type() == InputFile.Type.MAIN) {
+      saveLinesMetrics(linesContext, metrics.executableLines, CoreMetrics.EXECUTABLE_LINES_DATA_KEY);
+    }
+    linesContext.save();
+  }
+
+  private static void saveLinesMetrics(FileLinesContext linesContext, Set<Integer> lines, String metricKey) {
+    lines.forEach(line -> linesContext.setIntValue(metricKey, line, 1));
   }
 
   private static void saveHighlighting(UastNode uast, SensorContext context, InputFile inputFile) {

@@ -72,6 +72,7 @@ class GoRulingTest {
     assertEquals(1, metrics.numberOfFunctions);
     assertEquals(3, metrics.numberOfStatements);
     assertEquals(new HashSet<>(Arrays.asList(2, 4, 6, 7, 8, 9, 10)), metrics.linesOfCode);
+    assertEquals(new HashSet<>(Arrays.asList(7, 8, 9)), metrics.executableLines);
     assertEquals(new HashSet<>(Arrays.asList(1, 7, 8, 9)), metrics.commentLines);
   }
 
