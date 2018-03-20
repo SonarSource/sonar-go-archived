@@ -75,13 +75,14 @@ public final class GoCoverageReport {
     Configuration config = sensorContext.config();
     Path baseDir = sensorContext.fileSystem().baseDir().toPath();
     Path defaultReportPath = baseDir.resolve(DEFAULT_REPORT_PATH);
+    if (!config.hasKey(REPORT_PATH_KEY)) {
+      if (defaultReportPath.toFile().exists()) {
+        return Collections.singletonList(defaultReportPath);
+      } else {
+        return Collections.emptyList();
+      }
+    }
     String[] reportPaths = config.getStringArray(REPORT_PATH_KEY);
-    if (reportPaths.length == 0 && defaultReportPath.toFile().exists()) {
-      return Collections.singletonList(defaultReportPath);
-    }
-    if (reportPaths.length == 1 && DEFAULT_REPORT_PATH.equals(reportPaths[0]) && !defaultReportPath.toFile().exists()) {
-      return Collections.emptyList();
-    }
     List<Path> result = new ArrayList<>();
     for (String reportPath : reportPaths) {
       Path path = Paths.get(reportPath);
@@ -107,7 +108,7 @@ public final class GoCoverageReport {
       int lineNumber = 2;
       while (scanner.hasNextLine()) {
         String line = scanner.nextLine();
-        if (line.length() > 0) {
+        if (!line.isEmpty()) {
           coverage.add(new CoverageStat(lineNumber, line));
         }
         lineNumber++;
@@ -236,7 +237,7 @@ public final class GoCoverageReport {
           matcher.reset();
           return matcher.replaceFirst("$1:\\\\");
         }
-      } else if (context.goPath != null && context.goPath.length() > 0) {
+      } else if (context.goPath != null && !context.goPath.isEmpty()) {
         return context.goPath + context.fileSeparator + filePath;
       }
       return filePath;
@@ -256,7 +257,7 @@ public final class GoCoverageReport {
     @Nullable
     static String defaultGoSrcPath() {
       String path = System.getenv("GOPATH");
-      if (path != null && path.length() > 0) {
+      if (path != null && !path.isEmpty()) {
         return path + File.separatorChar + "src";
       }
       return null;
