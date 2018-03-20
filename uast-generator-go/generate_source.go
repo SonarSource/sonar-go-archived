@@ -30,6 +30,7 @@ import (
 			// [structs] Define uast "kinds" by Go struct types (write 2 lines to add 2 kinds for the same type)
 			NewTypeKind((*ast.File)(nil), "COMPILATION_UNIT"),
 			NewTypeKind((*ast.FuncDecl)(nil), "FUNCTION"),
+			NewTypeKind((*ast.FuncLit)(nil), "FUNCTION_LITERAL"),
 			NewTypeKind((*ast.BlockStmt)(nil), "BLOCK"),
 			NewTypeKind((*ast.IfStmt)(nil), "IF"),
 			NewTypeKind((*ast.Ident)(nil), "IDENTIFIER"),

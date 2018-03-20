@@ -27,6 +27,7 @@ const (
 	PACKAGE             Kind = "PACKAGE"
 	EOF                 Kind = "EOF"
 	FUNCTION            Kind = "FUNCTION"
+	FUNCTION_LITERAL    Kind = "FUNCTION_LITERAL"
 	BLOCK               Kind = "BLOCK"
 	LPAREN              Kind = "LPAREN"
 	RPAREN              Kind = "RPAREN"
