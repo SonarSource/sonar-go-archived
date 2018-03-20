@@ -377,7 +377,7 @@ func Test_mapAssignStmt(t *testing.T) {
 
 	actual := newTestNode(uast)
 	expected := TestNode{
-		kinds:      []Kind{ASSIGNMENT, STATEMENT},
+		kinds:      []Kind{ASSIGNMENT, DECLARATION, STATEMENT},
 		nativeNode: "[0](AssignStmt)",
 		children:   3,
 	}

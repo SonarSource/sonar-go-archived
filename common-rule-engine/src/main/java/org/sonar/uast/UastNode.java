@@ -94,6 +94,7 @@ public final class UastNode {
     STRUCTURED_COMMENT,
     COMPILATION_UNIT,
     CONDITION,
+    DECLARATION,
     ELSE,
     EOF,
     FUNCTION,

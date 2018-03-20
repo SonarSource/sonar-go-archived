@@ -15,7 +15,7 @@
       ]},
       {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
         {"token": {"value":"{","line":3,"column":13}, "nativeNode": "Lbrace"},
-        {"kinds": ["ASSIGNMENT","STATEMENT"], "nativeNode": "[0](AssignStmt)", "children": [
+        {"kinds": ["ASSIGNMENT","DECLARATION","STATEMENT"], "nativeNode": "[0](AssignStmt)", "children": [
           {"kinds": ["ASSIGNMENT_TARGET"], "nativeNode": "Lhs([]Expr)", "children": [
             {"kinds": ["IDENTIFIER"], "token": {"value":"v1","line":4,"column":2}, "nativeNode": "[0](Ident)"}
           ]},
@@ -29,7 +29,7 @@
           ]}
         ]},
         {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant","line":4,"column":21}, "nativeNode": ""},
-        {"kinds": ["ASSIGNMENT","STATEMENT"], "nativeNode": "[1](AssignStmt)", "children": [
+        {"kinds": ["ASSIGNMENT","DECLARATION","STATEMENT"], "nativeNode": "[1](AssignStmt)", "children": [
           {"kinds": ["ASSIGNMENT_TARGET"], "nativeNode": "Lhs([]Expr)", "children": [
             {"kinds": ["IDENTIFIER"], "token": {"value":"v2","line":5,"column":2}, "nativeNode": "[0](Ident)"}
           ]},
@@ -59,7 +59,7 @@
           ]}
         ]},
         {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant","line":5,"column":43}, "nativeNode": ""},
-        {"kinds": ["ASSIGNMENT","STATEMENT"], "nativeNode": "[2](AssignStmt)", "children": [
+        {"kinds": ["ASSIGNMENT","DECLARATION","STATEMENT"], "nativeNode": "[2](AssignStmt)", "children": [
           {"kinds": ["ASSIGNMENT_TARGET"], "nativeNode": "Lhs([]Expr)", "children": [
             {"kinds": ["IDENTIFIER"], "token": {"value":"v3","line":7,"column":2}, "nativeNode": "[0](Ident)"}
           ]},
@@ -73,7 +73,7 @@
           ]}
         ]},
         {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant","line":7,"column":15}, "nativeNode": ""},
-        {"kinds": ["ASSIGNMENT","STATEMENT"], "nativeNode": "[3](AssignStmt)", "children": [
+        {"kinds": ["ASSIGNMENT","DECLARATION","STATEMENT"], "nativeNode": "[3](AssignStmt)", "children": [
           {"kinds": ["ASSIGNMENT_TARGET"], "nativeNode": "Lhs([]Expr)", "children": [
             {"kinds": ["IDENTIFIER"], "token": {"value":"v4","line":8,"column":2}, "nativeNode": "[0](Ident)"}
           ]},
@@ -86,7 +86,7 @@
             ]}
           ]}
         ]},
-        {"kinds": ["ASSIGNMENT","STATEMENT"], "nativeNode": "[4](AssignStmt)", "children": [
+        {"kinds": ["ASSIGNMENT","DECLARATION","STATEMENT"], "nativeNode": "[4](AssignStmt)", "children": [
           {"kinds": ["ASSIGNMENT_TARGET"], "nativeNode": "Lhs([]Expr)", "children": [
             {"kinds": ["IDENTIFIER"], "token": {"value":"v5","line":10,"column":2}, "nativeNode": "[0](Ident)"}
           ]},
@@ -108,7 +108,7 @@
           ]}
         ]},
         {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant","line":10,"column":22}, "nativeNode": ""},
-        {"kinds": ["ASSIGNMENT","STATEMENT"], "nativeNode": "[5](AssignStmt)", "children": [
+        {"kinds": ["ASSIGNMENT","DECLARATION","STATEMENT"], "nativeNode": "[5](AssignStmt)", "children": [
           {"kinds": ["ASSIGNMENT_TARGET"], "nativeNode": "Lhs([]Expr)", "children": [
             {"kinds": ["IDENTIFIER"], "token": {"value":"v6","line":11,"column":2}, "nativeNode": "[0](Ident)"}
           ]},
@@ -130,7 +130,7 @@
           ]}
         ]},
         {"kinds": ["COMMENT"], "token": {"value":"// Compliant","line":11,"column":22}, "nativeNode": ""},
-        {"kinds": ["ASSIGNMENT","STATEMENT"], "nativeNode": "[6](AssignStmt)", "children": [
+        {"kinds": ["ASSIGNMENT","DECLARATION","STATEMENT"], "nativeNode": "[6](AssignStmt)", "children": [
           {"kinds": ["ASSIGNMENT_TARGET"], "nativeNode": "Lhs([]Expr)", "children": [
             {"kinds": ["IDENTIFIER"], "token": {"value":"v7","line":13,"column":2}, "nativeNode": "[0](Ident)"}
           ]},
@@ -144,7 +144,7 @@
           ]}
         ]},
         {"kinds": ["COMMENT"], "token": {"value":"// Compliant '*' ignored","line":13,"column":20}, "nativeNode": ""},
-        {"kinds": ["ASSIGNMENT","STATEMENT"], "nativeNode": "[7](AssignStmt)", "children": [
+        {"kinds": ["ASSIGNMENT","DECLARATION","STATEMENT"], "nativeNode": "[7](AssignStmt)", "children": [
           {"kinds": ["ASSIGNMENT_TARGET"], "nativeNode": "Lhs([]Expr)", "children": [
             {"kinds": ["IDENTIFIER"], "token": {"value":"v8","line":14,"column":2}, "nativeNode": "[0](Ident)"}
           ]},

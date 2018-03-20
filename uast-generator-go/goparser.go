@@ -35,6 +35,7 @@ const (
 	IF                 Kind = "IF"
 	ELSE               Kind = "ELSE"
 	CONDITION          Kind = "CONDITION"
+	DECLARATION        Kind = "DECLARATION"
 	DECL_LIST          Kind = "DECL_LIST"
 	CLASS              Kind = "CLASS"
 	STATEMENT          Kind = "STATEMENT"
@@ -419,4 +420,12 @@ func (t *UastMapper) location(offset, endOffset int) string {
 
 func isEndOfLine(ch byte) bool {
 	return ch == '\n' || ch == '\r'
+}
+
+func (t *UastMapper) computeAssignStmtKinds(tok token.Token) []Kind {
+	if tok == token.DEFINE {
+		return []Kind{ASSIGNMENT, DECLARATION}
+	} else {
+		return []Kind{ASSIGNMENT}
+	}
 }

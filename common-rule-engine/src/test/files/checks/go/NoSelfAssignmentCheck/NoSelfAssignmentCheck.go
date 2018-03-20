@@ -25,3 +25,9 @@ func noSelfAssignmentPartialNoIssue() {
 	a, b = a, 5  // Compliant
 	a = b        // Compliant
 }
+
+func declarationIsNotSelfAssignment(x int) {
+	for i := 1; i < 10; i++  {
+		x := x  // Compliant, x is fresh local var shadowing the argument
+	}
+}
