@@ -24,7 +24,7 @@ public class CpdVisitor {
     UastNode.Token token = node.token;
     if (token != null) {
       String text = token.value;
-      if (node.kinds.contains(UastNode.Kind.LITERAL) || node.kinds.contains(UastNode.Kind.STRING_LITERAL)) {
+      if (node.kinds.contains(UastNode.Kind.LITERAL)) {
         text = "LITERAL";
       }
 
