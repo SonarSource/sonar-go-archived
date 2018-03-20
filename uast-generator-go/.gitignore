@@ -1,1 +1,4 @@
+# Generated file
 goparser_generated.go
+# Binary which can be build
+uast-generator-go
