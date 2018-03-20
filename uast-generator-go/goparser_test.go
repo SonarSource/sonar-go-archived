@@ -24,6 +24,11 @@ func main() {
 	a, b = b, a
 }
 `
+	example_with_compound_assignment = `package main
+func main() {
+	a += 1	
+}
+`
 	example_with_if = `package main
 func main() {
 	a, b := 1, 2
@@ -377,7 +382,23 @@ func Test_mapAssignStmt(t *testing.T) {
 
 	actual := newTestNode(uast)
 	expected := TestNode{
-		kinds:      []Kind{ASSIGNMENT, STATEMENT},
+		kinds:      []Kind{ASSIGNMENT, DECLARATION, STATEMENT},
+		nativeNode: "[0](AssignStmt)",
+		children:   3,
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+}
+
+func Test_mapAssignStmt2(t *testing.T) {
+	uast := uastFromString(t, example_with_compound_assignment,
+		"Decls/[0](FuncDecl)/Body/[0](AssignStmt)")
+
+	actual := newTestNode(uast)
+	expected := TestNode{
+		kinds:      []Kind{ASSIGNMENT, COMPOUND_ASSIGNMENT, STATEMENT},
 		nativeNode: "[0](AssignStmt)",
 		children:   3,
 	}

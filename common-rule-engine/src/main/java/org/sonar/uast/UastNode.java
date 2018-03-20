@@ -90,10 +90,12 @@ public final class UastNode {
     CASE,
     CLASS,
     COMMENT,
+    COMPOUND_ASSIGNMENT,
     DEFAULT_CASE,
     STRUCTURED_COMMENT,
     COMPILATION_UNIT,
     CONDITION,
+    DECLARATION,
     ELSE,
     EOF,
     FUNCTION,
@@ -182,6 +184,19 @@ public final class UastNode {
     for (UastNode child : children) {
       child.joinTokens(sb, pos);
     }
+  }
+
+  public boolean is(Kind... kinds) {
+    for (Kind kind : kinds) {
+      if (this.kinds.contains(kind)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public boolean isNot(Kind... kinds) {
+    return !is(kinds);
   }
 
   @Override
