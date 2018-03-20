@@ -1,12 +1,13 @@
 package org.sonar.go.plugin;
 
 import org.sonar.api.batch.fs.InputFile;
-import org.sonar.api.batch.fs.TextRange;
 import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.batch.sensor.highlighting.NewHighlighting;
 import org.sonar.api.batch.sensor.highlighting.TypeOfText;
 import org.sonar.uast.UastNode;
 import org.sonar.uast.UastNode.Kind;
+
+import static org.sonar.go.plugin.utils.PluginApiUtils.newRange;
 
 public class HighlightingVisitor {
 
@@ -43,15 +44,7 @@ public class HighlightingVisitor {
   }
 
   private NewHighlighting highlight(UastNode.Token token, TypeOfText typeOfText) {
-    return newHighlighting.highlight(textRange(token), typeOfText);
-  }
-
-  private TextRange textRange(UastNode.Token token) {
-    return inputFile.newRange(
-      token.line,
-      token.column - 1,
-      token.endLine,
-      token.endColumn);
+    return newHighlighting.highlight(newRange(inputFile, token), typeOfText);
   }
 
   public void save() {
