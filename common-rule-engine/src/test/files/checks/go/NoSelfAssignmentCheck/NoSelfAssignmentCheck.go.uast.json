@@ -33,7 +33,7 @@
             {"kinds": ["IDENTIFIER"], "token": {"value":"a","line":5,"column":6}, "nativeNode": "[0](Ident)"}
           ]}
         ]},
-        {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant {{Remove or correct this useless self-assignment.}}","line":5,"column":9}, "nativeNode": ""},
+        {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant {{Remove this self assignment}}","line":5,"column":9}, "nativeNode": ""},
         {"token": {"value":"}","line":6,"column":1}, "nativeNode": "Rbrace"}
       ]}
     ]},
@@ -75,7 +75,7 @@
             {"kinds": ["IDENTIFIER"], "token": {"value":"a","line":10,"column":12}, "nativeNode": "[1](Ident)"}
           ]}
         ]},
-        {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant {{Remove or correct this useless self-assignment.}}","line":10,"column":16}, "nativeNode": ""},
+        {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant","line":10,"column":16}, "nativeNode": ""},
         {"token": {"value":"}","line":11,"column":1}, "nativeNode": "Rbrace"}
       ]}
     ]},

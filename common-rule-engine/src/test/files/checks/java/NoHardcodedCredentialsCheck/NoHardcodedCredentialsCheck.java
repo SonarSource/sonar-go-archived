@@ -8,15 +8,15 @@ class A {
 
   private void a(char[] pwd, String var) {
     String variable1 = "blabla";
-    String variable2 = "login=a&password=xxx"; // Noncompliant [[sc=24;ec=46]] {{'password' detected in this expression, review this potentially hardcoded credential.}}
+    String variable2 = "login=a&password=xxx"; // Noncompliant
     String variable3 = "login=a&passwd=xxx"; // Noncompliant
     String variable4 = "login=a&pwd=xxx"; // Noncompliant
     String variable5 = "login=a&password=";
     String variable6 = "login=a&password= ";
 
-    String variableNameWithPasswordInIt = "xxx"; // Noncompliant [[sc=12;ec=40]]
-    String variableNameWithPasswdInIt = "xxx"; // Noncompliant [[sc=12;ec=38]]
-    String variableNameWithPwdInIt = "xxx"; // Noncompliant [[sc=12;ec=35]]
+    String variableNameWithPasswordInIt = "xxx"; // Noncompliant
+    String variableNameWithPasswdInIt = "xxx"; // Noncompliant
+    String variableNameWithPwdInIt = "xxx"; // Noncompliant
     String otherVariableNameWithPasswordInIt;
     fieldNameWithPasswordInIt = "xx"; // Noncompliant
     fieldNameWithPasswordInIt = retrievePassword();

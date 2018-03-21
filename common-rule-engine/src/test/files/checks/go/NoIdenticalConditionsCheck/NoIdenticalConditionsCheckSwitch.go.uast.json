@@ -160,37 +160,38 @@
               ]}
             ]}
           ]},
+          {"kinds": ["COMMENT"], "token": {"value":"// 3 is duplicated","line":20,"column":2}, "nativeNode": ""},
           {"kinds": ["CASE"], "nativeNode": "[1](CaseClause)", "children": [
-            {"kinds": ["KEYWORD"], "token": {"value":"case","line":20,"column":2}, "nativeNode": "Case"},
-            {"kinds": ["CONDITION","LITERAL"], "token": {"value":"3","line":20,"column":7}, "nativeNode": "[0](BasicLit)"},
-            {"token": {"value":",","line":20,"column":8}, "nativeNode": ""},
-            {"kinds": ["CONDITION","LITERAL"], "token": {"value":"4","line":20,"column":10}, "nativeNode": "[1](BasicLit)"},
-            {"token": {"value":",","line":20,"column":11}, "nativeNode": ""},
-            {"kinds": ["CONDITION","LITERAL"], "token": {"value":"5","line":20,"column":13}, "nativeNode": "[2](BasicLit)"},
-            {"token": {"value":":","line":20,"column":14}, "nativeNode": "Colon"},
-            {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant (3 is duplicated)","line":20,"column":16}, "nativeNode": ""},
+            {"kinds": ["KEYWORD"], "token": {"value":"case","line":21,"column":2}, "nativeNode": "Case"},
+            {"kinds": ["CONDITION","LITERAL"], "token": {"value":"3","line":21,"column":7}, "nativeNode": "[0](BasicLit)"},
+            {"token": {"value":",","line":21,"column":8}, "nativeNode": ""},
+            {"kinds": ["CONDITION","LITERAL"], "token": {"value":"4","line":21,"column":10}, "nativeNode": "[1](BasicLit)"},
+            {"token": {"value":",","line":21,"column":11}, "nativeNode": ""},
+            {"kinds": ["CONDITION","LITERAL"], "token": {"value":"5","line":21,"column":13}, "nativeNode": "[2](BasicLit)"},
+            {"token": {"value":":","line":21,"column":14}, "nativeNode": "Colon"},
+            {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant","line":21,"column":16}, "nativeNode": ""},
             {"nativeNode": "Body([]Stmt)", "children": [
               {"kinds": ["EXPRESSION","STATEMENT"], "nativeNode": "[0](ExprStmt)", "children": [
                 {"kinds": ["CALL"], "nativeNode": "X(CallExpr)", "children": [
                   {"kinds": ["SELECTOR_EXPR"], "nativeNode": "Fun(SelectorExpr)", "children": [
-                    {"kinds": ["IDENTIFIER"], "token": {"value":"fmt","line":21,"column":3}, "nativeNode": "X(Ident)"},
-                    {"token": {"value":".","line":21,"column":6}, "nativeNode": ""},
-                    {"kinds": ["IDENTIFIER"], "token": {"value":"Println","line":21,"column":7}, "nativeNode": "Sel(Ident)"}
+                    {"kinds": ["IDENTIFIER"], "token": {"value":"fmt","line":22,"column":3}, "nativeNode": "X(Ident)"},
+                    {"token": {"value":".","line":22,"column":6}, "nativeNode": ""},
+                    {"kinds": ["IDENTIFIER"], "token": {"value":"Println","line":22,"column":7}, "nativeNode": "Sel(Ident)"}
                   ]},
-                  {"kinds": ["LPAREN"], "token": {"value":"(","line":21,"column":14}, "nativeNode": "Lparen"},
+                  {"kinds": ["LPAREN"], "token": {"value":"(","line":22,"column":14}, "nativeNode": "Lparen"},
                   {"kinds": ["ARGS_LIST"], "nativeNode": "Args([]Expr)", "children": [
-                    {"kinds": ["LITERAL","STRING_LITERAL"], "token": {"value":"\"\u003c1\"","line":21,"column":15}, "nativeNode": "[0](BasicLit)"}
+                    {"kinds": ["LITERAL","STRING_LITERAL"], "token": {"value":"\"\u003c1\"","line":22,"column":15}, "nativeNode": "[0](BasicLit)"}
                   ]},
-                  {"kinds": ["RPAREN"], "token": {"value":")","line":21,"column":19}, "nativeNode": "Rparen"}
+                  {"kinds": ["RPAREN"], "token": {"value":")","line":22,"column":19}, "nativeNode": "Rparen"}
                 ]}
               ]}
             ]}
           ]},
-          {"token": {"value":"}","line":22,"column":2}, "nativeNode": "Rbrace"}
+          {"token": {"value":"}","line":23,"column":2}, "nativeNode": "Rbrace"}
         ]},
-        {"token": {"value":"}","line":23,"column":1}, "nativeNode": "Rbrace"}
+        {"token": {"value":"}","line":24,"column":1}, "nativeNode": "Rbrace"}
       ]}
     ]}
   ]},
-  {"kinds": ["EOF"], "token": {"line":24,"column":1}, "nativeNode": ""}
+  {"kinds": ["EOF"], "token": {"line":25,"column":1}, "nativeNode": ""}
 ]}

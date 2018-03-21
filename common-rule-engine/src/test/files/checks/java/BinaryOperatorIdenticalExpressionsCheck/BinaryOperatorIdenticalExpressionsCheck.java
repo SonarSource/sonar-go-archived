@@ -1,7 +1,7 @@
 class A {
   void foo() {
     boolean a,b;
-    if(a == b) { }
+    if(a == b) { } // 123
     if(a == a) { } // Noncompliant
     if(a != a) { } // Noncompliant
     if(a || a) { } // Noncompliant
@@ -17,10 +17,12 @@ class A {
 
     double d = 0.0d;
     float f = 0.0f;
-    if(f != f) {} // Noncompliant ---> SonarJava: valid test for NaN
-    if(d != d) {} // Noncompliant ---> SonarJava: valid test for NaN
+    // SonarJava: valid test for NaN
+    if(f != f) {} // Noncompliant
+    if(d != d) {} // Noncompliant
     int j,l;
-    int k = 1 << 1; // Noncompliant ---> SonarJava:exclude this case for bit masks
+    // SonarJava:exclude this case for bit masks
+    int k = 1 << 1; // Noncompliant
     j = 12 - k -k; //case why minus is excluded.
     j = k - k; // Noncompliant
     j = k*3/12%2 - k*3/12%2; // Noncompliant

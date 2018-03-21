@@ -1,7 +1,5 @@
 package test
 
-import "fmt"
-
 func example(condition1, condition2 bool) {
 	if condition1 {
 	} else if condition1 { // Noncompliant
@@ -14,7 +12,7 @@ func example(condition1, condition2 bool) {
 
 	if condition1 {
 	} else if condition2 {
-	} else if condition1 { // Noncompliant [[secondary=12]] {{This branch can not be reached because the condition duplicates a previous condition in the same sequence of "if/else if" statements}}
+	} else if condition1 { // Noncompliant {{This condition is same as one already tested on line 15.}}
 	}
 }
 

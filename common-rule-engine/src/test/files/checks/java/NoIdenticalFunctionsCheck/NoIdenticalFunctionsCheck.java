@@ -22,7 +22,7 @@ abstract class A {
     }
   }
 
-  void greek2() { // Noncompliant [[sc=8;ec=14;secondary=12]] {{Update this method so that its implementation is not identical to "greek1" on line 12.}}
+  void greek2() { // Noncompliant
     Object x = null;
     try {
       x = new Object();

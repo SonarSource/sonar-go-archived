@@ -2,10 +2,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.fasterxml.jackson.annotation.JsonCreator;
 
 class TooManyParameters {
-  TooManyParameters(int p1, int p2, int p3, int p4, int p5, int p6, int p7, int p8) { // Noncompliant {{Constructor has 8 parameters, which is greater than 7 authorized.}}
+  TooManyParameters(int p1, int p2, int p3, int p4, int p5, int p6, int p7, int p8) { // Noncompliant
   }
 
-  void method(int p1, int p2, int p3, int p4, int p5, int p6, int p7, int p8) { // Noncompliant [[sc=8;ec=14]] {{Method has 8 parameters, which is greater than 7 authorized.}}
+  void method(int p1, int p2, int p3, int p4, int p5, int p6, int p7, int p8) { // Noncompliant
   }
 
   void otherMethod(int p1, int p2, int p3, int p4, int p5, int p6, int p7) {}
@@ -14,21 +14,25 @@ class TooManyParameters {
 }
 
 class TooManyParametersExtended extends TooManyParameters {
-  @java.lang.Override   // Noncompliant because we don't handle exception
+  // because we don't handle exception
+  @java.lang.Override   // Noncompliant
   void method(int p1, int p2, int p3, int p4, int p5, int p6, int p7, int p8) {}
 
   static void staticMethod(int p1, int p2, int p3, int p4, int p5, int p6, int p7, int p8) {} // Noncompliant
 }
 
 class MethodsUsingSpringRequestMapping {
-  @org.springframework.web.bind.annotation.RequestMapping  // Noncompliant because we don't handle exception
+  //  because we don't handle exception
+  @org.springframework.web.bind.annotation.RequestMapping  // Noncompliant
   void foo(String p1, String p2, String p3, String p4, String p5, String p6, String p7, String p8) {} // Compliant
 
-  @RequestMapping  // Noncompliant because we don't handle exception
+  // because we don't handle exception
+  @RequestMapping  // Noncompliant
   void bar(String p1, String p2, String p3, String p4, String p5, String p6, String p7, String p8) {} // Compliant
 }
 
 class MethodsUsingJsonCreator {
-  @JsonCreator  // Noncompliant because we don't handle exception
+  // because we don't handle exception
+  @JsonCreator  // Noncompliant
   void foo(String p1, String p2, String p3, String p4, String p5, String p6, String p7, String p8) {} // Compliant
 }

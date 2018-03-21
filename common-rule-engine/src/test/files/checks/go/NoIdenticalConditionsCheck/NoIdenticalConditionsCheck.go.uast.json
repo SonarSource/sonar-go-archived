@@ -113,7 +113,7 @@
               ]},
               {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
                 {"token": {"value":"{","line":17,"column":23}, "nativeNode": "Lbrace"},
-                {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant [[secondary=12]] {{This branch can not be reached because the condition duplicates a previous condition in the same sequence of \"if/else if\" statements}}","line":17,"column":25}, "nativeNode": ""},
+                {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant {{This condition is same as one already tested on line 15.}}","line":17,"column":25}, "nativeNode": ""},
                 {"token": {"value":"}","line":18,"column":2}, "nativeNode": "Rbrace"}
               ]}
             ]}
