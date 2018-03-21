@@ -7,9 +7,9 @@
     {"nativeNode": "[0](GenDecl)", "children": [
       {"kinds": ["KEYWORD"], "token": {"value":"type","line":3,"column":1}, "nativeNode": "Tok"},
       {"nativeNode": "Specs([]Spec)", "children": [
-        {"nativeNode": "[0](TypeSpec)", "children": [
+        {"kinds": ["CLASS"], "nativeNode": "[0](TypeSpec)", "children": [
           {"kinds": ["IDENTIFIER"], "token": {"value":"f","line":3,"column":6}, "nativeNode": "Name(Ident)"},
-          {"kinds": ["CLASS"], "nativeNode": "Type(StructType)", "children": [
+          {"nativeNode": "Type(StructType)", "children": [
             {"kinds": ["KEYWORD"], "token": {"value":"struct","line":3,"column":8}, "nativeNode": "Struct"},
             {"nativeNode": "Fields(FieldList)", "children": [
               {"token": {"value":"{","line":3,"column":15}, "nativeNode": "Opening"},

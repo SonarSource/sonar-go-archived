@@ -45,8 +45,7 @@ import (
 			NewTypeKind((*ast.BadDecl)(nil), "UNSUPPORTED"),
 			NewTypeKind((*ast.BadExpr)(nil), "UNSUPPORTED"),
 			NewTypeKind((*ast.BadStmt)(nil), "UNSUPPORTED"),
-			NewTypeKind((*ast.StructType)(nil), "CLASS"),
-			NewTypeKind((*ast.InterfaceType)(nil), "CLASS"),
+			NewTypeKind((*ast.TypeSpec)(nil), "t.computeTypeSpecKinds(astNode.Type)..."),
 
 			// [interfaces] Define uast "kinds" for all "struct" inheriting form the following interfaces
 			// (exceptions can be added to "KindsPerTypeException")
