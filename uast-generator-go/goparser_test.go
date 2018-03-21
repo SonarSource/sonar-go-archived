@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
 	"go/ast"
 	"go/token"
@@ -549,11 +548,7 @@ func main() {
 	statements := body.Children[1 : len(body.Children)-1]
 
 	for i, stmt := range statements {
-		uast, err := uastQuery(stmt, "Rhs([]Expr)/[0]")
-		if err != nil {
-			t.Fatalf(err.Error())
-		}
-
+		uast := uastQuery(t, stmt, "Rhs([]Expr)/[0]")
 		actual := newTestNode(uast)
 		expected := TestNode{
 			kinds:      []Kind{BINARY_EXPRESSION},
@@ -596,6 +591,39 @@ func main(i int) {
 	}
 	if conditionCounter != 6 {
 		t.Fatalf("got %v conditions; expected 6", conditionCounter)
+	}
+}
+
+func Test_checkKindsForInterfaceAndStruct(t *testing.T) {
+	var expected []Kind
+
+	source := `package main
+type A interface { foo() }
+type B struct    { a int }
+func bar(x interface{}) {
+}
+`
+	declarations := uastFromString(t, source, "Decls")
+
+	typeA := uastQuery(t, declarations, "[0](GenDecl)/Specs/[0](TypeSpec)")
+	actual := typeA.Kinds
+	expected = []Kind{CLASS}
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+
+	typeB := uastQuery(t, declarations, "[1](GenDecl)/Specs/[0](TypeSpec)")
+	actual = typeB.Kinds
+	expected = []Kind{CLASS}
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+
+	x := uastQuery(t, declarations, "[2](FuncDecl)/Type/Params/[0](Field)/Type(InterfaceType)")
+	actual = x.Kinds
+	expected = []Kind{TYPE}
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
 	}
 }
 
@@ -672,16 +700,12 @@ func astFromString(source string) (fileSet *token.FileSet, astFile *ast.File) {
 func uastFromString(t *testing.T, source string, nodeQueryPath string) *Node {
 	fileSet, astNode := astFromString(source)
 	uast := toUast(fileSet, astNode, source)
-	node, err := uastQuery(uast, nodeQueryPath)
-	if err != nil {
-		t.Fatalf(err.Error())
-	}
-	return node
+	return uastQuery(t, uast, nodeQueryPath)
 }
 
-func uastQuery(parent *Node, nodeQueryPath string) (*Node, error) {
+func uastQuery(t *testing.T, parent *Node, nodeQueryPath string) *Node {
 	if len(nodeQueryPath) == 0 {
-		return parent, nil
+		return parent
 	}
 	node := parent
 	var bestMatch string
@@ -707,11 +731,11 @@ func uastQuery(parent *Node, nodeQueryPath string) (*Node, error) {
 		}
 		if newNode == nil {
 			data, _ := json.MarshalIndent(node, "", "  ")
-			return nil, errors.New(fmt.Sprintf("Invalid nodeQueryPath '%s' best match '%s'\n"+
+			t.Fatalf(fmt.Sprintf("Invalid nodeQueryPath '%s' best match '%s'\n"+
 				"The element '%s' not found as child of this node:\n%s",
 				nodeQueryPath, bestMatch, pathElem, string(data)))
 		}
 		node = newNode
 	}
-	return node, nil
+	return node
 }

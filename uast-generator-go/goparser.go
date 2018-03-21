@@ -186,6 +186,25 @@ func (t *UastMapper) computeBasicLitKinds(tok token.Token) []Kind {
 	return []Kind{LITERAL}
 }
 
+func (t *UastMapper) computeTypeSpecKinds(typeExpr ast.Expr) []Kind {
+	// "interface{}" and "struct{}" are considered as CLASS only if they are named and contains
+	// methods or fields, e.g.: type A interface{ foo() } type B struct{ size int }
+	// But not when they are used to declare an anonymous type, e.g.: func foo(x interface{ bar() })
+	var isClass bool
+	switch v := typeExpr.(type) {
+	default:
+		isClass = false
+	case *ast.InterfaceType:
+		isClass = v.Methods != nil && len(v.Methods.List) > 0
+	case *ast.StructType:
+		isClass = v.Fields != nil && len(v.Fields.List) > 0
+	}
+	if isClass {
+		return []Kind{CLASS}
+	}
+	return nil
+}
+
 func (t *UastMapper) appendNode(children []*Node, child *Node) []*Node {
 	if child == nil {
 		return children

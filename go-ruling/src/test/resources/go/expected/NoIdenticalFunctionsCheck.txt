@@ -98,6 +98,7 @@ kubernetes/pkg/registry/authorization/rest/storage_authorization.go: 77:1
 kubernetes/pkg/registry/core/pod/storage/storage_test.go: 619:1
 kubernetes/pkg/util/util.go: 119:1 135:1
 kubernetes/pkg/volume/azure_dd/azure_common.go: 372:1
+kubernetes/pkg/volume/util/nestedpendingoperations/nestedpendingoperations_test.go: 292:1
 kubernetes/plugin/pkg/admission/limitranger/admission_test.go: 552:1
 kubernetes/plugin/pkg/admission/resourcequota/apis/resourcequota/v1alpha1/zz_generated.conversion.go: 81:1
 kubernetes/staging/src/k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1beta1/generated.pb.go: 143:1 185:1 223:1 272:1 310:1
@@ -107,6 +108,7 @@ kubernetes/staging/src/k8s.io/apimachinery/pkg/apis/meta/v1/conversion.go: 172:1
 kubernetes/staging/src/k8s.io/apimachinery/pkg/apis/meta/v1/generated.pb.go: 329:1 359:1 437:1 471:1 516:1 565:1 586:1 620:1 650:1 676:1 702:1 728:1 754:1 784:1 814:1 836:1 876:1 928:1 969:1 995:1 1046:1 1201:1 1255:1 1279:1 1312:1 1338:1 1389:1 1419:1 1468:1 1492:1 1518:1 1551:1
 kubernetes/staging/src/k8s.io/apimachinery/pkg/apis/meta/v1alpha1/generated.pb.go: 99:1 129:1
 kubernetes/staging/src/k8s.io/apimachinery/pkg/runtime/generated.pb.go: 95:1 121:1
+kubernetes/staging/src/k8s.io/apimachinery/pkg/util/net/interface_test.go: 212:1 235:1 246:1
 kubernetes/staging/src/k8s.io/apimachinery/pkg/util/validation/validation_test.go: 165:1
 kubernetes/staging/src/k8s.io/apiserver/pkg/apis/audit/v1alpha1/generated.pb.go: 229:1 267:1 304:1 350:1 388:1 426:1 672:1
 kubernetes/staging/src/k8s.io/apiserver/pkg/apis/audit/v1alpha1/types.generated.go: 102:1 115:1 1406:1 1774:1 2142:1 2614:1 3023:1 3396:1 3837:1 3956:1 4075:1
@@ -172,6 +174,7 @@ kubernetes/staging/src/k8s.io/client-go/pkg/apis/storage/v1beta1/generated.pb.go
 kubernetes/staging/src/k8s.io/client-go/pkg/apis/storage/v1beta1/types.generated.go: 648:1
 kubernetes/staging/src/k8s.io/client-go/pkg/apis/storage/v1beta1/zz_generated.conversion.go: 57:1
 kubernetes/staging/src/k8s.io/client-go/pkg/util/util.go: 119:1 135:1
+kubernetes/staging/src/k8s.io/client-go/tools/cache/thread_safe_store.go: 76:1
 kubernetes/staging/src/k8s.io/client-go/util/flowcontrol/backoff.go: 133:1
 kubernetes/staging/src/k8s.io/client-go/util/integer/integer.go: 33:1 40:1 47:1 54:1
 kubernetes/staging/src/k8s.io/client-go/util/jsonpath/jsonpath.go: 178:1 187:1
@@ -189,6 +192,38 @@ kubernetes/staging/src/k8s.io/metrics/pkg/client/clientset_generated/clientset/c
 kubernetes/test/utils/runners.go: 329:1 396:1 459:1
 kubernetes/third_party/forked/etcd221/wal/walpb/record.pb.go: 83:1
 kubernetes/third_party/forked/etcd237/wal/walpb/record.pb.go: 90:1
+kubernetes/vendor/github.com/Azure/azure-sdk-for-go/arm/compute/availabilitysets.go: 234:1 298:1 365:1
+kubernetes/vendor/github.com/Azure/azure-sdk-for-go/arm/compute/images.go: 342:1 430:1
+kubernetes/vendor/github.com/Azure/azure-sdk-for-go/arm/compute/virtualmachineextensionimages.go: 238:1
+kubernetes/vendor/github.com/Azure/azure-sdk-for-go/arm/compute/virtualmachineimages.go: 249:1 314:1 382:1
+kubernetes/vendor/github.com/Azure/azure-sdk-for-go/arm/compute/virtualmachines.go: 214:1 406:1 625:1 691:1 778:1 869:1 952:1 1034:1 1116:1 1198:1
+kubernetes/vendor/github.com/Azure/azure-sdk-for-go/arm/compute/virtualmachinescalesets.go: 383:1 515:1 579:1 667:1 758:1 872:1 954:1 1037:1 1125:1 1213:1 1307:1
+kubernetes/vendor/github.com/Azure/azure-sdk-for-go/arm/compute/virtualmachinescalesetvms.go: 339:1 416:1 526:1 610:1 695:1 779:1 863:1
+kubernetes/vendor/github.com/Azure/azure-sdk-for-go/arm/containerregistry/registries.go: 367:1 428:1 518:1 617:1 696:1 774:1
+kubernetes/vendor/github.com/Azure/azure-sdk-for-go/arm/disk/disks.go: 381:1 442:1 530:1 635:1 719:1
+kubernetes/vendor/github.com/Azure/azure-sdk-for-go/arm/disk/snapshots.go: 384:1 445:1 533:1 639:1 724:1
+kubernetes/vendor/github.com/Azure/azure-sdk-for-go/arm/network/applicationgateways.go: 431:1 516:1 602:1 765:1
+kubernetes/vendor/github.com/Azure/azure-sdk-for-go/arm/network/expressroutecircuitauthorizations.go: 339:1
+kubernetes/vendor/github.com/Azure/azure-sdk-for-go/arm/network/expressroutecircuitpeerings.go: 337:1
+kubernetes/vendor/github.com/Azure/azure-sdk-for-go/arm/network/expressroutecircuits.go: 333:1 400:1 464:1 549:1 745:1 831:1
+kubernetes/vendor/github.com/Azure/azure-sdk-for-go/arm/network/interfaces.go: 423:1 487:1 572:1 678:1 745:1 838:1
+kubernetes/vendor/github.com/Azure/azure-sdk-for-go/arm/network/loadbalancers.go: 332:1 417:1
+kubernetes/vendor/github.com/Azure/azure-sdk-for-go/arm/network/localnetworkgateways.go: 356:1
+kubernetes/vendor/github.com/Azure/azure-sdk-for-go/arm/network/packetcaptures.go: 434:1
+kubernetes/vendor/github.com/Azure/azure-sdk-for-go/arm/network/publicipaddresses.go: 347:1 432:1
+kubernetes/vendor/github.com/Azure/azure-sdk-for-go/arm/network/routefilterrules.go: 348:1 459:1
+kubernetes/vendor/github.com/Azure/azure-sdk-for-go/arm/network/routefilters.go: 329:1 417:1 526:1
+kubernetes/vendor/github.com/Azure/azure-sdk-for-go/arm/network/routes.go: 332:1
+kubernetes/vendor/github.com/Azure/azure-sdk-for-go/arm/network/routetables.go: 331:1 416:1
+kubernetes/vendor/github.com/Azure/azure-sdk-for-go/arm/network/securitygroups.go: 334:1 419:1
+kubernetes/vendor/github.com/Azure/azure-sdk-for-go/arm/network/securityrules.go: 350:1
+kubernetes/vendor/github.com/Azure/azure-sdk-for-go/arm/network/subnets.go: 336:1
+kubernetes/vendor/github.com/Azure/azure-sdk-for-go/arm/network/virtualnetworkgatewayconnections.go: 355:1 420:1
+kubernetes/vendor/github.com/Azure/azure-sdk-for-go/arm/network/virtualnetworkgateways.go: 518:1 601:1 665:1
+kubernetes/vendor/github.com/Azure/azure-sdk-for-go/arm/network/virtualnetworkpeerings.go: 337:1
+kubernetes/vendor/github.com/Azure/azure-sdk-for-go/arm/network/virtualnetworks.go: 339:1 403:1 488:1
+kubernetes/vendor/github.com/Azure/azure-sdk-for-go/arm/network/watchers.go: 440:1 515:1 613:1 707:1 801:1 865:1 926:1 1024:1 1122:1
+kubernetes/vendor/github.com/Azure/azure-sdk-for-go/arm/storage/accounts.go: 384:1 446:1 531:1 606:1 686:1 773:1 859:1 951:1
 kubernetes/vendor/github.com/Azure/go-autorest/autorest/to/convert.go: 84:1 97:1 123:1
 kubernetes/vendor/github.com/aws/aws-sdk-go/aws/convert_types.go: 189:1 248:1
 kubernetes/vendor/github.com/coreos/etcd/auth/authpb/auth.pb.go: 149:1 184:1
@@ -204,21 +239,25 @@ kubernetes/vendor/github.com/coreos/etcd/wal/walpb/record.pb.go: 98:1
 kubernetes/vendor/github.com/docker/engine-api/types/container/host_config.go: 129:1 153:1 159:1 174:1
 kubernetes/vendor/github.com/evanphx/json-patch/patch.go: 306:1
 kubernetes/vendor/github.com/go-openapi/errors/schema.go: 297:1 322:1 372:1 397:1
+kubernetes/vendor/github.com/go-openapi/strfmt/default.go: 484:1 494:1 545:1 555:1 606:1 616:1 667:1 677:1 728:1 738:1 789:1 799:1 850:1 860:1 911:1 921:1 972:1 982:1 1033:1 1043:1 1094:1 1104:1 1155:1 1165:1 1216:1 1226:1 1339:1 1349:1
 kubernetes/vendor/github.com/go-openapi/swag/convert_types.go: 191:1 250:1 309:1 368:1 427:1 486:1
 kubernetes/vendor/github.com/google/btree/btree.go: 193:1
 kubernetes/vendor/github.com/google/cadvisor/http/handlers.go: 113:1
 kubernetes/vendor/github.com/google/cadvisor/pages/pages.go: 127:1
+kubernetes/vendor/github.com/googleapis/gnostic/OpenAPIv2/OpenAPIv2.go: 5663:1 5695:1 5721:1 5805:1 5818:1 5895:1 5928:1 5961:1 6031:1 6055:1 6066:1 6077:1 6088:1 6099:1 6110:1 6121:1 6132:1 6137:1 6208:1 6227:1 6246:1 6265:1 6342:1 6463:1 6517:1 6550:1 6563:1 6627:1 6806:1 6878:1 6891:1 6915:1 6920:1 6933:1
+kubernetes/vendor/github.com/heketi/heketi/pkg/utils/jsonutils.go: 40:1
 kubernetes/vendor/github.com/magiconair/properties/properties.go: 420:1
 kubernetes/vendor/github.com/mesos/mesos-go/mesosproto/authentication.pb.go: 833:1 869:1 904:1 933:1 954:1 964:1 975:1 1251:1
 kubernetes/vendor/github.com/mesos/mesos-go/mesosproto/messages.pb.go: 6435:1 6518:1 6562:1 6591:1 6624:1 6689:1 6754:1 6787:1 6832:1 6877:1 6922:1 6955:1 6988:1 7033:1 7093:1 7162:1 7195:1 7228:1 7289:1 7334:1 7373:1 7438:1 7471:1 7516:1 7545:1 7596:1 7683:1 7726:1 7781:1 7814:1 7840:1 7873:1 7894:1 7927:1 7968:1 8007:1 8040:1 8085:1 8130:1 8211:1 8256:1 8320:1 8353:1 8422:1 8449:1 8482:1 8533:1 8593:1 9636:1 9707:1 9737:1 9838:1 10084:1 10130:1 10298:1 10340:1
 kubernetes/vendor/github.com/miekg/dns/zmsg.go: 192:1 218:1 232:1 258:1 414:1 882:1 932:1 1040:1 1186:1 1348:1
 kubernetes/vendor/github.com/miekg/dns/ztypes.go: 277:1 425:1 467:1 484:1 550:1 598:1 605:1
-kubernetes/vendor/github.com/onsi/ginkgo/ginkgo_dsl.go: 299:1 310:1 316:1 322:1 328:1
+kubernetes/vendor/github.com/onsi/ginkgo/ginkgo_dsl.go: 299:1 310:1 316:1 322:1 328:1 356:1 427:1
 kubernetes/vendor/github.com/russross/blackfriday/latex.go: 169:1
 kubernetes/vendor/github.com/spf13/afero/copyOnWriteFs.go: 240:1
 kubernetes/vendor/github.com/ugorji/go/codec/encode.go: 248:1
-kubernetes/vendor/github.com/ugorji/go/codec/fast-path.generated.go: 3388:1 3407:1 3441:1 3460:1 3494:1 3513:1 3653:1 3672:1 3706:1 3725:1 3759:1 3778:1 3812:1 3831:1 4927:1 4982:1 5037:1 5092:1 5257:1 5312:1 5367:1 5422:1 5780:1 5826:1 5872:1 5918:1 6056:1 6102:1 6148:1 6194:1 6516:1 6562:1 6608:1 6654:1 6792:1 6838:1 6884:1 6930:1 7252:1 7298:1 7344:1 7390:1 7528:1 7574:1 7620:1 7666:1 7988:1 8034:1 8080:1 8126:1 8264:1 8310:1 8356:1 8402:1 8724:1 8770:1 8816:1 8862:1 9000:1 9046:1 9092:1 9138:1 9460:1 9506:1 9552:1 9598:1 9736:1 9782:1 9828:1 9874:1 10196:1 10242:1 10288:1 10334:1 10472:1 10518:1 10564:1 10610:1 10932:1 10978:1 11024:1 11070:1 11208:1 11254:1 11300:1 11346:1 11668:1 11714:1 11760:1 11806:1 11944:1 11990:1 12036:1 12082:1 12404:1 12450:1 12496:1 12542:1 12680:1 12726:1 12772:1 12818:1 13140:1 13186:1 13232:1 13278:1 13416:1 13462:1 13508:1 13554:1 13876:1 13922:1 13968:1 14014:1 14152:1 14198:1 14244:1 14290:1 14612:1 14658:1 14704:1 14750:1 14888:1 14934:1 14980:1 15026:1 15348:1 15394:1 15440:1 15486:1 15624:1 15670:1 15716:1 15762:1
+kubernetes/vendor/github.com/ugorji/go/codec/fast-path.generated.go: 3388:1 3407:1 3441:1 3460:1 3494:1 3513:1 3547:1 3566:1 3653:1 3672:1 3706:1 3725:1 3759:1 3778:1 3812:1 3831:1 4073:1 4126:1 4179:1 4232:1 4285:1 4391:1 4444:1 4497:1 4550:1 4927:1 4982:1 5037:1 5092:1 5147:1 5257:1 5312:1 5367:1 5422:1 5780:1 5826:1 5872:1 5918:1 5964:1 6056:1 6102:1 6148:1 6194:1 6516:1 6562:1 6608:1 6654:1 6700:1 6792:1 6838:1 6884:1 6930:1 7252:1 7298:1 7344:1 7390:1 7436:1 7528:1 7574:1 7620:1 7666:1 7988:1 8034:1 8080:1 8126:1 8172:1 8264:1 8310:1 8356:1 8402:1 8724:1 8770:1 8816:1 8862:1 8908:1 9000:1 9046:1 9092:1 9138:1 9460:1 9506:1 9552:1 9598:1 9644:1 9736:1 9782:1 9828:1 9874:1 10196:1 10242:1 10288:1 10334:1 10380:1 10472:1 10518:1 10564:1 10610:1 10932:1 10978:1 11024:1 11070:1 11116:1 11208:1 11254:1 11300:1 11346:1 11668:1 11714:1 11760:1 11806:1 11852:1 11944:1 11990:1 12036:1 12082:1 12404:1 12450:1 12496:1 12542:1 12588:1 12680:1 12726:1 12772:1 12818:1 13140:1 13186:1 13232:1 13278:1 13324:1 13416:1 13462:1 13508:1 13554:1 13876:1 13922:1 13968:1 14014:1 14060:1 14152:1 14198:1 14244:1 14290:1 14612:1 14658:1 14704:1 14750:1 14796:1 14888:1 14934:1 14980:1 15026:1 15348:1 15394:1 15440:1 15486:1 15532:1 15624:1 15670:1 15716:1 15762:1
 kubernetes/vendor/github.com/ugorji/go/codec/helper.go: 1106:1
+kubernetes/vendor/github.com/ugorji/go/codec/rpc.go: 144:1
 kubernetes/vendor/github.com/ugorji/go/codec/simple.go: 322:1
 kubernetes/vendor/golang.org/x/crypto/ed25519/internal/edwards25519/edwards25519.go: 706:1
 kubernetes/vendor/golang.org/x/text/cases/tables.go: 137:1 199:1

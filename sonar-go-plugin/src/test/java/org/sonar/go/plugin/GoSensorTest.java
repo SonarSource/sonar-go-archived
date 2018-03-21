@@ -128,8 +128,9 @@ class GoSensorTest {
       "// This is not a line of code\n" +
         "package main\n" +
         "import \"fmt\"\n" +
-        "type class1 struct { }\n" +
-        "type class2 struct { }\n" +
+        "type class1 struct { x, y int }\n" +
+        "type class2 struct { a, b string }\n" +
+        "type anyObject interface {}\n" +
         "func fun1() {\n" +
         "  fmt.Println(\"Statement 1\")\n" +
         "}\n" +
@@ -138,14 +139,14 @@ class GoSensorTest {
         "    fmt.Println(\"Statement 3\")\n" +
         "  }\n" +
         "}\n" +
-        "func fun3() int {\n" +
+        "func fun3(x interface{}) int {\n" +
         "  return 42 // Statement 4\n" +
         "}\n");
     sensorContext.fileSystem().add(inputFile);
     GoSensor goSensor = getSensor();
     goSensor.execute(sensorContext);
     assertThat(sensorContext.allIssues()).hasSize(0);
-    assertThat(sensorContext.measure(inputFile.key(), CoreMetrics.NCLOC).value()).isEqualTo(15);
+    assertThat(sensorContext.measure(inputFile.key(), CoreMetrics.NCLOC).value()).isEqualTo(16);
     assertThat(sensorContext.measure(inputFile.key(), CoreMetrics.COMMENT_LINES).value()).isEqualTo(3);
     assertThat(sensorContext.measure(inputFile.key(), CoreMetrics.CLASSES).value()).isEqualTo(2);
     assertThat(sensorContext.measure(inputFile.key(), CoreMetrics.FUNCTIONS).value()).isEqualTo(3);
