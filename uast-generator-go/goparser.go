@@ -57,6 +57,7 @@ const (
 	BINARY_EXPRESSION   Kind = "BINARY_EXPRESSION"
 	SWITCH              Kind = "SWITCH"
 	CASE                Kind = "CASE"
+	LABEL               Kind = "LABEL"
 	DEFAULT_CASE        Kind = "DEFAULT_CASE"
 	UNSUPPORTED         Kind = "UNSUPPORTED"
 )
@@ -235,7 +236,7 @@ func (t *UastMapper) mergeNode(children []*Node, kinds []Kind, child *Node) ([]*
 func (t *UastMapper) createAdditionalInitAndCond(astInit ast.Stmt, astCond ast.Expr) *Node {
 	var children []*Node
 	children = t.appendNode(children, t.mapStmt(astInit, nil, "Init"))
-	children = t.appendNode(children, t.mapExpr(astCond, nil, "Cond"))
+	children = t.appendNode(children, t.mapExpr(astCond, []Kind{EXPRESSION}, "Cond"))
 	return t.createUastNode([]Kind{CONDITION}, nil, children, "InitAndCond")
 }
 

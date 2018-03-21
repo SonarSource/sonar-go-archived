@@ -43,12 +43,12 @@ func fun() string {
           ]},
           {"token": {"value":":=","line":4,"column":4}, "nativeNode": "Tok"},
           {"kinds": ["ASSIGNMENT_VALUE"], "nativeNode": "Rhs([]Expr)", "children": [
-            {"kinds": ["LITERAL","STRING_LITERAL"], "token": {"value":"\"hello \\\"world\\\"\"","line":4,"column":7}, "nativeNode": "[0](BasicLit)"}
+            {"kinds": ["EXPRESSION","LITERAL","STRING_LITERAL"], "token": {"value":"\"hello \\\"world\\\"\"","line":4,"column":7}, "nativeNode": "[0](BasicLit)"}
           ]}
         ]},
         {"kinds": ["STATEMENT"], "nativeNode": "[1](ReturnStmt)", "children": [
           {"kinds": ["KEYWORD"], "token": {"value":"return","line":5,"column":2}, "nativeNode": "Return"},
-          {"kinds": ["IDENTIFIER"], "token": {"value":"a","line":5,"column":9}, "nativeNode": "[0](Ident)"}
+          {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"a","line":5,"column":9}, "nativeNode": "[0](Ident)"}
         ]},
         {"token": {"value":"}","line":6,"column":1}, "nativeNode": "Rbrace"}
       ]}
