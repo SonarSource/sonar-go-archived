@@ -102,6 +102,7 @@ public class GoSensor implements Sensor {
     FileLinesContext linesContext = fileLinesContextFactory.createFor(inputFile);
     saveLinesMetrics(linesContext, metrics.linesOfCode, CoreMetrics.NCLOC_DATA_KEY);
     saveLinesMetrics(linesContext, metrics.commentLines, CoreMetrics.COMMENT_LINES_DATA_KEY);
+    // FIXME currently *_test.go files are MAIN and not TEST, see issue #140
     if (inputFile.type() == InputFile.Type.MAIN) {
       saveLinesMetrics(linesContext, metrics.executableLines, CoreMetrics.EXECUTABLE_LINES_DATA_KEY);
     }

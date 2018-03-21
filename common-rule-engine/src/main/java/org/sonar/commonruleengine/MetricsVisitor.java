@@ -1,6 +1,7 @@
 package org.sonar.commonruleengine;
 
 import java.util.Set;
+import java.util.stream.IntStream;
 import javax.annotation.Nullable;
 import org.sonar.uast.UastNode;
 
@@ -21,6 +22,10 @@ public class MetricsVisitor {
     }
     if (node.kinds.contains(UastNode.Kind.STATEMENT)) {
       metrics.numberOfStatements++;
+    }
+    if (node.kinds.contains(UastNode.Kind.STATEMENT) ||
+      node.kinds.contains(UastNode.Kind.EXPRESSION) ||
+      node.kinds.contains(UastNode.Kind.LABEL)) {
       addLines(metrics.executableLines, node.firstToken());
     }
     UastNode.Token token = node.token;
@@ -39,9 +44,7 @@ public class MetricsVisitor {
 
   private static void addLines(Set<Integer> lineNumbers, @Nullable UastNode.Token token) {
     if (token != null) {
-      for (int line = token.line; line <= token.endLine; line++) {
-        lineNumbers.add(line);
-      }
+      IntStream.range(token.line, token.endLine + 1).forEach(lineNumbers::add);
     }
   }
 

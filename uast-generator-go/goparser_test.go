@@ -446,7 +446,7 @@ func Test_mapExpr_BasicLit(t *testing.T) {
 
 	actual := newTestNode(uast)
 	expected := TestNode{
-		kinds:      []Kind{LITERAL, STRING_LITERAL},
+		kinds:      []Kind{EXPRESSION, LITERAL, STRING_LITERAL},
 		nativeNode: "[0](BasicLit)",
 		children:   0,
 		token:      Token{Value: "\"hello, world\"", Line: 4, Column: 9},
@@ -463,9 +463,20 @@ func Test_mapExprStmt(t *testing.T) {
 
 	actual := newTestNode(uast)
 	expected := TestNode{
-		kinds:      []Kind{EXPRESSION, STATEMENT},
+		kinds:      []Kind{STATEMENT},
 		nativeNode: "[1](ExprStmt)",
 		children:   1,
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+
+	actual = newTestNode(uast.Children[0])
+	expected = TestNode{
+		kinds:      []Kind{EXPRESSION, CALL},
+		nativeNode: "X(CallExpr)",
+		children:   4,
 	}
 
 	if !reflect.DeepEqual(expected, actual) {
@@ -479,7 +490,7 @@ func Test_mapCallExpr(t *testing.T) {
 
 	actual := newTestNode(uast)
 	expected := TestNode{
-		kinds:      []Kind{CALL},
+		kinds:      []Kind{EXPRESSION, CALL},
 		nativeNode: "X(CallExpr)",
 		children:   4,
 	}
@@ -551,7 +562,7 @@ func main() {
 		uast := uastQuery(t, stmt, "Rhs([]Expr)/[0]")
 		actual := newTestNode(uast)
 		expected := TestNode{
-			kinds:      []Kind{BINARY_EXPRESSION},
+			kinds:      []Kind{EXPRESSION, BINARY_EXPRESSION},
 			nativeNode: "[0](BinaryExpr)",
 			children:   3,
 		}
@@ -648,14 +659,55 @@ func main(i int) {
 	actual := strings.Join(actualSlice, " ")
 	expected := "package:[KEYWORD] main:[IDENTIFIER] " +
 		"func:[KEYWORD] main:[IDENTIFIER] (:[] i:[PARAMETER IDENTIFIER] int:[TYPE IDENTIFIER] ):[] {:[]" +
-		" fmt:[IDENTIFIER] .:[] Println:[IDENTIFIER] (:[LPAREN]" +
-		" \"a\":[LITERAL STRING_LITERAL] ,:[]" +
-		" 'b':[LITERAL STRING_LITERAL] ,:[]" +
+		" fmt:[EXPRESSION IDENTIFIER] .:[] Println:[IDENTIFIER] (:[LPAREN]" +
+		" \"a\":[EXPRESSION LITERAL STRING_LITERAL] ,:[]" +
+		" 'b':[EXPRESSION LITERAL STRING_LITERAL] ,:[]" +
 		" ):[RPAREN] " +
-		"return:[KEYWORD] 3:[LITERAL] }:[] :[EOF]"
+		"return:[KEYWORD] 3:[EXPRESSION LITERAL] }:[] :[EOF]"
 	if expected != actual {
 		t.Fatalf("Invalid highlighting kinds, got:\n%v\n\nexpect:\n%v", actual, expected)
 	}
+}
+
+func Test_labelKinds(t *testing.T) {
+	source := `package main
+func foo(i int) int {
+	goto label1
+label1:
+	switch i {
+		case 2:
+			i += 1
+	}
+    return i
+}
+`
+	label1 := uastFromString(t, source, "Decls/[0](FuncDecl)/Body(BlockStmt)/[1](LabeledStmt)")
+
+	actual := newTestNode(label1)
+	expected := TestNode{
+		kinds:      []Kind{LABEL},
+		nativeNode: "[1](LabeledStmt)",
+		children:   3,
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+
+	case2 := uastFromString(t, source, "Decls/[0](FuncDecl)/Body(BlockStmt)/[1](LabeledStmt)"+
+		"/Stmt(SwitchStmt)/[0](CaseClause)")
+
+	actual = newTestNode(case2)
+	expected = TestNode{
+		kinds:      []Kind{CASE, LABEL},
+		nativeNode: "[0](CaseClause)",
+		children:   4,
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+
 }
 
 func Test_emptyStatement(t *testing.T) {

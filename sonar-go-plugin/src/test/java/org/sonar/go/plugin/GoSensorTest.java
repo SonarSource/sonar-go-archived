@@ -128,28 +128,31 @@ class GoSensorTest {
   @Test
   public void metrics() {
     InputFile inputFile = createInputFile("lets.go", InputFile.Type.MAIN,
-      "// This is not a line of code\n" +
-        "package main\n" +
-        "import \"fmt\"\n" +
-        "type class1 struct { x, y int }\n" +
-        "type class2 struct { a, b string }\n" +
-        "type anyObject interface {}\n" +
-        "func fun1() {\n" +
-        "  fmt.Println(\"Statement 1\")\n" +
-        "}\n" +
-        "func fun2() {\n" +
-        "  if true { // Statement 2\n" +
-        "    fmt.Println(\"Statement 3\")\n" +
-        "  }\n" +
-        "}\n" +
-        "func fun3(x interface{}) int {\n" +
-        "  return 42 // Statement 4\n" +
-        "}\n");
+      /* 01 */"// This is not a line of code\n" +
+      /* 02 */"package main\n" +
+      /* 03 */"import \"fmt\"\n" +
+      /* 04 */"type class1 struct { x, y int }\n" +
+      /* 05 */"type class2 struct { a, b string }\n" +
+      /* 06 */"type anyObject interface {}\n" +
+      /* 07 */"func fun1() {\n" +
+      /* 08 */"  fmt.Println(\"Statement 1\")\n" +
+      /* 09 */"}\n" +
+      /* 10 */"func fun2(i int) {\n" +
+      /* 11 */"  switch i { // Statement 2\n" +
+      /* 12 */"  case 2:\n" +
+      /* 13 */"    fmt.Println(\n" +
+      /* 14 */"      \"Statement 3\",\n" +
+      /* 15 */"    )\n" +
+      /* 16 */"  }\n" +
+      /* 17 */"}\n" +
+      /* 18 */"func fun3(x interface{}) int {\n" +
+      /* 19 */"  return 42 // Statement 4\n" +
+      /* 20 */"}\n");
     sensorContext.fileSystem().add(inputFile);
     GoSensor goSensor = getSensor();
     goSensor.execute(sensorContext);
     assertThat(sensorContext.allIssues()).hasSize(0);
-    assertThat(sensorContext.measure(inputFile.key(), CoreMetrics.NCLOC).value()).isEqualTo(16);
+    assertThat(sensorContext.measure(inputFile.key(), CoreMetrics.NCLOC).value()).isEqualTo(19);
     assertThat(sensorContext.measure(inputFile.key(), CoreMetrics.COMMENT_LINES).value()).isEqualTo(3);
     assertThat(sensorContext.measure(inputFile.key(), CoreMetrics.CLASSES).value()).isEqualTo(2);
     assertThat(sensorContext.measure(inputFile.key(), CoreMetrics.FUNCTIONS).value()).isEqualTo(3);
@@ -160,14 +163,15 @@ class GoSensorTest {
     assertThat(fileLinesContext.metrics.keySet()).containsExactlyInAnyOrder(
       CoreMetrics.COMMENT_LINES_DATA_KEY, CoreMetrics.NCLOC_DATA_KEY, CoreMetrics.EXECUTABLE_LINES_DATA_KEY);
 
-    assertThat(fileLinesContext.metrics.get(CoreMetrics.COMMENT_LINES_DATA_KEY)
-      .toString()).isEqualTo("1:1, 10:1, 15:1");
+    assertThat(fileLinesContext.metrics.get(CoreMetrics.COMMENT_LINES_DATA_KEY)).containsExactlyInAnyOrder(
+      "1:1", "11:1", "19:1");
 
-    assertThat(fileLinesContext.metrics.get(CoreMetrics.NCLOC_DATA_KEY).toString())
-      .isEqualTo("2:1, 3:1, 4:1, 5:1, 6:1, 7:1, 8:1, 9:1, 10:1, 11:1, 12:1, 13:1, 14:1, 15:1, 16:1");
+    assertThat(fileLinesContext.metrics.get(CoreMetrics.NCLOC_DATA_KEY)).containsExactlyInAnyOrder(
+      "2:1", "3:1", "4:1", "5:1", "6:1", "7:1", "8:1", "9:1", "10:1", "11:1",
+      "12:1", "13:1", "14:1", "15:1", "16:1", "17:1", "18:1", "19:1", "20:1");
 
-    assertThat(fileLinesContext.metrics.get(CoreMetrics.EXECUTABLE_LINES_DATA_KEY).toString())
-      .isEqualTo("7:1, 10:1, 11:1, 15:1");
+    assertThat(fileLinesContext.metrics.get(CoreMetrics.EXECUTABLE_LINES_DATA_KEY)).containsExactlyInAnyOrder(
+      "8:1", "11:1", "12:1", "13:1", "14:1", "19:1");
   }
 
   @Test
@@ -194,11 +198,11 @@ class GoSensorTest {
     assertThat(fileLinesContext.metrics.keySet()).containsExactlyInAnyOrder(
       CoreMetrics.COMMENT_LINES_DATA_KEY, CoreMetrics.NCLOC_DATA_KEY);
 
-    assertThat(fileLinesContext.metrics.get(CoreMetrics.COMMENT_LINES_DATA_KEY)
-      .toString()).isEqualTo("1:1");
+    assertThat(fileLinesContext.metrics.get(CoreMetrics.COMMENT_LINES_DATA_KEY)).containsExactlyInAnyOrder(
+      "1:1");
 
-    assertThat(fileLinesContext.metrics.get(CoreMetrics.NCLOC_DATA_KEY).toString())
-      .isEqualTo("2:1, 3:1, 4:1, 5:1, 6:1");
+    assertThat(fileLinesContext.metrics.get(CoreMetrics.NCLOC_DATA_KEY)).containsExactlyInAnyOrder(
+      "2:1", "3:1", "4:1", "5:1", "6:1");
   }
 
   @Test
@@ -285,7 +289,7 @@ class GoSensorTest {
 
   private static class FileLinesContextTester implements FileLinesContext {
     int saveCount = 0;
-    Map<String, StringBuilder> metrics = new HashMap<>();
+    Map<String, Set<String>> metrics = new HashMap<>();
 
     @Override
     public void setIntValue(String metricKey, int line, int value) {
@@ -299,11 +303,8 @@ class GoSensorTest {
 
     @Override
     public void setStringValue(String metricKey, int line, String value) {
-      StringBuilder builder = metrics.computeIfAbsent(metricKey, key -> new StringBuilder());
-      if (builder.length() > 0) {
-        builder.append(", ");
-      }
-      builder.append(line).append(":").append(value);
+      metrics.computeIfAbsent(metricKey, key -> new HashSet<>())
+        .add(line + ":" + value);
     }
 
     @Override
