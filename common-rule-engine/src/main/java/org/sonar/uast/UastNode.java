@@ -3,6 +3,7 @@ package org.sonar.uast;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Consumer;
@@ -152,6 +153,21 @@ public final class UastNode {
       Token firstToken = child.firstToken();
       if (firstToken != null) {
         return firstToken;
+      }
+    }
+    return null;
+  }
+
+  public Token lastToken() {
+    if (token != null) {
+      return token;
+    }
+    ListIterator<UastNode> it = children.listIterator(children.size());
+    while (it.hasPrevious()) {
+      UastNode child = it.previous();
+      Token lastToken = child.lastToken();
+      if (lastToken != null) {
+        return lastToken;
       }
     }
     return null;
