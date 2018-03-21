@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -29,6 +30,7 @@ import org.sonar.plugins.java.api.tree.IfStatementTree;
 import org.sonar.plugins.java.api.tree.MethodTree;
 import org.sonar.plugins.java.api.tree.StatementTree;
 import org.sonar.plugins.java.api.tree.SyntaxToken;
+import org.sonar.plugins.java.api.tree.SyntaxTrivia;
 import org.sonar.plugins.java.api.tree.Tree;
 import org.sonar.plugins.java.api.tree.VariableTree;
 
@@ -51,10 +53,11 @@ public class Generator {
   private final CompilationUnitTree cut;
   private final UastNode uast;
   private Map<Tree, UastNode> treeUastNodeMap = new HashMap<>();
+  private Set<Tree> seenTrivia = new HashSet<>();
 
   public Generator(String source) {
     cut = (CompilationUnitTree) PARSER.parse(source);
-    uast = visit(cut);
+    uast = visit(cut).findFirst().get();
     cut.accept(new PostprocessVisitor());
   }
 
@@ -84,37 +87,55 @@ public class Generator {
     return GSON.toJson(uast);
   }
 
-  private UastNode visit(Tree tree) {
+  private Stream<UastNode> visit(Tree tree) {
     UastNode uastNode = null;
     if (tree.is(Tree.Kind.TOKEN)) {
       uastNode = newUastNode(tree, Collections.emptyList());
+      List<UastNode> trivia = ((SyntaxToken) tree).trivias().stream()
+        // SonarJava AST duplicates some nodes (e.g. Variable)
+        .filter(seenTrivia::add)
+        .map(syntaxTrivia -> newUastNode(syntaxTrivia, Collections.emptyList()))
+        .collect(Collectors.toList());
+      return Stream.concat(trivia.stream(), Stream.of(uastNode));
     } else {
       List<Tree> children = ((JavaTree) tree).getChildren();
       if (!children.isEmpty()) {
-        uastNode = newUastNode(tree, children.stream().map(this::visit).filter(Objects::nonNull).collect(Collectors.toList()));
+        uastNode = newUastNode(tree, children.stream().flatMap(this::visit).filter(Objects::nonNull).collect(Collectors.toList()));
       }
     }
     if (uastNode != null) {
       treeUastNodeMap.put(tree, uastNode);
     }
-    return uastNode;
+    return uastNode == null ? Stream.empty() : Stream.of(uastNode);
   }
 
   private static UastNode newUastNode(Tree tree, List<UastNode> children) {
     return new UastNode(
             uastKind(tree),
             tree.kind().name(),
-            tree.is(Tree.Kind.TOKEN) ? newToken((SyntaxToken) tree) : null,
+            tree.is(Tree.Kind.TOKEN, Tree.Kind.TRIVIA) ? newToken(tree) : null,
             children
     );
   }
 
-  private static UastNode.Token newToken(SyntaxToken javaToken) {
+  private static UastNode.Token newToken(Tree javaToken) {
+    int line;
+    int column;
+    String text;
+    if (javaToken instanceof SyntaxToken) {
+      line = ((SyntaxToken) javaToken).line();
+      column = ((SyntaxToken) javaToken).column();
+      text = ((SyntaxToken) javaToken).text();
+    } else {
+      line = ((SyntaxTrivia) javaToken).startLine();
+      column = ((SyntaxTrivia) javaToken).column();
+      text = ((SyntaxTrivia) javaToken).comment();
+    }
     return new UastNode.Token(
-            javaToken.line(),
+            line,
             // as per UAST specification column starts at 1
-            javaToken.column() + 1,
-            javaToken.text()
+            column + 1,
+            text
     );
   }
 
@@ -158,6 +179,9 @@ public class Generator {
         if ("default".equals(((CaseLabelTree) tree).caseOrDefaultKeyword().text())) {
           result.add(UastNode.Kind.DEFAULT_CASE);
         }
+        break;
+      case TRIVIA:
+        result.add(UastNode.Kind.COMMENT);
         break;
       default:
         break;

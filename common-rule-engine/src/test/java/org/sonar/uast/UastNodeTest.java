@@ -55,4 +55,27 @@ class UastNodeTest {
     UastNode.Token token = new UastNode.Token(1, 1, "𝜶");
     assertThat(token.endColumn).isEqualTo(token.column);
   }
+
+  @Test
+  void test_first_last_token() throws Exception {
+    UastNode node = Uast.from(new StringReader("{ token: { line: 12, column: 34, value: 'foo' } }"));
+    assertThat(node.firstToken()).isEqualTo(node.lastToken());
+
+    node = Uast.from(new StringReader("{ children: [" +
+      "{ token: { line: 12, column: 34, value: 'first' } }, " +
+      "{ token: { line: 12, column: 34, value: 'last' } }" +
+      "]}"));
+    assertThat(node.firstToken().value).isEqualTo("first");
+    assertThat(node.lastToken().value).isEqualTo("last");
+
+    node = Uast.from(new StringReader("{ children: [" +
+      "{ kinds: [] }, " +
+      "{ token: { line: 12, column: 34, value: 'first' } }," +
+      "{ token: { line: 12, column: 34, value: 'last' } }," +
+      "{ kinds: [] }" +
+      "]}"));
+
+    assertThat(node.firstToken().value).isEqualTo("first");
+    assertThat(node.lastToken().value).isEqualTo("last");
+  }
 }

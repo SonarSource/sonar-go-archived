@@ -2,12 +2,13 @@ package main
 
 func noSelfAssignmentSingle() {
 	a := 1
-	a = a  // Noncompliant {{Remove or correct this useless self-assignment.}}
+	a = a  // Noncompliant {{Remove this self assignment}}
+//	^^^^^
 }
 
 func noSelfAssignmentMulti() {
 	a, b := 1, 2  // Compliant
-	b, a = b, a   // Noncompliant {{Remove or correct this useless self-assignment.}}
+	b, a = b, a   // Noncompliant
 }
 
 func noSelfAssignmentSingleNoIssue() {

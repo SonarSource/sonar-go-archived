@@ -2,7 +2,7 @@ import java.time.DayOfWeek;
 
 class Foo {
   void foo(MyEnum myEnum, DayOfWeek dow) {
-    switch (0) { // Noncompliant [[sc=5;ec=11]] {{Add a default case to this switch.}}
+    switch (0) { // Noncompliant {{Add a default case to this switch.}}
     }
 
     switch (0) { // Noncompliant
@@ -18,14 +18,15 @@ class Foo {
       case 0:
     }
 
-    switch (myEnum) { // Noncompliant {{Complete cases by adding the missing enum constants or add a default case to this switch.}}
+    switch (myEnum) { // Noncompliant
       case A:
         break;
       case B:
         break;
     }
 
-    switch (myEnum) { // Noncompliant ----> java:Compliant: Common rule engine not able to say that all cases of the enum are covered
+    // java:Compliant: Common rule engine not able to say that all cases of the enum are covered
+    switch (myEnum) { // Noncompliant
       case A:
       case B:
       case C:
@@ -40,7 +41,7 @@ class Foo {
         break;
     }
 
-    switch (dow) { // Noncompliant {{Complete cases by adding the missing enum constants or add a default case to this switch.}}
+    switch (dow) { // Noncompliant
       case FRIDAY:
         break;
       case MONDAY:

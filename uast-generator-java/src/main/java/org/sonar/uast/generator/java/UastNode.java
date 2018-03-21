@@ -40,8 +40,8 @@ class UastNode {
     LITERAL,
     PARAMETER,
     STATEMENT,
-    SWITCH
-    ;
+    SWITCH,
+    COMMENT;
   }
 
   static class Token {

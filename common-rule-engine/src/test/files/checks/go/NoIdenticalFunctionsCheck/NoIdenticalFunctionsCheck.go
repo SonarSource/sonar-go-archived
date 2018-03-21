@@ -8,6 +8,7 @@ func fun1() {
 }
 
 func fun2() {  // Noncompliant
+//^[sc=1;el=+4;ec=1]
 	a, b := 1, 2
 	b, a = a, b
 }

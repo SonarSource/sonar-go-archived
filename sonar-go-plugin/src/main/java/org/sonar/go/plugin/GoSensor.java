@@ -7,7 +7,6 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.fs.InputFile;
-import org.sonar.api.batch.fs.TextRange;
 import org.sonar.api.batch.measure.Metric;
 import org.sonar.api.batch.rule.CheckFactory;
 import org.sonar.api.batch.rule.Checks;
@@ -15,6 +14,7 @@ import org.sonar.api.batch.sensor.Sensor;
 import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.batch.sensor.SensorDescriptor;
 import org.sonar.api.batch.sensor.issue.NewIssue;
+import org.sonar.api.batch.sensor.issue.NewIssueLocation;
 import org.sonar.api.measures.CoreMetrics;
 import org.sonar.api.measures.FileLinesContext;
 import org.sonar.api.measures.FileLinesContextFactory;
@@ -28,6 +28,7 @@ import org.sonar.commonruleengine.checks.Check;
 import org.sonar.uast.UastNode;
 
 import static org.sonar.go.plugin.GoCoverageReport.saveCoverageReports;
+import static org.sonar.go.plugin.utils.PluginApiUtils.newRange;
 
 public class GoSensor implements Sensor {
 
@@ -81,13 +82,13 @@ public class GoSensor implements Sensor {
   private void reportIssue(Issue issue, SensorContext context, InputFile inputFile) {
     // TODO improve common rule engine to handle this out of the box
     NewIssue newIssue = context.newIssue();
-    TextRange textRange = inputFile.selectLine(issue.getLine());
     RuleKey ruleKey = checks.ruleKey(issue.getRule());
     Objects.requireNonNull(ruleKey, "Rule key not found for " + issue.getRule().getClass());
-    newIssue
-      .at(newIssue.newLocation().on(inputFile).at(textRange).message(issue.getMessage()))
-      .forRule(ruleKey)
-      .save();
+    NewIssueLocation location = newIssue.newLocation()
+      .on(inputFile)
+      .at(newRange(inputFile, issue.getNode()))
+      .message(issue.getMessage());
+    newIssue.at(location).forRule(ruleKey).save();
   }
 
   private void saveMetrics(Metrics metrics, SensorContext context, InputFile inputFile) {

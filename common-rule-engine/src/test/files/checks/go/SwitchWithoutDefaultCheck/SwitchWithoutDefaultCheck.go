@@ -19,6 +19,7 @@ func foo(tag int, x f) {
 	case 0, 1, 2, 3:
 		bar()
 	default:  // Noncompliant {{Move this default to the start or end of the switch.}}
+//	^^^^^^^
 		bar()
 	case 4, 5, 6, 7:
 		bar()
