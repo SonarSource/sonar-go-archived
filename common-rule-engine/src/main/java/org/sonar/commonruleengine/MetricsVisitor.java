@@ -25,6 +25,7 @@ public class MetricsVisitor {
     }
     if (node.kinds.contains(UastNode.Kind.STATEMENT) ||
       node.kinds.contains(UastNode.Kind.EXPRESSION) ||
+      node.kinds.contains(UastNode.Kind.CASE) ||
       node.kinds.contains(UastNode.Kind.LABEL)) {
       addLines(metrics.executableLines, node.firstToken());
     }

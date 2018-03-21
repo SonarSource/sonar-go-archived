@@ -659,7 +659,7 @@ func main(i int) {
 	actual := strings.Join(actualSlice, " ")
 	expected := "package:[KEYWORD] main:[IDENTIFIER] " +
 		"func:[KEYWORD] main:[IDENTIFIER] (:[] i:[PARAMETER IDENTIFIER] int:[TYPE IDENTIFIER] ):[] {:[]" +
-		" fmt:[EXPRESSION IDENTIFIER] .:[] Println:[IDENTIFIER] (:[LPAREN]" +
+		" fmt:[IDENTIFIER] .:[] Println:[IDENTIFIER] (:[LPAREN]" +
 		" \"a\":[EXPRESSION LITERAL STRING_LITERAL] ,:[]" +
 		" 'b':[EXPRESSION LITERAL STRING_LITERAL] ,:[]" +
 		" ):[RPAREN] " +
@@ -669,7 +669,7 @@ func main(i int) {
 	}
 }
 
-func Test_labelKinds(t *testing.T) {
+func Test_labelAndCaseKinds(t *testing.T) {
 	source := `package main
 func foo(i int) int {
 	goto label1
@@ -699,7 +699,7 @@ label1:
 
 	actual = newTestNode(case2)
 	expected = TestNode{
-		kinds:      []Kind{CASE, LABEL},
+		kinds:      []Kind{CASE},
 		nativeNode: "[0](CaseClause)",
 		children:   4,
 	}
@@ -708,6 +708,26 @@ label1:
 		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
 	}
 
+}
+
+func Test_noExpressionKinds(t *testing.T) {
+	source := `package main
+import "other"
+type A struct {
+	a [2]int32
+	b other.A
+    c map[other.B]other.C
+}
+func foo(i int, b other.A, ) {
+}
+`
+	uast := uastFromString(t, source, "")
+	uast.visit(func(node *Node) {
+		if node.hasKind(EXPRESSION) {
+			data, _ := json.MarshalIndent(node, "", "  ")
+			t.Fatalf("Unexpected kind EXPRESSION in:\n%s", data)
+		}
+	})
 }
 
 func Test_emptyStatement(t *testing.T) {
