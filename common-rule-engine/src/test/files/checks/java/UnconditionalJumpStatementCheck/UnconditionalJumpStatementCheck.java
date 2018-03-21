@@ -2,14 +2,14 @@ class A {
   void m1() {
     for (int i = 0; i < 10; i++) {
       foo();
-      break;  // Noncompliant {{Remove this "break" statement or make it conditional.}}
+      break;  // Noncompliant
     }
   }
 
   void m2() {
     forLabel: for (int i = 0; i < 10; ++i) {
       foo();
-      continue forLabel;  // Noncompliant {{Remove this "continue" statement or make it conditional.}}
+      continue forLabel;  // Noncompliant
     }
   }
 
@@ -17,7 +17,7 @@ class A {
     int i = 0;
     while (i++ < 10) {
       foo();
-      throw new Exception("BOUM!");  // Noncompliant {{Remove this "throw" statement or make it conditional.}}
+      throw new Exception("BOUM!");  // Noncompliant
     }
   }
 
@@ -25,21 +25,21 @@ class A {
     int i = 0;
     do {
       foo();
-      break;  // Noncompliant {{Remove this "break" statement or make it conditional.}}
+      break;  // Noncompliant
     } while (i++ < 10);
   }
 
   void m5(java.util.List<Object> myList) {
     for (Object object : myList) {
       foo(object);
-      continue; // Noncompliant {{Remove this "continue" statement or make it conditional.}}
+      continue; // Noncompliant
     }
   }
 
   void m6() {
     for (int i = 0; i < 10; ++i) {
       foo();
-      return;  // Noncompliant {{Remove this "return" statement or make it conditional.}}
+      return;  // Noncompliant
     }
   }
 
@@ -47,7 +47,7 @@ class A {
     int i = 0;
     for (; i < 10;) {
       foo();
-      break; // Noncompliant {{Remove this "break" statement or make it conditional.}}
+      break; // Noncompliant
     }
   }
 
@@ -66,7 +66,7 @@ class A {
     if (b)
       while (i++ < 10) {
         foo();
-        return;  // Noncompliant {{Remove this "return" statement or make it conditional.}}
+        return;  // Noncompliant
       }
   }
 
@@ -74,7 +74,7 @@ class A {
     int i = 0;
     while (i++ < 10) {
       foo(i);
-      throw new Exception("BOUM!");  // Noncompliant {{Remove this "throw" statement or make it conditional.}}
+      throw new Exception("BOUM!");  // Noncompliant
     }
   }
 
@@ -113,7 +113,8 @@ class A {
         }
       }
       hasClassPathAttribute = true;
-      break; // compliant, there is another way to get back to the 'while' loop from the inner 'for' loop
+      break; // Noncompliant
+      // note: compliant, but ignoring because Java-specific
     }
     return hasClassPathAttribute;
   }
@@ -204,7 +205,7 @@ class B {
         continue;
       }
       baz();
-      continue; // Noncompliant
+      continue; // note: non-compliant by SonarJava
     }
 
     for (int i = 0; foo(); i++) {
@@ -236,14 +237,16 @@ abstract class C {
     String s = null;
     while(itr.hasNext()) {
       s = itr.next();
-      break; // Compliant
+      break; // Noncompliant
+      // note: compliant by SonarJava
     }
   }
 
   String m2(java.util.Enumeration<String> e) {
     while((((e.hasMoreElements())))) {
       String s = e.nextElement();
-      return s; // Compliant
+      return s; // Noncompliant
+      // note: compliant by SonarJava
     }
     return null;
   }
@@ -263,7 +266,8 @@ abstract class C {
         // ...
         break;
       }
-      break; // Compliant
+      break; // Noncompliant
+      // note: compliant by SonarJava
     }
 
     while(isItTrue()) {
@@ -281,7 +285,8 @@ abstract class C {
         // ...
         break;
       }
-      break; // Compliant
+      break; // Noncompliant
+      // note: compliant by SonarJava
     }
 
     for(int i = 0;;) {
@@ -324,7 +329,8 @@ abstract class C {
         // ...
         break;
       }
-      break; // Compliant
+      break; // Noncompliant
+      // note: compliant by SonarJava
     } while ((((true))));
   }
 
