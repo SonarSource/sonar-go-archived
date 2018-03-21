@@ -3,6 +3,7 @@ package main
 func noSelfAssignmentSingle() {
 	a := 1
 	a = a  // Noncompliant {{Remove this self assignment}}
+//	^^^^^
 }
 
 func noSelfAssignmentMulti() {
