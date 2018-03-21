@@ -53,18 +53,18 @@
       ]}
     ]},
     {"kinds": ["FUNCTION"], "nativeNode": "[2](FuncDecl)", "children": [
-      {"kinds": ["KEYWORD"], "token": {"value":"func","line":10,"column":3}, "nativeNode": "Type.Func"},
-      {"kinds": ["IDENTIFIER"], "token": {"value":"fun2","line":10,"column":8}, "nativeNode": "Name(Ident)"},
+      {"kinds": ["KEYWORD"], "token": {"value":"func","line":10,"column":1}, "nativeNode": "Type.Func"},
+      {"kinds": ["IDENTIFIER"], "token": {"value":"fun2","line":10,"column":6}, "nativeNode": "Name(Ident)"},
       {"nativeNode": "Type(FuncType)", "children": [
         {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
-          {"token": {"value":"(","line":10,"column":12}, "nativeNode": "Opening"},
-          {"token": {"value":")","line":10,"column":13}, "nativeNode": "Closing"}
+          {"token": {"value":"(","line":10,"column":10}, "nativeNode": "Opening"},
+          {"token": {"value":")","line":10,"column":11}, "nativeNode": "Closing"}
         ]}
       ]},
       {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
-        {"token": {"value":"{","line":10,"column":15}, "nativeNode": "Lbrace"},
-        {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant","line":10,"column":18}, "nativeNode": ""},
-        {"kinds": ["COMMENT"], "token": {"value":"//^[el=+4;ec=1]","line":11,"column":1}, "nativeNode": ""},
+        {"token": {"value":"{","line":10,"column":13}, "nativeNode": "Lbrace"},
+        {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant","line":10,"column":16}, "nativeNode": ""},
+        {"kinds": ["COMMENT"], "token": {"value":"//^[sc=1;el=+4;ec=1]","line":11,"column":1}, "nativeNode": ""},
         {"kinds": ["ASSIGNMENT","DECLARATION","STATEMENT"], "nativeNode": "[0](AssignStmt)", "children": [
           {"kinds": ["ASSIGNMENT_TARGET"], "nativeNode": "Lhs([]Expr)", "children": [
             {"kinds": ["IDENTIFIER"], "token": {"value":"a","line":12,"column":2}, "nativeNode": "[0](Ident)"},

@@ -52,7 +52,10 @@ subprojects {
             dependency('org.mockito:mockito-core:2.15.0') {
                 exclude 'org.hamcrest:hamcrest-core'
             }
-            dependency 'org.sonarsource.analyzer-commons:sonar-analyzer-commons:1.5.0.178'
+            dependencySet(group: 'org.sonarsource.analyzer-commons', version: '1.5.0.178') {
+                entry 'sonar-analyzer-commons'
+                entry 'sonar-analyzer-test-commons'
+            }
             dependency 'org.sonarsource.sonarqube:sonar-plugin-api:6.7'
         }
     }

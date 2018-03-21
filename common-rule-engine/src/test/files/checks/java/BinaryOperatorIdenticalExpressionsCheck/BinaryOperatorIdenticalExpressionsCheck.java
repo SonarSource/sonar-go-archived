@@ -1,7 +1,7 @@
 class A {
   void foo() {
     boolean a,b;
-    if(a == b) { } // 123
+    if(a == b) { }
     if(a == a) { } // Noncompliant
     if(a != a) { } // Noncompliant
     if(a || a) { } // Noncompliant

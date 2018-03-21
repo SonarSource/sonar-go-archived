@@ -146,7 +146,7 @@ public final class UastNode {
   }
 
   public Token firstToken() {
-    if (token != null) {
+    if (token != null && !kinds.contains(Kind.COMMENT)) {
       return this.token;
     }
     for (UastNode child : children) {
@@ -159,7 +159,7 @@ public final class UastNode {
   }
 
   public Token lastToken() {
-    if (token != null) {
+    if (token != null && !kinds.contains(Kind.COMMENT)) {
       return token;
     }
     ListIterator<UastNode> it = children.listIterator(children.size());

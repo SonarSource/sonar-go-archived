@@ -57,7 +57,7 @@ public class Generator {
 
   public Generator(String source) {
     cut = (CompilationUnitTree) PARSER.parse(source);
-    uast = visit(cut);
+    uast = visit(cut).findFirst().get();
     cut.accept(new PostprocessVisitor());
   }
 
@@ -87,26 +87,26 @@ public class Generator {
     return GSON.toJson(uast);
   }
 
-  private UastNode visit(Tree tree) {
+  private Stream<UastNode> visit(Tree tree) {
     UastNode uastNode = null;
     if (tree.is(Tree.Kind.TOKEN)) {
       uastNode = newUastNode(tree, Collections.emptyList());
-      List<UastNode> children = tree.firstToken().trivias().stream()
+      List<UastNode> trivia = ((SyntaxToken) tree).trivias().stream()
         // SonarJava AST duplicates some nodes (e.g. Variable)
         .filter(seenTrivia::add)
         .map(syntaxTrivia -> newUastNode(syntaxTrivia, Collections.emptyList()))
         .collect(Collectors.toList());
-      uastNode.children = children;
+      return Stream.concat(trivia.stream(), Stream.of(uastNode));
     } else {
       List<Tree> children = ((JavaTree) tree).getChildren();
       if (!children.isEmpty()) {
-        uastNode = newUastNode(tree, children.stream().map(this::visit).filter(Objects::nonNull).collect(Collectors.toList()));
+        uastNode = newUastNode(tree, children.stream().flatMap(this::visit).filter(Objects::nonNull).collect(Collectors.toList()));
       }
     }
     if (uastNode != null) {
       treeUastNodeMap.put(tree, uastNode);
     }
-    return uastNode;
+    return uastNode == null ? Stream.empty() : Stream.of(uastNode);
   }
 
   private static UastNode newUastNode(Tree tree, List<UastNode> children) {

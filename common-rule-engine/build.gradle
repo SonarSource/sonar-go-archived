@@ -21,7 +21,7 @@ dependencies {
     testCompile 'org.junit.jupiter:junit-jupiter-api'
     testCompile 'org.junit.jupiter:junit-jupiter-params'
     testRuntime 'org.junit.jupiter:junit-jupiter-engine'
-    testCompile 'org.sonarsource.analyzer-commons:sonar-analyzer-test-commons:1.5.0.178'
+    testCompile 'org.sonarsource.analyzer-commons:sonar-analyzer-test-commons'
     testCompile project(':uast-generator-java')
 }
 
