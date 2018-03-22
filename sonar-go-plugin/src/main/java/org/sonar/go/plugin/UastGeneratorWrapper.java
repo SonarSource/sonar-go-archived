@@ -82,9 +82,13 @@ class UastGeneratorWrapper {
     private String extract(File workDir) throws IOException {
       String executable = getExecutableForCurrentOS();
       File dest = new File(workDir, executable);
+      InputStream streamOfExecutable = getClass().getClassLoader().getResourceAsStream(executable);
+      if (streamOfExecutable == null) {
+        throw new IllegalStateException(executable + " binary not found on class path");
+      }
       try (FileOutputStream destStream = new FileOutputStream(dest);
-           InputStream streamOfExecutable = getClass().getClassLoader().getResourceAsStream(executable)) {
-        copy(streamOfExecutable, destStream);
+           InputStream in = streamOfExecutable) {
+        copy(in, destStream);
         dest.setExecutable(true);
         return dest.getAbsolutePath();
       }

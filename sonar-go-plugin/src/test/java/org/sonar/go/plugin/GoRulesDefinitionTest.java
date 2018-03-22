@@ -25,7 +25,7 @@ class GoRulesDefinitionTest {
     GoRulesDefinition rulesDefinition = new GoRulesDefinition();
     RulesDefinition.Context context = new RulesDefinition.Context();
     rulesDefinition.define(context);
-    return context.repository("Go");
+    return context.repository("go");
   }
 
   private void assertRuleProperties(RulesDefinition.Repository repository) {

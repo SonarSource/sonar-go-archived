@@ -12,6 +12,10 @@ compileJava {
 
 compileTestJava.options.encoding = "UTF-8"
 
+// require uast-generator-go binaries to be build
+shadowJar.dependsOn ':uast-generator-go:build'
+test.dependsOn ':uast-generator-go:build'
+
 dependencies {
     compile project(':common-rule-engine')
     // dependency on uast-generator-go binaries

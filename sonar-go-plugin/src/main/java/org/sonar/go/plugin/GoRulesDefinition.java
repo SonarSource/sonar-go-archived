@@ -5,7 +5,7 @@ import org.sonarsource.analyzer.commons.RuleMetadataLoader;
 
 public class GoRulesDefinition implements RulesDefinition {
 
-  public static final String REPOSITORY_KEY = "Go";
+  public static final String REPOSITORY_KEY = "go";
 
   @Override
   public void define(Context context) {
