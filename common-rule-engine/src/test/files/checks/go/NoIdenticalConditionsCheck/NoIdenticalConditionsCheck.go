@@ -2,7 +2,8 @@ package test
 
 func example(condition1, condition2 bool) {
 	if condition1 {
-	} else if condition1 { // Noncompliant
+	// ^^^^^^^^^^>
+	} else if condition1 { // Noncompliant {{This condition is same as one already tested on line 4.}}
 	//        ^^^^^^^^^^
 	}
 
@@ -12,8 +13,9 @@ func example(condition1, condition2 bool) {
 	}
 
 	if condition1 {
+	// ^^^^^^^^^^>
 	} else if condition2 {
-	} else if condition1 { // Noncompliant {{This condition is same as one already tested on line 14.}}
+	} else if condition1 { // Noncompliant {{This condition is same as one already tested on line 15.}}
 	//        ^^^^^^^^^^
 	}
 }

@@ -130,7 +130,7 @@ class GoRulingTest {
   }
 
   private String getNodeLocation(Issue issue) {
-    UastNode.Token token = issue.getNode().firstToken();
+    UastNode.Token token = issue.getPrimary().from.firstToken();
     if (token != null) {
       return token.line + ":" + token.column;
     }

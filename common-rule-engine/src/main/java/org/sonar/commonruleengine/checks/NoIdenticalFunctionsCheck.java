@@ -3,6 +3,7 @@ package org.sonar.commonruleengine.checks;
 import java.util.ArrayList;
 import java.util.List;
 import org.sonar.check.Rule;
+import org.sonar.commonruleengine.Issue;
 import org.sonar.uast.UastNode;
 import org.sonar.uast.helpers.FunctionLike;
 
@@ -40,7 +41,8 @@ public class NoIdenticalFunctionsCheck extends Check {
       }
       for (FunctionLike function : functions) {
         if (syntacticallyEquivalent(thisFunction.body(), function.body()) && syntacticallyEquivalent(thisFunction.parameters(), function.parameters())) {
-          reportIssue(node, "Function is identical with function on line " + function.node().firstToken().line);
+          reportIssue(node, "Function is identical with function on line " + function.node().firstToken().line + ".",
+            new Issue.Message(function.node()));
           break;
         }
       }

@@ -3,6 +3,7 @@ package org.sonar.commonruleengine.checks;
 import java.util.ArrayList;
 import java.util.List;
 import org.sonar.check.Rule;
+import org.sonar.commonruleengine.Issue;
 import org.sonar.uast.UastNode;
 import org.sonar.uast.helpers.CaseLike;
 import org.sonar.uast.helpers.IfLike;
@@ -39,7 +40,9 @@ public class NoIdenticalConditionsCheck extends Check {
       for (UastNode condition : conditions) {
         for (UastNode prevCondition : allConditions) {
           if (syntacticallyEquivalent(condition, prevCondition)) {
-            reportIssue(condition, "This condition is same as one already tested on line " + condition.firstToken().line + ".");
+            int line = condition.firstToken().line;
+            reportIssue(condition, "This condition is same as one already tested on line " + line + ".",
+              new Issue.Message(prevCondition, "Original"));
           }
         }
         allConditions.add(condition);
@@ -56,7 +59,9 @@ public class NoIdenticalConditionsCheck extends Check {
     IfLike elseIf = IfLike.from(ifLike.elseNode());
     while (elseIf != null) {
       if (syntacticallyEquivalent(condition, elseIf.condition())) {
-        reportIssue(elseIf.condition(), "This condition is same as one already tested on line " + condition.firstToken().line + ".");
+        int line = condition.firstToken().line;
+        reportIssue(elseIf.condition(), "This condition is same as one already tested on line " + line + ".",
+          new Issue.Message(condition, "Original"));
       }
       elseIf = IfLike.from(elseIf.elseNode());
     }

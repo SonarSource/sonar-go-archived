@@ -3,6 +3,7 @@
     {"kinds": ["KEYWORD"], "token": {"value":"package","line":1,"column":1}, "nativeNode": ""},
     {"kinds": ["IDENTIFIER"], "token": {"value":"main","line":1,"column":9}, "nativeNode": "Name(Ident)"}
   ]},
+  {"kinds": ["COMMENT"], "token": {"value":"// FIXME(issue #152) should only highlight function signature","line":2,"column":1}, "nativeNode": ""},
   {"kinds": ["DECL_LIST"], "nativeNode": "Decls([]Decl)", "children": [
     {"kinds": ["FUNCTION"], "nativeNode": "[0](FuncDecl)", "children": [
       {"kinds": ["KEYWORD"], "token": {"value":"func","line":3,"column":3}, "nativeNode": "Type.Func"},

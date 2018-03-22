@@ -7,6 +7,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import org.sonar.commonruleengine.Engine;
@@ -45,12 +46,23 @@ public class TestUtils {
 
     SingleFileVerifier verifier = SingleFileVerifier.create(testFile, StandardCharsets.UTF_8);
     uast.getDescendants(UastNode.Kind.COMMENT, comment -> verifier.addComment(comment.token.line, comment.token.column, comment.token.value, 2, 0));
-    issues.forEach(issue -> {
-      UastNode.Token firstToken = issue.getNode().firstToken();
-      UastNode.Token lastToken = issue.getNode().lastToken();
-      verifier.reportIssue(issue.getMessage()).onRange(firstToken.line, firstToken.column, lastToken.endLine, lastToken.endColumn);
-    });
+    issues.forEach(issue -> reportIssueTo(verifier, issue));
     verifier.assertOneOrMoreIssues();
+  }
+
+  private static void reportIssueTo(SingleFileVerifier verifier, Issue issue) {
+    Issue.Message primary = issue.getPrimary();
+    UastNode.Token from = primary.from.firstToken();
+    UastNode.Token to = primary.to.lastToken();
+    SingleFileVerifier.Issue newIssue = verifier.reportIssue(primary.description)
+      .onRange(from.line, from.column, to.endLine, to.endColumn);
+    Arrays.stream(issue.getSecondaries()).forEach(secondary -> reportSecondaryTo(newIssue, secondary));
+  }
+
+  private static void reportSecondaryTo(SingleFileVerifier.Issue newIssue, Issue.Message secondary) {
+    UastNode.Token from = secondary.from.firstToken();
+    UastNode.Token to = secondary.to.lastToken();
+    newIssue.addSecondary(from.line, from.column, to.endLine, to.endColumn, secondary.description);
   }
 
   private static Path testFile(String filename) {
@@ -58,4 +70,3 @@ public class TestUtils {
   }
 
 }
-

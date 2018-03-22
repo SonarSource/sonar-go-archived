@@ -24,8 +24,9 @@ func foo(tag int, x f) {
 	case 4, 5, 6, 7:
 		bar()
 	}
-
+// FIXME(issue #153) should only highlight "switch" keyword
 	switch tag { // Noncompliant {{Add a default case to this switch.}}
+//  ^[sc=2;el=+6;ec=2]
 	case 0, 1, 2, 3:
 		bar()
 	case 4, 5, 6, 7:

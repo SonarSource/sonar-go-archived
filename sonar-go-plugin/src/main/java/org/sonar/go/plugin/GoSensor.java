@@ -2,6 +2,7 @@ package org.sonar.go.plugin;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -15,7 +16,6 @@ import org.sonar.api.batch.sensor.Sensor;
 import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.batch.sensor.SensorDescriptor;
 import org.sonar.api.batch.sensor.issue.NewIssue;
-import org.sonar.api.batch.sensor.issue.NewIssueLocation;
 import org.sonar.api.measures.CoreMetrics;
 import org.sonar.api.measures.FileLinesContext;
 import org.sonar.api.measures.FileLinesContextFactory;
@@ -82,14 +82,23 @@ public class GoSensor implements Sensor {
 
   private void reportIssue(Issue issue, SensorContext context, InputFile inputFile) {
     // TODO improve common rule engine to handle this out of the box
-    NewIssue newIssue = context.newIssue();
     RuleKey ruleKey = checks.ruleKey(issue.getRule());
     Objects.requireNonNull(ruleKey, "Rule key not found for " + issue.getRule().getClass());
-    NewIssueLocation location = newIssue.newLocation()
-      .on(inputFile)
-      .at(newRange(inputFile, issue.getNode()))
-      .message(issue.getMessage());
-    newIssue.at(location).forRule(ruleKey).save();
+    NewIssue newIssue = context.newIssue();
+    newIssue
+      .forRule(ruleKey)
+      .at(newIssue.newLocation()
+        .on(inputFile)
+        .at(newRange(inputFile, issue.getPrimary().from, issue.getPrimary().to))
+        .message(issue.getPrimary().description));
+
+    Arrays.stream(issue.getSecondaries()).forEach(secondary -> newIssue.addLocation(
+      newIssue.newLocation()
+        .on(inputFile)
+        .at(newRange(inputFile, secondary.from, secondary.to))
+        .message(secondary.description == null ? "" : secondary.description)));
+
+    newIssue.save();
   }
 
   private void saveMetrics(Metrics metrics, SensorContext context, InputFile inputFile) {
