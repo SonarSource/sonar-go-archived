@@ -36,3 +36,6 @@ bin/
 build/
 
 **/.gogradle/
+
+# --- Maven and Orchestrator
+target/

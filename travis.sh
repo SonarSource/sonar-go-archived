@@ -32,16 +32,18 @@ sonar_analysis="-DbuildNumber=$BUILD_NUMBER \
 # Used by Next
 export INITIAL_VERSION=$(cat gradle.properties | grep version | awk -F= '{print $2}')
 
+#nochange
+
 if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     echo 'Build and analyze master'
-    ruling=true ${gradle_cmd} build sonarqube artifactoryPublish \
+    ${gradle_cmd} build sonarqube artifactoryPublish \
         ${sonar_analysis} \
         -Dsonar.analysis.sha1=$GIT_COMMIT \
         -Dsonar.projectVersion=$INITIAL_VERSION
 
 elif [ "$TRAVIS_PULL_REQUEST" != "false" ] && [ -n "${GITHUB_TOKEN:-}" ]; then
     echo 'Build and analyze pull request'
-    ruling=true ${gradle_cmd} build sonarqube artifactoryPublish \
+    ${gradle_cmd} build sonarqube artifactoryPublish \
         ${sonar_analysis} \
         -Dsonar.analysis.prNumber=$TRAVIS_PULL_REQUEST \
         -Dsonar.analysis.sha1=$TRAVIS_PULL_REQUEST_SHA \

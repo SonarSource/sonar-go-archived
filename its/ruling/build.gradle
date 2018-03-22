@@ -1,0 +1,24 @@
+apply plugin: 'java'
+
+
+test {
+    useJUnitPlatform()
+    outputs.upToDateWhen {false}
+    def orchestratorProps = System.getProperties().findAll { it.key.startsWith("orchestrator") }.collect { it.key }
+    systemProperties System.getProperties().subMap(orchestratorProps)
+    afterEvaluate {
+        systemProperty "goVersion", version
+    }
+}
+
+dependencies {
+
+    testCompile 'org.junit.jupiter:junit-jupiter-api'
+    testRuntime 'org.junit.jupiter:junit-jupiter-engine'
+    testCompile 'org.junit.platform:junit-platform-launcher'
+
+    testCompile 'org.sonarsource.orchestrator:sonar-orchestrator'
+    testCompile 'org.sonarsource.analyzer-commons:sonar-analyzer-commons'
+
+    testCompile 'org.assertj:assertj-core'
+}

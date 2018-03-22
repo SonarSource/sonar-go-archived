@@ -1,4 +1,4 @@
-@Library('SonarSource@1.2') _
+@Library('SonarSource@1.6') _
 
 pipeline {
     agent {
@@ -22,8 +22,9 @@ pipeline {
         }
         stage('QA') {
             steps {
-                // TODO some real QA tests
-                sh 'true'
+                withQAEnv {
+                    sh "ruling=true ./gradlew -DbuildNumber=${params.CI_BUILD_NUMBER} -Dorchestrator.artifactory.repositories=sonarsource-qa -Dorchestrator.artifactory.apiKey=${env.ARTIFACTORY_PRIVATE_API_KEY}  --console plain --no-daemon --info :its:ruling:check"
+                }
             }
             post {
                 always {
@@ -40,6 +41,16 @@ pipeline {
                     sendAllNotificationPromote()
                 }
             }
+        }
+    }
+}
+
+def withQAEnv(def body) {
+    checkout scm
+    withCredentials([string(credentialsId: 'ARTIFACTORY_PRIVATE_API_KEY', variable: 'ARTIFACTORY_PRIVATE_API_KEY'),
+                     usernamePassword(credentialsId: 'ARTIFACTORY_PRIVATE_USER', passwordVariable: 'ARTIFACTORY_PRIVATE_PASSWORD', usernameVariable: 'ARTIFACTORY_PRIVATE_USERNAME')]) {
+        wrap([$class: 'Xvfb']) {
+            body.call()
         }
     }
 }
