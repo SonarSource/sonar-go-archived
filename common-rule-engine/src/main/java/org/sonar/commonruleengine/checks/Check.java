@@ -14,9 +14,18 @@ public abstract class Check {
     this.kinds = nodeKindsToVisit;
   }
 
+  /**
+   * This method is called only once by analysis
+   */
   public void initialize(EngineContext context) {
     this.context = context;
     Arrays.stream(kinds).forEach(kind -> context.register(kind, this));
+  }
+
+  /**
+   * This method is called every time we enter a new file, allowing state cleaning for checks
+   */
+  public void enterFile() {
   }
 
   public abstract void visitNode(UastNode node);
