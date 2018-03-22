@@ -173,6 +173,10 @@ public final class GoCoverageReport {
     int findEndIgnoringBrace(CoverageStat coverage, int startLine) {
       int line = coverage.endLine;
       int column = coverage.endCol - 1;
+      if (lines != null && line > lines.size()) {
+        line = lines.size();
+        column = lines.get(line - 1).length();
+      }
       while (line > startLine && shouldIgnore(line, column)) {
         column--;
         if (column == 0) {
