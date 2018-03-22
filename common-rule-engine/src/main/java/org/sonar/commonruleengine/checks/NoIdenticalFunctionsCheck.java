@@ -17,12 +17,17 @@ public class NoIdenticalFunctionsCheck extends Check {
   private List<FunctionLike> functions = new ArrayList<>();
 
   public NoIdenticalFunctionsCheck() {
-    super(UastNode.Kind.FUNCTION, UastNode.Kind.COMPILATION_UNIT, UastNode.Kind.CLASS);
+    super(UastNode.Kind.FUNCTION, UastNode.Kind.CLASS);
+  }
+
+  @Override
+  public void enterFile() {
+    functions.clear();
   }
 
   @Override
   public void visitNode(UastNode node) {
-    if (node.kinds.contains(UastNode.Kind.COMPILATION_UNIT) || node.kinds.contains(UastNode.Kind.CLASS)) {
+    if (node.kinds.contains(UastNode.Kind.CLASS)) {
       functions.clear();
     }
     if (node.kinds.contains(FunctionLike.KIND)) {

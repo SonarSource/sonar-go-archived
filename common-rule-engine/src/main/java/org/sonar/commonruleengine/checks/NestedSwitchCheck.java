@@ -3,7 +3,6 @@ package org.sonar.commonruleengine.checks;
 import java.util.HashSet;
 import java.util.Set;
 import org.sonar.check.Rule;
-import org.sonar.commonruleengine.EngineContext;
 import org.sonar.uast.UastNode;
 
 /**
@@ -19,9 +18,8 @@ public class NestedSwitchCheck extends Check {
   }
 
   @Override
-  public void initialize(EngineContext context) {
+  public void enterFile() {
     reported.clear();
-    super.initialize(context);
   }
 
   @Override
