@@ -18,8 +18,7 @@ func foo(tag int, x f) {
 	switch tag {
 	case 0, 1, 2, 3:
 		bar()
-	default:  // Noncompliant {{Move this default to the start or end of the switch.}}
-//	^^^^^^^
+	default:  // Compliant - order handled by S4524
 		bar()
 	case 4, 5, 6, 7:
 		bar()
@@ -66,7 +65,7 @@ func foo(tag int, x f) {
 	switch x.(type) {
 	case nil:
 		bar("x is nil")
-	default:  // Noncompliant {{Move this default to the start or end of the switch.}}
+	default:  // Compliant - order handled by S4524
 		bar("don't know the type")
 	case bool, string:
 		bar("type is bool or string")

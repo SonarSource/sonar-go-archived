@@ -14,7 +14,7 @@ class Foo {
     }
 
     switch (0) {
-      default:   // Compliant --> common-language authorize first position
+      default:   // Compliant -->  order is handled by S4524
       case 0:
     }
 
@@ -63,7 +63,7 @@ class Foo {
     switch (myEnum) {
       case A:
         break;
-      default:  // Noncompliant
+      default:  // Compliant - order is handled by S4524
         break;
       case B:
         break;
