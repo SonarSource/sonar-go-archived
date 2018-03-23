@@ -7,7 +7,7 @@
   {"kinds": ["DECL_LIST"], "nativeNode": "Decls([]Decl)", "children": [
     {"kinds": ["FUNCTION"], "nativeNode": "[0](FuncDecl)", "children": [
       {"kinds": ["KEYWORD"], "token": {"value":"func","line":3,"column":3}, "nativeNode": "Type.Func"},
-      {"kinds": ["IDENTIFIER"], "token": {"value":"nonCompliantFun1","line":3,"column":8}, "nativeNode": "Name(Ident)"},
+      {"kinds": ["FUNCTION_NAME","IDENTIFIER"], "token": {"value":"nonCompliantFun1","line":3,"column":8}, "nativeNode": "Name(Ident)"},
       {"nativeNode": "Type(FuncType)", "children": [
         {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
           {"token": {"value":"(","line":3,"column":24}, "nativeNode": "Opening"},
@@ -37,13 +37,13 @@
       {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
         {"token": {"value":"{","line":3,"column":61}, "nativeNode": "Lbrace"},
         {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant","line":3,"column":64}, "nativeNode": ""},
-        {"kinds": ["COMMENT"], "token": {"value":"//^[el=+2;ec=1]","line":4,"column":1}, "nativeNode": ""},
+        {"kinds": ["COMMENT"], "token": {"value":"//     ^^^^^^^^^^^^^^^^","line":4,"column":1}, "nativeNode": ""},
         {"token": {"value":"}","line":5,"column":1}, "nativeNode": "Rbrace"}
       ]}
     ]},
     {"kinds": ["FUNCTION"], "nativeNode": "[1](FuncDecl)", "children": [
       {"kinds": ["KEYWORD"], "token": {"value":"func","line":7,"column":1}, "nativeNode": "Type.Func"},
-      {"kinds": ["IDENTIFIER"], "token": {"value":"nonCompliantFun2","line":7,"column":6}, "nativeNode": "Name(Ident)"},
+      {"kinds": ["FUNCTION_NAME","IDENTIFIER"], "token": {"value":"nonCompliantFun2","line":7,"column":6}, "nativeNode": "Name(Ident)"},
       {"nativeNode": "Type(FuncType)", "children": [
         {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
           {"token": {"value":"(","line":7,"column":22}, "nativeNode": "Opening"},
@@ -83,7 +83,7 @@
     ]},
     {"kinds": ["FUNCTION"], "nativeNode": "[2](FuncDecl)", "children": [
       {"kinds": ["KEYWORD"], "token": {"value":"func","line":10,"column":1}, "nativeNode": "Type.Func"},
-      {"kinds": ["IDENTIFIER"], "token": {"value":"compliantFun1","line":10,"column":6}, "nativeNode": "Name(Ident)"},
+      {"kinds": ["FUNCTION_NAME","IDENTIFIER"], "token": {"value":"compliantFun1","line":10,"column":6}, "nativeNode": "Name(Ident)"},
       {"nativeNode": "Type(FuncType)", "children": [
         {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
           {"token": {"value":"(","line":10,"column":19}, "nativeNode": "Opening"},
@@ -115,7 +115,7 @@
     ]},
     {"kinds": ["FUNCTION"], "nativeNode": "[3](FuncDecl)", "children": [
       {"kinds": ["KEYWORD"], "token": {"value":"func","line":13,"column":1}, "nativeNode": "Type.Func"},
-      {"kinds": ["IDENTIFIER"], "token": {"value":"compliantFun2","line":13,"column":6}, "nativeNode": "Name(Ident)"},
+      {"kinds": ["FUNCTION_NAME","IDENTIFIER"], "token": {"value":"compliantFun2","line":13,"column":6}, "nativeNode": "Name(Ident)"},
       {"nativeNode": "Type(FuncType)", "children": [
         {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
           {"token": {"value":"(","line":13,"column":19}, "nativeNode": "Opening"},

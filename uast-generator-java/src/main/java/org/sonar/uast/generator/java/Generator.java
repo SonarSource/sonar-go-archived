@@ -165,6 +165,9 @@ public class Generator {
         result.add(UastNode.Kind.BLOCK);
         break;
       case IDENTIFIER:
+        if (tree.parent().is(Tree.Kind.METHOD) || tree.parent().is(Tree.Kind.CONSTRUCTOR)) {
+          result.add(UastNode.Kind.FUNCTION_NAME);
+        }
         result.add(UastNode.Kind.IDENTIFIER);
         break;
       case STRING_LITERAL:

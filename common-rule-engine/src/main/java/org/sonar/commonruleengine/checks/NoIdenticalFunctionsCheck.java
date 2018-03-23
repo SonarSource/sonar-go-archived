@@ -41,8 +41,9 @@ public class NoIdenticalFunctionsCheck extends Check {
       }
       for (FunctionLike function : functions) {
         if (syntacticallyEquivalent(thisFunction.body(), function.body()) && syntacticallyEquivalent(thisFunction.parameters(), function.parameters())) {
-          reportIssue(node, "Function is identical with function on line " + function.node().firstToken().line + ".",
-            new Issue.Message(function.node()));
+          reportIssue(thisFunction.name(),
+            "Function is identical with function on line " + function.node().firstToken().line + ".",
+            new Issue.Message(function.name(), "Original implementation"));
           break;
         }
       }

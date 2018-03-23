@@ -14,7 +14,7 @@
     ]},
     {"kinds": ["FUNCTION"], "nativeNode": "[1](FuncDecl)", "children": [
       {"kinds": ["KEYWORD"], "token": {"value":"func","line":5,"column":1}, "nativeNode": "Type.Func"},
-      {"kinds": ["IDENTIFIER"], "token": {"value":"FooSwitch","line":5,"column":6}, "nativeNode": "Name(Ident)"},
+      {"kinds": ["FUNCTION_NAME","IDENTIFIER"], "token": {"value":"FooSwitch","line":5,"column":6}, "nativeNode": "Name(Ident)"},
       {"nativeNode": "Type(FuncType)", "children": [
         {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
           {"token": {"value":"(","line":5,"column":15}, "nativeNode": "Opening"},
@@ -116,7 +116,7 @@
     ]},
     {"kinds": ["FUNCTION"], "nativeNode": "[2](FuncDecl)", "children": [
       {"kinds": ["KEYWORD"], "token": {"value":"func","line":16,"column":1}, "nativeNode": "Type.Func"},
-      {"kinds": ["IDENTIFIER"], "token": {"value":"SwitchWithMultipleConditions","line":16,"column":6}, "nativeNode": "Name(Ident)"},
+      {"kinds": ["FUNCTION_NAME","IDENTIFIER"], "token": {"value":"SwitchWithMultipleConditions","line":16,"column":6}, "nativeNode": "Name(Ident)"},
       {"nativeNode": "Type(FuncType)", "children": [
         {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
           {"token": {"value":"(","line":16,"column":34}, "nativeNode": "Opening"},

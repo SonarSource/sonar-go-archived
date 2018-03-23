@@ -127,7 +127,7 @@ func Test_mapFuncDecl_Name(t *testing.T) {
 
 	actual := newTestNode(uast)
 	expected := TestNode{
-		kinds:      []Kind{IDENTIFIER},
+		kinds:      []Kind{FUNCTION_NAME, IDENTIFIER},
 		nativeNode: "Name(Ident)",
 		token:      Token{Value: "main", Line: 3, Column: 6},
 	}
@@ -176,7 +176,7 @@ func Test_mapFuncDecl_complete(t *testing.T) {
 
 	actual = newTestNode(uast.Children[2])
 	expected = TestNode{
-		kinds:      []Kind{IDENTIFIER},
+		kinds:      []Kind{FUNCTION_NAME, IDENTIFIER},
 		nativeNode: "Name(Ident)",
 		token:      Token{Value: "fun", Line: 3, Column: 13},
 	}
@@ -658,7 +658,7 @@ func main(i int) {
 	})
 	actual := strings.Join(actualSlice, " ")
 	expected := "package:[KEYWORD] main:[IDENTIFIER] " +
-		"func:[KEYWORD] main:[IDENTIFIER] (:[] i:[PARAMETER IDENTIFIER] int:[TYPE IDENTIFIER] ):[] {:[]" +
+		"func:[KEYWORD] main:[FUNCTION_NAME IDENTIFIER] (:[] i:[PARAMETER IDENTIFIER] int:[TYPE IDENTIFIER] ):[] {:[]" +
 		" fmt:[IDENTIFIER] .:[] Println:[IDENTIFIER] (:[LPAREN]" +
 		" \"a\":[EXPRESSION LITERAL STRING_LITERAL] ,:[]" +
 		" 'b':[EXPRESSION LITERAL STRING_LITERAL] ,:[]" +

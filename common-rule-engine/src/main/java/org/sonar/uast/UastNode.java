@@ -102,6 +102,7 @@ public final class UastNode {
     ELSE,
     EOF,
     FUNCTION,
+    FUNCTION_NAME,
     // lambda, anonymous function
     FUNCTION_LITERAL,
     IDENTIFIER,
