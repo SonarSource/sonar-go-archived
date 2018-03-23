@@ -1,7 +1,0 @@
-kubernetes/vendor/github.com/coreos/etcd/etcdserver/etcdserverpb/rpc.pb.go: 481:25 540:28 637:25 696:28
-kubernetes/vendor/github.com/davecgh/go-spew/spew/bypass.go: 62:31
-kubernetes/vendor/github.com/googleapis/gnostic/OpenAPIv2/OpenAPIv2.pb.go: 1802:21 1874:28 3909:21 4007:28
-kubernetes/vendor/github.com/ugorji/go/codec/helper.go: 1137:42
-kubernetes/vendor/go.pedge.io/pb/go/google/protobuf/struct.pb.go: 193:21 282:28
-kubernetes/vendor/golang.org/x/crypto/poly1305/sum_ref.go: 246:18 249:18 251:18 253:18 255:18 258:18 261:18 264:18
-samples/OneStatementPerLine.go: 10:16

@@ -32,8 +32,6 @@ sonar_analysis="-DbuildNumber=$BUILD_NUMBER \
 # Used by Next
 export INITIAL_VERSION=$(cat gradle.properties | grep version | awk -F= '{print $2}')
 
-#nochange
-
 if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     echo 'Build and analyze master'
     ${gradle_cmd} build sonarqube artifactoryPublish \
