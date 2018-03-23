@@ -1,5 +1,6 @@
 package org.sonar.uast.helpers;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.CheckForNull;
 import org.sonar.uast.UastNode;
@@ -19,7 +20,7 @@ public class SwitchLike {
     if (!node.kinds.contains(UastNode.Kind.SWITCH)) {
       return null;
     }
-    return new SwitchLike(node, node.getChildren(UastNode.Kind.CASE));
+    return new SwitchLike(node, getCases(node));
   }
 
   public UastNode node() {
@@ -28,5 +29,13 @@ public class SwitchLike {
 
   public List<UastNode> caseNodes() {
     return caseNodes;
+  }
+
+  private static List<UastNode> getCases(UastNode switchNode) {
+    List<UastNode> results = new ArrayList<>();
+    // Collect all first level cases and avoid nested switches.
+    // For some languages, cases are not direct children of the switch node in their AST
+    switchNode.children.forEach(child -> child.getDescendants(UastNode.Kind.CASE, results::add, UastNode.Kind.SWITCH));
+    return results;
   }
 }

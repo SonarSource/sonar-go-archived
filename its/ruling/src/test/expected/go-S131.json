@@ -1441,7 +1441,6 @@
 ],
 'project:kubernetes/vendor/github.com/fsnotify/fsnotify/windows.go':[
 408,
-438,
 459,
 548,
 ],
@@ -1904,13 +1903,9 @@
 ],
 'project:kubernetes/vendor/github.com/miekg/dns/format.go':[
 23,
-72,
 ],
 'project:kubernetes/vendor/github.com/miekg/dns/generate.go':[
 152,
-],
-'project:kubernetes/vendor/github.com/miekg/dns/labels.go':[
-139,
 ],
 'project:kubernetes/vendor/github.com/miekg/dns/msg.go':[
 167,
@@ -2263,7 +2258,6 @@
 ],
 'project:kubernetes/vendor/github.com/square/go-jose/json/decode.go':[
 392,
-477,
 790,
 ],
 'project:kubernetes/vendor/github.com/square/go-jose/json/encode.go':[
@@ -2459,7 +2453,6 @@
 543,
 606,
 613,
-637,
 655,
 743,
 772,
