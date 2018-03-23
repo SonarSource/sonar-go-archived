@@ -27,7 +27,8 @@ public class TooManyParametersCheck extends Check {
   public void visitNode(UastNode node) {
     FunctionLike function = FunctionLike.from(node);
     if (function != null && function.parameters().size() > maximum) {
-      reportIssue(node, String.format("Function has %d parameters, which is more than %d authorized.", function.parameters().size(), maximum));
+      reportIssue(function.name(),
+        String.format("Function has %d parameters, which is more than %d authorized.", function.parameters().size(), maximum));
     }
   }
 }

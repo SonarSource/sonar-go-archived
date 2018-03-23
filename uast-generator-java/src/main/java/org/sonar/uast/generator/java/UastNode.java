@@ -35,6 +35,7 @@ class UastNode {
     ELSE,
     EOF,
     FUNCTION,
+    FUNCTION_NAME,
     FUNCTION_LITERAL,
     IDENTIFIER,
     IF,

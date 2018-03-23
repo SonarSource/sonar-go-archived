@@ -3,6 +3,7 @@ package org.sonar.uast.helpers;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import javax.annotation.CheckForNull;
 import org.sonar.uast.UastNode;
 
@@ -10,17 +11,24 @@ public class FunctionLike {
 
   public static final UastNode.Kind KIND = UastNode.Kind.FUNCTION;
   private final UastNode node;
+  private final UastNode name;
   private final UastNode block;
 
-  private FunctionLike(UastNode node, UastNode block) {
+  private FunctionLike(UastNode node, UastNode name, UastNode block) {
     this.node = node;
+    this.name = name;
     this.block = block;
   }
 
   @CheckForNull
   public static FunctionLike from(UastNode node) {
     if (node.kinds.contains(KIND)) {
-      return node.getChild(UastNode.Kind.BLOCK).map(block -> new FunctionLike(node, block)).orElse(null);
+      Optional<UastNode> nameNode = node.getChild(UastNode.Kind.FUNCTION_NAME);
+      if (!nameNode.isPresent()) {
+        return null;
+      }
+      return node.getChild(UastNode.Kind.BLOCK)
+        .map(block -> new FunctionLike(node, nameNode.get(), block)).orElse(null);
     }
     return null;
   }
@@ -31,6 +39,10 @@ public class FunctionLike {
 
   public UastNode body() {
     return block;
+  }
+
+  public UastNode name() {
+    return name;
   }
 
   public List<UastNode> parameters() {

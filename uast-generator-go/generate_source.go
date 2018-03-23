@@ -67,6 +67,7 @@ import (
 			// "FieldResult" instead of "Field"
 			"File#Decls":           "DECL_LIST",
 			"FuncDecl#Recv":        "PARAMETER_LIST",
+			"FuncDecl#Name":        "FUNCTION_NAME",
 			"FuncType#Params":      "PARAMETER_LIST",
 			"FuncType#Results":     "RESULT_LIST",
 			"FuncTypeDecl#Params":  "PARAMETER_LIST",

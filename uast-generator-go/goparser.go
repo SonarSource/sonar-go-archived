@@ -28,6 +28,7 @@ const (
 	EOF                 Kind = "EOF"
 	FUNCTION            Kind = "FUNCTION"
 	FUNCTION_LITERAL    Kind = "FUNCTION_LITERAL"
+	FUNCTION_NAME       Kind = "FUNCTION_NAME"
 	BLOCK               Kind = "BLOCK"
 	LPAREN              Kind = "LPAREN"
 	RPAREN              Kind = "RPAREN"

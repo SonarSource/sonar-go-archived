@@ -73,6 +73,7 @@
             },
             {
               "kinds": [
+                "FUNCTION_NAME",
                 "IDENTIFIER"
               ],
               "nativeNode": "IDENTIFIER",

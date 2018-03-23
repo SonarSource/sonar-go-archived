@@ -6,7 +6,7 @@
   {"kinds": ["DECL_LIST"], "nativeNode": "Decls([]Decl)", "children": [
     {"kinds": ["FUNCTION"], "nativeNode": "[0](FuncDecl)", "children": [
       {"kinds": ["KEYWORD"], "token": {"value":"func","line":3,"column":1}, "nativeNode": "Type.Func"},
-      {"kinds": ["IDENTIFIER"], "token": {"value":"noSelfAssignmentSingle","line":3,"column":6}, "nativeNode": "Name(Ident)"},
+      {"kinds": ["FUNCTION_NAME","IDENTIFIER"], "token": {"value":"noSelfAssignmentSingle","line":3,"column":6}, "nativeNode": "Name(Ident)"},
       {"nativeNode": "Type(FuncType)", "children": [
         {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
           {"token": {"value":"(","line":3,"column":28}, "nativeNode": "Opening"},
@@ -40,7 +40,7 @@
     ]},
     {"kinds": ["FUNCTION"], "nativeNode": "[1](FuncDecl)", "children": [
       {"kinds": ["KEYWORD"], "token": {"value":"func","line":9,"column":1}, "nativeNode": "Type.Func"},
-      {"kinds": ["IDENTIFIER"], "token": {"value":"noSelfAssignmentMulti","line":9,"column":6}, "nativeNode": "Name(Ident)"},
+      {"kinds": ["FUNCTION_NAME","IDENTIFIER"], "token": {"value":"noSelfAssignmentMulti","line":9,"column":6}, "nativeNode": "Name(Ident)"},
       {"nativeNode": "Type(FuncType)", "children": [
         {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
           {"token": {"value":"(","line":9,"column":27}, "nativeNode": "Opening"},
@@ -82,7 +82,7 @@
     ]},
     {"kinds": ["FUNCTION"], "nativeNode": "[2](FuncDecl)", "children": [
       {"kinds": ["KEYWORD"], "token": {"value":"func","line":14,"column":1}, "nativeNode": "Type.Func"},
-      {"kinds": ["IDENTIFIER"], "token": {"value":"noSelfAssignmentSingleNoIssue","line":14,"column":6}, "nativeNode": "Name(Ident)"},
+      {"kinds": ["FUNCTION_NAME","IDENTIFIER"], "token": {"value":"noSelfAssignmentSingleNoIssue","line":14,"column":6}, "nativeNode": "Name(Ident)"},
       {"nativeNode": "Type(FuncType)", "children": [
         {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
           {"token": {"value":"(","line":14,"column":35}, "nativeNode": "Opening"},
@@ -120,7 +120,7 @@
     ]},
     {"kinds": ["FUNCTION"], "nativeNode": "[3](FuncDecl)", "children": [
       {"kinds": ["KEYWORD"], "token": {"value":"func","line":19,"column":1}, "nativeNode": "Type.Func"},
-      {"kinds": ["IDENTIFIER"], "token": {"value":"noSelfAssignmentMultiNoIssue","line":19,"column":6}, "nativeNode": "Name(Ident)"},
+      {"kinds": ["FUNCTION_NAME","IDENTIFIER"], "token": {"value":"noSelfAssignmentMultiNoIssue","line":19,"column":6}, "nativeNode": "Name(Ident)"},
       {"nativeNode": "Type(FuncType)", "children": [
         {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
           {"token": {"value":"(","line":19,"column":34}, "nativeNode": "Opening"},
@@ -161,7 +161,7 @@
     ]},
     {"kinds": ["FUNCTION"], "nativeNode": "[4](FuncDecl)", "children": [
       {"kinds": ["KEYWORD"], "token": {"value":"func","line":24,"column":1}, "nativeNode": "Type.Func"},
-      {"kinds": ["IDENTIFIER"], "token": {"value":"noSelfAssignmentPartialNoIssue","line":24,"column":6}, "nativeNode": "Name(Ident)"},
+      {"kinds": ["FUNCTION_NAME","IDENTIFIER"], "token": {"value":"noSelfAssignmentPartialNoIssue","line":24,"column":6}, "nativeNode": "Name(Ident)"},
       {"nativeNode": "Type(FuncType)", "children": [
         {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
           {"token": {"value":"(","line":24,"column":36}, "nativeNode": "Opening"},
@@ -212,7 +212,7 @@
     ]},
     {"kinds": ["FUNCTION"], "nativeNode": "[5](FuncDecl)", "children": [
       {"kinds": ["KEYWORD"], "token": {"value":"func","line":30,"column":1}, "nativeNode": "Type.Func"},
-      {"kinds": ["IDENTIFIER"], "token": {"value":"declarationIsNotSelfAssignment","line":30,"column":6}, "nativeNode": "Name(Ident)"},
+      {"kinds": ["FUNCTION_NAME","IDENTIFIER"], "token": {"value":"declarationIsNotSelfAssignment","line":30,"column":6}, "nativeNode": "Name(Ident)"},
       {"nativeNode": "Type(FuncType)", "children": [
         {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
           {"token": {"value":"(","line":30,"column":36}, "nativeNode": "Opening"},
@@ -269,7 +269,7 @@
     ]},
     {"kinds": ["FUNCTION"], "nativeNode": "[6](FuncDecl)", "children": [
       {"kinds": ["KEYWORD"], "token": {"value":"func","line":36,"column":1}, "nativeNode": "Type.Func"},
-      {"kinds": ["IDENTIFIER"], "token": {"value":"compoundAssignment","line":36,"column":6}, "nativeNode": "Name(Ident)"},
+      {"kinds": ["FUNCTION_NAME","IDENTIFIER"], "token": {"value":"compoundAssignment","line":36,"column":6}, "nativeNode": "Name(Ident)"},
       {"nativeNode": "Type(FuncType)", "children": [
         {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
           {"token": {"value":"(","line":36,"column":24}, "nativeNode": "Opening"},
