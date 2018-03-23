@@ -2,7 +2,8 @@ class A {
   void foo() {
     boolean a,b;
     if(a == b) { }
-    if(a == a) { } // Noncompliant
+    if(a == a) { } // Noncompliant {{Correct one of the identical sub-expressions on both sides of operator "==".}}
+    // ^>   ^
     if(a != a) { } // Noncompliant
     if(a || a) { } // Noncompliant
     if(a && a) { } // Noncompliant

@@ -1,6 +1,7 @@
 package org.sonar.commonruleengine.checks;
 
 import org.sonar.check.Rule;
+import org.sonar.commonruleengine.Issue;
 import org.sonar.uast.UastNode;
 import org.sonar.uast.helpers.BinaryExpressionLike;
 
@@ -22,7 +23,10 @@ public class BinaryOperatorIdenticalExpressionsCheck extends Check {
     if (binaryExpression != null
       && !isExcluded(binaryExpression)
       && syntacticallyEquivalent(binaryExpression.leftOperand(), binaryExpression.rightOperand())) {
-      reportIssue(node, "Correct one of the identical argument sub-expressions.");
+      String operator = binaryExpression.operatorToken().value;
+      reportIssue(binaryExpression.rightOperand(),
+        "Correct one of the identical sub-expressions on both sides of operator \"" + operator + "\".",
+        new Issue.Message(binaryExpression.leftOperand()));
     }
   }
 

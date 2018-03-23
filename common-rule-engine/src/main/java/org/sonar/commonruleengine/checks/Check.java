@@ -31,6 +31,14 @@ public abstract class Check {
   public abstract void visitNode(UastNode node);
 
   protected final void reportIssue(UastNode node, String message) {
-    context.reportIssue(new Issue(this, node, message));
+    context.reportIssue(new Issue(this, new Issue.Message(node, message)));
+  }
+
+  protected final void reportIssue(UastNode node, String message, Issue.Message... secondaryMessages) {
+    context.reportIssue(new Issue(this, new Issue.Message(node, message), secondaryMessages));
+  }
+
+  protected final void reportIssue(UastNode from, UastNode to, String message, Issue.Message... secondaryMessages) {
+    context.reportIssue(new Issue(this, new Issue.Message(from, to, message), secondaryMessages));
   }
 }

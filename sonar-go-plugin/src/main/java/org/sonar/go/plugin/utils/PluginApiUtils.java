@@ -17,9 +17,9 @@ public class PluginApiUtils {
       token.endColumn);
   }
 
-  public static TextRange newRange(InputFile inputFile, UastNode node) {
-    UastNode.Token firstToken = node.firstToken();
-    UastNode.Token lastToken = node.lastToken();
+  public static TextRange newRange(InputFile inputFile, UastNode from, UastNode to) {
+    UastNode.Token firstToken = from.firstToken();
+    UastNode.Token lastToken = to.lastToken();
     return inputFile.newRange(
       firstToken.line,
       firstToken.column - 1,

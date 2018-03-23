@@ -3,6 +3,7 @@ package org.sonar.commonruleengine.checks;
 import java.util.ArrayList;
 import java.util.List;
 import org.sonar.check.Rule;
+import org.sonar.commonruleengine.Issue;
 import org.sonar.uast.UastNode;
 import org.sonar.uast.helpers.CaseLike;
 import org.sonar.uast.helpers.IfLike;
@@ -38,9 +39,7 @@ public class NoIdenticalConditionsCheck extends Check {
       List<UastNode> conditions = caseLike.conditions();
       for (UastNode condition : conditions) {
         for (UastNode prevCondition : allConditions) {
-          if (syntacticallyEquivalent(condition, prevCondition)) {
-            reportIssue(condition, "This condition is same as one already tested on line " + condition.firstToken().line + ".");
-          }
+          checkConditions(condition, prevCondition);
         }
         allConditions.add(condition);
       }
@@ -55,10 +54,17 @@ public class NoIdenticalConditionsCheck extends Check {
     UastNode condition = ifLike.condition();
     IfLike elseIf = IfLike.from(ifLike.elseNode());
     while (elseIf != null) {
-      if (syntacticallyEquivalent(condition, elseIf.condition())) {
-        reportIssue(elseIf.condition(), "This condition is same as one already tested on line " + condition.firstToken().line + ".");
-      }
+      checkConditions(elseIf.condition(), condition);
       elseIf = IfLike.from(elseIf.elseNode());
+    }
+  }
+
+  private void checkConditions(UastNode condition, UastNode prevCondition) {
+    UastNode.Token prevConditionToken = prevCondition.firstToken();
+    if (prevConditionToken != null && syntacticallyEquivalent(condition, prevCondition)) {
+      int prevConditionLine = prevConditionToken.line;
+      reportIssue(condition, "This condition is same as one already tested on line " + prevConditionLine + ".",
+        new Issue.Message(prevCondition, "Original"));
     }
   }
 }
