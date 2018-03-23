@@ -58,7 +58,12 @@ public class Issue {
 
     @Override
     public String toString() {
-      return "(" + this.from.firstToken() + ", " + this.to.lastToken() + ") " + description;
+      StringBuilder text = new StringBuilder();
+      text.append("(").append(from.firstToken()).append(", ").append(to.lastToken()).append(")");
+      if (description != null) {
+        text.append(" ").append(description);
+      }
+      return text.toString();
     }
   }
 }

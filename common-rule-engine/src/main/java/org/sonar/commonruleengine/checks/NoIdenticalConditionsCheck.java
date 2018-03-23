@@ -39,11 +39,7 @@ public class NoIdenticalConditionsCheck extends Check {
       List<UastNode> conditions = caseLike.conditions();
       for (UastNode condition : conditions) {
         for (UastNode prevCondition : allConditions) {
-          if (syntacticallyEquivalent(condition, prevCondition)) {
-            int line = condition.firstToken().line;
-            reportIssue(condition, "This condition is same as one already tested on line " + line + ".",
-              new Issue.Message(prevCondition, "Original"));
-          }
+          checkConditions(condition, prevCondition);
         }
         allConditions.add(condition);
       }
@@ -58,12 +54,17 @@ public class NoIdenticalConditionsCheck extends Check {
     UastNode condition = ifLike.condition();
     IfLike elseIf = IfLike.from(ifLike.elseNode());
     while (elseIf != null) {
-      if (syntacticallyEquivalent(condition, elseIf.condition())) {
-        int line = condition.firstToken().line;
-        reportIssue(elseIf.condition(), "This condition is same as one already tested on line " + line + ".",
-          new Issue.Message(condition, "Original"));
-      }
+      checkConditions(elseIf.condition(), condition);
       elseIf = IfLike.from(elseIf.elseNode());
+    }
+  }
+
+  private void checkConditions(UastNode condition, UastNode prevCondition) {
+    UastNode.Token prevConditionToken = prevCondition.firstToken();
+    if (prevConditionToken != null && syntacticallyEquivalent(condition, prevCondition)) {
+      int prevConditionLine = prevConditionToken.line;
+      reportIssue(condition, "This condition is same as one already tested on line " + prevConditionLine + ".",
+        new Issue.Message(prevCondition, "Original"));
     }
   }
 }
