@@ -22,9 +22,7 @@ public class GoRulingTest {
 
   @BeforeAll
   static void setUp() {
-    OrchestratorBuilder orchestratorBuilder = Orchestrator.builderEnv();
-    orchestratorBuilder.setSonarVersion(orchestratorBuilder.getSonarVersion().orElse("LTS"));
-    orchestratorBuilder
+    OrchestratorBuilder orchestratorBuilder = Orchestrator.builderEnv()
       .setOrchestratorProperty("litsVersion", "0.6")
       .addPlugin("lits");
     String isQA = System.getenv("SONARSOURCE_QA");

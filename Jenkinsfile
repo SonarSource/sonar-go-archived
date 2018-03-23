@@ -23,7 +23,9 @@ pipeline {
         stage('QA') {
             steps {
                 withQAEnv {
-                    sh "ruling=true ./gradlew -DbuildNumber=${params.CI_BUILD_NUMBER} -Dorchestrator.artifactory.repositories=sonarsource-qa -Dorchestrator.artifactory.apiKey=${env.ARTIFACTORY_PRIVATE_API_KEY}  --console plain --no-daemon --info :its:ruling:check"
+                    sh "ruling=true ./gradlew -DbuildNumber=${params.CI_BUILD_NUMBER} -Dsonar.runtimeVersion=LTS -Dorchestrator.artifactory.repositories=sonarsource-qa " +
+                            "-Dorchestrator.artifactory" +
+                            ".apiKey=${env.ARTIFACTORY_PRIVATE_API_KEY}  --console plain --no-daemon --info :its:ruling:check"
                 }
             }
             post {
