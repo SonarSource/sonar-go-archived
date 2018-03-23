@@ -14,7 +14,6 @@ import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
 import org.sonarsource.analyzer.commons.ProfileGenerator;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @EnabledIfEnvironmentVariable(named = "ruling", matches = "true")
 public class GoRulingTest {
@@ -23,8 +22,9 @@ public class GoRulingTest {
 
   @BeforeAll
   static void setUp() {
-    OrchestratorBuilder orchestratorBuilder = Orchestrator.builderEnv()
-      .setSonarVersion("LTS")
+    OrchestratorBuilder orchestratorBuilder = Orchestrator.builderEnv();
+    orchestratorBuilder.setSonarVersion(orchestratorBuilder.getSonarVersion().orElse("LTS"));
+    orchestratorBuilder
       .setOrchestratorProperty("litsVersion", "0.6")
       .addPlugin("lits");
     String isQA = System.getenv("SONARSOURCE_QA");
@@ -56,6 +56,7 @@ public class GoRulingTest {
       .setLanguage("go")
       .setSourceDirs("./")
       .setSourceEncoding("utf-8")
+      .setProperty("sonar.inclusions", "**/*.go")
       .setProperty("sonar.analysis.mode", "preview")
       .setProperty("dump.old", FileLocation.of("src/test/expected").getFile().getAbsolutePath())
       .setProperty("dump.new", FileLocation.of("build/actual").getFile().getAbsolutePath())

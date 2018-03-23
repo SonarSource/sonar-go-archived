@@ -8,6 +8,7 @@ test {
     systemProperties System.getProperties().subMap(orchestratorProps)
     afterEvaluate {
         systemProperty "goVersion", version
+        systemProperty "sonar.runtimeVersion", System.getProperty("sonar.runtimeVersion")
     }
 }
 
