@@ -4,11 +4,10 @@ apply plugin: 'java'
 test {
     useJUnitPlatform()
     outputs.upToDateWhen {false}
-    def orchestratorProps = System.getProperties().findAll { it.key.startsWith("orchestrator") }.collect { it.key }
+    def orchestratorProps = System.getProperties().findAll { it.key.startsWith("orchestrator") || it.key.startsWith("sonar") }.collect { it.key }
     systemProperties System.getProperties().subMap(orchestratorProps)
     afterEvaluate {
         systemProperty "goVersion", version
-        systemProperty "sonar.runtimeVersion", System.getProperty("sonar.runtimeVersion")
     }
 }
 
