@@ -1,6 +1,6 @@
 package main
 
-//go:generate go run generate_source.go
+// go:generate go run generate_source.go
 
 import (
 	"bytes"
@@ -57,6 +57,7 @@ const (
 	PARAMETER            Kind = "PARAMETER"
 	RESULT_LIST          Kind = "RESULT_LIST"
 	RESULT               Kind = "RESULT"
+	RETURN               Kind = "RETURN"
 	BINARY_EXPRESSION    Kind = "BINARY_EXPRESSION"
 	SWITCH               Kind = "SWITCH"
 	CASE                 Kind = "CASE"

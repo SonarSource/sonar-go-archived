@@ -15,7 +15,7 @@
       ]},
       {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
         {"token": {"value":"{","line":3,"column":22}, "nativeNode": "Lbrace"},
-        {"kinds": ["STATEMENT"], "nativeNode": "[0](ForStmt)", "children": [
+        {"kinds": ["LOOP","STATEMENT"], "nativeNode": "[0](ForStmt)", "children": [
           {"kinds": ["KEYWORD"], "token": {"value":"for","line":4,"column":2}, "nativeNode": "For"},
           {"kinds": ["ASSIGNMENT","DECLARATION","STATEMENT"], "nativeNode": "Init(AssignStmt)", "children": [
             {"kinds": ["ASSIGNMENT_TARGET"], "nativeNode": "Lhs([]Expr)", "children": [
@@ -63,7 +63,7 @@
       ]},
       {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
         {"token": {"value":"{","line":9,"column":28}, "nativeNode": "Lbrace"},
-        {"kinds": ["STATEMENT"], "nativeNode": "[0](ForStmt)", "children": [
+        {"kinds": ["LOOP","STATEMENT"], "nativeNode": "[0](ForStmt)", "children": [
           {"kinds": ["KEYWORD"], "token": {"value":"for","line":10,"column":2}, "nativeNode": "For"},
           {"kinds": ["ASSIGNMENT","DECLARATION","STATEMENT"], "nativeNode": "Init(AssignStmt)", "children": [
             {"kinds": ["ASSIGNMENT_TARGET"], "nativeNode": "Lhs([]Expr)", "children": [
@@ -121,7 +121,7 @@
       ]},
       {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
         {"token": {"value":"{","line":16,"column":45}, "nativeNode": "Lbrace"},
-        {"kinds": ["STATEMENT"], "nativeNode": "[0](ForStmt)", "children": [
+        {"kinds": ["LOOP","STATEMENT"], "nativeNode": "[0](ForStmt)", "children": [
           {"kinds": ["KEYWORD"], "token": {"value":"for","line":17,"column":2}, "nativeNode": "For"},
           {"kinds": ["ASSIGNMENT","DECLARATION","STATEMENT"], "nativeNode": "Init(AssignStmt)", "children": [
             {"kinds": ["ASSIGNMENT_TARGET"], "nativeNode": "Lhs([]Expr)", "children": [
@@ -186,7 +186,7 @@
       ]},
       {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
         {"token": {"value":"{","line":25,"column":29}, "nativeNode": "Lbrace"},
-        {"kinds": ["STATEMENT"], "nativeNode": "[0](ForStmt)", "children": [
+        {"kinds": ["LOOP","STATEMENT"], "nativeNode": "[0](ForStmt)", "children": [
           {"kinds": ["KEYWORD"], "token": {"value":"for","line":26,"column":2}, "nativeNode": "For"},
           {"kinds": ["ASSIGNMENT","DECLARATION","STATEMENT"], "nativeNode": "Init(AssignStmt)", "children": [
             {"kinds": ["ASSIGNMENT_TARGET"], "nativeNode": "Lhs([]Expr)", "children": [
@@ -244,7 +244,7 @@
       ]},
       {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
         {"token": {"value":"{","line":32,"column":46}, "nativeNode": "Lbrace"},
-        {"kinds": ["STATEMENT"], "nativeNode": "[0](ForStmt)", "children": [
+        {"kinds": ["LOOP","STATEMENT"], "nativeNode": "[0](ForStmt)", "children": [
           {"kinds": ["KEYWORD"], "token": {"value":"for","line":33,"column":2}, "nativeNode": "For"},
           {"kinds": ["ASSIGNMENT","DECLARATION","STATEMENT"], "nativeNode": "Init(AssignStmt)", "children": [
             {"kinds": ["ASSIGNMENT_TARGET"], "nativeNode": "Lhs([]Expr)", "children": [
@@ -309,7 +309,7 @@
       ]},
       {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
         {"token": {"value":"{","line":41,"column":31}, "nativeNode": "Lbrace"},
-        {"kinds": ["STATEMENT"], "nativeNode": "[0](ForStmt)", "children": [
+        {"kinds": ["LOOP","STATEMENT"], "nativeNode": "[0](ForStmt)", "children": [
           {"kinds": ["KEYWORD"], "token": {"value":"for","line":42,"column":2}, "nativeNode": "For"},
           {"kinds": ["ASSIGNMENT","DECLARATION","STATEMENT"], "nativeNode": "Init(AssignStmt)", "children": [
             {"kinds": ["ASSIGNMENT_TARGET"], "nativeNode": "Lhs([]Expr)", "children": [
@@ -367,7 +367,7 @@
       ]},
       {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
         {"token": {"value":"{","line":48,"column":48}, "nativeNode": "Lbrace"},
-        {"kinds": ["STATEMENT"], "nativeNode": "[0](ForStmt)", "children": [
+        {"kinds": ["LOOP","STATEMENT"], "nativeNode": "[0](ForStmt)", "children": [
           {"kinds": ["KEYWORD"], "token": {"value":"for","line":49,"column":2}, "nativeNode": "For"},
           {"kinds": ["ASSIGNMENT","DECLARATION","STATEMENT"], "nativeNode": "Init(AssignStmt)", "children": [
             {"kinds": ["ASSIGNMENT_TARGET"], "nativeNode": "Lhs([]Expr)", "children": [
@@ -432,7 +432,7 @@
       ]},
       {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
         {"token": {"value":"{","line":57,"column":28}, "nativeNode": "Lbrace"},
-        {"kinds": ["STATEMENT"], "nativeNode": "[0](ForStmt)", "children": [
+        {"kinds": ["LOOP","STATEMENT"], "nativeNode": "[0](ForStmt)", "children": [
           {"kinds": ["KEYWORD"], "token": {"value":"for","line":58,"column":2}, "nativeNode": "For"},
           {"kinds": ["ASSIGNMENT","DECLARATION","STATEMENT"], "nativeNode": "Init(AssignStmt)", "children": [
             {"kinds": ["ASSIGNMENT_TARGET"], "nativeNode": "Lhs([]Expr)", "children": [
@@ -497,7 +497,7 @@
       ]},
       {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
         {"token": {"value":"{","line":64,"column":45}, "nativeNode": "Lbrace"},
-        {"kinds": ["STATEMENT"], "nativeNode": "[0](ForStmt)", "children": [
+        {"kinds": ["LOOP","STATEMENT"], "nativeNode": "[0](ForStmt)", "children": [
           {"kinds": ["KEYWORD"], "token": {"value":"for","line":65,"column":2}, "nativeNode": "For"},
           {"kinds": ["ASSIGNMENT","DECLARATION","STATEMENT"], "nativeNode": "Init(AssignStmt)", "children": [
             {"kinds": ["ASSIGNMENT_TARGET"], "nativeNode": "Lhs([]Expr)", "children": [
@@ -578,7 +578,7 @@
             {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"0","line":74,"column":7}, "nativeNode": "[0](BasicLit)"}
           ]}
         ]},
-        {"kinds": ["STATEMENT"], "nativeNode": "[1](ForStmt)", "children": [
+        {"kinds": ["LOOP","STATEMENT"], "nativeNode": "[1](ForStmt)", "children": [
           {"kinds": ["KEYWORD"], "token": {"value":"for","line":75,"column":2}, "nativeNode": "For"},
           {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
             {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":75,"column":6}, "nativeNode": "X(Ident)"},
@@ -624,7 +624,7 @@
             {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"0","line":82,"column":7}, "nativeNode": "[0](BasicLit)"}
           ]}
         ]},
-        {"kinds": ["STATEMENT"], "nativeNode": "[1](ForStmt)", "children": [
+        {"kinds": ["LOOP","STATEMENT"], "nativeNode": "[1](ForStmt)", "children": [
           {"kinds": ["KEYWORD"], "token": {"value":"for","line":83,"column":2}, "nativeNode": "For"},
           {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
             {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":83,"column":6}, "nativeNode": "X(Ident)"},
@@ -680,7 +680,7 @@
             {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"0","line":91,"column":7}, "nativeNode": "[0](BasicLit)"}
           ]}
         ]},
-        {"kinds": ["STATEMENT"], "nativeNode": "[1](ForStmt)", "children": [
+        {"kinds": ["LOOP","STATEMENT"], "nativeNode": "[1](ForStmt)", "children": [
           {"kinds": ["KEYWORD"], "token": {"value":"for","line":92,"column":2}, "nativeNode": "For"},
           {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
             {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":92,"column":6}, "nativeNode": "X(Ident)"},
@@ -743,7 +743,7 @@
             {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"0","line":102,"column":7}, "nativeNode": "[0](BasicLit)"}
           ]}
         ]},
-        {"kinds": ["STATEMENT"], "nativeNode": "[1](ForStmt)", "children": [
+        {"kinds": ["LOOP","STATEMENT"], "nativeNode": "[1](ForStmt)", "children": [
           {"kinds": ["KEYWORD"], "token": {"value":"for","line":103,"column":2}, "nativeNode": "For"},
           {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
             {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":103,"column":6}, "nativeNode": "X(Ident)"},
@@ -799,7 +799,7 @@
             {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"0","line":111,"column":7}, "nativeNode": "[0](BasicLit)"}
           ]}
         ]},
-        {"kinds": ["STATEMENT"], "nativeNode": "[1](ForStmt)", "children": [
+        {"kinds": ["LOOP","STATEMENT"], "nativeNode": "[1](ForStmt)", "children": [
           {"kinds": ["KEYWORD"], "token": {"value":"for","line":112,"column":2}, "nativeNode": "For"},
           {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
             {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":112,"column":6}, "nativeNode": "X(Ident)"},
@@ -862,7 +862,7 @@
             {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"0","line":122,"column":7}, "nativeNode": "[0](BasicLit)"}
           ]}
         ]},
-        {"kinds": ["STATEMENT"], "nativeNode": "[1](ForStmt)", "children": [
+        {"kinds": ["LOOP","STATEMENT"], "nativeNode": "[1](ForStmt)", "children": [
           {"kinds": ["KEYWORD"], "token": {"value":"for","line":123,"column":2}, "nativeNode": "For"},
           {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
             {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":123,"column":6}, "nativeNode": "X(Ident)"},
@@ -918,7 +918,7 @@
             {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"0","line":131,"column":7}, "nativeNode": "[0](BasicLit)"}
           ]}
         ]},
-        {"kinds": ["STATEMENT"], "nativeNode": "[1](ForStmt)", "children": [
+        {"kinds": ["LOOP","STATEMENT"], "nativeNode": "[1](ForStmt)", "children": [
           {"kinds": ["KEYWORD"], "token": {"value":"for","line":132,"column":2}, "nativeNode": "For"},
           {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
             {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":132,"column":6}, "nativeNode": "X(Ident)"},
@@ -981,7 +981,7 @@
             {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"0","line":142,"column":7}, "nativeNode": "[0](BasicLit)"}
           ]}
         ]},
-        {"kinds": ["STATEMENT"], "nativeNode": "[1](ForStmt)", "children": [
+        {"kinds": ["LOOP","STATEMENT"], "nativeNode": "[1](ForStmt)", "children": [
           {"kinds": ["KEYWORD"], "token": {"value":"for","line":143,"column":2}, "nativeNode": "For"},
           {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
             {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":143,"column":6}, "nativeNode": "X(Ident)"},
@@ -1044,7 +1044,7 @@
             {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"0","line":151,"column":7}, "nativeNode": "[0](BasicLit)"}
           ]}
         ]},
-        {"kinds": ["STATEMENT"], "nativeNode": "[1](ForStmt)", "children": [
+        {"kinds": ["LOOP","STATEMENT"], "nativeNode": "[1](ForStmt)", "children": [
           {"kinds": ["KEYWORD"], "token": {"value":"for","line":152,"column":2}, "nativeNode": "For"},
           {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
             {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":152,"column":6}, "nativeNode": "X(Ident)"},
