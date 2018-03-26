@@ -22,9 +22,9 @@
           {"token": {"value":":=","line":4,"column":5}, "nativeNode": "Tok"},
           {"kinds": ["ASSIGNMENT_VALUE"], "nativeNode": "Rhs([]Expr)", "children": [
             {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "[0](BinaryExpr)", "children": [
-              {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"true","line":4,"column":8}, "nativeNode": "X(Ident)"},
-              {"token": {"value":"||","line":4,"column":13}, "nativeNode": "Op"},
-              {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"true","line":4,"column":16}, "nativeNode": "Y(Ident)"}
+              {"kinds": ["EXPRESSION","LITERAL","BOOLEAN_LITERAL"], "token": {"value":"true","line":4,"column":8}, "nativeNode": "X(Ident)"},
+              {"kinds": ["OPERATOR","OPERATOR_LOGICAL_OR"], "token": {"value":"||","line":4,"column":13}, "nativeNode": "Op"},
+              {"kinds": ["EXPRESSION","LITERAL","BOOLEAN_LITERAL"], "token": {"value":"true","line":4,"column":16}, "nativeNode": "Y(Ident)"}
             ]}
           ]}
         ]},
@@ -40,19 +40,19 @@
               {"kinds": ["EXPRESSION"], "nativeNode": "X(ParenExpr)", "children": [
                 {"kinds": ["LPAREN"], "token": {"value":"(","line":6,"column":8}, "nativeNode": "Lparen"},
                 {"kinds": ["BINARY_EXPRESSION"], "nativeNode": "X(BinaryExpr)", "children": [
-                  {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"true","line":6,"column":9}, "nativeNode": "X(Ident)"},
-                  {"token": {"value":"\u0026\u0026","line":6,"column":14}, "nativeNode": "Op"},
-                  {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"false","line":6,"column":17}, "nativeNode": "Y(Ident)"}
+                  {"kinds": ["EXPRESSION","LITERAL","BOOLEAN_LITERAL"], "token": {"value":"true","line":6,"column":9}, "nativeNode": "X(Ident)"},
+                  {"kinds": ["OPERATOR","OPERATOR_LOGICAL_AND"], "token": {"value":"\u0026\u0026","line":6,"column":14}, "nativeNode": "Op"},
+                  {"kinds": ["EXPRESSION","LITERAL","BOOLEAN_LITERAL"], "token": {"value":"false","line":6,"column":17}, "nativeNode": "Y(Ident)"}
                 ]},
                 {"kinds": ["RPAREN"], "token": {"value":")","line":6,"column":22}, "nativeNode": "Rparen"}
               ]},
-              {"token": {"value":"\u0026\u0026","line":6,"column":24}, "nativeNode": "Op"},
+              {"kinds": ["OPERATOR","OPERATOR_LOGICAL_AND"], "token": {"value":"\u0026\u0026","line":6,"column":24}, "nativeNode": "Op"},
               {"kinds": ["EXPRESSION"], "nativeNode": "Y(ParenExpr)", "children": [
                 {"kinds": ["LPAREN"], "token": {"value":"(","line":6,"column":27}, "nativeNode": "Lparen"},
                 {"kinds": ["BINARY_EXPRESSION"], "nativeNode": "X(BinaryExpr)", "children": [
-                  {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"true","line":6,"column":28}, "nativeNode": "X(Ident)"},
-                  {"token": {"value":"\u0026\u0026","line":6,"column":33}, "nativeNode": "Op"},
-                  {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"false","line":6,"column":36}, "nativeNode": "Y(Ident)"}
+                  {"kinds": ["EXPRESSION","LITERAL","BOOLEAN_LITERAL"], "token": {"value":"true","line":6,"column":28}, "nativeNode": "X(Ident)"},
+                  {"kinds": ["OPERATOR","OPERATOR_LOGICAL_AND"], "token": {"value":"\u0026\u0026","line":6,"column":33}, "nativeNode": "Op"},
+                  {"kinds": ["EXPRESSION","LITERAL","BOOLEAN_LITERAL"], "token": {"value":"false","line":6,"column":36}, "nativeNode": "Y(Ident)"}
                 ]},
                 {"kinds": ["RPAREN"], "token": {"value":")","line":6,"column":41}, "nativeNode": "Rparen"}
               ]}
@@ -69,7 +69,7 @@
           {"kinds": ["ASSIGNMENT_VALUE"], "nativeNode": "Rhs([]Expr)", "children": [
             {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "[0](BinaryExpr)", "children": [
               {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"1","line":9,"column":8}, "nativeNode": "X(BasicLit)"},
-              {"token": {"value":"==","line":9,"column":10}, "nativeNode": "Op"},
+              {"kinds": ["OPERATOR","OPERATOR_EQUAL"], "token": {"value":"==","line":9,"column":10}, "nativeNode": "Op"},
               {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"1","line":9,"column":13}, "nativeNode": "Y(BasicLit)"}
             ]}
           ]}
@@ -83,7 +83,7 @@
           {"kinds": ["ASSIGNMENT_VALUE"], "nativeNode": "Rhs([]Expr)", "children": [
             {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "[0](BinaryExpr)", "children": [
               {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"1","line":10,"column":8}, "nativeNode": "X(BasicLit)"},
-              {"token": {"value":"!=","line":10,"column":10}, "nativeNode": "Op"},
+              {"kinds": ["OPERATOR","OPERATOR_NOT_EQUAL"], "token": {"value":"!=","line":10,"column":10}, "nativeNode": "Op"},
               {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"2","line":10,"column":13}, "nativeNode": "Y(BasicLit)"}
             ]}
           ]}
@@ -100,7 +100,7 @@
                 {"kinds": ["LPAREN"], "token": {"value":"(","line":12,"column":11}, "nativeNode": "Lparen"},
                 {"kinds": ["RPAREN"], "token": {"value":")","line":12,"column":12}, "nativeNode": "Rparen"}
               ]},
-              {"token": {"value":"/","line":12,"column":14}, "nativeNode": "Op"},
+              {"kinds": ["OPERATOR"], "token": {"value":"/","line":12,"column":14}, "nativeNode": "Op"},
               {"kinds": ["EXPRESSION","CALL"], "nativeNode": "Y(CallExpr)", "children": [
                 {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"foo","line":12,"column":16}, "nativeNode": "Fun(Ident)"},
                 {"kinds": ["LPAREN"], "token": {"value":"(","line":12,"column":19}, "nativeNode": "Lparen"},
@@ -122,7 +122,7 @@
                 {"kinds": ["LPAREN"], "token": {"value":"(","line":13,"column":11}, "nativeNode": "Lparen"},
                 {"kinds": ["RPAREN"], "token": {"value":")","line":13,"column":12}, "nativeNode": "Rparen"}
               ]},
-              {"token": {"value":"-","line":13,"column":14}, "nativeNode": "Op"},
+              {"kinds": ["OPERATOR"], "token": {"value":"-","line":13,"column":14}, "nativeNode": "Op"},
               {"kinds": ["EXPRESSION","CALL"], "nativeNode": "Y(CallExpr)", "children": [
                 {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"bar","line":13,"column":16}, "nativeNode": "Fun(Ident)"},
                 {"kinds": ["LPAREN"], "token": {"value":"(","line":13,"column":19}, "nativeNode": "Lparen"},
@@ -140,7 +140,7 @@
           {"kinds": ["ASSIGNMENT_VALUE"], "nativeNode": "Rhs([]Expr)", "children": [
             {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "[0](BinaryExpr)", "children": [
               {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"1024","line":15,"column":8}, "nativeNode": "X(BasicLit)"},
-              {"token": {"value":"*","line":15,"column":13}, "nativeNode": "Op"},
+              {"kinds": ["OPERATOR","OPERATOR_MULTIPLY"], "token": {"value":"*","line":15,"column":13}, "nativeNode": "Op"},
               {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"1024","line":15,"column":15}, "nativeNode": "Y(BasicLit)"}
             ]}
           ]}
@@ -154,7 +154,7 @@
           {"kinds": ["ASSIGNMENT_VALUE"], "nativeNode": "Rhs([]Expr)", "children": [
             {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "[0](BinaryExpr)", "children": [
               {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"1","line":16,"column":8}, "nativeNode": "X(BasicLit)"},
-              {"token": {"value":"+","line":16,"column":10}, "nativeNode": "Op"},
+              {"kinds": ["OPERATOR","OPERATOR_ADD"], "token": {"value":"+","line":16,"column":10}, "nativeNode": "Op"},
               {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"1","line":16,"column":12}, "nativeNode": "Y(BasicLit)"}
             ]}
           ]}

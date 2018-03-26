@@ -1,0 +1,88 @@
+{"kinds": ["COMPILATION_UNIT"], "nativeNode": "(File)", "children": [
+  {"kinds": ["PACKAGE"], "nativeNode": "File.Package", "children": [
+    {"kinds": ["KEYWORD"], "token": {"value":"package","line":1,"column":1}, "nativeNode": ""},
+    {"kinds": ["IDENTIFIER"], "token": {"value":"RedundantBooleanLiteralCheck","line":1,"column":9}, "nativeNode": "Name(Ident)"}
+  ]},
+  {"kinds": ["DECL_LIST"], "nativeNode": "Decls([]Decl)", "children": [
+    {"kinds": ["FUNCTION"], "nativeNode": "[0](FuncDecl)", "children": [
+      {"kinds": ["KEYWORD"], "token": {"value":"func","line":4,"column":1}, "nativeNode": "Type.Func"},
+      {"kinds": ["FUNCTION_NAME","IDENTIFIER"], "token": {"value":"test","line":4,"column":6}, "nativeNode": "Name(Ident)"},
+      {"nativeNode": "Type(FuncType)", "children": [
+        {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
+          {"token": {"value":"(","line":4,"column":10}, "nativeNode": "Opening"},
+          {"nativeNode": "[0](Field)", "children": [
+            {"nativeNode": "Names([]*Ident)", "children": [
+              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"flag","line":4,"column":11}, "nativeNode": "[0](Ident)"}
+            ]},
+            {"kinds": ["TYPE","IDENTIFIER"], "token": {"value":"bool","line":4,"column":16}, "nativeNode": "Type(Ident)"}
+          ]},
+          {"token": {"value":")","line":4,"column":20}, "nativeNode": "Closing"}
+        ]}
+      ]},
+      {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
+        {"token": {"value":"{","line":4,"column":22}, "nativeNode": "Lbrace"},
+        {"kinds": ["IF","STATEMENT"], "nativeNode": "[0](IfStmt)", "children": [
+          {"kinds": ["KEYWORD"], "token": {"value":"if","line":5,"column":2}, "nativeNode": "If"},
+          {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
+            {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
+              {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"flag","line":5,"column":5}, "nativeNode": "X(Ident)"},
+              {"kinds": ["OPERATOR","OPERATOR_EQUAL"], "token": {"value":"==","line":5,"column":10}, "nativeNode": "Op"},
+              {"kinds": ["EXPRESSION","LITERAL","BOOLEAN_LITERAL"], "token": {"value":"true","line":5,"column":13}, "nativeNode": "Y(Ident)"}
+            ]}
+          ]},
+          {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
+            {"token": {"value":"{","line":5,"column":18}, "nativeNode": "Lbrace"},
+            {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant","line":5,"column":20}, "nativeNode": ""},
+            {"kinds": ["COMMENT"], "token": {"value":"//         ^^^^","line":6,"column":2}, "nativeNode": ""},
+            {"token": {"value":"}","line":8,"column":2}, "nativeNode": "Rbrace"}
+          ]}
+        ]},
+        {"kinds": ["ASSIGNMENT","DECLARATION","STATEMENT"], "nativeNode": "[1](AssignStmt)", "children": [
+          {"kinds": ["ASSIGNMENT_TARGET"], "nativeNode": "Lhs([]Expr)", "children": [
+            {"kinds": ["IDENTIFIER"], "token": {"value":"test","line":9,"column":2}, "nativeNode": "[0](Ident)"}
+          ]},
+          {"token": {"value":":=","line":9,"column":7}, "nativeNode": "Tok"},
+          {"kinds": ["ASSIGNMENT_VALUE"], "nativeNode": "Rhs([]Expr)", "children": [
+            {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "[0](BinaryExpr)", "children": [
+              {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"flag","line":9,"column":10}, "nativeNode": "X(Ident)"},
+              {"kinds": ["OPERATOR","OPERATOR_LOGICAL_OR"], "token": {"value":"||","line":9,"column":15}, "nativeNode": "Op"},
+              {"kinds": ["EXPRESSION","LITERAL","BOOLEAN_LITERAL"], "token": {"value":"true","line":9,"column":18}, "nativeNode": "Y(Ident)"}
+            ]}
+          ]}
+        ]},
+        {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant","line":9,"column":23}, "nativeNode": ""},
+        {"kinds": ["ASSIGNMENT","STATEMENT"], "nativeNode": "[2](AssignStmt)", "children": [
+          {"kinds": ["ASSIGNMENT_TARGET"], "nativeNode": "Lhs([]Expr)", "children": [
+            {"kinds": ["IDENTIFIER"], "token": {"value":"test","line":10,"column":2}, "nativeNode": "[0](Ident)"}
+          ]},
+          {"token": {"value":"=","line":10,"column":7}, "nativeNode": "Tok"},
+          {"kinds": ["ASSIGNMENT_VALUE"], "nativeNode": "Rhs([]Expr)", "children": [
+            {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "[0](BinaryExpr)", "children": [
+              {"kinds": ["EXPRESSION","LITERAL","BOOLEAN_LITERAL"], "token": {"value":"false","line":10,"column":9}, "nativeNode": "X(Ident)"},
+              {"kinds": ["OPERATOR","OPERATOR_LOGICAL_AND"], "token": {"value":"\u0026\u0026","line":10,"column":15}, "nativeNode": "Op"},
+              {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"flag","line":10,"column":18}, "nativeNode": "Y(Ident)"}
+            ]}
+          ]}
+        ]},
+        {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant","line":10,"column":23}, "nativeNode": ""},
+        {"kinds": ["IF","STATEMENT"], "nativeNode": "[3](IfStmt)", "children": [
+          {"kinds": ["KEYWORD"], "token": {"value":"if","line":11,"column":2}, "nativeNode": "If"},
+          {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
+            {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
+              {"kinds": ["EXPRESSION","LITERAL","BOOLEAN_LITERAL"], "token": {"value":"false","line":11,"column":5}, "nativeNode": "X(Ident)"},
+              {"kinds": ["OPERATOR","OPERATOR_EQUAL"], "token": {"value":"==","line":11,"column":11}, "nativeNode": "Op"},
+              {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"test","line":11,"column":14}, "nativeNode": "Y(Ident)"}
+            ]}
+          ]},
+          {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
+            {"token": {"value":"{","line":11,"column":19}, "nativeNode": "Lbrace"},
+            {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant","line":11,"column":21}, "nativeNode": ""},
+            {"token": {"value":"}","line":13,"column":2}, "nativeNode": "Rbrace"}
+          ]}
+        ]},
+        {"token": {"value":"}","line":14,"column":1}, "nativeNode": "Rbrace"}
+      ]}
+    ]}
+  ]},
+  {"kinds": ["EOF"], "token": {"line":16,"column":1}, "nativeNode": ""}
+]}

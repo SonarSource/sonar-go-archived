@@ -188,6 +188,39 @@ public class Generator {
       case TRIVIA:
         result.add(UastNode.Kind.COMMENT);
         break;
+      case BOOLEAN_LITERAL:
+        result.add(UastNode.Kind.LITERAL);
+        result.add(UastNode.Kind.BOOLEAN_LITERAL);
+        break;
+      case TOKEN:
+        SyntaxToken token = (SyntaxToken) tree;
+        switch (token.text()) {
+          case "+":
+            result.add(UastNode.Kind.OPERATOR);
+            result.add(UastNode.Kind.OPERATOR_ADD);
+            break;
+          case "*":
+            result.add(UastNode.Kind.OPERATOR);
+            result.add(UastNode.Kind.OPERATOR_MULTIPLY);
+            break;
+          case "==":
+            result.add(UastNode.Kind.OPERATOR);
+            result.add(UastNode.Kind.OPERATOR_EQUAL);
+            break;
+          case "!=":
+            result.add(UastNode.Kind.OPERATOR);
+            result.add(UastNode.Kind.OPERATOR_NOT_EQUAL);
+            break;
+          case "&&":
+            result.add(UastNode.Kind.OPERATOR);
+            result.add(UastNode.Kind.OPERATOR_LOGICAL_AND);
+            break;
+          case "||":
+            result.add(UastNode.Kind.OPERATOR);
+            result.add(UastNode.Kind.OPERATOR_LOGICAL_OR);
+            break;
+        }
+        break;
       default:
         break;
     }

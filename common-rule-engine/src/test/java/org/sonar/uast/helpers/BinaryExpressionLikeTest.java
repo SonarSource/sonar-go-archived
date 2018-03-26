@@ -20,7 +20,7 @@ public class BinaryExpressionLikeTest {
 
     BinaryExpressionLike assignmentLike = BinaryExpressionLike.from(binaryExpression);
     assertEquals(assignmentLike.leftOperand(), leftOperand);
-    assertEquals(assignmentLike.operatorToken(), operator.token);
+    assertEquals(assignmentLike.operator(), operator);
     assertEquals(assignmentLike.rightOperand(), rightOperand);
   }
 
