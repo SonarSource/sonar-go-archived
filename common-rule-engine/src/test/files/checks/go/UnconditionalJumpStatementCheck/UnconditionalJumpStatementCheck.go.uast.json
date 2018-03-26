@@ -1121,7 +1121,7 @@
       ]},
       {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
         {"token": {"value":"{","line":161,"column":34}, "nativeNode": "Lbrace"},
-        {"kinds": ["STATEMENT"], "nativeNode": "[0](RangeStmt)", "children": [
+        {"kinds": ["LOOP","STATEMENT"], "nativeNode": "[0](RangeStmt)", "children": [
           {"kinds": ["KEYWORD"], "token": {"value":"for","line":162,"column":2}, "nativeNode": "For"},
           {"kinds": ["IDENTIFIER"], "token": {"value":"_","line":162,"column":6}, "nativeNode": "Key(Ident)"},
           {"token": {"value":",","line":162,"column":7}, "nativeNode": ""},
@@ -1174,7 +1174,7 @@
       ]},
       {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
         {"token": {"value":"{","line":167,"column":40}, "nativeNode": "Lbrace"},
-        {"kinds": ["STATEMENT"], "nativeNode": "[0](RangeStmt)", "children": [
+        {"kinds": ["LOOP","STATEMENT"], "nativeNode": "[0](RangeStmt)", "children": [
           {"kinds": ["KEYWORD"], "token": {"value":"for","line":168,"column":2}, "nativeNode": "For"},
           {"kinds": ["IDENTIFIER"], "token": {"value":"_","line":168,"column":6}, "nativeNode": "Key(Ident)"},
           {"token": {"value":",","line":168,"column":7}, "nativeNode": ""},
@@ -1238,7 +1238,7 @@
       ]},
       {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
         {"token": {"value":"{","line":174,"column":59}, "nativeNode": "Lbrace"},
-        {"kinds": ["STATEMENT"], "nativeNode": "[0](RangeStmt)", "children": [
+        {"kinds": ["LOOP","STATEMENT"], "nativeNode": "[0](RangeStmt)", "children": [
           {"kinds": ["KEYWORD"], "token": {"value":"for","line":175,"column":2}, "nativeNode": "For"},
           {"kinds": ["IDENTIFIER"], "token": {"value":"_","line":175,"column":6}, "nativeNode": "Key(Ident)"},
           {"token": {"value":",","line":175,"column":7}, "nativeNode": ""},
@@ -1308,7 +1308,7 @@
       ]},
       {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
         {"token": {"value":"{","line":183,"column":41}, "nativeNode": "Lbrace"},
-        {"kinds": ["STATEMENT"], "nativeNode": "[0](RangeStmt)", "children": [
+        {"kinds": ["LOOP","STATEMENT"], "nativeNode": "[0](RangeStmt)", "children": [
           {"kinds": ["KEYWORD"], "token": {"value":"for","line":184,"column":2}, "nativeNode": "For"},
           {"kinds": ["IDENTIFIER"], "token": {"value":"_","line":184,"column":6}, "nativeNode": "Key(Ident)"},
           {"token": {"value":",","line":184,"column":7}, "nativeNode": ""},
@@ -1372,7 +1372,7 @@
       ]},
       {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
         {"token": {"value":"{","line":190,"column":60}, "nativeNode": "Lbrace"},
-        {"kinds": ["STATEMENT"], "nativeNode": "[0](RangeStmt)", "children": [
+        {"kinds": ["LOOP","STATEMENT"], "nativeNode": "[0](RangeStmt)", "children": [
           {"kinds": ["KEYWORD"], "token": {"value":"for","line":191,"column":2}, "nativeNode": "For"},
           {"kinds": ["IDENTIFIER"], "token": {"value":"_","line":191,"column":6}, "nativeNode": "Key(Ident)"},
           {"token": {"value":",","line":191,"column":7}, "nativeNode": ""},
@@ -1442,7 +1442,7 @@
       ]},
       {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
         {"token": {"value":"{","line":199,"column":43}, "nativeNode": "Lbrace"},
-        {"kinds": ["STATEMENT"], "nativeNode": "[0](RangeStmt)", "children": [
+        {"kinds": ["LOOP","STATEMENT"], "nativeNode": "[0](RangeStmt)", "children": [
           {"kinds": ["KEYWORD"], "token": {"value":"for","line":200,"column":2}, "nativeNode": "For"},
           {"kinds": ["IDENTIFIER"], "token": {"value":"_","line":200,"column":6}, "nativeNode": "Key(Ident)"},
           {"token": {"value":",","line":200,"column":7}, "nativeNode": ""},
@@ -1506,7 +1506,7 @@
       ]},
       {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
         {"token": {"value":"{","line":206,"column":62}, "nativeNode": "Lbrace"},
-        {"kinds": ["STATEMENT"], "nativeNode": "[0](RangeStmt)", "children": [
+        {"kinds": ["LOOP","STATEMENT"], "nativeNode": "[0](RangeStmt)", "children": [
           {"kinds": ["KEYWORD"], "token": {"value":"for","line":207,"column":2}, "nativeNode": "For"},
           {"kinds": ["IDENTIFIER"], "token": {"value":"_","line":207,"column":6}, "nativeNode": "Key(Ident)"},
           {"token": {"value":",","line":207,"column":7}, "nativeNode": ""},
@@ -1576,7 +1576,7 @@
       ]},
       {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
         {"token": {"value":"{","line":215,"column":40}, "nativeNode": "Lbrace"},
-        {"kinds": ["STATEMENT"], "nativeNode": "[0](RangeStmt)", "children": [
+        {"kinds": ["LOOP","STATEMENT"], "nativeNode": "[0](RangeStmt)", "children": [
           {"kinds": ["KEYWORD"], "token": {"value":"for","line":216,"column":2}, "nativeNode": "For"},
           {"kinds": ["IDENTIFIER"], "token": {"value":"_","line":216,"column":6}, "nativeNode": "Key(Ident)"},
           {"token": {"value":",","line":216,"column":7}, "nativeNode": ""},
@@ -1647,7 +1647,7 @@
       ]},
       {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
         {"token": {"value":"{","line":222,"column":59}, "nativeNode": "Lbrace"},
-        {"kinds": ["STATEMENT"], "nativeNode": "[0](RangeStmt)", "children": [
+        {"kinds": ["LOOP","STATEMENT"], "nativeNode": "[0](RangeStmt)", "children": [
           {"kinds": ["KEYWORD"], "token": {"value":"for","line":223,"column":2}, "nativeNode": "For"},
           {"kinds": ["IDENTIFIER"], "token": {"value":"_","line":223,"column":6}, "nativeNode": "Key(Ident)"},
           {"token": {"value":",","line":223,"column":7}, "nativeNode": ""},

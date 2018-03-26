@@ -35,6 +35,7 @@ import (
 			NewTypeKind((*ast.IfStmt)(nil), "IF"),
 			NewTypeKind((*ast.Ident)(nil), "t.computeIdentifierKind(astNode)..."),
 			NewTypeKind((*ast.ForStmt)(nil), "LOOP"),
+			NewTypeKind((*ast.RangeStmt)(nil), "LOOP"),
 			NewTypeKind((*ast.ReturnStmt)(nil), "RETURN"),
 			NewTypeKind((*ast.BranchStmt)(nil), "t.computeBranchKind(astNode)"),
 			NewTypeKind((*ast.AssignStmt)(nil), "t.computeAssignStmtKinds(astNode.Tok)..."),
