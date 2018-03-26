@@ -16,8 +16,7 @@ public class SwitchWithoutDefaultCheck extends Check {
 
   @Override
   public void visitNode(UastNode node) {
-    SwitchLike switchLike = SwitchLike.from(node);
-    if (switchLike != null && switchLike.caseNodes().stream().noneMatch(UastNode.Kind.DEFAULT_CASE)) {
+    if (SwitchLike.from(node).caseNodes().stream().noneMatch(UastNode.Kind.DEFAULT_CASE)) {
       reportIssue(node, "Add a default case to this switch.");
     }
   }

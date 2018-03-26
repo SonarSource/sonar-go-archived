@@ -2,7 +2,7 @@ package org.sonar.uast.helpers;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.CheckForNull;
+import javax.annotation.Nullable;
 import org.sonar.uast.UastNode;
 
 public class SwitchLike {
@@ -15,7 +15,16 @@ public class SwitchLike {
     this.caseNodes = caseNodes;
   }
 
-  @CheckForNull
+  /**
+   * Try to map a switch on any UastNode.
+   *
+   * Note that it's the responsibility of the caller to ensure that the returned object is null or not.
+   * For subscription-based check on "switch" nodes, return value will never be null.
+   *
+   * @param node Any UastNode
+   * @return null if node is not a switch, or an equivalent switch-like object
+   */
+  @Nullable
   public static SwitchLike from(UastNode node) {
     if (!node.kinds.contains(UastNode.Kind.SWITCH)) {
       return null;
