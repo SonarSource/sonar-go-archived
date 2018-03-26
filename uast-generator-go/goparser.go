@@ -63,6 +63,8 @@ const (
 	CASE                 Kind = "CASE"
 	LABEL                Kind = "LABEL"
 	DEFAULT_CASE         Kind = "DEFAULT_CASE"
+	LOOP                 Kind = "LOOP"
+	BREAK                Kind = "BREAK"
 	UNSUPPORTED          Kind = "UNSUPPORTED"
 	OPERATOR             Kind = "OPERATOR"
 	OPERATOR_EQUAL       Kind = "OPERATOR_EQUAL"

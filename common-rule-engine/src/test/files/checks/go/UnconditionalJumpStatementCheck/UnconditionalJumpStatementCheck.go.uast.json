@@ -94,7 +94,7 @@
                 {"kinds": ["RPAREN"], "token": {"value":")","line":11,"column":7}, "nativeNode": "Rparen"}
               ]}
             ]},
-            {"kinds": ["STATEMENT"], "nativeNode": "[1](BranchStmt)", "children": [
+            {"kinds": ["BREAK","STATEMENT"], "nativeNode": "[1](BranchStmt)", "children": [
               {"kinds": ["KEYWORD"], "token": {"value":"break","line":12,"column":3}, "nativeNode": "Tok"}
             ]},
             {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant {{Remove this unconditional jump or make it conditional.}}","line":12,"column":10}, "nativeNode": ""},
@@ -163,7 +163,7 @@
               ]},
               {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
                 {"token": {"value":"{","line":19,"column":13}, "nativeNode": "Lbrace"},
-                {"kinds": ["STATEMENT"], "nativeNode": "[0](BranchStmt)", "children": [
+                {"kinds": ["BREAK","STATEMENT"], "nativeNode": "[0](BranchStmt)", "children": [
                   {"kinds": ["KEYWORD"], "token": {"value":"break","line":20,"column":4}, "nativeNode": "Tok"}
                 ]},
                 {"token": {"value":"}","line":21,"column":3}, "nativeNode": "Rbrace"}
@@ -340,7 +340,7 @@
                 {"kinds": ["RPAREN"], "token": {"value":")","line":43,"column":7}, "nativeNode": "Rparen"}
               ]}
             ]},
-            {"kinds": ["STATEMENT"], "nativeNode": "[1](BranchStmt)", "children": [
+            {"kinds": ["BREAK","STATEMENT"], "nativeNode": "[1](BranchStmt)", "children": [
               {"kinds": ["KEYWORD"], "token": {"value":"continue","line":44,"column":3}, "nativeNode": "Tok"}
             ]},
             {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant {{Remove this unconditional jump or make it conditional.}}","line":44,"column":13}, "nativeNode": ""},
@@ -409,7 +409,7 @@
               ]},
               {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
                 {"token": {"value":"{","line":51,"column":13}, "nativeNode": "Lbrace"},
-                {"kinds": ["STATEMENT"], "nativeNode": "[0](BranchStmt)", "children": [
+                {"kinds": ["BREAK","STATEMENT"], "nativeNode": "[0](BranchStmt)", "children": [
                   {"kinds": ["KEYWORD"], "token": {"value":"continue","line":52,"column":4}, "nativeNode": "Tok"}
                 ]},
                 {"token": {"value":"}","line":53,"column":3}, "nativeNode": "Rbrace"}
@@ -644,7 +644,7 @@
                 {"kinds": ["RPAREN"], "token": {"value":")","line":85,"column":7}, "nativeNode": "Rparen"}
               ]}
             ]},
-            {"kinds": ["STATEMENT"], "nativeNode": "[2](BranchStmt)", "children": [
+            {"kinds": ["BREAK","STATEMENT"], "nativeNode": "[2](BranchStmt)", "children": [
               {"kinds": ["KEYWORD"], "token": {"value":"break","line":86,"column":3}, "nativeNode": "Tok"}
             ]},
             {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant {{Remove this unconditional jump or make it conditional.}}","line":86,"column":10}, "nativeNode": ""},
@@ -711,7 +711,7 @@
               ]},
               {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
                 {"token": {"value":"{","line":95,"column":13}, "nativeNode": "Lbrace"},
-                {"kinds": ["STATEMENT"], "nativeNode": "[0](BranchStmt)", "children": [
+                {"kinds": ["BREAK","STATEMENT"], "nativeNode": "[0](BranchStmt)", "children": [
                   {"kinds": ["KEYWORD"], "token": {"value":"break","line":96,"column":4}, "nativeNode": "Tok"}
                 ]},
                 {"token": {"value":"}","line":97,"column":3}, "nativeNode": "Rbrace"}
@@ -882,7 +882,7 @@
                 {"kinds": ["RPAREN"], "token": {"value":")","line":125,"column":7}, "nativeNode": "Rparen"}
               ]}
             ]},
-            {"kinds": ["STATEMENT"], "nativeNode": "[2](BranchStmt)", "children": [
+            {"kinds": ["BREAK","STATEMENT"], "nativeNode": "[2](BranchStmt)", "children": [
               {"kinds": ["KEYWORD"], "token": {"value":"continue","line":126,"column":3}, "nativeNode": "Tok"}
             ]},
             {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant {{Remove this unconditional jump or make it conditional.}}","line":126,"column":13}, "nativeNode": ""},
@@ -949,7 +949,7 @@
               ]},
               {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
                 {"token": {"value":"{","line":135,"column":13}, "nativeNode": "Lbrace"},
-                {"kinds": ["STATEMENT"], "nativeNode": "[0](BranchStmt)", "children": [
+                {"kinds": ["BREAK","STATEMENT"], "nativeNode": "[0](BranchStmt)", "children": [
                   {"kinds": ["KEYWORD"], "token": {"value":"continue","line":136,"column":4}, "nativeNode": "Tok"}
                 ]},
                 {"token": {"value":"}","line":137,"column":3}, "nativeNode": "Rbrace"}
@@ -1194,7 +1194,7 @@
                 {"kinds": ["RPAREN"], "token": {"value":")","line":169,"column":11}, "nativeNode": "Rparen"}
               ]}
             ]},
-            {"kinds": ["STATEMENT"], "nativeNode": "[1](BranchStmt)", "children": [
+            {"kinds": ["BREAK","STATEMENT"], "nativeNode": "[1](BranchStmt)", "children": [
               {"kinds": ["KEYWORD"], "token": {"value":"break","line":170,"column":3}, "nativeNode": "Tok"}
             ]},
             {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant {{Remove this unconditional jump or make it conditional.}}","line":170,"column":10}, "nativeNode": ""},
@@ -1269,7 +1269,7 @@
               ]},
               {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
                 {"token": {"value":"{","line":177,"column":13}, "nativeNode": "Lbrace"},
-                {"kinds": ["STATEMENT"], "nativeNode": "[0](BranchStmt)", "children": [
+                {"kinds": ["BREAK","STATEMENT"], "nativeNode": "[0](BranchStmt)", "children": [
                   {"kinds": ["KEYWORD"], "token": {"value":"break","line":178,"column":4}, "nativeNode": "Tok"}
                 ]},
                 {"token": {"value":"}","line":179,"column":3}, "nativeNode": "Rbrace"}
@@ -1462,7 +1462,7 @@
                 {"kinds": ["RPAREN"], "token": {"value":")","line":201,"column":11}, "nativeNode": "Rparen"}
               ]}
             ]},
-            {"kinds": ["STATEMENT"], "nativeNode": "[1](BranchStmt)", "children": [
+            {"kinds": ["BREAK","STATEMENT"], "nativeNode": "[1](BranchStmt)", "children": [
               {"kinds": ["KEYWORD"], "token": {"value":"continue","line":202,"column":3}, "nativeNode": "Tok"}
             ]},
             {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant {{Remove this unconditional jump or make it conditional.}}","line":202,"column":13}, "nativeNode": ""},
@@ -1537,7 +1537,7 @@
               ]},
               {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
                 {"token": {"value":"{","line":209,"column":13}, "nativeNode": "Lbrace"},
-                {"kinds": ["STATEMENT"], "nativeNode": "[0](BranchStmt)", "children": [
+                {"kinds": ["BREAK","STATEMENT"], "nativeNode": "[0](BranchStmt)", "children": [
                   {"kinds": ["KEYWORD"], "token": {"value":"continue","line":210,"column":4}, "nativeNode": "Tok"}
                 ]},
                 {"token": {"value":"}","line":211,"column":3}, "nativeNode": "Rbrace"}
