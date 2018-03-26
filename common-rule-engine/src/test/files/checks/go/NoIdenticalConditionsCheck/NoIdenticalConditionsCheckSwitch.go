@@ -5,10 +5,12 @@ import "fmt"
 func FooSwitch(param int) {
 	switch true {
 	case param > 1:
+	//   ^^^^^^^^^> {{Original}}
 		fmt.Println(">1")
 	case param < 1:
 		fmt.Println("<1")
-	case param > 1: // Noncompliant
+	case param > 1: // Noncompliant {{This condition is same as one already tested on line 7.}}
+	//   ^^^^^^^^^
 		fmt.Println("impossible")
 	}
 }

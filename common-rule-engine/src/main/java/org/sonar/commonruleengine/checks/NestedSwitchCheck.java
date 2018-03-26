@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 import org.sonar.check.Rule;
 import org.sonar.uast.UastNode;
+import org.sonar.uast.helpers.SwitchLike;
 
 /**
  * https://jira.sonarsource.com/browse/RSPEC-1821
@@ -28,10 +29,11 @@ public class NestedSwitchCheck extends Check {
     node.getDescendants(UastNode.Kind.SWITCH, this::checkNested, UastNode.Kind.FUNCTION_LITERAL, UastNode.Kind.CLASS);
   }
 
-  public void checkNested(UastNode nestedSwitch) {
-    if (!reported.contains(nestedSwitch)) {
-      reportIssue(nestedSwitch, "Refactor the code to eliminate this nested \"switch\".");
-      reported.add(nestedSwitch);
+  public void checkNested(UastNode nestedSwitchNode) {
+    if (!reported.contains(nestedSwitchNode)) {
+      UastNode switchKeyword = SwitchLike.from(nestedSwitchNode).switchKeyword();
+      reportIssue(switchKeyword, "Refactor the code to eliminate this nested \"switch\".");
+      reported.add(nestedSwitchNode);
     }
   }
 

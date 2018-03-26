@@ -173,13 +173,12 @@
           ]},
           {"token": {"value":"}","line":25,"column":2}, "nativeNode": "Rbrace"}
         ]},
-        {"kinds": ["COMMENT"], "token": {"value":"// FIXME(issue #153) should only highlight \"switch\" keyword","line":26,"column":1}, "nativeNode": ""},
         {"kinds": ["BLOCK","SWITCH","STATEMENT"], "nativeNode": "[2](SwitchStmt)", "children": [
-          {"kinds": ["KEYWORD"], "token": {"value":"switch","line":27,"column":2}, "nativeNode": "Switch"},
-          {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"tag","line":27,"column":9}, "nativeNode": "Tag(Ident)"},
-          {"token": {"value":"{","line":27,"column":13}, "nativeNode": "Lbrace"},
-          {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant {{Add a default case to this switch.}}","line":27,"column":15}, "nativeNode": ""},
-          {"kinds": ["COMMENT"], "token": {"value":"//  ^[sc=2;el=+6;ec=2]","line":28,"column":1}, "nativeNode": ""},
+          {"kinds": ["KEYWORD"], "token": {"value":"switch","line":27,"column":5}, "nativeNode": "Switch"},
+          {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"tag","line":27,"column":12}, "nativeNode": "Tag(Ident)"},
+          {"token": {"value":"{","line":27,"column":16}, "nativeNode": "Lbrace"},
+          {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant {{Add a default case to this switch.}}","line":27,"column":18}, "nativeNode": ""},
+          {"kinds": ["COMMENT"], "token": {"value":"//  ^^^^^^","line":28,"column":1}, "nativeNode": ""},
           {"kinds": ["CASE"], "nativeNode": "[0](CaseClause)", "children": [
             {"kinds": ["KEYWORD"], "token": {"value":"case","line":29,"column":2}, "nativeNode": "Case"},
             {"kinds": ["CONDITION","EXPRESSION","LITERAL"], "token": {"value":"0","line":29,"column":7}, "nativeNode": "[0](BasicLit)"},

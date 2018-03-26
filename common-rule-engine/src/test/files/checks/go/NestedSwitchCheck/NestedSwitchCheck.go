@@ -5,7 +5,8 @@ func foo(x,y, z int) {
 	case 0 :
 		bar()
 	case 1:
-		switch y { // Noncompliant {{Refactor the code to eliminate this nested "switch".}}
+        switch y { // Noncompliant {{Refactor the code to eliminate this nested "switch".}}
+    //  ^^^^^^
 		case 0:
 			bar()
 		case 1:
