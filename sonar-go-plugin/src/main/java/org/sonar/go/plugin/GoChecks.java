@@ -8,6 +8,7 @@ import org.sonar.commonruleengine.checks.NoHardcodedCredentialsCheck;
 import org.sonar.commonruleengine.checks.NoIdenticalConditionsCheck;
 import org.sonar.commonruleengine.checks.NoIdenticalFunctionsCheck;
 import org.sonar.commonruleengine.checks.NoSelfAssignmentCheck;
+import org.sonar.commonruleengine.checks.SwitchDefaultLocationCheck;
 import org.sonar.commonruleengine.checks.SwitchWithoutDefaultCheck;
 import org.sonar.commonruleengine.checks.TooManyParametersCheck;
 
@@ -25,6 +26,7 @@ public class GoChecks {
       NoIdenticalFunctionsCheck.class,
       NoHardcodedCredentialsCheck.class,
       NoSelfAssignmentCheck.class,
+      SwitchDefaultLocationCheck.class,
       SwitchWithoutDefaultCheck.class,
       TooManyParametersCheck.class
     );

@@ -1,5 +1,5 @@
 {
-  "title": "\"switch\" statements should have \"default\" clauses",
+  "title": "\"default\" clauses should be first or last",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
@@ -7,15 +7,10 @@
     "constantCost": "5min"
   },
   "tags": [
-    "cwe",
-    "misra",
-    "cert"
-  ],
-  "standards": [
-    "CWE"
+    "misra"
   ],
   "defaultSeverity": "Critical",
-  "ruleSpecification": "RSPEC-131",
-  "sqKey": "S131",
+  "ruleSpecification": "RSPEC-4524",
+  "sqKey": "S4524",
   "scope": "All"
 }
