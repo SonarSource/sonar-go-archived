@@ -65,6 +65,8 @@ const (
 	DEFAULT_CASE         Kind = "DEFAULT_CASE"
 	LOOP                 Kind = "LOOP"
 	BREAK                Kind = "BREAK"
+	CONTINUE             Kind = "CONTINUE"
+	THROW                Kind = "THROW"
 	UNSUPPORTED          Kind = "UNSUPPORTED"
 	OPERATOR             Kind = "OPERATOR"
 	OPERATOR_EQUAL       Kind = "OPERATOR_EQUAL"
@@ -245,6 +247,17 @@ func (t *UastMapper) computeTypeSpecKinds(typeExpr ast.Expr) []Kind {
 		return []Kind{CLASS}
 	}
 	return nil
+}
+
+func (t *UastMapper) computeBranchKind(astNode *ast.BranchStmt) Kind {
+	switch astNode.Tok.String() {
+	case "break":
+		return BREAK
+	case "continue":
+		return CONTINUE
+	default:
+		return UNSUPPORTED
+	}
 }
 
 func (t *UastMapper) appendNode(children []*Node, child *Node) []*Node {

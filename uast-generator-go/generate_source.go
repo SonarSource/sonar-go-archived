@@ -36,7 +36,7 @@ import (
 			NewTypeKind((*ast.Ident)(nil), "t.computeIdentifierKind(astNode)..."),
 			NewTypeKind((*ast.ForStmt)(nil), "LOOP"),
 			NewTypeKind((*ast.ReturnStmt)(nil), "RETURN"),
-			NewTypeKind((*ast.BranchStmt)(nil), "BREAK"),
+			NewTypeKind((*ast.BranchStmt)(nil), "t.computeBranchKind(astNode)"),
 			NewTypeKind((*ast.AssignStmt)(nil), "t.computeAssignStmtKinds(astNode.Tok)..."),
 			NewTypeKind((*ast.BasicLit)(nil), "t.computeBasicLitKinds(astNode.Kind)..."),
 			NewTypeKind((*ast.BinaryExpr)(nil), "BINARY_EXPRESSION"),
