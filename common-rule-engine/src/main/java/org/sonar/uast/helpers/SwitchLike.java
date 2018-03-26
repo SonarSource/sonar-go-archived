@@ -36,6 +36,10 @@ public class SwitchLike {
     return node;
   }
 
+  public UastNode switchKeyword() {
+    return node.getChild(UastNode.Kind.KEYWORD).orElse(node);
+  }
+
   public List<UastNode> caseNodes() {
     return caseNodes;
   }
