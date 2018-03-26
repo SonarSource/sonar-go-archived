@@ -117,7 +117,7 @@ import (
 			// By default when a field is an array, an intermediate node is not created to store the array elements.
 			// Array elements are appended directly to the parent. And it's not possible to define "kinds" like
 			// "CaseClause#List" because there's no matching node, but only "CaseClause#List[i]".
-			// But adding an entry bellow, change the default behavior and create an intermediate node, and this node
+			// But adding an entry below, change the default behavior and create an intermediate node, and this node
 			// support "kinds" defined in "KindsPerName".
 			"File#Decls":        true,
 			"GenDecl#Specs":     true,
@@ -190,7 +190,7 @@ import (
 		TokenFieldWithPos: map[string]bool{
 			// There's a common pattern in the Go ast where 2 fields define one terminal token.
 			// The first field is a "token.Pos" and the second a "token.Token" with the same name without "Pos" suffix.
-			// Reference bellow the "token.Pos" field, and the "token.Token" field will be associated to produce one
+			// Reference below the "token.Pos" field, and the "token.Token" field will be associated to produce one
 			// token.
 			"GenDecl#TokPos":    true,
 			"AssignStmt#TokPos": true,
@@ -237,7 +237,7 @@ import (
 		},
 		MatchingTokenPos: map[string]string{
 			// Some ast.* struct fields with type "token.Pos" has no "token.Token" fields to specify their string
-			// value. The bellow list do the mapping. A field can be referenced just by "<field name>" (like "Lbrace")
+			// value. The below list do the mapping. A field can be referenced just by "<field name>" (like "Lbrace")
 			// and will apply to all struct containing such field. Or by "<type name>#<field name>" like "IfStmt#If".
 			// Or by "<type name><variation>#<field name>" like "FieldListParams#Opening".
 			"Lbrace":                   "token.LBRACE",
