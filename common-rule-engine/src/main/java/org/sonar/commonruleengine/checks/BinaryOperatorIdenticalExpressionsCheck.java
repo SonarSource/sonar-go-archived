@@ -23,7 +23,7 @@ public class BinaryOperatorIdenticalExpressionsCheck extends Check {
     if (binaryExpression != null
       && !isExcluded(binaryExpression)
       && syntacticallyEquivalent(binaryExpression.leftOperand(), binaryExpression.rightOperand())) {
-      String operator = binaryExpression.operatorToken().value;
+      String operator = binaryExpression.operator().joinTokens();
       reportIssue(binaryExpression.rightOperand(),
         "Correct one of the identical sub-expressions on both sides of operator \"" + operator + "\".",
         new Issue.Message(binaryExpression.leftOperand()));
@@ -31,8 +31,7 @@ public class BinaryOperatorIdenticalExpressionsCheck extends Check {
   }
 
   private static boolean isExcluded(BinaryExpressionLike binaryExpression) {
-    String operator = binaryExpression.operatorToken().value;
     // "=" not considered as binary operator for Java and Go, might be for other languages?
-    return "+".equals(operator) || "*".equals(operator) || "=".equals(operator);
+    return binaryExpression.operator().is(UastNode.Kind.ASSIGNMENT_OPERATOR, UastNode.Kind.OPERATOR_ADD, UastNode.Kind.OPERATOR_MULTIPLY);
   }
 }

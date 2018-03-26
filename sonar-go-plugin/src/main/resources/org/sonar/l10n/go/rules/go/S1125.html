@@ -1,0 +1,20 @@
+<p>Redundant Boolean literals should be removed from expressions to improve readability.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+if boolFunc() == true) {
+    // ...
+}
+
+flag := x || true
+
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+if boolFunc() {
+    // ...
+}
+
+flag := x
+
+</pre>
+

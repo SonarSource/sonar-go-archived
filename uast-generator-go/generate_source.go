@@ -33,7 +33,7 @@ import (
 			NewTypeKind((*ast.FuncLit)(nil), "FUNCTION_LITERAL"),
 			NewTypeKind((*ast.BlockStmt)(nil), "BLOCK"),
 			NewTypeKind((*ast.IfStmt)(nil), "IF"),
-			NewTypeKind((*ast.Ident)(nil), "IDENTIFIER"),
+			NewTypeKind((*ast.Ident)(nil), "t.computeIdentifierKind(astNode)..."),
 			NewTypeKind((*ast.AssignStmt)(nil), "t.computeAssignStmtKinds(astNode.Tok)..."),
 			NewTypeKind((*ast.BasicLit)(nil), "t.computeBasicLitKinds(astNode.Kind)..."),
 			NewTypeKind((*ast.BinaryExpr)(nil), "BINARY_EXPRESSION"),
@@ -146,6 +146,7 @@ import (
 				"t.createUastTokenFromPosAstToken(nil, astNode.Type.Func, token.FUNC, \"Type.Func\"))",
 		},
 		OverrideField: map[string]string{
+			"BinaryExpr#Op": "children = t.appendNode(children, t.createUastTokenFromPosAstToken(t.computeOperatorKind(astNode.Op), astNode.OpPos, astNode.Op, \"Op\"))",
 			// The mapping of each field can be replaced by some custom code. Put function definitions in 'goparser.go'
 			"File#Package": "children = t.appendNode(children, t.mapPackageDecl(astNode))",
 			"File#Name":    "",

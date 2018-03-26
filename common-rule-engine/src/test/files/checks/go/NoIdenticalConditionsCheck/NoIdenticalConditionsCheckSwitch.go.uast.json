@@ -31,13 +31,13 @@
         {"token": {"value":"{","line":5,"column":27}, "nativeNode": "Lbrace"},
         {"kinds": ["BLOCK","SWITCH","STATEMENT"], "nativeNode": "[0](SwitchStmt)", "children": [
           {"kinds": ["KEYWORD"], "token": {"value":"switch","line":6,"column":2}, "nativeNode": "Switch"},
-          {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"true","line":6,"column":9}, "nativeNode": "Tag(Ident)"},
+          {"kinds": ["EXPRESSION","LITERAL","BOOLEAN_LITERAL"], "token": {"value":"true","line":6,"column":9}, "nativeNode": "Tag(Ident)"},
           {"token": {"value":"{","line":6,"column":14}, "nativeNode": "Lbrace"},
           {"kinds": ["CASE"], "nativeNode": "[0](CaseClause)", "children": [
             {"kinds": ["KEYWORD"], "token": {"value":"case","line":7,"column":2}, "nativeNode": "Case"},
             {"kinds": ["CONDITION","EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "[0](BinaryExpr)", "children": [
               {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"param","line":7,"column":7}, "nativeNode": "X(Ident)"},
-              {"token": {"value":"\u003e","line":7,"column":13}, "nativeNode": "Op"},
+              {"kinds": ["OPERATOR"], "token": {"value":"\u003e","line":7,"column":13}, "nativeNode": "Op"},
               {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"1","line":7,"column":15}, "nativeNode": "Y(BasicLit)"}
             ]},
             {"token": {"value":":","line":7,"column":16}, "nativeNode": "Colon"},
@@ -63,7 +63,7 @@
             {"kinds": ["KEYWORD"], "token": {"value":"case","line":10,"column":2}, "nativeNode": "Case"},
             {"kinds": ["CONDITION","EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "[0](BinaryExpr)", "children": [
               {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"param","line":10,"column":7}, "nativeNode": "X(Ident)"},
-              {"token": {"value":"\u003c","line":10,"column":13}, "nativeNode": "Op"},
+              {"kinds": ["OPERATOR"], "token": {"value":"\u003c","line":10,"column":13}, "nativeNode": "Op"},
               {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"1","line":10,"column":15}, "nativeNode": "Y(BasicLit)"}
             ]},
             {"token": {"value":":","line":10,"column":16}, "nativeNode": "Colon"},
@@ -88,7 +88,7 @@
             {"kinds": ["KEYWORD"], "token": {"value":"case","line":12,"column":2}, "nativeNode": "Case"},
             {"kinds": ["CONDITION","EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "[0](BinaryExpr)", "children": [
               {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"param","line":12,"column":7}, "nativeNode": "X(Ident)"},
-              {"token": {"value":"\u003e","line":12,"column":13}, "nativeNode": "Op"},
+              {"kinds": ["OPERATOR"], "token": {"value":"\u003e","line":12,"column":13}, "nativeNode": "Op"},
               {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"1","line":12,"column":15}, "nativeNode": "Y(BasicLit)"}
             ]},
             {"token": {"value":":","line":12,"column":16}, "nativeNode": "Colon"},
