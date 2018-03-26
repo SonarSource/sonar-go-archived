@@ -46,7 +46,7 @@ func fun() string {
             {"kinds": ["EXPRESSION","LITERAL","STRING_LITERAL"], "token": {"value":"\"hello \\\"world\\\"\"","line":4,"column":7}, "nativeNode": "[0](BasicLit)"}
           ]}
         ]},
-        {"kinds": ["STATEMENT"], "nativeNode": "[1](ReturnStmt)", "children": [
+        {"kinds": ["RETURN","STATEMENT"], "nativeNode": "[1](ReturnStmt)", "children": [
           {"kinds": ["KEYWORD"], "token": {"value":"return","line":5,"column":2}, "nativeNode": "Return"},
           {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"a","line":5,"column":9}, "nativeNode": "[0](Ident)"}
         ]},

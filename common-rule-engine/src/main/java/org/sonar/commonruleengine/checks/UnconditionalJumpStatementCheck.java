@@ -29,13 +29,24 @@ public class UnconditionalJumpStatementCheck extends Check {
     }
   }
 
-  private void findUnconditionalJump(UastNode blockOrStatement) {
-    for (UastNode child : blockOrStatement.children) {
+  private void findUnconditionalJump(UastNode block) {
+    for (UastNode child : block.children) {
       if (mayConditionallyContinue(child)) {
-        break;
+        return;
       }
+
       if (child.is(JUMP_KINDS)) {
         reportIssue(child);
+        return;
+      }
+
+      // Only for Go. In Go, panic(...) is a CallExpr that is a child of an ExprStmt (= STATEMENT)
+      if (child.is(UastNode.Kind.STATEMENT)) {
+        Optional<UastNode> jumpOptional = child.children.stream().filter(c2 -> c2.is(JUMP_KINDS)).findFirst();
+        if (jumpOptional.isPresent()) {
+          reportIssue(jumpOptional.get());
+          return;
+        }
       }
     }
   }

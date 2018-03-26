@@ -260,6 +260,15 @@ func (t *UastMapper) computeBranchKind(astNode *ast.BranchStmt) Kind {
 	}
 }
 
+func (t *UastMapper) appendThrowIfPanic(kinds []Kind, astNode ast.Node) []Kind {
+	offset := t.file.Offset(astNode.Pos())
+	endOffset := t.file.Offset(astNode.End())
+	if t.fileContent[offset:endOffset] == "panic" {
+		return append(kinds, THROW)
+	}
+	return kinds
+}
+
 func (t *UastMapper) appendNode(children []*Node, child *Node) []*Node {
 	if child == nil {
 		return children

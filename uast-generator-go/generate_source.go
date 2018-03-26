@@ -148,6 +148,7 @@ import (
 			"EmptyStmt#Semicolon": "if astNode.Implicit {\n\t\treturn nil\n\t}",
 			"FuncDecl#Recv": "children = t.appendNode(children, " +
 				"t.createUastTokenFromPosAstToken(nil, astNode.Type.Func, token.FUNC, \"Type.Func\"))",
+			"CallExpr#Fun": "kinds = t.appendThrowIfPanic(kinds, astNode.Fun)",
 		},
 		OverrideField: map[string]string{
 			"BinaryExpr#Op": "children = t.appendNode(children, t.createUastTokenFromPosAstToken(t.computeOperatorKind(astNode.Op), astNode.OpPos, astNode.Op, \"Op\"))",
