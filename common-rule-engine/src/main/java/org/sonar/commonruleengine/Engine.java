@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import org.sonar.api.batch.fs.InputFile;
 import org.sonar.commonruleengine.checks.Check;
 import org.sonar.commonruleengine.checks.CheckList;
 import org.sonar.uast.UastNode;
@@ -33,23 +34,23 @@ public class Engine {
     rules.forEach(rule -> rule.initialize(engineContext));
   }
 
-  public ScanResult scan(UastNode uast) {
+  public ScanResult scan(UastNode uast, InputFile.Type fileType) {
     metricsVisitor.enterFile();
     engineContext.enterFile();
-    visit(uast);
+    visit(uast, fileType);
     return new ScanResult(engineContext.getIssues(), metricsVisitor.getMetrics());
   }
 
-  private void visit(UastNode uast) {
+  private void visit(UastNode uast, InputFile.Type fileType) {
     metricsVisitor.visitNode(uast);
     Set<Check> checks = uast.kinds.stream()
-      .flatMap(kind -> engineContext.registeredChecks(kind).stream())
+      .flatMap(kind -> engineContext.registeredChecks(kind, fileType).stream())
       .collect(Collectors.toSet());
     for (Check check : checks) {
       check.visitNode(uast);
     }
     for (UastNode child : uast.children) {
-      visit(child);
+      visit(child, fileType);
     }
     for (Check check : checks) {
       check.leaveNode(uast);

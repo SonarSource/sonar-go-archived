@@ -1,7 +1,4 @@
 {
-'project:kubernetes/test/integration/master/master_test.go':[
-662,
-],
 'project:kubernetes/vendor/github.com/coreos/etcd/etcdserver/api/v3rpc/util.go':[
 67,
 ],

@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import org.sonar.api.batch.fs.InputFile;
 import org.sonar.commonruleengine.Engine;
 import org.sonar.commonruleengine.Issue;
 import org.sonar.uast.Uast;
@@ -42,7 +43,7 @@ public class TestUtils {
 
   public static void checkRule(Check check, Path testFile, UastNode uast) {
     Engine engine = new Engine(Collections.singletonList(check));
-    List<Issue> issues = engine.scan(uast).issues;
+    List<Issue> issues = engine.scan(uast, InputFile.Type.MAIN).issues;
 
     SingleFileVerifier verifier = SingleFileVerifier.create(testFile, StandardCharsets.UTF_8);
     uast.getDescendants(UastNode.Kind.COMMENT, comment -> verifier.addComment(comment.token.line, comment.token.column, comment.token.value, 2, 0));

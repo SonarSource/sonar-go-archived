@@ -55,6 +55,8 @@ public class GoRulingTest {
       .setSourceDirs("./")
       .setSourceEncoding("utf-8")
       .setProperty("sonar.inclusions", "**/*.go")
+      .setProperty("sonar.tests", ".")
+      .setProperty("sonar.test.inclusions", "**/*_test.go")
       .setProperty("sonar.analysis.mode", "preview")
       .setProperty("dump.old", FileLocation.of("src/test/expected").getFile().getAbsolutePath())
       .setProperty("dump.new", FileLocation.of("build/actual").getFile().getAbsolutePath())

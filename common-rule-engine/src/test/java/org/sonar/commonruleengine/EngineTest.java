@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.sonar.api.batch.fs.InputFile;
 import org.sonar.commonruleengine.checks.Check;
 import org.sonar.uast.Uast;
 import org.sonar.uast.UastNode;
@@ -25,7 +26,7 @@ class EngineTest {
   void visit_should_visit_all_nodes() {
     NodeCounter nodeCounter = new NodeCounter();
     Engine engine = new Engine(Collections.singletonList(nodeCounter));
-    List<Issue> issues = engine.scan(uast).issues;
+    List<Issue> issues = engine.scan(uast, InputFile.Type.MAIN).issues;
     assertEquals(4, issues.size());
     assertTrue(issues.stream().map(Issue::getRule).allMatch(rule -> rule == nodeCounter));
   }

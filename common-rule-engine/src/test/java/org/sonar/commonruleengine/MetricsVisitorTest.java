@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import org.junit.jupiter.api.Test;
+import org.sonar.api.batch.fs.InputFile;
 import org.sonar.uast.Uast;
 import org.sonar.uast.UastNode;
 
@@ -89,7 +90,7 @@ class MetricsVisitorTest {
   private Metrics getMetrics(String source) throws IOException {
     Engine engine = new Engine(Collections.emptyList());
     UastNode node = Uast.from(new StringReader(source));
-    return engine.scan(node).metrics;
+    return engine.scan(node, InputFile.Type.MAIN).metrics;
   }
 
 }

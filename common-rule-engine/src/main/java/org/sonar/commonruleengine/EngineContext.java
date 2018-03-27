@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+import org.sonar.api.batch.fs.InputFile;
 import org.sonar.commonruleengine.checks.Check;
 import org.sonar.uast.UastNode;
 
@@ -21,7 +22,10 @@ public class EngineContext {
     registeredChecks.computeIfAbsent(kind, k -> new ArrayList<>()).add(check);
   }
 
-  public List<Check> registeredChecks(UastNode.Kind kind) {
+  public List<Check> registeredChecks(UastNode.Kind kind, InputFile.Type fileType) {
+    if (fileType != InputFile.Type.MAIN) {
+      return Collections.emptyList();
+    }
     return registeredChecks.getOrDefault(kind, Collections.emptyList());
   }
 
