@@ -2,6 +2,9 @@ apply plugin: 'java'
 
 
 test {
+    onlyIf {
+        System.env.ruling == "true"
+    }
     useJUnitPlatform()
     outputs.upToDateWhen {false}
     def orchestratorProps = System.getProperties().findAll { it.key.startsWith("orchestrator") || it.key.startsWith("sonar") }.collect { it.key }
