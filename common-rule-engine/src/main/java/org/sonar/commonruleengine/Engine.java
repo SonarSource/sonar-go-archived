@@ -35,7 +35,7 @@ public class Engine {
   }
 
   public ScanResult scan(UastNode uast, InputFile.Type fileType) {
-    metricsVisitor.enterFile();
+    metricsVisitor.enterFile(uast);
     engineContext.enterFile();
     visit(uast, fileType);
     return new ScanResult(engineContext.getIssues(), metricsVisitor.getMetrics());

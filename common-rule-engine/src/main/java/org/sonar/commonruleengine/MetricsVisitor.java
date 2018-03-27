@@ -9,8 +9,9 @@ public class MetricsVisitor {
 
   private Metrics metrics;
 
-  public void enterFile() {
+  public void enterFile(UastNode uast) {
     metrics = new Metrics();
+    metrics.cognitiveComplexity = CognitiveComplexity.calculateFileComplexity(uast).value();
   }
 
   public void visitNode(UastNode node) {
