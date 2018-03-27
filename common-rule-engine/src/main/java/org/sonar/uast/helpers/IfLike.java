@@ -45,4 +45,16 @@ public class IfLike {
     return elseNode;
   }
 
+  @CheckForNull
+  public UastNode elseKeyword() {
+    // TODO use kinds
+    for (UastNode child : node.children) {
+      UastNode.Token token = child.token;
+      if (token != null && "else".equals(token.value)) {
+        return child;
+      }
+    }
+    return null;
+  }
+
 }

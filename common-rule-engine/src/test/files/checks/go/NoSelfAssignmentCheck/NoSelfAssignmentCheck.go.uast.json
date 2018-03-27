@@ -227,7 +227,7 @@
       ]},
       {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
         {"token": {"value":"{","line":30,"column":44}, "nativeNode": "Lbrace"},
-        {"kinds": ["STATEMENT"], "nativeNode": "[0](ForStmt)", "children": [
+        {"kinds": ["LOOP","STATEMENT"], "nativeNode": "[0](ForStmt)", "children": [
           {"kinds": ["KEYWORD"], "token": {"value":"for","line":31,"column":2}, "nativeNode": "For"},
           {"kinds": ["ASSIGNMENT","DECLARATION","STATEMENT"], "nativeNode": "Init(AssignStmt)", "children": [
             {"kinds": ["ASSIGNMENT_TARGET"], "nativeNode": "Lhs([]Expr)", "children": [

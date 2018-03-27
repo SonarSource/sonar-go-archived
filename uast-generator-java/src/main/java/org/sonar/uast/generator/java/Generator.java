@@ -18,16 +18,20 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import javax.lang.model.SourceVersion;
 import org.sonar.java.ast.parser.JavaParser;
 import org.sonar.java.model.JavaTree;
+import org.sonar.plugins.java.api.tree.Arguments;
 import org.sonar.plugins.java.api.tree.AssignmentExpressionTree;
 import org.sonar.plugins.java.api.tree.BaseTreeVisitor;
 import org.sonar.plugins.java.api.tree.BinaryExpressionTree;
 import org.sonar.plugins.java.api.tree.CaseLabelTree;
 import org.sonar.plugins.java.api.tree.CompilationUnitTree;
 import org.sonar.plugins.java.api.tree.ExpressionTree;
+import org.sonar.plugins.java.api.tree.IdentifierTree;
 import org.sonar.plugins.java.api.tree.IfStatementTree;
 import org.sonar.plugins.java.api.tree.MethodTree;
+import org.sonar.plugins.java.api.tree.PrimitiveTypeTree;
 import org.sonar.plugins.java.api.tree.StatementTree;
 import org.sonar.plugins.java.api.tree.SyntaxToken;
 import org.sonar.plugins.java.api.tree.SyntaxTrivia;
@@ -91,6 +95,9 @@ public class Generator {
     UastNode uastNode = null;
     if (tree.is(Tree.Kind.TOKEN)) {
       uastNode = newUastNode(tree, Collections.emptyList());
+      if (uastNode.token != null && SourceVersion.isKeyword(uastNode.token.value)) {
+        uastNode.kinds.add(UastNode.Kind.KEYWORD);
+      }
       List<UastNode> trivia = ((SyntaxToken) tree).trivias().stream()
         // SonarJava AST duplicates some nodes (e.g. Variable)
         .filter(seenTrivia::add)
@@ -165,13 +172,16 @@ public class Generator {
         result.add(UastNode.Kind.BLOCK);
         break;
       case IDENTIFIER:
-        if (tree.parent().is(Tree.Kind.METHOD) || tree.parent().is(Tree.Kind.CONSTRUCTOR)) {
-          result.add(UastNode.Kind.FUNCTION_NAME);
-        }
         result.add(UastNode.Kind.IDENTIFIER);
         break;
       case STRING_LITERAL:
         result.add(UastNode.Kind.LITERAL);
+        break;
+      case FOR_EACH_STATEMENT:
+      case FOR_STATEMENT:
+      case WHILE_STATEMENT:
+      case DO_STATEMENT:
+        result.add(UastNode.Kind.LOOP);
         break;
       case IF_STATEMENT:
         result.add(UastNode.Kind.IF);
@@ -193,33 +203,10 @@ public class Generator {
         result.add(UastNode.Kind.BOOLEAN_LITERAL);
         break;
       case TOKEN:
-        SyntaxToken token = (SyntaxToken) tree;
-        switch (token.text()) {
-          case "+":
-            result.add(UastNode.Kind.OPERATOR);
-            result.add(UastNode.Kind.OPERATOR_ADD);
-            break;
-          case "*":
-            result.add(UastNode.Kind.OPERATOR);
-            result.add(UastNode.Kind.OPERATOR_MULTIPLY);
-            break;
-          case "==":
-            result.add(UastNode.Kind.OPERATOR);
-            result.add(UastNode.Kind.OPERATOR_EQUAL);
-            break;
-          case "!=":
-            result.add(UastNode.Kind.OPERATOR);
-            result.add(UastNode.Kind.OPERATOR_NOT_EQUAL);
-            break;
-          case "&&":
-            result.add(UastNode.Kind.OPERATOR);
-            result.add(UastNode.Kind.OPERATOR_LOGICAL_AND);
-            break;
-          case "||":
-            result.add(UastNode.Kind.OPERATOR);
-            result.add(UastNode.Kind.OPERATOR_LOGICAL_OR);
-            break;
-        }
+        addTokenKinds((SyntaxToken) tree, result);
+        break;
+      case PARENTHESIZED_EXPRESSION:
+        result.add(UastNode.Kind.PARENTHESIZED_EXPRESSION);
         break;
       default:
         break;
@@ -227,12 +214,51 @@ public class Generator {
     if (tree instanceof StatementTree) {
       result.add(UastNode.Kind.STATEMENT);
     }
+    if (isExpression(tree)) {
+      result.add(UastNode.Kind.EXPRESSION);
+    }
     if (tree instanceof BinaryExpressionTree) {
       result.add(UastNode.Kind.BINARY_EXPRESSION);
     }
     return result;
   }
 
+  private static void addTokenKinds(SyntaxToken tree, Set<UastNode.Kind> result) {
+    SyntaxToken token = tree;
+    switch (token.text()) {
+      case "+":
+        result.add(UastNode.Kind.OPERATOR);
+        result.add(UastNode.Kind.OPERATOR_ADD);
+        break;
+      case "*":
+        result.add(UastNode.Kind.OPERATOR);
+        result.add(UastNode.Kind.OPERATOR_MULTIPLY);
+        break;
+      case "==":
+        result.add(UastNode.Kind.OPERATOR);
+        result.add(UastNode.Kind.OPERATOR_EQUAL);
+        break;
+      case "!=":
+        result.add(UastNode.Kind.OPERATOR);
+        result.add(UastNode.Kind.OPERATOR_NOT_EQUAL);
+        break;
+      case "&&":
+        result.add(UastNode.Kind.OPERATOR);
+        result.add(UastNode.Kind.OPERATOR_LOGICAL_AND);
+        break;
+      case "||":
+        result.add(UastNode.Kind.OPERATOR);
+        result.add(UastNode.Kind.OPERATOR_LOGICAL_OR);
+        break;
+    }
+  }
+
+  private static boolean isExpression(Tree tree) {
+    if (!(tree instanceof ExpressionTree) || (tree instanceof PrimitiveTypeTree)) {
+      return false;
+    }
+    return (tree.parent() instanceof Arguments) || !(tree instanceof IdentifierTree);
+  }
 
   class PostprocessVisitor extends BaseTreeVisitor {
 
@@ -257,6 +283,7 @@ public class Generator {
 
     @Override
     public void visitMethod(MethodTree tree) {
+      addKind(tree.simpleName(), UastNode.Kind.FUNCTION_NAME);
       tree.parameters().forEach(p -> treeUastNodeMap.get(p).kinds.add(UastNode.Kind.PARAMETER));
       super.visitMethod(tree);
     }
