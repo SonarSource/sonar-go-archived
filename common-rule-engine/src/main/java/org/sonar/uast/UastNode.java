@@ -91,10 +91,12 @@ public final class UastNode {
     BINARY_EXPRESSION,
     PARENTHESIZED_EXPRESSION,
     BLOCK,
+    BREAK,
     CASE,
     CLASS,
     COMMENT,
     COMPOUND_ASSIGNMENT,
+    CONTINUE,
     DEFAULT_CASE,
     STRUCTURED_COMMENT,
     COMPILATION_UNIT,
@@ -111,6 +113,7 @@ public final class UastNode {
     KEYWORD,
     LITERAL,
     LOOP,
+    LOOP_FOREACH,
     STRING_LITERAL,
     BOOLEAN_LITERAL,
     PARAMETER,
@@ -120,8 +123,10 @@ public final class UastNode {
     OPERATOR_LOGICAL_OR,
     OPERATOR_MULTIPLY,
     OPERATOR_NOT_EQUAL,
+    RETURN,
     STATEMENT,
     SWITCH,
+    THROW,
     TYPE,
     UNSUPPORTED,
     ;
@@ -157,6 +162,10 @@ public final class UastNode {
       consumer.accept(this);
     }
     children.forEach(child -> child.getDescendants(kind, consumer));
+  }
+
+  public boolean hasDescendant(Kind... kinds) {
+    return is(kinds) || children.stream().anyMatch(child -> child.hasDescendant(kinds));
   }
 
   public Token firstToken() {

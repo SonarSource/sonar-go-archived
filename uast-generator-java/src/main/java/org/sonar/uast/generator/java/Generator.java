@@ -208,6 +208,18 @@ public class Generator {
       case PARENTHESIZED_EXPRESSION:
         result.add(UastNode.Kind.PARENTHESIZED_EXPRESSION);
         break;
+      case BREAK_STATEMENT:
+        result.add(UastNode.Kind.BREAK);
+        break;
+      case RETURN_STATEMENT:
+        result.add(UastNode.Kind.RETURN);
+        break;
+      case CONTINUE_STATEMENT:
+        result.add(UastNode.Kind.CONTINUE);
+        break;
+      case THROW_STATEMENT:
+        result.add(UastNode.Kind.THROW);
+        break;
       default:
         break;
     }
