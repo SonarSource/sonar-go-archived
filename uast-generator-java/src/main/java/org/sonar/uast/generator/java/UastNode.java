@@ -27,12 +27,15 @@ class UastNode {
     ASSIGNMENT_VALUE,
     BLOCK,
     BINARY_EXPRESSION,
+    BREAK,
     EXPRESSION,
     PARENTHESIZED_EXPRESSION,
     CASE,
     CLASS,
+    COMMENT,
     COMPILATION_UNIT,
     CONDITION,
+    CONTINUE,
     DEFAULT_CASE,
     ELSE,
     EOF,
@@ -46,8 +49,8 @@ class UastNode {
     LITERAL,
     BOOLEAN_LITERAL,
     PARAMETER,
+    RETURN,
     STATEMENT,
-    COMMENT,
     OPERATOR,
     OPERATOR_ADD,
     OPERATOR_EQUAL,
@@ -56,6 +59,8 @@ class UastNode {
     OPERATOR_MULTIPLY,
     OPERATOR_NOT_EQUAL,
     SWITCH,
+    THROW,
+    ;
   }
 
   static class Token {

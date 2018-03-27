@@ -1,6 +1,6 @@
 package main
 
-//go:generate go run generate_source.go
+// go:generate go run generate_source.go
 
 import (
 	"bytes"
@@ -58,6 +58,7 @@ const (
 	PARAMETER                Kind = "PARAMETER"
 	RESULT_LIST              Kind = "RESULT_LIST"
 	RESULT                   Kind = "RESULT"
+	RETURN                   Kind = "RETURN"
 	BINARY_EXPRESSION        Kind = "BINARY_EXPRESSION"
 	PARENTHESIZED_EXPRESSION Kind = "PARENTHESIZED_EXPRESSION"
 	SWITCH                   Kind = "SWITCH"
@@ -65,6 +66,10 @@ const (
 	LABEL                    Kind = "LABEL"
 	DEFAULT_CASE             Kind = "DEFAULT_CASE"
 	LOOP                     Kind = "LOOP"
+	LOOP_FOREACH             Kind = "LOOP_FOREACH"
+	BREAK                    Kind = "BREAK"
+	CONTINUE                 Kind = "CONTINUE"
+	THROW                    Kind = "THROW"
 	UNSUPPORTED              Kind = "UNSUPPORTED"
 	OPERATOR                 Kind = "OPERATOR"
 	OPERATOR_EQUAL           Kind = "OPERATOR_EQUAL"
@@ -254,6 +259,29 @@ func (t *UastMapper) computeTypeSpecKinds(typeExpr ast.Expr) []Kind {
 		return []Kind{CLASS}
 	}
 	return nil
+}
+
+func (t *UastMapper) computeBranchKind(astNode *ast.BranchStmt) Kind {
+	switch astNode.Tok.String() {
+	case "break":
+		return BREAK
+	case "continue":
+		return CONTINUE
+	default:
+		return UNSUPPORTED
+	}
+}
+
+func (t *UastMapper) appendThrowIfPanic(kinds []Kind, stmt *ast.ExprStmt) []Kind {
+	if callExpr, ok := stmt.X.(*ast.CallExpr); ok {
+		fun := callExpr.Fun
+		offset := t.file.Offset(fun.Pos())
+		endOffset := t.file.Offset(fun.End())
+		if t.fileContent[offset:endOffset] == "panic" {
+			return append(kinds, THROW)
+		}
+	}
+	return kinds
 }
 
 func (t *UastMapper) appendNode(children []*Node, child *Node) []*Node {
