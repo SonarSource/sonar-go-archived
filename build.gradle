@@ -93,3 +93,4 @@ artifactory {
     // The name of this variable is important because it's used by the delivery process when extracting version from Artifactory build info.
     clientConfig.info.addEnvironmentProperty('PROJECT_VERSION', "${version}")
 }
+

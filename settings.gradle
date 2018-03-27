@@ -1,3 +1,12 @@
+pluginManagement {
+    repositories {
+        maven {
+            url 'https://repox.sonarsource.com/plugins.gradle.org/'
+        }
+        gradlePluginPortal()
+    }
+}
+
 rootProject.name = 'sonar-go'
 
 include 'common-rule-engine'
