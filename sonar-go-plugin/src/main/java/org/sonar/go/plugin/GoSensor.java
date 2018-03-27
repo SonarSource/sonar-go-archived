@@ -63,7 +63,7 @@ public class GoSensor implements Sensor {
     for (InputFile inputFile : getInputFiles(context)) {
       try {
         UastNode uast = uastGenerator.createUast(inputFile.inputStream());
-        Engine.ScanResult scanResult = ruleEngine.scan(uast);
+        Engine.ScanResult scanResult = ruleEngine.scan(uast, inputFile.type());
         scanResult.issues.forEach(issue -> reportIssue(issue, context, inputFile));
         saveMetrics(scanResult.metrics, context, inputFile);
         saveHighlighting(uast, context, inputFile);
