@@ -4,11 +4,13 @@ import javax.annotation.CheckForNull;
 import org.sonar.uast.UastNode;
 
 public class BinaryExpressionLike {
+  private final UastNode node;
   private final UastNode leftOperand;
   private final UastNode operator;
   private final UastNode rightOperand;
 
-  public BinaryExpressionLike(UastNode leftOperand, UastNode operator, UastNode rightOperand) {
+  public BinaryExpressionLike(UastNode node, UastNode leftOperand, UastNode operator, UastNode rightOperand) {
+    this.node = node;
     this.leftOperand = leftOperand;
     this.operator = operator;
     this.rightOperand = rightOperand;
@@ -20,9 +22,14 @@ public class BinaryExpressionLike {
       // malformed binary operators?
       return null;
     }
-    return new BinaryExpressionLike(node.children.get(0),
+    return new BinaryExpressionLike(node,
+      node.children.get(0),
       node.children.get(1),
       node.children.get(2));
+  }
+
+  public UastNode node() {
+    return node;
   }
 
   public UastNode leftOperand() {

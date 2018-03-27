@@ -12,7 +12,9 @@
       "nativeNode": "CLASS",
       "children": [
         {
-          "kinds": [],
+          "kinds": [
+            "KEYWORD"
+          ],
           "nativeNode": "TOKEN",
           "token": {
             "value": "class",
@@ -60,7 +62,9 @@
               "nativeNode": "PRIMITIVE_TYPE",
               "children": [
                 {
-                  "kinds": [],
+                  "kinds": [
+                    "KEYWORD"
+                  ],
                   "nativeNode": "TOKEN",
                   "token": {
                     "value": "void",
@@ -134,15 +138,21 @@
                   "nativeNode": "EXPRESSION_STATEMENT",
                   "children": [
                     {
-                      "kinds": [],
+                      "kinds": [
+                        "EXPRESSION"
+                      ],
                       "nativeNode": "METHOD_INVOCATION",
                       "children": [
                         {
-                          "kinds": [],
+                          "kinds": [
+                            "EXPRESSION"
+                          ],
                           "nativeNode": "MEMBER_SELECT",
                           "children": [
                             {
-                              "kinds": [],
+                              "kinds": [
+                                "EXPRESSION"
+                              ],
                               "nativeNode": "MEMBER_SELECT",
                               "children": [
                                 {
@@ -239,6 +249,7 @@
                             },
                             {
                               "kinds": [
+                                "EXPRESSION",
                                 "LITERAL"
                               ],
                               "nativeNode": "STRING_LITERAL",

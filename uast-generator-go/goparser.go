@@ -21,55 +21,58 @@ func (k Kind) String() string {
 }
 
 const (
-	COMPILATION_UNIT     Kind = "COMPILATION_UNIT"
-	COMMENT              Kind = "COMMENT"
-	STRUCTURED_COMMENT   Kind = "STRUCTURED_COMMENT"
-	PACKAGE              Kind = "PACKAGE"
-	EOF                  Kind = "EOF"
-	FUNCTION             Kind = "FUNCTION"
-	FUNCTION_LITERAL     Kind = "FUNCTION_LITERAL"
-	FUNCTION_NAME        Kind = "FUNCTION_NAME"
-	BLOCK                Kind = "BLOCK"
-	LPAREN               Kind = "LPAREN"
-	RPAREN               Kind = "RPAREN"
-	ARGS_LIST            Kind = "ARGS_LIST"
-	CALL                 Kind = "CALL"
-	IF                   Kind = "IF"
-	ELSE                 Kind = "ELSE"
-	CONDITION            Kind = "CONDITION"
-	DECLARATION          Kind = "DECLARATION"
-	DECL_LIST            Kind = "DECL_LIST"
-	CLASS                Kind = "CLASS"
-	STATEMENT            Kind = "STATEMENT"
-	ASSIGNMENT           Kind = "ASSIGNMENT"
-	COMPOUND_ASSIGNMENT  Kind = "COMPOUND_ASSIGNMENT"
-	ASSIGNMENT_TARGET    Kind = "ASSIGNMENT_TARGET"
-	ASSIGNMENT_VALUE     Kind = "ASSIGNMENT_VALUE"
-	IDENTIFIER           Kind = "IDENTIFIER"
-	TYPE                 Kind = "TYPE"
-	KEYWORD              Kind = "KEYWORD"
-	SELECTOR_EXPR        Kind = "SELECTOR_EXPR"
-	LITERAL              Kind = "LITERAL"
-	STRING_LITERAL       Kind = "STRING_LITERAL"
-	BOOLEAN_LITERAL      Kind = "BOOLEAN_LITERAL"
-	EXPRESSION           Kind = "EXPRESSION"
-	PARAMETER_LIST       Kind = "PARAMETER_LIST"
-	PARAMETER            Kind = "PARAMETER"
-	RESULT_LIST          Kind = "RESULT_LIST"
-	RESULT               Kind = "RESULT"
-	BINARY_EXPRESSION    Kind = "BINARY_EXPRESSION"
-	SWITCH               Kind = "SWITCH"
-	CASE                 Kind = "CASE"
-	LABEL                Kind = "LABEL"
-	DEFAULT_CASE         Kind = "DEFAULT_CASE"
-	UNSUPPORTED          Kind = "UNSUPPORTED"
-	OPERATOR             Kind = "OPERATOR"
-	OPERATOR_EQUAL       Kind = "OPERATOR_EQUAL"
-	OPERATOR_NOT_EQUAL   Kind = "OPERATOR_NOT_EQUAL"
-	OPERATOR_ADD         Kind = "OPERATOR_ADD"
-	OPERATOR_MULTIPLY    Kind = "OPERATOR_MULTIPLY"
-	OPERATOR_LOGICAL_AND Kind = "OPERATOR_LOGICAL_AND"
-	OPERATOR_LOGICAL_OR  Kind = "OPERATOR_LOGICAL_OR"
+	COMPILATION_UNIT         Kind = "COMPILATION_UNIT"
+	COMMENT                  Kind = "COMMENT"
+	STRUCTURED_COMMENT       Kind = "STRUCTURED_COMMENT"
+	PACKAGE                  Kind = "PACKAGE"
+	EOF                      Kind = "EOF"
+	FUNCTION                 Kind = "FUNCTION"
+	FUNCTION_LITERAL         Kind = "FUNCTION_LITERAL"
+	FUNCTION_NAME            Kind = "FUNCTION_NAME"
+	BLOCK                    Kind = "BLOCK"
+	LPAREN                   Kind = "LPAREN"
+	RPAREN                   Kind = "RPAREN"
+	ARGS_LIST                Kind = "ARGS_LIST"
+	CALL                     Kind = "CALL"
+	IF                       Kind = "IF"
+	ELSE_KEYWORD             Kind = "ELSE_KEYWORD"
+	ELSE                     Kind = "ELSE"
+	CONDITION                Kind = "CONDITION"
+	DECLARATION              Kind = "DECLARATION"
+	DECL_LIST                Kind = "DECL_LIST"
+	CLASS                    Kind = "CLASS"
+	STATEMENT                Kind = "STATEMENT"
+	ASSIGNMENT               Kind = "ASSIGNMENT"
+	COMPOUND_ASSIGNMENT      Kind = "COMPOUND_ASSIGNMENT"
+	ASSIGNMENT_TARGET        Kind = "ASSIGNMENT_TARGET"
+	ASSIGNMENT_VALUE         Kind = "ASSIGNMENT_VALUE"
+	IDENTIFIER               Kind = "IDENTIFIER"
+	TYPE                     Kind = "TYPE"
+	KEYWORD                  Kind = "KEYWORD"
+	SELECTOR_EXPR            Kind = "SELECTOR_EXPR"
+	LITERAL                  Kind = "LITERAL"
+	STRING_LITERAL           Kind = "STRING_LITERAL"
+	BOOLEAN_LITERAL          Kind = "BOOLEAN_LITERAL"
+	EXPRESSION               Kind = "EXPRESSION"
+	PARAMETER_LIST           Kind = "PARAMETER_LIST"
+	PARAMETER                Kind = "PARAMETER"
+	RESULT_LIST              Kind = "RESULT_LIST"
+	RESULT                   Kind = "RESULT"
+	BINARY_EXPRESSION        Kind = "BINARY_EXPRESSION"
+	PARENTHESIZED_EXPRESSION Kind = "PARENTHESIZED_EXPRESSION"
+	SWITCH                   Kind = "SWITCH"
+	CASE                     Kind = "CASE"
+	LABEL                    Kind = "LABEL"
+	DEFAULT_CASE             Kind = "DEFAULT_CASE"
+	LOOP                     Kind = "LOOP"
+	UNSUPPORTED              Kind = "UNSUPPORTED"
+	OPERATOR                 Kind = "OPERATOR"
+	OPERATOR_EQUAL           Kind = "OPERATOR_EQUAL"
+	OPERATOR_NOT_EQUAL       Kind = "OPERATOR_NOT_EQUAL"
+	OPERATOR_ADD             Kind = "OPERATOR_ADD"
+	OPERATOR_MULTIPLY        Kind = "OPERATOR_MULTIPLY"
+	OPERATOR_LOGICAL_AND     Kind = "OPERATOR_LOGICAL_AND"
+	OPERATOR_LOGICAL_OR      Kind = "OPERATOR_LOGICAL_OR"
 )
 
 type Token struct {
@@ -188,6 +191,15 @@ func (t *UastMapper) mapPackageDecl(file *ast.File) *Node {
 	}
 	children = t.appendNode(children, t.mapIdent(file.Name, nil, "Name"))
 	return t.createUastNode([]Kind{PACKAGE}, nil, children, "File.Package")
+}
+
+func (t *UastMapper) appendParenExprX(children []*Node, parentKinds []Kind, astNode ast.Expr) []*Node {
+	var kinds []Kind
+	if containsKind(parentKinds, EXPRESSION) {
+		kinds = append(kinds, EXPRESSION)
+	}
+	children = t.appendNode(children, t.mapExpr(astNode, kinds, "X"))
+	return children
 }
 
 func (t *UastMapper) computeBasicLitKinds(tok token.Token) []Kind {
@@ -490,4 +502,13 @@ func (t *UastMapper) computeAssignStmtKinds(tok token.Token) []Kind {
 	default:
 		return []Kind{ASSIGNMENT, COMPOUND_ASSIGNMENT}
 	}
+}
+
+func containsKind(kinds []Kind, kind Kind) bool {
+	for _, k := range kinds {
+		if k == kind {
+			return true
+		}
+	}
+	return false
 }

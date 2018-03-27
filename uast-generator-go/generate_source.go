@@ -33,10 +33,13 @@ import (
 			NewTypeKind((*ast.FuncLit)(nil), "FUNCTION_LITERAL"),
 			NewTypeKind((*ast.BlockStmt)(nil), "BLOCK"),
 			NewTypeKind((*ast.IfStmt)(nil), "IF"),
+			NewTypeKind((*ast.ForStmt)(nil), "LOOP"),
+			NewTypeKind((*ast.RangeStmt)(nil), "LOOP"),
 			NewTypeKind((*ast.Ident)(nil), "t.computeIdentifierKind(astNode)..."),
 			NewTypeKind((*ast.AssignStmt)(nil), "t.computeAssignStmtKinds(astNode.Tok)..."),
 			NewTypeKind((*ast.BasicLit)(nil), "t.computeBasicLitKinds(astNode.Kind)..."),
 			NewTypeKind((*ast.BinaryExpr)(nil), "BINARY_EXPRESSION"),
+			NewTypeKind((*ast.ParenExpr)(nil), "PARENTHESIZED_EXPRESSION"),
 			NewTypeKind((*ast.CallExpr)(nil), "CALL"),
 			NewTypeKind((*ast.SelectorExpr)(nil), "SELECTOR_EXPR"),
 			NewTypeKind((*ast.SwitchStmt)(nil), "SWITCH"),
@@ -150,6 +153,7 @@ import (
 			// The mapping of each field can be replaced by some custom code. Put function definitions in 'goparser.go'
 			"File#Package": "children = t.appendNode(children, t.mapPackageDecl(astNode))",
 			"File#Name":    "",
+			"ParenExpr#X":  "children = t.appendParenExprX(children, kinds, astNode.X)",
 			// unknown "case" or "default"
 			"CaseClause#Case": "children,kinds = t.handleSwitchCase(astNode.Case, len(astNode.List) == 0, children, kinds)",
 			"CommClause#Case": "children,kinds = t.handleSwitchCase(astNode.Case, astNode.Comm == nil, children, kinds)",

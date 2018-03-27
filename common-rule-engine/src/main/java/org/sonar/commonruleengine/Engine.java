@@ -2,6 +2,7 @@ package org.sonar.commonruleengine;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import org.sonar.commonruleengine.checks.Check;
 import org.sonar.commonruleengine.checks.CheckList;
@@ -41,13 +42,17 @@ public class Engine {
 
   private void visit(UastNode uast) {
     metricsVisitor.visitNode(uast);
-    for (UastNode.Kind kind : uast.kinds) {
-      for (Check rule : engineContext.registeredChecks(kind)) {
-        rule.visitNode(uast);
-      }
+    Set<Check> checks = uast.kinds.stream()
+      .flatMap(kind -> engineContext.registeredChecks(kind).stream())
+      .collect(Collectors.toSet());
+    for (Check check : checks) {
+      check.visitNode(uast);
     }
     for (UastNode child : uast.children) {
       visit(child);
+    }
+    for (Check check : checks) {
+      check.leaveNode(uast);
     }
   }
 
