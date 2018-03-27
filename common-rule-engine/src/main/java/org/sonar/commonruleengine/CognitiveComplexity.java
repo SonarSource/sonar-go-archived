@@ -19,7 +19,7 @@ public class CognitiveComplexity {
   private final List<Issue.Message> secondaryLocations;
   private final Set<UastNode> ignoredNode;
 
-  public CognitiveComplexity(@Nullable List<Issue.Message> secondaryLocations) {
+  private CognitiveComplexity(@Nullable List<Issue.Message> secondaryLocations) {
     complexity = 0;
     nesting = 1;
     inAFunction = false;
@@ -30,6 +30,12 @@ public class CognitiveComplexity {
   public static CognitiveComplexity calculateFunctionComplexity(UastNode function) {
     CognitiveComplexity complexityVisitor = new CognitiveComplexity(new ArrayList<>());
     complexityVisitor.visit(null, function);
+    return complexityVisitor;
+  }
+
+  public static CognitiveComplexity calculateFileComplexity(UastNode compilationUnit) {
+    CognitiveComplexity complexityVisitor = new CognitiveComplexity(null);
+    complexityVisitor.visit(null, compilationUnit);
     return complexityVisitor;
   }
 

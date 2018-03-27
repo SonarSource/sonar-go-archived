@@ -7,6 +7,7 @@ public class Metrics {
   public int numberOfClasses = 0;
   public int numberOfFunctions = 0;
   public int numberOfStatements = 0;
+  public int cognitiveComplexity = 0;
 
   public Set<Integer> linesOfCode = new HashSet<>();
   public Set<Integer> executableLines = new HashSet<>();

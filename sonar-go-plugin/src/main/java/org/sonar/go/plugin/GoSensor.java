@@ -107,6 +107,7 @@ public class GoSensor implements Sensor {
     saveMetric(context, inputFile, CoreMetrics.CLASSES, metrics.numberOfClasses);
     saveMetric(context, inputFile, CoreMetrics.FUNCTIONS, metrics.numberOfFunctions);
     saveMetric(context, inputFile, CoreMetrics.STATEMENTS, metrics.numberOfStatements);
+    saveMetric(context, inputFile, CoreMetrics.COGNITIVE_COMPLEXITY, metrics.cognitiveComplexity);
 
     FileLinesContext linesContext = fileLinesContextFactory.createFor(inputFile);
     saveLinesMetrics(linesContext, metrics.linesOfCode, CoreMetrics.NCLOC_DATA_KEY);
