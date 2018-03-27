@@ -30,6 +30,12 @@ public abstract class Check {
 
   public abstract void visitNode(UastNode node);
 
+  /**
+   * This method is called after "visitNode(node)" of the node itself and all its descendants
+   */
+  public void leaveNode(UastNode node) {
+  }
+
   protected final void reportIssue(UastNode node, String message) {
     context.reportIssue(new Issue(this, new Issue.Message(node, message)));
   }

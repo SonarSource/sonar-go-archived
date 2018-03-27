@@ -17,23 +17,18 @@ public class CognitiveComplexity {
   private int nesting;
   @Nullable
   private final List<Issue.Message> secondaryLocations;
-  @Nullable
-  private final Set<UastNode> visitedNestedFunctions;
   private final Set<UastNode> ignoredNode;
 
-  public CognitiveComplexity(@Nullable List<Issue.Message> secondaryLocations,
-                             @Nullable Set<UastNode> visitedNestedFunctions) {
+  public CognitiveComplexity(@Nullable List<Issue.Message> secondaryLocations) {
     complexity = 0;
     nesting = 1;
     inAFunction = false;
     ignoredNode = new HashSet<>();
     this.secondaryLocations = secondaryLocations;
-    this.visitedNestedFunctions = visitedNestedFunctions;
   }
 
-  public static CognitiveComplexity calculateFunctionComplexity(UastNode function,
-                                                                Set<UastNode> visitedNestedFunctions) {
-    CognitiveComplexity complexityVisitor = new CognitiveComplexity(new ArrayList<>(), visitedNestedFunctions);
+  public static CognitiveComplexity calculateFunctionComplexity(UastNode function) {
+    CognitiveComplexity complexityVisitor = new CognitiveComplexity(new ArrayList<>());
     complexityVisitor.visit(null, function);
     return complexityVisitor;
   }
@@ -62,9 +57,6 @@ public class CognitiveComplexity {
 
   private void visitFunction(UastNode node) {
     if (inAFunction) {
-      if (visitedNestedFunctions != null) {
-        visitedNestedFunctions.add(node);
-      }
       visitNestedChildren(node);
     } else {
       inAFunction = true;

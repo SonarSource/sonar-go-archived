@@ -1,7 +1,5 @@
 package org.sonar.commonruleengine.checks;
 
-import java.util.HashSet;
-import java.util.Set;
 import org.sonar.check.Rule;
 import org.sonar.check.RuleProperty;
 import org.sonar.commonruleengine.CognitiveComplexity;
@@ -16,7 +14,7 @@ public class FunctionCognitiveComplexityCheck extends Check {
 
   private static final int DEFAULT_MAXIMUM_FUNCTION_COMPLEXITY_THRESHOLD = 15;
 
-  private final Set<UastNode> visitedNestedFunctions = new HashSet<>();
+  private int nestedFunctionLevel;
 
   @RuleProperty(
     key = "maximumFunctionCognitiveComplexityThreshold",
@@ -30,7 +28,7 @@ public class FunctionCognitiveComplexityCheck extends Check {
 
   @Override
   public void enterFile() {
-    visitedNestedFunctions.clear();
+    nestedFunctionLevel = 0;
   }
 
   public void setMaxComplexity(int maxComplexity) {
@@ -39,18 +37,26 @@ public class FunctionCognitiveComplexityCheck extends Check {
 
   @Override
   public void visitNode(UastNode node) {
-    FunctionLike functionNode = FunctionLike.from(node);
-    if (functionNode == null || visitedNestedFunctions.contains(node)) {
+    nestedFunctionLevel++;
+    if (nestedFunctionLevel != 1) {
       return;
     }
-    CognitiveComplexity complexity = CognitiveComplexity.calculateFunctionComplexity(
-      functionNode.node(), visitedNestedFunctions);
+    FunctionLike functionNode = FunctionLike.from(node);
+    if (functionNode == null) {
+      return;
+    }
+    CognitiveComplexity complexity = CognitiveComplexity.calculateFunctionComplexity(functionNode.node());
     if (complexity.value() > maxComplexity) {
       // TODO effortToFix = complexity.value() - maxComplexity
       reportIssue(functionNode.name(), "Refactor this function to reduce its Cognitive Complexity from " +
-        complexity.value() + " to the " + maxComplexity + " allowed.",
+          complexity.value() + " to the " + maxComplexity + " allowed.",
         complexity.secondaryLocations());
     }
+  }
+
+  @Override
+  public void leaveNode(UastNode node) {
+    nestedFunctionLevel--;
   }
 
 }
