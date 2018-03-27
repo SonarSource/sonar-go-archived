@@ -174,7 +174,7 @@
       ]},
       {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
         {"token": {"value":"{","line":19,"column":12}, "nativeNode": "Lbrace"},
-        {"kinds": ["STATEMENT"], "nativeNode": "[0](ReturnStmt)", "children": [
+        {"kinds": ["RETURN","STATEMENT"], "nativeNode": "[0](ReturnStmt)", "children": [
           {"kinds": ["KEYWORD"], "token": {"value":"return","line":20,"column":2}, "nativeNode": "Return"},
           {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"1","line":20,"column":9}, "nativeNode": "[0](BasicLit)"}
         ]},
@@ -193,7 +193,7 @@
       ]},
       {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
         {"token": {"value":"{","line":23,"column":12}, "nativeNode": "Lbrace"},
-        {"kinds": ["STATEMENT"], "nativeNode": "[0](ReturnStmt)", "children": [
+        {"kinds": ["RETURN","STATEMENT"], "nativeNode": "[0](ReturnStmt)", "children": [
           {"kinds": ["KEYWORD"], "token": {"value":"return","line":24,"column":2}, "nativeNode": "Return"},
           {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"1","line":24,"column":9}, "nativeNode": "[0](BasicLit)"}
         ]},

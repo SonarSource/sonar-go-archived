@@ -221,6 +221,24 @@ public class Generator {
             break;
         }
         break;
+      case FOR_STATEMENT:
+      case FOR_EACH_STATEMENT:
+      case WHILE_STATEMENT:
+      case DO_STATEMENT:
+        result.add(UastNode.Kind.LOOP);
+        break;
+      case BREAK_STATEMENT:
+        result.add(UastNode.Kind.BREAK);
+        break;
+      case RETURN_STATEMENT:
+        result.add(UastNode.Kind.RETURN);
+        break;
+      case CONTINUE_STATEMENT:
+        result.add(UastNode.Kind.CONTINUE);
+        break;
+      case THROW_STATEMENT:
+        result.add(UastNode.Kind.THROW);
+        break;
       default:
         break;
     }

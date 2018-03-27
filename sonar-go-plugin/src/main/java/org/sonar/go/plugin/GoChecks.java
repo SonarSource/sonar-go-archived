@@ -12,6 +12,7 @@ import org.sonar.commonruleengine.checks.RedundantBooleanLiteralCheck;
 import org.sonar.commonruleengine.checks.SwitchDefaultLocationCheck;
 import org.sonar.commonruleengine.checks.SwitchWithoutDefaultCheck;
 import org.sonar.commonruleengine.checks.TooManyParametersCheck;
+import org.sonar.commonruleengine.checks.UnconditionalJumpStatementCheck;
 
 public class GoChecks {
 
@@ -30,6 +31,7 @@ public class GoChecks {
       RedundantBooleanLiteralCheck.class,
       SwitchDefaultLocationCheck.class,
       SwitchWithoutDefaultCheck.class,
+      UnconditionalJumpStatementCheck.class,
       TooManyParametersCheck.class
     );
   }
