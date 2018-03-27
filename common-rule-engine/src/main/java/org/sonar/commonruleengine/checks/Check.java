@@ -1,6 +1,8 @@
 package org.sonar.commonruleengine.checks;
 
+import java.io.IOException;
 import java.util.Arrays;
+import org.sonar.api.batch.fs.InputFile;
 import org.sonar.commonruleengine.EngineContext;
 import org.sonar.commonruleengine.Issue;
 import org.sonar.uast.UastNode;
@@ -24,8 +26,9 @@ public abstract class Check {
 
   /**
    * This method is called every time we enter a new file, allowing state cleaning for checks
+   * @param inputFile
    */
-  public void enterFile() {
+  public void enterFile(InputFile inputFile) throws IOException {
   }
 
   public abstract void visitNode(UastNode node);
@@ -46,5 +49,9 @@ public abstract class Check {
 
   protected final void reportIssue(UastNode from, UastNode to, String message, Issue.Message... secondaryMessages) {
     context.reportIssue(new Issue(this, new Issue.Message(from, to, message), secondaryMessages));
+  }
+
+  protected final void reportIssueOnFile(String message) {
+    context.reportIssue(Issue.issueOnFile(this, message));
   }
 }

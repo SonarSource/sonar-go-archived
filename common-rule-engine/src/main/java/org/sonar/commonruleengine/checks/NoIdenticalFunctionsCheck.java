@@ -2,6 +2,7 @@ package org.sonar.commonruleengine.checks;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.sonar.api.batch.fs.InputFile;
 import org.sonar.check.Rule;
 import org.sonar.commonruleengine.Issue;
 import org.sonar.uast.UastNode;
@@ -22,7 +23,7 @@ public class NoIdenticalFunctionsCheck extends Check {
   }
 
   @Override
-  public void enterFile() {
+  public void enterFile(InputFile inputFile) {
     functions.clear();
   }
 

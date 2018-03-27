@@ -1,0 +1,10 @@
+{"kinds": ["COMPILATION_UNIT"], "nativeNode": "(File)", "children": [
+  {"kinds": ["PACKAGE"], "nativeNode": "File.Package", "children": [
+    {"kinds": ["COMMENT"], "token": {"value":"// some text before header","line":1,"column":1}, "nativeNode": ""},
+    {"kinds": ["COMMENT","STRUCTURED_COMMENT"], "token": {"value":"/*\nCopyright 2049 ACME\n\n*/","line":2,"column":1}, "nativeNode": ""},
+    {"kinds": ["KEYWORD"], "token": {"value":"package","line":7,"column":1}, "nativeNode": ""},
+    {"kinds": ["IDENTIFIER"], "token": {"value":"FileHeaderCheck","line":7,"column":9}, "nativeNode": "Name(Ident)"}
+  ]},
+  {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant@0","line":7,"column":25}, "nativeNode": ""},
+  {"kinds": ["EOF"], "token": {"line":8,"column":1}, "nativeNode": ""}
+]}

@@ -16,6 +16,7 @@ import org.sonar.api.batch.sensor.Sensor;
 import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.batch.sensor.SensorDescriptor;
 import org.sonar.api.batch.sensor.issue.NewIssue;
+import org.sonar.api.batch.sensor.issue.NewIssueLocation;
 import org.sonar.api.measures.CoreMetrics;
 import org.sonar.api.measures.FileLinesContext;
 import org.sonar.api.measures.FileLinesContextFactory;
@@ -63,7 +64,7 @@ public class GoSensor implements Sensor {
     for (InputFile inputFile : getInputFiles(context)) {
       try {
         UastNode uast = uastGenerator.createUast(inputFile.inputStream());
-        Engine.ScanResult scanResult = ruleEngine.scan(uast, inputFile.type());
+        Engine.ScanResult scanResult = ruleEngine.scan(uast, inputFile);
         scanResult.issues.forEach(issue -> reportIssue(issue, context, inputFile));
         saveMetrics(scanResult.metrics, context, inputFile);
         saveHighlighting(uast, context, inputFile);
@@ -82,15 +83,16 @@ public class GoSensor implements Sensor {
 
   private void reportIssue(Issue issue, SensorContext context, InputFile inputFile) {
     // TODO improve common rule engine to handle this out of the box
-    RuleKey ruleKey = checks.ruleKey(issue.getRule());
-    Objects.requireNonNull(ruleKey, "Rule key not found for " + issue.getRule().getClass());
+    RuleKey ruleKey = checks.ruleKey(issue.getCheck());
+    Objects.requireNonNull(ruleKey, "Rule key not found for " + issue.getCheck().getClass());
     NewIssue newIssue = context.newIssue();
-    newIssue
-      .forRule(ruleKey)
-      .at(newIssue.newLocation()
-        .on(inputFile)
-        .at(newRange(inputFile, issue.getPrimary().from, issue.getPrimary().to))
-        .message(issue.getPrimary().description));
+    NewIssueLocation location = newIssue.newLocation()
+      .on(inputFile)
+      .message(issue.getMessage());
+    if (issue.hasLocation()) {
+      location.at(newRange(inputFile, issue.getPrimary().from, issue.getPrimary().to));
+    }
+    newIssue.forRule(ruleKey).at(location);
 
     Arrays.stream(issue.getSecondaries()).forEach(secondary -> newIssue.addLocation(
       newIssue.newLocation()

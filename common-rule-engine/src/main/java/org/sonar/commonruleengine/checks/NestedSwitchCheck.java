@@ -2,6 +2,7 @@ package org.sonar.commonruleengine.checks;
 
 import java.util.HashSet;
 import java.util.Set;
+import org.sonar.api.batch.fs.InputFile;
 import org.sonar.check.Rule;
 import org.sonar.uast.UastNode;
 import org.sonar.uast.helpers.SwitchLike;
@@ -19,7 +20,7 @@ public class NestedSwitchCheck extends Check {
   }
 
   @Override
-  public void enterFile() {
+  public void enterFile(InputFile inputFile) {
     reported.clear();
   }
 
