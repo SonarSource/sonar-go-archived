@@ -3,20 +3,20 @@ and something different should be executed, or there shouldn't be a <code>switch
 <h2>Noncompliant Code Example</h2>
 <pre>
 if b == 0 {  // Noncompliant
-  doOneMoreThing();
+  doOneMoreThing()
 } else {
-  doOneMoreThing();
+  doOneMoreThing()
 }
 
 switch i {  // Noncompliant
   case 1:
-    doSomething();
+    doSomething()
   case 2:
-    doSomething();
+    doSomething()
   case 3:
-    doSomething();
+    doSomething()
   default:
-    doSomething();
+    doSomething()
 }
 </pre>
 <h2>Exceptions</h2>
@@ -24,9 +24,9 @@ switch i {  // Noncompliant
 clauses.</p>
 <pre>
 if b == 0 {    //no issue, this could have been done on purpose to make the code more readable
-  doSomething();
+  doSomething()
 } else if b == 1 {
-  doSomething();
+  doSomething()
 }
 </pre>
 

@@ -31,6 +31,9 @@ import org.sonar.uast.helpers.SwitchLike;
 
 import static org.sonar.uast.Uast.syntacticallyEquivalent;
 
+/**
+ * https://jira.sonarsource.com/browse/RSPEC-3923
+ */
 @Rule(key = "S3923")
 public class AllBranchesAreIdenticalCheck extends Check {
 
@@ -62,11 +65,14 @@ public class AllBranchesAreIdenticalCheck extends Check {
       return;
     }
     UastNode firstCase = CaseLike.from(caseNodes.get(0)).body();
+    if (caseNodes.stream().noneMatch(UastNode.Kind.DEFAULT_CASE)) {
+      return;
+    }
     boolean allEquivalent = caseNodes.stream()
+      .skip(1)
       .map(caseNode -> CaseLike.from(caseNode).body())
       .allMatch(body -> syntacticallyEquivalent(firstCase, body));
-    boolean hasDefault = caseNodes.stream().anyMatch(UastNode.Kind.DEFAULT_CASE);
-    if (allEquivalent && hasDefault) {
+    if (allEquivalent) {
       reportIssue(switchLike.switchKeyword(), MESSAGE);
     }
   }
@@ -76,7 +82,6 @@ public class AllBranchesAreIdenticalCheck extends Check {
     if (ifLike == null || visitedIfs.contains(node)) {
       return;
     }
-    visitedIfs.add(node);
     UastNode thenNode = ifLike.thenNode();
     UastNode elseNode = ifLike.elseNode();
     boolean allSame = true;
@@ -95,7 +100,7 @@ public class AllBranchesAreIdenticalCheck extends Check {
     }
     allSame = allSame && syntacticallyEquivalent(thenNode, elseNode);
     if (allSame) {
-      reportIssue(ifLike.node(), MESSAGE);
+      reportIssue(ifLike.ifKeyword(), MESSAGE);
     }
   }
 }

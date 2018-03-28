@@ -2,6 +2,7 @@ package NoIdenticalBranches
 
 func foo(x int) int {
     if x == 1 {  // Noncompliant
+//  ^^
         return 1
     } else {
         return 1

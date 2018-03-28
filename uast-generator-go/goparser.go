@@ -53,6 +53,7 @@ const (
 	ARGS_LIST                Kind = "ARGS_LIST"
 	CALL                     Kind = "CALL"
 	IF                       Kind = "IF"
+	IF_KEYWORD               Kind = "IF_KEYWORD"
 	ELSE_KEYWORD             Kind = "ELSE_KEYWORD"
 	ELSE                     Kind = "ELSE"
 	CONDITION                Kind = "CONDITION"

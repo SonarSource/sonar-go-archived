@@ -51,8 +51,6 @@ import (
 			NewTypeKind((*ast.FuncLit)(nil), "FUNCTION_LITERAL"),
 			NewTypeKind((*ast.BlockStmt)(nil), "BLOCK"),
 			NewTypeKind((*ast.IfStmt)(nil), "IF"),
-			NewTypeKind((*ast.ForStmt)(nil), "LOOP"),
-			NewTypeKind((*ast.RangeStmt)(nil), "LOOP"),
 			NewTypeKind((*ast.Ident)(nil), "t.computeIdentifierKind(astNode)..."),
 			NewTypeKind((*ast.ForStmt)(nil), "LOOP"),
 			NewTypeKind((*ast.RangeStmt)(nil), "LOOP, LOOP_FOREACH"),
@@ -112,7 +110,8 @@ import (
 			"AssignStmt#Rhs":       "ASSIGNMENT_VALUE",
 			"CaseClause#List[i]":   "CONDITION, EXPRESSION",
 			"CaseClause#Body":      "BLOCK",
-			"IfStmt#Body":          "THEN, BLOCK",
+			"IfStmt#If":            "IF_KEYWORD",
+			"IfStmt#Body":          "THEN",
 			"IfStmt#Else":          "ELSE",
 			// Can not declare EXPRESSION for all ast.Expr because Expr is also used for type like in Field#Type
 			"CompositeLit#Expr[i]":  "EXPRESSION",
