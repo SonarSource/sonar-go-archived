@@ -22,6 +22,26 @@ allprojects {
 
     ext {
         release = project.hasProperty('release') && project.getProperty('release')
+
+        pomConfig = {
+            name projectTitle
+            description description
+            url 'http://www.sonarqube.org/'
+            organization {
+                name 'SonarSource'
+                url 'http://www.sonarsource.com'
+            }
+            licenses {
+                license {
+                    name 'GNU LGPL 3'
+                    url 'http://www.gnu.org/licenses/lgpl.txt'
+                    distribution 'repo'
+                }
+            }
+            scm {
+                url 'https://github.com/SonarSource/sonar-go'
+            }
+        }
     }
 
     repositories {
