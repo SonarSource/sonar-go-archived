@@ -23,10 +23,3 @@ Print the UAST for some `source.go`:
 Dump the native raw AST for some `source.go`:
 
     uast-generator-go -d source.go
-
-## Goodies
-
-The `samples/` directory contains the AST and UAST.json files that correspond to the samples in
-`../go-ruling/src/test/resources/go/samples`. You can regenerate them with:
-
-    ./samples/gen.sh
