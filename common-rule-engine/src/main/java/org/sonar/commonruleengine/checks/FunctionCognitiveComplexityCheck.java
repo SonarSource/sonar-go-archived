@@ -67,10 +67,10 @@ public class FunctionCognitiveComplexityCheck extends Check {
     }
     CognitiveComplexity complexity = CognitiveComplexity.calculateFunctionComplexity(functionNode.node());
     if (complexity.value() > maxComplexity) {
-      // TODO effortToFix = complexity.value() - maxComplexity
-      reportIssue(functionNode.name(), "Refactor this function to reduce its Cognitive Complexity from " +
-          complexity.value() + " to the " + maxComplexity + " allowed.",
-        complexity.secondaryLocations());
+      String message = "Refactor this function to reduce its Cognitive Complexity from " +
+        complexity.value() + " to the " + maxComplexity + " allowed.";
+      double effortToFix = (double) (complexity.value() - maxComplexity);
+      reportIssue(functionNode.name(), functionNode.name(), message, effortToFix, complexity.secondaryLocations());
     }
   }
 

@@ -29,7 +29,7 @@
             {"kinds": ["EXPRESSION","LITERAL","STRING_LITERAL"], "token": {"value":"\"hello \\\"world\\\"\"","line":4,"column":10}, "nativeNode": "[0](BasicLit)"}
           ]}
         ]},
-        {"kinds": ["STATEMENT"], "nativeNode": "[1](ReturnStmt)", "children": [
+        {"kinds": ["RETURN","STATEMENT"], "nativeNode": "[1](ReturnStmt)", "children": [
           {"kinds": ["KEYWORD"], "token": {"value":"return","line":5,"column":5}, "nativeNode": "Return"},
           {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"a","line":5,"column":12}, "nativeNode": "[0](Ident)"}
         ]},

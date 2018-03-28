@@ -20,7 +20,6 @@
 package org.sonar.commonruleengine.checks;
 
 import com.sonarsource.checks.verifier.SingleFileVerifier;
-import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
@@ -94,7 +93,8 @@ public class TestUtils {
       UastNode.Token from = primary.from.firstToken();
       UastNode.Token to = primary.to.lastToken();
       newIssue = verifier.reportIssue(issue.getMessage())
-        .onRange(from.line, from.column, to.endLine, to.endColumn);
+        .onRange(from.line, from.column, to.endLine, to.endColumn)
+        .withGap(issue.getEffortToFix());
     } else {
       newIssue = verifier.reportIssue(issue.getMessage()).onFile();
     }
