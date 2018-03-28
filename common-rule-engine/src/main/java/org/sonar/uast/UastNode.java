@@ -141,19 +141,30 @@ public final class UastNode {
     PARAMETER,
     OPERATOR,
     OPERATOR_ADD,
+    OPERATOR_SUBTRACT,
+    OPERATOR_MULTIPLY,
+    OPERATOR_DIVIDE,
+    OPERATOR_MODULO,
+    OPERATOR_BINARY_AND,
+    OPERATOR_BINARY_OR,
+    OPERATOR_BINARY_XOR,
+    OPERATOR_LEFT_SHIFT,
+    OPERATOR_RIGHT_SHIFT,
     OPERATOR_EQUAL,
     OPERATOR_LOGICAL_AND,
     OPERATOR_LOGICAL_OR,
-    OPERATOR_MULTIPLY,
     OPERATOR_NOT_EQUAL,
+    OPERATOR_LESS_THEN,
+    OPERATOR_LESS_OR_EQUAL,
+    OPERATOR_GREATER_THEN,
+    OPERATOR_GREATER_OR_EQUAL,
     RETURN,
     STATEMENT,
     SWITCH,
     THEN,
     THROW,
     TYPE,
-    UNSUPPORTED,
-    ;
+    UNSUPPORTED,;
 
     @Override
     public boolean test(UastNode uastNode) {
@@ -222,7 +233,7 @@ public final class UastNode {
 
   public String joinTokens() {
     StringBuilder sb = new StringBuilder();
-    SourcePos pos = kinds.contains(Kind.COMPILATION_UNIT) ? new SourcePos(1,1) : new SourcePos(0,0);
+    SourcePos pos = kinds.contains(Kind.COMPILATION_UNIT) ? new SourcePos(1, 1) : new SourcePos(0, 0);
     joinTokens(sb, pos);
     return sb.toString();
   }
@@ -274,6 +285,7 @@ public final class UastNode {
   private static class SourcePos {
     int line;
     int column;
+
     public SourcePos(int line, int column) {
       this.line = line;
       this.column = column;

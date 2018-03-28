@@ -38,7 +38,6 @@ class UastNode {
     this.token = token;
     this.children = children;
   }
-
   // this enum is copy&paste from common-rule-engine
   enum Kind {
     ASSIGNMENT,
@@ -71,8 +70,8 @@ class UastNode {
     FUNCTION_LITERAL,
     IDENTIFIER,
     IF,
-    IF_KEYWORD,
     KEYWORD,
+    IF_KEYWORD,
     LITERAL,
     LOOP,
     LOOP_FOREACH,
@@ -80,12 +79,24 @@ class UastNode {
     BOOLEAN_LITERAL,
     PARAMETER,
     OPERATOR,
-    OPERATOR_ADD,
-    OPERATOR_EQUAL,
-    OPERATOR_LOGICAL_AND,
-    OPERATOR_LOGICAL_OR,
-    OPERATOR_MULTIPLY,
-    OPERATOR_NOT_EQUAL,
+    OPERATOR_ADD("+"),
+    OPERATOR_SUBTRACT("-"),
+    OPERATOR_MULTIPLY("*"),
+    OPERATOR_DIVIDE("/"),
+    OPERATOR_MODULO("%"),
+    OPERATOR_BINARY_AND("&"),
+    OPERATOR_BINARY_OR("|"),
+    OPERATOR_BINARY_XOR("^"),
+    OPERATOR_LEFT_SHIFT("<<"),
+    OPERATOR_RIGHT_SHIFT(">>"),
+    OPERATOR_EQUAL("=="),
+    OPERATOR_LOGICAL_AND("&&"),
+    OPERATOR_LOGICAL_OR("||"),
+    OPERATOR_NOT_EQUAL("!="),
+    OPERATOR_LESS_THEN("<"),
+    OPERATOR_LESS_OR_EQUAL("<="),
+    OPERATOR_GREATER_THEN(">"),
+    OPERATOR_GREATER_OR_EQUAL(">="),
     RETURN,
     STATEMENT,
     SWITCH,
@@ -93,6 +104,17 @@ class UastNode {
     THROW,
     TYPE,
     ;
+
+    @Nullable
+    public final String token;
+
+    Kind() {
+      this.token = null;
+    }
+
+    Kind(String token) {
+      this.token = token;
+    }
   }
 
   static class Token {

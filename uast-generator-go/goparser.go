@@ -39,65 +39,78 @@ func (k Kind) String() string {
 }
 
 const (
-	COMPILATION_UNIT         Kind = "COMPILATION_UNIT"
-	COMMENT                  Kind = "COMMENT"
-	STRUCTURED_COMMENT       Kind = "STRUCTURED_COMMENT"
-	PACKAGE                  Kind = "PACKAGE"
-	EOF                      Kind = "EOF"
-	FUNCTION                 Kind = "FUNCTION"
-	FUNCTION_LITERAL         Kind = "FUNCTION_LITERAL"
-	FUNCTION_NAME            Kind = "FUNCTION_NAME"
-	BLOCK                    Kind = "BLOCK"
-	ARGS_LIST                Kind = "ARGS_LIST"
-	CALL                     Kind = "CALL"
-	IF                       Kind = "IF"
-	IF_KEYWORD               Kind = "IF_KEYWORD"
-	ELSE_KEYWORD             Kind = "ELSE_KEYWORD"
-	ELSE                     Kind = "ELSE"
-	CONDITION                Kind = "CONDITION"
-	DECLARATION              Kind = "DECLARATION"
-	DECL_LIST                Kind = "DECL_LIST"
-	CLASS                    Kind = "CLASS"
-	STATEMENT                Kind = "STATEMENT"
-	ASSIGNMENT               Kind = "ASSIGNMENT"
-	COMPOUND_ASSIGNMENT      Kind = "COMPOUND_ASSIGNMENT"
-	ASSIGNMENT_TARGET        Kind = "ASSIGNMENT_TARGET"
-	ASSIGNMENT_VALUE         Kind = "ASSIGNMENT_VALUE"
-	IDENTIFIER               Kind = "IDENTIFIER"
-	TYPE                     Kind = "TYPE"
-	KEYWORD                  Kind = "KEYWORD"
-	SELECTOR_EXPR            Kind = "SELECTOR_EXPR"
-	LITERAL                  Kind = "LITERAL"
-	STRING_LITERAL           Kind = "STRING_LITERAL"
-	BOOLEAN_LITERAL          Kind = "BOOLEAN_LITERAL"
-	EXPRESSION               Kind = "EXPRESSION"
-	PARAMETER_LIST           Kind = "PARAMETER_LIST"
-	PARAMETER                Kind = "PARAMETER"
-	RESULT_LIST              Kind = "RESULT_LIST"
-	RESULT                   Kind = "RESULT"
-	RETURN                   Kind = "RETURN"
-	BINARY_EXPRESSION        Kind = "BINARY_EXPRESSION"
-	PARENTHESIZED_EXPRESSION Kind = "PARENTHESIZED_EXPRESSION"
-	LEFT_PARENTHESIS         Kind = "LEFT_PARENTHESIS"
-	RIGHT_PARENTHESIS        Kind = "RIGHT_PARENTHESIS"
-	SWITCH                   Kind = "SWITCH"
-	CASE                     Kind = "CASE"
-	LABEL                    Kind = "LABEL"
-	DEFAULT_CASE             Kind = "DEFAULT_CASE"
-	LOOP                     Kind = "LOOP"
-	LOOP_FOREACH             Kind = "LOOP_FOREACH"
-	BREAK                    Kind = "BREAK"
-	CONTINUE                 Kind = "CONTINUE"
-	THROW                    Kind = "THROW"
-	UNSUPPORTED              Kind = "UNSUPPORTED"
-	OPERATOR                 Kind = "OPERATOR"
-	OPERATOR_EQUAL           Kind = "OPERATOR_EQUAL"
-	OPERATOR_NOT_EQUAL       Kind = "OPERATOR_NOT_EQUAL"
-	OPERATOR_ADD             Kind = "OPERATOR_ADD"
-	OPERATOR_MULTIPLY        Kind = "OPERATOR_MULTIPLY"
-	OPERATOR_LOGICAL_AND     Kind = "OPERATOR_LOGICAL_AND"
-	OPERATOR_LOGICAL_OR      Kind = "OPERATOR_LOGICAL_OR"
-	THEN                     Kind = "THEN"
+	COMPILATION_UNIT          Kind = "COMPILATION_UNIT"
+	COMMENT                   Kind = "COMMENT"
+	STRUCTURED_COMMENT        Kind = "STRUCTURED_COMMENT"
+	PACKAGE                   Kind = "PACKAGE"
+	EOF                       Kind = "EOF"
+	FUNCTION                  Kind = "FUNCTION"
+	FUNCTION_LITERAL          Kind = "FUNCTION_LITERAL"
+	FUNCTION_NAME             Kind = "FUNCTION_NAME"
+	BLOCK                     Kind = "BLOCK"
+	ARGS_LIST                 Kind = "ARGS_LIST"
+	CALL                      Kind = "CALL"
+	IF                        Kind = "IF"
+	IF_KEYWORD                Kind = "IF_KEYWORD"
+	ELSE_KEYWORD              Kind = "ELSE_KEYWORD"
+	ELSE                      Kind = "ELSE"
+	CONDITION                 Kind = "CONDITION"
+	DECLARATION               Kind = "DECLARATION"
+	DECL_LIST                 Kind = "DECL_LIST"
+	CLASS                     Kind = "CLASS"
+	STATEMENT                 Kind = "STATEMENT"
+	ASSIGNMENT                Kind = "ASSIGNMENT"
+	COMPOUND_ASSIGNMENT       Kind = "COMPOUND_ASSIGNMENT"
+	ASSIGNMENT_TARGET         Kind = "ASSIGNMENT_TARGET"
+	ASSIGNMENT_VALUE          Kind = "ASSIGNMENT_VALUE"
+	IDENTIFIER                Kind = "IDENTIFIER"
+	TYPE                      Kind = "TYPE"
+	KEYWORD                   Kind = "KEYWORD"
+	SELECTOR_EXPR             Kind = "SELECTOR_EXPR"
+	LITERAL                   Kind = "LITERAL"
+	STRING_LITERAL            Kind = "STRING_LITERAL"
+	BOOLEAN_LITERAL           Kind = "BOOLEAN_LITERAL"
+	EXPRESSION                Kind = "EXPRESSION"
+	PARAMETER_LIST            Kind = "PARAMETER_LIST"
+	PARAMETER                 Kind = "PARAMETER"
+	RESULT_LIST               Kind = "RESULT_LIST"
+	RESULT                    Kind = "RESULT"
+	RETURN                    Kind = "RETURN"
+	BINARY_EXPRESSION         Kind = "BINARY_EXPRESSION"
+	PARENTHESIZED_EXPRESSION  Kind = "PARENTHESIZED_EXPRESSION"
+	LEFT_PARENTHESIS          Kind = "LEFT_PARENTHESIS"
+	RIGHT_PARENTHESIS         Kind = "RIGHT_PARENTHESIS"
+	SWITCH                    Kind = "SWITCH"
+	CASE                      Kind = "CASE"
+	LABEL                     Kind = "LABEL"
+	DEFAULT_CASE              Kind = "DEFAULT_CASE"
+	LOOP                      Kind = "LOOP"
+	LOOP_FOREACH              Kind = "LOOP_FOREACH"
+	BREAK                     Kind = "BREAK"
+	CONTINUE                  Kind = "CONTINUE"
+	OPERATOR                  Kind = "OPERATOR"
+	OPERATOR_ADD              Kind = "OPERATOR_ADD"
+	OPERATOR_SUBTRACT         Kind = "OPERATOR_SUBTRACT"
+	OPERATOR_MULTIPLY         Kind = "OPERATOR_MULTIPLY"
+	OPERATOR_DIVIDE           Kind = "OPERATOR_DIVIDE"
+	OPERATOR_MODULO           Kind = "OPERATOR_MODULO"
+	OPERATOR_BINARY_AND       Kind = "OPERATOR_BINARY_AND"
+	OPERATOR_BINARY_AND_NOT   Kind = "OPERATOR_BINARY_AND_NOT"
+	OPERATOR_BINARY_OR        Kind = "OPERATOR_BINARY_OR"
+	OPERATOR_BINARY_XOR       Kind = "OPERATOR_BINARY_XOR"
+	OPERATOR_LEFT_SHIFT       Kind = "OPERATOR_LEFT_SHIFT"
+	OPERATOR_RIGHT_SHIFT      Kind = "OPERATOR_RIGHT_SHIFT"
+	OPERATOR_EQUAL            Kind = "OPERATOR_EQUAL"
+	OPERATOR_LOGICAL_AND      Kind = "OPERATOR_LOGICAL_AND"
+	OPERATOR_LOGICAL_OR       Kind = "OPERATOR_LOGICAL_OR"
+	OPERATOR_NOT_EQUAL        Kind = "OPERATOR_NOT_EQUAL"
+	OPERATOR_LESS_THEN        Kind = "OPERATOR_LESS_THEN"
+	OPERATOR_LESS_OR_EQUAL    Kind = "OPERATOR_LESS_OR_EQUAL"
+	OPERATOR_GREATER_THEN     Kind = "OPERATOR_GREATER_THEN"
+	OPERATOR_GREATER_OR_EQUAL Kind = "OPERATOR_GREATER_OR_EQUAL"
+	THEN                      Kind = "THEN"
+	THROW                     Kind = "THROW"
+	UNSUPPORTED               Kind = "UNSUPPORTED"
 )
 
 type Token struct {
@@ -236,18 +249,65 @@ func (t *UastMapper) computeBasicLitKinds(tok token.Token) []Kind {
 
 func (t *UastMapper) computeOperatorKind(op token.Token) []Kind {
 	switch op {
-	case token.EQL:
-		return []Kind{OPERATOR, OPERATOR_EQUAL}
-	case token.NEQ:
-		return []Kind{OPERATOR, OPERATOR_NOT_EQUAL}
-	case token.ADD:
-		return []Kind{OPERATOR, OPERATOR_ADD}
-	case token.MUL:
-		return []Kind{OPERATOR, OPERATOR_MULTIPLY}
+	// &&
 	case token.LAND:
 		return []Kind{OPERATOR, OPERATOR_LOGICAL_AND}
+		// ||
 	case token.LOR:
 		return []Kind{OPERATOR, OPERATOR_LOGICAL_OR}
+		// ==
+	case token.EQL:
+		return []Kind{OPERATOR, OPERATOR_EQUAL}
+		// <
+	case token.LSS:
+		return []Kind{OPERATOR, OPERATOR_LESS_THEN}
+		// >
+	case token.GTR:
+		return []Kind{OPERATOR, OPERATOR_GREATER_THEN}
+		// !=
+	case token.NEQ:
+		return []Kind{OPERATOR, OPERATOR_NOT_EQUAL}
+		// <=
+	case token.LEQ:
+		return []Kind{OPERATOR, OPERATOR_LESS_OR_EQUAL}
+		// >=
+	case token.GEQ:
+		return []Kind{OPERATOR, OPERATOR_GREATER_OR_EQUAL}
+		// +
+	case token.ADD:
+		return []Kind{OPERATOR, OPERATOR_ADD}
+		// -
+	case token.SUB:
+		return []Kind{OPERATOR, OPERATOR_SUBTRACT}
+		// *
+	case token.MUL:
+		return []Kind{OPERATOR, OPERATOR_MULTIPLY}
+		// /
+	case token.QUO:
+		return []Kind{OPERATOR, OPERATOR_DIVIDE}
+		// %
+	case token.REM:
+		return []Kind{OPERATOR, OPERATOR_MODULO}
+
+		// &
+	case token.AND:
+		return []Kind{OPERATOR, OPERATOR_BINARY_AND}
+		// &^
+	case token.AND_NOT:
+		return []Kind{OPERATOR, OPERATOR_BINARY_AND_NOT}
+		// |
+	case token.OR:
+		return []Kind{OPERATOR, OPERATOR_BINARY_OR}
+		// ^
+	case token.XOR:
+		return []Kind{OPERATOR, OPERATOR_BINARY_XOR}
+		// <<
+	case token.SHL:
+		return []Kind{OPERATOR, OPERATOR_LEFT_SHIFT}
+		// >>
+	case token.SHR:
+		return []Kind{OPERATOR, OPERATOR_RIGHT_SHIFT}
+
 	default:
 		return []Kind{OPERATOR}
 	}

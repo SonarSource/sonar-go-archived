@@ -241,7 +241,7 @@
           {"token": {"value":";","line":31,"column":12}, "nativeNode": ""},
           {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
             {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":31,"column":14}, "nativeNode": "X(Ident)"},
-            {"kinds": ["OPERATOR"], "token": {"value":"\u003c","line":31,"column":16}, "nativeNode": "Op"},
+            {"kinds": ["OPERATOR","OPERATOR_LESS_THEN"], "token": {"value":"\u003c","line":31,"column":16}, "nativeNode": "Op"},
             {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"10","line":31,"column":18}, "nativeNode": "Y(BasicLit)"}
           ]},
           {"token": {"value":";","line":31,"column":20}, "nativeNode": ""},

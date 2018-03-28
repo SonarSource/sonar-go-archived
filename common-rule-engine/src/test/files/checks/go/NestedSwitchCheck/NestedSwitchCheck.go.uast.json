@@ -110,7 +110,7 @@
                 {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
                   {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
                     {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"y","line":19,"column":6}, "nativeNode": "X(Ident)"},
-                    {"kinds": ["OPERATOR"], "token": {"value":"\u003e","line":19,"column":8}, "nativeNode": "Op"},
+                    {"kinds": ["OPERATOR","OPERATOR_GREATER_THEN"], "token": {"value":"\u003e","line":19,"column":8}, "nativeNode": "Op"},
                     {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"4","line":19,"column":10}, "nativeNode": "Y(BasicLit)"}
                   ]}
                 ]},

@@ -559,6 +559,9 @@ func main() {
 }
 `
 	expectedOperators := []string{"||", "&&", "==", "!=", "<", "<=", ">", ">=", "+", "-", "|", "^", "*", "/", "%", "<<", ">>", "&", "&^"}
+	expectedOperatorKinds := []Kind{OPERATOR_LOGICAL_OR, OPERATOR_LOGICAL_AND, OPERATOR_EQUAL, OPERATOR_NOT_EQUAL, OPERATOR_LESS_THEN, OPERATOR_LESS_OR_EQUAL, OPERATOR_GREATER_THEN,
+		OPERATOR_GREATER_OR_EQUAL, OPERATOR_ADD, OPERATOR_SUBTRACT, OPERATOR_BINARY_OR, OPERATOR_BINARY_XOR, OPERATOR_MULTIPLY, OPERATOR_DIVIDE, OPERATOR_MODULO, OPERATOR_LEFT_SHIFT,
+		OPERATOR_RIGHT_SHIFT, OPERATOR_BINARY_AND, OPERATOR_BINARY_AND_NOT}
 	body := uastFromString(t, source,
 		"Decls/[0](FuncDecl)/Body")
 
@@ -591,6 +594,10 @@ func main() {
 
 		if expected, actual := expectedOperators[i], uast.Children[1].Token.Value; expected != actual {
 			t.Fatalf("got '%v'; expected '%v'", actual, expected)
+		}
+
+		if !uast.Children[1].hasKind(expectedOperatorKinds[i]) {
+			t.Fatalf("got '%v'; expected '%v'", uast.Children[1].Kinds, expectedOperatorKinds[i])
 		}
 	}
 }
