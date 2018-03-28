@@ -19,32 +19,32 @@
  */
 package org.sonar.commonruleengine.checks;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.Optional;
+import org.sonar.check.Rule;
+import org.sonar.commonruleengine.Issue;
+import org.sonar.uast.UastNode;
+import org.sonar.uast.helpers.ParenthesizedLike;
 
-public class CheckList {
+/**
+ * https://jira.sonarsource.com/browse/RSPEC-1110
+ */
+@Rule(key = "S1110")
+public class RedundantParenthesesCheck extends Check {
 
-  private CheckList() {
-    // do not instantiate
+  public RedundantParenthesesCheck() {
+    super(UastNode.Kind.PARENTHESIZED_EXPRESSION);
   }
 
-  public static List<Class<? extends Check>> getChecks() {
-    return Arrays.asList(
-      AllBranchesAreIdenticalCheck.class,
-      BinaryOperatorIdenticalExpressionsCheck.class,
-      FileHeaderCheck.class,
-      FunctionCognitiveComplexityCheck.class,
-      NestedSwitchCheck.class,
-      NoIdenticalConditionsCheck.class,
-      NoIdenticalFunctionsCheck.class,
-      NoHardcodedCredentialsCheck.class,
-      NoSelfAssignmentCheck.class,
-      RedundantBooleanLiteralCheck.class,
-      RedundantParenthesesCheck.class,
-      SwitchDefaultLocationCheck.class,
-      SwitchWithoutDefaultCheck.class,
-      TooManyParametersCheck.class
-    );
+  @Override
+  public void visitNode(UastNode node) {
+    Optional.of(node)
+      .map(ParenthesizedLike::from)
+      .map(ParenthesizedLike::expression)
+      .map(ParenthesizedLike::from)
+      .ifPresent(parentheses -> reportIssue(
+        parentheses.leftParenthesis(),
+        "Remove these useless parentheses.",
+        new Issue.Message(parentheses.rightParenthesis())));
   }
 
 }

@@ -109,6 +109,8 @@ public final class UastNode {
     LABEL,
     BINARY_EXPRESSION,
     PARENTHESIZED_EXPRESSION,
+    LEFT_PARENTHESIS,
+    RIGHT_PARENTHESIS,
     BLOCK,
     BREAK,
     CASE,

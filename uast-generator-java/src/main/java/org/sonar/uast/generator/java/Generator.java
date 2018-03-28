@@ -50,6 +50,7 @@ import org.sonar.plugins.java.api.tree.ExpressionTree;
 import org.sonar.plugins.java.api.tree.IdentifierTree;
 import org.sonar.plugins.java.api.tree.IfStatementTree;
 import org.sonar.plugins.java.api.tree.MethodTree;
+import org.sonar.plugins.java.api.tree.ParenthesizedTree;
 import org.sonar.plugins.java.api.tree.PrimitiveTypeTree;
 import org.sonar.plugins.java.api.tree.StatementTree;
 import org.sonar.plugins.java.api.tree.SyntaxToken;
@@ -282,6 +283,13 @@ public class Generator {
         result.add(UastNode.Kind.OPERATOR);
         result.add(UastNode.Kind.OPERATOR_LOGICAL_OR);
         break;
+      // separators
+      case "(":
+        result.add(UastNode.Kind.LEFT_PARENTHESIS);
+        break;
+      case ")":
+        result.add(UastNode.Kind.RIGHT_PARENTHESIS);
+        break;
       // keywords
       case "if":
         result.add(UastNode.Kind.IF_KEYWORD);
@@ -295,7 +303,9 @@ public class Generator {
     if (!(tree instanceof ExpressionTree) || (tree instanceof PrimitiveTypeTree)) {
       return false;
     }
-    return (tree.parent() instanceof Arguments) || !(tree instanceof IdentifierTree);
+    return (tree.parent() instanceof Arguments) ||
+      (tree.parent() instanceof ParenthesizedTree) ||
+      !(tree instanceof IdentifierTree);
   }
 
   class PostprocessVisitor extends BaseTreeVisitor {

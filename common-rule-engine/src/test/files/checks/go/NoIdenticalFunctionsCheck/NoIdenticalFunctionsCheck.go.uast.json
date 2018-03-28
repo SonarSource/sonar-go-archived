@@ -113,11 +113,11 @@
               {"token": {"value":".","line":18,"column":8}, "nativeNode": ""},
               {"kinds": ["IDENTIFIER"], "token": {"value":"Println","line":18,"column":9}, "nativeNode": "Sel(Ident)"}
             ]},
-            {"kinds": ["LPAREN"], "token": {"value":"(","line":18,"column":16}, "nativeNode": "Lparen"},
+            {"kinds": ["LEFT_PARENTHESIS"], "token": {"value":"(","line":18,"column":16}, "nativeNode": "Lparen"},
             {"kinds": ["ARGS_LIST"], "nativeNode": "Args([]Expr)", "children": [
               {"kinds": ["EXPRESSION","LITERAL","STRING_LITERAL"], "token": {"value":"\"hello\"","line":18,"column":17}, "nativeNode": "[0](BasicLit)"}
             ]},
-            {"kinds": ["RPAREN"], "token": {"value":")","line":18,"column":24}, "nativeNode": "Rparen"}
+            {"kinds": ["RIGHT_PARENTHESIS"], "token": {"value":")","line":18,"column":24}, "nativeNode": "Rparen"}
           ]}
         ]},
         {"kinds": ["STATEMENT"], "nativeNode": "[1](ExprStmt)", "children": [
@@ -127,11 +127,11 @@
               {"token": {"value":".","line":19,"column":8}, "nativeNode": ""},
               {"kinds": ["IDENTIFIER"], "token": {"value":"Println","line":19,"column":9}, "nativeNode": "Sel(Ident)"}
             ]},
-            {"kinds": ["LPAREN"], "token": {"value":"(","line":19,"column":16}, "nativeNode": "Lparen"},
+            {"kinds": ["LEFT_PARENTHESIS"], "token": {"value":"(","line":19,"column":16}, "nativeNode": "Lparen"},
             {"kinds": ["ARGS_LIST"], "nativeNode": "Args([]Expr)", "children": [
               {"kinds": ["EXPRESSION","LITERAL","STRING_LITERAL"], "token": {"value":"\"hello\"","line":19,"column":17}, "nativeNode": "[0](BasicLit)"}
             ]},
-            {"kinds": ["RPAREN"], "token": {"value":")","line":19,"column":24}, "nativeNode": "Rparen"}
+            {"kinds": ["RIGHT_PARENTHESIS"], "token": {"value":")","line":19,"column":24}, "nativeNode": "Rparen"}
           ]}
         ]},
         {"token": {"value":"}","line":20,"column":1}, "nativeNode": "Rbrace"}
@@ -156,11 +156,11 @@
               {"token": {"value":".","line":23,"column":8}, "nativeNode": ""},
               {"kinds": ["IDENTIFIER"], "token": {"value":"Println","line":23,"column":9}, "nativeNode": "Sel(Ident)"}
             ]},
-            {"kinds": ["LPAREN"], "token": {"value":"(","line":23,"column":16}, "nativeNode": "Lparen"},
+            {"kinds": ["LEFT_PARENTHESIS"], "token": {"value":"(","line":23,"column":16}, "nativeNode": "Lparen"},
             {"kinds": ["ARGS_LIST"], "nativeNode": "Args([]Expr)", "children": [
               {"kinds": ["EXPRESSION","LITERAL","STRING_LITERAL"], "token": {"value":"\"hello\"","line":23,"column":17}, "nativeNode": "[0](BasicLit)"}
             ]},
-            {"kinds": ["RPAREN"], "token": {"value":")","line":23,"column":24}, "nativeNode": "Rparen"}
+            {"kinds": ["RIGHT_PARENTHESIS"], "token": {"value":")","line":23,"column":24}, "nativeNode": "Rparen"}
           ]}
         ]},
         {"kinds": ["STATEMENT"], "nativeNode": "[1](ExprStmt)", "children": [
@@ -170,11 +170,11 @@
               {"token": {"value":".","line":24,"column":8}, "nativeNode": ""},
               {"kinds": ["IDENTIFIER"], "token": {"value":"Println","line":24,"column":9}, "nativeNode": "Sel(Ident)"}
             ]},
-            {"kinds": ["LPAREN"], "token": {"value":"(","line":24,"column":16}, "nativeNode": "Lparen"},
+            {"kinds": ["LEFT_PARENTHESIS"], "token": {"value":"(","line":24,"column":16}, "nativeNode": "Lparen"},
             {"kinds": ["ARGS_LIST"], "nativeNode": "Args([]Expr)", "children": [
               {"kinds": ["EXPRESSION","LITERAL","STRING_LITERAL"], "token": {"value":"\"hello\"","line":24,"column":17}, "nativeNode": "[0](BasicLit)"}
             ]},
-            {"kinds": ["RPAREN"], "token": {"value":")","line":24,"column":24}, "nativeNode": "Rparen"}
+            {"kinds": ["RIGHT_PARENTHESIS"], "token": {"value":")","line":24,"column":24}, "nativeNode": "Rparen"}
           ]}
         ]},
         {"token": {"value":"}","line":25,"column":1}, "nativeNode": "Rbrace"}
