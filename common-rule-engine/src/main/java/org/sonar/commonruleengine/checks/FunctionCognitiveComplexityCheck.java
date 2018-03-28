@@ -1,5 +1,6 @@
 package org.sonar.commonruleengine.checks;
 
+import org.sonar.api.batch.fs.InputFile;
 import org.sonar.check.Rule;
 import org.sonar.check.RuleProperty;
 import org.sonar.commonruleengine.CognitiveComplexity;
@@ -27,7 +28,7 @@ public class FunctionCognitiveComplexityCheck extends Check {
   }
 
   @Override
-  public void enterFile() {
+  public void enterFile(InputFile inputFile) {
     nestedFunctionLevel = 0;
   }
 

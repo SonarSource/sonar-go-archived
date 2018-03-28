@@ -3,6 +3,7 @@ package org.sonar.go.plugin;
 import java.util.Arrays;
 import java.util.List;
 import org.sonar.commonruleengine.checks.BinaryOperatorIdenticalExpressionsCheck;
+import org.sonar.commonruleengine.checks.FileHeaderCheck;
 import org.sonar.commonruleengine.checks.FunctionCognitiveComplexityCheck;
 import org.sonar.commonruleengine.checks.NestedSwitchCheck;
 import org.sonar.commonruleengine.checks.NoHardcodedCredentialsCheck;
@@ -24,6 +25,7 @@ public class GoChecks {
   public static List<Class> getChecks() {
     return Arrays.asList(
       BinaryOperatorIdenticalExpressionsCheck.class,
+      FileHeaderCheck.class,
       FunctionCognitiveComplexityCheck.class,
       NestedSwitchCheck.class,
       NoIdenticalConditionsCheck.class,

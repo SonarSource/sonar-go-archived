@@ -1,5 +1,6 @@
 package org.sonar.commonruleengine;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -34,10 +35,10 @@ public class Engine {
     rules.forEach(rule -> rule.initialize(engineContext));
   }
 
-  public ScanResult scan(UastNode uast, InputFile.Type fileType) {
+  public ScanResult scan(UastNode uast, InputFile inputFile) throws IOException {
     metricsVisitor.enterFile(uast);
-    engineContext.enterFile();
-    visit(uast, fileType);
+    engineContext.enterFile(inputFile);
+    visit(uast, inputFile.type());
     return new ScanResult(engineContext.getIssues(), metricsVisitor.getMetrics());
   }
 

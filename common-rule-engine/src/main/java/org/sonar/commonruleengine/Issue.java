@@ -8,18 +8,30 @@ import org.sonar.uast.UastNode;
 
 public class Issue {
 
-  private final Check rule;
+  private final Check check;
   private final Message primaryMessage;
   private final Message[] secondaryMessages;
 
-  public Issue(Check rule, Message primaryMessage, Message... secondaryMessages) {
-    this.rule = rule;
+  public Issue(Check check, Message primaryMessage, Message... secondaryMessages) {
+    this.check = check;
     this.primaryMessage = primaryMessage;
     this.secondaryMessages = secondaryMessages;
   }
 
-  public Check getRule() {
-    return rule;
+  public static Issue issueOnFile(Check check, String message) {
+    return new Issue(check, new Message(null, message));
+  }
+
+  public Check getCheck() {
+    return check;
+  }
+
+  public boolean hasLocation() {
+    return primaryMessage.from != null;
+  }
+
+  public String getMessage() {
+    return primaryMessage.description;
   }
 
   public Message getPrimary() {
@@ -32,7 +44,7 @@ public class Issue {
 
   @Override
   public String toString() {
-    return rule.getClass().getSimpleName() + ": " + primaryMessage.toString() + " " +
+    return check.getClass().getSimpleName() + ": " + primaryMessage.toString() + " " +
       Arrays.stream(secondaryMessages).map(Message::toString).collect(Collectors.joining(" "));
   }
 
@@ -46,11 +58,16 @@ public class Issue {
       this(node, node, null);
     }
 
-    public Message(UastNode node, @Nullable String description) {
+    /**
+     *
+     * @param node can be null for file issue
+     * @param description
+     */
+    public Message(@Nullable UastNode node, @Nullable String description) {
       this(node, node, description);
     }
 
-    public Message(UastNode from, UastNode to, @Nullable String description) {
+    public Message(@Nullable UastNode from, @Nullable UastNode to, @Nullable String description) {
       this.from = from;
       this.to = to;
       this.description = description;
@@ -59,7 +76,13 @@ public class Issue {
     @Override
     public String toString() {
       StringBuilder text = new StringBuilder();
-      text.append("(").append(from.firstToken()).append(", ").append(to.lastToken()).append(")");
+      if (from != null) {
+        text.append("(");
+        text.append(from.firstToken());
+        text.append(", ");
+        text.append(to.lastToken());
+        text.append(")");
+      }
       if (description != null) {
         text.append(" ").append(description);
       }

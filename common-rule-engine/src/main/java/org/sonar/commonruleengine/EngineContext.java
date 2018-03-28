@@ -1,5 +1,6 @@
 package org.sonar.commonruleengine;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.EnumMap;
@@ -33,9 +34,11 @@ public class EngineContext {
     issues.add(issue);
   }
 
-  public void enterFile() {
+  void enterFile(InputFile inputFile) throws IOException {
     issues.clear();
-    getChecks().forEach(Check::enterFile);
+    for (Check c : getChecks()) {
+      c.enterFile(inputFile);
+    }
   }
 
   public List<Issue> getIssues() {
