@@ -1,0 +1,34 @@
+plugins {
+  id "java"
+}
+
+description = 'SonarGo :: Integration Tests'
+
+dependencies {
+  // please keep the list ordered
+
+  testCompile 'junit:junit'
+  testCompile 'org.assertj:assertj-core'
+  testCompile 'org.sonarsource.orchestrator:sonar-orchestrator'
+  testCompile 'org.sonarsource.sonarqube:sonar-ws:6.7'
+  testCompile 'com.google.code.findbugs:jsr305:2.0.2'
+}
+
+sonarqube.skipProject = true
+
+task integrationTest(type: Test) {
+  systemProperty 'java.awt.headless', 'true'
+  systemProperty 'orchestrator.configUrl', System.getProperty('orchestrator.configUrl')
+  systemProperty 'sonar.runtimeVersion', System.getProperty('sonar.runtimeVersion')
+  systemProperty 'orchestrator.artifactory.repositories', System.getProperty('orchestrator.artifactory.repositories')
+  systemProperty 'orchestrator.artifactory.apiKey', System.getProperty('orchestrator.artifactory.apiKey')
+
+  filter {
+    includeTestsMatching 'com.sonar.it.go.Tests'
+  }
+}
+
+// UT are excluded in order for ITs to only run when needed
+test {
+  exclude '*'
+}
