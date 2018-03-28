@@ -57,6 +57,7 @@ import org.sonar.plugins.java.api.tree.StatementTree;
 import org.sonar.plugins.java.api.tree.SyntaxToken;
 import org.sonar.plugins.java.api.tree.SyntaxTrivia;
 import org.sonar.plugins.java.api.tree.Tree;
+import org.sonar.plugins.java.api.tree.UnaryExpressionTree;
 import org.sonar.plugins.java.api.tree.VariableTree;
 
 public class Generator {
@@ -119,6 +120,7 @@ public class Generator {
       if (uastNode.token != null && SourceVersion.isKeyword(uastNode.token.value)) {
         uastNode.kinds.add(UastNode.Kind.KEYWORD);
       }
+      treeUastNodeMap.put(tree, uastNode);
       List<UastNode> trivia = ((SyntaxToken) tree).trivias().stream()
         // SonarJava AST duplicates some nodes (e.g. Variable)
         .filter(seenTrivia::add)
@@ -189,6 +191,19 @@ public class Generator {
       case ASSIGNMENT:
         result.add(UastNode.Kind.ASSIGNMENT);
         break;
+      case AND_ASSIGNMENT:
+      case DIVIDE_ASSIGNMENT:
+      case LEFT_SHIFT_ASSIGNMENT:
+      case MINUS_ASSIGNMENT:
+      case MULTIPLY_ASSIGNMENT:
+      case OR_ASSIGNMENT:
+      case PLUS_ASSIGNMENT:
+      case REMAINDER_ASSIGNMENT:
+      case RIGHT_SHIFT_ASSIGNMENT:
+      case UNSIGNED_RIGHT_SHIFT_ASSIGNMENT:
+      case XOR_ASSIGNMENT:
+        addTokenKinds(((AssignmentExpressionTree) tree).operatorToken(), result);
+        break;
       case BLOCK:
         result.add(UastNode.Kind.BLOCK);
         break;
@@ -241,6 +256,30 @@ public class Generator {
       case THROW_STATEMENT:
         result.add(UastNode.Kind.THROW);
         break;
+      case UNARY_MINUS:
+        result.add(UastNode.Kind.UNARY_MINUS);
+        break;
+      case UNARY_PLUS:
+        result.add(UastNode.Kind.UNARY_PLUS);
+        break;
+      case LOGICAL_COMPLEMENT:
+        result.add(UastNode.Kind.LOGICAL_COMPLEMENT);
+        break;
+      case BITWISE_COMPLEMENT:
+        result.add(UastNode.Kind.BITWISE_COMPLEMENT);
+        break;
+      case PREFIX_DECREMENT:
+        result.add(UastNode.Kind.PREFIX_DECREMENT);
+        break;
+      case PREFIX_INCREMENT:
+        result.add(UastNode.Kind.PREFIX_INCREMENT);
+        break;
+      case POSTFIX_DECREMENT:
+        result.add(UastNode.Kind.POSTFIX_DECREMENT);
+        break;
+      case POSTFIX_INCREMENT:
+        result.add(UastNode.Kind.POSTFIX_INCREMENT);
+        break;
       default:
         break;
     }
@@ -252,6 +291,9 @@ public class Generator {
     }
     if (tree instanceof BinaryExpressionTree) {
       result.add(UastNode.Kind.BINARY_EXPRESSION);
+    }
+    if (tree instanceof UnaryExpressionTree) {
+      result.add(UastNode.Kind.UNARY_EXPRESSION);
     }
     return result;
   }
@@ -282,6 +324,7 @@ public class Generator {
       ExpressionTree variable = tree.variable();
       ExpressionTree expression = tree.expression();
       addKind(variable, UastNode.Kind.ASSIGNMENT_TARGET);
+      addKind(tree.operatorToken(), UastNode.Kind.ASSIGNMENT_OPERATOR);
       addKind(expression, UastNode.Kind.ASSIGNMENT_VALUE);
       super.visitAssignmentExpression(tree);
     }
@@ -292,6 +335,7 @@ public class Generator {
       if (tree.initializer() != null) {
         addKind(tree, UastNode.Kind.ASSIGNMENT);
         addKind(tree.simpleName(), UastNode.Kind.ASSIGNMENT_TARGET);
+        addKind(tree.equalToken(), UastNode.Kind.ASSIGNMENT_OPERATOR);
         addKind(tree.initializer(), UastNode.Kind.ASSIGNMENT_VALUE);
       }
     }

@@ -101,10 +101,6 @@ public final class UastNode {
   }
 
   public enum Kind implements Predicate<UastNode> {
-    ASSIGNMENT,
-    ASSIGNMENT_OPERATOR,
-    ASSIGNMENT_TARGET,
-    ASSIGNMENT_VALUE,
     EXPRESSION,
     LABEL,
     BINARY_EXPRESSION,
@@ -116,7 +112,6 @@ public final class UastNode {
     CASE,
     CLASS,
     COMMENT,
-    COMPOUND_ASSIGNMENT,
     CONTINUE,
     DEFAULT_CASE,
     STRUCTURED_COMMENT,
@@ -169,7 +164,47 @@ public final class UastNode {
     THEN,
     THROW,
     TYPE,
-    UNSUPPORTED,;
+    UNSUPPORTED,
+    // Assignment
+    ASSIGNMENT,
+    ASSIGNMENT_OPERATOR,
+    ASSIGNMENT_TARGET_LIST,
+    ASSIGNMENT_TARGET,
+    ASSIGNMENT_VALUE_LIST,
+    ASSIGNMENT_VALUE,
+    // Compound assignments
+    COMPOUND_ASSIGNMENT,
+    PLUS_ASSIGNMENT,
+    MINUS_ASSIGNMENT,
+    MULTIPLY_ASSIGNMENT,
+    OR_ASSIGNMENT,
+    AND_ASSIGNMENT,
+    // Go: &^=
+    AND_NOT_ASSIGNMENT,
+    XOR_ASSIGNMENT,
+    DIVIDE_ASSIGNMENT,
+    REMAINDER_ASSIGNMENT,
+    LEFT_SHIFT_ASSIGNMENT,
+    RIGHT_SHIFT_ASSIGNMENT,
+    // Java: <<<=
+    UNSIGNED_RIGHT_SHIFT_ASSIGNMENT,
+    // Unary expressions
+    UNARY_EXPRESSION,
+    UNARY_MINUS,
+    UNARY_PLUS,
+    POSTFIX_DECREMENT,
+    POSTFIX_INCREMENT,
+    PREFIX_DECREMENT,
+    PREFIX_INCREMENT,
+    LOGICAL_COMPLEMENT,
+    BITWISE_COMPLEMENT,
+    // Go: *
+    POINTER,
+    // Go: &
+    REFERENCE,
+    // Go; <-
+    CHANNEL_DIRECTION,
+    ;
 
     @Override
     public boolean test(UastNode uastNode) {

@@ -1096,7 +1096,7 @@
                 ]}
               ]},
               {"token": {"value":";","line":145,"column":49}, "nativeNode": ""},
-              {"kinds": ["STATEMENT"], "nativeNode": "Post(IncDecStmt)", "children": [
+              {"kinds": ["UNARY_EXPRESSION","POSTFIX_INCREMENT","STATEMENT"], "nativeNode": "Post(IncDecStmt)", "children": [
                 {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"a","line":145,"column":51}, "nativeNode": "X(Ident)"},
                 {"token": {"value":"++","line":145,"column":52}, "nativeNode": "Tok"}
               ]},
@@ -1142,12 +1142,12 @@
         {"kinds": ["LOOP","STATEMENT"], "nativeNode": "[3](ForStmt)", "children": [
           {"kinds": ["KEYWORD"], "token": {"value":"for","line":155,"column":5}, "nativeNode": "For"},
           {"kinds": ["ASSIGNMENT","DECLARATION","STATEMENT"], "nativeNode": "Init(AssignStmt)", "children": [
-            {"kinds": ["ASSIGNMENT_TARGET"], "nativeNode": "Lhs([]Expr)", "children": [
-              {"kinds": ["IDENTIFIER"], "token": {"value":"i","line":155,"column":9}, "nativeNode": "[0](Ident)"}
+            {"kinds": ["ASSIGNMENT_TARGET_LIST"], "nativeNode": "Lhs([]Expr)", "children": [
+              {"kinds": ["ASSIGNMENT_TARGET","IDENTIFIER"], "token": {"value":"i","line":155,"column":9}, "nativeNode": "[0](Ident)"}
             ]},
-            {"token": {"value":":=","line":155,"column":11}, "nativeNode": "Tok"},
-            {"kinds": ["ASSIGNMENT_VALUE"], "nativeNode": "Rhs([]Expr)", "children": [
-              {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"0","line":155,"column":14}, "nativeNode": "[0](BasicLit)"}
+            {"kinds": ["ASSIGNMENT_OPERATOR"], "token": {"value":":=","line":155,"column":11}, "nativeNode": "Tok"},
+            {"kinds": ["ASSIGNMENT_VALUE_LIST"], "nativeNode": "Rhs([]Expr)", "children": [
+              {"kinds": ["ASSIGNMENT_VALUE","EXPRESSION","LITERAL"], "token": {"value":"0","line":155,"column":14}, "nativeNode": "[0](BasicLit)"}
             ]}
           ]},
           {"token": {"value":";","line":155,"column":15}, "nativeNode": ""},
@@ -1165,7 +1165,7 @@
             ]}
           ]},
           {"token": {"value":";","line":155,"column":33}, "nativeNode": ""},
-          {"kinds": ["STATEMENT"], "nativeNode": "Post(IncDecStmt)", "children": [
+          {"kinds": ["UNARY_EXPRESSION","POSTFIX_INCREMENT","STATEMENT"], "nativeNode": "Post(IncDecStmt)", "children": [
             {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":155,"column":35}, "nativeNode": "X(Ident)"},
             {"token": {"value":"++","line":155,"column":36}, "nativeNode": "Tok"}
           ]},
@@ -1199,12 +1199,12 @@
         {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant {{Refactor this function to reduce its Cognitive Complexity from 2 to the 0 allowed.}}","line":161,"column":16}, "nativeNode": ""},
         {"kinds": ["COMMENT"], "token": {"value":"//   ^^^^^","line":162,"column":1}, "nativeNode": ""},
         {"kinds": ["ASSIGNMENT","DECLARATION","STATEMENT"], "nativeNode": "[0](AssignStmt)", "children": [
-          {"kinds": ["ASSIGNMENT_TARGET"], "nativeNode": "Lhs([]Expr)", "children": [
-            {"kinds": ["IDENTIFIER"], "token": {"value":"r","line":163,"column":5}, "nativeNode": "[0](Ident)"}
+          {"kinds": ["ASSIGNMENT_TARGET_LIST"], "nativeNode": "Lhs([]Expr)", "children": [
+            {"kinds": ["ASSIGNMENT_TARGET","IDENTIFIER"], "token": {"value":"r","line":163,"column":5}, "nativeNode": "[0](Ident)"}
           ]},
-          {"token": {"value":":=","line":163,"column":7}, "nativeNode": "Tok"},
-          {"kinds": ["ASSIGNMENT_VALUE"], "nativeNode": "Rhs([]Expr)", "children": [
-            {"kinds": ["EXPRESSION","FUNCTION_LITERAL"], "nativeNode": "[0](FuncLit)", "children": [
+          {"kinds": ["ASSIGNMENT_OPERATOR"], "token": {"value":":=","line":163,"column":7}, "nativeNode": "Tok"},
+          {"kinds": ["ASSIGNMENT_VALUE_LIST"], "nativeNode": "Rhs([]Expr)", "children": [
+            {"kinds": ["ASSIGNMENT_VALUE","EXPRESSION","FUNCTION_LITERAL"], "nativeNode": "[0](FuncLit)", "children": [
               {"nativeNode": "Type(FuncType)", "children": [
                 {"kinds": ["KEYWORD"], "token": {"value":"func","line":163,"column":10}, "nativeNode": "Func"},
                 {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [

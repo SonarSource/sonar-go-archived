@@ -32,12 +32,14 @@ class AssignmentLikeTest {
   @Test
   void test() {
     UastNode target = node(UastNode.Kind.ASSIGNMENT_TARGET);
+    UastNode operator = node(UastNode.Kind.ASSIGNMENT_OPERATOR);
     UastNode value = node(UastNode.Kind.ASSIGNMENT_VALUE);
-    UastNode assignment = node(UastNode.Kind.ASSIGNMENT, target, value);
+    UastNode assignment = node(UastNode.Kind.ASSIGNMENT, target, operator, value);
 
     AssignmentLike assignmentLike = AssignmentLike.from(assignment);
     assertEquals(assignmentLike.node(), assignment);
     assertEquals(assignmentLike.target(), target);
+    assertEquals(assignmentLike.operator(), operator);
     assertEquals(assignmentLike.value(), value);
   }
 
@@ -48,7 +50,14 @@ class AssignmentLikeTest {
 
   @Test
   void test_malformed() {
+    UastNode target = node(UastNode.Kind.ASSIGNMENT_TARGET);
+    UastNode operator = node(UastNode.Kind.ASSIGNMENT_OPERATOR);
+    UastNode value = node(UastNode.Kind.ASSIGNMENT_VALUE);
+
     assertNull(AssignmentLike.from(node(UastNode.Kind.ASSIGNMENT)));
+    assertNull(AssignmentLike.from(node(UastNode.Kind.ASSIGNMENT, target, value)));
+    assertNull(AssignmentLike.from(node(UastNode.Kind.ASSIGNMENT, target, operator)));
+    assertNull(AssignmentLike.from(node(UastNode.Kind.ASSIGNMENT, operator, value)));
   }
 
   private UastNode node(UastNode.Kind kind, UastNode... children) {

@@ -56,12 +56,12 @@ func fun() string {
       {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
         {"token": {"value":"{","line":3,"column":19}, "nativeNode": "Lbrace"},
         {"kinds": ["ASSIGNMENT","DECLARATION","STATEMENT"], "nativeNode": "[0](AssignStmt)", "children": [
-          {"kinds": ["ASSIGNMENT_TARGET"], "nativeNode": "Lhs([]Expr)", "children": [
-            {"kinds": ["IDENTIFIER"], "token": {"value":"a","line":4,"column":2}, "nativeNode": "[0](Ident)"}
+          {"kinds": ["ASSIGNMENT_TARGET_LIST"], "nativeNode": "Lhs([]Expr)", "children": [
+            {"kinds": ["ASSIGNMENT_TARGET","IDENTIFIER"], "token": {"value":"a","line":4,"column":2}, "nativeNode": "[0](Ident)"}
           ]},
-          {"token": {"value":":=","line":4,"column":4}, "nativeNode": "Tok"},
-          {"kinds": ["ASSIGNMENT_VALUE"], "nativeNode": "Rhs([]Expr)", "children": [
-            {"kinds": ["EXPRESSION","LITERAL","STRING_LITERAL"], "token": {"value":"\"hello \\\"world\\\"\"","line":4,"column":7}, "nativeNode": "[0](BasicLit)"}
+          {"kinds": ["ASSIGNMENT_OPERATOR"], "token": {"value":":=","line":4,"column":4}, "nativeNode": "Tok"},
+          {"kinds": ["ASSIGNMENT_VALUE_LIST"], "nativeNode": "Rhs([]Expr)", "children": [
+            {"kinds": ["ASSIGNMENT_VALUE","EXPRESSION","LITERAL","STRING_LITERAL"], "token": {"value":"\"hello \\\"world\\\"\"","line":4,"column":7}, "nativeNode": "[0](BasicLit)"}
           ]}
         ]},
         {"kinds": ["RETURN","STATEMENT"], "nativeNode": "[1](ReturnStmt)", "children": [

@@ -1,0 +1,307 @@
+{"kinds": ["COMPILATION_UNIT"], "nativeNode": "(File)", "children": [
+  {"kinds": ["PACKAGE"], "nativeNode": "File.Package", "children": [
+    {"kinds": ["KEYWORD"], "token": {"value":"package","line":1,"column":1}, "nativeNode": ""},
+    {"kinds": ["IDENTIFIER"], "token": {"value":"main","line":1,"column":9}, "nativeNode": "Name(Ident)"}
+  ]},
+  {"kinds": ["DECL_LIST"], "nativeNode": "Decls([]Decl)", "children": [
+    {"kinds": ["FUNCTION"], "nativeNode": "[0](FuncDecl)", "children": [
+      {"kinds": ["KEYWORD"], "token": {"value":"func","line":3,"column":1}, "nativeNode": "Type.Func"},
+      {"kinds": ["FUNCTION_NAME","IDENTIFIER"], "token": {"value":"foo","line":3,"column":6}, "nativeNode": "Name(Ident)"},
+      {"nativeNode": "Type(FuncType)", "children": [
+        {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
+          {"token": {"value":"(","line":3,"column":9}, "nativeNode": "Opening"},
+          {"token": {"value":")","line":3,"column":10}, "nativeNode": "Closing"}
+        ]}
+      ]},
+      {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
+        {"token": {"value":"{","line":3,"column":12}, "nativeNode": "Lbrace"},
+        {"kinds": ["STATEMENT"], "nativeNode": "[0](DeclStmt)", "children": [
+          {"nativeNode": "Decl(GenDecl)", "children": [
+            {"kinds": ["KEYWORD"], "token": {"value":"var","line":4,"column":2}, "nativeNode": "Tok"},
+            {"nativeNode": "Specs([]Spec)", "children": [
+              {"nativeNode": "[0](ValueSpec)", "children": [
+                {"nativeNode": "Names([]*Ident)", "children": [
+                  {"kinds": ["IDENTIFIER"], "token": {"value":"target","line":4,"column":6}, "nativeNode": "[0](Ident)"}
+                ]},
+                {"token": {"value":"=","line":4,"column":13}, "nativeNode": ""},
+                {"nativeNode": "Values([]Expr)", "children": [
+                  {"kinds": ["EXPRESSION","UNARY_EXPRESSION","UNARY_MINUS"], "nativeNode": "[0](UnaryExpr)", "children": [
+                    {"token": {"value":"-","line":4,"column":15}, "nativeNode": "Op"},
+                    {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"5","line":4,"column":16}, "nativeNode": "X(BasicLit)"}
+                  ]}
+                ]}
+              ]}
+            ]}
+          ]}
+        ]},
+        {"kinds": ["STATEMENT"], "nativeNode": "[1](DeclStmt)", "children": [
+          {"nativeNode": "Decl(GenDecl)", "children": [
+            {"kinds": ["KEYWORD"], "token": {"value":"var","line":5,"column":2}, "nativeNode": "Tok"},
+            {"nativeNode": "Specs([]Spec)", "children": [
+              {"nativeNode": "[0](ValueSpec)", "children": [
+                {"nativeNode": "Names([]*Ident)", "children": [
+                  {"kinds": ["IDENTIFIER"], "token": {"value":"num","line":5,"column":6}, "nativeNode": "[0](Ident)"}
+                ]},
+                {"token": {"value":"=","line":5,"column":10}, "nativeNode": ""},
+                {"nativeNode": "Values([]Expr)", "children": [
+                  {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"3","line":5,"column":12}, "nativeNode": "[0](BasicLit)"}
+                ]}
+              ]}
+            ]}
+          ]}
+        ]},
+        {"kinds": ["STATEMENT"], "nativeNode": "[2](DeclStmt)", "children": [
+          {"nativeNode": "Decl(GenDecl)", "children": [
+            {"kinds": ["KEYWORD"], "token": {"value":"var","line":6,"column":2}, "nativeNode": "Tok"},
+            {"nativeNode": "Specs([]Spec)", "children": [
+              {"nativeNode": "[0](ValueSpec)", "children": [
+                {"nativeNode": "Names([]*Ident)", "children": [
+                  {"kinds": ["IDENTIFIER"], "token": {"value":"a","line":6,"column":6}, "nativeNode": "[0](Ident)"},
+                  {"token": {"value":",","line":6,"column":7}, "nativeNode": ""},
+                  {"kinds": ["IDENTIFIER"], "token": {"value":"b","line":6,"column":9}, "nativeNode": "[1](Ident)"},
+                  {"token": {"value":",","line":6,"column":10}, "nativeNode": ""},
+                  {"kinds": ["IDENTIFIER"], "token": {"value":"c","line":6,"column":12}, "nativeNode": "[2](Ident)"}
+                ]},
+                {"token": {"value":"=","line":6,"column":14}, "nativeNode": ""},
+                {"nativeNode": "Values([]Expr)", "children": [
+                  {"kinds": ["EXPRESSION","LITERAL","BOOLEAN_LITERAL"], "token": {"value":"true","line":6,"column":16}, "nativeNode": "[0](Ident)"},
+                  {"token": {"value":",","line":6,"column":20}, "nativeNode": ""},
+                  {"kinds": ["EXPRESSION","LITERAL","BOOLEAN_LITERAL"], "token": {"value":"true","line":6,"column":22}, "nativeNode": "[1](Ident)"},
+                  {"token": {"value":",","line":6,"column":26}, "nativeNode": ""},
+                  {"kinds": ["EXPRESSION","LITERAL","BOOLEAN_LITERAL"], "token": {"value":"true","line":6,"column":28}, "nativeNode": "[2](Ident)"}
+                ]}
+              ]}
+            ]}
+          ]}
+        ]},
+        {"kinds": ["ASSIGNMENT","STATEMENT"], "nativeNode": "[3](AssignStmt)", "children": [
+          {"kinds": ["ASSIGNMENT_TARGET_LIST"], "nativeNode": "Lhs([]Expr)", "children": [
+            {"kinds": ["ASSIGNMENT_TARGET","IDENTIFIER"], "token": {"value":"target","line":8,"column":2}, "nativeNode": "[0](Ident)"}
+          ]},
+          {"kinds": ["ASSIGNMENT_OPERATOR"], "token": {"value":"=","line":8,"column":9}, "nativeNode": "Tok"},
+          {"kinds": ["ASSIGNMENT_VALUE_LIST"], "nativeNode": "Rhs([]Expr)", "children": [
+            {"kinds": ["ASSIGNMENT_VALUE","EXPRESSION","UNARY_EXPRESSION","UNARY_MINUS"], "nativeNode": "[0](UnaryExpr)", "children": [
+              {"token": {"value":"-","line":8,"column":10}, "nativeNode": "Op"},
+              {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"num","line":8,"column":11}, "nativeNode": "X(Ident)"}
+            ]}
+          ]}
+        ]},
+        {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant {{Was \"-=\" meant instead?}} [[sc=12;ec=14]]","line":8,"column":15}, "nativeNode": ""},
+        {"kinds": ["ASSIGNMENT","STATEMENT"], "nativeNode": "[4](AssignStmt)", "children": [
+          {"kinds": ["ASSIGNMENT_TARGET_LIST"], "nativeNode": "Lhs([]Expr)", "children": [
+            {"kinds": ["ASSIGNMENT_TARGET","IDENTIFIER"], "token": {"value":"target","line":9,"column":2}, "nativeNode": "[0](Ident)"}
+          ]},
+          {"kinds": ["ASSIGNMENT_OPERATOR"], "token": {"value":"=","line":9,"column":9}, "nativeNode": "Tok"},
+          {"kinds": ["ASSIGNMENT_VALUE_LIST"], "nativeNode": "Rhs([]Expr)", "children": [
+            {"kinds": ["ASSIGNMENT_VALUE","EXPRESSION","UNARY_EXPRESSION","UNARY_MINUS"], "nativeNode": "[0](UnaryExpr)", "children": [
+              {"token": {"value":"-","line":9,"column":11}, "nativeNode": "Op"},
+              {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"num","line":9,"column":12}, "nativeNode": "X(Ident)"}
+            ]}
+          ]}
+        ]},
+        {"kinds": ["COMMENT"], "token": {"value":"// Compliant intent to assign inverse value of num is clear","line":9,"column":16}, "nativeNode": ""},
+        {"kinds": ["ASSIGNMENT","STATEMENT"], "nativeNode": "[5](AssignStmt)", "children": [
+          {"kinds": ["ASSIGNMENT_TARGET_LIST"], "nativeNode": "Lhs([]Expr)", "children": [
+            {"kinds": ["ASSIGNMENT_TARGET","IDENTIFIER"], "token": {"value":"target","line":10,"column":2}, "nativeNode": "[0](Ident)"}
+          ]},
+          {"kinds": ["ASSIGNMENT_OPERATOR"], "token": {"value":"=","line":10,"column":9}, "nativeNode": "Tok"},
+          {"kinds": ["ASSIGNMENT_VALUE_LIST"], "nativeNode": "Rhs([]Expr)", "children": [
+            {"kinds": ["ASSIGNMENT_VALUE","EXPRESSION","IDENTIFIER"], "token": {"value":"num","line":10,"column":10}, "nativeNode": "[0](Ident)"}
+          ]}
+        ]},
+        {"kinds": ["ASSIGNMENT","COMPOUND_ASSIGNMENT","PLUS_ASSIGNMENT","STATEMENT"], "nativeNode": "[6](AssignStmt)", "children": [
+          {"kinds": ["ASSIGNMENT_TARGET_LIST"], "nativeNode": "Lhs([]Expr)", "children": [
+            {"kinds": ["ASSIGNMENT_TARGET","IDENTIFIER"], "token": {"value":"target","line":12,"column":2}, "nativeNode": "[0](Ident)"}
+          ]},
+          {"kinds": ["ASSIGNMENT_OPERATOR"], "token": {"value":"+=","line":12,"column":9}, "nativeNode": "Tok"},
+          {"kinds": ["ASSIGNMENT_VALUE_LIST"], "nativeNode": "Rhs([]Expr)", "children": [
+            {"kinds": ["ASSIGNMENT_VALUE","EXPRESSION","IDENTIFIER"], "token": {"value":"num","line":12,"column":12}, "nativeNode": "[0](Ident)"}
+          ]}
+        ]},
+        {"token": {"value":";","line":12,"column":15}, "nativeNode": ""},
+        {"kinds": ["ASSIGNMENT","STATEMENT"], "nativeNode": "[7](AssignStmt)", "children": [
+          {"kinds": ["ASSIGNMENT_TARGET_LIST"], "nativeNode": "Lhs([]Expr)", "children": [
+            {"kinds": ["ASSIGNMENT_TARGET","IDENTIFIER"], "token": {"value":"target","line":13,"column":2}, "nativeNode": "[0](Ident)"}
+          ]},
+          {"kinds": ["ASSIGNMENT_OPERATOR"], "token": {"value":"=","line":13,"column":9}, "nativeNode": "Tok"},
+          {"kinds": ["ASSIGNMENT_VALUE_LIST"], "nativeNode": "Rhs([]Expr)", "children": [
+            {"kinds": ["ASSIGNMENT_VALUE","EXPRESSION","UNARY_EXPRESSION","UNARY_PLUS"], "nativeNode": "[0](UnaryExpr)", "children": [
+              {"token": {"value":"+","line":13,"column":10}, "nativeNode": "Op"},
+              {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"num","line":13,"column":12}, "nativeNode": "X(Ident)"}
+            ]}
+          ]}
+        ]},
+        {"token": {"value":";","line":13,"column":15}, "nativeNode": ""},
+        {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant {{Was \"+=\" meant instead?}} [[sc=12;ec=14]]","line":13,"column":17}, "nativeNode": ""},
+        {"kinds": ["ASSIGNMENT","STATEMENT"], "nativeNode": "[8](AssignStmt)", "children": [
+          {"kinds": ["ASSIGNMENT_TARGET_LIST"], "nativeNode": "Lhs([]Expr)", "children": [
+            {"kinds": ["ASSIGNMENT_TARGET","IDENTIFIER"], "token": {"value":"target","line":14,"column":2}, "nativeNode": "[0](Ident)"}
+          ]},
+          {"kinds": ["ASSIGNMENT_OPERATOR"], "token": {"value":"=","line":14,"column":9}, "nativeNode": "Tok"},
+          {"kinds": ["ASSIGNMENT_VALUE_LIST"], "nativeNode": "Rhs([]Expr)", "children": [
+            {"kinds": ["ASSIGNMENT_VALUE","EXPRESSION","UNARY_EXPRESSION","UNARY_PLUS"], "nativeNode": "[0](UnaryExpr)", "children": [
+              {"token": {"value":"+","line":14,"column":11}, "nativeNode": "Op"},
+              {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"num","line":14,"column":12}, "nativeNode": "X(Ident)"}
+            ]}
+          ]}
+        ]},
+        {"token": {"value":";","line":14,"column":15}, "nativeNode": ""},
+        {"kinds": ["ASSIGNMENT","STATEMENT"], "nativeNode": "[9](AssignStmt)", "children": [
+          {"kinds": ["ASSIGNMENT_TARGET_LIST"], "nativeNode": "Lhs([]Expr)", "children": [
+            {"kinds": ["ASSIGNMENT_TARGET","IDENTIFIER"], "token": {"value":"target","line":15,"column":2}, "nativeNode": "[0](Ident)"}
+          ]},
+          {"kinds": ["ASSIGNMENT_OPERATOR"], "token": {"value":"=","line":15,"column":8}, "nativeNode": "Tok"},
+          {"kinds": ["ASSIGNMENT_VALUE_LIST"], "nativeNode": "Rhs([]Expr)", "children": [
+            {"kinds": ["ASSIGNMENT_VALUE","EXPRESSION","UNARY_EXPRESSION","UNARY_PLUS"], "nativeNode": "[0](UnaryExpr)", "children": [
+              {"token": {"value":"+","line":15,"column":9}, "nativeNode": "Op"},
+              {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"num","line":15,"column":10}, "nativeNode": "X(Ident)"}
+            ]}
+          ]}
+        ]},
+        {"token": {"value":";","line":15,"column":13}, "nativeNode": ""},
+        {"kinds": ["COMMENT"], "token": {"value":"// Compliant - no spaces between variable, operator and expression","line":15,"column":15}, "nativeNode": ""},
+        {"kinds": ["ASSIGNMENT","COMPOUND_ASSIGNMENT","XOR_ASSIGNMENT","STATEMENT"], "nativeNode": "[10](AssignStmt)", "children": [
+          {"kinds": ["ASSIGNMENT_TARGET_LIST"], "nativeNode": "Lhs([]Expr)", "children": [
+            {"kinds": ["ASSIGNMENT_TARGET","IDENTIFIER"], "token": {"value":"target","line":17,"column":2}, "nativeNode": "[0](Ident)"}
+          ]},
+          {"kinds": ["ASSIGNMENT_OPERATOR"], "token": {"value":"^=","line":17,"column":9}, "nativeNode": "Tok"},
+          {"kinds": ["ASSIGNMENT_VALUE_LIST"], "nativeNode": "Rhs([]Expr)", "children": [
+            {"kinds": ["ASSIGNMENT_VALUE","EXPRESSION","IDENTIFIER"], "token": {"value":"num","line":17,"column":12}, "nativeNode": "[0](Ident)"}
+          ]}
+        ]},
+        {"token": {"value":";","line":17,"column":15}, "nativeNode": ""},
+        {"kinds": ["ASSIGNMENT","STATEMENT"], "nativeNode": "[11](AssignStmt)", "children": [
+          {"kinds": ["ASSIGNMENT_TARGET_LIST"], "nativeNode": "Lhs([]Expr)", "children": [
+            {"kinds": ["ASSIGNMENT_TARGET","IDENTIFIER"], "token": {"value":"target","line":18,"column":2}, "nativeNode": "[0](Ident)"}
+          ]},
+          {"kinds": ["ASSIGNMENT_OPERATOR"], "token": {"value":"=","line":18,"column":9}, "nativeNode": "Tok"},
+          {"kinds": ["ASSIGNMENT_VALUE_LIST"], "nativeNode": "Rhs([]Expr)", "children": [
+            {"kinds": ["ASSIGNMENT_VALUE","EXPRESSION","UNARY_EXPRESSION","BITWISE_COMPLEMENT"], "nativeNode": "[0](UnaryExpr)", "children": [
+              {"token": {"value":"^","line":18,"column":10}, "nativeNode": "Op"},
+              {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"num","line":18,"column":12}, "nativeNode": "X(Ident)"}
+            ]}
+          ]}
+        ]},
+        {"token": {"value":";","line":18,"column":15}, "nativeNode": ""},
+        {"kinds": ["COMMENT"], "token": {"value":"// Compliant - may be ambiguous for Go, but not targeted by the rule","line":18,"column":17}, "nativeNode": ""},
+        {"kinds": ["ASSIGNMENT","STATEMENT"], "nativeNode": "[12](AssignStmt)", "children": [
+          {"kinds": ["ASSIGNMENT_TARGET_LIST"], "nativeNode": "Lhs([]Expr)", "children": [
+            {"kinds": ["ASSIGNMENT_TARGET","IDENTIFIER"], "token": {"value":"target","line":20,"column":2}, "nativeNode": "[0](Ident)"},
+            {"token": {"value":",","line":20,"column":8}, "nativeNode": ""},
+            {"kinds": ["ASSIGNMENT_TARGET","IDENTIFIER"], "token": {"value":"num","line":20,"column":10}, "nativeNode": "[1](Ident)"}
+          ]},
+          {"kinds": ["ASSIGNMENT_OPERATOR"], "token": {"value":"=","line":20,"column":14}, "nativeNode": "Tok"},
+          {"kinds": ["ASSIGNMENT_VALUE_LIST"], "nativeNode": "Rhs([]Expr)", "children": [
+            {"kinds": ["ASSIGNMENT_VALUE","EXPRESSION","UNARY_EXPRESSION","UNARY_PLUS"], "nativeNode": "[0](UnaryExpr)", "children": [
+              {"token": {"value":"+","line":20,"column":15}, "nativeNode": "Op"},
+              {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"0","line":20,"column":17}, "nativeNode": "X(BasicLit)"}
+            ]},
+            {"token": {"value":",","line":20,"column":18}, "nativeNode": ""},
+            {"kinds": ["ASSIGNMENT_VALUE","EXPRESSION","LITERAL"], "token": {"value":"1","line":20,"column":19}, "nativeNode": "[1](BasicLit)"}
+          ]}
+        ]},
+        {"kinds": ["COMMENT"], "token": {"value":"// compliant","line":20,"column":21}, "nativeNode": ""},
+        {"kinds": ["ASSIGNMENT","STATEMENT"], "nativeNode": "[13](AssignStmt)", "children": [
+          {"kinds": ["ASSIGNMENT_TARGET_LIST"], "nativeNode": "Lhs([]Expr)", "children": [
+            {"kinds": ["ASSIGNMENT_TARGET","IDENTIFIER"], "token": {"value":"a","line":22,"column":2}, "nativeNode": "[0](Ident)"}
+          ]},
+          {"kinds": ["ASSIGNMENT_OPERATOR"], "token": {"value":"=","line":22,"column":4}, "nativeNode": "Tok"},
+          {"kinds": ["ASSIGNMENT_VALUE_LIST"], "nativeNode": "Rhs([]Expr)", "children": [
+            {"kinds": ["ASSIGNMENT_VALUE","EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "[0](BinaryExpr)", "children": [
+              {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"b","line":22,"column":6}, "nativeNode": "X(Ident)"},
+              {"kinds": ["OPERATOR","OPERATOR_NOT_EQUAL"], "token": {"value":"!=","line":22,"column":8}, "nativeNode": "Op"},
+              {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"c","line":22,"column":11}, "nativeNode": "Y(Ident)"}
+            ]}
+          ]}
+        ]},
+        {"kinds": ["ASSIGNMENT","STATEMENT"], "nativeNode": "[14](AssignStmt)", "children": [
+          {"kinds": ["ASSIGNMENT_TARGET_LIST"], "nativeNode": "Lhs([]Expr)", "children": [
+            {"kinds": ["ASSIGNMENT_TARGET","IDENTIFIER"], "token": {"value":"b","line":23,"column":2}, "nativeNode": "[0](Ident)"}
+          ]},
+          {"kinds": ["ASSIGNMENT_OPERATOR"], "token": {"value":"=","line":23,"column":4}, "nativeNode": "Tok"},
+          {"kinds": ["ASSIGNMENT_VALUE_LIST"], "nativeNode": "Rhs([]Expr)", "children": [
+            {"kinds": ["ASSIGNMENT_VALUE","EXPRESSION","UNARY_EXPRESSION","LOGICAL_COMPLEMENT"], "nativeNode": "[0](UnaryExpr)", "children": [
+              {"token": {"value":"!","line":23,"column":5}, "nativeNode": "Op"},
+              {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"c","line":23,"column":7}, "nativeNode": "X(Ident)"}
+            ]}
+          ]}
+        ]},
+        {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant {{Add a space between \"=\" and \"!\" to avoid confusion.}}","line":23,"column":9}, "nativeNode": ""},
+        {"kinds": ["STATEMENT"], "nativeNode": "[15](ExprStmt)", "children": [
+          {"kinds": ["EXPRESSION","CALL"], "nativeNode": "X(CallExpr)", "children": [
+            {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"bar0","line":25,"column":2}, "nativeNode": "Fun(Ident)"},
+            {"kinds": ["LEFT_PARENTHESIS"], "token": {"value":"(","line":25,"column":6}, "nativeNode": "Lparen"},
+            {"kinds": ["ARGS_LIST"], "nativeNode": "Args([]Expr)", "children": [
+              {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"a","line":25,"column":7}, "nativeNode": "[0](Ident)"},
+              {"token": {"value":",","line":25,"column":8}, "nativeNode": ""},
+              {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"b","line":25,"column":9}, "nativeNode": "[1](Ident)"},
+              {"token": {"value":",","line":25,"column":10}, "nativeNode": ""},
+              {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"c","line":25,"column":11}, "nativeNode": "[2](Ident)"}
+            ]},
+            {"kinds": ["RIGHT_PARENTHESIS"], "token": {"value":")","line":25,"column":12}, "nativeNode": "Rparen"}
+          ]}
+        ]},
+        {"kinds": ["STATEMENT"], "nativeNode": "[16](ExprStmt)", "children": [
+          {"kinds": ["EXPRESSION","CALL"], "nativeNode": "X(CallExpr)", "children": [
+            {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"bar1","line":26,"column":2}, "nativeNode": "Fun(Ident)"},
+            {"kinds": ["LEFT_PARENTHESIS"], "token": {"value":"(","line":26,"column":6}, "nativeNode": "Lparen"},
+            {"kinds": ["ARGS_LIST"], "nativeNode": "Args([]Expr)", "children": [
+              {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"target","line":26,"column":7}, "nativeNode": "[0](Ident)"},
+              {"token": {"value":",","line":26,"column":13}, "nativeNode": ""},
+              {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"num","line":26,"column":15}, "nativeNode": "[1](Ident)"}
+            ]},
+            {"kinds": ["RIGHT_PARENTHESIS"], "token": {"value":")","line":26,"column":18}, "nativeNode": "Rparen"}
+          ]}
+        ]},
+        {"token": {"value":"}","line":27,"column":1}, "nativeNode": "Rbrace"}
+      ]}
+    ]},
+    {"kinds": ["FUNCTION"], "nativeNode": "[1](FuncDecl)", "children": [
+      {"kinds": ["KEYWORD"], "token": {"value":"func","line":29,"column":1}, "nativeNode": "Type.Func"},
+      {"kinds": ["FUNCTION_NAME","IDENTIFIER"], "token": {"value":"bar0","line":29,"column":6}, "nativeNode": "Name(Ident)"},
+      {"nativeNode": "Type(FuncType)", "children": [
+        {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
+          {"token": {"value":"(","line":29,"column":10}, "nativeNode": "Opening"},
+          {"nativeNode": "[0](Field)", "children": [
+            {"nativeNode": "Names([]*Ident)", "children": [
+              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"b","line":29,"column":11}, "nativeNode": "[0](Ident)"}
+            ]},
+            {"kinds": ["TYPE"], "nativeNode": "Type(Ellipsis)", "children": [
+              {"token": {"value":"...","line":29,"column":13}, "nativeNode": "Ellipsis"},
+              {"kinds": ["IDENTIFIER"], "token": {"value":"bool","line":29,"column":17}, "nativeNode": "Elt(Ident)"}
+            ]}
+          ]},
+          {"token": {"value":")","line":29,"column":21}, "nativeNode": "Closing"}
+        ]}
+      ]},
+      {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
+        {"token": {"value":"{","line":29,"column":23}, "nativeNode": "Lbrace"},
+        {"token": {"value":"}","line":29,"column":24}, "nativeNode": "Rbrace"}
+      ]}
+    ]},
+    {"kinds": ["FUNCTION"], "nativeNode": "[2](FuncDecl)", "children": [
+      {"kinds": ["KEYWORD"], "token": {"value":"func","line":30,"column":1}, "nativeNode": "Type.Func"},
+      {"kinds": ["FUNCTION_NAME","IDENTIFIER"], "token": {"value":"bar1","line":30,"column":6}, "nativeNode": "Name(Ident)"},
+      {"nativeNode": "Type(FuncType)", "children": [
+        {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
+          {"token": {"value":"(","line":30,"column":10}, "nativeNode": "Opening"},
+          {"nativeNode": "[0](Field)", "children": [
+            {"nativeNode": "Names([]*Ident)", "children": [
+              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"i","line":30,"column":11}, "nativeNode": "[0](Ident)"}
+            ]},
+            {"kinds": ["TYPE"], "nativeNode": "Type(Ellipsis)", "children": [
+              {"token": {"value":"...","line":30,"column":13}, "nativeNode": "Ellipsis"},
+              {"kinds": ["IDENTIFIER"], "token": {"value":"int","line":30,"column":17}, "nativeNode": "Elt(Ident)"}
+            ]}
+          ]},
+          {"token": {"value":")","line":30,"column":20}, "nativeNode": "Closing"}
+        ]}
+      ]},
+      {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
+        {"token": {"value":"{","line":30,"column":22}, "nativeNode": "Lbrace"},
+        {"token": {"value":"}","line":30,"column":23}, "nativeNode": "Rbrace"}
+      ]}
+    ]}
+  ]},
+  {"kinds": ["EOF"], "token": {"line":31,"column":1}, "nativeNode": ""}
+]}

@@ -23,6 +23,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Pattern;
 import javax.annotation.Nullable;
 
 /**
@@ -44,10 +45,6 @@ class UastNode {
   // this enum is copy&paste from common-rule-engine
   enum Kind {
     KEYWORD,
-    ASSIGNMENT,
-    ASSIGNMENT_OPERATOR,
-    ASSIGNMENT_TARGET,
-    ASSIGNMENT_VALUE,
     EXPRESSION,
     LABEL,
     BINARY_EXPRESSION,
@@ -59,7 +56,6 @@ class UastNode {
     CASE,
     CLASS,
     COMMENT,
-    COMPOUND_ASSIGNMENT,
     CONTINUE,
     DEFAULT_CASE,
     STRUCTURED_COMMENT,
@@ -107,7 +103,33 @@ class UastNode {
     SWITCH,
     THEN,
     THROW,
-    TYPE,;
+    TYPE,
+    ASSIGNMENT,
+    ASSIGNMENT_OPERATOR,
+    ASSIGNMENT_TARGET,
+    ASSIGNMENT_VALUE,
+    COMPOUND_ASSIGNMENT,
+    PLUS_ASSIGNMENT("+=", ASSIGNMENT, COMPOUND_ASSIGNMENT),
+    MINUS_ASSIGNMENT("-=", ASSIGNMENT),
+    MULTIPLY_ASSIGNMENT("*=", ASSIGNMENT, COMPOUND_ASSIGNMENT),
+    OR_ASSIGNMENT("|=", ASSIGNMENT, COMPOUND_ASSIGNMENT),
+    AND_ASSIGNMENT("&=", ASSIGNMENT, COMPOUND_ASSIGNMENT),
+    XOR_ASSIGNMENT("^=", ASSIGNMENT, COMPOUND_ASSIGNMENT),
+    DIVIDE_ASSIGNMENT("\\=", ASSIGNMENT, COMPOUND_ASSIGNMENT),
+    REMAINDER_ASSIGNMENT("%=", ASSIGNMENT, COMPOUND_ASSIGNMENT),
+    LEFT_SHIFT_ASSIGNMENT("<<=", ASSIGNMENT, COMPOUND_ASSIGNMENT),
+    RIGHT_SHIFT_ASSIGNMENT(">>=", ASSIGNMENT, COMPOUND_ASSIGNMENT),
+    UNSIGNED_RIGHT_SHIFT_ASSIGNMENT(">>>=", ASSIGNMENT, COMPOUND_ASSIGNMENT),
+    UNARY_EXPRESSION,
+    UNARY_MINUS,
+    UNARY_PLUS,
+    POSTFIX_DECREMENT,
+    POSTFIX_INCREMENT,
+    PREFIX_DECREMENT,
+    PREFIX_INCREMENT,
+    LOGICAL_COMPLEMENT,
+    BITWISE_COMPLEMENT,
+    ;
 
     @Nullable
     final String token;
@@ -131,12 +153,34 @@ class UastNode {
   static class Token {
     String value;
     int line;
+    int endLine;
     int column;
+    int endColumn;
+
+    // copy-pasted from org.sonar.uast.UastNode.Token
+    private static final Pattern LINE_SPLITTER = Pattern.compile("\r\n|\n|\r");
 
     public Token(int line, int column, String value) {
-      this.value = value;
+      if (line < 1 || column < 1) {
+        throw new IllegalArgumentException("Invalid token location " + line + ":" + column);
+      }
       this.line = line;
       this.column = column;
+      this.value = value;
+      if (value.indexOf('\n') == -1 && value.indexOf('\r') == -1) {
+        this.endLine = line;
+        this.endColumn = column + codePointCount(value) - 1;
+      } else {
+        String[] lines = LINE_SPLITTER.split(value, -1);
+        this.endLine = line + lines.length - 1;
+        this.endColumn = codePointCount(lines[lines.length - 1]);
+      }
+    }
+
+    private static int codePointCount(String s) {
+      // handle length of UTF-32 encoded strings properly
+      // s.length() would return 2 for each UTF-32 character, which will mess with column computation
+      return s.codePointCount(0, s.length());
     }
   }
 }
