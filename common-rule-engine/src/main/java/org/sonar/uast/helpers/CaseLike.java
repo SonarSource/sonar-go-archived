@@ -20,20 +20,23 @@
 package org.sonar.uast.helpers;
 
 import java.util.List;
+import javax.annotation.Nullable;
 import org.sonar.uast.UastNode;
 
 public class CaseLike {
 
   private final UastNode node;
   private final List<UastNode> conditions;
+  private final UastNode body;
 
-  public CaseLike(UastNode caseNode, List<UastNode> conditions) {
+  public CaseLike(UastNode caseNode, List<UastNode> conditions, @Nullable UastNode body) {
     this.node = caseNode;
     this.conditions = conditions;
+    this.body = body;
   }
 
   public static CaseLike from(UastNode caseNode) {
-    return new CaseLike(caseNode, caseNode.getChildren(UastNode.Kind.CONDITION));
+    return new CaseLike(caseNode, caseNode.getChildren(UastNode.Kind.CONDITION), caseNode.getChild(UastNode.Kind.BLOCK).orElse(null));
   }
 
   public UastNode node() {
@@ -42,5 +45,10 @@ public class CaseLike {
 
   public List<UastNode> conditions() {
     return conditions;
+  }
+
+  @Nullable
+  public UastNode body() {
+    return body;
   }
 }

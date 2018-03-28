@@ -78,6 +78,7 @@ class UastNode {
     OPERATOR_MULTIPLY,
     OPERATOR_NOT_EQUAL,
     SWITCH,
+    THEN,
     THROW,
     ;
   }

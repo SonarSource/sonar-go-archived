@@ -17,33 +17,18 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package org.sonar.commonruleengine.checks;
+package org.sonar.commonruleengine.checks.java;
 
-import java.util.Arrays;
-import java.util.List;
+import org.junit.jupiter.api.Test;
+import org.sonar.commonruleengine.checks.AllBranchesAreIdenticalCheck;
 
-public class CheckList {
+import static org.sonar.commonruleengine.checks.TestUtils.checkRuleOnGo;
+import static org.sonar.commonruleengine.checks.TestUtils.checkRuleOnJava;
 
-  private CheckList() {
-    // do not instantiate
+class AllBranchesAreIdenticalCheckTest {
+
+  @Test
+  void test() throws Exception {
+    checkRuleOnJava(new AllBranchesAreIdenticalCheck());
   }
-
-  public static List<Class<? extends Check>> getChecks() {
-    return Arrays.asList(
-      AllBranchesAreIdenticalCheck.class,
-      BinaryOperatorIdenticalExpressionsCheck.class,
-      FileHeaderCheck.class,
-      FunctionCognitiveComplexityCheck.class,
-      NestedSwitchCheck.class,
-      NoIdenticalConditionsCheck.class,
-      NoIdenticalFunctionsCheck.class,
-      NoHardcodedCredentialsCheck.class,
-      NoSelfAssignmentCheck.class,
-      RedundantBooleanLiteralCheck.class,
-      SwitchDefaultLocationCheck.class,
-      SwitchWithoutDefaultCheck.class,
-      TooManyParametersCheck.class
-    );
-  }
-
 }

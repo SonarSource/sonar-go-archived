@@ -322,6 +322,7 @@ public class Generator {
     @Override
     public void visitIfStatement(IfStatementTree tree) {
       addKind(tree.condition(), UastNode.Kind.CONDITION);
+      addKind(tree.thenStatement(), UastNode.Kind.THEN);
       StatementTree elseStatement = tree.elseStatement();
       if (elseStatement != null) {
         addKind(elseStatement, UastNode.Kind.ELSE);

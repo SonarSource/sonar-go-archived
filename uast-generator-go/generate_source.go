@@ -111,6 +111,8 @@ import (
 			"AssignStmt#Lhs":       "ASSIGNMENT_TARGET",
 			"AssignStmt#Rhs":       "ASSIGNMENT_VALUE",
 			"CaseClause#List[i]":   "CONDITION, EXPRESSION",
+			"CaseClause#Body":      "BLOCK",
+			"IfStmt#Body":          "THEN, BLOCK",
 			"IfStmt#Else":          "ELSE",
 			// Can not declare EXPRESSION for all ast.Expr because Expr is also used for type like in Field#Type
 			"CompositeLit#Expr[i]":  "EXPRESSION",

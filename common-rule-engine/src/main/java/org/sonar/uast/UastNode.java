@@ -145,6 +145,7 @@ public final class UastNode {
     RETURN,
     STATEMENT,
     SWITCH,
+    THEN,
     THROW,
     TYPE,
     UNSUPPORTED,

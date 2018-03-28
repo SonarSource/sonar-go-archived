@@ -96,6 +96,7 @@ const (
 	OPERATOR_MULTIPLY        Kind = "OPERATOR_MULTIPLY"
 	OPERATOR_LOGICAL_AND     Kind = "OPERATOR_LOGICAL_AND"
 	OPERATOR_LOGICAL_OR      Kind = "OPERATOR_LOGICAL_OR"
+	THEN                     Kind = "THEN"
 )
 
 type Token struct {
