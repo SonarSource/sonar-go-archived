@@ -57,20 +57,20 @@ public class Engine {
   public ScanResult scan(UastNode uast, InputFile inputFile) throws IOException {
     metricsVisitor.enterFile(uast);
     engineContext.enterFile(inputFile);
-    visit(uast, inputFile.type());
+    visit(uast);
     return new ScanResult(engineContext.getIssues(), metricsVisitor.getMetrics());
   }
 
-  private void visit(UastNode uast, InputFile.Type fileType) {
+  private void visit(UastNode uast) {
     metricsVisitor.visitNode(uast);
     Set<Check> checks = uast.kinds.stream()
-      .flatMap(kind -> engineContext.registeredChecks(kind, fileType).stream())
+      .flatMap(kind -> engineContext.registeredChecks(kind).stream())
       .collect(Collectors.toSet());
     for (Check check : checks) {
       check.visitNode(uast);
     }
     for (UastNode child : uast.children) {
-      visit(child, fileType);
+      visit(child);
     }
     for (Check check : checks) {
       check.leaveNode(uast);

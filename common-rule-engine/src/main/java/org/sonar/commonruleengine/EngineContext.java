@@ -42,10 +42,7 @@ public class EngineContext {
     registeredChecks.computeIfAbsent(kind, k -> new ArrayList<>()).add(check);
   }
 
-  public List<Check> registeredChecks(UastNode.Kind kind, InputFile.Type fileType) {
-    if (fileType != InputFile.Type.MAIN) {
-      return Collections.emptyList();
-    }
+  public List<Check> registeredChecks(UastNode.Kind kind) {
     return registeredChecks.getOrDefault(kind, Collections.emptyList());
   }
 

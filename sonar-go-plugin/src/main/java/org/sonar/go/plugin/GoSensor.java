@@ -83,11 +83,14 @@ public class GoSensor implements Sensor {
     for (InputFile inputFile : getInputFiles(context)) {
       try {
         UastNode uast = uastGenerator.createUast(inputFile.inputStream());
-        Engine.ScanResult scanResult = ruleEngine.scan(uast, inputFile);
-        scanResult.issues.forEach(issue -> reportIssue(issue, context, inputFile));
-        saveMetrics(scanResult.metrics, context, inputFile);
+        // FIXME currently *_test.go files are MAIN and not TEST, see issue #140
+        if (inputFile.type() == InputFile.Type.MAIN) {
+          Engine.ScanResult scanResult = ruleEngine.scan(uast, inputFile);
+          scanResult.issues.forEach(issue -> reportIssue(issue, context, inputFile));
+          saveMetrics(scanResult.metrics, context, inputFile);
+          saveCpdTokens(uast, context, inputFile);
+        }
         saveHighlighting(uast, context, inputFile);
-        saveCpdTokens(uast, context, inputFile);
       } catch (Exception e) {
         failedFiles.add(inputFile);
         LOG.debug("Error analyzing file " + inputFile.toString(), e);
@@ -133,10 +136,7 @@ public class GoSensor implements Sensor {
     FileLinesContext linesContext = fileLinesContextFactory.createFor(inputFile);
     saveLinesMetrics(linesContext, metrics.linesOfCode, CoreMetrics.NCLOC_DATA_KEY);
     saveLinesMetrics(linesContext, metrics.commentLines, CoreMetrics.COMMENT_LINES_DATA_KEY);
-    // FIXME currently *_test.go files are MAIN and not TEST, see issue #140
-    if (inputFile.type() == InputFile.Type.MAIN) {
-      saveLinesMetrics(linesContext, metrics.executableLines, CoreMetrics.EXECUTABLE_LINES_DATA_KEY);
-    }
+    saveLinesMetrics(linesContext, metrics.executableLines, CoreMetrics.EXECUTABLE_LINES_DATA_KEY);
     linesContext.save();
   }
 
