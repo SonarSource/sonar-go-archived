@@ -21,6 +21,7 @@ package org.sonar.go.plugin;
 
 import java.util.Arrays;
 import java.util.List;
+import org.sonar.commonruleengine.checks.AllBranchesAreIdenticalCheck;
 import org.sonar.commonruleengine.checks.BinaryOperatorIdenticalExpressionsCheck;
 import org.sonar.commonruleengine.checks.FileHeaderCheck;
 import org.sonar.commonruleengine.checks.FunctionCognitiveComplexityCheck;
@@ -43,6 +44,7 @@ public class GoChecks {
 
   public static List<Class> getChecks() {
     return Arrays.asList(
+      AllBranchesAreIdenticalCheck.class,
       BinaryOperatorIdenticalExpressionsCheck.class,
       FileHeaderCheck.class,
       FunctionCognitiveComplexityCheck.class,

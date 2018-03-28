@@ -154,7 +154,7 @@
               ]}
             ]},
             {"kinds": ["IF","STATEMENT"], "nativeNode": "[1](IfStmt)", "children": [
-              {"kinds": ["KEYWORD"], "token": {"value":"if","line":20,"column":3}, "nativeNode": "If"},
+              {"kinds": ["IF_KEYWORD","KEYWORD"], "token": {"value":"if","line":20,"column":3}, "nativeNode": "If"},
               {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
                 {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
                   {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":20,"column":6}, "nativeNode": "X(Ident)"},
@@ -162,7 +162,7 @@
                   {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"x","line":20,"column":11}, "nativeNode": "Y(Ident)"}
                 ]}
               ]},
-              {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
+              {"kinds": ["THEN","BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
                 {"token": {"value":"{","line":20,"column":13}, "nativeNode": "Lbrace"},
                 {"kinds": ["BREAK","STATEMENT"], "nativeNode": "[0](BranchStmt)", "children": [
                   {"kinds": ["KEYWORD"], "token": {"value":"break","line":21,"column":4}, "nativeNode": "Tok"}
@@ -278,7 +278,7 @@
               ]}
             ]},
             {"kinds": ["IF","STATEMENT"], "nativeNode": "[1](IfStmt)", "children": [
-              {"kinds": ["KEYWORD"], "token": {"value":"if","line":37,"column":3}, "nativeNode": "If"},
+              {"kinds": ["IF_KEYWORD","KEYWORD"], "token": {"value":"if","line":37,"column":3}, "nativeNode": "If"},
               {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
                 {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
                   {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":37,"column":6}, "nativeNode": "X(Ident)"},
@@ -286,7 +286,7 @@
                   {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"x","line":37,"column":11}, "nativeNode": "Y(Ident)"}
                 ]}
               ]},
-              {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
+              {"kinds": ["THEN","BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
                 {"token": {"value":"{","line":37,"column":13}, "nativeNode": "Lbrace"},
                 {"kinds": ["RETURN","STATEMENT"], "nativeNode": "[0](ReturnStmt)", "children": [
                   {"kinds": ["KEYWORD"], "token": {"value":"return","line":38,"column":4}, "nativeNode": "Return"}
@@ -402,7 +402,7 @@
               ]}
             ]},
             {"kinds": ["IF","STATEMENT"], "nativeNode": "[1](IfStmt)", "children": [
-              {"kinds": ["KEYWORD"], "token": {"value":"if","line":54,"column":3}, "nativeNode": "If"},
+              {"kinds": ["IF_KEYWORD","KEYWORD"], "token": {"value":"if","line":54,"column":3}, "nativeNode": "If"},
               {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
                 {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
                   {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":54,"column":6}, "nativeNode": "X(Ident)"},
@@ -410,7 +410,7 @@
                   {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"x","line":54,"column":11}, "nativeNode": "Y(Ident)"}
                 ]}
               ]},
-              {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
+              {"kinds": ["THEN","BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
                 {"token": {"value":"{","line":54,"column":13}, "nativeNode": "Lbrace"},
                 {"kinds": ["CONTINUE","STATEMENT"], "nativeNode": "[0](BranchStmt)", "children": [
                   {"kinds": ["KEYWORD"], "token": {"value":"continue","line":55,"column":4}, "nativeNode": "Tok"}
@@ -476,7 +476,7 @@
               ]}
             ]},
             {"kinds": ["IF","STATEMENT"], "nativeNode": "[1](IfStmt)", "children": [
-              {"kinds": ["KEYWORD"], "token": {"value":"if","line":64,"column":3}, "nativeNode": "If"},
+              {"kinds": ["IF_KEYWORD","KEYWORD"], "token": {"value":"if","line":64,"column":3}, "nativeNode": "If"},
               {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
                 {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
                   {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"0","line":64,"column":6}, "nativeNode": "X(BasicLit)"},
@@ -484,10 +484,10 @@
                   {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"x","line":64,"column":10}, "nativeNode": "Y(Ident)"}
                 ]}
               ]},
-              {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
+              {"kinds": ["THEN","BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
                 {"token": {"value":"{","line":64,"column":12}, "nativeNode": "Lbrace"},
                 {"kinds": ["IF","STATEMENT"], "nativeNode": "[0](IfStmt)", "children": [
-                  {"kinds": ["KEYWORD"], "token": {"value":"if","line":65,"column":4}, "nativeNode": "If"},
+                  {"kinds": ["IF_KEYWORD","KEYWORD"], "token": {"value":"if","line":65,"column":4}, "nativeNode": "If"},
                   {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
                     {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
                       {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":65,"column":7}, "nativeNode": "X(Ident)"},
@@ -495,7 +495,7 @@
                       {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"x","line":65,"column":12}, "nativeNode": "Y(Ident)"}
                     ]}
                   ]},
-                  {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
+                  {"kinds": ["THEN","BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
                     {"token": {"value":"{","line":65,"column":14}, "nativeNode": "Lbrace"},
                     {"kinds": ["CONTINUE","STATEMENT"], "nativeNode": "[0](BranchStmt)", "children": [
                       {"kinds": ["KEYWORD"], "token": {"value":"continue","line":66,"column":5}, "nativeNode": "Tok"}
@@ -624,7 +624,7 @@
               ]}
             ]},
             {"kinds": ["IF","STATEMENT"], "nativeNode": "[1](IfStmt)", "children": [
-              {"kinds": ["KEYWORD"], "token": {"value":"if","line":84,"column":3}, "nativeNode": "If"},
+              {"kinds": ["IF_KEYWORD","KEYWORD"], "token": {"value":"if","line":84,"column":3}, "nativeNode": "If"},
               {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
                 {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
                   {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":84,"column":6}, "nativeNode": "X(Ident)"},
@@ -632,7 +632,7 @@
                   {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"x","line":84,"column":11}, "nativeNode": "Y(Ident)"}
                 ]}
               ]},
-              {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
+              {"kinds": ["THEN","BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
                 {"token": {"value":"{","line":84,"column":13}, "nativeNode": "Lbrace"},
                 {"kinds": ["THROW","STATEMENT"], "nativeNode": "[0](ExprStmt)", "children": [
                   {"kinds": ["EXPRESSION","CALL"], "nativeNode": "X(CallExpr)", "children": [
@@ -797,7 +797,7 @@
               ]}
             ]},
             {"kinds": ["IF","STATEMENT"], "nativeNode": "[2](IfStmt)", "children": [
-              {"kinds": ["KEYWORD"], "token": {"value":"if","line":113,"column":3}, "nativeNode": "If"},
+              {"kinds": ["IF_KEYWORD","KEYWORD"], "token": {"value":"if","line":113,"column":3}, "nativeNode": "If"},
               {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
                 {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
                   {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":113,"column":6}, "nativeNode": "X(Ident)"},
@@ -805,7 +805,7 @@
                   {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"x","line":113,"column":11}, "nativeNode": "Y(Ident)"}
                 ]}
               ]},
-              {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
+              {"kinds": ["THEN","BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
                 {"token": {"value":"{","line":113,"column":13}, "nativeNode": "Lbrace"},
                 {"kinds": ["BREAK","STATEMENT"], "nativeNode": "[0](BranchStmt)", "children": [
                   {"kinds": ["KEYWORD"], "token": {"value":"break","line":114,"column":4}, "nativeNode": "Tok"}
@@ -917,7 +917,7 @@
               ]}
             ]},
             {"kinds": ["IF","STATEMENT"], "nativeNode": "[2](IfStmt)", "children": [
-              {"kinds": ["KEYWORD"], "token": {"value":"if","line":134,"column":3}, "nativeNode": "If"},
+              {"kinds": ["IF_KEYWORD","KEYWORD"], "token": {"value":"if","line":134,"column":3}, "nativeNode": "If"},
               {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
                 {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
                   {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":134,"column":6}, "nativeNode": "X(Ident)"},
@@ -925,7 +925,7 @@
                   {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"x","line":134,"column":11}, "nativeNode": "Y(Ident)"}
                 ]}
               ]},
-              {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
+              {"kinds": ["THEN","BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
                 {"token": {"value":"{","line":134,"column":13}, "nativeNode": "Lbrace"},
                 {"kinds": ["RETURN","STATEMENT"], "nativeNode": "[0](ReturnStmt)", "children": [
                   {"kinds": ["KEYWORD"], "token": {"value":"return","line":135,"column":4}, "nativeNode": "Return"}
@@ -1037,7 +1037,7 @@
               ]}
             ]},
             {"kinds": ["IF","STATEMENT"], "nativeNode": "[2](IfStmt)", "children": [
-              {"kinds": ["KEYWORD"], "token": {"value":"if","line":155,"column":3}, "nativeNode": "If"},
+              {"kinds": ["IF_KEYWORD","KEYWORD"], "token": {"value":"if","line":155,"column":3}, "nativeNode": "If"},
               {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
                 {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
                   {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":155,"column":6}, "nativeNode": "X(Ident)"},
@@ -1045,7 +1045,7 @@
                   {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"x","line":155,"column":11}, "nativeNode": "Y(Ident)"}
                 ]}
               ]},
-              {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
+              {"kinds": ["THEN","BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
                 {"token": {"value":"{","line":155,"column":13}, "nativeNode": "Lbrace"},
                 {"kinds": ["CONTINUE","STATEMENT"], "nativeNode": "[0](BranchStmt)", "children": [
                   {"kinds": ["KEYWORD"], "token": {"value":"continue","line":156,"column":4}, "nativeNode": "Tok"}
@@ -1109,7 +1109,7 @@
               ]}
             ]},
             {"kinds": ["IF","STATEMENT"], "nativeNode": "[2](IfStmt)", "children": [
-              {"kinds": ["KEYWORD"], "token": {"value":"if","line":167,"column":3}, "nativeNode": "If"},
+              {"kinds": ["IF_KEYWORD","KEYWORD"], "token": {"value":"if","line":167,"column":3}, "nativeNode": "If"},
               {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
                 {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
                   {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"0","line":167,"column":6}, "nativeNode": "X(BasicLit)"},
@@ -1117,10 +1117,10 @@
                   {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"x","line":167,"column":10}, "nativeNode": "Y(Ident)"}
                 ]}
               ]},
-              {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
+              {"kinds": ["THEN","BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
                 {"token": {"value":"{","line":167,"column":12}, "nativeNode": "Lbrace"},
                 {"kinds": ["IF","STATEMENT"], "nativeNode": "[0](IfStmt)", "children": [
-                  {"kinds": ["KEYWORD"], "token": {"value":"if","line":168,"column":4}, "nativeNode": "If"},
+                  {"kinds": ["IF_KEYWORD","KEYWORD"], "token": {"value":"if","line":168,"column":4}, "nativeNode": "If"},
                   {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
                     {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
                       {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":168,"column":7}, "nativeNode": "X(Ident)"},
@@ -1128,7 +1128,7 @@
                       {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"x","line":168,"column":12}, "nativeNode": "Y(Ident)"}
                     ]}
                   ]},
-                  {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
+                  {"kinds": ["THEN","BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
                     {"token": {"value":"{","line":168,"column":14}, "nativeNode": "Lbrace"},
                     {"kinds": ["CONTINUE","STATEMENT"], "nativeNode": "[0](BranchStmt)", "children": [
                       {"kinds": ["KEYWORD"], "token": {"value":"continue","line":169,"column":5}, "nativeNode": "Tok"}
@@ -1253,7 +1253,7 @@
               ]}
             ]},
             {"kinds": ["IF","STATEMENT"], "nativeNode": "[2](IfStmt)", "children": [
-              {"kinds": ["KEYWORD"], "token": {"value":"if","line":191,"column":3}, "nativeNode": "If"},
+              {"kinds": ["IF_KEYWORD","KEYWORD"], "token": {"value":"if","line":191,"column":3}, "nativeNode": "If"},
               {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
                 {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
                   {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":191,"column":6}, "nativeNode": "X(Ident)"},
@@ -1261,7 +1261,7 @@
                   {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"x","line":191,"column":11}, "nativeNode": "Y(Ident)"}
                 ]}
               ]},
-              {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
+              {"kinds": ["THEN","BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
                 {"token": {"value":"{","line":191,"column":13}, "nativeNode": "Lbrace"},
                 {"kinds": ["THROW","STATEMENT"], "nativeNode": "[0](ExprStmt)", "children": [
                   {"kinds": ["EXPRESSION","CALL"], "nativeNode": "X(CallExpr)", "children": [
@@ -1446,7 +1446,7 @@
               ]}
             ]},
             {"kinds": ["IF","STATEMENT"], "nativeNode": "[1](IfStmt)", "children": [
-              {"kinds": ["KEYWORD"], "token": {"value":"if","line":213,"column":3}, "nativeNode": "If"},
+              {"kinds": ["IF_KEYWORD","KEYWORD"], "token": {"value":"if","line":213,"column":3}, "nativeNode": "If"},
               {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
                 {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
                   {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"1","line":213,"column":6}, "nativeNode": "X(BasicLit)"},
@@ -1454,7 +1454,7 @@
                   {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"x","line":213,"column":11}, "nativeNode": "Y(Ident)"}
                 ]}
               ]},
-              {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
+              {"kinds": ["THEN","BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
                 {"token": {"value":"{","line":213,"column":13}, "nativeNode": "Lbrace"},
                 {"kinds": ["BREAK","STATEMENT"], "nativeNode": "[0](BranchStmt)", "children": [
                   {"kinds": ["KEYWORD"], "token": {"value":"break","line":214,"column":4}, "nativeNode": "Tok"}
@@ -1543,7 +1543,7 @@
                   ]}
                 ]},
                 {"kinds": ["IF","STATEMENT"], "nativeNode": "[1](IfStmt)", "children": [
-                  {"kinds": ["KEYWORD"], "token": {"value":"if","line":224,"column":4}, "nativeNode": "If"},
+                  {"kinds": ["IF_KEYWORD","KEYWORD"], "token": {"value":"if","line":224,"column":4}, "nativeNode": "If"},
                   {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
                     {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
                       {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"1","line":224,"column":7}, "nativeNode": "X(BasicLit)"},
@@ -1551,7 +1551,7 @@
                       {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"x","line":224,"column":12}, "nativeNode": "Y(Ident)"}
                     ]}
                   ]},
-                  {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
+                  {"kinds": ["THEN","BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
                     {"token": {"value":"{","line":224,"column":14}, "nativeNode": "Lbrace"},
                     {"kinds": ["CONTINUE","STATEMENT"], "nativeNode": "[0](BranchStmt)", "children": [
                       {"kinds": ["KEYWORD"], "token": {"value":"continue","line":225,"column":5}, "nativeNode": "Tok"}
@@ -1682,7 +1682,7 @@
               ]}
             ]},
             {"kinds": ["IF","STATEMENT"], "nativeNode": "[1](IfStmt)", "children": [
-              {"kinds": ["KEYWORD"], "token": {"value":"if","line":242,"column":3}, "nativeNode": "If"},
+              {"kinds": ["IF_KEYWORD","KEYWORD"], "token": {"value":"if","line":242,"column":3}, "nativeNode": "If"},
               {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
                 {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
                   {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"1","line":242,"column":6}, "nativeNode": "X(BasicLit)"},
@@ -1690,7 +1690,7 @@
                   {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"x","line":242,"column":11}, "nativeNode": "Y(Ident)"}
                 ]}
               ]},
-              {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
+              {"kinds": ["THEN","BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
                 {"token": {"value":"{","line":242,"column":13}, "nativeNode": "Lbrace"},
                 {"kinds": ["RETURN","STATEMENT"], "nativeNode": "[0](ReturnStmt)", "children": [
                   {"kinds": ["KEYWORD"], "token": {"value":"return","line":243,"column":4}, "nativeNode": "Return"}
@@ -1815,7 +1815,7 @@
               ]}
             ]},
             {"kinds": ["IF","STATEMENT"], "nativeNode": "[1](IfStmt)", "children": [
-              {"kinds": ["KEYWORD"], "token": {"value":"if","line":258,"column":3}, "nativeNode": "If"},
+              {"kinds": ["IF_KEYWORD","KEYWORD"], "token": {"value":"if","line":258,"column":3}, "nativeNode": "If"},
               {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
                 {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
                   {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"1","line":258,"column":6}, "nativeNode": "X(BasicLit)"},
@@ -1823,7 +1823,7 @@
                   {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"x","line":258,"column":11}, "nativeNode": "Y(Ident)"}
                 ]}
               ]},
-              {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
+              {"kinds": ["THEN","BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
                 {"token": {"value":"{","line":258,"column":13}, "nativeNode": "Lbrace"},
                 {"kinds": ["CONTINUE","STATEMENT"], "nativeNode": "[0](BranchStmt)", "children": [
                   {"kinds": ["KEYWORD"], "token": {"value":"continue","line":259,"column":4}, "nativeNode": "Tok"}
@@ -1895,7 +1895,7 @@
               ]}
             ]},
             {"kinds": ["IF","STATEMENT"], "nativeNode": "[1](IfStmt)", "children": [
-              {"kinds": ["KEYWORD"], "token": {"value":"if","line":268,"column":3}, "nativeNode": "If"},
+              {"kinds": ["IF_KEYWORD","KEYWORD"], "token": {"value":"if","line":268,"column":3}, "nativeNode": "If"},
               {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
                 {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
                   {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"0","line":268,"column":6}, "nativeNode": "X(BasicLit)"},
@@ -1903,10 +1903,10 @@
                   {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"x","line":268,"column":10}, "nativeNode": "Y(Ident)"}
                 ]}
               ]},
-              {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
+              {"kinds": ["THEN","BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
                 {"token": {"value":"{","line":268,"column":12}, "nativeNode": "Lbrace"},
                 {"kinds": ["IF","STATEMENT"], "nativeNode": "[0](IfStmt)", "children": [
-                  {"kinds": ["KEYWORD"], "token": {"value":"if","line":269,"column":4}, "nativeNode": "If"},
+                  {"kinds": ["IF_KEYWORD","KEYWORD"], "token": {"value":"if","line":269,"column":4}, "nativeNode": "If"},
                   {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
                     {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
                       {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"1","line":269,"column":7}, "nativeNode": "X(BasicLit)"},
@@ -1914,7 +1914,7 @@
                       {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"x","line":269,"column":12}, "nativeNode": "Y(Ident)"}
                     ]}
                   ]},
-                  {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
+                  {"kinds": ["THEN","BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
                     {"token": {"value":"{","line":269,"column":14}, "nativeNode": "Lbrace"},
                     {"kinds": ["CONTINUE","STATEMENT"], "nativeNode": "[0](BranchStmt)", "children": [
                       {"kinds": ["KEYWORD"], "token": {"value":"continue","line":270,"column":5}, "nativeNode": "Tok"}
@@ -2052,7 +2052,7 @@
               ]}
             ]},
             {"kinds": ["IF","STATEMENT"], "nativeNode": "[1](IfStmt)", "children": [
-              {"kinds": ["KEYWORD"], "token": {"value":"if","line":287,"column":3}, "nativeNode": "If"},
+              {"kinds": ["IF_KEYWORD","KEYWORD"], "token": {"value":"if","line":287,"column":3}, "nativeNode": "If"},
               {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
                 {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
                   {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"1","line":287,"column":6}, "nativeNode": "X(BasicLit)"},
@@ -2060,7 +2060,7 @@
                   {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"x","line":287,"column":11}, "nativeNode": "Y(Ident)"}
                 ]}
               ]},
-              {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
+              {"kinds": ["THEN","BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
                 {"token": {"value":"{","line":287,"column":13}, "nativeNode": "Lbrace"},
                 {"kinds": ["THROW","STATEMENT"], "nativeNode": "[0](ExprStmt)", "children": [
                   {"kinds": ["EXPRESSION","CALL"], "nativeNode": "X(CallExpr)", "children": [
@@ -2223,7 +2223,7 @@
               ]}
             ]},
             {"kinds": ["IF","STATEMENT"], "nativeNode": "[1](IfStmt)", "children": [
-              {"kinds": ["KEYWORD"], "token": {"value":"if","line":317,"column":3}, "nativeNode": "If"},
+              {"kinds": ["IF_KEYWORD","KEYWORD"], "token": {"value":"if","line":317,"column":3}, "nativeNode": "If"},
               {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
                 {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
                   {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"1","line":317,"column":6}, "nativeNode": "X(BasicLit)"},
@@ -2231,7 +2231,7 @@
                   {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"x","line":317,"column":11}, "nativeNode": "Y(Ident)"}
                 ]}
               ]},
-              {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
+              {"kinds": ["THEN","BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
                 {"token": {"value":"{","line":317,"column":13}, "nativeNode": "Lbrace"},
                 {"kinds": ["BREAK","STATEMENT"], "nativeNode": "[0](BranchStmt)", "children": [
                   {"kinds": ["KEYWORD"], "token": {"value":"break","line":318,"column":4}, "nativeNode": "Tok"}
@@ -2307,7 +2307,7 @@
               ]}
             ]},
             {"kinds": ["IF","STATEMENT"], "nativeNode": "[1](IfStmt)", "children": [
-              {"kinds": ["KEYWORD"], "token": {"value":"if","line":334,"column":3}, "nativeNode": "If"},
+              {"kinds": ["IF_KEYWORD","KEYWORD"], "token": {"value":"if","line":334,"column":3}, "nativeNode": "If"},
               {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
                 {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
                   {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"1","line":334,"column":6}, "nativeNode": "X(BasicLit)"},
@@ -2315,7 +2315,7 @@
                   {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"x","line":334,"column":11}, "nativeNode": "Y(Ident)"}
                 ]}
               ]},
-              {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
+              {"kinds": ["THEN","BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
                 {"token": {"value":"{","line":334,"column":13}, "nativeNode": "Lbrace"},
                 {"kinds": ["RETURN","STATEMENT"], "nativeNode": "[0](ReturnStmt)", "children": [
                   {"kinds": ["KEYWORD"], "token": {"value":"return","line":335,"column":4}, "nativeNode": "Return"}
@@ -2391,7 +2391,7 @@
               ]}
             ]},
             {"kinds": ["IF","STATEMENT"], "nativeNode": "[1](IfStmt)", "children": [
-              {"kinds": ["KEYWORD"], "token": {"value":"if","line":351,"column":3}, "nativeNode": "If"},
+              {"kinds": ["IF_KEYWORD","KEYWORD"], "token": {"value":"if","line":351,"column":3}, "nativeNode": "If"},
               {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
                 {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
                   {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"1","line":351,"column":6}, "nativeNode": "X(BasicLit)"},
@@ -2399,7 +2399,7 @@
                   {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"x","line":351,"column":11}, "nativeNode": "Y(Ident)"}
                 ]}
               ]},
-              {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
+              {"kinds": ["THEN","BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
                 {"token": {"value":"{","line":351,"column":13}, "nativeNode": "Lbrace"},
                 {"kinds": ["CONTINUE","STATEMENT"], "nativeNode": "[0](BranchStmt)", "children": [
                   {"kinds": ["KEYWORD"], "token": {"value":"continue","line":352,"column":4}, "nativeNode": "Tok"}
@@ -2445,7 +2445,7 @@
               ]}
             ]},
             {"kinds": ["IF","STATEMENT"], "nativeNode": "[1](IfStmt)", "children": [
-              {"kinds": ["KEYWORD"], "token": {"value":"if","line":361,"column":3}, "nativeNode": "If"},
+              {"kinds": ["IF_KEYWORD","KEYWORD"], "token": {"value":"if","line":361,"column":3}, "nativeNode": "If"},
               {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
                 {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
                   {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"0","line":361,"column":6}, "nativeNode": "X(BasicLit)"},
@@ -2453,10 +2453,10 @@
                   {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"x","line":361,"column":10}, "nativeNode": "Y(Ident)"}
                 ]}
               ]},
-              {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
+              {"kinds": ["THEN","BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
                 {"token": {"value":"{","line":361,"column":12}, "nativeNode": "Lbrace"},
                 {"kinds": ["IF","STATEMENT"], "nativeNode": "[0](IfStmt)", "children": [
-                  {"kinds": ["KEYWORD"], "token": {"value":"if","line":362,"column":4}, "nativeNode": "If"},
+                  {"kinds": ["IF_KEYWORD","KEYWORD"], "token": {"value":"if","line":362,"column":4}, "nativeNode": "If"},
                   {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
                     {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
                       {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"1","line":362,"column":7}, "nativeNode": "X(BasicLit)"},
@@ -2464,7 +2464,7 @@
                       {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"x","line":362,"column":12}, "nativeNode": "Y(Ident)"}
                     ]}
                   ]},
-                  {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
+                  {"kinds": ["THEN","BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
                     {"token": {"value":"{","line":362,"column":14}, "nativeNode": "Lbrace"},
                     {"kinds": ["CONTINUE","STATEMENT"], "nativeNode": "[0](BranchStmt)", "children": [
                       {"kinds": ["KEYWORD"], "token": {"value":"continue","line":363,"column":5}, "nativeNode": "Tok"}
@@ -2553,7 +2553,7 @@
               ]}
             ]},
             {"kinds": ["IF","STATEMENT"], "nativeNode": "[1](IfStmt)", "children": [
-              {"kinds": ["KEYWORD"], "token": {"value":"if","line":381,"column":3}, "nativeNode": "If"},
+              {"kinds": ["IF_KEYWORD","KEYWORD"], "token": {"value":"if","line":381,"column":3}, "nativeNode": "If"},
               {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
                 {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
                   {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"1","line":381,"column":6}, "nativeNode": "X(BasicLit)"},
@@ -2561,7 +2561,7 @@
                   {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"x","line":381,"column":11}, "nativeNode": "Y(Ident)"}
                 ]}
               ]},
-              {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
+              {"kinds": ["THEN","BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
                 {"token": {"value":"{","line":381,"column":13}, "nativeNode": "Lbrace"},
                 {"kinds": ["THROW","STATEMENT"], "nativeNode": "[0](ExprStmt)", "children": [
                   {"kinds": ["EXPRESSION","CALL"], "nativeNode": "X(CallExpr)", "children": [

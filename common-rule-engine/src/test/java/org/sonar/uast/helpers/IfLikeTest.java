@@ -30,7 +30,11 @@ class IfLikeTest {
 
   @Test
   void must_have_condition() throws Exception {
-    UastNode node = Uast.from(new StringReader("{ kinds: ['IF'], children: [{kinds: ['CONDITION'], token: {value: 'cond', line: 1, column: 1}}] }"));
+    UastNode node = Uast.from(new StringReader("{ kinds: ['IF'], children: ["
+      + "{kinds: ['IF_KEYWORD'], token: {value: 'if', line: 1, column: 1}},"
+      + "{kinds: ['CONDITION'], token: {value: 'cond', line: 1, column: 1}},"
+      + "{kinds: ['THEN'], token: {value: 'cond', line: 1, column: 1}}"
+      + "] }"));
     IfLike ifLike = IfLike.from(node);
     assertThat(ifLike).isNotNull();
     assertThat(ifLike.condition().joinTokens()).isEqualTo("cond");
@@ -43,7 +47,9 @@ class IfLikeTest {
   void has_else() throws  Exception {
     UastNode node = Uast.from(new StringReader("{ kinds: ['IF'], " +
       "children: [" +
+        "{kinds: ['IF_KEYWORD'], token: {value: 'if', line: 1, column: 1}}," +
         "{kinds: ['CONDITION'], token: {value: 'cond', line: 1, column: 1}}," +
+        "{kinds: ['THEN'], token: {value: 'cond', line: 1, column: 1}}," +
         "{kinds: ['ELSE'], token: {value: 'else', line: 1, column: 1}}" +
       "] }"));
     IfLike ifLike = IfLike.from(node);

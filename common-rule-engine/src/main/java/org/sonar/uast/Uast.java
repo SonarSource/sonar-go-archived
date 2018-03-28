@@ -24,6 +24,7 @@ import java.io.Reader;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
+import javax.annotation.Nullable;
 
 public final class Uast {
 
@@ -35,7 +36,13 @@ public final class Uast {
     return Unmarshaller.unmarshal(reader);
   }
 
-  public static boolean syntacticallyEquivalent(UastNode node1, UastNode node2) {
+  public static boolean syntacticallyEquivalent(@Nullable UastNode node1, @Nullable UastNode node2) {
+    if (node1 == null && node2 == null) {
+      return true;
+    }
+    if (node1 == null || node2 == null) {
+      return false;
+    }
     if (node1.token == null && node2.token != null) {
       return false;
     }

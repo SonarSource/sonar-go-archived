@@ -257,6 +257,7 @@ public class Generator {
   private static void addTokenKinds(SyntaxToken tree, Set<UastNode.Kind> result) {
     SyntaxToken token = tree;
     switch (token.text()) {
+      // operators
       case "+":
         result.add(UastNode.Kind.OPERATOR);
         result.add(UastNode.Kind.OPERATOR_ADD);
@@ -280,6 +281,12 @@ public class Generator {
       case "||":
         result.add(UastNode.Kind.OPERATOR);
         result.add(UastNode.Kind.OPERATOR_LOGICAL_OR);
+        break;
+      // keywords
+      case "if":
+        result.add(UastNode.Kind.IF_KEYWORD);
+        break;
+      default:
         break;
     }
   }
@@ -322,6 +329,7 @@ public class Generator {
     @Override
     public void visitIfStatement(IfStatementTree tree) {
       addKind(tree.condition(), UastNode.Kind.CONDITION);
+      addKind(tree.thenStatement(), UastNode.Kind.THEN);
       StatementTree elseStatement = tree.elseStatement();
       if (elseStatement != null) {
         addKind(elseStatement, UastNode.Kind.ELSE);
