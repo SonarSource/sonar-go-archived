@@ -45,7 +45,7 @@
             ]},
             {"token": {"value":"}","line":7,"column":5}, "nativeNode": "Rbrace"}
           ]},
-          {"token": {"value":"else","line":7,"column":7}, "nativeNode": ""},
+          {"kinds": ["ELSE_KEYWORD"], "token": {"value":"else","line":7,"column":7}, "nativeNode": ""},
           {"kinds": ["ELSE","BLOCK"], "nativeNode": "Else(BlockStmt)", "children": [
             {"token": {"value":"{","line":7,"column":12}, "nativeNode": "Lbrace"},
             {"kinds": ["RETURN","STATEMENT"], "nativeNode": "[0](ReturnStmt)", "children": [
@@ -97,7 +97,7 @@
             ]},
             {"token": {"value":"}","line":15,"column":5}, "nativeNode": "Rbrace"}
           ]},
-          {"token": {"value":"else","line":15,"column":7}, "nativeNode": ""},
+          {"kinds": ["ELSE_KEYWORD"], "token": {"value":"else","line":15,"column":7}, "nativeNode": ""},
           {"kinds": ["ELSE","BLOCK"], "nativeNode": "Else(BlockStmt)", "children": [
             {"token": {"value":"{","line":15,"column":12}, "nativeNode": "Lbrace"},
             {"kinds": ["RETURN","STATEMENT"], "nativeNode": "[0](ReturnStmt)", "children": [
@@ -150,7 +150,7 @@
             ]},
             {"token": {"value":"}","line":23,"column":5}, "nativeNode": "Rbrace"}
           ]},
-          {"token": {"value":"else","line":23,"column":7}, "nativeNode": ""},
+          {"kinds": ["ELSE_KEYWORD"], "token": {"value":"else","line":23,"column":7}, "nativeNode": ""},
           {"kinds": ["ELSE","IF","STATEMENT"], "nativeNode": "Else(IfStmt)", "children": [
             {"kinds": ["IF_KEYWORD","KEYWORD"], "token": {"value":"if","line":23,"column":12}, "nativeNode": "If"},
             {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
@@ -187,7 +187,7 @@
             ]},
             {"token": {"value":"}","line":29,"column":5}, "nativeNode": "Rbrace"}
           ]},
-          {"token": {"value":"else","line":29,"column":7}, "nativeNode": ""},
+          {"kinds": ["ELSE_KEYWORD"], "token": {"value":"else","line":29,"column":7}, "nativeNode": ""},
           {"kinds": ["ELSE","IF","STATEMENT"], "nativeNode": "Else(IfStmt)", "children": [
             {"kinds": ["IF_KEYWORD","KEYWORD"], "token": {"value":"if","line":29,"column":12}, "nativeNode": "If"},
             {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
@@ -225,7 +225,7 @@
             ]},
             {"token": {"value":"}","line":35,"column":5}, "nativeNode": "Rbrace"}
           ]},
-          {"token": {"value":"else","line":35,"column":7}, "nativeNode": ""},
+          {"kinds": ["ELSE_KEYWORD"], "token": {"value":"else","line":35,"column":7}, "nativeNode": ""},
           {"kinds": ["ELSE","IF","STATEMENT"], "nativeNode": "Else(IfStmt)", "children": [
             {"kinds": ["IF_KEYWORD","KEYWORD"], "token": {"value":"if","line":35,"column":12}, "nativeNode": "If"},
             {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
@@ -243,7 +243,7 @@
               ]},
               {"token": {"value":"}","line":37,"column":5}, "nativeNode": "Rbrace"}
             ]},
-            {"token": {"value":"else","line":37,"column":7}, "nativeNode": ""},
+            {"kinds": ["ELSE_KEYWORD"], "token": {"value":"else","line":37,"column":7}, "nativeNode": ""},
             {"kinds": ["ELSE","BLOCK"], "nativeNode": "Else(BlockStmt)", "children": [
               {"token": {"value":"{","line":37,"column":12}, "nativeNode": "Lbrace"},
               {"kinds": ["RETURN","STATEMENT"], "nativeNode": "[0](ReturnStmt)", "children": [
@@ -271,7 +271,7 @@
             ]},
             {"token": {"value":"}","line":43,"column":5}, "nativeNode": "Rbrace"}
           ]},
-          {"token": {"value":"else","line":43,"column":7}, "nativeNode": ""},
+          {"kinds": ["ELSE_KEYWORD"], "token": {"value":"else","line":43,"column":7}, "nativeNode": ""},
           {"kinds": ["ELSE","IF","STATEMENT"], "nativeNode": "Else(IfStmt)", "children": [
             {"kinds": ["IF_KEYWORD","KEYWORD"], "token": {"value":"if","line":43,"column":12}, "nativeNode": "If"},
             {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
@@ -289,7 +289,7 @@
               ]},
               {"token": {"value":"}","line":45,"column":5}, "nativeNode": "Rbrace"}
             ]},
-            {"token": {"value":"else","line":45,"column":7}, "nativeNode": ""},
+            {"kinds": ["ELSE_KEYWORD"], "token": {"value":"else","line":45,"column":7}, "nativeNode": ""},
             {"kinds": ["ELSE","BLOCK"], "nativeNode": "Else(BlockStmt)", "children": [
               {"token": {"value":"{","line":45,"column":12}, "nativeNode": "Lbrace"},
               {"kinds": ["RETURN","STATEMENT"], "nativeNode": "[0](ReturnStmt)", "children": [
@@ -318,7 +318,7 @@
             ]},
             {"token": {"value":"}","line":51,"column":2}, "nativeNode": "Rbrace"}
           ]},
-          {"token": {"value":"else","line":51,"column":4}, "nativeNode": ""},
+          {"kinds": ["ELSE_KEYWORD"], "token": {"value":"else","line":51,"column":4}, "nativeNode": ""},
           {"kinds": ["ELSE","IF","STATEMENT"], "nativeNode": "Else(IfStmt)", "children": [
             {"kinds": ["IF_KEYWORD","KEYWORD"], "token": {"value":"if","line":51,"column":9}, "nativeNode": "If"},
             {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
@@ -336,7 +336,7 @@
               ]},
               {"token": {"value":"}","line":53,"column":2}, "nativeNode": "Rbrace"}
             ]},
-            {"token": {"value":"else","line":53,"column":4}, "nativeNode": ""},
+            {"kinds": ["ELSE_KEYWORD"], "token": {"value":"else","line":53,"column":4}, "nativeNode": ""},
             {"kinds": ["ELSE","IF","STATEMENT"], "nativeNode": "Else(IfStmt)", "children": [
               {"kinds": ["IF_KEYWORD","KEYWORD"], "token": {"value":"if","line":53,"column":9}, "nativeNode": "If"},
               {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
@@ -354,7 +354,7 @@
                 ]},
                 {"token": {"value":"}","line":55,"column":2}, "nativeNode": "Rbrace"}
               ]},
-              {"token": {"value":"else","line":55,"column":4}, "nativeNode": ""},
+              {"kinds": ["ELSE_KEYWORD"], "token": {"value":"else","line":55,"column":4}, "nativeNode": ""},
               {"kinds": ["ELSE","BLOCK"], "nativeNode": "Else(BlockStmt)", "children": [
                 {"token": {"value":"{","line":55,"column":9}, "nativeNode": "Lbrace"},
                 {"kinds": ["RETURN","STATEMENT"], "nativeNode": "[0](ReturnStmt)", "children": [

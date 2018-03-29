@@ -43,6 +43,7 @@ class UastNode {
 
   // this enum is copy&paste from common-rule-engine
   enum Kind {
+    KEYWORD,
     ASSIGNMENT,
     ASSIGNMENT_OPERATOR,
     ASSIGNMENT_TARGET,
@@ -66,6 +67,7 @@ class UastNode {
     CONDITION,
     DECLARATION,
     ELSE,
+    ELSE_KEYWORD("else", KEYWORD),
     EOF,
     FUNCTION,
     FUNCTION_NAME,
@@ -73,7 +75,6 @@ class UastNode {
     FUNCTION_LITERAL,
     IDENTIFIER,
     IF,
-    KEYWORD,
     IF_KEYWORD("if", KEYWORD),
     LITERAL,
     LOOP,

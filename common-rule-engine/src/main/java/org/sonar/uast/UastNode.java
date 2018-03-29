@@ -124,6 +124,7 @@ public final class UastNode {
     CONDITION,
     DECLARATION,
     ELSE,
+    ELSE_KEYWORD,
     EOF,
     FUNCTION,
     FUNCTION_NAME,

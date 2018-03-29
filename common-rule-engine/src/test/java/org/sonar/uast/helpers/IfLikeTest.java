@@ -33,11 +33,13 @@ class IfLikeTest {
     UastNode node = Uast.from(new StringReader("{ kinds: ['IF'], children: ["
       + "{kinds: ['IF_KEYWORD'], token: {value: 'if', line: 1, column: 1}},"
       + "{kinds: ['CONDITION'], token: {value: 'cond', line: 1, column: 1}},"
-      + "{kinds: ['THEN'], token: {value: 'cond', line: 1, column: 1}}"
+      + "{kinds: ['THEN'], token: {value: 'statement1', line: 1, column: 1}}"
       + "] }"));
     IfLike ifLike = IfLike.from(node);
     assertThat(ifLike).isNotNull();
+    assertThat(ifLike.ifKeyword().joinTokens()).isEqualTo("if");
     assertThat(ifLike.condition().joinTokens()).isEqualTo("cond");
+    assertThat(ifLike.thenNode().joinTokens()).isEqualTo("statement1");
 
     node = Uast.from(new StringReader("{ kinds: ['IF'] }"));
     assertThat(IfLike.from(node)).isNull();
@@ -49,12 +51,15 @@ class IfLikeTest {
       "children: [" +
         "{kinds: ['IF_KEYWORD'], token: {value: 'if', line: 1, column: 1}}," +
         "{kinds: ['CONDITION'], token: {value: 'cond', line: 1, column: 1}}," +
-        "{kinds: ['THEN'], token: {value: 'cond', line: 1, column: 1}}," +
-        "{kinds: ['ELSE'], token: {value: 'else', line: 1, column: 1}}" +
+        "{kinds: ['THEN'], token: {value: 'statement1', line: 1, column: 1}}," +
+        "{kinds: ['ELSE_KEYWORD'], token: {value: 'else', line: 1, column: 1}}," +
+        "{kinds: ['ELSE'], token: {value: 'statement2', line: 1, column: 1}}" +
       "] }"));
     IfLike ifLike = IfLike.from(node);
     assertThat(ifLike).isNotNull();
-    assertThat(ifLike.elseNode()).isNotNull();
-    assertThat(ifLike.elseNode().joinTokens()).isEqualTo("else");
+    ElseLike elseLike = ifLike.elseLike();
+    assertThat(elseLike).isNotNull();
+    assertThat(elseLike.elseKeyword().joinTokens()).isEqualTo("else");
+    assertThat(elseLike.elseNode().joinTokens()).isEqualTo("statement2");
   }
 }

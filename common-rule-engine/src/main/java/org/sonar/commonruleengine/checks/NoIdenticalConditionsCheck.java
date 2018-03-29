@@ -71,10 +71,10 @@ public class NoIdenticalConditionsCheck extends Check {
       return;
     }
     UastNode condition = ifLike.condition();
-    IfLike elseIf = IfLike.from(ifLike.elseNode());
+    IfLike elseIf = ifLike.elseIf();
     while (elseIf != null) {
       checkConditions(elseIf.condition(), condition);
-      elseIf = IfLike.from(elseIf.elseNode());
+      elseIf = elseIf.elseIf();
     }
   }
 
