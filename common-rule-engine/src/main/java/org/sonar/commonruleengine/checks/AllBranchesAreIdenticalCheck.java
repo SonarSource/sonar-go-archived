@@ -26,6 +26,7 @@ import org.sonar.api.batch.fs.InputFile;
 import org.sonar.check.Rule;
 import org.sonar.uast.UastNode;
 import org.sonar.uast.helpers.CaseLike;
+import org.sonar.uast.helpers.ElseLike;
 import org.sonar.uast.helpers.IfLike;
 import org.sonar.uast.helpers.SwitchLike;
 
@@ -82,23 +83,22 @@ public class AllBranchesAreIdenticalCheck extends Check {
     if (ifLike == null || visitedIfs.contains(node)) {
       return;
     }
-    UastNode thenNode = ifLike.thenNode();
-    UastNode elseNode = ifLike.elseNode();
+    ElseLike elseLike = ifLike.elseLike();
     boolean allSame = true;
-    IfLike elseIf = IfLike.from(elseNode);
+    IfLike elseIf = ifLike.elseIf();
     while (elseIf != null) {
       visitedIfs.add(elseIf.node());
-      if (!syntacticallyEquivalent(thenNode, elseIf.thenNode())) {
+      if (!syntacticallyEquivalent(ifLike.thenNode(), elseIf.thenNode())) {
         allSame = false;
       }
-      elseNode = elseIf.elseNode();
-      elseIf = IfLike.from(elseIf.elseNode());
+      elseLike = elseIf.elseLike();
+      elseIf = elseIf.elseIf();
     }
-    if (elseNode == null) {
+    if (elseLike == null) {
       // if without else is exception of the rule, see RSPEC
       return;
     }
-    allSame = allSame && syntacticallyEquivalent(thenNode, elseNode);
+    allSame = allSame && syntacticallyEquivalent(ifLike.thenNode(), elseLike.elseNode());
     if (allSame) {
       reportIssue(ifLike.ifKeyword(), MESSAGE);
     }

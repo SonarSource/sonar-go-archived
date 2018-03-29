@@ -707,7 +707,7 @@
                       ]},
                       {"token": {"value":"}","line":87,"column":11}, "nativeNode": "Rbrace"}
                     ]},
-                    {"token": {"value":"else","line":87,"column":13}, "nativeNode": ""},
+                    {"kinds": ["ELSE_KEYWORD"], "token": {"value":"else","line":87,"column":13}, "nativeNode": ""},
                     {"kinds": ["ELSE","BLOCK"], "nativeNode": "Else(BlockStmt)", "children": [
                       {"token": {"value":"{","line":87,"column":18}, "nativeNode": "Lbrace"},
                       {"kinds": ["COMMENT"], "token": {"value":"//          ^^^^\u003c {{+1}}","line":88,"column":1}, "nativeNode": ""},
@@ -949,7 +949,7 @@
             {"kinds": ["COMMENT"], "token": {"value":"//  ^^\u003c {{+1}}  ^^\u003c {{+1}}","line":122,"column":1}, "nativeNode": ""},
             {"token": {"value":"}","line":124,"column":5}, "nativeNode": "Rbrace"}
           ]},
-          {"token": {"value":"else","line":124,"column":7}, "nativeNode": ""},
+          {"kinds": ["ELSE_KEYWORD"], "token": {"value":"else","line":124,"column":7}, "nativeNode": ""},
           {"kinds": ["ELSE","IF","STATEMENT"], "nativeNode": "Else(IfStmt)", "children": [
             {"kinds": ["IF_KEYWORD","KEYWORD"], "token": {"value":"if","line":124,"column":12}, "nativeNode": "If"},
             {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
@@ -968,7 +968,7 @@
               {"kinds": ["COMMENT"], "token": {"value":"//    ^^^^\u003c {{+1}}","line":125,"column":1}, "nativeNode": ""},
               {"token": {"value":"}","line":126,"column":5}, "nativeNode": "Rbrace"}
             ]},
-            {"token": {"value":"else","line":126,"column":7}, "nativeNode": ""},
+            {"kinds": ["ELSE_KEYWORD"], "token": {"value":"else","line":126,"column":7}, "nativeNode": ""},
             {"kinds": ["ELSE","BLOCK"], "nativeNode": "Else(BlockStmt)", "children": [
               {"token": {"value":"{","line":126,"column":12}, "nativeNode": "Lbrace"},
               {"kinds": ["COMMENT"], "token": {"value":"//    ^^^^\u003c {{+1}}","line":127,"column":1}, "nativeNode": ""},

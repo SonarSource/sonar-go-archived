@@ -27,17 +27,18 @@ import org.sonar.uast.UastNode;
 public class IfLike {
 
   private final UastNode node;
-  private final UastNode condition;
-  private final UastNode elseNode;
-  private final UastNode thenNode;
   private final UastNode ifKeyword;
+  private final UastNode condition;
+  private final UastNode thenNode;
+  @Nullable
+  private final ElseLike elseLike;
 
-  public IfLike(UastNode node, UastNode ifKeyword, UastNode condition, UastNode thenNode, @Nullable UastNode elseNode) {
+  public IfLike(UastNode node, UastNode ifKeyword, UastNode condition, UastNode thenNode, @Nullable ElseLike elseLike) {
     this.node = node;
     this.ifKeyword = ifKeyword;
     this.condition = condition;
-    this.elseNode = elseNode;
     this.thenNode = thenNode;
+    this.elseLike = elseLike;
   }
 
   @CheckForNull
@@ -49,9 +50,8 @@ public class IfLike {
       Optional<UastNode> ifKeyword = node.getChild(UastNode.Kind.IF_KEYWORD);
       Optional<UastNode> condition = node.getChild(UastNode.Kind.CONDITION);
       Optional<UastNode> thenNode = node.getChild(UastNode.Kind.THEN);
-      UastNode elseNode = node.getChild(UastNode.Kind.ELSE).orElse(null);
       if (ifKeyword.isPresent() && condition.isPresent() && thenNode.isPresent()) {
-        return new IfLike(node, ifKeyword.get(), condition.get(), thenNode.get(), elseNode);
+        return new IfLike(node, ifKeyword.get(), condition.get(), thenNode.get(), ElseLike.from(node));
       }
     }
     return null;
@@ -74,20 +74,13 @@ public class IfLike {
   }
 
   @CheckForNull
-  public UastNode elseNode() {
-    return elseNode;
+  public ElseLike elseLike() {
+    return elseLike;
   }
 
   @CheckForNull
-  public UastNode elseKeyword() {
-    // TODO use kinds
-    for (UastNode child : node.children) {
-      UastNode.Token token = child.token;
-      if (token != null && "else".equals(token.value)) {
-        return child;
-      }
-    }
-    return null;
+  public IfLike elseIf() {
+    return elseLike != null ? elseLike.elseIf() : null;
   }
 
 }

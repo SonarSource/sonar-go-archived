@@ -470,6 +470,10 @@ var missingKeywordToken = map[byte]string{
 	',': ",", ';': ";", '.': ".", '[': "[", ']': "]", '=': "=", ':': ":",
 	't': "type", 'r': "range", 'e': "else", 'c': "chan", '<': "<-"}
 
+var missingKeywordTokenKinds = map[string][]Kind{
+	"else": {ELSE_KEYWORD},
+}
+
 func (t *UastMapper) appendMissingToken(children []*Node, offset, endOffset int) []*Node {
 	if offset < 0 || endOffset < offset || endOffset > len(t.fileContent) {
 		return nil
@@ -481,15 +485,17 @@ func (t *UastMapper) appendMissingToken(children []*Node, offset, endOffset int)
 		endOffset--
 	}
 	for offset < endOffset {
-		tokenLength := len(missingKeywordToken[t.fileContent[offset]])
-		if tokenLength == 0 {
+		missingTokenValue := missingKeywordToken[t.fileContent[offset]]
+		missingTokenKinds := missingKeywordTokenKinds[missingTokenValue]
+		tokenLength := len(missingTokenValue)
+		if tokenLength == 0 || t.fileContent[offset:offset+tokenLength] != missingTokenValue {
 			if t.paranoiac {
 				location := t.location(offset, endOffset)
 				panic(fmt.Sprintf("Invalid missing token '%s'%s", t.fileContent[offset:endOffset], location))
 			}
 			tokenLength = endOffset - offset
 		}
-		missingToken := t.createUastToken(nil, offset, offset+tokenLength, "")
+		missingToken := t.createUastToken(missingTokenKinds, offset, offset+tokenLength, "")
 		children = t.appendNodeCheckOrder(children, missingToken)
 		offset += tokenLength
 		for offset < endOffset && t.fileContent[offset] <= ' ' {

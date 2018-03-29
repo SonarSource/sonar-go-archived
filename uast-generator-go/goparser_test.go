@@ -735,6 +735,83 @@ label1:
 
 }
 
+func Test_ifStmt(t *testing.T) {
+	source := `package main
+func foo(c bool) {
+	if c {
+    } else {
+    }
+}
+`
+	ifStmt := uastFromString(t, source, "Decls/[0](FuncDecl)/Body(BlockStmt)/[0](IfStmt)")
+
+	actual := newTestNode(ifStmt)
+	expected := TestNode{
+		kinds:      []Kind{IF, STATEMENT},
+		nativeNode: "[0](IfStmt)",
+		children:   5,
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+
+	actual = newTestNode(ifStmt.Children[0])
+	expected = TestNode{
+		kinds:      []Kind{IF_KEYWORD, KEYWORD},
+		nativeNode: "If",
+		token:      Token{Value: "if", Line: 3, Column: 2},
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+
+	actual = newTestNode(ifStmt.Children[1])
+	expected = TestNode{
+		kinds:      []Kind{CONDITION},
+		nativeNode: "InitAndCond",
+		children:   1,
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+
+	actual = newTestNode(ifStmt.Children[2])
+	expected = TestNode{
+		kinds:      []Kind{THEN, BLOCK},
+		nativeNode: "Body(BlockStmt)",
+		children:   2,
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+
+	actual = newTestNode(ifStmt.Children[3])
+	expected = TestNode{
+		kinds: []Kind{ELSE_KEYWORD},
+		token: Token{Value: "else", Line: 4, Column: 7},
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+
+	actual = newTestNode(ifStmt.Children[4])
+	expected = TestNode{
+		kinds:      []Kind{ELSE, BLOCK},
+		children:   2,
+		nativeNode: "Else(BlockStmt)",
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+
+}
+
 func Test_noExpressionKinds(t *testing.T) {
 	source := `package main
 import "other"
