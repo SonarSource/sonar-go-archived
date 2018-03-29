@@ -31,6 +31,7 @@ import org.sonar.commonruleengine.checks.NoIdenticalConditionsCheck;
 import org.sonar.commonruleengine.checks.NoIdenticalFunctionsCheck;
 import org.sonar.commonruleengine.checks.NoSelfAssignmentCheck;
 import org.sonar.commonruleengine.checks.RedundantBooleanLiteralCheck;
+import org.sonar.commonruleengine.checks.RedundantParenthesesCheck;
 import org.sonar.commonruleengine.checks.SwitchDefaultLocationCheck;
 import org.sonar.commonruleengine.checks.SwitchWithoutDefaultCheck;
 import org.sonar.commonruleengine.checks.TooManyParametersCheck;
@@ -54,6 +55,7 @@ public class GoChecks {
       NoHardcodedCredentialsCheck.class,
       NoSelfAssignmentCheck.class,
       RedundantBooleanLiteralCheck.class,
+      RedundantParenthesesCheck.class,
       SwitchDefaultLocationCheck.class,
       SwitchWithoutDefaultCheck.class,
       UnconditionalJumpStatementCheck.class,

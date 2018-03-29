@@ -677,10 +677,10 @@ func main(i int) {
 	actual := strings.Join(actualSlice, " ")
 	expected := "package:[KEYWORD] main:[IDENTIFIER] " +
 		"func:[KEYWORD] main:[FUNCTION_NAME IDENTIFIER] (:[] i:[PARAMETER IDENTIFIER] int:[TYPE IDENTIFIER] ):[] {:[]" +
-		" fmt:[IDENTIFIER] .:[] Println:[IDENTIFIER] (:[LPAREN]" +
+		" fmt:[IDENTIFIER] .:[] Println:[IDENTIFIER] (:[LEFT_PARENTHESIS]" +
 		" \"a\":[EXPRESSION LITERAL STRING_LITERAL] ,:[]" +
 		" 'b':[EXPRESSION LITERAL STRING_LITERAL] ,:[]" +
-		" ):[RPAREN] " +
+		" ):[RIGHT_PARENTHESIS] " +
 		"return:[KEYWORD] 3:[EXPRESSION LITERAL] }:[] :[EOF]"
 	if expected != actual {
 		t.Fatalf("Invalid highlighting kinds, got:\n%v\n\nexpect:\n%v", actual, expected)
