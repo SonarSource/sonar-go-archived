@@ -4,14 +4,14 @@ func test1(a bool) int {
   return a
 }
 
-func test2(a bool) { // Noncompliant {{Refactor this function to reduce its Cognitive Complexity from 1 to the 0 allowed.}}
+func test2(a bool) { // Noncompliant {{Refactor this function to reduce its Cognitive Complexity from 1 to the 0 allowed.}} [[effortToFix=1]]
 //   ^^^^^
   if a {
 //^^< {{+1}}
   }
 }
 
-func test3(a bool) { // Noncompliant {{Refactor this function to reduce its Cognitive Complexity from 7 to the 0 allowed.}}
+func test3(a bool) { // Noncompliant {{Refactor this function to reduce its Cognitive Complexity from 7 to the 0 allowed.}} [[effortToFix=7]]
 //   ^^^^^
   if a {
 //^^< {{+1}}

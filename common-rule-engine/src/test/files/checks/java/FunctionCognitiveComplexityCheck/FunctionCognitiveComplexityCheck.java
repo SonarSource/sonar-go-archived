@@ -6,7 +6,7 @@ class CognitiveComplexityCheck {
     return c>20?4:7; // ignore +1,
   }
 
-  public boolean extraConditions() { // Noncompliant {{Refactor this function to reduce its Cognitive Complexity from 3 to the 0 allowed.}}
+  public boolean extraConditions() { // Noncompliant {{Refactor this function to reduce its Cognitive Complexity from 3 to the 0 allowed.}} [[effortToFix=3]]
     return a && b || foo(b && c);
   }
   public boolean extraConditions2() { // Noncompliant {{Refactor this function to reduce its Cognitive Complexity from 2 to the 0 allowed.}}

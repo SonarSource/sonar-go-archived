@@ -50,7 +50,7 @@
       ]},
       {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
         {"token": {"value":"{","line":7,"column":20}, "nativeNode": "Lbrace"},
-        {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant {{Refactor this function to reduce its Cognitive Complexity from 1 to the 0 allowed.}}","line":7,"column":22}, "nativeNode": ""},
+        {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant {{Refactor this function to reduce its Cognitive Complexity from 1 to the 0 allowed.}} [[effortToFix=1]]","line":7,"column":22}, "nativeNode": ""},
         {"kinds": ["COMMENT"], "token": {"value":"//   ^^^^^","line":8,"column":1}, "nativeNode": ""},
         {"kinds": ["IF","STATEMENT"], "nativeNode": "[0](IfStmt)", "children": [
           {"kinds": ["IF_KEYWORD","KEYWORD"], "token": {"value":"if","line":9,"column":3}, "nativeNode": "If"},
@@ -83,7 +83,7 @@
       ]},
       {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
         {"token": {"value":"{","line":14,"column":20}, "nativeNode": "Lbrace"},
-        {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant {{Refactor this function to reduce its Cognitive Complexity from 7 to the 0 allowed.}}","line":14,"column":22}, "nativeNode": ""},
+        {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant {{Refactor this function to reduce its Cognitive Complexity from 7 to the 0 allowed.}} [[effortToFix=7]]","line":14,"column":22}, "nativeNode": ""},
         {"kinds": ["COMMENT"], "token": {"value":"//   ^^^^^","line":15,"column":1}, "nativeNode": ""},
         {"kinds": ["IF","STATEMENT"], "nativeNode": "[0](IfStmt)", "children": [
           {"kinds": ["IF_KEYWORD","KEYWORD"], "token": {"value":"if","line":16,"column":3}, "nativeNode": "If"},

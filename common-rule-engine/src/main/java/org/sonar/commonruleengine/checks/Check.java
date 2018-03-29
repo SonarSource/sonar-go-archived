@@ -59,15 +59,20 @@ public abstract class Check {
   }
 
   protected final void reportIssue(UastNode node, String message) {
-    context.reportIssue(new Issue(this, new Issue.Message(node, message)));
+    context.reportIssue(new Issue(this, new Issue.Message(node, message), null));
   }
 
   protected final void reportIssue(UastNode node, String message, Issue.Message... secondaryMessages) {
-    context.reportIssue(new Issue(this, new Issue.Message(node, message), secondaryMessages));
+    context.reportIssue(new Issue(this, new Issue.Message(node, message), null, secondaryMessages));
   }
 
   protected final void reportIssue(UastNode from, UastNode to, String message, Issue.Message... secondaryMessages) {
-    context.reportIssue(new Issue(this, new Issue.Message(from, to, message), secondaryMessages));
+    context.reportIssue(new Issue(this, new Issue.Message(from, to, message), null, secondaryMessages));
+  }
+
+  protected final void reportIssue(UastNode from, UastNode to, String message, double effortToFix,
+                                   Issue.Message... secondaryMessages) {
+    context.reportIssue(new Issue(this, new Issue.Message(from, to, message), effortToFix, secondaryMessages));
   }
 
   protected final void reportIssueOnFile(String message) {

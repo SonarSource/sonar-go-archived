@@ -30,15 +30,18 @@ public class Issue {
   private final Check check;
   private final Message primaryMessage;
   private final Message[] secondaryMessages;
+  @Nullable
+  private final Double effortToFix;
 
-  public Issue(Check check, Message primaryMessage, Message... secondaryMessages) {
+  public Issue(Check check, Message primaryMessage, @Nullable Double effortToFix, Message... secondaryMessages) {
     this.check = check;
     this.primaryMessage = primaryMessage;
+    this.effortToFix = effortToFix;
     this.secondaryMessages = secondaryMessages;
   }
 
   public static Issue issueOnFile(Check check, String message) {
-    return new Issue(check, new Message(null, message));
+    return new Issue(check, new Message(null, message), null);
   }
 
   public Check getCheck() {
@@ -59,6 +62,11 @@ public class Issue {
 
   public Message[] getSecondaries() {
     return secondaryMessages;
+  }
+
+  @Nullable
+  public Double getEffortToFix() {
+    return effortToFix;
   }
 
   @Override
