@@ -29,7 +29,7 @@
           {"token": {"value":";","line":4,"column":12}, "nativeNode": ""},
           {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
             {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":4,"column":14}, "nativeNode": "X(Ident)"},
-            {"kinds": ["OPERATOR","OPERATOR_LESS_THEN"], "token": {"value":"\u003c","line":4,"column":16}, "nativeNode": "Op"},
+            {"kinds": ["OPERATOR","OPERATOR_LESS_THAN"], "token": {"value":"\u003c","line":4,"column":16}, "nativeNode": "Op"},
             {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"10","line":4,"column":18}, "nativeNode": "Y(BasicLit)"}
           ]},
           {"token": {"value":";","line":4,"column":20}, "nativeNode": ""},
@@ -77,7 +77,7 @@
           {"token": {"value":";","line":10,"column":12}, "nativeNode": ""},
           {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
             {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":10,"column":14}, "nativeNode": "X(Ident)"},
-            {"kinds": ["OPERATOR","OPERATOR_LESS_THEN"], "token": {"value":"\u003c","line":10,"column":16}, "nativeNode": "Op"},
+            {"kinds": ["OPERATOR","OPERATOR_LESS_THAN"], "token": {"value":"\u003c","line":10,"column":16}, "nativeNode": "Op"},
             {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"10","line":10,"column":18}, "nativeNode": "Y(BasicLit)"}
           ]},
           {"token": {"value":";","line":10,"column":20}, "nativeNode": ""},
@@ -136,7 +136,7 @@
           {"token": {"value":";","line":18,"column":12}, "nativeNode": ""},
           {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
             {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":18,"column":14}, "nativeNode": "X(Ident)"},
-            {"kinds": ["OPERATOR","OPERATOR_LESS_THEN"], "token": {"value":"\u003c","line":18,"column":16}, "nativeNode": "Op"},
+            {"kinds": ["OPERATOR","OPERATOR_LESS_THAN"], "token": {"value":"\u003c","line":18,"column":16}, "nativeNode": "Op"},
             {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"10","line":18,"column":18}, "nativeNode": "Y(BasicLit)"}
           ]},
           {"token": {"value":";","line":18,"column":20}, "nativeNode": ""},
@@ -201,7 +201,7 @@
           {"token": {"value":";","line":27,"column":12}, "nativeNode": ""},
           {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
             {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":27,"column":14}, "nativeNode": "X(Ident)"},
-            {"kinds": ["OPERATOR","OPERATOR_LESS_THEN"], "token": {"value":"\u003c","line":27,"column":16}, "nativeNode": "Op"},
+            {"kinds": ["OPERATOR","OPERATOR_LESS_THAN"], "token": {"value":"\u003c","line":27,"column":16}, "nativeNode": "Op"},
             {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"10","line":27,"column":18}, "nativeNode": "Y(BasicLit)"}
           ]},
           {"token": {"value":";","line":27,"column":20}, "nativeNode": ""},
@@ -260,7 +260,7 @@
           {"token": {"value":";","line":35,"column":12}, "nativeNode": ""},
           {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
             {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":35,"column":14}, "nativeNode": "X(Ident)"},
-            {"kinds": ["OPERATOR","OPERATOR_LESS_THEN"], "token": {"value":"\u003c","line":35,"column":16}, "nativeNode": "Op"},
+            {"kinds": ["OPERATOR","OPERATOR_LESS_THAN"], "token": {"value":"\u003c","line":35,"column":16}, "nativeNode": "Op"},
             {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"10","line":35,"column":18}, "nativeNode": "Y(BasicLit)"}
           ]},
           {"token": {"value":";","line":35,"column":20}, "nativeNode": ""},
@@ -325,7 +325,7 @@
           {"token": {"value":";","line":44,"column":12}, "nativeNode": ""},
           {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
             {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":44,"column":14}, "nativeNode": "X(Ident)"},
-            {"kinds": ["OPERATOR","OPERATOR_LESS_THEN"], "token": {"value":"\u003c","line":44,"column":16}, "nativeNode": "Op"},
+            {"kinds": ["OPERATOR","OPERATOR_LESS_THAN"], "token": {"value":"\u003c","line":44,"column":16}, "nativeNode": "Op"},
             {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"10","line":44,"column":18}, "nativeNode": "Y(BasicLit)"}
           ]},
           {"token": {"value":";","line":44,"column":20}, "nativeNode": ""},
@@ -384,7 +384,7 @@
           {"token": {"value":";","line":52,"column":12}, "nativeNode": ""},
           {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
             {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":52,"column":14}, "nativeNode": "X(Ident)"},
-            {"kinds": ["OPERATOR","OPERATOR_LESS_THEN"], "token": {"value":"\u003c","line":52,"column":16}, "nativeNode": "Op"},
+            {"kinds": ["OPERATOR","OPERATOR_LESS_THAN"], "token": {"value":"\u003c","line":52,"column":16}, "nativeNode": "Op"},
             {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"10","line":52,"column":18}, "nativeNode": "Y(BasicLit)"}
           ]},
           {"token": {"value":";","line":52,"column":20}, "nativeNode": ""},
@@ -458,7 +458,7 @@
           {"token": {"value":";","line":62,"column":12}, "nativeNode": ""},
           {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
             {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":62,"column":14}, "nativeNode": "X(Ident)"},
-            {"kinds": ["OPERATOR","OPERATOR_LESS_THEN"], "token": {"value":"\u003c","line":62,"column":16}, "nativeNode": "Op"},
+            {"kinds": ["OPERATOR","OPERATOR_LESS_THAN"], "token": {"value":"\u003c","line":62,"column":16}, "nativeNode": "Op"},
             {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"10","line":62,"column":18}, "nativeNode": "Y(BasicLit)"}
           ]},
           {"token": {"value":";","line":62,"column":20}, "nativeNode": ""},
@@ -480,7 +480,7 @@
               {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
                 {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
                   {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"0","line":64,"column":6}, "nativeNode": "X(BasicLit)"},
-                  {"kinds": ["OPERATOR","OPERATOR_LESS_THEN"], "token": {"value":"\u003c","line":64,"column":8}, "nativeNode": "Op"},
+                  {"kinds": ["OPERATOR","OPERATOR_LESS_THAN"], "token": {"value":"\u003c","line":64,"column":8}, "nativeNode": "Op"},
                   {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"x","line":64,"column":10}, "nativeNode": "Y(Ident)"}
                 ]}
               ]},
@@ -540,7 +540,7 @@
           {"token": {"value":";","line":74,"column":12}, "nativeNode": ""},
           {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
             {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":74,"column":14}, "nativeNode": "X(Ident)"},
-            {"kinds": ["OPERATOR","OPERATOR_LESS_THEN"], "token": {"value":"\u003c","line":74,"column":16}, "nativeNode": "Op"},
+            {"kinds": ["OPERATOR","OPERATOR_LESS_THAN"], "token": {"value":"\u003c","line":74,"column":16}, "nativeNode": "Op"},
             {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"10","line":74,"column":18}, "nativeNode": "Y(BasicLit)"}
           ]},
           {"token": {"value":";","line":74,"column":20}, "nativeNode": ""},
@@ -606,7 +606,7 @@
           {"token": {"value":";","line":82,"column":12}, "nativeNode": ""},
           {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
             {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":82,"column":14}, "nativeNode": "X(Ident)"},
-            {"kinds": ["OPERATOR","OPERATOR_LESS_THEN"], "token": {"value":"\u003c","line":82,"column":16}, "nativeNode": "Op"},
+            {"kinds": ["OPERATOR","OPERATOR_LESS_THAN"], "token": {"value":"\u003c","line":82,"column":16}, "nativeNode": "Op"},
             {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"10","line":82,"column":18}, "nativeNode": "Y(BasicLit)"}
           ]},
           {"token": {"value":";","line":82,"column":20}, "nativeNode": ""},
@@ -677,7 +677,7 @@
           {"kinds": ["KEYWORD"], "token": {"value":"for","line":92,"column":2}, "nativeNode": "For"},
           {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
             {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":92,"column":6}, "nativeNode": "X(Ident)"},
-            {"kinds": ["OPERATOR","OPERATOR_LESS_THEN"], "token": {"value":"\u003c","line":92,"column":8}, "nativeNode": "Op"},
+            {"kinds": ["OPERATOR","OPERATOR_LESS_THAN"], "token": {"value":"\u003c","line":92,"column":8}, "nativeNode": "Op"},
             {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"10","line":92,"column":10}, "nativeNode": "Y(BasicLit)"}
           ]},
           {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
@@ -723,7 +723,7 @@
           {"kinds": ["KEYWORD"], "token": {"value":"for","line":100,"column":2}, "nativeNode": "For"},
           {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
             {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":100,"column":6}, "nativeNode": "X(Ident)"},
-            {"kinds": ["OPERATOR","OPERATOR_LESS_THEN"], "token": {"value":"\u003c","line":100,"column":8}, "nativeNode": "Op"},
+            {"kinds": ["OPERATOR","OPERATOR_LESS_THAN"], "token": {"value":"\u003c","line":100,"column":8}, "nativeNode": "Op"},
             {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"10","line":100,"column":10}, "nativeNode": "Y(BasicLit)"}
           ]},
           {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
@@ -780,7 +780,7 @@
           {"kinds": ["KEYWORD"], "token": {"value":"for","line":110,"column":2}, "nativeNode": "For"},
           {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
             {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":110,"column":6}, "nativeNode": "X(Ident)"},
-            {"kinds": ["OPERATOR","OPERATOR_LESS_THEN"], "token": {"value":"\u003c","line":110,"column":8}, "nativeNode": "Op"},
+            {"kinds": ["OPERATOR","OPERATOR_LESS_THAN"], "token": {"value":"\u003c","line":110,"column":8}, "nativeNode": "Op"},
             {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"10","line":110,"column":10}, "nativeNode": "Y(BasicLit)"}
           ]},
           {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
@@ -843,7 +843,7 @@
           {"kinds": ["KEYWORD"], "token": {"value":"for","line":121,"column":2}, "nativeNode": "For"},
           {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
             {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":121,"column":6}, "nativeNode": "X(Ident)"},
-            {"kinds": ["OPERATOR","OPERATOR_LESS_THEN"], "token": {"value":"\u003c","line":121,"column":8}, "nativeNode": "Op"},
+            {"kinds": ["OPERATOR","OPERATOR_LESS_THAN"], "token": {"value":"\u003c","line":121,"column":8}, "nativeNode": "Op"},
             {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"10","line":121,"column":10}, "nativeNode": "Y(BasicLit)"}
           ]},
           {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
@@ -900,7 +900,7 @@
           {"kinds": ["KEYWORD"], "token": {"value":"for","line":131,"column":2}, "nativeNode": "For"},
           {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
             {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":131,"column":6}, "nativeNode": "X(Ident)"},
-            {"kinds": ["OPERATOR","OPERATOR_LESS_THEN"], "token": {"value":"\u003c","line":131,"column":8}, "nativeNode": "Op"},
+            {"kinds": ["OPERATOR","OPERATOR_LESS_THAN"], "token": {"value":"\u003c","line":131,"column":8}, "nativeNode": "Op"},
             {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"10","line":131,"column":10}, "nativeNode": "Y(BasicLit)"}
           ]},
           {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
@@ -963,7 +963,7 @@
           {"kinds": ["KEYWORD"], "token": {"value":"for","line":142,"column":2}, "nativeNode": "For"},
           {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
             {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":142,"column":6}, "nativeNode": "X(Ident)"},
-            {"kinds": ["OPERATOR","OPERATOR_LESS_THEN"], "token": {"value":"\u003c","line":142,"column":8}, "nativeNode": "Op"},
+            {"kinds": ["OPERATOR","OPERATOR_LESS_THAN"], "token": {"value":"\u003c","line":142,"column":8}, "nativeNode": "Op"},
             {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"10","line":142,"column":10}, "nativeNode": "Y(BasicLit)"}
           ]},
           {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
@@ -1020,7 +1020,7 @@
           {"kinds": ["KEYWORD"], "token": {"value":"for","line":152,"column":2}, "nativeNode": "For"},
           {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
             {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":152,"column":6}, "nativeNode": "X(Ident)"},
-            {"kinds": ["OPERATOR","OPERATOR_LESS_THEN"], "token": {"value":"\u003c","line":152,"column":8}, "nativeNode": "Op"},
+            {"kinds": ["OPERATOR","OPERATOR_LESS_THAN"], "token": {"value":"\u003c","line":152,"column":8}, "nativeNode": "Op"},
             {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"10","line":152,"column":10}, "nativeNode": "Y(BasicLit)"}
           ]},
           {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
@@ -1092,7 +1092,7 @@
           {"kinds": ["KEYWORD"], "token": {"value":"for","line":164,"column":2}, "nativeNode": "For"},
           {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
             {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":164,"column":6}, "nativeNode": "X(Ident)"},
-            {"kinds": ["OPERATOR","OPERATOR_LESS_THEN"], "token": {"value":"\u003c","line":164,"column":8}, "nativeNode": "Op"},
+            {"kinds": ["OPERATOR","OPERATOR_LESS_THAN"], "token": {"value":"\u003c","line":164,"column":8}, "nativeNode": "Op"},
             {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"10","line":164,"column":10}, "nativeNode": "Y(BasicLit)"}
           ]},
           {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
@@ -1113,7 +1113,7 @@
               {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
                 {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
                   {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"0","line":167,"column":6}, "nativeNode": "X(BasicLit)"},
-                  {"kinds": ["OPERATOR","OPERATOR_LESS_THEN"], "token": {"value":"\u003c","line":167,"column":8}, "nativeNode": "Op"},
+                  {"kinds": ["OPERATOR","OPERATOR_LESS_THAN"], "token": {"value":"\u003c","line":167,"column":8}, "nativeNode": "Op"},
                   {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"x","line":167,"column":10}, "nativeNode": "Y(Ident)"}
                 ]}
               ]},
@@ -1172,7 +1172,7 @@
           {"kinds": ["KEYWORD"], "token": {"value":"for","line":178,"column":2}, "nativeNode": "For"},
           {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
             {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":178,"column":6}, "nativeNode": "X(Ident)"},
-            {"kinds": ["OPERATOR","OPERATOR_LESS_THEN"], "token": {"value":"\u003c","line":178,"column":8}, "nativeNode": "Op"},
+            {"kinds": ["OPERATOR","OPERATOR_LESS_THAN"], "token": {"value":"\u003c","line":178,"column":8}, "nativeNode": "Op"},
             {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"10","line":178,"column":10}, "nativeNode": "Y(BasicLit)"}
           ]},
           {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
@@ -1236,7 +1236,7 @@
           {"kinds": ["KEYWORD"], "token": {"value":"for","line":188,"column":2}, "nativeNode": "For"},
           {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
             {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"i","line":188,"column":6}, "nativeNode": "X(Ident)"},
-            {"kinds": ["OPERATOR","OPERATOR_LESS_THEN"], "token": {"value":"\u003c","line":188,"column":8}, "nativeNode": "Op"},
+            {"kinds": ["OPERATOR","OPERATOR_LESS_THAN"], "token": {"value":"\u003c","line":188,"column":8}, "nativeNode": "Op"},
             {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"10","line":188,"column":10}, "nativeNode": "Y(BasicLit)"}
           ]},
           {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
@@ -1899,7 +1899,7 @@
               {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
                 {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
                   {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"0","line":268,"column":6}, "nativeNode": "X(BasicLit)"},
-                  {"kinds": ["OPERATOR","OPERATOR_LESS_THEN"], "token": {"value":"\u003c","line":268,"column":8}, "nativeNode": "Op"},
+                  {"kinds": ["OPERATOR","OPERATOR_LESS_THAN"], "token": {"value":"\u003c","line":268,"column":8}, "nativeNode": "Op"},
                   {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"x","line":268,"column":10}, "nativeNode": "Y(Ident)"}
                 ]}
               ]},
@@ -2449,7 +2449,7 @@
               {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
                 {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "Cond(BinaryExpr)", "children": [
                   {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"0","line":361,"column":6}, "nativeNode": "X(BasicLit)"},
-                  {"kinds": ["OPERATOR","OPERATOR_LESS_THEN"], "token": {"value":"\u003c","line":361,"column":8}, "nativeNode": "Op"},
+                  {"kinds": ["OPERATOR","OPERATOR_LESS_THAN"], "token": {"value":"\u003c","line":361,"column":8}, "nativeNode": "Op"},
                   {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"x","line":361,"column":10}, "nativeNode": "Y(Ident)"}
                 ]}
               ]},

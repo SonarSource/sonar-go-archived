@@ -104,9 +104,9 @@ const (
 	OPERATOR_LOGICAL_AND      Kind = "OPERATOR_LOGICAL_AND"
 	OPERATOR_LOGICAL_OR       Kind = "OPERATOR_LOGICAL_OR"
 	OPERATOR_NOT_EQUAL        Kind = "OPERATOR_NOT_EQUAL"
-	OPERATOR_LESS_THEN        Kind = "OPERATOR_LESS_THEN"
+	OPERATOR_LESS_THAN        Kind = "OPERATOR_LESS_THAN"
 	OPERATOR_LESS_OR_EQUAL    Kind = "OPERATOR_LESS_OR_EQUAL"
-	OPERATOR_GREATER_THEN     Kind = "OPERATOR_GREATER_THEN"
+	OPERATOR_GREATER_THAN     Kind = "OPERATOR_GREATER_THAN"
 	OPERATOR_GREATER_OR_EQUAL Kind = "OPERATOR_GREATER_OR_EQUAL"
 	THEN                      Kind = "THEN"
 	THROW                     Kind = "THROW"
@@ -260,10 +260,10 @@ func (t *UastMapper) computeOperatorKind(op token.Token) []Kind {
 		return []Kind{OPERATOR, OPERATOR_EQUAL}
 		// <
 	case token.LSS:
-		return []Kind{OPERATOR, OPERATOR_LESS_THEN}
+		return []Kind{OPERATOR, OPERATOR_LESS_THAN}
 		// >
 	case token.GTR:
-		return []Kind{OPERATOR, OPERATOR_GREATER_THEN}
+		return []Kind{OPERATOR, OPERATOR_GREATER_THAN}
 		// !=
 	case token.NEQ:
 		return []Kind{OPERATOR, OPERATOR_NOT_EQUAL}

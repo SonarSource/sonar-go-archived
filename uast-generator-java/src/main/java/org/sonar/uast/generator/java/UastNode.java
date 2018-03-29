@@ -19,6 +19,8 @@
  */
 package org.sonar.uast.generator.java;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import javax.annotation.Nullable;
@@ -38,6 +40,7 @@ class UastNode {
     this.token = token;
     this.children = children;
   }
+
   // this enum is copy&paste from common-rule-engine
   enum Kind {
     ASSIGNMENT,
@@ -48,8 +51,8 @@ class UastNode {
     LABEL,
     BINARY_EXPRESSION,
     PARENTHESIZED_EXPRESSION,
-    LEFT_PARENTHESIS,
-    RIGHT_PARENTHESIS,
+    LEFT_PARENTHESIS("("),
+    RIGHT_PARENTHESIS(")"),
     BLOCK,
     BREAK,
     CASE,
@@ -71,7 +74,7 @@ class UastNode {
     IDENTIFIER,
     IF,
     KEYWORD,
-    IF_KEYWORD,
+    IF_KEYWORD("if", KEYWORD),
     LITERAL,
     LOOP,
     LOOP_FOREACH,
@@ -79,41 +82,47 @@ class UastNode {
     BOOLEAN_LITERAL,
     PARAMETER,
     OPERATOR,
-    OPERATOR_ADD("+"),
-    OPERATOR_SUBTRACT("-"),
-    OPERATOR_MULTIPLY("*"),
-    OPERATOR_DIVIDE("/"),
-    OPERATOR_MODULO("%"),
-    OPERATOR_BINARY_AND("&"),
-    OPERATOR_BINARY_OR("|"),
-    OPERATOR_BINARY_XOR("^"),
-    OPERATOR_LEFT_SHIFT("<<"),
-    OPERATOR_RIGHT_SHIFT(">>"),
-    OPERATOR_EQUAL("=="),
-    OPERATOR_LOGICAL_AND("&&"),
-    OPERATOR_LOGICAL_OR("||"),
-    OPERATOR_NOT_EQUAL("!="),
-    OPERATOR_LESS_THEN("<"),
-    OPERATOR_LESS_OR_EQUAL("<="),
-    OPERATOR_GREATER_THEN(">"),
-    OPERATOR_GREATER_OR_EQUAL(">="),
+    OPERATOR_ADD("+", OPERATOR),
+    OPERATOR_SUBTRACT("-", OPERATOR),
+    OPERATOR_MULTIPLY("*", OPERATOR),
+    OPERATOR_DIVIDE("/", OPERATOR),
+    OPERATOR_MODULO("%", OPERATOR),
+    OPERATOR_BINARY_AND("&", OPERATOR),
+    OPERATOR_BINARY_OR("|", OPERATOR),
+    OPERATOR_BINARY_XOR("^", OPERATOR),
+    OPERATOR_LEFT_SHIFT("<<", OPERATOR),
+    OPERATOR_RIGHT_SHIFT(">>", OPERATOR),
+    OPERATOR_EQUAL("==", OPERATOR),
+    OPERATOR_LOGICAL_AND("&&", OPERATOR),
+    OPERATOR_LOGICAL_OR("||", OPERATOR),
+    OPERATOR_NOT_EQUAL("!=", OPERATOR),
+    OPERATOR_LESS_THAN("<", OPERATOR),
+    OPERATOR_LESS_OR_EQUAL("<=", OPERATOR),
+    OPERATOR_GREATER_THAN(">", OPERATOR),
+    OPERATOR_GREATER_OR_EQUAL(">=", OPERATOR),
     RETURN,
     STATEMENT,
     SWITCH,
     THEN,
     THROW,
-    TYPE,
-    ;
+    TYPE,;
 
     @Nullable
-    public final String token;
+    final String token;
+    final List<Kind> impliedKinds;
 
     Kind() {
       this.token = null;
+      impliedKinds = Collections.emptyList();
     }
 
-    Kind(String token) {
+    Kind(String token, Kind... impliedKinds) {
       this.token = token;
+      this.impliedKinds = Arrays.asList(impliedKinds);
+    }
+
+    boolean isKindForToken(String token) {
+      return token.equals(this.token);
     }
   }
 

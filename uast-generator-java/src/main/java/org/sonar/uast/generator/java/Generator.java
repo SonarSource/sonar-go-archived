@@ -258,25 +258,10 @@ public class Generator {
   private static void addTokenKinds(SyntaxToken tree, Set<UastNode.Kind> result) {
     String tokenText = tree.text();
     for (UastNode.Kind kind : UastNode.Kind.values()) {
-      if (tokenText.equals(kind.token)) {
-        result.add(UastNode.Kind.OPERATOR);
+      if (kind.isKindForToken(tokenText)) {
         result.add(kind);
+        result.addAll(kind.impliedKinds);
       }
-    }
-    switch (tokenText) {
-      // separators
-      case "(":
-        result.add(UastNode.Kind.LEFT_PARENTHESIS);
-        break;
-      case ")":
-        result.add(UastNode.Kind.RIGHT_PARENTHESIS);
-        break;
-      // keywords
-      case "if":
-        result.add(UastNode.Kind.IF_KEYWORD);
-        break;
-      default:
-        break;
     }
   }
 
