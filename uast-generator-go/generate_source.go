@@ -57,7 +57,6 @@ import (
 			NewTypeKind((*ast.ReturnStmt)(nil), "RETURN"),
 			NewTypeKind((*ast.BranchStmt)(nil), "t.computeBranchKind(astNode)"),
 			NewTypeKind((*ast.AssignStmt)(nil), "t.computeAssignStmtKinds(astNode.Tok)..."),
-			NewTypeKind((*ast.BasicLit)(nil), "t.computeBasicLitKinds(astNode.Kind)..."),
 			NewTypeKind((*ast.BinaryExpr)(nil), "BINARY_EXPRESSION"),
 			NewTypeKind((*ast.ParenExpr)(nil), "PARENTHESIZED_EXPRESSION"),
 			NewTypeKind((*ast.CallExpr)(nil), "CALL"),
@@ -199,11 +198,10 @@ import (
 		},
 		ForceLeafNode: map[string]bool{
 			// Fields from the given struct types are ignored, this produce terminal node with token
-			"Ident":    true,
-			"BasicLit": true,
-			"BadStmt":  true,
-			"BadDecl":  true,
-			"BadExpr":  true,
+			"Ident":   true,
+			"BadStmt": true,
+			"BadDecl": true,
+			"BadExpr": true,
 		},
 		TypeToIgnore: map[string]bool{
 			// All fields of ast.* structs with the following types are ignored
@@ -305,7 +303,9 @@ import (
 			// the ast.File type. Other types will be discovered by reflection.
 			typeOf((*ast.File)(nil)),
 		},
-		TypeProcessed: map[reflect.Type]bool{},
+		TypeProcessed: map[reflect.Type]bool{
+			typeOf((*ast.BasicLit)(nil)): true,
+		},
 		AllAstStruct: typeOfList(
 			// "Go" does not provide a way to enumerate struct types that inherit from a given interface.
 			// But filtering a list of struct types using "struct.Implements(interface)" method is possible.
