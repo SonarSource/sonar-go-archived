@@ -37,6 +37,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import javax.annotation.Nullable;
 import javax.lang.model.SourceVersion;
 import org.sonar.java.ast.parser.JavaParser;
 import org.sonar.java.model.JavaTree;
@@ -299,6 +300,7 @@ public class Generator {
     public void visitMethod(MethodTree tree) {
       addKind(tree.simpleName(), UastNode.Kind.FUNCTION_NAME);
       tree.parameters().forEach(p -> treeUastNodeMap.get(p).kinds.add(UastNode.Kind.PARAMETER));
+      addKind(tree.returnType(), UastNode.Kind.RESULT_LIST);
       super.visitMethod(tree);
     }
 
@@ -313,7 +315,10 @@ public class Generator {
       super.visitIfStatement(tree);
     }
 
-    private void addKind(Tree tree, UastNode.Kind kind) {
+    private void addKind(@Nullable Tree tree, UastNode.Kind kind) {
+      if (tree == null) {
+        return;
+      }
       treeUastNodeMap.get(tree).kinds.add(kind);
     }
   }

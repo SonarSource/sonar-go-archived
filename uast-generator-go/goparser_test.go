@@ -229,6 +229,7 @@ func Test_mapFuncDecl_complete(t *testing.T) {
 	intParams := params.Children[1]
 	actual = newTestNode(intParams)
 	expected = TestNode{
+		kinds:      []Kind{PARAMETER},
 		nativeNode: "[0](Field)",
 		children:   2,
 	}
@@ -251,7 +252,7 @@ func Test_mapFuncDecl_complete(t *testing.T) {
 	n1 := intParamsNames.Children[0]
 	actual = newTestNode(n1)
 	expected = TestNode{
-		kinds:      []Kind{PARAMETER, IDENTIFIER},
+		kinds:      []Kind{IDENTIFIER},
 		nativeNode: "[0](Ident)",
 		token:      Token{Value: "n1", Line: 3, Column: 17},
 	}
@@ -275,6 +276,7 @@ func Test_mapFuncDecl_complete(t *testing.T) {
 	stringParams := params.Children[3]
 	actual = newTestNode(stringParams)
 	expected = TestNode{
+		kinds:      []Kind{PARAMETER},
 		nativeNode: "[1](Field)",
 		children:   2,
 	}
@@ -297,7 +299,7 @@ func Test_mapFuncDecl_complete(t *testing.T) {
 	s1 := stringParamsNames.Children[0]
 	actual = newTestNode(s1)
 	expected = TestNode{
-		kinds:      []Kind{PARAMETER, IDENTIFIER},
+		kinds:      []Kind{IDENTIFIER},
 		nativeNode: "[0](Ident)",
 		token:      Token{Value: "s1", Line: 3, Column: 29},
 	}
@@ -683,7 +685,7 @@ func main(i int) {
 	})
 	actual := strings.Join(actualSlice, " ")
 	expected := "package:[KEYWORD] main:[IDENTIFIER] " +
-		"func:[KEYWORD] main:[FUNCTION_NAME IDENTIFIER] (:[] i:[PARAMETER IDENTIFIER] int:[TYPE IDENTIFIER] ):[] {:[]" +
+		"func:[KEYWORD] main:[FUNCTION_NAME IDENTIFIER] (:[] i:[IDENTIFIER] int:[TYPE IDENTIFIER] ):[] {:[]" +
 		" fmt:[IDENTIFIER] .:[] Println:[IDENTIFIER] (:[LEFT_PARENTHESIS]" +
 		" \"a\":[EXPRESSION LITERAL STRING_LITERAL] ,:[]" +
 		" 'b':[EXPRESSION LITERAL STRING_LITERAL] ,:[]" +

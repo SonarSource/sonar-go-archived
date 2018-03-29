@@ -35,16 +35,16 @@
       {"nativeNode": "Type(FuncType)", "children": [
         {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
           {"token": {"value":"(","line":7,"column":9}, "nativeNode": "Opening"},
-          {"nativeNode": "[0](Field)", "children": [
+          {"kinds": ["PARAMETER"], "nativeNode": "[0](Field)", "children": [
             {"nativeNode": "Names([]*Ident)", "children": [
-              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"tag","line":7,"column":10}, "nativeNode": "[0](Ident)"}
+              {"kinds": ["IDENTIFIER"], "token": {"value":"tag","line":7,"column":10}, "nativeNode": "[0](Ident)"}
             ]},
             {"kinds": ["TYPE","IDENTIFIER"], "token": {"value":"int","line":7,"column":14}, "nativeNode": "Type(Ident)"}
           ]},
           {"token": {"value":",","line":7,"column":17}, "nativeNode": ""},
-          {"nativeNode": "[1](Field)", "children": [
+          {"kinds": ["PARAMETER"], "nativeNode": "[1](Field)", "children": [
             {"nativeNode": "Names([]*Ident)", "children": [
-              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"x","line":7,"column":19}, "nativeNode": "[0](Ident)"}
+              {"kinds": ["IDENTIFIER"], "token": {"value":"x","line":7,"column":19}, "nativeNode": "[0](Ident)"}
             ]},
             {"kinds": ["TYPE","IDENTIFIER"], "token": {"value":"f","line":7,"column":21}, "nativeNode": "Type(Ident)"}
           ]},
@@ -629,9 +629,9 @@
       {"nativeNode": "Type(FuncType)", "children": [
         {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
           {"token": {"value":"(","line":92,"column":9}, "nativeNode": "Opening"},
-          {"nativeNode": "[0](Field)", "children": [
+          {"kinds": ["PARAMETER"], "nativeNode": "[0](Field)", "children": [
             {"nativeNode": "Names([]*Ident)", "children": [
-              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"s","line":92,"column":10}, "nativeNode": "[0](Ident)"}
+              {"kinds": ["IDENTIFIER"], "token": {"value":"s","line":92,"column":10}, "nativeNode": "[0](Ident)"}
             ]},
             {"kinds": ["TYPE"], "nativeNode": "Type(Ellipsis)", "children": [
               {"token": {"value":"...","line":92,"column":12}, "nativeNode": "Ellipsis"},

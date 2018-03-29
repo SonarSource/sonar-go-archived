@@ -11,23 +11,23 @@
       {"nativeNode": "Type(FuncType)", "children": [
         {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
           {"token": {"value":"(","line":3,"column":24}, "nativeNode": "Opening"},
-          {"nativeNode": "[0](Field)", "children": [
+          {"kinds": ["PARAMETER"], "nativeNode": "[0](Field)", "children": [
             {"nativeNode": "Names([]*Ident)", "children": [
-              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p1","line":3,"column":25}, "nativeNode": "[0](Ident)"},
+              {"kinds": ["IDENTIFIER"], "token": {"value":"p1","line":3,"column":25}, "nativeNode": "[0](Ident)"},
               {"token": {"value":",","line":3,"column":27}, "nativeNode": ""},
-              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p2","line":3,"column":29}, "nativeNode": "[1](Ident)"},
+              {"kinds": ["IDENTIFIER"], "token": {"value":"p2","line":3,"column":29}, "nativeNode": "[1](Ident)"},
               {"token": {"value":",","line":3,"column":31}, "nativeNode": ""},
-              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p3","line":3,"column":33}, "nativeNode": "[2](Ident)"},
+              {"kinds": ["IDENTIFIER"], "token": {"value":"p3","line":3,"column":33}, "nativeNode": "[2](Ident)"},
               {"token": {"value":",","line":3,"column":35}, "nativeNode": ""},
-              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p4","line":3,"column":37}, "nativeNode": "[3](Ident)"},
+              {"kinds": ["IDENTIFIER"], "token": {"value":"p4","line":3,"column":37}, "nativeNode": "[3](Ident)"},
               {"token": {"value":",","line":3,"column":39}, "nativeNode": ""},
-              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p5","line":3,"column":41}, "nativeNode": "[4](Ident)"},
+              {"kinds": ["IDENTIFIER"], "token": {"value":"p5","line":3,"column":41}, "nativeNode": "[4](Ident)"},
               {"token": {"value":",","line":3,"column":43}, "nativeNode": ""},
-              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p6","line":3,"column":45}, "nativeNode": "[5](Ident)"},
+              {"kinds": ["IDENTIFIER"], "token": {"value":"p6","line":3,"column":45}, "nativeNode": "[5](Ident)"},
               {"token": {"value":",","line":3,"column":47}, "nativeNode": ""},
-              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p7","line":3,"column":49}, "nativeNode": "[6](Ident)"},
+              {"kinds": ["IDENTIFIER"], "token": {"value":"p7","line":3,"column":49}, "nativeNode": "[6](Ident)"},
               {"token": {"value":",","line":3,"column":51}, "nativeNode": ""},
-              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p8","line":3,"column":53}, "nativeNode": "[7](Ident)"}
+              {"kinds": ["IDENTIFIER"], "token": {"value":"p8","line":3,"column":53}, "nativeNode": "[7](Ident)"}
             ]},
             {"kinds": ["TYPE","IDENTIFIER"], "token": {"value":"int","line":3,"column":56}, "nativeNode": "Type(Ident)"}
           ]},
@@ -47,28 +47,28 @@
       {"nativeNode": "Type(FuncType)", "children": [
         {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
           {"token": {"value":"(","line":7,"column":22}, "nativeNode": "Opening"},
-          {"nativeNode": "[0](Field)", "children": [
+          {"kinds": ["PARAMETER"], "nativeNode": "[0](Field)", "children": [
             {"nativeNode": "Names([]*Ident)", "children": [
-              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p1","line":7,"column":23}, "nativeNode": "[0](Ident)"},
+              {"kinds": ["IDENTIFIER"], "token": {"value":"p1","line":7,"column":23}, "nativeNode": "[0](Ident)"},
               {"token": {"value":",","line":7,"column":25}, "nativeNode": ""},
-              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p2","line":7,"column":27}, "nativeNode": "[1](Ident)"},
+              {"kinds": ["IDENTIFIER"], "token": {"value":"p2","line":7,"column":27}, "nativeNode": "[1](Ident)"},
               {"token": {"value":",","line":7,"column":29}, "nativeNode": ""},
-              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p3","line":7,"column":31}, "nativeNode": "[2](Ident)"},
+              {"kinds": ["IDENTIFIER"], "token": {"value":"p3","line":7,"column":31}, "nativeNode": "[2](Ident)"},
               {"token": {"value":",","line":7,"column":33}, "nativeNode": ""},
-              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p4","line":7,"column":35}, "nativeNode": "[3](Ident)"}
+              {"kinds": ["IDENTIFIER"], "token": {"value":"p4","line":7,"column":35}, "nativeNode": "[3](Ident)"}
             ]},
             {"kinds": ["TYPE","IDENTIFIER"], "token": {"value":"int","line":7,"column":38}, "nativeNode": "Type(Ident)"}
           ]},
           {"token": {"value":",","line":7,"column":41}, "nativeNode": ""},
-          {"nativeNode": "[1](Field)", "children": [
+          {"kinds": ["PARAMETER"], "nativeNode": "[1](Field)", "children": [
             {"nativeNode": "Names([]*Ident)", "children": [
-              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p5","line":7,"column":43}, "nativeNode": "[0](Ident)"},
+              {"kinds": ["IDENTIFIER"], "token": {"value":"p5","line":7,"column":43}, "nativeNode": "[0](Ident)"},
               {"token": {"value":",","line":7,"column":45}, "nativeNode": ""},
-              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p6","line":7,"column":47}, "nativeNode": "[1](Ident)"},
+              {"kinds": ["IDENTIFIER"], "token": {"value":"p6","line":7,"column":47}, "nativeNode": "[1](Ident)"},
               {"token": {"value":",","line":7,"column":49}, "nativeNode": ""},
-              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p7","line":7,"column":51}, "nativeNode": "[2](Ident)"},
+              {"kinds": ["IDENTIFIER"], "token": {"value":"p7","line":7,"column":51}, "nativeNode": "[2](Ident)"},
               {"token": {"value":",","line":7,"column":53}, "nativeNode": ""},
-              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p8","line":7,"column":55}, "nativeNode": "[3](Ident)"}
+              {"kinds": ["IDENTIFIER"], "token": {"value":"p8","line":7,"column":55}, "nativeNode": "[3](Ident)"}
             ]},
             {"kinds": ["TYPE","IDENTIFIER"], "token": {"value":"string","line":7,"column":58}, "nativeNode": "Type(Ident)"}
           ]},
@@ -87,21 +87,21 @@
       {"nativeNode": "Type(FuncType)", "children": [
         {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
           {"token": {"value":"(","line":10,"column":19}, "nativeNode": "Opening"},
-          {"nativeNode": "[0](Field)", "children": [
+          {"kinds": ["PARAMETER"], "nativeNode": "[0](Field)", "children": [
             {"nativeNode": "Names([]*Ident)", "children": [
-              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p1","line":10,"column":20}, "nativeNode": "[0](Ident)"},
+              {"kinds": ["IDENTIFIER"], "token": {"value":"p1","line":10,"column":20}, "nativeNode": "[0](Ident)"},
               {"token": {"value":",","line":10,"column":22}, "nativeNode": ""},
-              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p2","line":10,"column":24}, "nativeNode": "[1](Ident)"},
+              {"kinds": ["IDENTIFIER"], "token": {"value":"p2","line":10,"column":24}, "nativeNode": "[1](Ident)"},
               {"token": {"value":",","line":10,"column":26}, "nativeNode": ""},
-              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p3","line":10,"column":28}, "nativeNode": "[2](Ident)"},
+              {"kinds": ["IDENTIFIER"], "token": {"value":"p3","line":10,"column":28}, "nativeNode": "[2](Ident)"},
               {"token": {"value":",","line":10,"column":30}, "nativeNode": ""},
-              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p4","line":10,"column":32}, "nativeNode": "[3](Ident)"},
+              {"kinds": ["IDENTIFIER"], "token": {"value":"p4","line":10,"column":32}, "nativeNode": "[3](Ident)"},
               {"token": {"value":",","line":10,"column":34}, "nativeNode": ""},
-              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p5","line":10,"column":36}, "nativeNode": "[4](Ident)"},
+              {"kinds": ["IDENTIFIER"], "token": {"value":"p5","line":10,"column":36}, "nativeNode": "[4](Ident)"},
               {"token": {"value":",","line":10,"column":38}, "nativeNode": ""},
-              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p6","line":10,"column":40}, "nativeNode": "[5](Ident)"},
+              {"kinds": ["IDENTIFIER"], "token": {"value":"p6","line":10,"column":40}, "nativeNode": "[5](Ident)"},
               {"token": {"value":",","line":10,"column":42}, "nativeNode": ""},
-              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p7","line":10,"column":44}, "nativeNode": "[6](Ident)"}
+              {"kinds": ["IDENTIFIER"], "token": {"value":"p7","line":10,"column":44}, "nativeNode": "[6](Ident)"}
             ]},
             {"kinds": ["TYPE","IDENTIFIER"], "token": {"value":"int","line":10,"column":47}, "nativeNode": "Type(Ident)"}
           ]},
@@ -119,26 +119,26 @@
       {"nativeNode": "Type(FuncType)", "children": [
         {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
           {"token": {"value":"(","line":13,"column":19}, "nativeNode": "Opening"},
-          {"nativeNode": "[0](Field)", "children": [
+          {"kinds": ["PARAMETER"], "nativeNode": "[0](Field)", "children": [
             {"nativeNode": "Names([]*Ident)", "children": [
-              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p1","line":13,"column":20}, "nativeNode": "[0](Ident)"},
+              {"kinds": ["IDENTIFIER"], "token": {"value":"p1","line":13,"column":20}, "nativeNode": "[0](Ident)"},
               {"token": {"value":",","line":13,"column":22}, "nativeNode": ""},
-              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p2","line":13,"column":24}, "nativeNode": "[1](Ident)"},
+              {"kinds": ["IDENTIFIER"], "token": {"value":"p2","line":13,"column":24}, "nativeNode": "[1](Ident)"},
               {"token": {"value":",","line":13,"column":26}, "nativeNode": ""},
-              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p3","line":13,"column":28}, "nativeNode": "[2](Ident)"},
+              {"kinds": ["IDENTIFIER"], "token": {"value":"p3","line":13,"column":28}, "nativeNode": "[2](Ident)"},
               {"token": {"value":",","line":13,"column":30}, "nativeNode": ""},
-              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p4","line":13,"column":32}, "nativeNode": "[3](Ident)"}
+              {"kinds": ["IDENTIFIER"], "token": {"value":"p4","line":13,"column":32}, "nativeNode": "[3](Ident)"}
             ]},
             {"kinds": ["TYPE","IDENTIFIER"], "token": {"value":"int","line":13,"column":35}, "nativeNode": "Type(Ident)"}
           ]},
           {"token": {"value":",","line":13,"column":38}, "nativeNode": ""},
-          {"nativeNode": "[1](Field)", "children": [
+          {"kinds": ["PARAMETER"], "nativeNode": "[1](Field)", "children": [
             {"nativeNode": "Names([]*Ident)", "children": [
-              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p5","line":13,"column":40}, "nativeNode": "[0](Ident)"},
+              {"kinds": ["IDENTIFIER"], "token": {"value":"p5","line":13,"column":40}, "nativeNode": "[0](Ident)"},
               {"token": {"value":",","line":13,"column":42}, "nativeNode": ""},
-              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p6","line":13,"column":44}, "nativeNode": "[1](Ident)"},
+              {"kinds": ["IDENTIFIER"], "token": {"value":"p6","line":13,"column":44}, "nativeNode": "[1](Ident)"},
               {"token": {"value":",","line":13,"column":46}, "nativeNode": ""},
-              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"p7","line":13,"column":48}, "nativeNode": "[2](Ident)"}
+              {"kinds": ["IDENTIFIER"], "token": {"value":"p7","line":13,"column":48}, "nativeNode": "[2](Ident)"}
             ]},
             {"kinds": ["TYPE","IDENTIFIER"], "token": {"value":"string","line":13,"column":51}, "nativeNode": "Type(Ident)"}
           ]},

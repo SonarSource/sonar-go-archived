@@ -64,6 +64,12 @@ public class FunctionLike {
     return name;
   }
 
+  public List<UastNode> resultList() {
+    List<UastNode> result = new ArrayList<>();
+    node.getDescendants(UastNode.Kind.RESULT_LIST, result::add, UastNode.Kind.BLOCK);
+    return result;
+  }
+
   public List<UastNode> parameters() {
     List<UastNode> parameters = node.getChildren(UastNode.Kind.PARAMETER);
     if (!parameters.isEmpty()) {
