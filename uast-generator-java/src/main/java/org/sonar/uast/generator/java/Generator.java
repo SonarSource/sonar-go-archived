@@ -256,46 +256,12 @@ public class Generator {
   }
 
   private static void addTokenKinds(SyntaxToken tree, Set<UastNode.Kind> result) {
-    SyntaxToken token = tree;
-    switch (token.text()) {
-      // operators
-      case "+":
-        result.add(UastNode.Kind.OPERATOR);
-        result.add(UastNode.Kind.OPERATOR_ADD);
-        break;
-      case "*":
-        result.add(UastNode.Kind.OPERATOR);
-        result.add(UastNode.Kind.OPERATOR_MULTIPLY);
-        break;
-      case "==":
-        result.add(UastNode.Kind.OPERATOR);
-        result.add(UastNode.Kind.OPERATOR_EQUAL);
-        break;
-      case "!=":
-        result.add(UastNode.Kind.OPERATOR);
-        result.add(UastNode.Kind.OPERATOR_NOT_EQUAL);
-        break;
-      case "&&":
-        result.add(UastNode.Kind.OPERATOR);
-        result.add(UastNode.Kind.OPERATOR_LOGICAL_AND);
-        break;
-      case "||":
-        result.add(UastNode.Kind.OPERATOR);
-        result.add(UastNode.Kind.OPERATOR_LOGICAL_OR);
-        break;
-      // separators
-      case "(":
-        result.add(UastNode.Kind.LEFT_PARENTHESIS);
-        break;
-      case ")":
-        result.add(UastNode.Kind.RIGHT_PARENTHESIS);
-        break;
-      // keywords
-      case "if":
-        result.add(UastNode.Kind.IF_KEYWORD);
-        break;
-      default:
-        break;
+    String tokenText = tree.text();
+    for (UastNode.Kind kind : UastNode.Kind.values()) {
+      if (kind.isKindForToken(tokenText)) {
+        result.add(kind);
+        result.addAll(kind.impliedKinds);
+      }
     }
   }
 

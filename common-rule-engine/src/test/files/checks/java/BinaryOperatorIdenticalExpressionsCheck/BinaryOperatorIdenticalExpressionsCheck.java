@@ -23,7 +23,7 @@ class A {
     if(d != d) {} // Noncompliant
     int j,l;
     // SonarJava:exclude this case for bit masks
-    int k = 1 << 1; // Noncompliant
+    int k = 1 << 1; // XXXcompliant
     j = 12 - k -k; //case why minus is excluded.
     j = k - k; // Noncompliant
     j = k*3/12%2 - k*3/12%2; // Noncompliant

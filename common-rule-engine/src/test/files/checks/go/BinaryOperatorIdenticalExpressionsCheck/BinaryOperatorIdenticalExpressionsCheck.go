@@ -14,6 +14,7 @@ func main() {
 
 	v7 := 1024 * 1024 // Compliant '*' ignored
 	v8 := 1 + 1 // Compliant '+' ignored
+	v9 := 1 << 1 // Compliant << ignored
 }
 
 func foo() {
