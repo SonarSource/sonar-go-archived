@@ -1,0 +1,25 @@
+mode: set
+NoIdenticalConditions.go:3.40,4.10 1 0
+NoIdenticalConditions.go:4.10,6.3 0 0
+NoIdenticalConditions.go:6.3,6.17 1 0
+NoIdenticalConditions.go:6.17,8.3 0 0
+SelfAssignement.go:6.39,10.2 3 0
+TabCharacter.go:4.18,7.2 2 0
+TooManyParameters.go:4.84,5.2 0 0
+TooManyParameters.go:7.76,8.2 0 0
+NoHardcodedCredentialsCheck.go:3.39,6.2 2 0
+RedundantBooleanLiteral.go:3.22,4.18 1 0
+RedundantBooleanLiteral.go:4.18,6.3 0 0
+TodoTagPresence.go:4.13,8.2 0 0
+TooLongLine.go:4.21,8.2 2 0
+pivot.go:20.25,22.15 2 1
+pivot.go:25.2,26.15 2 1
+pivot.go:29.2,29.45 1 1
+pivot.go:32.2,32.10 1 1
+pivot.go:22.15,24.3 1 1
+pivot.go:26.15,28.3 1 1
+pivot.go:29.45,30.29 1 0
+pivot.go:35.57,37.25 2 1
+pivot.go:40.2,40.8 1 1
+pivot.go:37.25,39.3 1 1
+pivot.go:43.13,47.2 3 0
