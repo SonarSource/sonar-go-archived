@@ -21,12 +21,50 @@ pipeline {
             }
         }
         stage('QA') {
-            steps {
-                withQAEnv {
-                    sh "ruling=true ./gradlew -DbuildNumber=${params.CI_BUILD_NUMBER} -Dsonar.runtimeVersion=LTS -Dorchestrator.artifactory.repositories=sonarsource-qa " +
-                            "-Dorchestrator.artifactory" +
-                            ".apiKey=${env.ARTIFACTORY_PRIVATE_API_KEY}  --console plain --no-daemon --info :its:ruling:check"
+            parallel {
+                stage('ruling-lts') {
+                    agent {
+                        label 'linux'
+                    }
+                    steps {
+                        runRuling "LTS"
+                    }
                 }
+                stage('ruling-latest') {
+                    agent {
+                        label 'linux'
+                    }
+                    steps {
+                        runRuling "LATEST_RELEASE"
+                    }
+                }
+                stage('plugin-lts') {
+                    agent {
+                        label 'linux'
+                    }
+                    steps {
+                        runPlugin "LTS"
+                    }
+                }
+                stage('plugin-latest') {
+                    agent {
+                        label 'linux'
+                    }
+                    steps {
+                        runPlugin "LATEST_RELEASE"
+                    }
+                }
+                // TODO Enable after release if orchestrator 3.17 on April 3
+                /*
+                stage('plugin-dev') {
+                    agent {
+                        label 'linux'
+                    }
+                    steps {
+                        runPlugin "DEV"
+                    }
+                }
+                */
             }
             post {
                 always {
@@ -44,6 +82,22 @@ pipeline {
                 }
             }
         }
+    }
+}
+
+def runRuling(String sqRuntimeVersion) {
+    withQAEnv {
+        sh "ruling=true ./gradlew -DbuildNumber=${params.CI_BUILD_NUMBER} -Dsonar.runtimeVersion=${sqRuntimeVersion} -Dorchestrator.artifactory.repositories=sonarsource-qa " +
+                "-Dorchestrator.artifactory" +
+                ".apiKey=${env.ARTIFACTORY_PRIVATE_API_KEY}  --console plain --no-daemon --info :its:ruling:check"
+    }
+}
+
+def runPlugin(String sqRuntimeVersion) {
+    withQAEnv {
+        sh "./gradlew -DbuildNumber=${params.CI_BUILD_NUMBER} -Dsonar.runtimeVersion=${sqRuntimeVersion} -Dorchestrator.artifactory.repositories=sonarsource-qa " +
+                "-Dorchestrator.artifactory" +
+                ".apiKey=${env.ARTIFACTORY_PRIVATE_API_KEY}  --console plain --no-daemon --info integrationTest"
     }
 }
 
