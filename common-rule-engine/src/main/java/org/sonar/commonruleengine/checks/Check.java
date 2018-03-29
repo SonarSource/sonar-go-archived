@@ -21,7 +21,6 @@ package org.sonar.commonruleengine.checks;
 
 import java.io.IOException;
 import java.util.Arrays;
-import javax.annotation.Nullable;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.commonruleengine.EngineContext;
 import org.sonar.commonruleengine.Issue;
@@ -71,7 +70,7 @@ public abstract class Check {
     context.reportIssue(new Issue(this, new Issue.Message(from, to, message), null, secondaryMessages));
   }
 
-  protected final void reportIssue(UastNode from, UastNode to, String message, @Nullable Double effortToFix,
+  protected final void reportIssue(UastNode from, UastNode to, String message, double effortToFix,
                                    Issue.Message... secondaryMessages) {
     context.reportIssue(new Issue(this, new Issue.Message(from, to, message), effortToFix, secondaryMessages));
   }
