@@ -29,6 +29,7 @@ import (
 	"go/token"
 	"io/ioutil"
 	"os"
+	"strings"
 	"unicode/utf8"
 )
 
@@ -167,20 +168,22 @@ func readAstString(filename string, fileContent string) (fileSet *token.FileSet,
 }
 
 type UastMapper struct {
-	astFile     *ast.File
-	fileContent string
-	file        *token.File
-	comments    []*Node
-	commentPos  int
-	paranoiac   bool
+	astFile           *ast.File
+	fileContent       string
+	hasCarriageReturn bool
+	file              *token.File
+	comments          []*Node
+	commentPos        int
+	paranoiac         bool
 }
 
 func NewUastMapper(fileSet *token.FileSet, astFile *ast.File, fileContent string) *UastMapper {
 	t := &UastMapper{
-		astFile:     astFile,
-		fileContent: fileContent,
-		file:        fileSet.File(astFile.Pos()),
-		paranoiac:   true,
+		astFile:           astFile,
+		fileContent:       fileContent,
+		hasCarriageReturn: strings.IndexByte(fileContent, '\r') != -1,
+		file:              fileSet.File(astFile.Pos()),
+		paranoiac:         true,
 	}
 	t.comments = t.mapAllComments()
 	t.commentPos = 0
@@ -240,11 +243,15 @@ func (t *UastMapper) appendParenExprX(children []*Node, parentKinds []Kind, astN
 	return children
 }
 
-func (t *UastMapper) computeBasicLitKinds(tok token.Token) []Kind {
-	if tok == token.STRING || tok == token.CHAR {
-		return []Kind{LITERAL, STRING_LITERAL}
+func (t *UastMapper) mapBasicLit(astNode *ast.BasicLit, kinds []Kind, fieldName string) *Node {
+	if astNode == nil {
+		return nil
 	}
-	return []Kind{LITERAL}
+	kinds = append(kinds, LITERAL)
+	if astNode.Kind == token.STRING || astNode.Kind == token.CHAR {
+		kinds = append(kinds, STRING_LITERAL)
+	}
+	return t.createUastExpectedToken(kinds, astNode.Pos(), astNode.Value, fieldName+"(BasicLit)")
 }
 
 func (t *UastMapper) computeOperatorKind(op token.Token) []Kind {
@@ -525,7 +532,8 @@ func (t *UastMapper) createUastExpectedToken(kinds []Kind, pos token.Pos, expect
 		return nil
 	}
 	offset := t.file.Offset(pos)
-	endOffset := offset + len(expectedValue)
+	var endOffset int
+	endOffset, expectedValue = t.computeEndOffsetSupportingMultiLineToken(offset, expectedValue)
 	node := t.createUastToken(kinds, offset, endOffset, nativeNode)
 	if node != nil && node.Token.Value != expectedValue {
 		if t.paranoiac {
@@ -536,6 +544,27 @@ func (t *UastMapper) createUastExpectedToken(kinds []Kind, pos token.Pos, expect
 		return nil
 	}
 	return node
+}
+
+func (t *UastMapper) computeEndOffsetSupportingMultiLineToken(offset int, value string) (int, string) {
+	length := len(value)
+	endOffset := offset + length
+	if offset < 0 || !t.hasCarriageReturn {
+		return endOffset, value
+	}
+	contentLength := len(t.fileContent)
+	// computedEndOffset will be equal to offset + len(value) + <computed number of \r characters>
+	computedEndOffset := offset
+	for length > 0 && computedEndOffset < contentLength {
+		if t.fileContent[computedEndOffset] != '\r' {
+			length--
+		}
+		computedEndOffset++
+	}
+	if computedEndOffset != endOffset {
+		return computedEndOffset, t.fileContent[offset:computedEndOffset]
+	}
+	return endOffset, value
 }
 
 func (t *UastMapper) createUastToken(kinds []Kind, offset, endOffset int, nativeNode string) *Node {

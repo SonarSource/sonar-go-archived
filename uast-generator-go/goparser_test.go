@@ -770,6 +770,48 @@ useless_label:
 	}
 }
 
+func Test_CR_LF_inMultiLineComment(t *testing.T) {
+	source := "/*\r\n" +
+		"line 1\r\n" +
+		"line 2\r\n" +
+		"*/\r\n" +
+		"package main\r\n"
+
+	packageNode := uastFromString(t, source, "File.Package")
+	comment := packageNode.Children[0]
+
+	actual := newTestNode(comment)
+	expected := TestNode{
+		kinds: []Kind{COMMENT, STRUCTURED_COMMENT},
+		token: Token{Value: "/*\r\nline 1\r\nline 2\r\n*/", Line: 1, Column: 1},
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+}
+
+func Test_CR_LF_inMultiLineString(t *testing.T) {
+	source := "package main\r\n" +
+		"var x = `\r\n" +
+		"line 1\r\n" +
+		"line 2\r\n" +
+		"`\r\n"
+
+	stringLiteral := uastFromString(t, source, "Decls/[0](GenDecl)/Specs/[0](ValueSpec)/Values/[0](BasicLit)")
+
+	actual := newTestNode(stringLiteral)
+	expected := TestNode{
+		kinds:      []Kind{EXPRESSION, LITERAL, STRING_LITERAL},
+		nativeNode: "[0](BasicLit)",
+		token:      Token{Value: "`\r\nline 1\r\nline 2\r\n`", Line: 2, Column: 9},
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+}
+
 func (n *Node) visit(visitor func(node *Node)) {
 	visitor(n)
 	for _, child := range n.Children {
