@@ -207,23 +207,15 @@ class GoSensorTest {
     GoSensor goSensor = getSensor();
     goSensor.execute(sensorContext);
     assertThat(sensorContext.allIssues()).hasSize(0);
-    assertThat(sensorContext.measure(inputFile.key(), CoreMetrics.NCLOC).value()).isEqualTo(5);
-    assertThat(sensorContext.measure(inputFile.key(), CoreMetrics.COMMENT_LINES).value()).isEqualTo(1);
-    assertThat(sensorContext.measure(inputFile.key(), CoreMetrics.CLASSES).value()).isEqualTo(0);
-    assertThat(sensorContext.measure(inputFile.key(), CoreMetrics.FUNCTIONS).value()).isEqualTo(1);
-    assertThat(sensorContext.measure(inputFile.key(), CoreMetrics.STATEMENTS).value()).isEqualTo(1);
-    assertThat(sensorContext.measure(inputFile.key(), CoreMetrics.COGNITIVE_COMPLEXITY).value()).isEqualTo(0);
+    assertThat(sensorContext.measure(inputFile.key(), CoreMetrics.NCLOC)).isNull();
+    assertThat(sensorContext.measure(inputFile.key(), CoreMetrics.COMMENT_LINES)).isNull();
+    assertThat(sensorContext.measure(inputFile.key(), CoreMetrics.CLASSES)).isNull();
+    assertThat(sensorContext.measure(inputFile.key(), CoreMetrics.FUNCTIONS)).isNull();
+    assertThat(sensorContext.measure(inputFile.key(), CoreMetrics.STATEMENTS)).isNull();
+    assertThat(sensorContext.measure(inputFile.key(), CoreMetrics.COGNITIVE_COMPLEXITY)).isNull();
 
-    assertThat(fileLinesContext.saveCount).isEqualTo(1);
-
-    assertThat(fileLinesContext.metrics.keySet()).containsExactlyInAnyOrder(
-      CoreMetrics.COMMENT_LINES_DATA_KEY, CoreMetrics.NCLOC_DATA_KEY);
-
-    assertThat(fileLinesContext.metrics.get(CoreMetrics.COMMENT_LINES_DATA_KEY)).containsExactlyInAnyOrder(
-      "1:1");
-
-    assertThat(fileLinesContext.metrics.get(CoreMetrics.NCLOC_DATA_KEY)).containsExactlyInAnyOrder(
-      "2:1", "3:1", "4:1", "5:1", "6:1");
+    assertThat(fileLinesContext.saveCount).isEqualTo(0);
+    assertThat(fileLinesContext.metrics.keySet()).isEmpty();
   }
 
   @Test
