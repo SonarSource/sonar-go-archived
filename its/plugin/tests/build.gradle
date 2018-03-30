@@ -18,10 +18,6 @@ sonarqube.skipProject = true
 
 task integrationTest(type: Test) {
   systemProperty 'java.awt.headless', 'true'
-  systemProperty 'orchestrator.configUrl', System.getProperty('orchestrator.configUrl')
-  systemProperty 'sonar.runtimeVersion', System.getProperty('sonar.runtimeVersion')
-  systemProperty 'orchestrator.artifactory.repositories', System.getProperty('orchestrator.artifactory.repositories')
-  systemProperty 'orchestrator.artifactory.apiKey', System.getProperty('orchestrator.artifactory.apiKey')
 
   filter {
     includeTestsMatching 'com.sonar.it.go.Tests'
@@ -29,9 +25,7 @@ task integrationTest(type: Test) {
 
   def orchestratorProps = System.getProperties().findAll { it.key.startsWith("orchestrator") || it.key.startsWith("sonar") }.collect { it.key }
   systemProperties System.getProperties().subMap(orchestratorProps)
-  afterEvaluate {
-    systemProperty "goVersion", version
-  }
+  systemProperty 'goVersion', version
 }
 
 // UT are excluded in order for ITs to only run when needed
