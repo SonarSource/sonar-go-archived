@@ -22,9 +22,12 @@ package com.sonar.it.go;
 import com.sonar.orchestrator.Orchestrator;
 import com.sonar.orchestrator.OrchestratorBuilder;
 import com.sonar.orchestrator.locator.FileLocation;
+import com.sonar.orchestrator.locator.Location;
+import com.sonar.orchestrator.locator.MavenLocation;
 import java.io.File;
 import java.util.List;
 import javax.annotation.CheckForNull;
+import org.apache.commons.lang.StringUtils;
 import org.junit.ClassRule;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -52,18 +55,17 @@ public class Tests {
 
   static {
     OrchestratorBuilder builder = Orchestrator.builderEnv()
-      .restoreProfileAtStartup(FileLocation.ofClasspath(RESOURCE_DIRECTORY + "/empty-profile.xml"))
-      ;
+      .setSonarVersion(System.getProperty("sonar.runtimeVersion"))
+      .restoreProfileAtStartup(FileLocation.ofClasspath(RESOURCE_DIRECTORY + "/empty-profile.xml"));
 
-    String isQA = System.getenv("SONARSOURCE_QA");
-    if ("true".equals(isQA)) {
-      // when we run QA we want to test artifact published on repox
-      // version is computed in top-level build.gradle and set as system property in build.gradle for ruling test
-      builder.addMavenPlugin("org.sonarsource.go", "sonar-go-plugin", "goVersion");
+    String goVersion = System.getProperty("goVersion");
+    Location goLocation;
+    if (StringUtils.isEmpty(goVersion)) {
+      goLocation = FileLocation.byWildcardMavenFilename(new File("../../../sonar-go-plugin/build/libs"), "sonar-go-plugin-*-all.jar");
     } else {
-      builder.addPlugin(FileLocation.byWildcardMavenFilename(
-        new File("../../../sonar-go-plugin/build/libs"), "sonar-go-plugin-*-all.jar"));
+      goLocation = MavenLocation.of("org.sonarsource.go", "sonar-go-plugin", goVersion);
     }
+    builder.addPlugin(goLocation);
 
     ORCHESTRATOR = builder.build();
   }

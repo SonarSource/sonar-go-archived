@@ -23,9 +23,12 @@ import com.sonar.orchestrator.Orchestrator;
 import com.sonar.orchestrator.OrchestratorBuilder;
 import com.sonar.orchestrator.build.SonarScanner;
 import com.sonar.orchestrator.locator.FileLocation;
+import com.sonar.orchestrator.locator.Location;
+import com.sonar.orchestrator.locator.MavenLocation;
 import java.io.File;
 import java.nio.file.Files;
 import java.util.Collections;
+import org.apache.commons.lang.StringUtils;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -39,19 +42,20 @@ public class GoRulingTest {
 
   @BeforeAll
   static void setUp() {
-    OrchestratorBuilder orchestratorBuilder = Orchestrator.builderEnv()
-      .setOrchestratorProperty("litsVersion", "0.6")
-      .addPlugin("lits");
-    String isQA = System.getenv("SONARSOURCE_QA");
-    if ("true".equals(isQA)) {
-      // when we run QA we want to test artifact published on repox
-      // version is computed in top-level build.gradle and set as system property in build.gradle for ruling test
-      orchestratorBuilder.addMavenPlugin("org.sonarsource.go", "sonar-go-plugin", "goVersion");
+    OrchestratorBuilder builder = Orchestrator.builderEnv()
+      .setSonarVersion(System.getProperty("sonar.runtimeVersion"))
+      .addPlugin(MavenLocation.of("org.sonarsource.sonar-lits-plugin", "sonar-lits-plugin", "0.6"));
+
+    String goVersion = System.getProperty("goVersion");
+    Location goLocation;
+    if (StringUtils.isEmpty(goVersion)) {
+      goLocation = FileLocation.byWildcardMavenFilename(new File("../../sonar-go-plugin/build/libs"), "sonar-go-plugin-*-all.jar");
     } else {
-      orchestratorBuilder.addPlugin(FileLocation.byWildcardMavenFilename(
-        new File("../../sonar-go-plugin/build/libs"), "sonar-go-plugin-*-all.jar"));
+      goLocation = MavenLocation.of("org.sonarsource.go", "sonar-go-plugin", goVersion);
     }
-    orchestrator = orchestratorBuilder.build();
+    builder.addPlugin(goLocation);
+
+    orchestrator = builder.build();
     orchestrator.start();
     ProfileGenerator.RulesConfiguration rulesConfiguration = new ProfileGenerator.RulesConfiguration();
     File profile = ProfileGenerator.generateProfile(GoRulingTest.orchestrator.getServer().getUrl(), "go", "go", rulesConfiguration, Collections.emptySet());
@@ -89,6 +93,8 @@ public class GoRulingTest {
 
   @AfterAll
   static void tearDown() {
-    orchestrator.stop();
+    if (orchestrator != null) {
+      orchestrator.stop();
+    }
   }
 }
