@@ -409,6 +409,7 @@ func Test_mapAssignStmt(t *testing.T) {
 	if !reflect.DeepEqual(expected, actual) {
 		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
 	}
+
 }
 
 func Test_mapAssignStmt2(t *testing.T) {
@@ -453,6 +454,23 @@ func Test_mapExpr_Ident(t *testing.T) {
 		nativeNode: "[0](Ident)",
 		children:   0,
 		token:      Token{Value: "a", Line: 3, Column: 2},
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+}
+
+func Test_mapExpr_Value(t *testing.T) {
+	uast := uastFromString(t, example_with_two_assignments,
+		"Decls/[0](FuncDecl)/Body/[0](AssignStmt)/Rhs/[0](BasicLit)")
+
+	actual := newTestNode(uast)
+	expected := TestNode{
+		kinds:      []Kind{ASSIGNMENT_VALUE, EXPRESSION, LITERAL},
+		nativeNode: "[0](BasicLit)",
+		children:   0,
+		token:      Token{Value: "1", Line: 3, Column: 10},
 	}
 
 	if !reflect.DeepEqual(expected, actual) {
