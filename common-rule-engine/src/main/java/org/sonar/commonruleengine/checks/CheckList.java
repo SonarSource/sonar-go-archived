@@ -43,7 +43,8 @@ public class CheckList {
       RedundantParenthesesCheck.class,
       SwitchDefaultLocationCheck.class,
       SwitchWithoutDefaultCheck.class,
-      TooManyParametersCheck.class
+      TooManyParametersCheck.class,
+      WrongAssignmentOperatorCheck.class
     );
   }
 

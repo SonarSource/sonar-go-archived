@@ -52,7 +52,7 @@ public class WrongAssignmentOperatorCheck extends Check {
     UastNode.Token expressionFirstToken = expression.firstToken();
 
     if (noSpacingBetween(operator.lastToken(), expressionFirstToken)
-      && !noSpacingBetween(variableLastToken, operator.firstToken())
+      && spacingBetween(variableLastToken, operator.firstToken())
       && expression.is(UastNode.Kind.UNARY_MINUS, UastNode.Kind.UNARY_PLUS, UastNode.Kind.LOGICAL_COMPLEMENT)) {
       String msg;
       if (expression.is(UastNode.Kind.LOGICAL_COMPLEMENT)) {
@@ -62,6 +62,10 @@ public class WrongAssignmentOperatorCheck extends Check {
       }
       reportIssue(assignmentLike.node(), msg);
     }
+  }
+
+  private static boolean spacingBetween(UastNode.Token firstToken, UastNode.Token secondToken) {
+    return !noSpacingBetween(firstToken, secondToken);
   }
 
   private static boolean noSpacingBetween(UastNode.Token firstToken, UastNode.Token secondToken) {
