@@ -52,7 +52,6 @@ import org.sonar.api.utils.log.LoggerLevel;
 import org.sonar.commonruleengine.checks.Check;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.awaitility.Awaitility.await;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.mock;
@@ -118,9 +117,12 @@ class GoSensorTest {
     when(failingFile.inputStream()).thenThrow(ioException);
 
     sensorContext.fileSystem().add(failingFile);
+    sensorContext.settings().setProperty("sonar.go.coverage.reportPaths", "invalid-coverage-path.out");
     GoSensor goSensor = getSensor("S2068");
     goSensor.execute(sensorContext);
-    assertThat(logTester.logs(LoggerLevel.ERROR)).contains("Failed to analyze 1 file(s). Turn on debug message to see the details. Failed files:\nlets.go");
+    assertThat(logTester.logs(LoggerLevel.ERROR).stream().collect(Collectors.joining("\n")))
+      .contains("Failed to analyze 1 file(s). Turn on debug message to see the details. Failed files:\nlets.go")
+      .contains("Coverage report can't be loaded, file not found:").contains("invalid-coverage-path.out");
   }
 
   @Test
@@ -139,9 +141,8 @@ class GoSensorTest {
   @Test
   void test_workdir_failure() {
     GoSensor goSensor = getSensor("S2068");
-    assertThatThrownBy(() -> goSensor.execute(SensorContextTester.create(workDir)))
-      .isInstanceOf(GoSensor.GoPluginException.class)
-      .hasMessage("Error initializing UAST generator");
+    goSensor.execute(SensorContextTester.create(workDir));
+    assertThat(logTester.logs(LoggerLevel.ERROR)).contains("Error initializing UAST generator");
   }
 
   @Test

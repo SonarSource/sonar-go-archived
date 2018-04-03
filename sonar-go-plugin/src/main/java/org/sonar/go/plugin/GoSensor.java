@@ -77,7 +77,8 @@ public class GoSensor implements Sensor {
     try {
       uastGenerator = new UastGeneratorWrapper(context);
     } catch (Exception e) {
-      throw new GoPluginException("Error initializing UAST generator", e);
+      LOG.error("Error initializing UAST generator", e);
+      return;
     }
     List<InputFile> failedFiles = new ArrayList<>();
     for (InputFile inputFile : getInputFiles(context)) {

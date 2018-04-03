@@ -26,27 +26,12 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.commonruleengine.checks.Check;
-import org.sonar.commonruleengine.checks.CheckList;
 import org.sonar.uast.UastNode;
 
 public class Engine {
 
   private final EngineContext engineContext;
   private final MetricsVisitor metricsVisitor;
-
-  private static List<Check> initChecks() {
-    return CheckList.getChecks().stream().map(c -> {
-      try {
-        return c.newInstance();
-      } catch (Exception e) {
-        throw new RuntimeException(e);
-      }
-    }).collect(Collectors.toList());
-  }
-
-  public Engine() {
-    this(initChecks());
-  }
 
   public Engine(Collection<Check> rules) {
     engineContext = new EngineContext();
