@@ -10,11 +10,11 @@
       {"nativeNode": "Type(FuncType)", "children": [
         {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
           {"token": {"value":"(","line":3,"column":13}, "nativeNode": "Opening"},
-          {"nativeNode": "[0](Field)", "children": [
+          {"kinds": ["PARAMETER"], "nativeNode": "[0](Field)", "children": [
             {"nativeNode": "Names([]*Ident)", "children": [
-              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"condition1","line":3,"column":14}, "nativeNode": "[0](Ident)"},
+              {"kinds": ["IDENTIFIER"], "token": {"value":"condition1","line":3,"column":14}, "nativeNode": "[0](Ident)"},
               {"token": {"value":",","line":3,"column":24}, "nativeNode": ""},
-              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"condition2","line":3,"column":26}, "nativeNode": "[1](Ident)"}
+              {"kinds": ["IDENTIFIER"], "token": {"value":"condition2","line":3,"column":26}, "nativeNode": "[1](Ident)"}
             ]},
             {"kinds": ["TYPE","IDENTIFIER"], "token": {"value":"bool","line":3,"column":37}, "nativeNode": "Type(Ident)"}
           ]},
@@ -124,9 +124,9 @@
       {"nativeNode": "Type(FuncType)", "children": [
         {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
           {"token": {"value":"(","line":23,"column":19}, "nativeNode": "Opening"},
-          {"nativeNode": "[0](Field)", "children": [
+          {"kinds": ["PARAMETER"], "nativeNode": "[0](Field)", "children": [
             {"nativeNode": "Names([]*Ident)", "children": [
-              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"x","line":23,"column":20}, "nativeNode": "[0](Ident)"}
+              {"kinds": ["IDENTIFIER"], "token": {"value":"x","line":23,"column":20}, "nativeNode": "[0](Ident)"}
             ]},
             {"kinds": ["TYPE","IDENTIFIER"], "token": {"value":"int","line":23,"column":22}, "nativeNode": "Type(Ident)"}
           ]},

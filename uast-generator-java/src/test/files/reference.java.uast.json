@@ -58,7 +58,9 @@
           "nativeNode": "METHOD",
           "children": [
             {
-              "kinds": [],
+              "kinds": [
+                "RESULT_LIST"
+              ],
               "nativeNode": "PRIMITIVE_TYPE",
               "children": [
                 {

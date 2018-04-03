@@ -19,6 +19,8 @@
  */
 package org.sonar.commonruleengine.checks;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.sonar.check.Rule;
 import org.sonar.check.RuleProperty;
 import org.sonar.uast.UastNode;
@@ -45,9 +47,19 @@ public class TooManyParametersCheck extends Check {
   @Override
   public void visitNode(UastNode node) {
     FunctionLike function = FunctionLike.from(node);
-    if (function != null && function.parameters().size() > maximum) {
+    if (function == null) {
+      return;
+    }
+    List<UastNode> parameters = function.parameters();
+    int parameterCount = 0;
+    for (UastNode parameter : parameters) {
+      List<UastNode> identifiers = new ArrayList<>();
+      parameter.getDescendants(UastNode.Kind.IDENTIFIER, identifiers::add, UastNode.Kind.TYPE);
+      parameterCount += identifiers.size();
+    }
+    if (parameterCount > maximum) {
       reportIssue(function.name(),
-        String.format("Function has %d parameters, which is more than %d authorized.", function.parameters().size(), maximum));
+        String.format("Function has %d parameters, which is more than %d authorized.", parameterCount, maximum));
     }
   }
 }
