@@ -48,7 +48,7 @@ public class GoRulingTest {
 
     String goVersion = System.getProperty("goVersion");
     Location goLocation;
-    if (StringUtils.isEmpty(goVersion)) {
+    if (StringUtils.isEmpty(goVersion) || goVersion.endsWith("-SNAPSHOT")) {
       goLocation = FileLocation.byWildcardMavenFilename(new File("../../sonar-go-plugin/build/libs"), "sonar-go-plugin-*-all.jar");
     } else {
       goLocation = MavenLocation.of("org.sonarsource.go", "sonar-go-plugin", goVersion);

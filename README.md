@@ -6,10 +6,14 @@ Run:
 
     ./gradlew build
 
-Run with ruling:
+Run build with ruling:
 
     git submodule update --init  # first time
-    ruling=true ./gradlew build --no-daemon
+    ruling=true ./gradlew build --info --no-daemon
+
+Run plugin integration tests:
+
+    ./gradlew integrationTest --info
 
 ## License headers
 
