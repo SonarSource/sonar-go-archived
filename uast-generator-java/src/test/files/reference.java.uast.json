@@ -19,7 +19,9 @@
           "token": {
             "value": "class",
             "line": 1,
-            "column": 1
+            "endLine": 1,
+            "column": 1,
+            "endColumn": 5
           },
           "children": []
         },
@@ -35,7 +37,9 @@
               "token": {
                 "value": "A",
                 "line": 1,
-                "column": 7
+                "endLine": 1,
+                "column": 7,
+                "endColumn": 7
               },
               "children": []
             }
@@ -47,7 +51,9 @@
           "token": {
             "value": "{",
             "line": 1,
-            "column": 9
+            "endLine": 1,
+            "column": 9,
+            "endColumn": 9
           },
           "children": []
         },
@@ -71,7 +77,9 @@
                   "token": {
                     "value": "void",
                     "line": 2,
-                    "column": 3
+                    "endLine": 2,
+                    "column": 3,
+                    "endColumn": 6
                   },
                   "children": []
                 }
@@ -90,7 +98,9 @@
                   "token": {
                     "value": "foo",
                     "line": 2,
-                    "column": 8
+                    "endLine": 2,
+                    "column": 8,
+                    "endColumn": 10
                   },
                   "children": []
                 }
@@ -104,7 +114,9 @@
               "token": {
                 "value": "(",
                 "line": 2,
-                "column": 11
+                "endLine": 2,
+                "column": 11,
+                "endColumn": 11
               },
               "children": []
             },
@@ -116,7 +128,9 @@
               "token": {
                 "value": ")",
                 "line": 2,
-                "column": 12
+                "endLine": 2,
+                "column": 12,
+                "endColumn": 12
               },
               "children": []
             },
@@ -133,7 +147,9 @@
                   "token": {
                     "value": "{",
                     "line": 2,
-                    "column": 14
+                    "endLine": 2,
+                    "column": 14,
+                    "endColumn": 14
                   },
                   "children": []
                 },
@@ -173,7 +189,9 @@
                                       "token": {
                                         "value": "System",
                                         "line": 3,
-                                        "column": 5
+                                        "endLine": 3,
+                                        "column": 5,
+                                        "endColumn": 10
                                       },
                                       "children": []
                                     }
@@ -185,7 +203,9 @@
                                   "token": {
                                     "value": ".",
                                     "line": 3,
-                                    "column": 11
+                                    "endLine": 3,
+                                    "column": 11,
+                                    "endColumn": 11
                                   },
                                   "children": []
                                 },
@@ -201,7 +221,9 @@
                                       "token": {
                                         "value": "out",
                                         "line": 3,
-                                        "column": 12
+                                        "endLine": 3,
+                                        "column": 12,
+                                        "endColumn": 14
                                       },
                                       "children": []
                                     }
@@ -215,7 +237,9 @@
                               "token": {
                                 "value": ".",
                                 "line": 3,
-                                "column": 15
+                                "endLine": 3,
+                                "column": 15,
+                                "endColumn": 15
                               },
                               "children": []
                             },
@@ -231,7 +255,9 @@
                                   "token": {
                                     "value": "println",
                                     "line": 3,
-                                    "column": 16
+                                    "endLine": 3,
+                                    "column": 16,
+                                    "endColumn": 22
                                   },
                                   "children": []
                                 }
@@ -251,7 +277,9 @@
                               "token": {
                                 "value": "(",
                                 "line": 3,
-                                "column": 23
+                                "endLine": 3,
+                                "column": 23,
+                                "endColumn": 23
                               },
                               "children": []
                             },
@@ -268,7 +296,9 @@
                                   "token": {
                                     "value": "\"yolo\"",
                                     "line": 3,
-                                    "column": 24
+                                    "endLine": 3,
+                                    "column": 24,
+                                    "endColumn": 29
                                   },
                                   "children": []
                                 }
@@ -282,7 +312,9 @@
                               "token": {
                                 "value": ")",
                                 "line": 3,
-                                "column": 30
+                                "endLine": 3,
+                                "column": 30,
+                                "endColumn": 30
                               },
                               "children": []
                             }
@@ -296,7 +328,9 @@
                       "token": {
                         "value": ";",
                         "line": 3,
-                        "column": 31
+                        "endLine": 3,
+                        "column": 31,
+                        "endColumn": 31
                       },
                       "children": []
                     }
@@ -308,7 +342,9 @@
                   "token": {
                     "value": "}",
                     "line": 4,
-                    "column": 3
+                    "endLine": 4,
+                    "column": 3,
+                    "endColumn": 3
                   },
                   "children": []
                 }
@@ -322,7 +358,9 @@
           "token": {
             "value": "}",
             "line": 5,
-            "column": 1
+            "endLine": 5,
+            "column": 1,
+            "endColumn": 1
           },
           "children": []
         }
@@ -334,7 +372,9 @@
       "token": {
         "value": "",
         "line": 6,
-        "column": 1
+        "endLine": 6,
+        "column": 1,
+        "endColumn": 0
       },
       "children": []
     }

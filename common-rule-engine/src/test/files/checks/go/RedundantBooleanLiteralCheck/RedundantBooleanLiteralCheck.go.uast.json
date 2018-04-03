@@ -38,12 +38,12 @@
           ]}
         ]},
         {"kinds": ["ASSIGNMENT","DECLARATION","STATEMENT"], "nativeNode": "[1](AssignStmt)", "children": [
-          {"kinds": ["ASSIGNMENT_TARGET"], "nativeNode": "Lhs([]Expr)", "children": [
-            {"kinds": ["IDENTIFIER"], "token": {"value":"test","line":9,"column":2}, "nativeNode": "[0](Ident)"}
+          {"kinds": ["ASSIGNMENT_TARGET_LIST"], "nativeNode": "Lhs([]Expr)", "children": [
+            {"kinds": ["ASSIGNMENT_TARGET","IDENTIFIER"], "token": {"value":"test","line":9,"column":2}, "nativeNode": "[0](Ident)"}
           ]},
-          {"token": {"value":":=","line":9,"column":7}, "nativeNode": "Tok"},
-          {"kinds": ["ASSIGNMENT_VALUE"], "nativeNode": "Rhs([]Expr)", "children": [
-            {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "[0](BinaryExpr)", "children": [
+          {"kinds": ["ASSIGNMENT_OPERATOR"], "token": {"value":":=","line":9,"column":7}, "nativeNode": "Tok"},
+          {"kinds": ["ASSIGNMENT_VALUE_LIST"], "nativeNode": "Rhs([]Expr)", "children": [
+            {"kinds": ["ASSIGNMENT_VALUE","EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "[0](BinaryExpr)", "children": [
               {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"flag","line":9,"column":10}, "nativeNode": "X(Ident)"},
               {"kinds": ["OPERATOR","OPERATOR_LOGICAL_OR"], "token": {"value":"||","line":9,"column":15}, "nativeNode": "Op"},
               {"kinds": ["EXPRESSION","LITERAL","BOOLEAN_LITERAL"], "token": {"value":"true","line":9,"column":18}, "nativeNode": "Y(Ident)"}
@@ -52,12 +52,12 @@
         ]},
         {"kinds": ["COMMENT"], "token": {"value":"// Noncompliant","line":9,"column":23}, "nativeNode": ""},
         {"kinds": ["ASSIGNMENT","STATEMENT"], "nativeNode": "[2](AssignStmt)", "children": [
-          {"kinds": ["ASSIGNMENT_TARGET"], "nativeNode": "Lhs([]Expr)", "children": [
-            {"kinds": ["IDENTIFIER"], "token": {"value":"test","line":10,"column":2}, "nativeNode": "[0](Ident)"}
+          {"kinds": ["ASSIGNMENT_TARGET_LIST"], "nativeNode": "Lhs([]Expr)", "children": [
+            {"kinds": ["ASSIGNMENT_TARGET","IDENTIFIER"], "token": {"value":"test","line":10,"column":2}, "nativeNode": "[0](Ident)"}
           ]},
-          {"token": {"value":"=","line":10,"column":7}, "nativeNode": "Tok"},
-          {"kinds": ["ASSIGNMENT_VALUE"], "nativeNode": "Rhs([]Expr)", "children": [
-            {"kinds": ["EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "[0](BinaryExpr)", "children": [
+          {"kinds": ["ASSIGNMENT_OPERATOR"], "token": {"value":"=","line":10,"column":7}, "nativeNode": "Tok"},
+          {"kinds": ["ASSIGNMENT_VALUE_LIST"], "nativeNode": "Rhs([]Expr)", "children": [
+            {"kinds": ["ASSIGNMENT_VALUE","EXPRESSION","BINARY_EXPRESSION"], "nativeNode": "[0](BinaryExpr)", "children": [
               {"kinds": ["EXPRESSION","LITERAL","BOOLEAN_LITERAL"], "token": {"value":"false","line":10,"column":9}, "nativeNode": "X(Ident)"},
               {"kinds": ["OPERATOR","OPERATOR_LOGICAL_AND"], "token": {"value":"\u0026\u0026","line":10,"column":15}, "nativeNode": "Op"},
               {"kinds": ["EXPRESSION","IDENTIFIER"], "token": {"value":"flag","line":10,"column":18}, "nativeNode": "Y(Ident)"}

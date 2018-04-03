@@ -18,7 +18,7 @@
 
 package main
 
-// go:generate go run generate_source.go
+//go:generate go run generate_source.go
 
 import (
 	"bytes"
@@ -62,7 +62,10 @@ const (
 	STATEMENT                 Kind = "STATEMENT"
 	ASSIGNMENT                Kind = "ASSIGNMENT"
 	COMPOUND_ASSIGNMENT       Kind = "COMPOUND_ASSIGNMENT"
+	ASSIGNMENT_TARGET_LIST    Kind = "ASSIGNMENT_TARGET_LIST"
 	ASSIGNMENT_TARGET         Kind = "ASSIGNMENT_TARGET"
+	ASSIGNMENT_OPERATOR       Kind = "ASSIGNMENT_OPERATOR"
+	ASSIGNMENT_VALUE_LIST     Kind = "ASSIGNMENT_VALUE_LIST"
 	ASSIGNMENT_VALUE          Kind = "ASSIGNMENT_VALUE"
 	IDENTIFIER                Kind = "IDENTIFIER"
 	TYPE                      Kind = "TYPE"
@@ -112,6 +115,27 @@ const (
 	THEN                      Kind = "THEN"
 	THROW                     Kind = "THROW"
 	UNSUPPORTED               Kind = "UNSUPPORTED"
+	PLUS_ASSIGNMENT           Kind = "PLUS_ASSIGNMENT"
+	MINUS_ASSIGNMENT          Kind = "MINUS_ASSIGNMENT"
+	OR_ASSIGNMENT             Kind = "OR_ASSIGNMENT"
+	XOR_ASSIGNMENT            Kind = "XOR_ASSIGNMENT"
+	DIVIDE_ASSIGNMENT         Kind = "DIVIDE_ASSIGNMENT"
+	MULTIPLY_ASSIGNMENT       Kind = "MULTIPLY_ASSIGNMENT"
+	REMAINDER_ASSIGNMENT      Kind = "REMAINDER_ASSIGNMENT"
+	RIGHT_SHIFT_ASSIGNMENT    Kind = "RIGHT_SHIFT_ASSIGNMENT"
+	LEFT_SHIFT_ASSIGNMENT     Kind = "LEFT_SHIFT_ASSIGNMENT"
+	AND_ASSIGNMENT            Kind = "AND_ASSIGNMENT"
+	AND_NOT_ASSIGNMENT        Kind = "AND_NOT_ASSIGNMENT"
+	UNARY_EXPRESSION          Kind = "UNARY_EXPRESSION"
+	UNARY_MINUS               Kind = "UNARY_MINUS"
+	UNARY_PLUS                Kind = "UNARY_PLUS"
+	LOGICAL_COMPLEMENT        Kind = "LOGICAL_COMPLEMENT"
+	BITWISE_COMPLEMENT        Kind = "BITWISE_COMPLEMENT"
+	POINTER                   Kind = "POINTER"
+	REFERENCE                 Kind = "REFERENCE"
+	CHANNEL_DIRECTION         Kind = "CHANNEL_DIRECTION"
+	POSTFIX_INCREMENT         Kind = "POSTFIX_INCREMENT"
+	POSTFIX_DECREMENT         Kind = "POSTFIX_DECREMENT"
 )
 
 type Token struct {
@@ -642,8 +666,57 @@ func (t *UastMapper) computeAssignStmtKinds(tok token.Token) []Kind {
 		return []Kind{ASSIGNMENT, DECLARATION}
 	case token.ASSIGN:
 		return []Kind{ASSIGNMENT}
+	case token.ADD_ASSIGN: // +=
+		return []Kind{ASSIGNMENT, COMPOUND_ASSIGNMENT, PLUS_ASSIGNMENT}
+	case token.SUB_ASSIGN: // -=
+		return []Kind{ASSIGNMENT, COMPOUND_ASSIGNMENT, MINUS_ASSIGNMENT}
+	case token.MUL_ASSIGN: // *=
+		return []Kind{ASSIGNMENT, COMPOUND_ASSIGNMENT, MULTIPLY_ASSIGNMENT}
+	case token.QUO_ASSIGN: // /=
+		return []Kind{ASSIGNMENT, COMPOUND_ASSIGNMENT, DIVIDE_ASSIGNMENT}
+	case token.REM_ASSIGN: // %=
+		return []Kind{ASSIGNMENT, COMPOUND_ASSIGNMENT, REMAINDER_ASSIGNMENT}
+	case token.AND_ASSIGN: // &=
+		return []Kind{ASSIGNMENT, COMPOUND_ASSIGNMENT, AND_ASSIGNMENT}
+	case token.OR_ASSIGN: // |=
+		return []Kind{ASSIGNMENT, COMPOUND_ASSIGNMENT, OR_ASSIGNMENT}
+	case token.XOR_ASSIGN: // ^=
+		return []Kind{ASSIGNMENT, COMPOUND_ASSIGNMENT, XOR_ASSIGNMENT}
+	case token.SHL_ASSIGN: // <<=
+		return []Kind{ASSIGNMENT, COMPOUND_ASSIGNMENT, LEFT_SHIFT_ASSIGNMENT}
+	case token.SHR_ASSIGN: // >>=
+		return []Kind{ASSIGNMENT, COMPOUND_ASSIGNMENT, RIGHT_SHIFT_ASSIGNMENT}
+	case token.AND_NOT_ASSIGN: // &^=
+		return []Kind{ASSIGNMENT, COMPOUND_ASSIGNMENT, AND_NOT_ASSIGNMENT}
 	default:
-		return []Kind{ASSIGNMENT, COMPOUND_ASSIGNMENT}
+		// should all be covered
+		return []Kind{}
+	}
+}
+
+func (t *UastMapper) computeUnaryExprKind(op token.Token) []Kind {
+	switch op {
+	case token.ADD:
+		return []Kind{UNARY_EXPRESSION, UNARY_PLUS}
+	case token.SUB:
+		return []Kind{UNARY_EXPRESSION, UNARY_MINUS}
+	case token.XOR:
+		return []Kind{UNARY_EXPRESSION, BITWISE_COMPLEMENT}
+	case token.NOT:
+		return []Kind{UNARY_EXPRESSION, LOGICAL_COMPLEMENT}
+	case token.MUL:
+		return []Kind{UNARY_EXPRESSION, POINTER}
+	case token.AND:
+		return []Kind{UNARY_EXPRESSION, REFERENCE}
+	case token.ARROW:
+		return []Kind{UNARY_EXPRESSION, CHANNEL_DIRECTION}
+	case token.INC:
+		return []Kind{UNARY_EXPRESSION, POSTFIX_INCREMENT}
+	case token.DEC:
+		return []Kind{UNARY_EXPRESSION, POSTFIX_DECREMENT}
+	default:
+		// should all be covered
+		return []Kind{}
 	}
 }
 

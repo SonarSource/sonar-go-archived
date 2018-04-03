@@ -409,6 +409,7 @@ func Test_mapAssignStmt(t *testing.T) {
 	if !reflect.DeepEqual(expected, actual) {
 		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
 	}
+
 }
 
 func Test_mapAssignStmt2(t *testing.T) {
@@ -417,7 +418,7 @@ func Test_mapAssignStmt2(t *testing.T) {
 
 	actual := newTestNode(uast)
 	expected := TestNode{
-		kinds:      []Kind{ASSIGNMENT, COMPOUND_ASSIGNMENT, STATEMENT},
+		kinds:      []Kind{ASSIGNMENT, COMPOUND_ASSIGNMENT, PLUS_ASSIGNMENT, STATEMENT},
 		nativeNode: "[0](AssignStmt)",
 		children:   3,
 	}
@@ -433,7 +434,7 @@ func Test_mapExprList(t *testing.T) {
 
 	actual := newTestNode(uast)
 	expected := TestNode{
-		kinds:      []Kind{ASSIGNMENT_TARGET},
+		kinds:      []Kind{ASSIGNMENT_TARGET_LIST},
 		nativeNode: "Lhs([]Expr)",
 		children:   3,
 	}
@@ -449,10 +450,27 @@ func Test_mapExpr_Ident(t *testing.T) {
 
 	actual := newTestNode(uast)
 	expected := TestNode{
-		kinds:      []Kind{IDENTIFIER},
+		kinds:      []Kind{ASSIGNMENT_TARGET, IDENTIFIER},
 		nativeNode: "[0](Ident)",
 		children:   0,
 		token:      Token{Value: "a", Line: 3, Column: 2},
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+}
+
+func Test_mapExpr_Value(t *testing.T) {
+	uast := uastFromString(t, example_with_two_assignments,
+		"Decls/[0](FuncDecl)/Body/[0](AssignStmt)/Rhs/[0](BasicLit)")
+
+	actual := newTestNode(uast)
+	expected := TestNode{
+		kinds:      []Kind{ASSIGNMENT_VALUE, EXPRESSION, LITERAL},
+		nativeNode: "[0](BasicLit)",
+		children:   0,
+		token:      Token{Value: "1", Line: 3, Column: 10},
 	}
 
 	if !reflect.DeepEqual(expected, actual) {
@@ -466,7 +484,7 @@ func Test_mapExpr_BasicLit(t *testing.T) {
 
 	actual := newTestNode(uast)
 	expected := TestNode{
-		kinds:      []Kind{EXPRESSION, LITERAL, STRING_LITERAL},
+		kinds:      []Kind{ASSIGNMENT_VALUE, EXPRESSION, LITERAL, STRING_LITERAL},
 		nativeNode: "[0](BasicLit)",
 		children:   0,
 		token:      Token{Value: "\"hello, world\"", Line: 4, Column: 9},
@@ -585,7 +603,7 @@ func main() {
 		uast := uastQuery(t, stmt, "Rhs([]Expr)/[0]")
 		actual := newTestNode(uast)
 		expected := TestNode{
-			kinds:      []Kind{EXPRESSION, BINARY_EXPRESSION},
+			kinds:      []Kind{ASSIGNMENT_VALUE, EXPRESSION, BINARY_EXPRESSION},
 			nativeNode: "[0](BinaryExpr)",
 			children:   3,
 		}
@@ -600,6 +618,62 @@ func main() {
 
 		if !uast.Children[1].hasKind(expectedOperatorKinds[i]) {
 			t.Fatalf("got '%v'; expected '%v'", uast.Children[1].Kinds, expectedOperatorKinds[i])
+		}
+	}
+}
+
+func Test_mapCompoundAssignment(t *testing.T) {
+	source := `package main
+func main() {
+	var x = 0
+
+	x += 1
+	x -= 1
+	x |= 1
+	x ^= 1
+
+	x *= 1
+	x /= 1
+	x %= 1
+	x <<= 1
+	x >>= 1
+	x &= 1
+	x &^= 1
+}
+`
+	expectedOperators := []string{"+=", "-=", "|=", "^=", "*=", "/=", "%=", "<<=", ">>=", "&=", "&^="}
+	expectedKind := []Kind{PLUS_ASSIGNMENT, MINUS_ASSIGNMENT, OR_ASSIGNMENT, XOR_ASSIGNMENT, MULTIPLY_ASSIGNMENT, DIVIDE_ASSIGNMENT, REMAINDER_ASSIGNMENT, LEFT_SHIFT_ASSIGNMENT, RIGHT_SHIFT_ASSIGNMENT, AND_ASSIGNMENT, AND_NOT_ASSIGNMENT}
+	body := uastFromString(t, source,
+		"Decls/[0](FuncDecl)/Body")
+
+	actual := newTestNode(body)
+	expected := TestNode{
+		kinds:      []Kind{BLOCK},
+		nativeNode: "Body(BlockStmt)",
+		children:   14,
+	}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+
+	// remove the '{' and '}' child and skip 'x' declaration
+	statements := body.Children[2 : len(body.Children)-1]
+
+	for i, stmt := range statements {
+		actual := newTestNode(stmt)
+		expected := TestNode{
+			kinds:      []Kind{ASSIGNMENT, COMPOUND_ASSIGNMENT, expectedKind[i], STATEMENT},
+			nativeNode: fmt.Sprintf("[%d](AssignStmt)", i+1),
+			children:   3,
+		}
+
+		if !reflect.DeepEqual(expected, actual) {
+			t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+		}
+
+		if expected, actual := expectedOperators[i], stmt.Children[1].Token.Value; expected != actual {
+			t.Fatalf("got '%v'; expected '%v'", actual, expected)
 		}
 	}
 }

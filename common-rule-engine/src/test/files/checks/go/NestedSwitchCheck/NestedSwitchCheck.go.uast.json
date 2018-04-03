@@ -162,12 +162,12 @@
             {"token": {"value":":","line":27,"column":8}, "nativeNode": "Colon"},
             {"kinds": ["BLOCK"], "nativeNode": "Body([]Stmt)", "children": [
               {"kinds": ["ASSIGNMENT","DECLARATION","STATEMENT"], "nativeNode": "[0](AssignStmt)", "children": [
-                {"kinds": ["ASSIGNMENT_TARGET"], "nativeNode": "Lhs([]Expr)", "children": [
-                  {"kinds": ["IDENTIFIER"], "token": {"value":"myFunc","line":28,"column":3}, "nativeNode": "[0](Ident)"}
+                {"kinds": ["ASSIGNMENT_TARGET_LIST"], "nativeNode": "Lhs([]Expr)", "children": [
+                  {"kinds": ["ASSIGNMENT_TARGET","IDENTIFIER"], "token": {"value":"myFunc","line":28,"column":3}, "nativeNode": "[0](Ident)"}
                 ]},
-                {"token": {"value":":=","line":28,"column":10}, "nativeNode": "Tok"},
-                {"kinds": ["ASSIGNMENT_VALUE"], "nativeNode": "Rhs([]Expr)", "children": [
-                  {"kinds": ["EXPRESSION","FUNCTION_LITERAL"], "nativeNode": "[0](FuncLit)", "children": [
+                {"kinds": ["ASSIGNMENT_OPERATOR"], "token": {"value":":=","line":28,"column":10}, "nativeNode": "Tok"},
+                {"kinds": ["ASSIGNMENT_VALUE_LIST"], "nativeNode": "Rhs([]Expr)", "children": [
+                  {"kinds": ["ASSIGNMENT_VALUE","EXPRESSION","FUNCTION_LITERAL"], "nativeNode": "[0](FuncLit)", "children": [
                     {"nativeNode": "Type(FuncType)", "children": [
                       {"kinds": ["KEYWORD"], "token": {"value":"func","line":28,"column":13}, "nativeNode": "Func"},
                       {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [

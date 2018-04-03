@@ -36,6 +36,7 @@ import org.sonar.commonruleengine.checks.SwitchDefaultLocationCheck;
 import org.sonar.commonruleengine.checks.SwitchWithoutDefaultCheck;
 import org.sonar.commonruleengine.checks.TooManyParametersCheck;
 import org.sonar.commonruleengine.checks.UnconditionalJumpStatementCheck;
+import org.sonar.commonruleengine.checks.WrongAssignmentOperatorCheck;
 
 public class GoChecks {
 
@@ -59,7 +60,8 @@ public class GoChecks {
       SwitchDefaultLocationCheck.class,
       SwitchWithoutDefaultCheck.class,
       UnconditionalJumpStatementCheck.class,
-      TooManyParametersCheck.class
+      TooManyParametersCheck.class,
+      WrongAssignmentOperatorCheck.class
     );
   }
 

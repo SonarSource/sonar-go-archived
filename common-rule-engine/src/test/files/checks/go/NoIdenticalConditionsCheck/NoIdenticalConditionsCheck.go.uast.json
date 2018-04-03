@@ -139,12 +139,12 @@
           {"kinds": ["IF_KEYWORD","KEYWORD"], "token": {"value":"if","line":24,"column":2}, "nativeNode": "If"},
           {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
             {"kinds": ["ASSIGNMENT","STATEMENT"], "nativeNode": "Init(AssignStmt)", "children": [
-              {"kinds": ["ASSIGNMENT_TARGET"], "nativeNode": "Lhs([]Expr)", "children": [
-                {"kinds": ["IDENTIFIER"], "token": {"value":"x","line":24,"column":5}, "nativeNode": "[0](Ident)"}
+              {"kinds": ["ASSIGNMENT_TARGET_LIST"], "nativeNode": "Lhs([]Expr)", "children": [
+                {"kinds": ["ASSIGNMENT_TARGET","IDENTIFIER"], "token": {"value":"x","line":24,"column":5}, "nativeNode": "[0](Ident)"}
               ]},
-              {"token": {"value":"=","line":24,"column":7}, "nativeNode": "Tok"},
-              {"kinds": ["ASSIGNMENT_VALUE"], "nativeNode": "Rhs([]Expr)", "children": [
-                {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"3","line":24,"column":9}, "nativeNode": "[0](BasicLit)"}
+              {"kinds": ["ASSIGNMENT_OPERATOR"], "token": {"value":"=","line":24,"column":7}, "nativeNode": "Tok"},
+              {"kinds": ["ASSIGNMENT_VALUE_LIST"], "nativeNode": "Rhs([]Expr)", "children": [
+                {"kinds": ["ASSIGNMENT_VALUE","EXPRESSION","LITERAL"], "token": {"value":"3","line":24,"column":9}, "nativeNode": "[0](BasicLit)"}
               ]}
             ]},
             {"token": {"value":";","line":24,"column":10}, "nativeNode": ""},
@@ -163,12 +163,12 @@
             {"kinds": ["IF_KEYWORD","KEYWORD"], "token": {"value":"if","line":26,"column":9}, "nativeNode": "If"},
             {"kinds": ["CONDITION"], "nativeNode": "InitAndCond", "children": [
               {"kinds": ["ASSIGNMENT","STATEMENT"], "nativeNode": "Init(AssignStmt)", "children": [
-                {"kinds": ["ASSIGNMENT_TARGET"], "nativeNode": "Lhs([]Expr)", "children": [
-                  {"kinds": ["IDENTIFIER"], "token": {"value":"x","line":26,"column":12}, "nativeNode": "[0](Ident)"}
+                {"kinds": ["ASSIGNMENT_TARGET_LIST"], "nativeNode": "Lhs([]Expr)", "children": [
+                  {"kinds": ["ASSIGNMENT_TARGET","IDENTIFIER"], "token": {"value":"x","line":26,"column":12}, "nativeNode": "[0](Ident)"}
                 ]},
-                {"token": {"value":"=","line":26,"column":14}, "nativeNode": "Tok"},
-                {"kinds": ["ASSIGNMENT_VALUE"], "nativeNode": "Rhs([]Expr)", "children": [
-                  {"kinds": ["EXPRESSION"], "nativeNode": "[0](UnaryExpr)", "children": [
+                {"kinds": ["ASSIGNMENT_OPERATOR"], "token": {"value":"=","line":26,"column":14}, "nativeNode": "Tok"},
+                {"kinds": ["ASSIGNMENT_VALUE_LIST"], "nativeNode": "Rhs([]Expr)", "children": [
+                  {"kinds": ["ASSIGNMENT_VALUE","EXPRESSION","UNARY_EXPRESSION","UNARY_MINUS"], "nativeNode": "[0](UnaryExpr)", "children": [
                     {"token": {"value":"-","line":26,"column":16}, "nativeNode": "Op"},
                     {"kinds": ["EXPRESSION","LITERAL"], "token": {"value":"1","line":26,"column":17}, "nativeNode": "X(BasicLit)"}
                   ]}
