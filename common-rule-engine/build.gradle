@@ -26,7 +26,6 @@ dependencies {
     testCompile project(':uast-generator-java')
 }
 
-
 test {
     useJUnitPlatform()
     testLogging {
@@ -49,8 +48,10 @@ publishing {
     publications {
         mavenJava(MavenPublication) {
             from components.java
-            artifact sourcesJar
-            artifact javadocJar
+            if (release) {
+                artifact sourcesJar
+                artifact javadocJar
+            }
         }
     }
 }
