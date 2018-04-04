@@ -87,8 +87,10 @@ publishing {
     publications {
         mavenJava(MavenPublication) {
             artifact source: shadowJar, classifier: null
-            artifact sourcesJar
-            artifact javadocJar
+            if (release) {
+                artifact sourcesJar
+                artifact javadocJar
+            }
         }
     }
 }

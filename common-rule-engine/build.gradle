@@ -1,5 +1,5 @@
 plugins {
-    id 'java-library'
+    id 'java'
     id 'jacoco'
 }
 
@@ -26,31 +26,10 @@ dependencies {
     testCompile project(':uast-generator-java')
 }
 
-
 test {
     useJUnitPlatform()
     testLogging {
         exceptionFormat 'full' // log the full stack trace (default is the 1st line of the stack trace)
         events "skipped", "failed" // verbose log for failed and skipped tests (by default the name of the tests are not logged)
-    }
-}
-
-task sourcesJar(type: Jar, dependsOn: classes) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
-}
-
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
-            artifact sourcesJar
-            artifact javadocJar
-        }
     }
 }
