@@ -29,6 +29,7 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import org.sonar.api.batch.fs.internal.TestInputFileBuilder;
 import org.sonar.commonruleengine.Engine;
 import org.sonar.commonruleengine.Issue;
@@ -59,7 +60,27 @@ public class TestUtils {
   }
 
   public static UastNode goUast(Path testFile) throws IOException {
-    return Uast.from(Files.newBufferedReader(Paths.get(testFile + ".uast.json")));
+    Path uastFile = createGoUast(testFile);
+    return Uast.from(Files.newBufferedReader(uastFile));
+  }
+
+  private static Path createGoUast(Path testFile) throws IOException {
+    Path binary = Paths.get("../uast-generator-go/build/", getExecutableForCurrentOS());
+    if (!Files.exists(binary)) {
+      throw new IllegalStateException(binary + " not found");
+    }
+    ProcessBuilder pb = new ProcessBuilder(binary.toString(), testFile.toString());
+    Path uastFile = Paths.get("build", "uast").resolve(testFile.getFileName() + ".uast.json");
+    uastFile.toFile().getParentFile().mkdirs();
+    pb.redirectOutput(uastFile.toFile());
+    pb.redirectError(ProcessBuilder.Redirect.INHERIT);
+    Process process = pb.start();
+    try {
+      process.waitFor();
+    } catch (InterruptedException e) {
+      throw new RuntimeException(e);
+    }
+    return uastFile;
   }
 
   public static void checkRule(Check check, Path testFile, UastNode uast) throws IOException {
@@ -113,6 +134,17 @@ public class TestUtils {
 
   public static Path testFile(Path file) {
     return Paths.get("src/test/files/checks/").resolve(file);
+  }
+
+  private static String getExecutableForCurrentOS() {
+    String os = System.getProperty("os.name").toLowerCase(Locale.ROOT);
+    if (os.contains("win")) {
+      return "uast-generator-go-windows-amd64.exe";
+    } else if (os.contains("mac")) {
+      return "uast-generator-go-darwin-amd64";
+    } else {
+      return "uast-generator-go-linux-amd64";
+    }
   }
 
 }
