@@ -262,9 +262,9 @@
       {"nativeNode": "Type(FuncType)", "children": [
         {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
           {"token": {"value":"(","line":29,"column":10}, "nativeNode": "Opening"},
-          {"nativeNode": "[0](Field)", "children": [
+          {"kinds": ["PARAMETER"], "nativeNode": "[0](Field)", "children": [
             {"nativeNode": "Names([]*Ident)", "children": [
-              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"b","line":29,"column":11}, "nativeNode": "[0](Ident)"}
+              {"kinds": ["IDENTIFIER"], "token": {"value":"b","line":29,"column":11}, "nativeNode": "[0](Ident)"}
             ]},
             {"kinds": ["TYPE"], "nativeNode": "Type(Ellipsis)", "children": [
               {"token": {"value":"...","line":29,"column":13}, "nativeNode": "Ellipsis"},
@@ -285,9 +285,9 @@
       {"nativeNode": "Type(FuncType)", "children": [
         {"kinds": ["PARAMETER_LIST"], "nativeNode": "Params(FieldList)", "children": [
           {"token": {"value":"(","line":30,"column":10}, "nativeNode": "Opening"},
-          {"nativeNode": "[0](Field)", "children": [
+          {"kinds": ["PARAMETER"], "nativeNode": "[0](Field)", "children": [
             {"nativeNode": "Names([]*Ident)", "children": [
-              {"kinds": ["PARAMETER","IDENTIFIER"], "token": {"value":"i","line":30,"column":11}, "nativeNode": "[0](Ident)"}
+              {"kinds": ["IDENTIFIER"], "token": {"value":"i","line":30,"column":11}, "nativeNode": "[0](Ident)"}
             ]},
             {"kinds": ["TYPE"], "nativeNode": "Type(Ellipsis)", "children": [
               {"token": {"value":"...","line":30,"column":13}, "nativeNode": "Ellipsis"},

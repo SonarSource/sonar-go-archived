@@ -108,6 +108,8 @@ public final class UastNode {
     LEFT_PARENTHESIS,
     RIGHT_PARENTHESIS,
     BLOCK,
+    GOTO,
+    BRANCH_LABEL,
     BREAK,
     CASE,
     CLASS,

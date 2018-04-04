@@ -76,12 +76,13 @@ class CognitiveComplexityCheck {
 //      ^^< {{+1}}  ^^< {{+1}} ^^< {{+1}} ^^< {{+1}}  ^^< {{+1}} ^^< {{+1}}
   }
 
-  public void breakWithLabel(java.util.Collection<Boolean> objects) { // Noncompliant {{Refactor this function to reduce its Cognitive Complexity from 1 to the 0 allowed.}}
+  public void breakWithLabel(java.util.Collection<Boolean> objects) { // Noncompliant {{Refactor this function to reduce its Cognitive Complexity from 2 to the 0 allowed.}}
 //            ^^^^^^^^^^^^^^
   doABarrelRoll:
     for(Object o : objects) {
 //  ^^^< {{+1}}
-      break doABarrelRoll; // TODO support +1 for break to a label
+      break doABarrelRoll;
+//    ^^^^^< {{+1}}
     }
   }
 

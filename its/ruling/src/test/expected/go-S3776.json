@@ -7231,6 +7231,9 @@
 'project:kubernetes/vendor/github.com/docker/docker/pkg/symlink/fs_windows.go':[
 82,
 ],
+'project:kubernetes/vendor/github.com/docker/docker/pkg/term/ascii.go':[
+45,
+],
 'project:kubernetes/vendor/github.com/docker/engine-api/client/request.go':[
 76,
 ],
@@ -7493,6 +7496,7 @@
 116,
 ],
 'project:kubernetes/vendor/github.com/gogo/protobuf/proto/decode.go':[
+107,
 462,
 ],
 'project:kubernetes/vendor/github.com/gogo/protobuf/proto/encode.go':[
@@ -7574,6 +7578,7 @@
 111,
 ],
 'project:kubernetes/vendor/github.com/golang/protobuf/proto/decode.go':[
+107,
 462,
 ],
 'project:kubernetes/vendor/github.com/golang/protobuf/proto/encode.go':[
@@ -9530,6 +9535,7 @@
 ],
 'project:kubernetes/vendor/golang.org/x/net/html/parse.go':[
 108,
+188,
 308,
 701,
 1038,
@@ -9544,6 +9550,7 @@
 68,
 ],
 'project:kubernetes/vendor/golang.org/x/net/html/token.go':[
+329,
 393,
 600,
 888,

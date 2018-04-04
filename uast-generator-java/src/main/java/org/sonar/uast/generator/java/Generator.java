@@ -45,8 +45,10 @@ import org.sonar.plugins.java.api.tree.Arguments;
 import org.sonar.plugins.java.api.tree.AssignmentExpressionTree;
 import org.sonar.plugins.java.api.tree.BaseTreeVisitor;
 import org.sonar.plugins.java.api.tree.BinaryExpressionTree;
+import org.sonar.plugins.java.api.tree.BreakStatementTree;
 import org.sonar.plugins.java.api.tree.CaseLabelTree;
 import org.sonar.plugins.java.api.tree.CompilationUnitTree;
+import org.sonar.plugins.java.api.tree.ContinueStatementTree;
 import org.sonar.plugins.java.api.tree.ExpressionTree;
 import org.sonar.plugins.java.api.tree.IdentifierTree;
 import org.sonar.plugins.java.api.tree.IfStatementTree;
@@ -209,6 +211,9 @@ public class Generator {
         break;
       case IDENTIFIER:
         result.add(UastNode.Kind.IDENTIFIER);
+        if (tree.parent() instanceof BreakStatementTree || tree.parent() instanceof ContinueStatementTree) {
+          result.add(UastNode.Kind.BRANCH_LABEL);
+        }
         break;
       case STRING_LITERAL:
         result.add(UastNode.Kind.LITERAL);

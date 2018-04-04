@@ -117,6 +117,7 @@ import (
 			"IfStmt#If":               "IF_KEYWORD",
 			"IfStmt#Body":             "THEN",
 			"IfStmt#Else":             "ELSE",
+			"BranchStmt#Label":        "BRANCH_LABEL",
 			// Can not declare EXPRESSION for all ast.Expr because Expr is also used for type like in Field#Type
 			"CompositeLit#Expr[i]":  "EXPRESSION",
 			"IndexExpr#X":           "EXPRESSION",
