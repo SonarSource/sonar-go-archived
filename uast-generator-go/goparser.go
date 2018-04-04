@@ -48,6 +48,8 @@ const (
 	FUNCTION                  Kind = "FUNCTION"
 	FUNCTION_LITERAL          Kind = "FUNCTION_LITERAL"
 	FUNCTION_NAME             Kind = "FUNCTION_NAME"
+	GOTO                      Kind = "GOTO"
+	BRANCH_LABEL              Kind = "BRANCH_LABEL"
 	BLOCK                     Kind = "BLOCK"
 	ARGS_LIST                 Kind = "ARGS_LIST"
 	CALL                      Kind = "CALL"
@@ -92,6 +94,7 @@ const (
 	LOOP_FOREACH              Kind = "LOOP_FOREACH"
 	BREAK                     Kind = "BREAK"
 	CONTINUE                  Kind = "CONTINUE"
+	FALLTHROUGH               Kind = "FALLTHROUGH"
 	OPERATOR                  Kind = "OPERATOR"
 	OPERATOR_ADD              Kind = "OPERATOR_ADD"
 	OPERATOR_SUBTRACT         Kind = "OPERATOR_SUBTRACT"
@@ -304,7 +307,7 @@ func (t *UastMapper) computeOperatorKind(op token.Token) []Kind {
 		// >=
 	case token.GEQ:
 		return []Kind{OPERATOR, OPERATOR_GREATER_OR_EQUAL}
-		// +
+	// +
 	case token.ADD:
 		return []Kind{OPERATOR, OPERATOR_ADD}
 		// -
@@ -373,11 +376,15 @@ func (t *UastMapper) computeTypeSpecKinds(typeExpr ast.Expr) []Kind {
 }
 
 func (t *UastMapper) computeBranchKind(astNode *ast.BranchStmt) Kind {
-	switch astNode.Tok.String() {
-	case "break":
+	switch astNode.Tok {
+	case token.BREAK:
 		return BREAK
-	case "continue":
+	case token.CONTINUE:
 		return CONTINUE
+	case token.FALLTHROUGH:
+		return FALLTHROUGH
+	case token.GOTO:
+		return GOTO
 	default:
 		return UNSUPPORTED
 	}

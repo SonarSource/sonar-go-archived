@@ -107,12 +107,22 @@ func extraConditions12() { // Noncompliant {{Refactor this function to reduce it
 //      ^^< {{+1}}  ^^< {{+1}} ^^< {{+1}} ^^< {{+1}}  ^^< {{+1}} ^^< {{+1}}
   }
 
-func breakWithLabel() { // Noncompliant {{Refactor this function to reduce its Cognitive Complexity from 1 to the 0 allowed.}}
-//   ^^^^^^^^^^^^^^
+func breakContinueGoto() { // Noncompliant {{Refactor this function to reduce its Cognitive Complexity from 6 to the 0 allowed.}}
+//   ^^^^^^^^^^^^^^^^^
   doABarrelRoll:
     for o := range objects {
 //  ^^^< {{+1}}
-      break doABarrelRoll; // TODO support +1 for break to a label
+      switch o {
+//    ^^^^^^< {{+2 (incl 1 for nesting)}}
+      case 1: break doABarrelRoll
+//            ^^^^^< {{+1}}
+      case 2: continue doABarrelRoll
+//            ^^^^^^^^< {{+1}}
+      case 3: goto doABarrelRoll
+//            ^^^^< {{+1}}
+      case 4: break
+      case 5: continue
+      }
     }
 }
 

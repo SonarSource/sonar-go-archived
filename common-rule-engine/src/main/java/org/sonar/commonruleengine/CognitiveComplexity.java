@@ -26,6 +26,7 @@ import java.util.Set;
 import javax.annotation.Nullable;
 import org.sonar.uast.UastNode;
 import org.sonar.uast.helpers.BinaryExpressionLike;
+import org.sonar.uast.helpers.BranchLike;
 import org.sonar.uast.helpers.ElseLike;
 import org.sonar.uast.helpers.IfLike;
 import org.sonar.uast.helpers.ParenthesizedLike;
@@ -61,7 +62,7 @@ public class CognitiveComplexity {
 
   private void visit(@Nullable UastNode parent, UastNode node) {
     // TODO function recursive call: increaseComplexityByOne
-    // TODO 'goto, break, continue' to label: increaseComplexityByOne
+    BranchLike branchStatement = BranchLike.from(node);
     if (node.is(UastNode.Kind.FUNCTION)) {
       visitFunction(node);
     } else if (parent == null || !inAFunction || ignoredNode.contains(node)) {
@@ -72,6 +73,8 @@ public class CognitiveComplexity {
     } else if (node.is(UastNode.Kind.IF, UastNode.Kind.SWITCH, UastNode.Kind.LOOP)) {
       increaseComplexityByNesting(keyword(parent, node));
       visitNestedChildren(node);
+    } else if (branchStatement != null && branchStatement.label() != null) {
+      increaseComplexityByOne(keyword(parent, node));
     } else if (node.is(UastNode.Kind.BINARY_EXPRESSION)) {
       visitBinaryExpression(node);
     } else if (node.is(UastNode.Kind.FUNCTION_LITERAL)) {

@@ -52,6 +52,7 @@ class UastNode {
     LEFT_PARENTHESIS("("),
     RIGHT_PARENTHESIS(")"),
     BLOCK,
+    BRANCH_LABEL,
     BREAK,
     CASE,
     CLASS,
