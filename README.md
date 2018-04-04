@@ -1,5 +1,9 @@
 # sonar-go
 
+[![Build Status](https://travis-ci.org/SonarSource/sonar-go.svg?branch=master)](https://travis-ci.org/SonarSource/sonar-go)
+![Quality gate](https://next.sonarqube.com/sonarqube/api/project_badges/measure?project=org.sonarsource.go%3Asonar-go&metric=alert_status)
+[![Coverage](https://next.sonarqube.com/sonarqube/api/project_badges/measure?project=org.sonarsource.go%3Asonar-go&metric=coverage)](https://next.sonarqube.com/sonarqube/api/project_badges/measure?project=org.sonarsource.go%3Asonar-go&metric=coverage) 
+
 ## Building
 
 Run:
