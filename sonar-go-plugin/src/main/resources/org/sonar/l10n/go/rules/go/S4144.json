@@ -1,5 +1,5 @@
 {
-  "title": "Methods should not have identical implementations",
+  "title": "Functions should not have identical implementations",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
