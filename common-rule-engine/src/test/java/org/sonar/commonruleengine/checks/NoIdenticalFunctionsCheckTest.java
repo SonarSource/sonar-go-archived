@@ -17,17 +17,24 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package org.sonar.commonruleengine.checks.go;
+package org.sonar.commonruleengine.checks;
 
 import org.junit.jupiter.api.Test;
-import org.sonar.commonruleengine.checks.NestedSwitchCheck;
-import org.sonar.commonruleengine.checks.TestUtils;
+import org.sonar.commonruleengine.checks.NoIdenticalFunctionsCheck;
 
-class NestedSwitchCheckTest {
+import static org.sonar.commonruleengine.checks.TestUtils.checkRuleOnGo;
+import static org.sonar.commonruleengine.checks.TestUtils.checkRuleOnJava;
+
+class NoIdenticalFunctionsCheckTest {
 
   @Test
-  void test() throws Exception {
-    TestUtils.checkRuleOnGo(new NestedSwitchCheck());
+  void test_java() throws Exception {
+    checkRuleOnJava(new NoIdenticalFunctionsCheck());
   }
-}
 
+  @Test
+  void test_go() throws Exception {
+    checkRuleOnGo(new NoIdenticalFunctionsCheck());
+  }
+
+}

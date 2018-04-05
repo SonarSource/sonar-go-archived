@@ -17,19 +17,23 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package org.sonar.commonruleengine.checks.go;
+package org.sonar.commonruleengine.checks;
 
 import org.junit.jupiter.api.Test;
-import org.sonar.commonruleengine.checks.FunctionCognitiveComplexityCheck;
-import org.sonar.commonruleengine.checks.TestUtils;
+import org.sonar.commonruleengine.checks.RedundantBooleanLiteralCheck;
 
-public class FunctionCognitiveComplexityCheckTest {
+import static org.sonar.commonruleengine.checks.TestUtils.checkRuleOnGo;
+import static org.sonar.commonruleengine.checks.TestUtils.checkRuleOnJava;
+
+class RedundantBooleanLiteralCheckTest {
 
   @Test
-  void test() throws Exception {
-    FunctionCognitiveComplexityCheck check = new FunctionCognitiveComplexityCheck();
-    check.setMaxComplexity(0);
-    TestUtils.checkRuleOnGo(check);
+  void test_java() throws Exception {
+    checkRuleOnJava(new RedundantBooleanLiteralCheck());
   }
 
+  @Test
+  void test_go() throws Exception {
+    checkRuleOnGo(new RedundantBooleanLiteralCheck());
+  }
 }

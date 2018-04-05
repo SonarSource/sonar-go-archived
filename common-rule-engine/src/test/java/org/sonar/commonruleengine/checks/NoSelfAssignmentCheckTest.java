@@ -17,24 +17,24 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package org.sonar.commonruleengine.checks.java;
+package org.sonar.commonruleengine.checks;
 
 import org.junit.jupiter.api.Test;
-import org.sonar.commonruleengine.checks.TooManyParametersCheck;
+import org.sonar.commonruleengine.checks.NoSelfAssignmentCheck;
 
+import static org.sonar.commonruleengine.checks.TestUtils.checkRuleOnGo;
 import static org.sonar.commonruleengine.checks.TestUtils.checkRuleOnJava;
 
-class TooManyParametersCheckTest {
+public class NoSelfAssignmentCheckTest {
 
   @Test
-  void test() throws Exception {
-    checkRuleOnJava(new TooManyParametersCheck());
+  void test_java() throws Exception {
+    checkRuleOnJava(new NoSelfAssignmentCheck());
   }
 
   @Test
-  void test_custom_threshold() throws Exception {
-    TooManyParametersCheck check = new TooManyParametersCheck();
-    check.maximum = 3;
-    checkRuleOnJava(check, "TooManyParametersCheckMax3.java");
+  void test_go() throws Exception {
+    checkRuleOnGo(new NoSelfAssignmentCheck());
   }
+
 }
