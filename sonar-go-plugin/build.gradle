@@ -1,3 +1,5 @@
+import sun.net.httpserver.Code
+
 plugins {
     id 'java'
     id 'jacoco'
@@ -44,15 +46,29 @@ test {
 
 jar {
     manifest {
+        def displayVersion = (project.buildNumber == null ? version : version.substring(0, version.lastIndexOf('.')) + " (build ${project.buildNumber})")
+        def buildDate = new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         attributes(
-                'Plugin-Key': 'go',
-                'Plugin-Version': version,
-                'Plugin-Class': 'org.sonar.go.plugin.GoPlugin',
+                'Build-Time': buildDate,
+                'Implementation-Build': 'git rev-parse HEAD'.execute().text.trim(),
+                'Plugin-BuildDate': buildDate,
                 'Plugin-ChildFirstClassLoader': 'false',
+                'Plugin-Class': 'org.sonar.go.plugin.GoPlugin',
+                'Plugin-Description': 'Code Analyzer for Go',
+                'Plugin-Developers': 'Alban Auzeill,Tibor Blenessy,Michael Gumowski,Janos Gyerik',
+                'Plugin-Display-Version': displayVersion,
+                'Plugin-Homepage': 'http://redirect.sonarsource.com/plugins/go.html',
+                'Plugin-IssueTrackerUrl': 'https://github.com/SonarSource/sonar-go/issues',
+                'Plugin-Key': 'go',
+                'Plugin-License': 'GNU LGPL 3',
+                'Plugin-Name': 'SonarGo',
+                'Plugin-Organization': 'SonarSource',
+                'Plugin-OrganizationUrl': 'http://www.sonarsource.com',
+                'Plugin-SourcesUrl': 'https://github.com/SonarSource/sonar-go',
+                'Plugin-Version': version,
                 'Sonar-Version': '6.7',
                 'SonarLint-Supported': 'false',
-                'Plugin-Name': 'SonarGo',
-                'Plugin-License': 'GNU LGPL 3'
+                'Version': "${version}",
         )
     }
 }
