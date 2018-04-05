@@ -39,6 +39,7 @@ import org.sonarqube.ws.client.WsClientFactories;
 import org.sonarqube.ws.client.measure.ComponentWsRequest;
 
 import static java.util.Collections.singletonList;
+import static java.util.Optional.ofNullable;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
@@ -55,7 +56,7 @@ public class Tests {
 
   static {
     OrchestratorBuilder builder = Orchestrator.builderEnv()
-      .setSonarVersion(System.getProperty("sonar.runtimeVersion"))
+      .setSonarVersion(ofNullable(System.getProperty("sonar.runtimeVersion")).orElse("LATEST_RELEASE[6.7]"))
       .restoreProfileAtStartup(FileLocation.ofClasspath(RESOURCE_DIRECTORY + "/empty-profile.xml"));
 
     String goVersion = System.getProperty("goVersion");
