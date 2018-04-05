@@ -19,18 +19,28 @@
  */
 package org.sonar.go.plugin;
 
+import org.sonar.api.config.Configuration;
 import org.sonar.api.resources.AbstractLanguage;
 
 public class GoLanguage extends AbstractLanguage {
 
   public static final String KEY = "go";
+  public static final String FILE_SUFFIXES_KEY = "sonar.go.file.suffixes";
+  public static final String FILE_SUFFIXES_DEFAULT_VALUE = ".go";
 
-  public GoLanguage() {
+  private final Configuration configuration;
+
+  public GoLanguage(Configuration configuration) {
     super(KEY, "Go");
+    this.configuration = configuration;
   }
 
   @Override
   public String[] getFileSuffixes() {
-    return new String[]{".go"};
+    String[] suffixes = configuration.getStringArray(FILE_SUFFIXES_KEY);
+    if (suffixes == null || suffixes.length == 0) {
+      suffixes = new String[] {FILE_SUFFIXES_DEFAULT_VALUE};
+    }
+    return suffixes;
   }
 }
