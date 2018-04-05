@@ -20,9 +20,7 @@
 package org.sonar.commonruleengine.checks;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
-import org.sonar.commonruleengine.checks.FileHeaderCheck;
 
 import static org.sonar.commonruleengine.checks.TestUtils.checkNoIssue;
 import static org.sonar.commonruleengine.checks.TestUtils.checkRuleOnGo;
@@ -38,7 +36,7 @@ class FileHeaderCheckTest {
     FileHeaderCheck check = new FileHeaderCheck();
     check.headerFormat = "/*\nCopyright 2049 ACME\n\n*/";
 
-    Path testFile = testFile("go", check.getClass(), "FileHeaderCheck.go");
+    Path testFile = testFile(check.getClass(), "FileHeaderCheck.go");
     checkNoIssue(check, testFile, goUast(testFile));
     checkRuleOnGo(check, "FileHeaderCheckYear.go");
     checkRuleOnGo(check, "FileHeaderCheckBeforeHeader.go");
@@ -50,9 +48,9 @@ class FileHeaderCheckTest {
     check.headerFormat = "/\\*\nCopyright 204. ACME\n\n\\*/";
     check.isRegularExpression = true;
 
-    Path testFile = testFile("go", check.getClass(), "FileHeaderCheck.go");
+    Path testFile = testFile(check.getClass(), "FileHeaderCheck.go");
     checkNoIssue(check, testFile, goUast(testFile));
-    testFile = testFile("go", check.getClass(), "FileHeaderCheckYearNoIssue.go");
+    testFile = testFile(check.getClass(), "FileHeaderCheckYearNoIssue.go");
     checkNoIssue(check, testFile, goUast(testFile));
     checkRuleOnGo(check, "FileHeaderCheckBeforeHeader.go");
   }

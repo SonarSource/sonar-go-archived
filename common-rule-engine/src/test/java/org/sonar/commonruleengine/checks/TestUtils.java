@@ -44,7 +44,7 @@ public class TestUtils {
   }
 
   public static void checkRuleOnJava(Check check, String filename) throws IOException {
-    Path sourceFilename = testFile("java", check.getClass(), filename);
+    Path sourceFilename = testFile(check.getClass(), filename);
     Generator generator = new Generator(new String(Files.readAllBytes(sourceFilename)));
     checkRule(check, sourceFilename, Uast.from(new StringReader(generator.json())));
   }
@@ -54,7 +54,7 @@ public class TestUtils {
   }
 
   public static void checkRuleOnGo(Check check, String filename) throws IOException {
-    Path testFile = testFile("go", check.getClass(), filename);
+    Path testFile = testFile(check.getClass(), filename);
     UastNode uast = goUast(testFile);
     checkRule(check, testFile, uast);
   }
@@ -128,12 +128,8 @@ public class TestUtils {
     newIssue.addSecondary(from.line, from.column, to.endLine, to.endColumn, secondary.description);
   }
 
-  public static Path testFile(String prefix, Class<? extends Check> check, String filename) {
-    return testFile(Paths.get(prefix, check.getSimpleName(), filename));
-  }
-
-  public static Path testFile(Path file) {
-    return Paths.get("src/test/files/checks/").resolve(file);
+  static Path testFile(Class<? extends Check> checkClass, String filename) {
+    return Paths.get("src/test/files/checks", checkClass.getSimpleName(), filename);
   }
 
   private static String getExecutableForCurrentOS() {
