@@ -8,15 +8,6 @@ case 0, 1, 2, 3:
 case 4, 5, 6, 7:
 	bar()
 }
-
-switch tag {
-default:  // Noncompliant - default case should be the last one
-	qix()
-case 0, 1, 2, 3:
-	foo()
-case 4, 5, 6, 7:
-	bar()
-}
 </pre>
 <h2>Compliant Solution</h2>
 <pre>
