@@ -17,19 +17,21 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package org.sonar.commonruleengine.checks.java;
+package org.sonar.commonruleengine.checks;
 
 import org.junit.jupiter.api.Test;
-import org.sonar.commonruleengine.checks.FunctionCognitiveComplexityCheck;
+import org.sonar.commonruleengine.checks.NoHardcodedCredentialsCheck;
 import org.sonar.commonruleengine.checks.TestUtils;
 
-public class FunctionCognitiveComplexityCheckTest {
+class NoHardcodedCredentialsCheckTest {
 
   @Test
-  void test() throws Exception {
-    FunctionCognitiveComplexityCheck check = new FunctionCognitiveComplexityCheck();
-    check.setMaxComplexity(0);
-    TestUtils.checkRuleOnJava(check);
+  void test_java() throws Exception {
+    TestUtils.checkRuleOnJava(new NoHardcodedCredentialsCheck());
   }
 
+  @Test
+  void test_go() throws Exception {
+    TestUtils.checkRuleOnGo(new NoHardcodedCredentialsCheck());
+  }
 }

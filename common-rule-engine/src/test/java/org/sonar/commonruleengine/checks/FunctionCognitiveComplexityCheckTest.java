@@ -17,16 +17,26 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package org.sonar.commonruleengine.checks.java;
+package org.sonar.commonruleengine.checks;
 
 import org.junit.jupiter.api.Test;
-import org.sonar.commonruleengine.checks.SwitchWithoutDefaultCheck;
+import org.sonar.commonruleengine.checks.FunctionCognitiveComplexityCheck;
+import org.sonar.commonruleengine.checks.TestUtils;
 
-import static org.sonar.commonruleengine.checks.TestUtils.checkRuleOnJava;
+public class FunctionCognitiveComplexityCheckTest {
 
-public class SwitchWithoutDefaultCheckTest {
   @Test
-  void test() throws Exception {
-    checkRuleOnJava(new SwitchWithoutDefaultCheck());
+  void test_java() throws Exception {
+    FunctionCognitiveComplexityCheck check = new FunctionCognitiveComplexityCheck();
+    check.setMaxComplexity(0);
+    TestUtils.checkRuleOnJava(check);
   }
+
+  @Test
+  void test_go() throws Exception {
+    FunctionCognitiveComplexityCheck check = new FunctionCognitiveComplexityCheck();
+    check.setMaxComplexity(0);
+    TestUtils.checkRuleOnGo(check);
+  }
+
 }

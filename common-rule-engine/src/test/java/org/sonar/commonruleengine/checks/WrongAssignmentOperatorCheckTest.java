@@ -17,17 +17,23 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package org.sonar.commonruleengine.checks.java;
+package org.sonar.commonruleengine.checks;
 
 import org.junit.jupiter.api.Test;
-import org.sonar.commonruleengine.checks.NoIdenticalConditionsCheck;
+import org.sonar.commonruleengine.checks.WrongAssignmentOperatorCheck;
 
+import static org.sonar.commonruleengine.checks.TestUtils.checkRuleOnGo;
 import static org.sonar.commonruleengine.checks.TestUtils.checkRuleOnJava;
 
-class NoIdenticalConditionsCheckTest {
+public class WrongAssignmentOperatorCheckTest {
 
   @Test
-  void test() throws Exception {
-    checkRuleOnJava(new NoIdenticalConditionsCheck());
+  void test_java() throws Exception {
+    checkRuleOnJava(new WrongAssignmentOperatorCheck());
+  }
+
+  @Test
+  void test_go() throws Exception {
+    checkRuleOnGo(new WrongAssignmentOperatorCheck());
   }
 }

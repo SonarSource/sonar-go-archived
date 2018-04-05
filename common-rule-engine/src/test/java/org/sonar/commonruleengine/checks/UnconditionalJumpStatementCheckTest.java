@@ -17,17 +17,24 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package org.sonar.commonruleengine.checks.java;
+package org.sonar.commonruleengine.checks;
 
 import org.junit.jupiter.api.Test;
-import org.sonar.commonruleengine.checks.BinaryOperatorIdenticalExpressionsCheck;
+import org.sonar.commonruleengine.checks.TooManyParametersCheck;
+import org.sonar.commonruleengine.checks.UnconditionalJumpStatementCheck;
 
+import static org.sonar.commonruleengine.checks.TestUtils.checkRuleOnGo;
 import static org.sonar.commonruleengine.checks.TestUtils.checkRuleOnJava;
 
-public class BinaryOperatorIdenticalExpressionsCheckTest {
+class UnconditionalJumpStatementCheckTest {
 
   @Test
-  void test() throws Exception {
-    checkRuleOnJava(new BinaryOperatorIdenticalExpressionsCheck());
+  void test_java() throws Exception {
+    checkRuleOnJava(new UnconditionalJumpStatementCheck());
+  }
+
+  @Test
+  void test_go() throws Exception {
+    checkRuleOnGo(new UnconditionalJumpStatementCheck());
   }
 }
