@@ -9,9 +9,6 @@ test {
     outputs.upToDateWhen {false}
     def orchestratorProps = System.getProperties().findAll { it.key.startsWith("orchestrator") || it.key.startsWith("sonar") }.collect { it.key }
     systemProperties System.getProperties().subMap(orchestratorProps)
-    if (systemProperties["sonar.runtimeVersion"] == null && System.env.SONARSOURCE_QA != "true" ) {
-        systemProperty "sonar.runtimeVersion", "LATEST_RELEASE"
-    }
     afterEvaluate {
         systemProperty "goVersion", version
     }
