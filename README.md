@@ -31,6 +31,25 @@ Run plugin integration tests:
 
     ./gradlew integrationTest --info
 
+## Repository Structure
+
+This SonarQube plugin uses an intermediate representation format to provide issues and metrics on a Go project.
+The intermediate format is a json file representing an UAST (Universal Abstract Syntax Tree).
+This is an example: [uast.json](https://github.com/SonarSource/sonar-go/blob/master/common-rule-engine/src/test/resources/reference.java.uast.json)
+
+Uast node is defined by class [UastNode](common-rule-engine/src/main/java/org/sonar/uast/UastNode.java). Package [helpers](common-rule-engine/src/main/java/org/sonar/uast/helpers) 
+contains convenient classes to work with the tree.    
+
+Two modules are responsible for the source code conversion into a json UAST:
+- **uast-generator-go** Use the native Go parser and convert the AST tree into an UAST
+- **uast-generator-java** Use the [sonar-java](https://github.com/SonarSource/sonar-java) parser to produce UAST, just here to ensure that the UAST can support several programming languages.
+
+Language agnostic rule engine module
+- **common-rule-engine** Rule engine with rules based on UAST
+
+The SonarQube Go analyzer plugin 
+- **sonar-go-plugin** SonarQube plugin using uast-generator-go and common-rule-engine to provide rules and metrics for Go language
+
 #### License headers
 
 Generate license headers for non-Go files with the command:
