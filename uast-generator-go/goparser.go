@@ -50,6 +50,7 @@ const (
 	FUNCTION_NAME             Kind = "FUNCTION_NAME"
 	CONSTANT_DECLARATION      Kind = "CONSTANT_DECLARATION"
 	VARIABLE_DECLARATION      Kind = "VARIABLE_DECLARATION"
+	IMPORT                    Kind = "IMPORT"
 	GOTO                      Kind = "GOTO"
 	BRANCH_LABEL              Kind = "BRANCH_LABEL"
 	BLOCK                     Kind = "BLOCK"

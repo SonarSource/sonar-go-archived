@@ -127,6 +127,7 @@ public final class UastNode {
     FUNCTION_NAME,
     VARIABLE_DECLARATION,
     CONSTANT_DECLARATION,
+    IMPORT,
     // lambda, anonymous function
     FUNCTION_LITERAL,
     IDENTIFIER,

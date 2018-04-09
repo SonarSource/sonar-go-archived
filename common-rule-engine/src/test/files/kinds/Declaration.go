@@ -1,4 +1,8 @@
 package main
+
+import "file.go" // Noncompliant {{IMPORT}}
+//     ^^^^^^^^^
+
 func foo() {
   var a int // Noncompliant {{VARIABLE_DECLARATION}}
   //  ^^^^^
