@@ -998,6 +998,19 @@ func foo() {
 	}
 }
 
+func Test_EMPTY_STATEMENT(t *testing.T) {
+	source := `
+package main
+func foo() {
+  ;
+}`
+	actual := extractKind(t, source, EMPTY_STATEMENT)
+	expected := []string{";"}
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+}
+
 func Test_noExpressionKinds(t *testing.T) {
 	source := `package main
 import "other"

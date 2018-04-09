@@ -65,6 +65,7 @@ const (
 	DECL_LIST                 Kind = "DECL_LIST"
 	CLASS                     Kind = "CLASS"
 	STATEMENT                 Kind = "STATEMENT"
+	EMPTY_STATEMENT           Kind = "EMPTY_STATEMENT"
 	ASSIGNMENT                Kind = "ASSIGNMENT"
 	COMPOUND_ASSIGNMENT       Kind = "COMPOUND_ASSIGNMENT"
 	ASSIGNMENT_TARGET_LIST    Kind = "ASSIGNMENT_TARGET_LIST"
