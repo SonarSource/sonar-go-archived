@@ -888,6 +888,44 @@ func foo(c bool) {
 
 }
 
+func Test_VARIABLE_DECLARATION_and_CONSTANT_DECLARATION(t *testing.T) {
+	source := `
+package main
+
+// GenDecl.Tok is IMPORT
+import "file.go"
+
+// GenDecl.Tok is TYPE
+type S struct {
+  a int
+}
+
+func foo() {
+  // GenDecl.Tok is VAR
+  var a int
+  var b = 1
+  var c, d int = 1, 2
+  // GenDecl.Tok is CONST
+  const A = 1
+  const B int = 2
+  const (
+    C, D = 3
+    E byte = 'd'
+  )
+}`
+
+	actual := extractKind(t, source, VARIABLE_DECLARATION)
+	expected := []string{"a int", "b = 1", "c, d int = 1, 2"}
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+	actual = extractKind(t, source, CONSTANT_DECLARATION)
+	expected = []string{"A = 1", "B int = 2", "C, D = 3", "E byte = 'd'"}
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+}
+
 func Test_noExpressionKinds(t *testing.T) {
 	source := `package main
 import "other"
@@ -1030,4 +1068,35 @@ func uastQuery(t *testing.T, parent *Node, nodeQueryPath string) *Node {
 		node = newNode
 	}
 	return node
+}
+
+func extractKind(t *testing.T, source string, kind Kind) []string {
+	fileSet, astNode := astFromString(source)
+	uast := toUast(fileSet, astNode, source)
+	return nodesSources(findByKind(uast, kind), source)
+}
+
+func findByKind(node *Node, kind Kind) []*Node {
+	var result []*Node
+	node.visit(func(node *Node) {
+		if node.hasKind(kind) {
+			result = append(result, node)
+		}
+	})
+	return result
+}
+
+func nodesSources(nodes []*Node, fileContent string) []string {
+	var result []string
+	for _, node := range nodes {
+		source := nodeSource(node, fileContent)
+		if len(source) > 0 {
+			result = append(result, source)
+		}
+	}
+	return result
+}
+
+func nodeSource(node *Node, fileContent string) string {
+	return fileContent[node.offset:node.endOffset]
 }
