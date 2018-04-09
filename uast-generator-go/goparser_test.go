@@ -926,6 +926,19 @@ func foo() {
 	}
 }
 
+func Test_IMPORT(t *testing.T) {
+	source := `
+package main
+import "file.go"
+import ( name1 "file1.go"; "file2.go" )
+`
+	actual := extractKind(t, source, IMPORT)
+	expected := []string{"\"file.go\"", "name1 \"file1.go\"", "\"file2.go\""}
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+}
+
 func Test_noExpressionKinds(t *testing.T) {
 	source := `package main
 import "other"
