@@ -467,7 +467,7 @@ func Test_mapExpr_Value(t *testing.T) {
 
 	actual := newTestNode(uast)
 	expected := TestNode{
-		kinds:      []Kind{ASSIGNMENT_VALUE, EXPRESSION, LITERAL},
+		kinds:      []Kind{ASSIGNMENT_VALUE, EXPRESSION, LITERAL, "INT_LITERAL", "DECIMAL_LITERAL"},
 		nativeNode: "[0](BasicLit)",
 		children:   0,
 		token:      Token{Value: "1", Line: 3, Column: 10},
@@ -762,9 +762,9 @@ func main(i int) {
 		"func:[KEYWORD] main:[FUNCTION_NAME IDENTIFIER] (:[] i:[IDENTIFIER] int:[TYPE IDENTIFIER] ):[] {:[]" +
 		" fmt:[IDENTIFIER] .:[] Println:[IDENTIFIER] (:[LEFT_PARENTHESIS]" +
 		" \"a\":[EXPRESSION LITERAL STRING_LITERAL] ,:[]" +
-		" 'b':[EXPRESSION LITERAL STRING_LITERAL] ,:[]" +
+		" 'b':[EXPRESSION LITERAL CHAR_LITERAL] ,:[]" +
 		" ):[RIGHT_PARENTHESIS] " +
-		"return:[KEYWORD] 3:[EXPRESSION LITERAL] }:[] :[EOF]"
+		"return:[KEYWORD] 3:[EXPRESSION LITERAL INT_LITERAL DECIMAL_LITERAL] }:[] :[EOF]"
 	if expected != actual {
 		t.Fatalf("Invalid highlighting kinds, got:\n%v\n\nexpect:\n%v", actual, expected)
 	}
@@ -934,6 +934,65 @@ import ( name1 "file1.go"; "file2.go" )
 `
 	actual := extractKind(t, source, IMPORT)
 	expected := []string{"\"file.go\"", "name1 \"file1.go\"", "\"file2.go\""}
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+}
+
+func Test_LITERAL(t *testing.T) {
+	source := `
+package main
+func foo() {
+  a := 10
+  b := 010
+  c := 0x10
+  d := 1.0
+  e := "10"
+  f := '1'
+  g := true
+}`
+	actual := extractKind(t, source, LITERAL)
+	expected := []string{"10", "010", "0x10", "1.0", "\"10\"", "'1'", "true"}
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+	actual = extractKind(t, source, INT_LITERAL)
+	expected = []string{"10", "010", "0x10"}
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+	actual = extractKind(t, source, DECIMAL_LITERAL)
+	expected = []string{"10"}
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+	actual = extractKind(t, source, OCTAL_LITERAL)
+	expected = []string{"010"}
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+	actual = extractKind(t, source, HEX_LITERAL)
+	expected = []string{"0x10"}
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+	actual = extractKind(t, source, FLOAT_LITERAL)
+	expected = []string{"1.0"}
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+	actual = extractKind(t, source, STRING_LITERAL)
+	expected = []string{"\"10\""}
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+	actual = extractKind(t, source, CHAR_LITERAL)
+	expected = []string{"'1'"}
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+	actual = extractKind(t, source, BOOLEAN_LITERAL)
+	expected = []string{"true"}
 	if !reflect.DeepEqual(expected, actual) {
 		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
 	}

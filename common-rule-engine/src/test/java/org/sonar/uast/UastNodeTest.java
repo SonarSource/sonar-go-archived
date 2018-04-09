@@ -26,7 +26,8 @@ import java.io.StringReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashSet;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -131,20 +132,31 @@ class UastNodeTest {
     UastNode uast = TestUtils.goUast(sourcePath);
     SingleFileVerifier verifier = SingleFileVerifier.create(sourcePath, UTF_8);
     uast.getDescendants(UastNode.Kind.COMMENT, comment -> verifier.addComment(comment.token.line, comment.token.column, comment.token.value, 2, 0));
-    getTestedKinds(sourcePath).forEach(kind -> uast.getDescendants(kind, node -> {
+    Set<UastNode.Kind> testedKinds = getTestedKinds(sourcePath);
+    descendantsWithKinds(uast, testedKinds).forEach(node -> {
       UastNode.Token from = node.firstToken();
       UastNode.Token to = node.lastToken();
-      verifier.reportIssue(kind.name()).onRange(from.line, from.column, to.endLine, to.endColumn);
-    }));
+      String message = testedKinds.stream()
+        .filter(node::is)
+        .map(UastNode.Kind::name)
+        .collect(Collectors.joining(","));
+      verifier.reportIssue(message).onRange(from.line, from.column, to.endLine, to.endColumn);
+    });
     verifier.assertOneOrMoreIssues();
+  }
+
+  static Set<UastNode> descendantsWithKinds(UastNode parent, Set<UastNode.Kind> kinds) {
+    Set<UastNode> children = new LinkedHashSet<>();
+    kinds.forEach(kind -> parent.getDescendants(kind, children::add));
+    return children;
   }
 
   static Set<UastNode.Kind> getTestedKinds(Path sourcePath) throws IOException {
     String source = new String(Files.readAllBytes(sourcePath), UTF_8);
     Matcher matcher = NONCOMPLIANT_MESSAGE_REGEX.matcher(source);
-    Set<UastNode.Kind> kinds = new HashSet<>();
+    Set<UastNode.Kind> kinds = new LinkedHashSet<>();
     while (matcher.find()) {
-      kinds.add(UastNode.Kind.valueOf(matcher.group(1)));
+      Arrays.stream(matcher.group(1).split(",")).forEach(name -> kinds.add(UastNode.Kind.valueOf(name)));
     }
     if (kinds.isEmpty()) {
       throw new IllegalStateException("The file should contains at least one kind: " + sourcePath);

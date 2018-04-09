@@ -77,7 +77,13 @@ const (
 	KEYWORD                   Kind = "KEYWORD"
 	SELECTOR_EXPR             Kind = "SELECTOR_EXPR"
 	LITERAL                   Kind = "LITERAL"
+	FLOAT_LITERAL             Kind = "FLOAT_LITERAL"
+	INT_LITERAL               Kind = "INT_LITERAL"
+	DECIMAL_LITERAL           Kind = "DECIMAL_LITERAL"
+	HEX_LITERAL               Kind = "HEX_LITERAL"
+	OCTAL_LITERAL             Kind = "OCTAL_LITERAL"
 	STRING_LITERAL            Kind = "STRING_LITERAL"
+	CHAR_LITERAL              Kind = "CHAR_LITERAL"
 	BOOLEAN_LITERAL           Kind = "BOOLEAN_LITERAL"
 	EXPRESSION                Kind = "EXPRESSION"
 	PARAMETER_LIST            Kind = "PARAMETER_LIST"
@@ -278,8 +284,22 @@ func (t *UastMapper) mapBasicLit(astNode *ast.BasicLit, kinds []Kind, fieldName 
 		return nil
 	}
 	kinds = append(kinds, LITERAL)
-	if astNode.Kind == token.STRING || astNode.Kind == token.CHAR {
+	switch astNode.Kind {
+	case token.STRING:
 		kinds = append(kinds, STRING_LITERAL)
+	case token.CHAR:
+		kinds = append(kinds, CHAR_LITERAL)
+	case token.INT:
+		kinds = append(kinds, INT_LITERAL)
+		if strings.HasPrefix(astNode.Value, "0x") || strings.HasPrefix(astNode.Value, "0X") {
+			kinds = append(kinds, HEX_LITERAL)
+		} else if strings.HasPrefix(astNode.Value, "0") {
+			kinds = append(kinds, OCTAL_LITERAL)
+		} else {
+			kinds = append(kinds, DECIMAL_LITERAL)
+		}
+	case token.FLOAT:
+		kinds = append(kinds, FLOAT_LITERAL)
 	}
 	return t.createUastExpectedToken(kinds, astNode.Pos(), astNode.Value, fieldName+"(BasicLit)")
 }
