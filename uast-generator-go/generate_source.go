@@ -27,6 +27,7 @@ import (
 	"go/ast"
 	"io/ioutil"
 	"reflect"
+	"strings"
 )
 
 func main() {
@@ -118,6 +119,7 @@ import (
 			"IfStmt#Body":             "THEN",
 			"IfStmt#Else":             "ELSE",
 			"BranchStmt#Label":        "BRANCH_LABEL",
+			"GenDecl#Specs[i]":        "t.computeConstOrVarKind(astNode.Tok)",
 			// Can not declare EXPRESSION for all ast.Expr because Expr is also used for type like in Field#Type
 			"CompositeLit#Expr[i]":  "EXPRESSION",
 			"IndexExpr#X":           "EXPRESSION",
@@ -563,6 +565,9 @@ func (t *AstContext) getKindsByFullName(fullName string) string {
 	kinds := t.KindsPerName[fullName]
 	if len(kinds) == 0 {
 		return "nil"
+	}
+	if strings.HasPrefix(kinds, "t.") {
+		return kinds
 	}
 	return "[]Kind{" + kinds + "}"
 }

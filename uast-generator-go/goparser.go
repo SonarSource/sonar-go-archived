@@ -48,6 +48,8 @@ const (
 	FUNCTION                  Kind = "FUNCTION"
 	FUNCTION_LITERAL          Kind = "FUNCTION_LITERAL"
 	FUNCTION_NAME             Kind = "FUNCTION_NAME"
+	CONSTANT_DECLARATION      Kind = "CONSTANT_DECLARATION"
+	VARIABLE_DECLARATION      Kind = "VARIABLE_DECLARATION"
 	GOTO                      Kind = "GOTO"
 	BRANCH_LABEL              Kind = "BRANCH_LABEL"
 	BLOCK                     Kind = "BLOCK"
@@ -387,6 +389,18 @@ func (t *UastMapper) computeBranchKind(astNode *ast.BranchStmt) Kind {
 		return GOTO
 	default:
 		return UNSUPPORTED
+	}
+}
+
+func (t *UastMapper) computeConstOrVarKind(genDeclTok token.Token) []Kind {
+	switch genDeclTok {
+	case token.CONST:
+		return []Kind{CONSTANT_DECLARATION}
+	case token.VAR:
+		return []Kind{VARIABLE_DECLARATION}
+	default:
+		// token.IMPORT and token.TYPE
+		return nil
 	}
 }
 
