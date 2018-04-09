@@ -171,6 +171,7 @@ public final class UastNode {
     RETURN,
     RESULT_LIST,
     STATEMENT,
+    EMPTY_STATEMENT,
     SWITCH,
     THEN,
     THROW,
