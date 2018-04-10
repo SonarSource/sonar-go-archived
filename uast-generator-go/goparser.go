@@ -51,6 +51,7 @@ const (
 	CONSTANT_DECLARATION      Kind = "CONSTANT_DECLARATION"
 	VARIABLE_DECLARATION      Kind = "VARIABLE_DECLARATION"
 	IMPORT                    Kind = "IMPORT"
+	IMPORT_ENTRY              Kind = "IMPORT_ENTRY"
 	GOTO                      Kind = "GOTO"
 	BRANCH_LABEL              Kind = "BRANCH_LABEL"
 	BLOCK                     Kind = "BLOCK"
@@ -417,6 +418,16 @@ func (t *UastMapper) computeBranchKind(astNode *ast.BranchStmt) Kind {
 		return GOTO
 	default:
 		return UNSUPPORTED
+	}
+}
+
+func (t *UastMapper) computeGenDeclKind(genDeclTok token.Token) []Kind {
+	switch genDeclTok {
+	case token.IMPORT:
+		return []Kind{IMPORT}
+	default:
+		// CONST, VAR, TYPE
+		return nil
 	}
 }
 

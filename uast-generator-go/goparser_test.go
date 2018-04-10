@@ -933,7 +933,12 @@ import "file.go"
 import ( name1 "file1.go"; "file2.go" )
 `
 	actual := extractKind(t, source, IMPORT)
-	expected := []string{"\"file.go\"", "name1 \"file1.go\"", "\"file2.go\""}
+	expected := []string{"import \"file.go\"", "import ( name1 \"file1.go\"; \"file2.go\" )"}
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+	actual = extractKind(t, source, IMPORT_ENTRY)
+	expected = []string{"\"file.go\"", "name1 \"file1.go\"", "\"file2.go\""}
 	if !reflect.DeepEqual(expected, actual) {
 		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
 	}
