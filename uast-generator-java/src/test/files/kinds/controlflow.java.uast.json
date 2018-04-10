@@ -2274,13 +2274,15 @@
                     {
                       "kinds": [
                         "EXPRESSION",
-                        "ASSIGNMENT_VALUE"
+                        "ASSIGNMENT_VALUE",
+                        "CONDITIONAL_EXPRESSION"
                       ],
                       "nativeNode": "CONDITIONAL_EXPRESSION",
                       "children": [
                         {
                           "kinds": [
                             "EXPRESSION",
+                            "CONDITION",
                             "LITERAL",
                             "BOOLEAN_LITERAL"
                           ],
@@ -2316,7 +2318,8 @@
                         },
                         {
                           "kinds": [
-                            "EXPRESSION"
+                            "EXPRESSION",
+                            "THEN"
                           ],
                           "nativeNode": "INT_LITERAL",
                           "children": [
@@ -2348,7 +2351,8 @@
                         },
                         {
                           "kinds": [
-                            "EXPRESSION"
+                            "EXPRESSION",
+                            "ELSE"
                           ],
                           "nativeNode": "INT_LITERAL",
                           "children": [

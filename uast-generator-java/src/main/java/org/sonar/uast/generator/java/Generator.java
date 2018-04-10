@@ -48,6 +48,7 @@ import org.sonar.plugins.java.api.tree.BinaryExpressionTree;
 import org.sonar.plugins.java.api.tree.BreakStatementTree;
 import org.sonar.plugins.java.api.tree.CaseLabelTree;
 import org.sonar.plugins.java.api.tree.CompilationUnitTree;
+import org.sonar.plugins.java.api.tree.ConditionalExpressionTree;
 import org.sonar.plugins.java.api.tree.ContinueStatementTree;
 import org.sonar.plugins.java.api.tree.ExpressionTree;
 import org.sonar.plugins.java.api.tree.IdentifierTree;
@@ -297,6 +298,9 @@ public class Generator {
       case CATCH:
         result.add(UastNode.Kind.CATCH);
         break;
+      case CONDITIONAL_EXPRESSION:
+        result.add(UastNode.Kind.CONDITIONAL_EXPRESSION);
+        break;
       default:
         break;
     }
@@ -374,6 +378,14 @@ public class Generator {
         addKind(elseStatement, UastNode.Kind.ELSE);
       }
       super.visitIfStatement(tree);
+    }
+
+    @Override
+    public void visitConditionalExpression(ConditionalExpressionTree tree) {
+      addKind(tree.condition(), UastNode.Kind.CONDITION);
+      addKind(tree.trueExpression(), UastNode.Kind.THEN);
+      addKind(tree.falseExpression(), UastNode.Kind.ELSE);
+      super.visitConditionalExpression(tree);
     }
 
     private void addKind(@Nullable Tree tree, UastNode.Kind kind) {
