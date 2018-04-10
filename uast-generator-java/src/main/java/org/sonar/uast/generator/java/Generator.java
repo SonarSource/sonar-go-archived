@@ -187,8 +187,8 @@ public class Generator {
       case CLASS:
       case ENUM:
       case INTERFACE:
-      case ANNOTATION_TYPE:
         result.add(UastNode.Kind.CLASS);
+        result.add(UastNode.Kind.TYPE);
         break;
       case ASSIGNMENT:
         result.add(UastNode.Kind.ASSIGNMENT);

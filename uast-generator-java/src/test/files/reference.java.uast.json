@@ -7,7 +7,8 @@
     {
       "kinds": [
         "CLASS",
-        "STATEMENT"
+        "STATEMENT",
+        "TYPE"
       ],
       "nativeNode": "CLASS",
       "children": [

@@ -1,0 +1,212 @@
+{
+  "kinds": [
+    "COMPILATION_UNIT"
+  ],
+  "nativeNode": "COMPILATION_UNIT",
+  "children": [
+    {
+      "kinds": [
+        "STATEMENT"
+      ],
+      "nativeNode": "ANNOTATION_TYPE",
+      "children": [
+        {
+          "kinds": [],
+          "nativeNode": "TOKEN",
+          "token": {
+            "value": "@",
+            "line": 1,
+            "endLine": 1,
+            "column": 1,
+            "endColumn": 1
+          },
+          "children": []
+        },
+        {
+          "kinds": [
+            "KEYWORD"
+          ],
+          "nativeNode": "TOKEN",
+          "token": {
+            "value": "interface",
+            "line": 1,
+            "endLine": 1,
+            "column": 2,
+            "endColumn": 10
+          },
+          "children": []
+        },
+        {
+          "kinds": [
+            "IDENTIFIER"
+          ],
+          "nativeNode": "IDENTIFIER",
+          "children": [
+            {
+              "kinds": [],
+              "nativeNode": "TOKEN",
+              "token": {
+                "value": "annotation",
+                "line": 1,
+                "endLine": 1,
+                "column": 12,
+                "endColumn": 21
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "kinds": [],
+          "nativeNode": "TOKEN",
+          "token": {
+            "value": "{",
+            "line": 1,
+            "endLine": 1,
+            "column": 23,
+            "endColumn": 23
+          },
+          "children": []
+        },
+        {
+          "kinds": [],
+          "nativeNode": "TOKEN",
+          "token": {
+            "value": "}",
+            "line": 2,
+            "endLine": 2,
+            "column": 1,
+            "endColumn": 1
+          },
+          "children": []
+        }
+      ]
+    },
+    {
+      "kinds": [
+        "CLASS",
+        "STATEMENT",
+        "TYPE"
+      ],
+      "nativeNode": "CLASS",
+      "children": [
+        {
+          "kinds": [],
+          "nativeNode": "MODIFIERS",
+          "children": [
+            {
+              "kinds": [
+                "EXPRESSION"
+              ],
+              "nativeNode": "ANNOTATION",
+              "children": [
+                {
+                  "kinds": [],
+                  "nativeNode": "TOKEN",
+                  "token": {
+                    "value": "@",
+                    "line": 4,
+                    "endLine": 4,
+                    "column": 1,
+                    "endColumn": 1
+                  },
+                  "children": []
+                },
+                {
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
+                  "nativeNode": "IDENTIFIER",
+                  "children": [
+                    {
+                      "kinds": [],
+                      "nativeNode": "TOKEN",
+                      "token": {
+                        "value": "annotation",
+                        "line": 4,
+                        "endLine": 4,
+                        "column": 2,
+                        "endColumn": 11
+                      },
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kinds": [
+            "KEYWORD"
+          ],
+          "nativeNode": "TOKEN",
+          "token": {
+            "value": "class",
+            "line": 5,
+            "endLine": 5,
+            "column": 1,
+            "endColumn": 5
+          },
+          "children": []
+        },
+        {
+          "kinds": [
+            "IDENTIFIER"
+          ],
+          "nativeNode": "IDENTIFIER",
+          "children": [
+            {
+              "kinds": [],
+              "nativeNode": "TOKEN",
+              "token": {
+                "value": "A",
+                "line": 5,
+                "endLine": 5,
+                "column": 7,
+                "endColumn": 7
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "kinds": [],
+          "nativeNode": "TOKEN",
+          "token": {
+            "value": "{",
+            "line": 5,
+            "endLine": 5,
+            "column": 9,
+            "endColumn": 9
+          },
+          "children": []
+        },
+        {
+          "kinds": [],
+          "nativeNode": "TOKEN",
+          "token": {
+            "value": "}",
+            "line": 7,
+            "endLine": 7,
+            "column": 1,
+            "endColumn": 1
+          },
+          "children": []
+        }
+      ]
+    },
+    {
+      "kinds": [],
+      "nativeNode": "TOKEN",
+      "token": {
+        "value": "",
+        "line": 8,
+        "endLine": 8,
+        "column": 1,
+        "endColumn": 0
+      },
+      "children": []
+    }
+  ]
+}

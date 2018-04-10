@@ -1,0 +1,242 @@
+{
+  "kinds": [
+    "COMPILATION_UNIT"
+  ],
+  "nativeNode": "COMPILATION_UNIT",
+  "children": [
+    {
+      "kinds": [
+        "CLASS",
+        "STATEMENT",
+        "TYPE"
+      ],
+      "nativeNode": "CLASS",
+      "children": [
+        {
+          "kinds": [
+            "KEYWORD"
+          ],
+          "nativeNode": "TOKEN",
+          "token": {
+            "value": "class",
+            "line": 1,
+            "endLine": 1,
+            "column": 1,
+            "endColumn": 5
+          },
+          "children": []
+        },
+        {
+          "kinds": [
+            "IDENTIFIER"
+          ],
+          "nativeNode": "IDENTIFIER",
+          "children": [
+            {
+              "kinds": [],
+              "nativeNode": "TOKEN",
+              "token": {
+                "value": "A",
+                "line": 1,
+                "endLine": 1,
+                "column": 7,
+                "endColumn": 7
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "kinds": [],
+          "nativeNode": "TOKEN",
+          "token": {
+            "value": "{",
+            "line": 1,
+            "endLine": 1,
+            "column": 9,
+            "endColumn": 9
+          },
+          "children": []
+        },
+        {
+          "kinds": [
+            "FUNCTION"
+          ],
+          "nativeNode": "METHOD",
+          "children": [
+            {
+              "kinds": [
+                "RESULT_LIST"
+              ],
+              "nativeNode": "PRIMITIVE_TYPE",
+              "children": [
+                {
+                  "kinds": [
+                    "COMMENT"
+                  ],
+                  "nativeNode": "TRIVIA",
+                  "token": {
+                    "value": "/**\n   * javadoc\n   */",
+                    "line": 3,
+                    "endLine": 5,
+                    "column": 3,
+                    "endColumn": 5
+                  },
+                  "children": []
+                },
+                {
+                  "kinds": [
+                    "KEYWORD"
+                  ],
+                  "nativeNode": "TOKEN",
+                  "token": {
+                    "value": "void",
+                    "line": 6,
+                    "endLine": 6,
+                    "column": 3,
+                    "endColumn": 6
+                  },
+                  "children": []
+                }
+              ]
+            },
+            {
+              "kinds": [
+                "FUNCTION_NAME",
+                "IDENTIFIER"
+              ],
+              "nativeNode": "IDENTIFIER",
+              "children": [
+                {
+                  "kinds": [],
+                  "nativeNode": "TOKEN",
+                  "token": {
+                    "value": "comments",
+                    "line": 6,
+                    "endLine": 6,
+                    "column": 8,
+                    "endColumn": 15
+                  },
+                  "children": []
+                }
+              ]
+            },
+            {
+              "kinds": [
+                "LEFT_PARENTHESIS"
+              ],
+              "nativeNode": "TOKEN",
+              "token": {
+                "value": "(",
+                "line": 6,
+                "endLine": 6,
+                "column": 16,
+                "endColumn": 16
+              },
+              "children": []
+            },
+            {
+              "kinds": [
+                "RIGHT_PARENTHESIS"
+              ],
+              "nativeNode": "TOKEN",
+              "token": {
+                "value": ")",
+                "line": 6,
+                "endLine": 6,
+                "column": 17,
+                "endColumn": 17
+              },
+              "children": []
+            },
+            {
+              "kinds": [
+                "BLOCK",
+                "STATEMENT"
+              ],
+              "nativeNode": "BLOCK",
+              "children": [
+                {
+                  "kinds": [],
+                  "nativeNode": "TOKEN",
+                  "token": {
+                    "value": "{",
+                    "line": 6,
+                    "endLine": 6,
+                    "column": 19,
+                    "endColumn": 19
+                  },
+                  "children": []
+                },
+                {
+                  "kinds": [
+                    "COMMENT"
+                  ],
+                  "nativeNode": "TRIVIA",
+                  "token": {
+                    "value": "// oneline",
+                    "line": 7,
+                    "endLine": 7,
+                    "column": 5,
+                    "endColumn": 14
+                  },
+                  "children": []
+                },
+                {
+                  "kinds": [
+                    "COMMENT"
+                  ],
+                  "nativeNode": "TRIVIA",
+                  "token": {
+                    "value": "/*\n    multiline\n     */",
+                    "line": 9,
+                    "endLine": 11,
+                    "column": 5,
+                    "endColumn": 7
+                  },
+                  "children": []
+                },
+                {
+                  "kinds": [],
+                  "nativeNode": "TOKEN",
+                  "token": {
+                    "value": "}",
+                    "line": 12,
+                    "endLine": 12,
+                    "column": 3,
+                    "endColumn": 3
+                  },
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kinds": [],
+          "nativeNode": "TOKEN",
+          "token": {
+            "value": "}",
+            "line": 13,
+            "endLine": 13,
+            "column": 1,
+            "endColumn": 1
+          },
+          "children": []
+        }
+      ]
+    },
+    {
+      "kinds": [],
+      "nativeNode": "TOKEN",
+      "token": {
+        "value": "",
+        "line": 14,
+        "endLine": 14,
+        "column": 1,
+        "endColumn": 0
+      },
+      "children": []
+    }
+  ]
+}
