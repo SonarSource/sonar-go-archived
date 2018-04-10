@@ -43,6 +43,10 @@ public class LiteralLike {
     return null;
   }
 
+  public UastNode node() {
+    return node;
+  }
+
   public String value() {
     return node.joinTokens();
   }

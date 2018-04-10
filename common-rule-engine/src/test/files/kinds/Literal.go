@@ -24,4 +24,6 @@ func foo() {
 //     ^^^
   g := true // Noncompliant {{LITERAL,BOOLEAN_LITERAL}}
 //     ^^^^
+  bar(nil) // Noncompliant {{LITERAL,NULL_LITERAL}}
+//    ^^^
 }

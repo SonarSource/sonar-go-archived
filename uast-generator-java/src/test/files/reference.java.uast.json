@@ -286,7 +286,8 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
-                                "LITERAL"
+                                "LITERAL",
+                                "STRING_LITERAL"
                               ],
                               "nativeNode": "STRING_LITERAL",
                               "children": [

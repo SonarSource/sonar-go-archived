@@ -217,6 +217,7 @@ public class Generator {
         break;
       case STRING_LITERAL:
         result.add(UastNode.Kind.LITERAL);
+        result.add(UastNode.Kind.STRING_LITERAL);
         break;
       case FOR_EACH_STATEMENT:
       case FOR_STATEMENT:

@@ -143,6 +143,7 @@ public final class UastNode {
     STRING_LITERAL,
     CHAR_LITERAL,
     BOOLEAN_LITERAL,
+    NULL_LITERAL,
     LOOP,
     LOOP_FOREACH,
     PARAMETER,

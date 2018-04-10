@@ -67,7 +67,8 @@ public class NoHardcodedCredentialsCheck extends Check {
     AssignmentLike assignment = AssignmentLike.from(node);
     if (assignment != null) {
       LiteralLike assignmentValue = LiteralLike.from(assignment.value());
-      if (assignmentValue != null && !removeQuotes(assignmentValue.value()).isEmpty()) {
+      if (assignmentValue != null && assignmentValue.node().is(UastNode.Kind.STRING_LITERAL) &&
+        !removeQuotes(assignmentValue.value()).isEmpty()) {
         testPattern(assignment.target(), targetPattern);
         testPattern(assignment.value(), valuePattern);
       }
