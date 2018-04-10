@@ -15,4 +15,5 @@ func test()  {
 func explicitDecl()  {
 	var pwd string
 	pwd = "secret"  // Noncompliant
+	pwd = nil
 }

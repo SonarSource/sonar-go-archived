@@ -950,9 +950,10 @@ func foo() {
   e := "10"
   f := '1'
   g := true
+  bar(nil)
 }`
 	actual := extractKind(t, source, LITERAL)
-	expected := []string{"10", "010", "0x10", "1.0", "\"10\"", "'1'", "true"}
+	expected := []string{"10", "010", "0x10", "1.0", "\"10\"", "'1'", "true", "nil"}
 	if !reflect.DeepEqual(expected, actual) {
 		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
 	}
@@ -993,6 +994,11 @@ func foo() {
 	}
 	actual = extractKind(t, source, BOOLEAN_LITERAL)
 	expected = []string{"true"}
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+	actual = extractKind(t, source, NULL_LITERAL)
+	expected = []string{"nil"}
 	if !reflect.DeepEqual(expected, actual) {
 		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
 	}

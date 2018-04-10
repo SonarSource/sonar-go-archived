@@ -86,6 +86,7 @@ const (
 	STRING_LITERAL            Kind = "STRING_LITERAL"
 	CHAR_LITERAL              Kind = "CHAR_LITERAL"
 	BOOLEAN_LITERAL           Kind = "BOOLEAN_LITERAL"
+	NULL_LITERAL              Kind = "NULL_LITERAL"
 	EXPRESSION                Kind = "EXPRESSION"
 	PARAMETER_LIST            Kind = "PARAMETER_LIST"
 	PARAMETER                 Kind = "PARAMETER"
@@ -375,6 +376,8 @@ func (t *UastMapper) computeIdentifierKind(ident *ast.Ident) []Kind {
 	switch ident.Name {
 	case "true", "false":
 		return []Kind{LITERAL, BOOLEAN_LITERAL}
+	case "nil":
+		return []Kind{LITERAL, NULL_LITERAL}
 	default:
 		return []Kind{IDENTIFIER}
 	}
