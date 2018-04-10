@@ -1017,6 +1017,29 @@ func foo() {
 	}
 }
 
+func Test_ARRAY_ACCESS_EXPRESSION(t *testing.T) {
+	source := `
+package main
+func foo(a []int) int {
+  return a[3];
+}`
+	actual := extractKind(t, source, ARRAY_ACCESS_EXPRESSION)
+	expected := []string{"a[3]"}
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+	actual = extractKind(t, source, ARRAY_OBJECT_EXPRESSION)
+	expected = []string{"a"}
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+	actual = extractKind(t, source, ARRAY_KEY_EXPRESSION)
+	expected = []string{"3"}
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+}
+
 func Test_noExpressionKinds(t *testing.T) {
 	source := `package main
 import "other"

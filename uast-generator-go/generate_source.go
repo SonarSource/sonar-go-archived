@@ -74,6 +74,7 @@ import (
 			NewTypeKind((*ast.IncDecStmt)(nil), "t.computeUnaryExprKind(astNode.Tok)..."),
 			NewTypeKind((*ast.ImportSpec)(nil), "IMPORT"),
 			NewTypeKind((*ast.EmptyStmt)(nil), "EMPTY_STATEMENT"),
+			NewTypeKind((*ast.IndexExpr)(nil), "ARRAY_ACCESS_EXPRESSION"),
 
 			// [interfaces] Define uast "kinds" for all "struct" inheriting form the following interfaces
 			// (exceptions can be added to "KindsPerTypeException")
@@ -124,8 +125,8 @@ import (
 			"GenDecl#Specs[i]":        "t.computeConstOrVarKind(astNode.Tok)",
 			// Can not declare EXPRESSION for all ast.Expr because Expr is also used for type like in Field#Type
 			"CompositeLit#Expr[i]":  "EXPRESSION",
-			"IndexExpr#X":           "EXPRESSION",
-			"IndexExpr#Index":       "EXPRESSION",
+			"IndexExpr#X":           "EXPRESSION, ARRAY_OBJECT_EXPRESSION",
+			"IndexExpr#Index":       "EXPRESSION, ARRAY_KEY_EXPRESSION",
 			"SliceExpr#X":           "EXPRESSION",
 			"SliceExpr#Low":         "EXPRESSION",
 			"SliceExpr#High":        "EXPRESSION",
