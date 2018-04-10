@@ -294,6 +294,9 @@ public class Generator {
         result.add(UastNode.Kind.ANNOTATION_TYPE);
         result.add(UastNode.Kind.TYPE);
         break;
+      case CATCH:
+        result.add(UastNode.Kind.CATCH);
+        break;
       default:
         break;
     }

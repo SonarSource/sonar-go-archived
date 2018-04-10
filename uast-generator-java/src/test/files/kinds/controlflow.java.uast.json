@@ -208,7 +208,9 @@
                       ]
                     },
                     {
-                      "kinds": [],
+                      "kinds": [
+                        "CATCH"
+                      ],
                       "nativeNode": "CATCH",
                       "children": [
                         {
