@@ -1009,6 +1009,44 @@ func foo() {
 	}
 }
 
+func Test_FOR(t *testing.T) {
+	source := `
+package main
+func foo() {
+  for i := 0; i < 10; i++ { }
+}`
+	actual := extractKind(t, source, FOR)
+	expected := []string{"for i := 0; i < 10; i++ { }"}
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+	actual = extractKind(t, source, FOR_KEYWORD)
+	expected = []string{"for"}
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+	actual = extractKind(t, source, FOR_INIT)
+	expected = []string{"i := 0"}
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+	actual = extractKind(t, source, CONDITION)
+	expected = []string{"i < 10"}
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+	actual = extractKind(t, source, FOR_UPDATE)
+	expected = []string{"i++"}
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+	actual = extractKind(t, source, FOR_BODY)
+	expected = []string{"{ }"}
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+}
+
 func Test_EMPTY_STATEMENT(t *testing.T) {
 	source := `
 package main

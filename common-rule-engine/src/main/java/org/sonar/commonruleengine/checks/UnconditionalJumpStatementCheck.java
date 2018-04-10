@@ -37,7 +37,7 @@ public class UnconditionalJumpStatementCheck extends Check {
 
   @Override
   public void visitNode(UastNode node) {
-    if (node.is(UastNode.Kind.LOOP_FOREACH)) {
+    if (node.is(UastNode.Kind.FOREACH)) {
       return;
     }
 
