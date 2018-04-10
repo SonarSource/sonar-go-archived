@@ -72,9 +72,10 @@ import (
 			NewTypeKind((*ast.TypeSpec)(nil), "t.computeTypeSpecKinds(astNode.Type)..."),
 			NewTypeKind((*ast.UnaryExpr)(nil), "t.computeUnaryExprKind(astNode.Op)..."),
 			NewTypeKind((*ast.IncDecStmt)(nil), "t.computeUnaryExprKind(astNode.Tok)..."),
-			NewTypeKind((*ast.ImportSpec)(nil), "IMPORT"),
+			NewTypeKind((*ast.ImportSpec)(nil), "IMPORT_ENTRY"),
 			NewTypeKind((*ast.EmptyStmt)(nil), "EMPTY_STATEMENT"),
 			NewTypeKind((*ast.IndexExpr)(nil), "ARRAY_ACCESS_EXPRESSION"),
+			NewTypeKind((*ast.GenDecl)(nil), "t.computeGenDeclKind(astNode.Tok)..."),
 
 			// [interfaces] Define uast "kinds" for all "struct" inheriting form the following interfaces
 			// (exceptions can be added to "KindsPerTypeException")
