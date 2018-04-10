@@ -6,7 +6,10 @@
   "children": [
     {
       "kinds": [
-        "STATEMENT"
+        "CLASS",
+        "STATEMENT",
+        "TYPE",
+        "ANNOTATION_TYPE"
       ],
       "nativeNode": "ANNOTATION_TYPE",
       "children": [
@@ -96,7 +99,8 @@
           "children": [
             {
               "kinds": [
-                "EXPRESSION"
+                "EXPRESSION",
+                "ANNOTATION"
               ],
               "nativeNode": "ANNOTATION",
               "children": [

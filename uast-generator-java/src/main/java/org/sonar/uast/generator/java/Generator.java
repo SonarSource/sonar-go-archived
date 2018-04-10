@@ -286,6 +286,14 @@ public class Generator {
       case POSTFIX_INCREMENT:
         result.add(UastNode.Kind.POSTFIX_INCREMENT);
         break;
+      case ANNOTATION:
+        result.add(UastNode.Kind.ANNOTATION);
+        break;
+      case ANNOTATION_TYPE:
+        result.add(UastNode.Kind.CLASS);
+        result.add(UastNode.Kind.ANNOTATION_TYPE);
+        result.add(UastNode.Kind.TYPE);
+        break;
       default:
         break;
     }
