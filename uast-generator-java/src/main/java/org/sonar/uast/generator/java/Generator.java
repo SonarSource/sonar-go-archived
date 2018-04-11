@@ -122,20 +122,7 @@ public class Generator {
   private Stream<UastNode> visit(Tree tree) {
     UastNode uastNode = null;
     if (tree.is(Tree.Kind.TOKEN)) {
-      uastNode = newUastNode(tree, Collections.emptyList());
-      if (uastNode.token != null && SourceVersion.isKeyword(uastNode.token.value)) {
-        uastNode.kinds.add(UastNode.Kind.KEYWORD);
-      }
-      if (((InternalSyntaxToken) tree).isEOF()) {
-        uastNode.kinds.add(UastNode.Kind.EOF);
-      }
-      treeUastNodeMap.put(tree, uastNode);
-      List<UastNode> trivia = ((SyntaxToken) tree).trivias().stream()
-        // SonarJava AST duplicates some nodes (e.g. Variable)
-        .filter(seenTrivia::add)
-        .map(syntaxTrivia -> newUastNode(syntaxTrivia, Collections.emptyList()))
-        .collect(Collectors.toList());
-      return Stream.concat(trivia.stream(), Stream.of(uastNode));
+      return visitToken(tree);
     } else if (!tree.is(Tree.Kind.INFERED_TYPE)) {
       List<Tree> children = ((JavaTree) tree).getChildren();
       if (!children.isEmpty()) {
@@ -146,6 +133,23 @@ public class Generator {
       treeUastNodeMap.put(tree, uastNode);
     }
     return uastNode == null ? Stream.empty() : Stream.of(uastNode);
+  }
+
+  private Stream<UastNode> visitToken(Tree tree) {
+    UastNode uastNode = newUastNode(tree, Collections.emptyList());
+    if (uastNode.token != null && SourceVersion.isKeyword(uastNode.token.value)) {
+      uastNode.kinds.add(UastNode.Kind.KEYWORD);
+    }
+    if (((InternalSyntaxToken) tree).isEOF()) {
+      uastNode.kinds.add(UastNode.Kind.EOF);
+    }
+    treeUastNodeMap.put(tree, uastNode);
+    List<UastNode> trivia = ((SyntaxToken) tree).trivias().stream()
+      // SonarJava AST duplicates some nodes (e.g. Variable)
+      .filter(seenTrivia::add)
+      .map(syntaxTrivia -> newUastNode(syntaxTrivia, Collections.emptyList()))
+      .collect(Collectors.toList());
+    return Stream.concat(trivia.stream(), Stream.of(uastNode));
   }
 
   private static UastNode newUastNode(Tree tree, List<UastNode> children) {
@@ -249,6 +253,9 @@ public class Generator {
         break;
       case TRIVIA:
         result.add(UastNode.Kind.COMMENT);
+        if (((SyntaxTrivia) tree).comment().startsWith("/*")) {
+          result.add(UastNode.Kind.STRUCTURED_COMMENT);
+        }
         break;
       case BOOLEAN_LITERAL:
         result.add(UastNode.Kind.LITERAL);

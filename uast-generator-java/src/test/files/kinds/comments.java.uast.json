@@ -72,7 +72,8 @@
               "children": [
                 {
                   "kinds": [
-                    "COMMENT"
+                    "COMMENT",
+                    "STRUCTURED_COMMENT"
                   ],
                   "nativeNode": "TRIVIA",
                   "token": {
@@ -184,7 +185,8 @@
                 },
                 {
                   "kinds": [
-                    "COMMENT"
+                    "COMMENT",
+                    "STRUCTURED_COMMENT"
                   ],
                   "nativeNode": "TRIVIA",
                   "token": {
