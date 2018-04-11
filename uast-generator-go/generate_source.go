@@ -125,7 +125,7 @@ import (
 			"ForStmt#For":             "FOR_KEYWORD",
 			"ForStmt#Init":            "FOR_INIT",
 			"ForStmt#Post":            "FOR_UPDATE",
-			"ForStmt#Body":            "FOR_BODY",
+			"ForStmt#Body":            "BODY",
 			"BranchStmt#Label":        "BRANCH_LABEL",
 			"GenDecl#Specs[i]":        "t.computeConstOrVarKind(astNode.Tok)",
 			// Can not declare EXPRESSION for all ast.Expr because Expr is also used for type like in Field#Type

@@ -1,0 +1,307 @@
+{
+  "kinds": [
+    "COMPILATION_UNIT"
+  ],
+  "nativeNode": "COMPILATION_UNIT",
+  "children": [
+    {
+      "kinds": [
+        "CLASS",
+        "STATEMENT",
+        "TYPE"
+      ],
+      "nativeNode": "CLASS",
+      "children": [
+        {
+          "kinds": [
+            "KEYWORD"
+          ],
+          "nativeNode": "TOKEN",
+          "token": {
+            "value": "class",
+            "line": 1,
+            "endLine": 1,
+            "column": 1,
+            "endColumn": 5
+          },
+          "children": []
+        },
+        {
+          "kinds": [
+            "IDENTIFIER"
+          ],
+          "nativeNode": "IDENTIFIER",
+          "children": [
+            {
+              "kinds": [],
+              "nativeNode": "TOKEN",
+              "token": {
+                "value": "A",
+                "line": 1,
+                "endLine": 1,
+                "column": 7,
+                "endColumn": 7
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "kinds": [],
+          "nativeNode": "TOKEN",
+          "token": {
+            "value": "{",
+            "line": 1,
+            "endLine": 1,
+            "column": 9,
+            "endColumn": 9
+          },
+          "children": []
+        },
+        {
+          "kinds": [
+            "STATEMENT",
+            "ASSIGNMENT"
+          ],
+          "nativeNode": "VARIABLE",
+          "children": [
+            {
+              "kinds": [
+                "EXPRESSION"
+              ],
+              "nativeNode": "PARAMETERIZED_TYPE",
+              "children": [
+                {
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
+                  "nativeNode": "IDENTIFIER",
+                  "children": [
+                    {
+                      "kinds": [],
+                      "nativeNode": "TOKEN",
+                      "token": {
+                        "value": "Predicate",
+                        "line": 2,
+                        "endLine": 2,
+                        "column": 3,
+                        "endColumn": 11
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "kinds": [
+                    "TYPE_ARGUMENTS"
+                  ],
+                  "nativeNode": "TYPE_ARGUMENTS",
+                  "children": [
+                    {
+                      "kinds": [
+                        "OPERATOR",
+                        "OPERATOR_LESS_THAN"
+                      ],
+                      "nativeNode": "TOKEN",
+                      "token": {
+                        "value": "\u003c",
+                        "line": 2,
+                        "endLine": 2,
+                        "column": 12,
+                        "endColumn": 12
+                      },
+                      "children": []
+                    },
+                    {
+                      "kinds": [
+                        "IDENTIFIER",
+                        "TYPE_ARGUMENT"
+                      ],
+                      "nativeNode": "IDENTIFIER",
+                      "children": [
+                        {
+                          "kinds": [],
+                          "nativeNode": "TOKEN",
+                          "token": {
+                            "value": "Integer",
+                            "line": 2,
+                            "endLine": 2,
+                            "column": 13,
+                            "endColumn": 19
+                          },
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [
+                        "OPERATOR",
+                        "OPERATOR_GREATER_THAN"
+                      ],
+                      "nativeNode": "TOKEN",
+                      "token": {
+                        "value": "\u003e",
+                        "line": 2,
+                        "endLine": 2,
+                        "column": 20,
+                        "endColumn": 20
+                      },
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kinds": [
+                "IDENTIFIER",
+                "ASSIGNMENT_TARGET"
+              ],
+              "nativeNode": "IDENTIFIER",
+              "children": [
+                {
+                  "kinds": [],
+                  "nativeNode": "TOKEN",
+                  "token": {
+                    "value": "p",
+                    "line": 2,
+                    "endLine": 2,
+                    "column": 22,
+                    "endColumn": 22
+                  },
+                  "children": []
+                }
+              ]
+            },
+            {
+              "kinds": [
+                "ASSIGNMENT_OPERATOR"
+              ],
+              "nativeNode": "TOKEN",
+              "token": {
+                "value": "\u003d",
+                "line": 2,
+                "endLine": 2,
+                "column": 24,
+                "endColumn": 24
+              },
+              "children": []
+            },
+            {
+              "kinds": [
+                "EXPRESSION",
+                "FUNCTION_LITERAL",
+                "ASSIGNMENT_VALUE"
+              ],
+              "nativeNode": "LAMBDA_EXPRESSION",
+              "children": [
+                {
+                  "kinds": [
+                    "STATEMENT"
+                  ],
+                  "nativeNode": "VARIABLE",
+                  "children": [
+                    {
+                      "kinds": [
+                        "IDENTIFIER"
+                      ],
+                      "nativeNode": "IDENTIFIER",
+                      "children": [
+                        {
+                          "kinds": [],
+                          "nativeNode": "TOKEN",
+                          "token": {
+                            "value": "i",
+                            "line": 2,
+                            "endLine": 2,
+                            "column": 26,
+                            "endColumn": 26
+                          },
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kinds": [],
+                  "nativeNode": "TOKEN",
+                  "token": {
+                    "value": "-\u003e",
+                    "line": 2,
+                    "endLine": 2,
+                    "column": 28,
+                    "endColumn": 29
+                  },
+                  "children": []
+                },
+                {
+                  "kinds": [
+                    "EXPRESSION",
+                    "LITERAL",
+                    "BOOLEAN_LITERAL"
+                  ],
+                  "nativeNode": "BOOLEAN_LITERAL",
+                  "children": [
+                    {
+                      "kinds": [
+                        "KEYWORD"
+                      ],
+                      "nativeNode": "TOKEN",
+                      "token": {
+                        "value": "true",
+                        "line": 2,
+                        "endLine": 2,
+                        "column": 31,
+                        "endColumn": 34
+                      },
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kinds": [],
+              "nativeNode": "TOKEN",
+              "token": {
+                "value": ";",
+                "line": 2,
+                "endLine": 2,
+                "column": 35,
+                "endColumn": 35
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "kinds": [],
+          "nativeNode": "TOKEN",
+          "token": {
+            "value": "}",
+            "line": 3,
+            "endLine": 3,
+            "column": 1,
+            "endColumn": 1
+          },
+          "children": []
+        }
+      ]
+    },
+    {
+      "kinds": [
+        "EOF"
+      ],
+      "nativeNode": "TOKEN",
+      "token": {
+        "value": "",
+        "line": 4,
+        "endLine": 4,
+        "column": 1,
+        "endColumn": 0
+      },
+      "children": []
+    }
+  ]
+}

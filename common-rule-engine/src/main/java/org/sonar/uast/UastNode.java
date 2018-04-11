@@ -115,6 +115,7 @@ public final class UastNode {
     LEFT_PARENTHESIS,
     RIGHT_PARENTHESIS,
     BLOCK,
+    BODY,
     GOTO(UNCONDITIONAL_JUMP),
     BRANCH_LABEL,
     BREAK(UNCONDITIONAL_JUMP),
@@ -157,7 +158,6 @@ public final class UastNode {
     FOR_KEYWORD,
     FOR_INIT,
     FOR_UPDATE,
-    FOR_BODY,
     FOREACH,
     PARAMETER,
     PARAMETER_LIST,
@@ -230,6 +230,17 @@ public final class UastNode {
     REFERENCE,
     // Go; <-
     CHANNEL_DIRECTION,
+    ANNOTATION,
+    ANNOTATION_TYPE,
+    ARGUMENTS,
+    ARGUMENT,
+    ASSERT,
+    CATCH,
+    CONDITIONAL_EXPRESSION,
+    TYPE_ARGUMENTS,
+    TYPE_ARGUMENT,
+    TYPE_PARAMETERS,
+    TYPE_PARAMETER,
     ;
 
     private final List<Kind> extendedKinds;

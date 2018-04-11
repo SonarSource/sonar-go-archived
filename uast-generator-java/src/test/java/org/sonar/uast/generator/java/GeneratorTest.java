@@ -30,6 +30,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.sonar.uast.generator.java.UastNode.Kind.CLASS;
+import static org.sonar.uast.generator.java.UastNode.Kind.EOF;
+import static org.sonar.uast.generator.java.UastNode.Kind.STATEMENT;
+import static org.sonar.uast.generator.java.UastNode.Kind.TYPE;
 
 public class GeneratorTest {
 
@@ -51,7 +55,7 @@ public class GeneratorTest {
     UastNode classNode = cutNode.children.get(0);
     assertEquals("CLASS", classNode.nativeNode);
     assertNull(classNode.token);
-    assertEquals(EnumSet.of(UastNode.Kind.CLASS, UastNode.Kind.STATEMENT), classNode.kinds);
+    assertEquals(EnumSet.of(CLASS, STATEMENT, TYPE), classNode.kinds);
     assertEquals(5, classNode.children.size());
 
     UastNode eofToken = cutNode.children.get(1);
@@ -60,7 +64,7 @@ public class GeneratorTest {
     assertEquals(5, eofToken.token.line);
     assertEquals(2, eofToken.token.column);
     assertEquals("", eofToken.token.value);
-    assertEquals(Collections.emptySet(), eofToken.kinds);
+    assertEquals(Collections.singleton(EOF), eofToken.kinds);
     assertEquals(0, eofToken.children.size());
   }
 

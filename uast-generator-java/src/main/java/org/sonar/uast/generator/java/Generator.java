@@ -40,7 +40,9 @@ import java.util.stream.Stream;
 import javax.annotation.Nullable;
 import javax.lang.model.SourceVersion;
 import org.sonar.java.ast.parser.JavaParser;
+import org.sonar.java.model.InternalSyntaxToken;
 import org.sonar.java.model.JavaTree;
+import org.sonar.java.model.expression.TypeArgumentListTreeImpl;
 import org.sonar.plugins.java.api.tree.Arguments;
 import org.sonar.plugins.java.api.tree.AssignmentExpressionTree;
 import org.sonar.plugins.java.api.tree.BaseTreeVisitor;
@@ -48,10 +50,14 @@ import org.sonar.plugins.java.api.tree.BinaryExpressionTree;
 import org.sonar.plugins.java.api.tree.BreakStatementTree;
 import org.sonar.plugins.java.api.tree.CaseLabelTree;
 import org.sonar.plugins.java.api.tree.CompilationUnitTree;
+import org.sonar.plugins.java.api.tree.ConditionalExpressionTree;
 import org.sonar.plugins.java.api.tree.ContinueStatementTree;
 import org.sonar.plugins.java.api.tree.ExpressionTree;
+import org.sonar.plugins.java.api.tree.ForStatementTree;
 import org.sonar.plugins.java.api.tree.IdentifierTree;
 import org.sonar.plugins.java.api.tree.IfStatementTree;
+import org.sonar.plugins.java.api.tree.LabeledStatementTree;
+import org.sonar.plugins.java.api.tree.MethodInvocationTree;
 import org.sonar.plugins.java.api.tree.MethodTree;
 import org.sonar.plugins.java.api.tree.ParenthesizedTree;
 import org.sonar.plugins.java.api.tree.PrimitiveTypeTree;
@@ -118,17 +124,7 @@ public class Generator {
   private Stream<UastNode> visit(Tree tree) {
     UastNode uastNode = null;
     if (tree.is(Tree.Kind.TOKEN)) {
-      uastNode = newUastNode(tree, Collections.emptyList());
-      if (uastNode.token != null && SourceVersion.isKeyword(uastNode.token.value)) {
-        uastNode.kinds.add(UastNode.Kind.KEYWORD);
-      }
-      treeUastNodeMap.put(tree, uastNode);
-      List<UastNode> trivia = ((SyntaxToken) tree).trivias().stream()
-        // SonarJava AST duplicates some nodes (e.g. Variable)
-        .filter(seenTrivia::add)
-        .map(syntaxTrivia -> newUastNode(syntaxTrivia, Collections.emptyList()))
-        .collect(Collectors.toList());
-      return Stream.concat(trivia.stream(), Stream.of(uastNode));
+      return visitToken(tree);
     } else if (!tree.is(Tree.Kind.INFERED_TYPE)) {
       List<Tree> children = ((JavaTree) tree).getChildren();
       if (!children.isEmpty()) {
@@ -139,6 +135,23 @@ public class Generator {
       treeUastNodeMap.put(tree, uastNode);
     }
     return uastNode == null ? Stream.empty() : Stream.of(uastNode);
+  }
+
+  private Stream<UastNode> visitToken(Tree tree) {
+    UastNode uastNode = newUastNode(tree, Collections.emptyList());
+    if (uastNode.token != null && SourceVersion.isKeyword(uastNode.token.value)) {
+      uastNode.kinds.add(UastNode.Kind.KEYWORD);
+    }
+    if (((InternalSyntaxToken) tree).isEOF()) {
+      uastNode.kinds.add(UastNode.Kind.EOF);
+    }
+    treeUastNodeMap.put(tree, uastNode);
+    List<UastNode> trivia = ((SyntaxToken) tree).trivias().stream()
+      // SonarJava AST duplicates some nodes (e.g. Variable)
+      .filter(seenTrivia::add)
+      .map(syntaxTrivia -> newUastNode(syntaxTrivia, Collections.emptyList()))
+      .collect(Collectors.toList());
+    return Stream.concat(trivia.stream(), Stream.of(uastNode));
   }
 
   private static UastNode newUastNode(Tree tree, List<UastNode> children) {
@@ -187,8 +200,8 @@ public class Generator {
       case CLASS:
       case ENUM:
       case INTERFACE:
-      case ANNOTATION_TYPE:
         result.add(UastNode.Kind.CLASS);
+        result.add(UastNode.Kind.TYPE);
         break;
       case ASSIGNMENT:
         result.add(UastNode.Kind.ASSIGNMENT);
@@ -220,7 +233,13 @@ public class Generator {
         result.add(UastNode.Kind.STRING_LITERAL);
         break;
       case FOR_EACH_STATEMENT:
+        result.add(UastNode.Kind.LOOP);
+        result.add(UastNode.Kind.FOREACH);
+        break;
       case FOR_STATEMENT:
+        result.add(UastNode.Kind.FOR);
+        result.add(UastNode.Kind.LOOP);
+        break;
       case WHILE_STATEMENT:
       case DO_STATEMENT:
         result.add(UastNode.Kind.LOOP);
@@ -239,6 +258,9 @@ public class Generator {
         break;
       case TRIVIA:
         result.add(UastNode.Kind.COMMENT);
+        if (((SyntaxTrivia) tree).comment().startsWith("/*")) {
+          result.add(UastNode.Kind.STRUCTURED_COMMENT);
+        }
         break;
       case BOOLEAN_LITERAL:
         result.add(UastNode.Kind.LITERAL);
@@ -285,6 +307,42 @@ public class Generator {
         break;
       case POSTFIX_INCREMENT:
         result.add(UastNode.Kind.POSTFIX_INCREMENT);
+        break;
+      case ANNOTATION:
+        result.add(UastNode.Kind.ANNOTATION);
+        break;
+      case ANNOTATION_TYPE:
+        result.add(UastNode.Kind.CLASS);
+        result.add(UastNode.Kind.ANNOTATION_TYPE);
+        result.add(UastNode.Kind.TYPE);
+        break;
+      case ARGUMENTS:
+        result.add(UastNode.Kind.ARGUMENTS);
+        break;
+      case CATCH:
+        result.add(UastNode.Kind.CATCH);
+        break;
+      case CONDITIONAL_EXPRESSION:
+        result.add(UastNode.Kind.CONDITIONAL_EXPRESSION);
+        break;
+      case ASSERT_STATEMENT:
+        result.add(UastNode.Kind.ASSERT);
+        break;
+      case EMPTY_STATEMENT:
+        result.add(UastNode.Kind.EMPTY_STATEMENT);
+        break;
+      case TYPE_ARGUMENTS:
+        result.add(UastNode.Kind.TYPE_ARGUMENTS);
+        break;
+      case TYPE_PARAMETERS:
+        result.add(UastNode.Kind.TYPE_PARAMETERS);
+        break;
+      case TYPE_PARAMETER:
+        result.add(UastNode.Kind.TYPE_PARAMETER);
+        break;
+      case CHAR_LITERAL:
+        result.add(UastNode.Kind.LITERAL);
+        result.add(UastNode.Kind.CHAR_LITERAL);
         break;
       default:
         break;
@@ -365,11 +423,69 @@ public class Generator {
       super.visitIfStatement(tree);
     }
 
+    @Override
+    public void visitConditionalExpression(ConditionalExpressionTree tree) {
+      addKind(tree.condition(), UastNode.Kind.CONDITION);
+      addKind(tree.trueExpression(), UastNode.Kind.THEN);
+      addKind(tree.falseExpression(), UastNode.Kind.ELSE);
+      super.visitConditionalExpression(tree);
+    }
+
+    @Override
+    public void visitMethodInvocation(MethodInvocationTree tree) {
+      tree.arguments().forEach(arg -> addKind(arg, UastNode.Kind.ARGUMENT));
+      super.visitMethodInvocation(tree);
+    }
+
+    @Override
+    public void visitTypeArguments(TypeArgumentListTreeImpl trees) {
+      trees.forEach(typeArg -> addKind(typeArg, UastNode.Kind.TYPE_ARGUMENT));
+      super.visitTypeArguments(trees);
+    }
+
+    @Override
+    public void visitBreakStatement(BreakStatementTree tree) {
+      addKind(tree.label(), UastNode.Kind.BRANCH_LABEL);
+      super.visitBreakStatement(tree);
+    }
+
+    @Override
+    public void visitContinueStatement(ContinueStatementTree tree) {
+      // bug in the parser, see SONARJAVA-2723
+      IdentifierTree labelTree = tree.label();
+      if (labelTree != null) {
+        UastNode continueNode = treeUastNodeMap.get(tree);
+        UastNode label = newUastNode(labelTree, Collections.emptyList());
+        continueNode.children.add(label);
+        treeUastNodeMap.put(labelTree, label);
+        addKind(labelTree, UastNode.Kind.BRANCH_LABEL);
+      }
+      super.visitContinueStatement(tree);
+    }
+
+    @Override
+    public void visitLabeledStatement(LabeledStatementTree tree) {
+      addKind(tree.label(), UastNode.Kind.LABEL);
+      super.visitLabeledStatement(tree);
+    }
+
+    @Override
+    public void visitForStatement(ForStatementTree tree) {
+      addKind(tree.forKeyword(), UastNode.Kind.FOR_KEYWORD);
+      addKind(tree.initializer(), UastNode.Kind.FOR_INIT);
+      addKind(tree.update(), UastNode.Kind.FOR_UPDATE);
+      addKind(tree.statement(), UastNode.Kind.BODY);
+      super.visitForStatement(tree);
+    }
+
     private void addKind(@Nullable Tree tree, UastNode.Kind kind) {
       if (tree == null) {
         return;
       }
-      treeUastNodeMap.get(tree).kinds.add(kind);
+      UastNode uastNode = treeUastNodeMap.get(tree);
+      if (uastNode != null) {
+        uastNode.kinds.add(kind);
+      }
     }
   }
 

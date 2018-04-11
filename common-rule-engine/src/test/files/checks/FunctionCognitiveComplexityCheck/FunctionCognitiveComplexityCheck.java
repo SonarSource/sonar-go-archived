@@ -1,9 +1,12 @@
 class CognitiveComplexityCheck {
 
 
-  public int ternaryOp(int a, int b) {
-    int c = a>b?b:a; // ignore +1, ternary are not yet needed in the usat
-    return c>20?4:7; // ignore +1,
+  public int ternaryOp(int a, int b) { // Noncompliant
+    //       ^^^^^^^^^
+    int c = a>b?b:a;
+    //            ^< {{+1}}
+    return c>20?4:7;
+    //            ^< {{+1}}
   }
 
   public boolean extraConditions() { // Noncompliant {{Refactor this function to reduce its Cognitive Complexity from 3 to the 0 allowed.}} [[effortToFix=3]]
@@ -237,7 +240,7 @@ class CognitiveComplexityCheck {
     };
   }
 
-  int sumOfNonPrimes(int limit) { // Noncompliant {{Refactor this function to reduce its Cognitive Complexity from 8 to the 0 allowed.}}
+  int sumOfNonPrimes(int limit) { // Noncompliant {{Refactor this function to reduce its Cognitive Complexity from 9 to the 0 allowed.}}
 
     int sum = 0;
     OUTER: for (int i = 0; i < limit; ++i) {

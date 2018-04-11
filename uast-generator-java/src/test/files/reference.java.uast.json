@@ -7,7 +7,8 @@
     {
       "kinds": [
         "CLASS",
-        "STATEMENT"
+        "STATEMENT",
+        "TYPE"
       ],
       "nativeNode": "CLASS",
       "children": [
@@ -266,7 +267,9 @@
                           ]
                         },
                         {
-                          "kinds": [],
+                          "kinds": [
+                            "ARGUMENTS"
+                          ],
                           "nativeNode": "ARGUMENTS",
                           "children": [
                             {
@@ -287,7 +290,8 @@
                               "kinds": [
                                 "EXPRESSION",
                                 "LITERAL",
-                                "STRING_LITERAL"
+                                "STRING_LITERAL",
+                                "ARGUMENT"
                               ],
                               "nativeNode": "STRING_LITERAL",
                               "children": [
@@ -368,7 +372,9 @@
       ]
     },
     {
-      "kinds": [],
+      "kinds": [
+        "EOF"
+      ],
       "nativeNode": "TOKEN",
       "token": {
         "value": "",

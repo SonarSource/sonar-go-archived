@@ -1040,7 +1040,7 @@ func foo() {
 	if !reflect.DeepEqual(expected, actual) {
 		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
 	}
-	actual = extractKind(t, source, FOR_BODY)
+	actual = extractKind(t, source, BODY)
 	expected = []string{"{ }"}
 	if !reflect.DeepEqual(expected, actual) {
 		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
