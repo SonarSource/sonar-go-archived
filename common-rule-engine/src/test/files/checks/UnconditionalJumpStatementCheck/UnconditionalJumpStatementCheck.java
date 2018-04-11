@@ -32,7 +32,7 @@ class A {
   void m5(java.util.List<Object> myList) {
     for (Object object : myList) {
       foo(object);
-      continue; // Noncompliant
+      continue; // foreach excluded
     }
   }
 
@@ -175,12 +175,12 @@ class B {
 
     for (Object o : myList) {
       bar();
-      break; // Noncompliant
+      break; // foreach is excluded
     }
 
     for (Object o : myList) {
       foo();
-      continue; // Noncompliant
+      continue; // foreach is excluded
     }
 
     while(foo()) {

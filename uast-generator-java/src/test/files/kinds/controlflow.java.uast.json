@@ -1839,6 +1839,7 @@
                 {
                   "kinds": [
                     "LOOP",
+                    "LOOP_FOREACH",
                     "STATEMENT"
                   ],
                   "nativeNode": "FOR_EACH_STATEMENT",
