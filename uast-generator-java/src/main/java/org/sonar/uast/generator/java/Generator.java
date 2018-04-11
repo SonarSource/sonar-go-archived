@@ -305,6 +305,9 @@ public class Generator {
       case CONDITIONAL_EXPRESSION:
         result.add(UastNode.Kind.CONDITIONAL_EXPRESSION);
         break;
+      case ASSERT_STATEMENT:
+        result.add(UastNode.Kind.ASSERT);
+        break;
       default:
         break;
     }
