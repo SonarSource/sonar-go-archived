@@ -230,6 +230,17 @@ public final class UastNode {
     REFERENCE,
     // Go; <-
     CHANNEL_DIRECTION,
+    ANNOTATION,
+    ANNOTATION_TYPE,
+    ARGUMENTS,
+    ARGUMENT,
+    ASSERT,
+    CATCH,
+    CONDITIONAL_EXPRESSION,
+    TYPE_ARGUMENTS,
+    TYPE_ARGUMENT,
+    TYPE_PARAMETERS,
+    TYPE_PARAMETER,
     ;
 
     private final List<Kind> extendedKinds;
