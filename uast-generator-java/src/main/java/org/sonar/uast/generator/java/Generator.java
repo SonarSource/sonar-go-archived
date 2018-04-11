@@ -41,6 +41,7 @@ import javax.annotation.Nullable;
 import javax.lang.model.SourceVersion;
 import org.sonar.java.ast.parser.JavaParser;
 import org.sonar.java.model.JavaTree;
+import org.sonar.java.model.expression.TypeArgumentListTreeImpl;
 import org.sonar.plugins.java.api.tree.Arguments;
 import org.sonar.plugins.java.api.tree.AssignmentExpressionTree;
 import org.sonar.plugins.java.api.tree.BaseTreeVisitor;
@@ -311,6 +312,15 @@ public class Generator {
       case EMPTY_STATEMENT:
         result.add(UastNode.Kind.EMPTY_STATEMENT);
         break;
+      case TYPE_ARGUMENTS:
+        result.add(UastNode.Kind.TYPE_ARGUMENTS);
+        break;
+      case TYPE_PARAMETERS:
+        result.add(UastNode.Kind.TYPE_PARAMETERS);
+        break;
+      case TYPE_PARAMETER:
+        result.add(UastNode.Kind.TYPE_PARAMETER);
+        break;
       default:
         break;
     }
@@ -402,6 +412,12 @@ public class Generator {
     public void visitMethodInvocation(MethodInvocationTree tree) {
       tree.arguments().forEach(arg -> addKind(arg, UastNode.Kind.ARGUMENT));
       super.visitMethodInvocation(tree);
+    }
+
+    @Override
+    public void visitTypeArguments(TypeArgumentListTreeImpl trees) {
+      trees.forEach(typeArg -> addKind(typeArg, UastNode.Kind.TYPE_ARGUMENT));
+      super.visitTypeArguments(trees);
     }
 
     private void addKind(@Nullable Tree tree, UastNode.Kind kind) {

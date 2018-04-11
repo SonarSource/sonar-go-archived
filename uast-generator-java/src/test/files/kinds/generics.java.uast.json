@@ -47,7 +47,9 @@
           ]
         },
         {
-          "kinds": [],
+          "kinds": [
+            "TYPE_PARAMETERS"
+          ],
           "nativeNode": "TYPE_PARAMETERS",
           "children": [
             {
@@ -66,7 +68,9 @@
               "children": []
             },
             {
-              "kinds": [],
+              "kinds": [
+                "TYPE_PARAMETER"
+              ],
               "nativeNode": "TYPE_PARAMETER",
               "children": [
                 {
@@ -277,7 +281,9 @@
               ]
             },
             {
-              "kinds": [],
+              "kinds": [
+                "TYPE_ARGUMENTS"
+              ],
               "nativeNode": "TYPE_ARGUMENTS",
               "children": [
                 {
@@ -297,7 +303,8 @@
                 },
                 {
                   "kinds": [
-                    "IDENTIFIER"
+                    "IDENTIFIER",
+                    "TYPE_ARGUMENT"
                   ],
                   "nativeNode": "IDENTIFIER",
                   "children": [

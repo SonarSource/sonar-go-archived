@@ -10,7 +10,7 @@ class A {
     }
   }
 
-  void control_flow(int x, List<?> list) {
+  void control_flow(int x, List list) {
     if (true) {
 
     } else {
