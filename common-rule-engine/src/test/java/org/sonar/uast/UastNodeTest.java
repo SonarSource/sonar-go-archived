@@ -49,26 +49,26 @@ class UastNodeTest {
   private static final Pattern NONCOMPLIANT_MESSAGE_REGEX = Pattern.compile("Noncompliant[^\\{]*\\{\\{([^\\}]+)\\}\\}");
 
   @Test
-  void kind_inheritance_related_to_CONTROL_FLOW() {
+  void kind_inheritance_related_to_CONDITIONAL_JUMP() {
     List<UastNode.Kind> controlKinds = Arrays.asList(UastNode.Kind.IF, UastNode.Kind.SWITCH, UastNode.Kind.FOR);
 
     controlKinds.forEach(kind -> assertThat(kind.extendedKinds()).describedAs(kind.name())
-      .containsExactlyInAnyOrder(UastNode.Kind.CONTROL_FLOW));
+      .containsExactlyInAnyOrder(UastNode.Kind.CONDITIONAL_JUMP));
 
     controlKinds.forEach(kind -> assertThat(uast("{ kinds: ['" + kind.name() + "'] }").kinds).describedAs(kind.name())
-      .containsExactlyInAnyOrder(kind, UastNode.Kind.CONTROL_FLOW));
+      .containsExactlyInAnyOrder(kind, UastNode.Kind.CONDITIONAL_JUMP));
   }
 
   @Test
-  void kind_inheritance_related_to_JUMP() {
+  void kind_inheritance_related_to_UNCONDITIONAL_JUMP() {
     List<UastNode.Kind> controlKinds = Arrays.asList(UastNode.Kind.RETURN, UastNode.Kind.GOTO, UastNode.Kind.BREAK,
       UastNode.Kind.CONTINUE, UastNode.Kind.THROW);
 
     controlKinds.forEach(kind -> assertThat(kind.extendedKinds()).describedAs(kind.name())
-      .containsExactlyInAnyOrder(UastNode.Kind.JUMP));
+      .containsExactlyInAnyOrder(UastNode.Kind.UNCONDITIONAL_JUMP));
 
     controlKinds.forEach(kind -> assertThat(uast("{ kinds: ['" + kind.name() + "'] }").kinds).describedAs(kind.name())
-      .containsExactlyInAnyOrder(kind, UastNode.Kind.JUMP));
+      .containsExactlyInAnyOrder(kind, UastNode.Kind.UNCONDITIONAL_JUMP));
   }
 
   @Test
