@@ -23,6 +23,7 @@ import java.util.Arrays;
 import java.util.List;
 import org.sonar.commonruleengine.checks.AllBranchesAreIdenticalCheck;
 import org.sonar.commonruleengine.checks.BinaryOperatorIdenticalExpressionsCheck;
+import org.sonar.commonruleengine.checks.DoublePrefixOperatorCheck;
 import org.sonar.commonruleengine.checks.FileHeaderCheck;
 import org.sonar.commonruleengine.checks.FunctionCognitiveComplexityCheck;
 import org.sonar.commonruleengine.checks.NestedSwitchCheck;
@@ -49,6 +50,7 @@ public class GoChecks {
     return Arrays.asList(
       AllBranchesAreIdenticalCheck.class,
       BinaryOperatorIdenticalExpressionsCheck.class,
+      DoublePrefixOperatorCheck.class,
       FileHeaderCheck.class,
       FunctionCognitiveComplexityCheck.class,
       NestedSwitchCheck.class,
@@ -60,8 +62,8 @@ public class GoChecks {
       RedundantParenthesesCheck.class,
       SwitchDefaultLocationCheck.class,
       SwitchWithoutDefaultCheck.class,
-      UnconditionalJumpStatementCheck.class,
       SwitchWithTooManyCaseCheck.class,
+      UnconditionalJumpStatementCheck.class,
       TooManyParametersCheck.class,
       WrongAssignmentOperatorCheck.class
     );
