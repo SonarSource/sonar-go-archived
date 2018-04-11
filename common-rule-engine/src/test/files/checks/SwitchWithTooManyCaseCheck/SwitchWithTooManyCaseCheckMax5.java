@@ -1,7 +1,7 @@
 class A{
   void foo() {
-    switch (1) { // Noncompliant {{Reduce the number of non-empty switch cases from 38 to at most 5.}}
-//	^^^^^^
+    switch (1) { // Noncompliant {{Reduce the number of switch cases from 38 to at most 5.}}
+//  ^^^^^^
       case 1:
         System.out.println("");
       case 1:
@@ -82,12 +82,18 @@ class A{
     switch (1) { // Noncompliant
 //  ^^^^^^
       case 1:
+   // ^^^^< {{+1}}
       case 1:
+   // ^^^^< {{+1}}
       case 1:
+   // ^^^^< {{+1}}
         System.out.println("");
       case 1:
+   // ^^^^< {{+1}}
       case 1:
+   // ^^^^< {{+1}}
       case 1:
+   // ^^^^< {{+1}}
         System.out.println("");
     }
   }

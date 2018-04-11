@@ -21,6 +21,7 @@ package org.sonar.commonruleengine.checks;
 
 import org.sonar.check.Rule;
 import org.sonar.check.RuleProperty;
+import org.sonar.commonruleengine.Issue;
 import org.sonar.uast.UastNode;
 import org.sonar.uast.helpers.SwitchLike;
 
@@ -45,7 +46,8 @@ public class SwitchWithTooManyCaseCheck extends Check {
     SwitchLike switchLike = SwitchLike.from(node);
     int casesNb = switchLike.caseNodes().size();
     if(casesNb > maximumCases) {
-      reportIssue(switchLike.switchKeyword(), String.format("Reduce the number of non-empty switch cases from %d to at most %d.", casesNb, maximumCases));
+      Issue.Message[] secondaries = switchLike.caseNodes().stream().map(cn -> new Issue.Message(cn.getChild(UastNode.Kind.KEYWORD).orElse(cn), "+1")).toArray(Issue.Message[]::new);
+      reportIssue(switchLike.switchKeyword(), String.format("Reduce the number of switch cases from %d to at most %d.", casesNb, maximumCases), secondaries);
     }
   }
 

@@ -1,11 +1,7 @@
 package main
 
-type f struct {
-	a, b, c int
-}
-
-func foo(tag int, x f) {
-   switch tag { // Noncompliant {{Reduce the number of non-empty switch cases from 31 to at most 30.}}
+func foo(tag int) {
+   switch tag { // Noncompliant {{Reduce the number of switch cases from 31 to at most 30.}}
 // ^^^^^^
 	default:
 		bar()
@@ -73,7 +69,7 @@ func foo(tag int, x f) {
 
 }
 
-func foo(tag int, x f) {
+func foo(tag int) {
   switch tag {
 	default:
 		bar()
