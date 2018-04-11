@@ -321,6 +321,10 @@ public class Generator {
       case TYPE_PARAMETER:
         result.add(UastNode.Kind.TYPE_PARAMETER);
         break;
+      case CHAR_LITERAL:
+        result.add(UastNode.Kind.LITERAL);
+        result.add(UastNode.Kind.CHAR_LITERAL);
+        break;
       default:
         break;
     }
