@@ -55,7 +55,7 @@ func fun() string {
       ]},
       {"kinds": ["BLOCK"], "nativeNode": "Body(BlockStmt)", "children": [
         {"token": {"value":"{","line":3,"column":19}, "nativeNode": "Lbrace"},
-        {"kinds": ["ASSIGNMENT","DECLARATION","STATEMENT"], "nativeNode": "[0](AssignStmt)", "children": [
+        {"kinds": ["ASSIGNMENT","VARIABLE_DECLARATION","STATEMENT"], "nativeNode": "[0](AssignStmt)", "children": [
           {"kinds": ["ASSIGNMENT_TARGET_LIST"], "nativeNode": "Lhs([]Expr)", "children": [
             {"kinds": ["ASSIGNMENT_TARGET","IDENTIFIER"], "token": {"value":"a","line":4,"column":2}, "nativeNode": "[0](Ident)"}
           ]},

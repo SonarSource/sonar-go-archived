@@ -50,6 +50,7 @@ const (
 	FUNCTION_NAME             Kind = "FUNCTION_NAME"
 	CONSTANT_DECLARATION      Kind = "CONSTANT_DECLARATION"
 	VARIABLE_DECLARATION      Kind = "VARIABLE_DECLARATION"
+	VARIABLE_NAME             Kind = "VARIABLE_NAME"
 	IMPORT                    Kind = "IMPORT"
 	IMPORT_ENTRY              Kind = "IMPORT_ENTRY"
 	GOTO                      Kind = "GOTO"
@@ -62,7 +63,6 @@ const (
 	ELSE_KEYWORD              Kind = "ELSE_KEYWORD"
 	ELSE                      Kind = "ELSE"
 	CONDITION                 Kind = "CONDITION"
-	DECLARATION               Kind = "DECLARATION"
 	DECL_LIST                 Kind = "DECL_LIST"
 	CLASS                     Kind = "CLASS"
 	STATEMENT                 Kind = "STATEMENT"
@@ -431,19 +431,19 @@ func (t *UastMapper) computeGenDeclKind(genDeclTok token.Token) []Kind {
 	case token.IMPORT:
 		return []Kind{IMPORT}
 	default:
-		// CONST, VAR, TYPE
+		// token.CONST, token.TYPE, token.VAR
 		return nil
 	}
 }
 
-func (t *UastMapper) computeConstOrVarKind(genDeclTok token.Token) []Kind {
+func (t *UastMapper) computeVariableKind(genDeclTok token.Token) []Kind {
 	switch genDeclTok {
 	case token.CONST:
 		return []Kind{CONSTANT_DECLARATION}
 	case token.VAR:
 		return []Kind{VARIABLE_DECLARATION}
 	default:
-		// token.IMPORT and token.TYPE
+		// token.IMPORT, token.TYPE
 		return nil
 	}
 }
@@ -728,7 +728,7 @@ func isEndOfLine(ch byte) bool {
 func (t *UastMapper) computeAssignStmtKinds(tok token.Token) []Kind {
 	switch tok {
 	case token.DEFINE:
-		return []Kind{ASSIGNMENT, DECLARATION}
+		return []Kind{ASSIGNMENT, VARIABLE_DECLARATION}
 	case token.ASSIGN:
 		return []Kind{ASSIGNMENT}
 	case token.ADD_ASSIGN: // +=

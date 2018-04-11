@@ -105,6 +105,7 @@ import (
 			"FieldResult#Names[i]":    "RESULT",
 			"FieldParam#Type":         "TYPE",
 			"FieldResult#Type":        "TYPE",
+			"ValueSpec#Names[i]":      "VARIABLE_NAME",
 			"ValueSpec#Type":          "TYPE",
 			"TypeSpec#Ident":          "TYPE",
 			"ParenExpr#Lparen":        "LEFT_PARENTHESIS",
@@ -127,7 +128,7 @@ import (
 			"ForStmt#Post":            "FOR_UPDATE",
 			"ForStmt#Body":            "BODY",
 			"BranchStmt#Label":        "BRANCH_LABEL",
-			"GenDecl#Specs[i]":        "t.computeConstOrVarKind(astNode.Tok)",
+			"GenDecl#Specs[i]":        "t.computeVariableKind(astNode.Tok)",
 			// Can not declare EXPRESSION for all ast.Expr because Expr is also used for type like in Field#Type
 			"CompositeLit#Expr[i]":  "EXPRESSION",
 			"IndexExpr#X":           "EXPRESSION, ARRAY_OBJECT_EXPRESSION",

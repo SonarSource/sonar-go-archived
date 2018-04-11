@@ -401,7 +401,7 @@ func Test_mapAssignStmt(t *testing.T) {
 
 	actual := newTestNode(uast)
 	expected := TestNode{
-		kinds:      []Kind{ASSIGNMENT, DECLARATION, STATEMENT},
+		kinds:      []Kind{ASSIGNMENT, VARIABLE_DECLARATION, STATEMENT},
 		nativeNode: "[0](AssignStmt)",
 		children:   3,
 	}
@@ -921,6 +921,11 @@ func foo() {
 	}
 	actual = extractKind(t, source, CONSTANT_DECLARATION)
 	expected = []string{"A = 1", "B int = 2", "C, D = 3", "E byte = 'd'"}
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+	actual = extractKind(t, source, VARIABLE_NAME)
+	expected = []string{"a", "b", "c", "d", "A", "B", "C", "D", "E"}
 	if !reflect.DeepEqual(expected, actual) {
 		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
 	}
