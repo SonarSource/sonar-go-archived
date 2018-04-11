@@ -29,6 +29,7 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import javax.annotation.Nullable;
 
 public final class UastNode {
@@ -40,7 +41,7 @@ public final class UastNode {
   public final List<UastNode> children;
 
   public UastNode(Set<Kind> kinds, String nativeNode, @Nullable Token token, List<UastNode> children) {
-    this.kinds = kinds;
+    this.kinds = kinds.stream().flatMap(Kind::kindAndExtendedKindStream).collect(Collectors.toSet());
     this.nativeNode = nativeNode;
     this.token = token;
     this.children = children;
@@ -101,6 +102,8 @@ public final class UastNode {
   }
 
   public enum Kind implements Predicate<UastNode> {
+    // TODO when WHILE and TRY will be added, they will have to extends from CONTROL_FLOW
+    CONTROL_FLOW,
     EXPRESSION,
     LABEL,
     BINARY_EXPRESSION,
@@ -135,7 +138,7 @@ public final class UastNode {
     // lambda, anonymous function
     FUNCTION_LITERAL,
     IDENTIFIER,
-    IF,
+    IF(CONTROL_FLOW),
     IF_KEYWORD,
     KEYWORD,
     LITERAL,
@@ -148,8 +151,8 @@ public final class UastNode {
     CHAR_LITERAL,
     BOOLEAN_LITERAL,
     NULL_LITERAL,
-    LOOP,
-    FOR,
+    LOOP(CONTROL_FLOW),
+    FOR(CONTROL_FLOW),
     FOR_KEYWORD,
     FOR_INIT,
     FOR_UPDATE,
@@ -182,7 +185,7 @@ public final class UastNode {
     RESULT_LIST,
     STATEMENT,
     EMPTY_STATEMENT,
-    SWITCH,
+    SWITCH(CONTROL_FLOW),
     THEN,
     THROW,
     TYPE,
@@ -227,6 +230,27 @@ public final class UastNode {
     // Go; <-
     CHANNEL_DIRECTION,
     ;
+
+    private final List<Kind> extendedKinds;
+
+    Kind() {
+      this.extendedKinds = Collections.emptyList();
+    }
+
+    Kind(Kind... extendedKinds) {
+      this.extendedKinds = Arrays.asList(extendedKinds);
+    }
+
+    public List<Kind> extendedKinds() {
+      return extendedKinds;
+    }
+
+    public Stream<Kind> kindAndExtendedKindStream() {
+      if (extendedKinds.isEmpty()) {
+        return Stream.of(this);
+      }
+      return Stream.concat(Stream.of(this), extendedKinds.stream());
+    }
 
     @Override
     public boolean test(UastNode uastNode) {

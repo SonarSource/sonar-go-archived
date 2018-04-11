@@ -42,10 +42,22 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.sonar.commonruleengine.checks.TestUtils.uast;
 
 class UastNodeTest {
 
   private static final Pattern NONCOMPLIANT_MESSAGE_REGEX = Pattern.compile("Noncompliant[^\\{]*\\{\\{([^\\}]+)\\}\\}");
+
+  @Test
+  void kind_inheritance_related_to_CONTROL_FLOW() {
+    List<UastNode.Kind> controlKinds = Arrays.asList(UastNode.Kind.IF, UastNode.Kind.SWITCH, UastNode.Kind.FOR);
+
+    controlKinds.forEach(kind -> assertThat(kind.extendedKinds()).describedAs(kind.name())
+      .containsExactlyInAnyOrder(UastNode.Kind.CONTROL_FLOW));
+
+    controlKinds.forEach(kind -> assertThat(uast("{ kinds: ['" + kind.name() + "'] }").kinds).describedAs(kind.name())
+      .containsExactlyInAnyOrder(kind, UastNode.Kind.CONTROL_FLOW));
+  }
 
   @Test
   void invalid_token_position() {
