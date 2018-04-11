@@ -267,7 +267,9 @@
                           ]
                         },
                         {
-                          "kinds": [],
+                          "kinds": [
+                            "ARGUMENTS"
+                          ],
                           "nativeNode": "ARGUMENTS",
                           "children": [
                             {
@@ -288,7 +290,8 @@
                               "kinds": [
                                 "EXPRESSION",
                                 "LITERAL",
-                                "STRING_LITERAL"
+                                "STRING_LITERAL",
+                                "ARGUMENT"
                               ],
                               "nativeNode": "STRING_LITERAL",
                               "children": [

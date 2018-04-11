@@ -53,6 +53,7 @@ import org.sonar.plugins.java.api.tree.ContinueStatementTree;
 import org.sonar.plugins.java.api.tree.ExpressionTree;
 import org.sonar.plugins.java.api.tree.IdentifierTree;
 import org.sonar.plugins.java.api.tree.IfStatementTree;
+import org.sonar.plugins.java.api.tree.MethodInvocationTree;
 import org.sonar.plugins.java.api.tree.MethodTree;
 import org.sonar.plugins.java.api.tree.ParenthesizedTree;
 import org.sonar.plugins.java.api.tree.PrimitiveTypeTree;
@@ -295,6 +296,9 @@ public class Generator {
         result.add(UastNode.Kind.ANNOTATION_TYPE);
         result.add(UastNode.Kind.TYPE);
         break;
+      case ARGUMENTS:
+        result.add(UastNode.Kind.ARGUMENTS);
+        break;
       case CATCH:
         result.add(UastNode.Kind.CATCH);
         break;
@@ -386,6 +390,12 @@ public class Generator {
       addKind(tree.trueExpression(), UastNode.Kind.THEN);
       addKind(tree.falseExpression(), UastNode.Kind.ELSE);
       super.visitConditionalExpression(tree);
+    }
+
+    @Override
+    public void visitMethodInvocation(MethodInvocationTree tree) {
+      tree.arguments().forEach(arg -> addKind(arg, UastNode.Kind.ARGUMENT));
+      super.visitMethodInvocation(tree);
     }
 
     private void addKind(@Nullable Tree tree, UastNode.Kind kind) {
