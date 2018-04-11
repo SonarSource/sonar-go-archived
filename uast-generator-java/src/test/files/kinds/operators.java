@@ -36,22 +36,4 @@ class A {
     x--;
     --x;
   }
-
-  void assigment() {
-
-  }
-
-  void operators() {
-
-
-
-
-
-
-
-
-
-
-  }
-
 }

@@ -1198,12 +1198,102 @@
                   ]
                 },
                 {
+                  "kinds": [
+                    "STATEMENT"
+                  ],
+                  "nativeNode": "EXPRESSION_STATEMENT",
+                  "children": [
+                    {
+                      "kinds": [
+                        "EXPRESSION",
+                        "ASSIGNMENT",
+                        "COMPOUND_ASSIGNMENT",
+                        "UNSIGNED_RIGHT_SHIFT_ASSIGNMENT"
+                      ],
+                      "nativeNode": "UNSIGNED_RIGHT_SHIFT_ASSIGNMENT",
+                      "children": [
+                        {
+                          "kinds": [
+                            "IDENTIFIER",
+                            "ASSIGNMENT_TARGET"
+                          ],
+                          "nativeNode": "IDENTIFIER",
+                          "children": [
+                            {
+                              "kinds": [],
+                              "nativeNode": "TOKEN",
+                              "token": {
+                                "value": "x",
+                                "line": 18,
+                                "endLine": 18,
+                                "column": 5,
+                                "endColumn": 5
+                              },
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "kinds": [
+                            "ASSIGNMENT",
+                            "ASSIGNMENT_OPERATOR",
+                            "COMPOUND_ASSIGNMENT",
+                            "UNSIGNED_RIGHT_SHIFT_ASSIGNMENT"
+                          ],
+                          "nativeNode": "TOKEN",
+                          "token": {
+                            "value": "\u003e\u003e\u003e\u003d",
+                            "line": 18,
+                            "endLine": 18,
+                            "column": 7,
+                            "endColumn": 10
+                          },
+                          "children": []
+                        },
+                        {
+                          "kinds": [
+                            "EXPRESSION",
+                            "ASSIGNMENT_VALUE"
+                          ],
+                          "nativeNode": "INT_LITERAL",
+                          "children": [
+                            {
+                              "kinds": [],
+                              "nativeNode": "TOKEN",
+                              "token": {
+                                "value": "1",
+                                "line": 18,
+                                "endLine": 18,
+                                "column": 12,
+                                "endColumn": 12
+                              },
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [],
+                      "nativeNode": "TOKEN",
+                      "token": {
+                        "value": ";",
+                        "line": 18,
+                        "endLine": 18,
+                        "column": 13,
+                        "endColumn": 13
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
                   "kinds": [],
                   "nativeNode": "TOKEN",
                   "token": {
                     "value": "}",
-                    "line": 18,
-                    "endLine": 18,
+                    "line": 19,
+                    "endLine": 19,
                     "column": 3,
                     "endColumn": 3
                   },
@@ -1218,8 +1308,8 @@
           "nativeNode": "TOKEN",
           "token": {
             "value": "}",
-            "line": 19,
-            "endLine": 19,
+            "line": 20,
+            "endLine": 20,
             "column": 1,
             "endColumn": 1
           },
@@ -1234,8 +1324,8 @@
       "nativeNode": "TOKEN",
       "token": {
         "value": "",
-        "line": 20,
-        "endLine": 20,
+        "line": 21,
+        "endLine": 21,
         "column": 1,
         "endColumn": 0
       },
