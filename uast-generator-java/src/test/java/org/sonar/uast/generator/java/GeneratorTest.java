@@ -31,6 +31,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.sonar.uast.generator.java.UastNode.Kind.CLASS;
+import static org.sonar.uast.generator.java.UastNode.Kind.EOF;
 import static org.sonar.uast.generator.java.UastNode.Kind.STATEMENT;
 import static org.sonar.uast.generator.java.UastNode.Kind.TYPE;
 
@@ -63,7 +64,7 @@ public class GeneratorTest {
     assertEquals(5, eofToken.token.line);
     assertEquals(2, eofToken.token.column);
     assertEquals("", eofToken.token.value);
-    assertEquals(Collections.emptySet(), eofToken.kinds);
+    assertEquals(Collections.singleton(EOF), eofToken.kinds);
     assertEquals(0, eofToken.children.size());
   }
 

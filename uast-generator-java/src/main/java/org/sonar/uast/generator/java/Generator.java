@@ -40,6 +40,7 @@ import java.util.stream.Stream;
 import javax.annotation.Nullable;
 import javax.lang.model.SourceVersion;
 import org.sonar.java.ast.parser.JavaParser;
+import org.sonar.java.model.InternalSyntaxToken;
 import org.sonar.java.model.JavaTree;
 import org.sonar.java.model.expression.TypeArgumentListTreeImpl;
 import org.sonar.plugins.java.api.tree.Arguments;
@@ -124,6 +125,9 @@ public class Generator {
       uastNode = newUastNode(tree, Collections.emptyList());
       if (uastNode.token != null && SourceVersion.isKeyword(uastNode.token.value)) {
         uastNode.kinds.add(UastNode.Kind.KEYWORD);
+      }
+      if (((InternalSyntaxToken) tree).isEOF()) {
+        uastNode.kinds.add(UastNode.Kind.EOF);
       }
       treeUastNodeMap.put(tree, uastNode);
       List<UastNode> trivia = ((SyntaxToken) tree).trivias().stream()

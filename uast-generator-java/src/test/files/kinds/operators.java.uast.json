@@ -3662,7 +3662,9 @@
       ]
     },
     {
-      "kinds": [],
+      "kinds": [
+        "EOF"
+      ],
       "nativeNode": "TOKEN",
       "token": {
         "value": "",
