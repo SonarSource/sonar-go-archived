@@ -308,6 +308,9 @@ public class Generator {
       case ASSERT_STATEMENT:
         result.add(UastNode.Kind.ASSERT);
         break;
+      case EMPTY_STATEMENT:
+        result.add(UastNode.Kind.EMPTY_STATEMENT);
+        break;
       default:
         break;
     }

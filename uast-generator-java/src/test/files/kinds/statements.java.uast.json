@@ -214,12 +214,33 @@
                   ]
                 },
                 {
+                  "kinds": [
+                    "STATEMENT",
+                    "EMPTY_STATEMENT"
+                  ],
+                  "nativeNode": "EMPTY_STATEMENT",
+                  "children": [
+                    {
+                      "kinds": [],
+                      "nativeNode": "TOKEN",
+                      "token": {
+                        "value": ";",
+                        "line": 4,
+                        "endLine": 4,
+                        "column": 5,
+                        "endColumn": 5
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
                   "kinds": [],
                   "nativeNode": "TOKEN",
                   "token": {
                     "value": "}",
-                    "line": 4,
-                    "endLine": 4,
+                    "line": 5,
+                    "endLine": 5,
                     "column": 3,
                     "endColumn": 3
                   },
@@ -234,8 +255,8 @@
           "nativeNode": "TOKEN",
           "token": {
             "value": "}",
-            "line": 5,
-            "endLine": 5,
+            "line": 6,
+            "endLine": 6,
             "column": 1,
             "endColumn": 1
           },
@@ -248,8 +269,8 @@
       "nativeNode": "TOKEN",
       "token": {
         "value": "",
-        "line": 6,
-        "endLine": 6,
+        "line": 7,
+        "endLine": 7,
         "column": 1,
         "endColumn": 0
       },
