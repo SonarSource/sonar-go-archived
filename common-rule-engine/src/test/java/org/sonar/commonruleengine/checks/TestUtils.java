@@ -39,6 +39,14 @@ import org.sonar.uast.generator.java.Generator;
 
 public class TestUtils {
 
+  public static UastNode uast(String json) {
+    try {
+      return Uast.from(new StringReader(json));
+    } catch (IOException e) {
+      throw new IllegalArgumentException("ERROR: '" + e.getMessage() + "', Invalid json: " + json, e);
+    }
+  }
+
   public static void checkRuleOnJava(Check check) throws IOException {
     checkRuleOnJava(check, check.getClass().getSimpleName() + ".java");
   }

@@ -29,6 +29,7 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import javax.annotation.Nullable;
 
 public final class UastNode {
@@ -40,7 +41,7 @@ public final class UastNode {
   public final List<UastNode> children;
 
   public UastNode(Set<Kind> kinds, String nativeNode, @Nullable Token token, List<UastNode> children) {
-    this.kinds = kinds;
+    this.kinds = kinds.stream().flatMap(Kind::kindAndExtendedKindStream).collect(Collectors.toSet());
     this.nativeNode = nativeNode;
     this.token = token;
     this.children = children;
@@ -101,6 +102,9 @@ public final class UastNode {
   }
 
   public enum Kind implements Predicate<UastNode> {
+    // TODO when WHILE and TRY will be added, they will have to extends from CONDITIONAL_JUMP
+    CONDITIONAL_JUMP,
+    UNCONDITIONAL_JUMP,
     EXPRESSION,
     LABEL,
     BINARY_EXPRESSION,
@@ -111,13 +115,13 @@ public final class UastNode {
     LEFT_PARENTHESIS,
     RIGHT_PARENTHESIS,
     BLOCK,
-    GOTO,
+    GOTO(UNCONDITIONAL_JUMP),
     BRANCH_LABEL,
-    BREAK,
+    BREAK(UNCONDITIONAL_JUMP),
     CASE,
     CLASS,
     COMMENT,
-    CONTINUE,
+    CONTINUE(UNCONDITIONAL_JUMP),
     DEFAULT_CASE,
     STRUCTURED_COMMENT,
     COMPILATION_UNIT,
@@ -135,7 +139,7 @@ public final class UastNode {
     // lambda, anonymous function
     FUNCTION_LITERAL,
     IDENTIFIER,
-    IF,
+    IF(CONDITIONAL_JUMP),
     IF_KEYWORD,
     KEYWORD,
     LITERAL,
@@ -148,8 +152,8 @@ public final class UastNode {
     CHAR_LITERAL,
     BOOLEAN_LITERAL,
     NULL_LITERAL,
-    LOOP,
-    FOR,
+    LOOP(CONDITIONAL_JUMP),
+    FOR(CONDITIONAL_JUMP),
     FOR_KEYWORD,
     FOR_INIT,
     FOR_UPDATE,
@@ -178,13 +182,13 @@ public final class UastNode {
     OPERATOR_LESS_OR_EQUAL,
     OPERATOR_GREATER_THAN,
     OPERATOR_GREATER_OR_EQUAL,
-    RETURN,
+    RETURN(UNCONDITIONAL_JUMP),
     RESULT_LIST,
     STATEMENT,
     EMPTY_STATEMENT,
-    SWITCH,
+    SWITCH(CONDITIONAL_JUMP),
     THEN,
-    THROW,
+    THROW(UNCONDITIONAL_JUMP),
     TYPE,
     UNSUPPORTED,
     // Assignment
@@ -227,6 +231,27 @@ public final class UastNode {
     // Go; <-
     CHANNEL_DIRECTION,
     ;
+
+    private final List<Kind> extendedKinds;
+
+    Kind() {
+      this.extendedKinds = Collections.emptyList();
+    }
+
+    Kind(Kind... extendedKinds) {
+      this.extendedKinds = Arrays.asList(extendedKinds);
+    }
+
+    public List<Kind> extendedKinds() {
+      return extendedKinds;
+    }
+
+    public Stream<Kind> kindAndExtendedKindStream() {
+      if (extendedKinds.isEmpty()) {
+        return Stream.of(this);
+      }
+      return Stream.concat(Stream.of(this), extendedKinds.stream());
+    }
 
     @Override
     public boolean test(UastNode uastNode) {
