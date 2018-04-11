@@ -55,6 +55,7 @@ import org.sonar.plugins.java.api.tree.ContinueStatementTree;
 import org.sonar.plugins.java.api.tree.ExpressionTree;
 import org.sonar.plugins.java.api.tree.IdentifierTree;
 import org.sonar.plugins.java.api.tree.IfStatementTree;
+import org.sonar.plugins.java.api.tree.LabeledStatementTree;
 import org.sonar.plugins.java.api.tree.MethodInvocationTree;
 import org.sonar.plugins.java.api.tree.MethodTree;
 import org.sonar.plugins.java.api.tree.ParenthesizedTree;
@@ -436,6 +437,32 @@ public class Generator {
     public void visitTypeArguments(TypeArgumentListTreeImpl trees) {
       trees.forEach(typeArg -> addKind(typeArg, UastNode.Kind.TYPE_ARGUMENT));
       super.visitTypeArguments(trees);
+    }
+
+    @Override
+    public void visitBreakStatement(BreakStatementTree tree) {
+      addKind(tree.label(), UastNode.Kind.BRANCH_LABEL);
+      super.visitBreakStatement(tree);
+    }
+
+    @Override
+    public void visitContinueStatement(ContinueStatementTree tree) {
+      // bug in the parser, see SONARJAVA-2723
+      IdentifierTree labelTree = tree.label();
+      if (labelTree != null) {
+        UastNode continueNode = treeUastNodeMap.get(tree);
+        UastNode label = newUastNode(labelTree, Collections.emptyList());
+        continueNode.children.add(label);
+        treeUastNodeMap.put(labelTree, label);
+        addKind(labelTree, UastNode.Kind.BRANCH_LABEL);
+      }
+      super.visitContinueStatement(tree);
+    }
+
+    @Override
+    public void visitLabeledStatement(LabeledStatementTree tree) {
+      addKind(tree.label(), UastNode.Kind.LABEL);
+      super.visitLabeledStatement(tree);
     }
 
     private void addKind(@Nullable Tree tree, UastNode.Kind kind) {

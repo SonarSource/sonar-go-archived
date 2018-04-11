@@ -1117,6 +1117,7 @@
                   "children": [
                     {
                       "kinds": [
+                        "LABEL",
                         "IDENTIFIER"
                       ],
                       "nativeNode": "IDENTIFIER",
@@ -1814,6 +1815,14 @@
                                     "column": 21,
                                     "endColumn": 21
                                   },
+                                  "children": []
+                                },
+                                {
+                                  "kinds": [
+                                    "BRANCH_LABEL",
+                                    "IDENTIFIER"
+                                  ],
+                                  "nativeNode": "IDENTIFIER",
                                   "children": []
                                 }
                               ]

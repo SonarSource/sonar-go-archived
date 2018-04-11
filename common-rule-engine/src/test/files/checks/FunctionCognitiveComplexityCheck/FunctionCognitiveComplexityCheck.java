@@ -240,7 +240,7 @@ class CognitiveComplexityCheck {
     };
   }
 
-  int sumOfNonPrimes(int limit) { // Noncompliant {{Refactor this function to reduce its Cognitive Complexity from 8 to the 0 allowed.}}
+  int sumOfNonPrimes(int limit) { // Noncompliant {{Refactor this function to reduce its Cognitive Complexity from 9 to the 0 allowed.}}
 
     int sum = 0;
     OUTER: for (int i = 0; i < limit; ++i) {
