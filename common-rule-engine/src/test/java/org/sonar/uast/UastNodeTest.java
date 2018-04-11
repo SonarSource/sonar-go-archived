@@ -60,6 +60,18 @@ class UastNodeTest {
   }
 
   @Test
+  void kind_inheritance_related_to_JUMP() {
+    List<UastNode.Kind> controlKinds = Arrays.asList(UastNode.Kind.RETURN, UastNode.Kind.GOTO, UastNode.Kind.BREAK,
+      UastNode.Kind.CONTINUE, UastNode.Kind.THROW);
+
+    controlKinds.forEach(kind -> assertThat(kind.extendedKinds()).describedAs(kind.name())
+      .containsExactlyInAnyOrder(UastNode.Kind.JUMP));
+
+    controlKinds.forEach(kind -> assertThat(uast("{ kinds: ['" + kind.name() + "'] }").kinds).describedAs(kind.name())
+      .containsExactlyInAnyOrder(kind, UastNode.Kind.JUMP));
+  }
+
+  @Test
   void invalid_token_position() {
     assertEquals("Invalid token location 0:0",
       assertThrows(IllegalArgumentException.class,
