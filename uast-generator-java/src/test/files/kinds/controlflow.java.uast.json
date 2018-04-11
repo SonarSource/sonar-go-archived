@@ -1151,13 +1151,15 @@
                     {
                       "kinds": [
                         "LOOP",
+                        "FOR",
                         "STATEMENT"
                       ],
                       "nativeNode": "FOR_STATEMENT",
                       "children": [
                         {
                           "kinds": [
-                            "KEYWORD"
+                            "KEYWORD",
+                            "FOR_KEYWORD"
                           ],
                           "nativeNode": "TOKEN",
                           "token": {
@@ -1184,7 +1186,9 @@
                           "children": []
                         },
                         {
-                          "kinds": [],
+                          "kinds": [
+                            "FOR_INIT"
+                          ],
                           "nativeNode": "LIST",
                           "children": [
                             {
@@ -1363,7 +1367,9 @@
                           "children": []
                         },
                         {
-                          "kinds": [],
+                          "kinds": [
+                            "FOR_UPDATE"
+                          ],
                           "nativeNode": "LIST",
                           "children": [
                             {
@@ -1435,6 +1441,7 @@
                         {
                           "kinds": [
                             "BLOCK",
+                            "BODY",
                             "STATEMENT"
                           ],
                           "nativeNode": "BLOCK",
@@ -1454,13 +1461,15 @@
                             {
                               "kinds": [
                                 "LOOP",
+                                "FOR",
                                 "STATEMENT"
                               ],
                               "nativeNode": "FOR_STATEMENT",
                               "children": [
                                 {
                                   "kinds": [
-                                    "KEYWORD"
+                                    "KEYWORD",
+                                    "FOR_KEYWORD"
                                   ],
                                   "nativeNode": "TOKEN",
                                   "token": {
@@ -1487,7 +1496,9 @@
                                   "children": []
                                 },
                                 {
-                                  "kinds": [],
+                                  "kinds": [
+                                    "FOR_INIT"
+                                  ],
                                   "nativeNode": "LIST",
                                   "children": [
                                     {
@@ -1666,7 +1677,9 @@
                                   "children": []
                                 },
                                 {
-                                  "kinds": [],
+                                  "kinds": [
+                                    "FOR_UPDATE"
+                                  ],
                                   "nativeNode": "LIST",
                                   "children": [
                                     {
@@ -1738,6 +1751,7 @@
                                 {
                                   "kinds": [
                                     "BLOCK",
+                                    "BODY",
                                     "STATEMENT"
                                   ],
                                   "nativeNode": "BLOCK",
@@ -1848,7 +1862,7 @@
                 {
                   "kinds": [
                     "LOOP",
-                    "LOOP_FOREACH",
+                    "FOREACH",
                     "STATEMENT"
                   ],
                   "nativeNode": "FOR_EACH_STATEMENT",

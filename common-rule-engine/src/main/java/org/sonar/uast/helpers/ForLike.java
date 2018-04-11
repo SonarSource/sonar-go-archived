@@ -52,7 +52,7 @@ public class ForLike {
     if (node.kinds.contains(ForLike.KIND)) {
       Optional<UastNode> forKeyword = node.getChild(UastNode.Kind.FOR_KEYWORD);
       Optional<UastNode> condition = node.getChild(UastNode.Kind.CONDITION);
-      Optional<UastNode> body = node.getChild(UastNode.Kind.FOR_BODY);
+      Optional<UastNode> body = node.getChild(UastNode.Kind.BODY);
       if (forKeyword.isPresent() && condition.isPresent() && body.isPresent()) {
         UastNode init = node.getChild(UastNode.Kind.FOR_INIT).orElse(null);
         UastNode update = node.getChild(UastNode.Kind.FOR_UPDATE).orElse(null);

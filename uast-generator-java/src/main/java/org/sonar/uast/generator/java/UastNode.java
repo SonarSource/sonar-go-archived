@@ -74,7 +74,12 @@ class UastNode {
     IF_KEYWORD("if", KEYWORD),
     LITERAL,
     LOOP,
-    LOOP_FOREACH,
+    FOREACH,
+    FOR,
+    FOR_KEYWORD,
+    FOR_INIT,
+    FOR_UPDATE,
+    BODY,
     STRING_LITERAL,
     BOOLEAN_LITERAL,
     PARAMETER,
@@ -141,7 +146,7 @@ class UastNode {
     TYPE_ARGUMENT,
     TYPE_PARAMETERS,
     TYPE_PARAMETER,
-    CHAR_LITERAL;
+    CHAR_LITERAL,;
 
     @Nullable
     final String token;

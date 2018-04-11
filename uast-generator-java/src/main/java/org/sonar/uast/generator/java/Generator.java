@@ -53,6 +53,7 @@ import org.sonar.plugins.java.api.tree.CompilationUnitTree;
 import org.sonar.plugins.java.api.tree.ConditionalExpressionTree;
 import org.sonar.plugins.java.api.tree.ContinueStatementTree;
 import org.sonar.plugins.java.api.tree.ExpressionTree;
+import org.sonar.plugins.java.api.tree.ForStatementTree;
 import org.sonar.plugins.java.api.tree.IdentifierTree;
 import org.sonar.plugins.java.api.tree.IfStatementTree;
 import org.sonar.plugins.java.api.tree.LabeledStatementTree;
@@ -233,9 +234,12 @@ public class Generator {
         break;
       case FOR_EACH_STATEMENT:
         result.add(UastNode.Kind.LOOP);
-        result.add(UastNode.Kind.LOOP_FOREACH);
+        result.add(UastNode.Kind.FOREACH);
         break;
       case FOR_STATEMENT:
+        result.add(UastNode.Kind.FOR);
+        result.add(UastNode.Kind.LOOP);
+        break;
       case WHILE_STATEMENT:
       case DO_STATEMENT:
         result.add(UastNode.Kind.LOOP);
@@ -465,11 +469,23 @@ public class Generator {
       super.visitLabeledStatement(tree);
     }
 
+    @Override
+    public void visitForStatement(ForStatementTree tree) {
+      addKind(tree.forKeyword(), UastNode.Kind.FOR_KEYWORD);
+      addKind(tree.initializer(), UastNode.Kind.FOR_INIT);
+      addKind(tree.update(), UastNode.Kind.FOR_UPDATE);
+      addKind(tree.statement(), UastNode.Kind.BODY);
+      super.visitForStatement(tree);
+    }
+
     private void addKind(@Nullable Tree tree, UastNode.Kind kind) {
       if (tree == null) {
         return;
       }
-      treeUastNodeMap.get(tree).kinds.add(kind);
+      UastNode uastNode = treeUastNodeMap.get(tree);
+      if (uastNode != null) {
+        uastNode.kinds.add(kind);
+      }
     }
   }
 

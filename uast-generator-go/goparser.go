@@ -107,7 +107,7 @@ const (
 	FOR_KEYWORD               Kind = "FOR_KEYWORD"
 	FOR_INIT                  Kind = "FOR_INIT"
 	FOR_UPDATE                Kind = "FOR_UPDATE"
-	FOR_BODY                  Kind = "FOR_BODY"
+	BODY                      Kind = "BODY"
 	FOREACH                   Kind = "FOREACH"
 	BREAK                     Kind = "BREAK"
 	CONTINUE                  Kind = "CONTINUE"
