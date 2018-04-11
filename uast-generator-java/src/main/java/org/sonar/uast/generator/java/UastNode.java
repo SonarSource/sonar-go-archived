@@ -62,7 +62,6 @@ class UastNode {
     STRUCTURED_COMMENT,
     COMPILATION_UNIT,
     CONDITION,
-    DECLARATION,
     ELSE,
     ELSE_KEYWORD("else", KEYWORD),
     EOF,
