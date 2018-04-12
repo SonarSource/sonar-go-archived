@@ -160,7 +160,9 @@ class UastNode {
     ARRAY_ACCESS_EXPRESSION,
     ARRAY_OBJECT_EXPRESSION,
     ARRAY_KEY_EXPRESSION,
-    CAST;
+    CAST,
+    ENUM,
+    CONSTANT_DECLARATION;
 
     @Nullable
     final String token;

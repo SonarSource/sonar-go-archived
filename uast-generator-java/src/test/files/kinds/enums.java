@@ -1,0 +1,3 @@
+enum Weekday {
+  MONDAY, TUESDAY
+}

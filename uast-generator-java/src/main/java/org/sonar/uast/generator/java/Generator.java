@@ -204,11 +204,15 @@ public class Generator {
         result.add(UastNode.Kind.FUNCTION_LITERAL);
         break;
       case CLASS:
-      case ENUM:
       case INTERFACE:
         result.add(UastNode.Kind.CLASS);
         result.add(UastNode.Kind.TYPE);
         break;
+      case ENUM:
+        result.add(UastNode.Kind.ENUM);
+        result.add(UastNode.Kind.CLASS);
+        result.add(UastNode.Kind.TYPE);
+      break;
       case ASSIGNMENT:
         result.add(UastNode.Kind.ASSIGNMENT);
         break;
@@ -375,6 +379,9 @@ public class Generator {
         break;
       case TYPE_CAST:
         result.add(UastNode.Kind.CAST);
+        break;
+      case ENUM_CONSTANT:
+        result.add(UastNode.Kind.CONSTANT_DECLARATION);
         break;
       default:
         break;
