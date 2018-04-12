@@ -17,3 +17,12 @@ func foo() {
 //  ^^^^^^^^^^^
   )
 }
+
+func (t *Type) foo2() {} // Noncompliant {{VARIABLE_DECLARATION,PARAMETER}}
+//    ^^^^^^^
+
+func foo2(x, y int) {} // Noncompliant {{VARIABLE_DECLARATION,PARAMETER}}
+//        ^^^^^^^^
+
+func foo3() (out1, out2 int) {} // Noncompliant {{VARIABLE_DECLARATION}}
+//           ^^^^^^^^^^^^^^

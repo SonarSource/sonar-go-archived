@@ -1589,6 +1589,135 @@
                               "nativeNode": "TOKEN",
                               "token": {
                                 "value": "b",
+                                "line": 17,
+                                "endLine": 17,
+                                "column": 5,
+                                "endColumn": 5
+                              },
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "kinds": [
+                            "ASSIGNMENT_OPERATOR"
+                          ],
+                          "nativeNode": "TOKEN",
+                          "token": {
+                            "value": "\u003d",
+                            "line": 17,
+                            "endLine": 17,
+                            "column": 7,
+                            "endColumn": 7
+                          },
+                          "children": []
+                        },
+                        {
+                          "kinds": [
+                            "EXPRESSION",
+                            "BINARY_EXPRESSION",
+                            "ASSIGNMENT_VALUE"
+                          ],
+                          "nativeNode": "EQUAL_TO",
+                          "children": [
+                            {
+                              "kinds": [
+                                "EXPRESSION"
+                              ],
+                              "nativeNode": "INT_LITERAL",
+                              "children": [
+                                {
+                                  "kinds": [],
+                                  "nativeNode": "TOKEN",
+                                  "token": {
+                                    "value": "1",
+                                    "line": 17,
+                                    "endLine": 17,
+                                    "column": 9,
+                                    "endColumn": 9
+                                  },
+                                  "children": []
+                                }
+                              ]
+                            },
+                            {
+                              "kinds": [
+                                "OPERATOR",
+                                "OPERATOR_EQUAL"
+                              ],
+                              "nativeNode": "TOKEN",
+                              "token": {
+                                "value": "\u003d\u003d",
+                                "line": 17,
+                                "endLine": 17,
+                                "column": 11,
+                                "endColumn": 12
+                              },
+                              "children": []
+                            },
+                            {
+                              "kinds": [
+                                "EXPRESSION"
+                              ],
+                              "nativeNode": "INT_LITERAL",
+                              "children": [
+                                {
+                                  "kinds": [],
+                                  "nativeNode": "TOKEN",
+                                  "token": {
+                                    "value": "2",
+                                    "line": 17,
+                                    "endLine": 17,
+                                    "column": 14,
+                                    "endColumn": 14
+                                  },
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [],
+                      "nativeNode": "TOKEN",
+                      "token": {
+                        "value": ";",
+                        "line": 17,
+                        "endLine": 17,
+                        "column": 15,
+                        "endColumn": 15
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "kinds": [
+                    "STATEMENT"
+                  ],
+                  "nativeNode": "EXPRESSION_STATEMENT",
+                  "children": [
+                    {
+                      "kinds": [
+                        "EXPRESSION",
+                        "ASSIGNMENT"
+                      ],
+                      "nativeNode": "ASSIGNMENT",
+                      "children": [
+                        {
+                          "kinds": [
+                            "IDENTIFIER",
+                            "ASSIGNMENT_TARGET"
+                          ],
+                          "nativeNode": "IDENTIFIER",
+                          "children": [
+                            {
+                              "kinds": [],
+                              "nativeNode": "TOKEN",
+                              "token": {
+                                "value": "b",
                                 "line": 18,
                                 "endLine": 18,
                                 "column": 5,
@@ -1618,7 +1747,7 @@
                             "BINARY_EXPRESSION",
                             "ASSIGNMENT_VALUE"
                           ],
-                          "nativeNode": "EQUAL_TO",
+                          "nativeNode": "NOT_EQUAL_TO",
                           "children": [
                             {
                               "kinds": [
@@ -1643,11 +1772,11 @@
                             {
                               "kinds": [
                                 "OPERATOR",
-                                "OPERATOR_EQUAL"
+                                "OPERATOR_NOT_EQUAL"
                               ],
                               "nativeNode": "TOKEN",
                               "token": {
-                                "value": "\u003d\u003d",
+                                "value": "!\u003d",
                                 "line": 18,
                                 "endLine": 18,
                                 "column": 11,
@@ -1747,7 +1876,7 @@
                             "BINARY_EXPRESSION",
                             "ASSIGNMENT_VALUE"
                           ],
-                          "nativeNode": "NOT_EQUAL_TO",
+                          "nativeNode": "LESS_THAN",
                           "children": [
                             {
                               "kinds": [
@@ -1772,15 +1901,15 @@
                             {
                               "kinds": [
                                 "OPERATOR",
-                                "OPERATOR_NOT_EQUAL"
+                                "OPERATOR_LESS_THAN"
                               ],
                               "nativeNode": "TOKEN",
                               "token": {
-                                "value": "!\u003d",
+                                "value": "\u003c",
                                 "line": 19,
                                 "endLine": 19,
                                 "column": 11,
-                                "endColumn": 12
+                                "endColumn": 11
                               },
                               "children": []
                             },
@@ -1797,8 +1926,8 @@
                                     "value": "2",
                                     "line": 19,
                                     "endLine": 19,
-                                    "column": 14,
-                                    "endColumn": 14
+                                    "column": 13,
+                                    "endColumn": 13
                                   },
                                   "children": []
                                 }
@@ -1815,8 +1944,8 @@
                         "value": ";",
                         "line": 19,
                         "endLine": 19,
-                        "column": 15,
-                        "endColumn": 15
+                        "column": 14,
+                        "endColumn": 14
                       },
                       "children": []
                     }
@@ -1876,7 +2005,7 @@
                             "BINARY_EXPRESSION",
                             "ASSIGNMENT_VALUE"
                           ],
-                          "nativeNode": "LESS_THAN",
+                          "nativeNode": "LESS_THAN_OR_EQUAL_TO",
                           "children": [
                             {
                               "kinds": [
@@ -1901,15 +2030,15 @@
                             {
                               "kinds": [
                                 "OPERATOR",
-                                "OPERATOR_LESS_THAN"
+                                "OPERATOR_LESS_OR_EQUAL"
                               ],
                               "nativeNode": "TOKEN",
                               "token": {
-                                "value": "\u003c",
+                                "value": "\u003c\u003d",
                                 "line": 20,
                                 "endLine": 20,
                                 "column": 11,
-                                "endColumn": 11
+                                "endColumn": 12
                               },
                               "children": []
                             },
@@ -1926,8 +2055,8 @@
                                     "value": "2",
                                     "line": 20,
                                     "endLine": 20,
-                                    "column": 13,
-                                    "endColumn": 13
+                                    "column": 14,
+                                    "endColumn": 14
                                   },
                                   "children": []
                                 }
@@ -1944,8 +2073,8 @@
                         "value": ";",
                         "line": 20,
                         "endLine": 20,
-                        "column": 14,
-                        "endColumn": 14
+                        "column": 15,
+                        "endColumn": 15
                       },
                       "children": []
                     }
@@ -2005,7 +2134,7 @@
                             "BINARY_EXPRESSION",
                             "ASSIGNMENT_VALUE"
                           ],
-                          "nativeNode": "LESS_THAN_OR_EQUAL_TO",
+                          "nativeNode": "GREATER_THAN_OR_EQUAL_TO",
                           "children": [
                             {
                               "kinds": [
@@ -2030,11 +2159,11 @@
                             {
                               "kinds": [
                                 "OPERATOR",
-                                "OPERATOR_LESS_OR_EQUAL"
+                                "OPERATOR_GREATER_OR_EQUAL"
                               ],
                               "nativeNode": "TOKEN",
                               "token": {
-                                "value": "\u003c\u003d",
+                                "value": "\u003e\u003d",
                                 "line": 21,
                                 "endLine": 21,
                                 "column": 11,
@@ -2134,7 +2263,7 @@
                             "BINARY_EXPRESSION",
                             "ASSIGNMENT_VALUE"
                           ],
-                          "nativeNode": "GREATER_THAN_OR_EQUAL_TO",
+                          "nativeNode": "GREATER_THAN",
                           "children": [
                             {
                               "kinds": [
@@ -2159,15 +2288,15 @@
                             {
                               "kinds": [
                                 "OPERATOR",
-                                "OPERATOR_GREATER_OR_EQUAL"
+                                "OPERATOR_GREATER_THAN"
                               ],
                               "nativeNode": "TOKEN",
                               "token": {
-                                "value": "\u003e\u003d",
+                                "value": "\u003e",
                                 "line": 22,
                                 "endLine": 22,
                                 "column": 11,
-                                "endColumn": 12
+                                "endColumn": 11
                               },
                               "children": []
                             },
@@ -2184,8 +2313,8 @@
                                     "value": "2",
                                     "line": 22,
                                     "endLine": 22,
-                                    "column": 14,
-                                    "endColumn": 14
+                                    "column": 13,
+                                    "endColumn": 13
                                   },
                                   "children": []
                                 }
@@ -2202,8 +2331,8 @@
                         "value": ";",
                         "line": 22,
                         "endLine": 22,
-                        "column": 15,
-                        "endColumn": 15
+                        "column": 14,
+                        "endColumn": 14
                       },
                       "children": []
                     }
@@ -2263,19 +2392,19 @@
                             "BINARY_EXPRESSION",
                             "ASSIGNMENT_VALUE"
                           ],
-                          "nativeNode": "GREATER_THAN",
+                          "nativeNode": "CONDITIONAL_AND",
                           "children": [
                             {
                               "kinds": [
-                                "EXPRESSION"
+                                "IDENTIFIER"
                               ],
-                              "nativeNode": "INT_LITERAL",
+                              "nativeNode": "IDENTIFIER",
                               "children": [
                                 {
                                   "kinds": [],
                                   "nativeNode": "TOKEN",
                                   "token": {
-                                    "value": "1",
+                                    "value": "b",
                                     "line": 23,
                                     "endLine": 23,
                                     "column": 9,
@@ -2288,33 +2417,37 @@
                             {
                               "kinds": [
                                 "OPERATOR",
-                                "OPERATOR_GREATER_THAN"
+                                "OPERATOR_LOGICAL_AND"
                               ],
                               "nativeNode": "TOKEN",
                               "token": {
-                                "value": "\u003e",
+                                "value": "\u0026\u0026",
                                 "line": 23,
                                 "endLine": 23,
                                 "column": 11,
-                                "endColumn": 11
+                                "endColumn": 12
                               },
                               "children": []
                             },
                             {
                               "kinds": [
-                                "EXPRESSION"
+                                "EXPRESSION",
+                                "LITERAL",
+                                "BOOLEAN_LITERAL"
                               ],
-                              "nativeNode": "INT_LITERAL",
+                              "nativeNode": "BOOLEAN_LITERAL",
                               "children": [
                                 {
-                                  "kinds": [],
+                                  "kinds": [
+                                    "KEYWORD"
+                                  ],
                                   "nativeNode": "TOKEN",
                                   "token": {
-                                    "value": "2",
+                                    "value": "true",
                                     "line": 23,
                                     "endLine": 23,
-                                    "column": 13,
-                                    "endColumn": 13
+                                    "column": 14,
+                                    "endColumn": 17
                                   },
                                   "children": []
                                 }
@@ -2331,8 +2464,8 @@
                         "value": ";",
                         "line": 23,
                         "endLine": 23,
-                        "column": 14,
-                        "endColumn": 14
+                        "column": 18,
+                        "endColumn": 18
                       },
                       "children": []
                     }
@@ -2392,7 +2525,7 @@
                             "BINARY_EXPRESSION",
                             "ASSIGNMENT_VALUE"
                           ],
-                          "nativeNode": "CONDITIONAL_AND",
+                          "nativeNode": "CONDITIONAL_OR",
                           "children": [
                             {
                               "kinds": [
@@ -2417,11 +2550,11 @@
                             {
                               "kinds": [
                                 "OPERATOR",
-                                "OPERATOR_LOGICAL_AND"
+                                "OPERATOR_LOGICAL_OR"
                               ],
                               "nativeNode": "TOKEN",
                               "token": {
-                                "value": "\u0026\u0026",
+                                "value": "||",
                                 "line": 24,
                                 "endLine": 24,
                                 "column": 11,
@@ -2443,142 +2576,9 @@
                                   ],
                                   "nativeNode": "TOKEN",
                                   "token": {
-                                    "value": "true",
+                                    "value": "false",
                                     "line": 24,
                                     "endLine": 24,
-                                    "column": 14,
-                                    "endColumn": 17
-                                  },
-                                  "children": []
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "kinds": [],
-                      "nativeNode": "TOKEN",
-                      "token": {
-                        "value": ";",
-                        "line": 24,
-                        "endLine": 24,
-                        "column": 18,
-                        "endColumn": 18
-                      },
-                      "children": []
-                    }
-                  ]
-                },
-                {
-                  "kinds": [
-                    "STATEMENT"
-                  ],
-                  "nativeNode": "EXPRESSION_STATEMENT",
-                  "children": [
-                    {
-                      "kinds": [
-                        "EXPRESSION",
-                        "ASSIGNMENT"
-                      ],
-                      "nativeNode": "ASSIGNMENT",
-                      "children": [
-                        {
-                          "kinds": [
-                            "IDENTIFIER",
-                            "ASSIGNMENT_TARGET"
-                          ],
-                          "nativeNode": "IDENTIFIER",
-                          "children": [
-                            {
-                              "kinds": [],
-                              "nativeNode": "TOKEN",
-                              "token": {
-                                "value": "b",
-                                "line": 25,
-                                "endLine": 25,
-                                "column": 5,
-                                "endColumn": 5
-                              },
-                              "children": []
-                            }
-                          ]
-                        },
-                        {
-                          "kinds": [
-                            "ASSIGNMENT_OPERATOR"
-                          ],
-                          "nativeNode": "TOKEN",
-                          "token": {
-                            "value": "\u003d",
-                            "line": 25,
-                            "endLine": 25,
-                            "column": 7,
-                            "endColumn": 7
-                          },
-                          "children": []
-                        },
-                        {
-                          "kinds": [
-                            "EXPRESSION",
-                            "BINARY_EXPRESSION",
-                            "ASSIGNMENT_VALUE"
-                          ],
-                          "nativeNode": "CONDITIONAL_OR",
-                          "children": [
-                            {
-                              "kinds": [
-                                "IDENTIFIER"
-                              ],
-                              "nativeNode": "IDENTIFIER",
-                              "children": [
-                                {
-                                  "kinds": [],
-                                  "nativeNode": "TOKEN",
-                                  "token": {
-                                    "value": "b",
-                                    "line": 25,
-                                    "endLine": 25,
-                                    "column": 9,
-                                    "endColumn": 9
-                                  },
-                                  "children": []
-                                }
-                              ]
-                            },
-                            {
-                              "kinds": [
-                                "OPERATOR",
-                                "OPERATOR_LOGICAL_OR"
-                              ],
-                              "nativeNode": "TOKEN",
-                              "token": {
-                                "value": "||",
-                                "line": 25,
-                                "endLine": 25,
-                                "column": 11,
-                                "endColumn": 12
-                              },
-                              "children": []
-                            },
-                            {
-                              "kinds": [
-                                "EXPRESSION",
-                                "LITERAL",
-                                "BOOLEAN_LITERAL"
-                              ],
-                              "nativeNode": "BOOLEAN_LITERAL",
-                              "children": [
-                                {
-                                  "kinds": [
-                                    "KEYWORD"
-                                  ],
-                                  "nativeNode": "TOKEN",
-                                  "token": {
-                                    "value": "false",
-                                    "line": 25,
-                                    "endLine": 25,
                                     "column": 14,
                                     "endColumn": 18
                                   },
@@ -2595,8 +2595,8 @@
                       "nativeNode": "TOKEN",
                       "token": {
                         "value": ";",
-                        "line": 25,
-                        "endLine": 25,
+                        "line": 24,
+                        "endLine": 24,
                         "column": 19,
                         "endColumn": 19
                       },
@@ -2609,8 +2609,8 @@
                   "nativeNode": "TOKEN",
                   "token": {
                     "value": "}",
-                    "line": 26,
-                    "endLine": 26,
+                    "line": 25,
+                    "endLine": 25,
                     "column": 3,
                     "endColumn": 3
                   },
@@ -2639,8 +2639,8 @@
                   "nativeNode": "TOKEN",
                   "token": {
                     "value": "void",
-                    "line": 28,
-                    "endLine": 28,
+                    "line": 27,
+                    "endLine": 27,
                     "column": 3,
                     "endColumn": 6
                   },
@@ -2660,8 +2660,8 @@
                   "nativeNode": "TOKEN",
                   "token": {
                     "value": "unary",
-                    "line": 28,
-                    "endLine": 28,
+                    "line": 27,
+                    "endLine": 27,
                     "column": 8,
                     "endColumn": 12
                   },
@@ -2676,8 +2676,8 @@
               "nativeNode": "TOKEN",
               "token": {
                 "value": "(",
-                "line": 28,
-                "endLine": 28,
+                "line": 27,
+                "endLine": 27,
                 "column": 13,
                 "endColumn": 13
               },
@@ -2690,8 +2690,8 @@
               "nativeNode": "TOKEN",
               "token": {
                 "value": ")",
-                "line": 28,
-                "endLine": 28,
+                "line": 27,
+                "endLine": 27,
                 "column": 14,
                 "endColumn": 14
               },
@@ -2709,12 +2709,122 @@
                   "nativeNode": "TOKEN",
                   "token": {
                     "value": "{",
-                    "line": 28,
-                    "endLine": 28,
+                    "line": 27,
+                    "endLine": 27,
                     "column": 16,
                     "endColumn": 16
                   },
                   "children": []
+                },
+                {
+                  "kinds": [
+                    "STATEMENT"
+                  ],
+                  "nativeNode": "EXPRESSION_STATEMENT",
+                  "children": [
+                    {
+                      "kinds": [
+                        "EXPRESSION",
+                        "ASSIGNMENT"
+                      ],
+                      "nativeNode": "ASSIGNMENT",
+                      "children": [
+                        {
+                          "kinds": [
+                            "IDENTIFIER",
+                            "ASSIGNMENT_TARGET"
+                          ],
+                          "nativeNode": "IDENTIFIER",
+                          "children": [
+                            {
+                              "kinds": [],
+                              "nativeNode": "TOKEN",
+                              "token": {
+                                "value": "x",
+                                "line": 28,
+                                "endLine": 28,
+                                "column": 5,
+                                "endColumn": 5
+                              },
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "kinds": [
+                            "ASSIGNMENT_OPERATOR"
+                          ],
+                          "nativeNode": "TOKEN",
+                          "token": {
+                            "value": "\u003d",
+                            "line": 28,
+                            "endLine": 28,
+                            "column": 7,
+                            "endColumn": 7
+                          },
+                          "children": []
+                        },
+                        {
+                          "kinds": [
+                            "EXPRESSION",
+                            "ASSIGNMENT_VALUE",
+                            "UNARY_EXPRESSION",
+                            "UNARY_PLUS"
+                          ],
+                          "nativeNode": "UNARY_PLUS",
+                          "children": [
+                            {
+                              "kinds": [
+                                "OPERATOR",
+                                "OPERATOR_ADD"
+                              ],
+                              "nativeNode": "TOKEN",
+                              "token": {
+                                "value": "+",
+                                "line": 28,
+                                "endLine": 28,
+                                "column": 9,
+                                "endColumn": 9
+                              },
+                              "children": []
+                            },
+                            {
+                              "kinds": [
+                                "EXPRESSION"
+                              ],
+                              "nativeNode": "INT_LITERAL",
+                              "children": [
+                                {
+                                  "kinds": [],
+                                  "nativeNode": "TOKEN",
+                                  "token": {
+                                    "value": "1",
+                                    "line": 28,
+                                    "endLine": 28,
+                                    "column": 10,
+                                    "endColumn": 10
+                                  },
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [],
+                      "nativeNode": "TOKEN",
+                      "token": {
+                        "value": ";",
+                        "line": 28,
+                        "endLine": 28,
+                        "column": 11,
+                        "endColumn": 11
+                      },
+                      "children": []
+                    }
+                  ]
                 },
                 {
                   "kinds": [
@@ -2769,18 +2879,18 @@
                             "EXPRESSION",
                             "ASSIGNMENT_VALUE",
                             "UNARY_EXPRESSION",
-                            "UNARY_PLUS"
+                            "UNARY_MINUS"
                           ],
-                          "nativeNode": "UNARY_PLUS",
+                          "nativeNode": "UNARY_MINUS",
                           "children": [
                             {
                               "kinds": [
                                 "OPERATOR",
-                                "OPERATOR_ADD"
+                                "OPERATOR_SUBTRACT"
                               ],
                               "nativeNode": "TOKEN",
                               "token": {
-                                "value": "+",
+                                "value": "-",
                                 "line": 29,
                                 "endLine": 29,
                                 "column": 9,
@@ -2879,18 +2989,18 @@
                             "EXPRESSION",
                             "ASSIGNMENT_VALUE",
                             "UNARY_EXPRESSION",
-                            "UNARY_MINUS"
+                            "BITWISE_COMPLEMENT"
                           ],
-                          "nativeNode": "UNARY_MINUS",
+                          "nativeNode": "BITWISE_COMPLEMENT",
                           "children": [
                             {
                               "kinds": [
                                 "OPERATOR",
-                                "OPERATOR_SUBTRACT"
+                                "OPERATOR_BITWISE_COMPLEMENT"
                               ],
                               "nativeNode": "TOKEN",
                               "token": {
-                                "value": "-",
+                                "value": "~",
                                 "line": 30,
                                 "endLine": 30,
                                 "column": 9,
@@ -2960,7 +3070,7 @@
                               "kinds": [],
                               "nativeNode": "TOKEN",
                               "token": {
-                                "value": "x",
+                                "value": "b",
                                 "line": 31,
                                 "endLine": 31,
                                 "column": 5,
@@ -2989,18 +3099,15 @@
                             "EXPRESSION",
                             "ASSIGNMENT_VALUE",
                             "UNARY_EXPRESSION",
-                            "BITWISE_COMPLEMENT"
+                            "LOGICAL_COMPLEMENT"
                           ],
-                          "nativeNode": "BITWISE_COMPLEMENT",
+                          "nativeNode": "LOGICAL_COMPLEMENT",
                           "children": [
                             {
-                              "kinds": [
-                                "OPERATOR",
-                                "OPERATOR_BITWISE_COMPLEMENT"
-                              ],
+                              "kinds": [],
                               "nativeNode": "TOKEN",
                               "token": {
-                                "value": "~",
+                                "value": "!",
                                 "line": 31,
                                 "endLine": 31,
                                 "column": 9,
@@ -3010,15 +3117,15 @@
                             },
                             {
                               "kinds": [
-                                "EXPRESSION"
+                                "IDENTIFIER"
                               ],
-                              "nativeNode": "INT_LITERAL",
+                              "nativeNode": "IDENTIFIER",
                               "children": [
                                 {
                                   "kinds": [],
                                   "nativeNode": "TOKEN",
                                   "token": {
-                                    "value": "1",
+                                    "value": "b",
                                     "line": 31,
                                     "endLine": 31,
                                     "column": 10,
@@ -3047,119 +3154,12 @@
                   ]
                 },
                 {
-                  "kinds": [
-                    "STATEMENT"
-                  ],
-                  "nativeNode": "EXPRESSION_STATEMENT",
-                  "children": [
-                    {
-                      "kinds": [
-                        "EXPRESSION",
-                        "ASSIGNMENT"
-                      ],
-                      "nativeNode": "ASSIGNMENT",
-                      "children": [
-                        {
-                          "kinds": [
-                            "IDENTIFIER",
-                            "ASSIGNMENT_TARGET"
-                          ],
-                          "nativeNode": "IDENTIFIER",
-                          "children": [
-                            {
-                              "kinds": [],
-                              "nativeNode": "TOKEN",
-                              "token": {
-                                "value": "b",
-                                "line": 32,
-                                "endLine": 32,
-                                "column": 5,
-                                "endColumn": 5
-                              },
-                              "children": []
-                            }
-                          ]
-                        },
-                        {
-                          "kinds": [
-                            "ASSIGNMENT_OPERATOR"
-                          ],
-                          "nativeNode": "TOKEN",
-                          "token": {
-                            "value": "\u003d",
-                            "line": 32,
-                            "endLine": 32,
-                            "column": 7,
-                            "endColumn": 7
-                          },
-                          "children": []
-                        },
-                        {
-                          "kinds": [
-                            "EXPRESSION",
-                            "ASSIGNMENT_VALUE",
-                            "UNARY_EXPRESSION",
-                            "LOGICAL_COMPLEMENT"
-                          ],
-                          "nativeNode": "LOGICAL_COMPLEMENT",
-                          "children": [
-                            {
-                              "kinds": [],
-                              "nativeNode": "TOKEN",
-                              "token": {
-                                "value": "!",
-                                "line": 32,
-                                "endLine": 32,
-                                "column": 9,
-                                "endColumn": 9
-                              },
-                              "children": []
-                            },
-                            {
-                              "kinds": [
-                                "IDENTIFIER"
-                              ],
-                              "nativeNode": "IDENTIFIER",
-                              "children": [
-                                {
-                                  "kinds": [],
-                                  "nativeNode": "TOKEN",
-                                  "token": {
-                                    "value": "b",
-                                    "line": 32,
-                                    "endLine": 32,
-                                    "column": 10,
-                                    "endColumn": 10
-                                  },
-                                  "children": []
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "kinds": [],
-                      "nativeNode": "TOKEN",
-                      "token": {
-                        "value": ";",
-                        "line": 32,
-                        "endLine": 32,
-                        "column": 11,
-                        "endColumn": 11
-                      },
-                      "children": []
-                    }
-                  ]
-                },
-                {
                   "kinds": [],
                   "nativeNode": "TOKEN",
                   "token": {
                     "value": "}",
-                    "line": 33,
-                    "endLine": 33,
+                    "line": 32,
+                    "endLine": 32,
                     "column": 3,
                     "endColumn": 3
                   },
@@ -3188,8 +3188,8 @@
                   "nativeNode": "TOKEN",
                   "token": {
                     "value": "void",
-                    "line": 35,
-                    "endLine": 35,
+                    "line": 34,
+                    "endLine": 34,
                     "column": 3,
                     "endColumn": 6
                   },
@@ -3209,8 +3209,8 @@
                   "nativeNode": "TOKEN",
                   "token": {
                     "value": "incdec",
-                    "line": 35,
-                    "endLine": 35,
+                    "line": 34,
+                    "endLine": 34,
                     "column": 8,
                     "endColumn": 13
                   },
@@ -3225,8 +3225,8 @@
               "nativeNode": "TOKEN",
               "token": {
                 "value": "(",
-                "line": 35,
-                "endLine": 35,
+                "line": 34,
+                "endLine": 34,
                 "column": 14,
                 "endColumn": 14
               },
@@ -3239,8 +3239,8 @@
               "nativeNode": "TOKEN",
               "token": {
                 "value": ")",
-                "line": 35,
-                "endLine": 35,
+                "line": 34,
+                "endLine": 34,
                 "column": 15,
                 "endColumn": 15
               },
@@ -3258,8 +3258,8 @@
                   "nativeNode": "TOKEN",
                   "token": {
                     "value": "{",
-                    "line": 35,
-                    "endLine": 35,
+                    "line": 34,
+                    "endLine": 34,
                     "column": 17,
                     "endColumn": 17
                   },
@@ -3290,8 +3290,8 @@
                               "nativeNode": "TOKEN",
                               "token": {
                                 "value": "x",
-                                "line": 36,
-                                "endLine": 36,
+                                "line": 35,
+                                "endLine": 35,
                                 "column": 5,
                                 "endColumn": 5
                               },
@@ -3304,8 +3304,8 @@
                           "nativeNode": "TOKEN",
                           "token": {
                             "value": "++",
-                            "line": 36,
-                            "endLine": 36,
+                            "line": 35,
+                            "endLine": 35,
                             "column": 6,
                             "endColumn": 7
                           },
@@ -3318,8 +3318,8 @@
                       "nativeNode": "TOKEN",
                       "token": {
                         "value": ";",
-                        "line": 36,
-                        "endLine": 36,
+                        "line": 35,
+                        "endLine": 35,
                         "column": 8,
                         "endColumn": 8
                       },
@@ -3346,8 +3346,8 @@
                           "nativeNode": "TOKEN",
                           "token": {
                             "value": "++",
-                            "line": 37,
-                            "endLine": 37,
+                            "line": 36,
+                            "endLine": 36,
                             "column": 5,
                             "endColumn": 6
                           },
@@ -3364,8 +3364,8 @@
                               "nativeNode": "TOKEN",
                               "token": {
                                 "value": "x",
-                                "line": 37,
-                                "endLine": 37,
+                                "line": 36,
+                                "endLine": 36,
                                 "column": 7,
                                 "endColumn": 7
                               },
@@ -3380,8 +3380,8 @@
                       "nativeNode": "TOKEN",
                       "token": {
                         "value": ";",
-                        "line": 37,
-                        "endLine": 37,
+                        "line": 36,
+                        "endLine": 36,
                         "column": 8,
                         "endColumn": 8
                       },
@@ -3414,8 +3414,8 @@
                               "nativeNode": "TOKEN",
                               "token": {
                                 "value": "x",
-                                "line": 38,
-                                "endLine": 38,
+                                "line": 37,
+                                "endLine": 37,
                                 "column": 5,
                                 "endColumn": 5
                               },
@@ -3428,8 +3428,8 @@
                           "nativeNode": "TOKEN",
                           "token": {
                             "value": "--",
-                            "line": 38,
-                            "endLine": 38,
+                            "line": 37,
+                            "endLine": 37,
                             "column": 6,
                             "endColumn": 7
                           },
@@ -3442,8 +3442,8 @@
                       "nativeNode": "TOKEN",
                       "token": {
                         "value": ";",
-                        "line": 38,
-                        "endLine": 38,
+                        "line": 37,
+                        "endLine": 37,
                         "column": 8,
                         "endColumn": 8
                       },
@@ -3470,8 +3470,8 @@
                           "nativeNode": "TOKEN",
                           "token": {
                             "value": "--",
-                            "line": 39,
-                            "endLine": 39,
+                            "line": 38,
+                            "endLine": 38,
                             "column": 5,
                             "endColumn": 6
                           },
@@ -3488,8 +3488,8 @@
                               "nativeNode": "TOKEN",
                               "token": {
                                 "value": "x",
-                                "line": 39,
-                                "endLine": 39,
+                                "line": 38,
+                                "endLine": 38,
                                 "column": 7,
                                 "endColumn": 7
                               },
@@ -3504,8 +3504,8 @@
                       "nativeNode": "TOKEN",
                       "token": {
                         "value": ";",
-                        "line": 39,
-                        "endLine": 39,
+                        "line": 38,
+                        "endLine": 38,
                         "column": 8,
                         "endColumn": 8
                       },
@@ -3518,8 +3518,8 @@
                   "nativeNode": "TOKEN",
                   "token": {
                     "value": "}",
-                    "line": 40,
-                    "endLine": 40,
+                    "line": 39,
+                    "endLine": 39,
                     "column": 3,
                     "endColumn": 3
                   },
@@ -3534,8 +3534,8 @@
           "nativeNode": "TOKEN",
           "token": {
             "value": "}",
-            "line": 41,
-            "endLine": 41,
+            "line": 40,
+            "endLine": 40,
             "column": 1,
             "endColumn": 1
           },
@@ -3550,8 +3550,8 @@
       "nativeNode": "TOKEN",
       "token": {
         "value": "",
-        "line": 42,
-        "endLine": 42,
+        "line": 41,
+        "endLine": 41,
         "column": 1,
         "endColumn": 0
       },

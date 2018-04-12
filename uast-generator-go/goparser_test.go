@@ -252,7 +252,7 @@ func Test_mapFuncDecl_complete(t *testing.T) {
 	n1 := intParamsNames.Children[0]
 	actual = newTestNode(n1)
 	expected = TestNode{
-		kinds:      []Kind{IDENTIFIER},
+		kinds:      []Kind{VARIABLE_NAME, IDENTIFIER},
 		nativeNode: "[0](Ident)",
 		token:      Token{Value: "n1", Line: 3, Column: 17},
 	}
@@ -299,7 +299,7 @@ func Test_mapFuncDecl_complete(t *testing.T) {
 	s1 := stringParamsNames.Children[0]
 	actual = newTestNode(s1)
 	expected = TestNode{
-		kinds:      []Kind{IDENTIFIER},
+		kinds:      []Kind{VARIABLE_NAME, IDENTIFIER},
 		nativeNode: "[0](Ident)",
 		token:      Token{Value: "s1", Line: 3, Column: 29},
 	}
@@ -335,6 +335,7 @@ func Test_mapFuncDecl_complete(t *testing.T) {
 	intResults := results.Children[1]
 	actual = newTestNode(intResults)
 	expected = TestNode{
+		kinds:      []Kind{VARIABLE_DECLARATION},
 		nativeNode: "[0](Field)",
 		children:   2,
 	}
@@ -357,7 +358,7 @@ func Test_mapFuncDecl_complete(t *testing.T) {
 	n := intResultsNames.Children[0]
 	actual = newTestNode(n)
 	expected = TestNode{
-		kinds:      []Kind{RESULT, IDENTIFIER},
+		kinds:      []Kind{VARIABLE_NAME, IDENTIFIER},
 		nativeNode: "[0](Ident)",
 		token:      Token{Value: "n", Line: 3, Column: 50},
 	}
@@ -759,7 +760,7 @@ func main(i int) {
 	})
 	actual := strings.Join(actualSlice, " ")
 	expected := "package:[KEYWORD] main:[IDENTIFIER] " +
-		"func:[KEYWORD] main:[FUNCTION_NAME IDENTIFIER] (:[] i:[IDENTIFIER] int:[TYPE IDENTIFIER] ):[] {:[]" +
+		"func:[KEYWORD] main:[FUNCTION_NAME IDENTIFIER] (:[] i:[VARIABLE_NAME IDENTIFIER] int:[TYPE IDENTIFIER] ):[] {:[]" +
 		" fmt:[IDENTIFIER] .:[] Println:[IDENTIFIER] (:[LEFT_PARENTHESIS]" +
 		" \"a\":[EXPRESSION LITERAL STRING_LITERAL] ,:[]" +
 		" 'b':[EXPRESSION LITERAL CHAR_LITERAL] ,:[]" +
@@ -900,7 +901,7 @@ type S struct {
   a int
 }
 
-func foo() {
+func (t *Type) foo(x,y int, z string) (out1,out2 int, out3 string) {
   // GenDecl.Tok is VAR
   var a int
   var b = 1
@@ -913,9 +914,13 @@ func foo() {
     E byte = 'd'
   )
 }`
-
-	actual := extractKind(t, source, VARIABLE_DECLARATION)
-	expected := []string{"a int", "b = 1", "c, d int = 1, 2"}
+	actual := extractKind(t, source, PARAMETER)
+	expected := []string{"t *Type", "x,y int", "z string"}
+	if !reflect.DeepEqual(expected, actual) {
+		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+	}
+	actual = extractKind(t, source, VARIABLE_DECLARATION)
+	expected = []string{"out1,out2 int", "out3 string", "a int", "b = 1", "c, d int = 1, 2"}
 	if !reflect.DeepEqual(expected, actual) {
 		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
 	}
@@ -925,7 +930,7 @@ func foo() {
 		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
 	}
 	actual = extractKind(t, source, VARIABLE_NAME)
-	expected = []string{"a", "b", "c", "d", "A", "B", "C", "D", "E"}
+	expected = []string{"t", "x", "y", "z", "out1", "out2", "out3", "a", "b", "c", "d", "A", "B", "C", "D", "E"}
 	if !reflect.DeepEqual(expected, actual) {
 		t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
 	}

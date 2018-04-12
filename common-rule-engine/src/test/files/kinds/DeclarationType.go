@@ -17,3 +17,14 @@ func foo() {
   )
 
 }
+
+func (t *Type) foo2() {} // Noncompliant {{TYPE}}
+//      ^^^^^
+
+func foo2(x,
+          y int) {} // Noncompliant {{TYPE}}
+//          ^^^
+
+func foo3() (out1,
+             out2 int) {} // Noncompliant {{TYPE}}
+//                ^^^
