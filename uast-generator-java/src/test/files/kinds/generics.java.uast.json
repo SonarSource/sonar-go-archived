@@ -259,7 +259,8 @@
         },
         {
           "kinds": [
-            "EXPRESSION"
+            "EXPRESSION",
+            "TYPE"
           ],
           "nativeNode": "PARAMETERIZED_TYPE",
           "children": [

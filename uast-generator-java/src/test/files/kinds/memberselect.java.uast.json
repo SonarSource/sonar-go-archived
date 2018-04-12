@@ -130,7 +130,8 @@
           "children": [
             {
               "kinds": [
-                "RESULT_LIST"
+                "RESULT_LIST",
+                "TYPE"
               ],
               "nativeNode": "PRIMITIVE_TYPE",
               "children": [

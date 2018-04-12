@@ -406,6 +406,11 @@ public class Generator {
       case PACKAGE:
         result.add(UastNode.Kind.PACKAGE);
         break;
+      case PARAMETERIZED_TYPE:
+      case PRIMITIVE_TYPE:
+      case UNION_TYPE:
+        result.add(UastNode.Kind.TYPE);
+        break;
       default:
         break;
     }
