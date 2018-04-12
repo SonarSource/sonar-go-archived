@@ -26,6 +26,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -73,14 +74,29 @@ public class TestUtils {
   }
 
   private static Path createGoUast(Path testFile) throws IOException {
+    Path uastFile = Paths.get("build", "uast").resolve(testFile.getFileName() + ".uast.json");
+    uastFile.toFile().getParentFile().mkdirs();
+    execGoParser(uastFile, testFile.toString());
+    return uastFile;
+  }
+
+  public static Path createGoParserKinds() throws IOException {
+    Path kindsFile = Paths.get("build", "uast").resolve("go-parser-kinds.text");
+    kindsFile.toFile().getParentFile().mkdirs();
+    execGoParser(kindsFile, "-k");
+    return kindsFile;
+  }
+
+  private static void execGoParser(Path destination, String... arguments) throws IOException {
     Path binary = Paths.get("../uast-generator-go/build/", getExecutableForCurrentOS());
     if (!Files.exists(binary)) {
       throw new IllegalStateException(binary + " not found");
     }
-    ProcessBuilder pb = new ProcessBuilder(binary.toString(), testFile.toString());
-    Path uastFile = Paths.get("build", "uast").resolve(testFile.getFileName() + ".uast.json");
-    uastFile.toFile().getParentFile().mkdirs();
-    pb.redirectOutput(uastFile.toFile());
+    List<String> command = new ArrayList<>();
+    command.add(binary.toString());
+    command.addAll(Arrays.asList(arguments));
+    ProcessBuilder pb = new ProcessBuilder(command);
+    pb.redirectOutput(ProcessBuilder.Redirect.to(destination.toFile()));
     pb.redirectError(ProcessBuilder.Redirect.INHERIT);
     Process process = pb.start();
     try {
@@ -88,7 +104,6 @@ public class TestUtils {
     } catch (InterruptedException e) {
       throw new RuntimeException(e);
     }
-    return uastFile;
   }
 
   public static void checkRule(Check check, Path testFile, UastNode uast) throws IOException {

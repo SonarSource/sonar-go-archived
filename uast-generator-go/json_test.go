@@ -38,7 +38,7 @@ func fun() string {
     {"kinds": ["KEYWORD"], "token": {"value":"package","line":1,"column":1}, "nativeNode": ""},
     {"kinds": ["IDENTIFIER"], "token": {"value":"main","line":1,"column":9}, "nativeNode": "Name(Ident)"}
   ]},
-  {"kinds": ["DECL_LIST"], "nativeNode": "Decls([]Decl)", "children": [
+  {"nativeNode": "Decls([]Decl)", "children": [
     {"kinds": ["FUNCTION"], "nativeNode": "[0](FuncDecl)", "children": [
       {"kinds": ["KEYWORD"], "token": {"value":"func","line":3,"column":1}, "nativeNode": "Type.Func"},
       {"kinds": ["FUNCTION_NAME","IDENTIFIER"], "token": {"value":"fun","line":3,"column":6}, "nativeNode": "Name(Ident)"},

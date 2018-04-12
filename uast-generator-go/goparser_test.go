@@ -99,7 +99,6 @@ func Test_mapFile(t *testing.T) {
 
 	actual = newTestNode(uast.Children[1])
 	expected = TestNode{
-		kinds:      []Kind{DECL_LIST},
 		nativeNode: "Decls([]Decl)",
 		children:   2,
 	}
@@ -762,8 +761,8 @@ func main(i int) {
 	expected := "package:[KEYWORD] main:[IDENTIFIER] " +
 		"func:[KEYWORD] main:[FUNCTION_NAME IDENTIFIER] (:[] i:[VARIABLE_NAME IDENTIFIER] int:[TYPE IDENTIFIER] ):[] {:[]" +
 		" fmt:[IDENTIFIER] .:[] Println:[IDENTIFIER] (:[LEFT_PARENTHESIS]" +
-		" \"a\":[EXPRESSION LITERAL STRING_LITERAL] ,:[]" +
-		" 'b':[EXPRESSION LITERAL CHAR_LITERAL] ,:[]" +
+		" \"a\":[EXPRESSION ARGUMENT LITERAL STRING_LITERAL] ,:[]" +
+		" 'b':[EXPRESSION ARGUMENT LITERAL CHAR_LITERAL] ,:[]" +
 		" ):[RIGHT_PARENTHESIS] " +
 		"return:[KEYWORD] 3:[EXPRESSION LITERAL INT_LITERAL DECIMAL_LITERAL] }:[] :[EOF]"
 	if expected != actual {

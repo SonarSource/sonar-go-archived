@@ -61,7 +61,7 @@ import (
 			NewTypeKind((*ast.BinaryExpr)(nil), "BINARY_EXPRESSION"),
 			NewTypeKind((*ast.ParenExpr)(nil), "PARENTHESIZED_EXPRESSION"),
 			NewTypeKind((*ast.CallExpr)(nil), "CALL"),
-			NewTypeKind((*ast.SelectorExpr)(nil), "SELECTOR_EXPR"),
+			NewTypeKind((*ast.SelectorExpr)(nil), "MEMBER_SELECT"),
 			NewTypeKind((*ast.SwitchStmt)(nil), "SWITCH"),
 			NewTypeKind((*ast.TypeSwitchStmt)(nil), "SWITCH"),
 			NewTypeKind((*ast.CaseClause)(nil), "CASE"),
@@ -94,7 +94,6 @@ import (
 			// All array elements can be referenced by adding the suffix "[i]", e.g. "CaseClause#List[i]"
 			// Variation: some types can be referenced by an alias defined in "StructVariations" like "FieldParam" and
 			// "FieldResult" instead of "Field"
-			"File#Decls":               "DECL_LIST",
 			"FuncDecl#Recv":            "PARAMETER_LIST",
 			"FuncDecl#Name":            "FUNCTION_NAME",
 			"FuncType#Params":          "PARAMETER_LIST",
@@ -114,7 +113,7 @@ import (
 			"ParenExpr#Rparen":         "RIGHT_PARENTHESIS",
 			"CallExpr#Lparen":          "LEFT_PARENTHESIS",
 			"CallExpr#Rparen":          "RIGHT_PARENTHESIS",
-			"CallExpr#Args":            "ARGS_LIST",
+			"CallExpr#Args":            "ARGUMENTS",
 			"AssignStmt#Tok":           "ASSIGNMENT_OPERATOR",
 			"AssignStmt#Lhs":           "ASSIGNMENT_TARGET_LIST",
 			"AssignStmt#Lhs[i]":        "ASSIGNMENT_TARGET",
@@ -141,7 +140,7 @@ import (
 			"SliceExpr#Max":         "EXPRESSION",
 			"TypeAssertExpr#X":      "EXPRESSION",
 			"CallExpr#Fun":          "EXPRESSION",
-			"CallExpr#Args[i]":      "EXPRESSION",
+			"CallExpr#Args[i]":      "EXPRESSION, ARGUMENT",
 			"UnaryExpr#X":           "EXPRESSION",
 			"BinaryExpr#X":          "EXPRESSION",
 			"BinaryExpr#Y":          "EXPRESSION",

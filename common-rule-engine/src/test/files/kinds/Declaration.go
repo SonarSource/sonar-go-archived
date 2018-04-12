@@ -1,4 +1,5 @@
-package main
+   package main // Noncompliant {{PACKAGE}}
+// ^^^^^^^^^^^^
 
    import "file.go" // Noncompliant {{IMPORT}}
 // ^^^^^^^^^^^^^^^^
