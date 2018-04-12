@@ -250,6 +250,7 @@ public final class UastNode {
     DO_WHILE(LOOP),
     CAST,
     ENUM,
+    INITIALIZER,
     ;
 
     private final List<Kind> extendedKinds;

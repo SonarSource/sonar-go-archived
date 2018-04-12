@@ -525,7 +525,9 @@
                   "nativeNode": "VARIABLE",
                   "children": [
                     {
-                      "kinds": [],
+                      "kinds": [
+                        "TYPE"
+                      ],
                       "nativeNode": "PRIMITIVE_TYPE",
                       "children": [
                         {
@@ -588,7 +590,9 @@
                   "nativeNode": "VARIABLE",
                   "children": [
                     {
-                      "kinds": [],
+                      "kinds": [
+                        "TYPE"
+                      ],
                       "nativeNode": "PRIMITIVE_TYPE",
                       "children": [
                         {

@@ -61,13 +61,15 @@
         {
           "kinds": [
             "STATEMENT",
-            "ASSIGNMENT"
+            "ASSIGNMENT",
+            "VARIABLE_DECLARATION"
           ],
           "nativeNode": "VARIABLE",
           "children": [
             {
               "kinds": [
-                "EXPRESSION"
+                "EXPRESSION",
+                "TYPE"
               ],
               "nativeNode": "PARAMETERIZED_TYPE",
               "children": [
@@ -155,7 +157,8 @@
             {
               "kinds": [
                 "IDENTIFIER",
-                "ASSIGNMENT_TARGET"
+                "ASSIGNMENT_TARGET",
+                "VARIABLE_NAME"
               ],
               "nativeNode": "IDENTIFIER",
               "children": [
@@ -191,19 +194,22 @@
               "kinds": [
                 "EXPRESSION",
                 "FUNCTION_LITERAL",
-                "ASSIGNMENT_VALUE"
+                "ASSIGNMENT_VALUE",
+                "INITIALIZER"
               ],
               "nativeNode": "LAMBDA_EXPRESSION",
               "children": [
                 {
                   "kinds": [
-                    "STATEMENT"
+                    "STATEMENT",
+                    "VARIABLE_DECLARATION"
                   ],
                   "nativeNode": "VARIABLE",
                   "children": [
                     {
                       "kinds": [
-                        "IDENTIFIER"
+                        "IDENTIFIER",
+                        "VARIABLE_NAME"
                       ],
                       "nativeNode": "IDENTIFIER",
                       "children": [

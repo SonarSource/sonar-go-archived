@@ -164,7 +164,8 @@ class UastNode {
     ENUM,
     CONSTANT_DECLARATION,
     IMPORT,
-    IMPORT_ENTRY;
+    IMPORT_ENTRY,
+    INITIALIZER;
 
     @Nullable
     final String token;

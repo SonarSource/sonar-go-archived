@@ -129,13 +129,15 @@
                 {
                   "kinds": [
                     "STATEMENT",
-                    "ASSIGNMENT"
+                    "ASSIGNMENT",
+                    "VARIABLE_DECLARATION"
                   ],
                   "nativeNode": "VARIABLE",
                   "children": [
                     {
                       "kinds": [
-                        "IDENTIFIER"
+                        "IDENTIFIER",
+                        "TYPE"
                       ],
                       "nativeNode": "IDENTIFIER",
                       "children": [
@@ -156,7 +158,8 @@
                     {
                       "kinds": [
                         "IDENTIFIER",
-                        "ASSIGNMENT_TARGET"
+                        "ASSIGNMENT_TARGET",
+                        "VARIABLE_NAME"
                       ],
                       "nativeNode": "IDENTIFIER",
                       "children": [
@@ -192,7 +195,8 @@
                       "kinds": [
                         "EXPRESSION",
                         "ASSIGNMENT_VALUE",
-                        "CAST"
+                        "CAST",
+                        "INITIALIZER"
                       ],
                       "nativeNode": "TYPE_CAST",
                       "children": [
@@ -324,7 +328,8 @@
                   "children": [
                     {
                       "kinds": [
-                        "IDENTIFIER"
+                        "IDENTIFIER",
+                        "TYPE"
                       ],
                       "nativeNode": "IDENTIFIER",
                       "children": [

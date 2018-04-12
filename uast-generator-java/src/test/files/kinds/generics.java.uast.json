@@ -126,13 +126,15 @@
         },
         {
           "kinds": [
-            "STATEMENT"
+            "STATEMENT",
+            "VARIABLE_DECLARATION"
           ],
           "nativeNode": "VARIABLE",
           "children": [
             {
               "kinds": [
-                "IDENTIFIER"
+                "IDENTIFIER",
+                "TYPE"
               ],
               "nativeNode": "IDENTIFIER",
               "children": [
@@ -152,7 +154,8 @@
             },
             {
               "kinds": [
-                "IDENTIFIER"
+                "IDENTIFIER",
+                "VARIABLE_NAME"
               ],
               "nativeNode": "IDENTIFIER",
               "children": [

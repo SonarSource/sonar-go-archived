@@ -387,6 +387,12 @@ public class Generator {
       case IMPORT:
         result.add(UastNode.Kind.IMPORT);
         break;
+      case INITIALIZER:
+        result.add(UastNode.Kind.INITIALIZER);
+        break;
+      case VARIABLE:
+        result.add(UastNode.Kind.VARIABLE_DECLARATION);
+      break;
       default:
         break;
     }
@@ -439,6 +445,9 @@ public class Generator {
     @Override
     public void visitVariable(VariableTree tree) {
       super.visitVariable(tree);
+      addKind(tree.simpleName(), UastNode.Kind.VARIABLE_NAME);
+      addKind(tree.initializer(), UastNode.Kind.INITIALIZER);
+      addKind(tree.type(), UastNode.Kind.TYPE);
       if (tree.initializer() != null) {
         addKind(tree, UastNode.Kind.ASSIGNMENT);
         addKind(tree.simpleName(), UastNode.Kind.ASSIGNMENT_TARGET);
@@ -459,8 +468,7 @@ public class Generator {
       methodNode.children.remove(openParen);
       paramListChildren.add(openParen);
       tree.parameters().forEach(p -> {
-        addKind(p, UastNode.Kind.PARAMETER, UastNode.Kind.VARIABLE_DECLARATION);
-        addKind(p.simpleName(), UastNode.Kind.VARIABLE_NAME);
+        addKind(p, UastNode.Kind.PARAMETER);
         UastNode paramNode = treeUastNodeMap.get(p);
         methodNode.children.remove(paramNode);
         paramListChildren.add(paramNode);

@@ -61,7 +61,8 @@
         {
           "kinds": [
             "STATEMENT",
-            "ASSIGNMENT"
+            "ASSIGNMENT",
+            "VARIABLE_DECLARATION"
           ],
           "nativeNode": "VARIABLE",
           "children": [
@@ -121,7 +122,8 @@
             {
               "kinds": [
                 "IDENTIFIER",
-                "ASSIGNMENT_TARGET"
+                "ASSIGNMENT_TARGET",
+                "VARIABLE_NAME"
               ],
               "nativeNode": "IDENTIFIER",
               "children": [
@@ -156,7 +158,8 @@
             {
               "kinds": [
                 "EXPRESSION",
-                "ASSIGNMENT_VALUE"
+                "ASSIGNMENT_VALUE",
+                "INITIALIZER"
               ],
               "nativeNode": "NEW_ARRAY",
               "children": [

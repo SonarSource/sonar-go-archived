@@ -165,12 +165,15 @@
                 {
                   "kinds": [
                     "STATEMENT",
-                    "ASSIGNMENT"
+                    "ASSIGNMENT",
+                    "VARIABLE_DECLARATION"
                   ],
                   "nativeNode": "VARIABLE",
                   "children": [
                     {
-                      "kinds": [],
+                      "kinds": [
+                        "TYPE"
+                      ],
                       "nativeNode": "PRIMITIVE_TYPE",
                       "children": [
                         {
@@ -192,7 +195,8 @@
                     {
                       "kinds": [
                         "IDENTIFIER",
-                        "ASSIGNMENT_TARGET"
+                        "ASSIGNMENT_TARGET",
+                        "VARIABLE_NAME"
                       ],
                       "nativeNode": "IDENTIFIER",
                       "children": [
@@ -228,7 +232,8 @@
                       "kinds": [
                         "EXPRESSION",
                         "PARENTHESIZED_EXPRESSION",
-                        "ASSIGNMENT_VALUE"
+                        "ASSIGNMENT_VALUE",
+                        "INITIALIZER"
                       ],
                       "nativeNode": "PARENTHESIZED_EXPRESSION",
                       "children": [
