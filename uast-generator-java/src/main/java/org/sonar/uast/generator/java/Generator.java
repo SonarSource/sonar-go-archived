@@ -393,6 +393,9 @@ public class Generator {
       case VARIABLE:
         result.add(UastNode.Kind.VARIABLE_DECLARATION);
       break;
+      case INSTANCE_OF:
+        result.add(UastNode.Kind.TYPE_TEST);
+        break;
       default:
         break;
     }

@@ -251,6 +251,7 @@ public final class UastNode {
     CAST,
     ENUM,
     INITIALIZER,
+    TYPE_TEST
     ;
 
     private final List<Kind> extendedKinds;
