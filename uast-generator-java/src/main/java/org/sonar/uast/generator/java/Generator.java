@@ -399,6 +399,10 @@ public class Generator {
       case MEMBER_SELECT:
         result.add(UastNode.Kind.MEMBER_SELECT);
         break;
+      case METHOD_INVOCATION:
+      case NEW_CLASS:
+        result.add(UastNode.Kind.CALL);
+        break;
       default:
         break;
     }
