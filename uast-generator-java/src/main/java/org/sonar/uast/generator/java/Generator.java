@@ -373,6 +373,9 @@ public class Generator {
       case ARRAY_TYPE:
         result.add(UastNode.Kind.TYPE);
         break;
+      case TYPE_CAST:
+        result.add(UastNode.Kind.CAST);
+        break;
       default:
         break;
     }
