@@ -704,7 +704,6 @@
                       "kinds": [
                         "EXPRESSION",
                         "CONDITION",
-                        "LITERAL",
                         "BOOLEAN_LITERAL"
                       ],
                       "nativeNode": "BOOLEAN_LITERAL",
@@ -931,7 +930,8 @@
                             },
                             {
                               "kinds": [
-                                "EXPRESSION"
+                                "EXPRESSION",
+                                "DECIMAL_LITERAL"
                               ],
                               "nativeNode": "INT_LITERAL",
                               "children": [
@@ -985,7 +985,8 @@
                             },
                             {
                               "kinds": [
-                                "EXPRESSION"
+                                "EXPRESSION",
+                                "DECIMAL_LITERAL"
                               ],
                               "nativeNode": "INT_LITERAL",
                               "children": [
@@ -1255,6 +1256,7 @@
                                 {
                                   "kinds": [
                                     "EXPRESSION",
+                                    "OCTAL_LITERAL",
                                     "ASSIGNMENT_VALUE"
                                   ],
                                   "nativeNode": "INT_LITERAL",
@@ -1333,7 +1335,8 @@
                             },
                             {
                               "kinds": [
-                                "EXPRESSION"
+                                "EXPRESSION",
+                                "DECIMAL_LITERAL"
                               ],
                               "nativeNode": "INT_LITERAL",
                               "children": [
@@ -1564,6 +1567,7 @@
                                         {
                                           "kinds": [
                                             "EXPRESSION",
+                                            "OCTAL_LITERAL",
                                             "ASSIGNMENT_VALUE"
                                           ],
                                           "nativeNode": "INT_LITERAL",
@@ -1642,7 +1646,8 @@
                                     },
                                     {
                                       "kinds": [
-                                        "EXPRESSION"
+                                        "EXPRESSION",
+                                        "DECIMAL_LITERAL"
                                       ],
                                       "nativeNode": "INT_LITERAL",
                                       "children": [
@@ -2094,7 +2099,6 @@
                     {
                       "kinds": [
                         "EXPRESSION",
-                        "LITERAL",
                         "BOOLEAN_LITERAL"
                       ],
                       "nativeNode": "BOOLEAN_LITERAL",
@@ -2249,7 +2253,6 @@
                     {
                       "kinds": [
                         "EXPRESSION",
-                        "LITERAL",
                         "BOOLEAN_LITERAL"
                       ],
                       "nativeNode": "BOOLEAN_LITERAL",
@@ -2484,7 +2487,6 @@
                           "kinds": [
                             "EXPRESSION",
                             "CONDITION",
-                            "LITERAL",
                             "BOOLEAN_LITERAL"
                           ],
                           "nativeNode": "BOOLEAN_LITERAL",
@@ -2520,6 +2522,7 @@
                         {
                           "kinds": [
                             "EXPRESSION",
+                            "DECIMAL_LITERAL",
                             "THEN"
                           ],
                           "nativeNode": "INT_LITERAL",
@@ -2553,7 +2556,8 @@
                         {
                           "kinds": [
                             "EXPRESSION",
-                            "ELSE"
+                            "ELSE",
+                            "DECIMAL_LITERAL"
                           ],
                           "nativeNode": "INT_LITERAL",
                           "children": [

@@ -238,7 +238,6 @@
                 {
                   "kinds": [
                     "EXPRESSION",
-                    "LITERAL",
                     "BOOLEAN_LITERAL"
                   ],
                   "nativeNode": "BOOLEAN_LITERAL",

@@ -209,6 +209,7 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
+                                "DECIMAL_LITERAL",
                                 "ARGUMENT"
                               ],
                               "nativeNode": "INT_LITERAL",
@@ -249,7 +250,8 @@
                               "children": [
                                 {
                                   "kinds": [
-                                    "EXPRESSION"
+                                    "EXPRESSION",
+                                    "DECIMAL_LITERAL"
                                   ],
                                   "nativeNode": "INT_LITERAL",
                                   "children": [
@@ -284,7 +286,8 @@
                                 },
                                 {
                                   "kinds": [
-                                    "EXPRESSION"
+                                    "EXPRESSION",
+                                    "DECIMAL_LITERAL"
                                   ],
                                   "nativeNode": "INT_LITERAL",
                                   "children": [
