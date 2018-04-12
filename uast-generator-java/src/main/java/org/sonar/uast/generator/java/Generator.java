@@ -60,6 +60,7 @@ import org.sonar.plugins.java.api.tree.ExpressionTree;
 import org.sonar.plugins.java.api.tree.ForStatementTree;
 import org.sonar.plugins.java.api.tree.IdentifierTree;
 import org.sonar.plugins.java.api.tree.IfStatementTree;
+import org.sonar.plugins.java.api.tree.ImportTree;
 import org.sonar.plugins.java.api.tree.LabeledStatementTree;
 import org.sonar.plugins.java.api.tree.LiteralTree;
 import org.sonar.plugins.java.api.tree.MethodInvocationTree;
@@ -383,6 +384,9 @@ public class Generator {
       case ENUM_CONSTANT:
         result.add(UastNode.Kind.CONSTANT_DECLARATION);
         break;
+      case IMPORT:
+        result.add(UastNode.Kind.IMPORT);
+        break;
       default:
         break;
     }
@@ -541,6 +545,12 @@ public class Generator {
       addKind(tree.expression(), UastNode.Kind.ARRAY_OBJECT_EXPRESSION);
       addKind(tree.dimension().expression(), UastNode.Kind.ARRAY_KEY_EXPRESSION);
       super.visitArrayAccessExpression(tree);
+    }
+
+    @Override
+    public void visitImport(ImportTree tree) {
+      addKind(tree.qualifiedIdentifier(), UastNode.Kind.IMPORT_ENTRY);
+      super.visitImport(tree);
     }
 
     private void addKind(@Nullable Tree tree, UastNode.Kind... kind) {

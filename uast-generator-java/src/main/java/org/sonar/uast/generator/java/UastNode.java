@@ -162,7 +162,9 @@ class UastNode {
     ARRAY_KEY_EXPRESSION,
     CAST,
     ENUM,
-    CONSTANT_DECLARATION;
+    CONSTANT_DECLARATION,
+    IMPORT,
+    IMPORT_ENTRY;
 
     @Nullable
     final String token;
