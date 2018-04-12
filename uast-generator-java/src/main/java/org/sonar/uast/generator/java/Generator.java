@@ -47,6 +47,7 @@ import org.sonar.java.model.InternalSyntaxToken;
 import org.sonar.java.model.JavaTree;
 import org.sonar.java.model.expression.TypeArgumentListTreeImpl;
 import org.sonar.plugins.java.api.tree.Arguments;
+import org.sonar.plugins.java.api.tree.ArrayAccessExpressionTree;
 import org.sonar.plugins.java.api.tree.AssignmentExpressionTree;
 import org.sonar.plugins.java.api.tree.BaseTreeVisitor;
 import org.sonar.plugins.java.api.tree.BinaryExpressionTree;
@@ -366,6 +367,12 @@ public class Generator {
       case FLOAT_LITERAL:
         result.add(UastNode.Kind.FLOAT_LITERAL);
         break;
+      case ARRAY_ACCESS_EXPRESSION:
+        result.add(UastNode.Kind.ARRAY_ACCESS_EXPRESSION);
+        break;
+      case ARRAY_TYPE:
+        result.add(UastNode.Kind.TYPE);
+        break;
       default:
         break;
     }
@@ -517,6 +524,13 @@ public class Generator {
       addKind(tree.update(), UastNode.Kind.FOR_UPDATE);
       addKind(tree.statement(), UastNode.Kind.BODY);
       super.visitForStatement(tree);
+    }
+
+    @Override
+    public void visitArrayAccessExpression(ArrayAccessExpressionTree tree) {
+      addKind(tree.expression(), UastNode.Kind.ARRAY_OBJECT_EXPRESSION);
+      addKind(tree.dimension().expression(), UastNode.Kind.ARRAY_KEY_EXPRESSION);
+      super.visitArrayAccessExpression(tree);
     }
 
     private void addKind(@Nullable Tree tree, UastNode.Kind... kind) {

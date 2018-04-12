@@ -156,7 +156,11 @@ class UastNode {
     DO_WHILE,
     WHILE,
     VARIABLE_DECLARATION,
-    VARIABLE_NAME;
+    VARIABLE_NAME,
+    ARRAY_ACCESS_EXPRESSION,
+    ARRAY_OBJECT_EXPRESSION,
+    ARRAY_KEY_EXPRESSION,
+    ;
 
     @Nullable
     final String token;
