@@ -233,16 +233,16 @@ public class Generator {
         result.add(UastNode.Kind.STRING_LITERAL);
         break;
       case FOR_EACH_STATEMENT:
-        result.add(UastNode.Kind.LOOP);
         result.add(UastNode.Kind.FOREACH);
         break;
       case FOR_STATEMENT:
         result.add(UastNode.Kind.FOR);
-        result.add(UastNode.Kind.LOOP);
         break;
       case WHILE_STATEMENT:
+        result.add(UastNode.Kind.WHILE);
+        break;
       case DO_STATEMENT:
-        result.add(UastNode.Kind.LOOP);
+        result.add(UastNode.Kind.DO_WHILE);
         break;
       case IF_STATEMENT:
         result.add(UastNode.Kind.IF);

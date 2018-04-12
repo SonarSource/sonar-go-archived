@@ -58,17 +58,6 @@ public class UastKindsTest {
     assertThat(usedKindsSet).hasSameElementsAs(EnumSet.allOf(UastNode.Kind.class));
   }
 
-  @Test
-  void generate() throws Exception {
-    files().forEach(p -> {
-      try {
-        Generator.main(new String[] {p.toString()});
-      } catch (IOException e) {
-        throw new RuntimeException(e);
-      }
-    });
-  }
-
   static List<UastNode.Kind> collectKinds(UastNode uastNode) {
     List<UastNode.Kind> kinds = new ArrayList<>();
     collectKinds0(uastNode, kinds);

@@ -1150,7 +1150,6 @@
                     },
                     {
                       "kinds": [
-                        "LOOP",
                         "FOR",
                         "STATEMENT"
                       ],
@@ -1460,7 +1459,6 @@
                             },
                             {
                               "kinds": [
-                                "LOOP",
                                 "FOR",
                                 "STATEMENT"
                               ],
@@ -1861,7 +1859,6 @@
                 },
                 {
                   "kinds": [
-                    "LOOP",
                     "FOREACH",
                     "STATEMENT"
                   ],
@@ -2060,12 +2057,254 @@
                   ]
                 },
                 {
+                  "kinds": [
+                    "STATEMENT",
+                    "WHILE"
+                  ],
+                  "nativeNode": "WHILE_STATEMENT",
+                  "children": [
+                    {
+                      "kinds": [
+                        "KEYWORD"
+                      ],
+                      "nativeNode": "TOKEN",
+                      "token": {
+                        "value": "while",
+                        "line": 42,
+                        "endLine": 42,
+                        "column": 5,
+                        "endColumn": 9
+                      },
+                      "children": []
+                    },
+                    {
+                      "kinds": [
+                        "LEFT_PARENTHESIS"
+                      ],
+                      "nativeNode": "TOKEN",
+                      "token": {
+                        "value": "(",
+                        "line": 42,
+                        "endLine": 42,
+                        "column": 11,
+                        "endColumn": 11
+                      },
+                      "children": []
+                    },
+                    {
+                      "kinds": [
+                        "EXPRESSION",
+                        "LITERAL",
+                        "BOOLEAN_LITERAL"
+                      ],
+                      "nativeNode": "BOOLEAN_LITERAL",
+                      "children": [
+                        {
+                          "kinds": [
+                            "KEYWORD"
+                          ],
+                          "nativeNode": "TOKEN",
+                          "token": {
+                            "value": "true",
+                            "line": 42,
+                            "endLine": 42,
+                            "column": 12,
+                            "endColumn": 15
+                          },
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [
+                        "RIGHT_PARENTHESIS"
+                      ],
+                      "nativeNode": "TOKEN",
+                      "token": {
+                        "value": ")",
+                        "line": 42,
+                        "endLine": 42,
+                        "column": 16,
+                        "endColumn": 16
+                      },
+                      "children": []
+                    },
+                    {
+                      "kinds": [
+                        "BLOCK",
+                        "STATEMENT"
+                      ],
+                      "nativeNode": "BLOCK",
+                      "children": [
+                        {
+                          "kinds": [],
+                          "nativeNode": "TOKEN",
+                          "token": {
+                            "value": "{",
+                            "line": 42,
+                            "endLine": 42,
+                            "column": 18,
+                            "endColumn": 18
+                          },
+                          "children": []
+                        },
+                        {
+                          "kinds": [],
+                          "nativeNode": "TOKEN",
+                          "token": {
+                            "value": "}",
+                            "line": 44,
+                            "endLine": 44,
+                            "column": 5,
+                            "endColumn": 5
+                          },
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kinds": [
+                    "STATEMENT",
+                    "DO_WHILE"
+                  ],
+                  "nativeNode": "DO_STATEMENT",
+                  "children": [
+                    {
+                      "kinds": [
+                        "KEYWORD"
+                      ],
+                      "nativeNode": "TOKEN",
+                      "token": {
+                        "value": "do",
+                        "line": 46,
+                        "endLine": 46,
+                        "column": 5,
+                        "endColumn": 6
+                      },
+                      "children": []
+                    },
+                    {
+                      "kinds": [
+                        "BLOCK",
+                        "STATEMENT"
+                      ],
+                      "nativeNode": "BLOCK",
+                      "children": [
+                        {
+                          "kinds": [],
+                          "nativeNode": "TOKEN",
+                          "token": {
+                            "value": "{",
+                            "line": 46,
+                            "endLine": 46,
+                            "column": 8,
+                            "endColumn": 8
+                          },
+                          "children": []
+                        },
+                        {
+                          "kinds": [],
+                          "nativeNode": "TOKEN",
+                          "token": {
+                            "value": "}",
+                            "line": 48,
+                            "endLine": 48,
+                            "column": 5,
+                            "endColumn": 5
+                          },
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [
+                        "KEYWORD"
+                      ],
+                      "nativeNode": "TOKEN",
+                      "token": {
+                        "value": "while",
+                        "line": 48,
+                        "endLine": 48,
+                        "column": 7,
+                        "endColumn": 11
+                      },
+                      "children": []
+                    },
+                    {
+                      "kinds": [
+                        "LEFT_PARENTHESIS"
+                      ],
+                      "nativeNode": "TOKEN",
+                      "token": {
+                        "value": "(",
+                        "line": 48,
+                        "endLine": 48,
+                        "column": 13,
+                        "endColumn": 13
+                      },
+                      "children": []
+                    },
+                    {
+                      "kinds": [
+                        "EXPRESSION",
+                        "LITERAL",
+                        "BOOLEAN_LITERAL"
+                      ],
+                      "nativeNode": "BOOLEAN_LITERAL",
+                      "children": [
+                        {
+                          "kinds": [
+                            "KEYWORD"
+                          ],
+                          "nativeNode": "TOKEN",
+                          "token": {
+                            "value": "true",
+                            "line": 48,
+                            "endLine": 48,
+                            "column": 14,
+                            "endColumn": 17
+                          },
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [
+                        "RIGHT_PARENTHESIS"
+                      ],
+                      "nativeNode": "TOKEN",
+                      "token": {
+                        "value": ")",
+                        "line": 48,
+                        "endLine": 48,
+                        "column": 18,
+                        "endColumn": 18
+                      },
+                      "children": []
+                    },
+                    {
+                      "kinds": [],
+                      "nativeNode": "TOKEN",
+                      "token": {
+                        "value": ";",
+                        "line": 48,
+                        "endLine": 48,
+                        "column": 19,
+                        "endColumn": 19
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
                   "kinds": [],
                   "nativeNode": "TOKEN",
                   "token": {
                     "value": "}",
-                    "line": 41,
-                    "endLine": 41,
+                    "line": 49,
+                    "endLine": 49,
                     "column": 3,
                     "endColumn": 3
                   },
@@ -2094,8 +2333,8 @@
                   "nativeNode": "TOKEN",
                   "token": {
                     "value": "void",
-                    "line": 43,
-                    "endLine": 43,
+                    "line": 51,
+                    "endLine": 51,
                     "column": 3,
                     "endColumn": 6
                   },
@@ -2115,8 +2354,8 @@
                   "nativeNode": "TOKEN",
                   "token": {
                     "value": "ternary",
-                    "line": 43,
-                    "endLine": 43,
+                    "line": 51,
+                    "endLine": 51,
                     "column": 8,
                     "endColumn": 14
                   },
@@ -2131,8 +2370,8 @@
               "nativeNode": "TOKEN",
               "token": {
                 "value": "(",
-                "line": 43,
-                "endLine": 43,
+                "line": 51,
+                "endLine": 51,
                 "column": 15,
                 "endColumn": 15
               },
@@ -2145,8 +2384,8 @@
               "nativeNode": "TOKEN",
               "token": {
                 "value": ")",
-                "line": 43,
-                "endLine": 43,
+                "line": 51,
+                "endLine": 51,
                 "column": 16,
                 "endColumn": 16
               },
@@ -2164,8 +2403,8 @@
                   "nativeNode": "TOKEN",
                   "token": {
                     "value": "{",
-                    "line": 43,
-                    "endLine": 43,
+                    "line": 51,
+                    "endLine": 51,
                     "column": 18,
                     "endColumn": 18
                   },
@@ -2189,8 +2428,8 @@
                           "nativeNode": "TOKEN",
                           "token": {
                             "value": "int",
-                            "line": 44,
-                            "endLine": 44,
+                            "line": 52,
+                            "endLine": 52,
                             "column": 5,
                             "endColumn": 7
                           },
@@ -2210,8 +2449,8 @@
                           "nativeNode": "TOKEN",
                           "token": {
                             "value": "x",
-                            "line": 44,
-                            "endLine": 44,
+                            "line": 52,
+                            "endLine": 52,
                             "column": 9,
                             "endColumn": 9
                           },
@@ -2226,8 +2465,8 @@
                       "nativeNode": "TOKEN",
                       "token": {
                         "value": "\u003d",
-                        "line": 44,
-                        "endLine": 44,
+                        "line": 52,
+                        "endLine": 52,
                         "column": 11,
                         "endColumn": 11
                       },
@@ -2257,8 +2496,8 @@
                               "nativeNode": "TOKEN",
                               "token": {
                                 "value": "true",
-                                "line": 44,
-                                "endLine": 44,
+                                "line": 52,
+                                "endLine": 52,
                                 "column": 13,
                                 "endColumn": 16
                               },
@@ -2271,8 +2510,8 @@
                           "nativeNode": "TOKEN",
                           "token": {
                             "value": "?",
-                            "line": 44,
-                            "endLine": 44,
+                            "line": 52,
+                            "endLine": 52,
                             "column": 18,
                             "endColumn": 18
                           },
@@ -2290,8 +2529,8 @@
                               "nativeNode": "TOKEN",
                               "token": {
                                 "value": "1",
-                                "line": 44,
-                                "endLine": 44,
+                                "line": 52,
+                                "endLine": 52,
                                 "column": 20,
                                 "endColumn": 20
                               },
@@ -2304,8 +2543,8 @@
                           "nativeNode": "TOKEN",
                           "token": {
                             "value": ":",
-                            "line": 44,
-                            "endLine": 44,
+                            "line": 52,
+                            "endLine": 52,
                             "column": 22,
                             "endColumn": 22
                           },
@@ -2323,8 +2562,8 @@
                               "nativeNode": "TOKEN",
                               "token": {
                                 "value": "2",
-                                "line": 44,
-                                "endLine": 44,
+                                "line": 52,
+                                "endLine": 52,
                                 "column": 24,
                                 "endColumn": 24
                               },
@@ -2339,8 +2578,8 @@
                       "nativeNode": "TOKEN",
                       "token": {
                         "value": ";",
-                        "line": 44,
-                        "endLine": 44,
+                        "line": 52,
+                        "endLine": 52,
                         "column": 25,
                         "endColumn": 25
                       },
@@ -2353,8 +2592,8 @@
                   "nativeNode": "TOKEN",
                   "token": {
                     "value": "}",
-                    "line": 45,
-                    "endLine": 45,
+                    "line": 53,
+                    "endLine": 53,
                     "column": 3,
                     "endColumn": 3
                   },
@@ -2369,8 +2608,8 @@
           "nativeNode": "TOKEN",
           "token": {
             "value": "}",
-            "line": 46,
-            "endLine": 46,
+            "line": 54,
+            "endLine": 54,
             "column": 1,
             "endColumn": 1
           },
@@ -2385,8 +2624,8 @@
       "nativeNode": "TOKEN",
       "token": {
         "value": "",
-        "line": 47,
-        "endLine": 47,
+        "line": 55,
+        "endLine": 55,
         "column": 1,
         "endColumn": 0
       },

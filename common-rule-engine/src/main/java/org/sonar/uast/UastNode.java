@@ -158,11 +158,11 @@ public final class UastNode {
     BOOLEAN_LITERAL,
     NULL_LITERAL,
     LOOP(CONDITIONAL_JUMP),
-    FOR(CONDITIONAL_JUMP),
+    FOR(LOOP),
     FOR_KEYWORD,
     FOR_INIT,
     FOR_UPDATE,
-    FOREACH,
+    FOREACH(LOOP),
     PARAMETER(VARIABLE_DECLARATION),
     PARAMETER_LIST,
     OPERATOR,
@@ -245,6 +245,8 @@ public final class UastNode {
     TYPE_ARGUMENT,
     TYPE_PARAMETERS,
     TYPE_PARAMETER,
+    WHILE(LOOP),
+    DO_WHILE(LOOP),
     ;
 
     private final List<Kind> extendedKinds;
@@ -254,7 +256,7 @@ public final class UastNode {
     }
 
     Kind(Kind... extendedKinds) {
-      this.extendedKinds = Arrays.asList(extendedKinds);
+      this.extendedKinds = Arrays.stream(extendedKinds).flatMap(Kind::kindAndExtendedKindStream).collect(Collectors.toList());
     }
 
     public List<Kind> extendedKinds() {
