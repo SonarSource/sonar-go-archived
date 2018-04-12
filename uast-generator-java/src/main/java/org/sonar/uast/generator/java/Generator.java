@@ -163,10 +163,10 @@ public class Generator {
 
   private static UastNode newUastNode(Tree tree, List<UastNode> children) {
     return new UastNode(
-            uastKind(tree),
-            tree.kind().name(),
-            tree.is(Tree.Kind.TOKEN, Tree.Kind.TRIVIA) ? newToken(tree) : null,
-            children
+      uastKind(tree),
+      tree.kind().name(),
+      tree.is(Tree.Kind.TOKEN, Tree.Kind.TRIVIA) ? newToken(tree) : null,
+      children
     );
   }
 
@@ -184,10 +184,10 @@ public class Generator {
       text = ((SyntaxTrivia) javaToken).comment();
     }
     return new UastNode.Token(
-            line,
-            // as per UAST specification column starts at 1
-            column + 1,
-            text
+      line,
+      // as per UAST specification column starts at 1
+      column + 1,
+      text
     );
   }
 
@@ -213,7 +213,7 @@ public class Generator {
         result.add(UastNode.Kind.ENUM);
         result.add(UastNode.Kind.CLASS);
         result.add(UastNode.Kind.TYPE);
-      break;
+        break;
       case ASSIGNMENT:
         result.add(UastNode.Kind.ASSIGNMENT);
         break;
@@ -392,7 +392,7 @@ public class Generator {
         break;
       case VARIABLE:
         result.add(UastNode.Kind.VARIABLE_DECLARATION);
-      break;
+        break;
       case INSTANCE_OF:
         result.add(UastNode.Kind.TYPE_TEST);
         break;
@@ -410,6 +410,9 @@ public class Generator {
       case PRIMITIVE_TYPE:
       case UNION_TYPE:
         result.add(UastNode.Kind.TYPE);
+        break;
+      case TRY_STATEMENT:
+        result.add(UastNode.Kind.TRY);
         break;
       default:
         break;

@@ -129,7 +129,8 @@
                 },
                 {
                   "kinds": [
-                    "STATEMENT"
+                    "STATEMENT",
+                    "TRY"
                   ],
                   "nativeNode": "TRY_STATEMENT",
                   "children": [
