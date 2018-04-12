@@ -26,7 +26,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import org.junit.jupiter.api.Test;
 import org.sonar.api.batch.fs.InputFile;
-import org.sonar.api.batch.fs.internal.DefaultInputFile;
 import org.sonar.api.batch.fs.internal.TestInputFileBuilder;
 import org.sonar.uast.Uast;
 import org.sonar.uast.UastNode;
@@ -49,8 +48,7 @@ class MetricsVisitorTest {
     Metrics metrics = getMetrics(
       "{ kinds: [\"COMPILATION_UNIT\"],\n" +
         "  children: [\n" +
-        "    { kinds: [\"DECL_LIST\"],\n" +
-        "      children: [\n" +
+        "    { children: [\n" +
         "        { kinds: [\"FUNCTION\"] },\n" +
         "        { kinds: [\"FUNCTION\"] },\n" +
         "        { kinds: [\"FUNCTION\"] }\n" +

@@ -42,6 +42,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.sonar.commonruleengine.checks.TestUtils.createGoParserKinds;
 import static org.sonar.commonruleengine.checks.TestUtils.uast;
 
 class UastNodeTest {
@@ -148,6 +149,16 @@ class UastNodeTest {
 
   static List<Path> goTestKindSources() throws IOException {
     return testKindSources(".go");
+  }
+
+  @Test
+  void go_parser_kinds_are_subset_of_common_kinds() throws IOException {
+    String[] lines = new String(Files.readAllBytes(createGoParserKinds()), UTF_8).split("\r?\n");
+    for (String line : lines) {
+      if (!line.isEmpty()) {
+        UastNode.Kind.valueOf(line);
+      }
+    }
   }
 
   @ParameterizedTest
