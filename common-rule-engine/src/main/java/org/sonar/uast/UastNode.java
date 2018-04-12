@@ -159,7 +159,7 @@ public final class UastNode {
     FOR_INIT,
     FOR_UPDATE,
     FOREACH,
-    PARAMETER,
+    PARAMETER(VARIABLE_DECLARATION),
     PARAMETER_LIST,
     OPERATOR,
     OPERATOR_ADD,

@@ -448,6 +448,13 @@ func (t *UastMapper) computeVariableKind(genDeclTok token.Token) []Kind {
 	}
 }
 
+func (t *UastMapper) computeFieldListResultKind(field *ast.Field) []Kind {
+	if len(field.Names) > 0 {
+		return []Kind{VARIABLE_DECLARATION}
+	}
+	return nil
+}
+
 func (t *UastMapper) appendThrowIfPanic(kinds []Kind, stmt *ast.ExprStmt) []Kind {
 	if callExpr, ok := stmt.X.(*ast.CallExpr); ok {
 		fun := callExpr.Fun
