@@ -13,7 +13,7 @@ compileTestJava.options.encoding = "UTF-8"
 
 dependencies {
     compile 'com.google.code.gson:gson'
-    compile('org.sonarsource.java:java-frontend:5.1.1.13214') {
+    compile('org.sonarsource.java:java-frontend:5.3.0.13811') {
         exclude group: 'junit', module: 'junit'
     }
 
