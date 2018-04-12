@@ -403,6 +403,9 @@ public class Generator {
       case NEW_CLASS:
         result.add(UastNode.Kind.CALL);
         break;
+      case PACKAGE:
+        result.add(UastNode.Kind.PACKAGE);
+        break;
       default:
         break;
     }

@@ -168,7 +168,8 @@ class UastNode {
     INITIALIZER,
     TYPE_TEST,
     MEMBER_SELECT,
-    CALL;
+    CALL,
+    PACKAGE;
 
     @Nullable
     final String token;
