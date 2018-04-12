@@ -109,31 +109,39 @@
             },
             {
               "kinds": [
-                "LEFT_PARENTHESIS"
+                "PARAMETER_LIST"
               ],
-              "nativeNode": "TOKEN",
-              "token": {
-                "value": "(",
-                "line": 2,
-                "endLine": 2,
-                "column": 11,
-                "endColumn": 11
-              },
-              "children": []
-            },
-            {
-              "kinds": [
-                "RIGHT_PARENTHESIS"
-              ],
-              "nativeNode": "TOKEN",
-              "token": {
-                "value": ")",
-                "line": 2,
-                "endLine": 2,
-                "column": 12,
-                "endColumn": 12
-              },
-              "children": []
+              "nativeNode": "List",
+              "children": [
+                {
+                  "kinds": [
+                    "LEFT_PARENTHESIS"
+                  ],
+                  "nativeNode": "TOKEN",
+                  "token": {
+                    "value": "(",
+                    "line": 2,
+                    "endLine": 2,
+                    "column": 11,
+                    "endColumn": 11
+                  },
+                  "children": []
+                },
+                {
+                  "kinds": [
+                    "RIGHT_PARENTHESIS"
+                  ],
+                  "nativeNode": "TOKEN",
+                  "token": {
+                    "value": ")",
+                    "line": 2,
+                    "endLine": 2,
+                    "column": 12,
+                    "endColumn": 12
+                  },
+                  "children": []
+                }
+              ]
             },
             {
               "kinds": [

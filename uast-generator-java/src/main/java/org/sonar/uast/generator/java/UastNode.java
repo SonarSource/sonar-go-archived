@@ -86,6 +86,7 @@ class UastNode {
     OCTAL_LITERAL,
     BINARY_LITERAL,
     NULL_LITERAL,
+    PARAMETER_LIST,
     PARAMETER,
     OPERATOR,
     OPERATOR_ADD("+", OPERATOR),
@@ -153,7 +154,9 @@ class UastNode {
     TYPE_PARAMETER,
     CHAR_LITERAL,
     DO_WHILE,
-    WHILE;
+    WHILE,
+    VARIABLE_DECLARATION,
+    VARIABLE_NAME;
 
     @Nullable
     final String token;
@@ -205,6 +208,11 @@ class UastNode {
       // handle length of UTF-32 encoded strings properly
       // s.length() would return 2 for each UTF-32 character, which will mess with column computation
       return s.codePointCount(0, s.length());
+    }
+
+    @Override
+    public String toString() {
+      return "[" + line + ":" + column + "] " + value;
     }
   }
 }

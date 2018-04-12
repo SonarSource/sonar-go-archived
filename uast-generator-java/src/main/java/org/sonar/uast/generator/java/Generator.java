@@ -27,6 +27,8 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.HashMap;
@@ -67,6 +69,7 @@ import org.sonar.plugins.java.api.tree.StatementTree;
 import org.sonar.plugins.java.api.tree.SyntaxToken;
 import org.sonar.plugins.java.api.tree.SyntaxTrivia;
 import org.sonar.plugins.java.api.tree.Tree;
+import org.sonar.plugins.java.api.tree.TypeArguments;
 import org.sonar.plugins.java.api.tree.UnaryExpressionTree;
 import org.sonar.plugins.java.api.tree.VariableTree;
 
@@ -426,7 +429,26 @@ public class Generator {
     @Override
     public void visitMethod(MethodTree tree) {
       addKind(tree.simpleName(), UastNode.Kind.FUNCTION_NAME);
-      tree.parameters().forEach(p -> treeUastNodeMap.get(p).kinds.add(UastNode.Kind.PARAMETER));
+
+      // in SonarJava parameters are direct children of MethodTree, in UAST we want to have PARAMETER_LIST node to be child of FUNCTION node
+      UastNode methodNode = treeUastNodeMap.get(tree);
+      List<UastNode> paramListChildren = new ArrayList<>();
+      UastNode openParen = treeUastNodeMap.get(tree.openParenToken());
+      int openParenPos = methodNode.children.indexOf(openParen);
+      methodNode.children.remove(openParen);
+      paramListChildren.add(openParen);
+      tree.parameters().forEach(p -> {
+        addKind(p, UastNode.Kind.PARAMETER, UastNode.Kind.VARIABLE_DECLARATION);
+        addKind(p.simpleName(), UastNode.Kind.VARIABLE_NAME);
+        UastNode paramNode = treeUastNodeMap.get(p);
+        methodNode.children.remove(paramNode);
+        paramListChildren.add(paramNode);
+      });
+      UastNode closeParen = treeUastNodeMap.get(tree.closeParenToken());
+      methodNode.children.remove(closeParen);
+      paramListChildren.add(closeParen);
+      UastNode paramListNode = new UastNode(Collections.singleton(UastNode.Kind.PARAMETER_LIST), "List", null, paramListChildren);
+      methodNode.children.add(openParenPos, paramListNode);
       addKind(tree.returnType(), UastNode.Kind.RESULT_LIST);
       super.visitMethod(tree);
     }
@@ -457,7 +479,7 @@ public class Generator {
     }
 
     @Override
-    public void visitTypeArguments(TypeArgumentListTreeImpl trees) {
+    public void visitTypeArguments(TypeArguments trees) {
       trees.forEach(typeArg -> addKind(typeArg, UastNode.Kind.TYPE_ARGUMENT));
       super.visitTypeArguments(trees);
     }
@@ -497,13 +519,13 @@ public class Generator {
       super.visitForStatement(tree);
     }
 
-    private void addKind(@Nullable Tree tree, UastNode.Kind kind) {
+    private void addKind(@Nullable Tree tree, UastNode.Kind... kind) {
       if (tree == null) {
         return;
       }
       UastNode uastNode = treeUastNodeMap.get(tree);
       if (uastNode != null) {
-        uastNode.kinds.add(kind);
+        uastNode.kinds.addAll(Arrays.asList(kind));
       }
     }
   }

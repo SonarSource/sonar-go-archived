@@ -44,6 +44,30 @@ public class UastKindsTest {
     Generator generator = new Generator(source);
     String expected = fileContent(Paths.get(path + ".uast.json"));
     assertThat(generator.json()).isEqualTo(expected);
+    assertThatTokensAreOrdered(generator.uast());
+  }
+
+  private void assertThatTokensAreOrdered(UastNode root) {
+    List<UastNode> list = new ArrayList<>();
+    depthFirstTraversal(root, list);
+    UastNode.Token prevToken = null;
+    for (UastNode node : list) {
+      UastNode.Token currentToken = node.token;
+      if (currentToken == null) {
+        continue;
+      }
+      if (prevToken != null) {
+        assertThat((currentToken.line == prevToken.line && currentToken.column > prevToken.column) || (currentToken.line > prevToken.line))
+          .as("Token " + currentToken + " should be before " + prevToken)
+          .isTrue();
+      }
+      prevToken = currentToken;
+    }
+  }
+
+  void depthFirstTraversal(UastNode root, List<UastNode> list) {
+    list.add(root);
+    root.children.forEach(c -> depthFirstTraversal(c, list));
   }
 
   @Test
