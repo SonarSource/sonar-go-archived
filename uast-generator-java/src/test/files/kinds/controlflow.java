@@ -38,6 +38,14 @@ class A {
     }
 
     return;
+
+    while (true) {
+
+    }
+
+    do {
+
+    } while (true);
   }
 
   void ternary() {

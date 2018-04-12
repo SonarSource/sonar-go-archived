@@ -54,10 +54,10 @@ class UastNodeTest {
     List<UastNode.Kind> controlKinds = Arrays.asList(UastNode.Kind.IF, UastNode.Kind.SWITCH, UastNode.Kind.FOR);
 
     controlKinds.forEach(kind -> assertThat(kind.extendedKinds()).describedAs(kind.name())
-      .containsExactlyInAnyOrder(UastNode.Kind.CONDITIONAL_JUMP));
+      .contains(UastNode.Kind.CONDITIONAL_JUMP));
 
     controlKinds.forEach(kind -> assertThat(uast("{ kinds: ['" + kind.name() + "'] }").kinds).describedAs(kind.name())
-      .containsExactlyInAnyOrder(kind, UastNode.Kind.CONDITIONAL_JUMP));
+      .contains(kind, UastNode.Kind.CONDITIONAL_JUMP));
   }
 
   @Test
