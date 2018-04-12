@@ -166,7 +166,8 @@ class UastNode {
     IMPORT,
     IMPORT_ENTRY,
     INITIALIZER,
-    TYPE_TEST;
+    TYPE_TEST,
+    MEMBER_SELECT;
 
     @Nullable
     final String token;

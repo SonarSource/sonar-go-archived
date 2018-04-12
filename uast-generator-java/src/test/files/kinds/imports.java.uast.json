@@ -27,13 +27,15 @@
         {
           "kinds": [
             "EXPRESSION",
-            "IMPORT_ENTRY"
+            "IMPORT_ENTRY",
+            "MEMBER_SELECT"
           ],
           "nativeNode": "MEMBER_SELECT",
           "children": [
             {
               "kinds": [
-                "EXPRESSION"
+                "EXPRESSION",
+                "MEMBER_SELECT"
               ],
               "nativeNode": "MEMBER_SELECT",
               "children": [
@@ -179,19 +181,22 @@
         {
           "kinds": [
             "EXPRESSION",
-            "IMPORT_ENTRY"
+            "IMPORT_ENTRY",
+            "MEMBER_SELECT"
           ],
           "nativeNode": "MEMBER_SELECT",
           "children": [
             {
               "kinds": [
-                "EXPRESSION"
+                "EXPRESSION",
+                "MEMBER_SELECT"
               ],
               "nativeNode": "MEMBER_SELECT",
               "children": [
                 {
                   "kinds": [
-                    "EXPRESSION"
+                    "EXPRESSION",
+                    "MEMBER_SELECT"
                   ],
                   "nativeNode": "MEMBER_SELECT",
                   "children": [

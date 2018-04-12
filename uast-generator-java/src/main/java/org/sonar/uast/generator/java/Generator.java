@@ -396,6 +396,9 @@ public class Generator {
       case INSTANCE_OF:
         result.add(UastNode.Kind.TYPE_TEST);
         break;
+      case MEMBER_SELECT:
+        result.add(UastNode.Kind.MEMBER_SELECT);
+        break;
       default:
         break;
     }

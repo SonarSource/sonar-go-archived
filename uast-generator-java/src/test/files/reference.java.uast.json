@@ -176,13 +176,15 @@
                       "children": [
                         {
                           "kinds": [
-                            "EXPRESSION"
+                            "EXPRESSION",
+                            "MEMBER_SELECT"
                           ],
                           "nativeNode": "MEMBER_SELECT",
                           "children": [
                             {
                               "kinds": [
-                                "EXPRESSION"
+                                "EXPRESSION",
+                                "MEMBER_SELECT"
                               ],
                               "nativeNode": "MEMBER_SELECT",
                               "children": [
