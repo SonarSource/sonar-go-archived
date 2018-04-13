@@ -324,6 +324,42 @@
             },
             {
               "kinds": [
+                "PARAMETER_LIST"
+              ],
+              "nativeNode": "List",
+              "children": [
+                {
+                  "kinds": [
+                    "LEFT_PARENTHESIS"
+                  ],
+                  "nativeNode": "TOKEN",
+                  "token": {
+                    "value": "(",
+                    "line": 6,
+                    "endLine": 6,
+                    "column": 11,
+                    "endColumn": 11
+                  },
+                  "children": []
+                },
+                {
+                  "kinds": [
+                    "RIGHT_PARENTHESIS"
+                  ],
+                  "nativeNode": "TOKEN",
+                  "token": {
+                    "value": ")",
+                    "line": 6,
+                    "endLine": 6,
+                    "column": 12,
+                    "endColumn": 12
+                  },
+                  "children": []
+                }
+              ]
+            },
+            {
+              "kinds": [
                 "BLOCK",
                 "STATEMENT"
               ],
@@ -517,42 +553,6 @@
                     "endLine": 9,
                     "column": 3,
                     "endColumn": 3
-                  },
-                  "children": []
-                }
-              ]
-            },
-            {
-              "kinds": [
-                "PARAMETER_LIST"
-              ],
-              "nativeNode": "List",
-              "children": [
-                {
-                  "kinds": [
-                    "LEFT_PARENTHESIS"
-                  ],
-                  "nativeNode": "TOKEN",
-                  "token": {
-                    "value": "(",
-                    "line": 6,
-                    "endLine": 6,
-                    "column": 11,
-                    "endColumn": 11
-                  },
-                  "children": []
-                },
-                {
-                  "kinds": [
-                    "RIGHT_PARENTHESIS"
-                  ],
-                  "nativeNode": "TOKEN",
-                  "token": {
-                    "value": ")",
-                    "line": 6,
-                    "endLine": 6,
-                    "column": 12,
-                    "endColumn": 12
                   },
                   "children": []
                 }
