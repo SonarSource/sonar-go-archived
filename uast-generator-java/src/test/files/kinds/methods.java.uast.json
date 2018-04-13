@@ -405,6 +405,7 @@
                               "kinds": [
                                 "EXPRESSION",
                                 "BINARY_EXPRESSION",
+                                "MULTIPLY",
                                 "ARGUMENT"
                               ],
                               "nativeNode": "MULTIPLY",
@@ -412,6 +413,7 @@
                                 {
                                   "kinds": [
                                     "EXPRESSION",
+                                    "LEFT_OPERAND",
                                     "DECIMAL_LITERAL"
                                   ],
                                   "nativeNode": "INT_LITERAL",
@@ -432,8 +434,7 @@
                                 },
                                 {
                                   "kinds": [
-                                    "OPERATOR",
-                                    "OPERATOR_MULTIPLY"
+                                    "OPERATOR"
                                   ],
                                   "nativeNode": "TOKEN",
                                   "token": {
@@ -448,6 +449,7 @@
                                 {
                                   "kinds": [
                                     "EXPRESSION",
+                                    "RIGHT_OPERAND",
                                     "DECIMAL_LITERAL"
                                   ],
                                   "nativeNode": "INT_LITERAL",

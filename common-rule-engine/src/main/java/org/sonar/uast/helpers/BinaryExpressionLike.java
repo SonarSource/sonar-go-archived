@@ -19,6 +19,7 @@
  */
 package org.sonar.uast.helpers;
 
+import java.util.Optional;
 import javax.annotation.CheckForNull;
 import org.sonar.uast.UastNode;
 
@@ -37,14 +38,13 @@ public class BinaryExpressionLike {
 
   @CheckForNull
   public static BinaryExpressionLike from(UastNode node) {
-    if (node.children.size() != 3) {
-      // malformed binary operators?
-      return null;
+    Optional<UastNode> leftOperand = node.getChild(UastNode.Kind.LEFT_OPERAND);
+    Optional<UastNode> operator = node.getChild(UastNode.Kind.OPERATOR);
+    Optional<UastNode> rightOperand = node.getChild(UastNode.Kind.RIGHT_OPERAND);
+    if (leftOperand.isPresent() && operator.isPresent() && rightOperand.isPresent()) {
+      return new BinaryExpressionLike(node, leftOperand.get(), operator.get(), rightOperand.get());
     }
-    return new BinaryExpressionLike(node,
-      node.children.get(0),
-      node.children.get(1),
-      node.children.get(2));
+    return null;
   }
 
   public UastNode node() {

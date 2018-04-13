@@ -27,8 +27,8 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.HashMap;
@@ -45,7 +45,6 @@ import javax.lang.model.SourceVersion;
 import org.sonar.java.ast.parser.JavaParser;
 import org.sonar.java.model.InternalSyntaxToken;
 import org.sonar.java.model.JavaTree;
-import org.sonar.java.model.expression.TypeArgumentListTreeImpl;
 import org.sonar.plugins.java.api.tree.Arguments;
 import org.sonar.plugins.java.api.tree.ArrayAccessExpressionTree;
 import org.sonar.plugins.java.api.tree.AssignmentExpressionTree;
@@ -170,8 +169,7 @@ public class Generator {
       uastKind(tree),
       tree.kind().name(),
       tree.is(Tree.Kind.TOKEN, Tree.Kind.TRIVIA) ? newToken(tree) : null,
-      children
-    );
+      children);
   }
 
   private static UastNode.Token newToken(Tree javaToken) {
@@ -191,8 +189,7 @@ public class Generator {
       line,
       // as per UAST specification column starts at 1
       column + 1,
-      text
-    );
+      text);
   }
 
   private static Set<UastNode.Kind> uastKind(Tree tree) {
@@ -299,27 +296,35 @@ public class Generator {
         break;
       case UNARY_MINUS:
         result.add(UastNode.Kind.UNARY_MINUS);
+        result.add(UastNode.Kind.UNARY_EXPRESSION);
         break;
       case UNARY_PLUS:
         result.add(UastNode.Kind.UNARY_PLUS);
+        result.add(UastNode.Kind.UNARY_EXPRESSION);
         break;
       case LOGICAL_COMPLEMENT:
         result.add(UastNode.Kind.LOGICAL_COMPLEMENT);
+        result.add(UastNode.Kind.UNARY_EXPRESSION);
         break;
       case BITWISE_COMPLEMENT:
         result.add(UastNode.Kind.BITWISE_COMPLEMENT);
+        result.add(UastNode.Kind.UNARY_EXPRESSION);
         break;
       case PREFIX_DECREMENT:
         result.add(UastNode.Kind.PREFIX_DECREMENT);
+        result.add(UastNode.Kind.UNARY_EXPRESSION);
         break;
       case PREFIX_INCREMENT:
         result.add(UastNode.Kind.PREFIX_INCREMENT);
+        result.add(UastNode.Kind.UNARY_EXPRESSION);
         break;
       case POSTFIX_DECREMENT:
         result.add(UastNode.Kind.POSTFIX_DECREMENT);
+        result.add(UastNode.Kind.UNARY_EXPRESSION);
         break;
       case POSTFIX_INCREMENT:
         result.add(UastNode.Kind.POSTFIX_INCREMENT);
+        result.add(UastNode.Kind.UNARY_EXPRESSION);
         break;
       case ANNOTATION:
         result.add(UastNode.Kind.ANNOTATION);
@@ -418,6 +423,82 @@ public class Generator {
       case TRY_STATEMENT:
         result.add(UastNode.Kind.TRY);
         break;
+      case MULTIPLY:
+        result.add(UastNode.Kind.BINARY_EXPRESSION);
+        result.add(UastNode.Kind.MULTIPLY);
+        break;
+      case DIVIDE:
+        result.add(UastNode.Kind.BINARY_EXPRESSION);
+        result.add(UastNode.Kind.DIVIDE);
+        break;
+      case REMAINDER:
+        result.add(UastNode.Kind.BINARY_EXPRESSION);
+        result.add(UastNode.Kind.MODULO);
+        break;
+      case PLUS:
+        result.add(UastNode.Kind.BINARY_EXPRESSION);
+        result.add(UastNode.Kind.ADD);
+        break;
+      case MINUS:
+        result.add(UastNode.Kind.BINARY_EXPRESSION);
+        result.add(UastNode.Kind.SUBTRACT);
+        break;
+      case LEFT_SHIFT:
+        result.add(UastNode.Kind.BINARY_EXPRESSION);
+        result.add(UastNode.Kind.LEFT_SHIFT);
+        break;
+      case RIGHT_SHIFT:
+        result.add(UastNode.Kind.BINARY_EXPRESSION);
+        result.add(UastNode.Kind.RIGHT_SHIFT);
+        break;
+      case UNSIGNED_RIGHT_SHIFT:
+        result.add(UastNode.Kind.BINARY_EXPRESSION);
+        break;
+      case LESS_THAN:
+        result.add(UastNode.Kind.BINARY_EXPRESSION);
+        result.add(UastNode.Kind.LESS_THAN);
+        break;
+      case GREATER_THAN:
+        result.add(UastNode.Kind.BINARY_EXPRESSION);
+        result.add(UastNode.Kind.GREATER_THAN);
+        break;
+      case LESS_THAN_OR_EQUAL_TO:
+        result.add(UastNode.Kind.BINARY_EXPRESSION);
+        result.add(UastNode.Kind.LESS_OR_EQUAL);
+        break;
+      case GREATER_THAN_OR_EQUAL_TO:
+        result.add(UastNode.Kind.BINARY_EXPRESSION);
+        result.add(UastNode.Kind.GREATER_OR_EQUAL);
+        break;
+      case EQUAL_TO:
+        result.add(UastNode.Kind.BINARY_EXPRESSION);
+        result.add(UastNode.Kind.EQUAL);
+        break;
+      case NOT_EQUAL_TO:
+        result.add(UastNode.Kind.BINARY_EXPRESSION);
+        result.add(UastNode.Kind.NOT_EQUAL);
+        break;
+      case AND:
+        result.add(UastNode.Kind.BINARY_EXPRESSION);
+        result.add(UastNode.Kind.BITWISE_AND);
+        break;
+      case XOR:
+        result.add(UastNode.Kind.BINARY_EXPRESSION);
+        result.add(UastNode.Kind.BITWISE_XOR);
+        break;
+      case OR:
+        result.add(UastNode.Kind.BINARY_EXPRESSION);
+        result.add(UastNode.Kind.BITWISE_OR);
+        break;
+      case CONDITIONAL_AND:
+        result.add(UastNode.Kind.BINARY_EXPRESSION);
+        result.add(UastNode.Kind.LOGICAL_AND);
+        break;
+      case CONDITIONAL_OR:
+        result.add(UastNode.Kind.BINARY_EXPRESSION);
+        result.add(UastNode.Kind.LOGICAL_OR);
+        break;
+
       default:
         break;
     }
@@ -426,12 +507,6 @@ public class Generator {
     }
     if (isExpression(tree)) {
       result.add(UastNode.Kind.EXPRESSION);
-    }
-    if (tree instanceof BinaryExpressionTree) {
-      result.add(UastNode.Kind.BINARY_EXPRESSION);
-    }
-    if (tree instanceof UnaryExpressionTree) {
-      result.add(UastNode.Kind.UNARY_EXPRESSION);
     }
     return result;
   }
@@ -456,6 +531,21 @@ public class Generator {
   }
 
   class PostprocessVisitor extends BaseTreeVisitor {
+
+    @Override
+    public void visitBinaryExpression(BinaryExpressionTree tree) {
+      addKind(tree.leftOperand(), UastNode.Kind.LEFT_OPERAND);
+      addKind(tree.operatorToken(), UastNode.Kind.OPERATOR);
+      addKind(tree.rightOperand(), UastNode.Kind.RIGHT_OPERAND);
+      super.visitBinaryExpression(tree);
+    }
+
+    @Override
+    public void visitUnaryExpression(UnaryExpressionTree tree) {
+      addKind(tree.operatorToken(), UastNode.Kind.OPERATOR);
+      addKind(tree.expression(), UastNode.Kind.OPERAND);
+      super.visitUnaryExpression(tree);
+    }
 
     @Override
     public void visitAssignmentExpression(AssignmentExpressionTree tree) {

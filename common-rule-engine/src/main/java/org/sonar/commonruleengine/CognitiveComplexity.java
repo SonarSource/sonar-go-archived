@@ -99,7 +99,7 @@ public class CognitiveComplexity {
     flattenBinaryExpressions(node, expressionAsList);
     UastNode.Kind lastLogicalOperatorKind = null;
     for (BinaryExpressionLike binaryExpression : expressionAsList) {
-      UastNode.Kind kind = logicalOperatorKind(binaryExpression);
+      UastNode.Kind kind = logicalBinaryExpressionKind(binaryExpression);
       if (kind != null) {
         if (binaryExpression.node() != node) {
           ignoredNode.add(binaryExpression.node());
@@ -120,7 +120,7 @@ public class CognitiveComplexity {
       return;
     }
     BinaryExpressionLike binaryExpression = BinaryExpressionLike.from(node);
-    if (binaryExpression != null && logicalOperatorKind(binaryExpression) != null) {
+    if (binaryExpression != null && logicalBinaryExpressionKind(binaryExpression) != null) {
       flattenBinaryExpressions(binaryExpression.leftOperand(), expressionAsList);
       expressionAsList.add(binaryExpression);
       flattenBinaryExpressions(binaryExpression.rightOperand(), expressionAsList);
@@ -128,11 +128,11 @@ public class CognitiveComplexity {
   }
 
   @Nullable
-  private static UastNode.Kind logicalOperatorKind(BinaryExpressionLike binaryExpression) {
-    if (binaryExpression.operator().is(UastNode.Kind.OPERATOR_LOGICAL_AND)) {
-      return UastNode.Kind.OPERATOR_LOGICAL_AND;
-    } else if (binaryExpression.operator().is(UastNode.Kind.OPERATOR_LOGICAL_OR)) {
-      return UastNode.Kind.OPERATOR_LOGICAL_OR;
+  private static UastNode.Kind logicalBinaryExpressionKind(BinaryExpressionLike binaryExpression) {
+    if (binaryExpression.node().is(UastNode.Kind.LOGICAL_AND)) {
+      return UastNode.Kind.LOGICAL_AND;
+    } else if (binaryExpression.node().is(UastNode.Kind.LOGICAL_OR)) {
+      return UastNode.Kind.LOGICAL_OR;
     } else {
       return null;
     }

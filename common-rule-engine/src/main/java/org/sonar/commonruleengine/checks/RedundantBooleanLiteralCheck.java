@@ -41,7 +41,7 @@ public class RedundantBooleanLiteralCheck extends Check {
       return;
     }
     Optional<UastNode> booleanLiteralOperand = findBooleanLiteralOperand(binExpr);
-    if (binExpr.operator().is(UastNode.Kind.OPERATOR_EQUAL, UastNode.Kind.OPERATOR_NOT_EQUAL, UastNode.Kind.OPERATOR_LOGICAL_AND, UastNode.Kind.OPERATOR_LOGICAL_OR)
+    if (binExpr.node().is(UastNode.Kind.EQUAL, UastNode.Kind.NOT_EQUAL, UastNode.Kind.LOGICAL_AND, UastNode.Kind.LOGICAL_OR)
       && booleanLiteralOperand.isPresent()) {
       reportIssue(booleanLiteralOperand.get(), "Remove this redundant boolean literal");
     }

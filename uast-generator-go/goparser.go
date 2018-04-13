@@ -48,124 +48,127 @@ func (k Kind) String() string {
 }
 
 var (
-	COMPILATION_UNIT          = NewKind("COMPILATION_UNIT")
-	COMMENT                   = NewKind("COMMENT")
-	STRUCTURED_COMMENT        = NewKind("STRUCTURED_COMMENT")
-	PACKAGE                   = NewKind("PACKAGE")
-	EOF                       = NewKind("EOF")
-	FUNCTION                  = NewKind("FUNCTION")
-	FUNCTION_LITERAL          = NewKind("FUNCTION_LITERAL")
-	FUNCTION_NAME             = NewKind("FUNCTION_NAME")
-	CONSTANT_DECLARATION      = NewKind("CONSTANT_DECLARATION")
-	VARIABLE_DECLARATION      = NewKind("VARIABLE_DECLARATION")
-	VARIABLE_NAME             = NewKind("VARIABLE_NAME")
-	IMPORT                    = NewKind("IMPORT")
-	IMPORT_ENTRY              = NewKind("IMPORT_ENTRY")
-	GOTO                      = NewKind("GOTO")
-	BRANCH_LABEL              = NewKind("BRANCH_LABEL")
-	BLOCK                     = NewKind("BLOCK")
-	ARGUMENTS                 = NewKind("ARGUMENTS")
-	ARGUMENT                  = NewKind("ARGUMENT")
-	CALL                      = NewKind("CALL")
-	IF                        = NewKind("IF")
-	IF_KEYWORD                = NewKind("IF_KEYWORD")
-	ELSE_KEYWORD              = NewKind("ELSE_KEYWORD")
-	ELSE                      = NewKind("ELSE")
-	CONDITION                 = NewKind("CONDITION")
-	CLASS                     = NewKind("CLASS")
-	STATEMENT                 = NewKind("STATEMENT")
-	EMPTY_STATEMENT           = NewKind("EMPTY_STATEMENT")
-	ASSIGNMENT                = NewKind("ASSIGNMENT")
-	COMPOUND_ASSIGNMENT       = NewKind("COMPOUND_ASSIGNMENT")
-	ASSIGNMENT_TARGET_LIST    = NewKind("ASSIGNMENT_TARGET_LIST")
-	ASSIGNMENT_TARGET         = NewKind("ASSIGNMENT_TARGET")
-	ASSIGNMENT_OPERATOR       = NewKind("ASSIGNMENT_OPERATOR")
-	ASSIGNMENT_VALUE_LIST     = NewKind("ASSIGNMENT_VALUE_LIST")
-	ASSIGNMENT_VALUE          = NewKind("ASSIGNMENT_VALUE")
-	IDENTIFIER                = NewKind("IDENTIFIER")
-	TYPE                      = NewKind("TYPE")
-	KEYWORD                   = NewKind("KEYWORD")
-	MEMBER_SELECT             = NewKind("MEMBER_SELECT")
-	LITERAL                   = NewKind("LITERAL")
-	FLOAT_LITERAL             = NewKind("FLOAT_LITERAL")
-	INT_LITERAL               = NewKind("INT_LITERAL")
-	DECIMAL_LITERAL           = NewKind("DECIMAL_LITERAL")
-	HEX_LITERAL               = NewKind("HEX_LITERAL")
-	OCTAL_LITERAL             = NewKind("OCTAL_LITERAL")
-	STRING_LITERAL            = NewKind("STRING_LITERAL")
-	CHAR_LITERAL              = NewKind("CHAR_LITERAL")
-	BOOLEAN_LITERAL           = NewKind("BOOLEAN_LITERAL")
-	NULL_LITERAL              = NewKind("NULL_LITERAL")
-	EXPRESSION                = NewKind("EXPRESSION")
-	PARAMETER_LIST            = NewKind("PARAMETER_LIST")
-	PARAMETER                 = NewKind("PARAMETER")
-	RESULT_LIST               = NewKind("RESULT_LIST")
-	RETURN                    = NewKind("RETURN")
-	BINARY_EXPRESSION         = NewKind("BINARY_EXPRESSION")
-	PARENTHESIZED_EXPRESSION  = NewKind("PARENTHESIZED_EXPRESSION")
-	LEFT_PARENTHESIS          = NewKind("LEFT_PARENTHESIS")
-	RIGHT_PARENTHESIS         = NewKind("RIGHT_PARENTHESIS")
-	SWITCH                    = NewKind("SWITCH")
-	CASE                      = NewKind("CASE")
-	LABEL                     = NewKind("LABEL")
-	DEFAULT_CASE              = NewKind("DEFAULT_CASE")
-	LOOP                      = NewKind("LOOP")
-	FOR                       = NewKind("FOR")
-	FOR_KEYWORD               = NewKind("FOR_KEYWORD")
-	FOR_INIT                  = NewKind("FOR_INIT")
-	FOR_UPDATE                = NewKind("FOR_UPDATE")
-	BODY                      = NewKind("BODY")
-	FOREACH                   = NewKind("FOREACH")
-	BREAK                     = NewKind("BREAK")
-	CONTINUE                  = NewKind("CONTINUE")
-	FALLTHROUGH               = NewKind("FALLTHROUGH")
-	OPERATOR                  = NewKind("OPERATOR")
-	OPERATOR_ADD              = NewKind("OPERATOR_ADD")
-	OPERATOR_SUBTRACT         = NewKind("OPERATOR_SUBTRACT")
-	OPERATOR_MULTIPLY         = NewKind("OPERATOR_MULTIPLY")
-	OPERATOR_DIVIDE           = NewKind("OPERATOR_DIVIDE")
-	OPERATOR_MODULO           = NewKind("OPERATOR_MODULO")
-	OPERATOR_BITWISE_AND      = NewKind("OPERATOR_BITWISE_AND")
-	OPERATOR_BITWISE_AND_NOT  = NewKind("OPERATOR_BITWISE_AND_NOT")
-	OPERATOR_BITWISE_OR       = NewKind("OPERATOR_BITWISE_OR")
-	OPERATOR_BITWISE_XOR      = NewKind("OPERATOR_BITWISE_XOR")
-	OPERATOR_LEFT_SHIFT       = NewKind("OPERATOR_LEFT_SHIFT")
-	OPERATOR_RIGHT_SHIFT      = NewKind("OPERATOR_RIGHT_SHIFT")
-	OPERATOR_EQUAL            = NewKind("OPERATOR_EQUAL")
-	OPERATOR_LOGICAL_AND      = NewKind("OPERATOR_LOGICAL_AND")
-	OPERATOR_LOGICAL_OR       = NewKind("OPERATOR_LOGICAL_OR")
-	OPERATOR_NOT_EQUAL        = NewKind("OPERATOR_NOT_EQUAL")
-	OPERATOR_LESS_THAN        = NewKind("OPERATOR_LESS_THAN")
-	OPERATOR_LESS_OR_EQUAL    = NewKind("OPERATOR_LESS_OR_EQUAL")
-	OPERATOR_GREATER_THAN     = NewKind("OPERATOR_GREATER_THAN")
-	OPERATOR_GREATER_OR_EQUAL = NewKind("OPERATOR_GREATER_OR_EQUAL")
-	THEN                      = NewKind("THEN")
-	THROW                     = NewKind("THROW")
-	UNSUPPORTED               = NewKind("UNSUPPORTED")
-	PLUS_ASSIGNMENT           = NewKind("PLUS_ASSIGNMENT")
-	MINUS_ASSIGNMENT          = NewKind("MINUS_ASSIGNMENT")
-	OR_ASSIGNMENT             = NewKind("OR_ASSIGNMENT")
-	XOR_ASSIGNMENT            = NewKind("XOR_ASSIGNMENT")
-	DIVIDE_ASSIGNMENT         = NewKind("DIVIDE_ASSIGNMENT")
-	MULTIPLY_ASSIGNMENT       = NewKind("MULTIPLY_ASSIGNMENT")
-	REMAINDER_ASSIGNMENT      = NewKind("REMAINDER_ASSIGNMENT")
-	RIGHT_SHIFT_ASSIGNMENT    = NewKind("RIGHT_SHIFT_ASSIGNMENT")
-	LEFT_SHIFT_ASSIGNMENT     = NewKind("LEFT_SHIFT_ASSIGNMENT")
-	AND_ASSIGNMENT            = NewKind("AND_ASSIGNMENT")
-	AND_NOT_ASSIGNMENT        = NewKind("AND_NOT_ASSIGNMENT")
-	UNARY_EXPRESSION          = NewKind("UNARY_EXPRESSION")
-	UNARY_MINUS               = NewKind("UNARY_MINUS")
-	UNARY_PLUS                = NewKind("UNARY_PLUS")
-	LOGICAL_COMPLEMENT        = NewKind("LOGICAL_COMPLEMENT")
-	BITWISE_COMPLEMENT        = NewKind("BITWISE_COMPLEMENT")
-	POINTER                   = NewKind("POINTER")
-	REFERENCE                 = NewKind("REFERENCE")
-	CHANNEL_DIRECTION         = NewKind("CHANNEL_DIRECTION")
-	POSTFIX_INCREMENT         = NewKind("POSTFIX_INCREMENT")
-	POSTFIX_DECREMENT         = NewKind("POSTFIX_DECREMENT")
-	ARRAY_ACCESS_EXPRESSION   = NewKind("ARRAY_ACCESS_EXPRESSION")
-	ARRAY_OBJECT_EXPRESSION   = NewKind("ARRAY_OBJECT_EXPRESSION")
-	ARRAY_KEY_EXPRESSION      = NewKind("ARRAY_KEY_EXPRESSION")
+	COMPILATION_UNIT         = NewKind("COMPILATION_UNIT")
+	COMMENT                  = NewKind("COMMENT")
+	STRUCTURED_COMMENT       = NewKind("STRUCTURED_COMMENT")
+	PACKAGE                  = NewKind("PACKAGE")
+	EOF                      = NewKind("EOF")
+	FUNCTION                 = NewKind("FUNCTION")
+	FUNCTION_LITERAL         = NewKind("FUNCTION_LITERAL")
+	FUNCTION_NAME            = NewKind("FUNCTION_NAME")
+	CONSTANT_DECLARATION     = NewKind("CONSTANT_DECLARATION")
+	VARIABLE_DECLARATION     = NewKind("VARIABLE_DECLARATION")
+	VARIABLE_NAME            = NewKind("VARIABLE_NAME")
+	IMPORT                   = NewKind("IMPORT")
+	IMPORT_ENTRY             = NewKind("IMPORT_ENTRY")
+	GOTO                     = NewKind("GOTO")
+	BRANCH_LABEL             = NewKind("BRANCH_LABEL")
+	BLOCK                    = NewKind("BLOCK")
+	ARGUMENTS                = NewKind("ARGUMENTS")
+	ARGUMENT                 = NewKind("ARGUMENT")
+	CALL                     = NewKind("CALL")
+	IF                       = NewKind("IF")
+	IF_KEYWORD               = NewKind("IF_KEYWORD")
+	ELSE_KEYWORD             = NewKind("ELSE_KEYWORD")
+	ELSE                     = NewKind("ELSE")
+	CONDITION                = NewKind("CONDITION")
+	CLASS                    = NewKind("CLASS")
+	STATEMENT                = NewKind("STATEMENT")
+	EMPTY_STATEMENT          = NewKind("EMPTY_STATEMENT")
+	ASSIGNMENT               = NewKind("ASSIGNMENT")
+	COMPOUND_ASSIGNMENT      = NewKind("COMPOUND_ASSIGNMENT")
+	ASSIGNMENT_TARGET_LIST   = NewKind("ASSIGNMENT_TARGET_LIST")
+	ASSIGNMENT_TARGET        = NewKind("ASSIGNMENT_TARGET")
+	ASSIGNMENT_OPERATOR      = NewKind("ASSIGNMENT_OPERATOR")
+	ASSIGNMENT_VALUE_LIST    = NewKind("ASSIGNMENT_VALUE_LIST")
+	ASSIGNMENT_VALUE         = NewKind("ASSIGNMENT_VALUE")
+	IDENTIFIER               = NewKind("IDENTIFIER")
+	TYPE                     = NewKind("TYPE")
+	KEYWORD                  = NewKind("KEYWORD")
+	MEMBER_SELECT            = NewKind("MEMBER_SELECT")
+	LITERAL                  = NewKind("LITERAL")
+	FLOAT_LITERAL            = NewKind("FLOAT_LITERAL")
+	INT_LITERAL              = NewKind("INT_LITERAL")
+	DECIMAL_LITERAL          = NewKind("DECIMAL_LITERAL")
+	HEX_LITERAL              = NewKind("HEX_LITERAL")
+	OCTAL_LITERAL            = NewKind("OCTAL_LITERAL")
+	STRING_LITERAL           = NewKind("STRING_LITERAL")
+	CHAR_LITERAL             = NewKind("CHAR_LITERAL")
+	BOOLEAN_LITERAL          = NewKind("BOOLEAN_LITERAL")
+	NULL_LITERAL             = NewKind("NULL_LITERAL")
+	EXPRESSION               = NewKind("EXPRESSION")
+	PARAMETER_LIST           = NewKind("PARAMETER_LIST")
+	PARAMETER                = NewKind("PARAMETER")
+	RESULT_LIST              = NewKind("RESULT_LIST")
+	RETURN                   = NewKind("RETURN")
+	BINARY_EXPRESSION        = NewKind("BINARY_EXPRESSION")
+	LEFT_OPERAND             = NewKind("LEFT_OPERAND")
+	RIGHT_OPERAND            = NewKind("RIGHT_OPERAND")
+	PARENTHESIZED_EXPRESSION = NewKind("PARENTHESIZED_EXPRESSION")
+	LEFT_PARENTHESIS         = NewKind("LEFT_PARENTHESIS")
+	RIGHT_PARENTHESIS        = NewKind("RIGHT_PARENTHESIS")
+	SWITCH                   = NewKind("SWITCH")
+	CASE                     = NewKind("CASE")
+	LABEL                    = NewKind("LABEL")
+	DEFAULT_CASE             = NewKind("DEFAULT_CASE")
+	LOOP                     = NewKind("LOOP")
+	FOR                      = NewKind("FOR")
+	FOR_KEYWORD              = NewKind("FOR_KEYWORD")
+	FOR_INIT                 = NewKind("FOR_INIT")
+	FOR_UPDATE               = NewKind("FOR_UPDATE")
+	BODY                     = NewKind("BODY")
+	FOREACH                  = NewKind("FOREACH")
+	BREAK                    = NewKind("BREAK")
+	CONTINUE                 = NewKind("CONTINUE")
+	FALLTHROUGH              = NewKind("FALLTHROUGH")
+	OPERATOR                 = NewKind("OPERATOR")
+	ADD                      = NewKind("ADD")
+	SUBTRACT                 = NewKind("SUBTRACT")
+	MULTIPLY                 = NewKind("MULTIPLY")
+	DIVIDE                   = NewKind("DIVIDE")
+	MODULO                   = NewKind("MODULO")
+	BITWISE_AND              = NewKind("BITWISE_AND")
+	BITWISE_AND_NOT          = NewKind("BITWISE_AND_NOT")
+	BITWISE_OR               = NewKind("BITWISE_OR")
+	BITWISE_XOR              = NewKind("BITWISE_XOR")
+	LEFT_SHIFT               = NewKind("LEFT_SHIFT")
+	RIGHT_SHIFT              = NewKind("RIGHT_SHIFT")
+	EQUAL                    = NewKind("EQUAL")
+	LOGICAL_AND              = NewKind("LOGICAL_AND")
+	LOGICAL_OR               = NewKind("LOGICAL_OR")
+	NOT_EQUAL                = NewKind("NOT_EQUAL")
+	LESS_THAN                = NewKind("LESS_THAN")
+	LESS_OR_EQUAL            = NewKind("LESS_OR_EQUAL")
+	GREATER_THAN             = NewKind("GREATER_THAN")
+	GREATER_OR_EQUAL         = NewKind("GREATER_OR_EQUAL")
+	THEN                     = NewKind("THEN")
+	THROW                    = NewKind("THROW")
+	UNSUPPORTED              = NewKind("UNSUPPORTED")
+	PLUS_ASSIGNMENT          = NewKind("PLUS_ASSIGNMENT")
+	MINUS_ASSIGNMENT         = NewKind("MINUS_ASSIGNMENT")
+	OR_ASSIGNMENT            = NewKind("OR_ASSIGNMENT")
+	XOR_ASSIGNMENT           = NewKind("XOR_ASSIGNMENT")
+	DIVIDE_ASSIGNMENT        = NewKind("DIVIDE_ASSIGNMENT")
+	MULTIPLY_ASSIGNMENT      = NewKind("MULTIPLY_ASSIGNMENT")
+	REMAINDER_ASSIGNMENT     = NewKind("REMAINDER_ASSIGNMENT")
+	RIGHT_SHIFT_ASSIGNMENT   = NewKind("RIGHT_SHIFT_ASSIGNMENT")
+	LEFT_SHIFT_ASSIGNMENT    = NewKind("LEFT_SHIFT_ASSIGNMENT")
+	AND_ASSIGNMENT           = NewKind("AND_ASSIGNMENT")
+	AND_NOT_ASSIGNMENT       = NewKind("AND_NOT_ASSIGNMENT")
+	UNARY_EXPRESSION         = NewKind("UNARY_EXPRESSION")
+	OPERAND                  = NewKind("OPERAND")
+	UNARY_MINUS              = NewKind("UNARY_MINUS")
+	UNARY_PLUS               = NewKind("UNARY_PLUS")
+	LOGICAL_COMPLEMENT       = NewKind("LOGICAL_COMPLEMENT")
+	BITWISE_COMPLEMENT       = NewKind("BITWISE_COMPLEMENT")
+	POINTER                  = NewKind("POINTER")
+	REFERENCE                = NewKind("REFERENCE")
+	CHANNEL_DIRECTION        = NewKind("CHANNEL_DIRECTION")
+	POSTFIX_INCREMENT        = NewKind("POSTFIX_INCREMENT")
+	POSTFIX_DECREMENT        = NewKind("POSTFIX_DECREMENT")
+	ARRAY_ACCESS_EXPRESSION  = NewKind("ARRAY_ACCESS_EXPRESSION")
+	ARRAY_OBJECT_EXPRESSION  = NewKind("ARRAY_OBJECT_EXPRESSION")
+	ARRAY_KEY_EXPRESSION     = NewKind("ARRAY_KEY_EXPRESSION")
 )
 
 type Token struct {
@@ -322,69 +325,69 @@ func (t *UastMapper) mapBasicLit(astNode *ast.BasicLit, kinds []Kind, fieldName 
 	return t.createUastExpectedToken(kinds, astNode.Pos(), astNode.Value, fieldName+"(BasicLit)")
 }
 
-func (t *UastMapper) computeOperatorKind(op token.Token) []Kind {
+func (t *UastMapper) computeBinaryExpressionKind(op token.Token) []Kind {
 	switch op {
 	// &&
 	case token.LAND:
-		return []Kind{OPERATOR, OPERATOR_LOGICAL_AND}
+		return []Kind{BINARY_EXPRESSION, LOGICAL_AND}
 		// ||
 	case token.LOR:
-		return []Kind{OPERATOR, OPERATOR_LOGICAL_OR}
+		return []Kind{BINARY_EXPRESSION, LOGICAL_OR}
 		// ==
 	case token.EQL:
-		return []Kind{OPERATOR, OPERATOR_EQUAL}
+		return []Kind{BINARY_EXPRESSION, EQUAL}
 		// <
 	case token.LSS:
-		return []Kind{OPERATOR, OPERATOR_LESS_THAN}
+		return []Kind{BINARY_EXPRESSION, LESS_THAN}
 		// >
 	case token.GTR:
-		return []Kind{OPERATOR, OPERATOR_GREATER_THAN}
+		return []Kind{BINARY_EXPRESSION, GREATER_THAN}
 		// !=
 	case token.NEQ:
-		return []Kind{OPERATOR, OPERATOR_NOT_EQUAL}
+		return []Kind{BINARY_EXPRESSION, NOT_EQUAL}
 		// <=
 	case token.LEQ:
-		return []Kind{OPERATOR, OPERATOR_LESS_OR_EQUAL}
+		return []Kind{BINARY_EXPRESSION, LESS_OR_EQUAL}
 		// >=
 	case token.GEQ:
-		return []Kind{OPERATOR, OPERATOR_GREATER_OR_EQUAL}
+		return []Kind{BINARY_EXPRESSION, GREATER_OR_EQUAL}
 	// +
 	case token.ADD:
-		return []Kind{OPERATOR, OPERATOR_ADD}
+		return []Kind{BINARY_EXPRESSION, ADD}
 		// -
 	case token.SUB:
-		return []Kind{OPERATOR, OPERATOR_SUBTRACT}
+		return []Kind{BINARY_EXPRESSION, SUBTRACT}
 		// *
 	case token.MUL:
-		return []Kind{OPERATOR, OPERATOR_MULTIPLY}
+		return []Kind{BINARY_EXPRESSION, MULTIPLY}
 		// /
 	case token.QUO:
-		return []Kind{OPERATOR, OPERATOR_DIVIDE}
+		return []Kind{BINARY_EXPRESSION, DIVIDE}
 		// %
 	case token.REM:
-		return []Kind{OPERATOR, OPERATOR_MODULO}
+		return []Kind{BINARY_EXPRESSION, MODULO}
 
 		// &
 	case token.AND:
-		return []Kind{OPERATOR, OPERATOR_BITWISE_AND}
+		return []Kind{BINARY_EXPRESSION, BITWISE_AND}
 		// &^
 	case token.AND_NOT:
-		return []Kind{OPERATOR, OPERATOR_BITWISE_AND_NOT}
+		return []Kind{BINARY_EXPRESSION, BITWISE_AND_NOT}
 		// |
 	case token.OR:
-		return []Kind{OPERATOR, OPERATOR_BITWISE_OR}
+		return []Kind{BINARY_EXPRESSION, BITWISE_OR}
 		// ^
 	case token.XOR:
-		return []Kind{OPERATOR, OPERATOR_BITWISE_XOR}
+		return []Kind{BINARY_EXPRESSION, BITWISE_XOR}
 		// <<
 	case token.SHL:
-		return []Kind{OPERATOR, OPERATOR_LEFT_SHIFT}
+		return []Kind{BINARY_EXPRESSION, LEFT_SHIFT}
 		// >>
 	case token.SHR:
-		return []Kind{OPERATOR, OPERATOR_RIGHT_SHIFT}
+		return []Kind{BINARY_EXPRESSION, RIGHT_SHIFT}
 
 	default:
-		return []Kind{OPERATOR}
+		return []Kind{BINARY_EXPRESSION}
 	}
 }
 

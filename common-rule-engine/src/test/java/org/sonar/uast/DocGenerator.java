@@ -37,15 +37,13 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import org.junit.jupiter.api.Test;
 import org.sonar.uast.UastNode.Kind;
 import org.sonar.uast.generator.java.Generator;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.sonar.commonruleengine.checks.TestUtils.createGoParserKinds;
 
-public class DocumentationTest {
+public class DocGenerator {
 
   private static final Path DOC_PATH = Paths.get("docs", "UAST-Kinds.md");
 
@@ -121,15 +119,6 @@ public class DocumentationTest {
       Kind.TYPE_ARGUMENT));
   }
 
-  @Test
-  void documentation_is_up_to_date() throws IOException {
-    String expected = generate();
-    String actual = new String(Files.readAllBytes(DOC_PATH), UTF_8);
-    assertThat(expected)
-      .describedAs("UAST documentation is not up-to-date, regenerate it using DocumentationTest#main()")
-      .isEqualTo(actual);
-  }
-
   public static void main(String[] args) throws IOException {
     Files.write(DOC_PATH, generate().getBytes(UTF_8));
   }
@@ -189,7 +178,7 @@ public class DocumentationTest {
     Set<DocumentedKind> derived = Collections.emptySet();
     Set<DocumentedKind> directlyDerived = Collections.emptySet();
 
-    public DocumentedKind(Kind kind) {
+    DocumentedKind(Kind kind) {
       this.kind = kind;
       name = toPascalCase(kind.name());
       derivedKinds = Arrays.stream(Kind.values())
@@ -201,15 +190,15 @@ public class DocumentationTest {
       isRoot = EXPLICIT_ROOT_KIND.contains(kind) || (kind.extendedKinds().isEmpty() && !component);
     }
 
-    public boolean isRoot() {
+    boolean isRoot() {
       return isRoot;
     }
 
-    public String link() {
+    String link() {
       return "[" + name + "](#" + name.toLowerCase(Locale.ROOT).replace(' ', '-') + ")";
     }
 
-    public void updateReferences(Map<Kind, DocumentedKind> hierarchyMap, Map<String, List<String>> kindByLanguage) {
+    void updateReferences(Map<Kind, DocumentedKind> hierarchyMap, Map<String, List<String>> kindByLanguage) {
       languages = kindByLanguage.getOrDefault(kind.name(), Collections.emptyList());
       extended = kind.extendedKinds().stream()
         .map(hierarchyMap::get)
@@ -226,7 +215,7 @@ public class DocumentationTest {
         .collect(Collectors.toSet());
     }
 
-    public void printHierarchy(StringBuilder out, int indent) {
+    void printHierarchy(StringBuilder out, int indent) {
       for (int i = 0; i < indent; i++) {
         out.append("    ");
       }
@@ -240,7 +229,7 @@ public class DocumentationTest {
         .forEach(hierarchy -> hierarchy.printHierarchy(out, indent + 1));
     }
 
-    public void printDefinition(StringBuilder out) {
+    void printDefinition(StringBuilder out) {
       out.append("### ").append(name).append("\n");
       out.append(    "Key | ").append(kind.name()).append("\n");
       out.append(    "--- | ---").append("\n");
@@ -262,20 +251,20 @@ public class DocumentationTest {
 
   }
 
-  static String links(Collection<DocumentedKind> list) {
+  private static String links(Collection<DocumentedKind> list) {
     return list.stream()
       .map(DocumentedKind::link)
       .collect(Collectors.joining(", "));
   }
 
-  static String sortedLinks(Collection<DocumentedKind> list) {
+  private static String sortedLinks(Collection<DocumentedKind> list) {
     return list.stream()
       .sorted(DocumentedKind.COMPARATOR)
       .map(DocumentedKind::link)
       .collect(Collectors.joining(", "));
   }
 
-  static String toPascalCase(String original) {
+  private static String toPascalCase(String original) {
     StringBuilder result = new StringBuilder();
     for (String part : original.split("[ _]+")) {
       if (!part.isEmpty()) {
@@ -286,11 +275,11 @@ public class DocumentationTest {
     return result.toString();
   }
 
-  static Set<String> javaParserKinds() {
+  private static Set<String> javaParserKinds() {
     return Generator.allKindNames();
   }
 
-  static Set<String>  goParserKinds() {
+  private static Set<String>  goParserKinds() {
     try {
       return Arrays.stream(new String(Files.readAllBytes(createGoParserKinds()), UTF_8)
         .split("\r?\n"))

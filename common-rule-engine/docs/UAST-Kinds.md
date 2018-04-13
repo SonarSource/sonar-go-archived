@@ -24,7 +24,6 @@ _(do not edit, this page is generated)_
     * [RemainderAssignment](#remainderassignment)
     * [RightShiftAssignment](#rightshiftassignment)
     * [XorAssignment](#xorassignment)
-* [BinaryExpression](#binaryexpression)
 * [Block](#block)
 * [Call](#call) { [Arguments](#arguments), [Argument](#argument) }
 * [Cast](#cast)
@@ -45,7 +44,29 @@ _(do not edit, this page is generated)_
     * [Try](#try)
 * [Enum](#enum)
 * [Expression](#expression)
+    * [BinaryExpression](#binaryexpression)
+        * [Add](#add)
+        * [BitwiseAnd](#bitwiseand)
+        * [BitwiseAndNot](#bitwiseandnot)
+        * [BitwiseOr](#bitwiseor)
+        * [BitwiseXor](#bitwisexor)
+        * [Divide](#divide)
+        * [Equal](#equal)
+        * [GreaterOrEqual](#greaterorequal)
+        * [GreaterThan](#greaterthan)
+        * [LeftShift](#leftshift)
+        * [LessOrEqual](#lessorequal)
+        * [LessThan](#lessthan)
+        * [LogicalAnd](#logicaland)
+        * [LogicalOr](#logicalor)
+        * [Modulo](#modulo)
+        * [Multiply](#multiply)
+        * [NotEqual](#notequal)
+        * [RightShift](#rightshift)
+        * [Subtract](#subtract)
     * [FunctionLiteral](#functionliteral)
+    * [LeftOperand](#leftoperand)
+    * [RightOperand](#rightoperand)
 * [Function](#function) { [FunctionName](#functionname), [ResultList](#resultlist), [ParameterList](#parameterlist), [Parameter](#parameter), [Body](#body) }
 * [Identifier](#identifier)
 * [Import](#import) { [ImportEntry](#importentry) }
@@ -64,26 +85,8 @@ _(do not edit, this page is generated)_
     * [OctalLiteral](#octalliteral)
     * [StringLiteral](#stringliteral)
 * [MemberSelect](#memberselect)
+* [Operand](#operand)
 * [Operator](#operator)
-    * [OperatorAdd](#operatoradd)
-    * [OperatorBitwiseAnd](#operatorbitwiseand)
-    * [OperatorBitwiseAndNot](#operatorbitwiseandnot)
-    * [OperatorBitwiseOr](#operatorbitwiseor)
-    * [OperatorBitwiseXor](#operatorbitwisexor)
-    * [OperatorDivide](#operatordivide)
-    * [OperatorEqual](#operatorequal)
-    * [OperatorGreaterOrEqual](#operatorgreaterorequal)
-    * [OperatorGreaterThan](#operatorgreaterthan)
-    * [OperatorLeftShift](#operatorleftshift)
-    * [OperatorLessOrEqual](#operatorlessorequal)
-    * [OperatorLessThan](#operatorlessthan)
-    * [OperatorLogicalAnd](#operatorlogicaland)
-    * [OperatorLogicalOr](#operatorlogicalor)
-    * [OperatorModulo](#operatormodulo)
-    * [OperatorMultiply](#operatormultiply)
-    * [OperatorNotEqual](#operatornotequal)
-    * [OperatorRightShift](#operatorrightshift)
-    * [OperatorSubtract](#operatorsubtract)
 * [Package](#package)
 * [ParenthesizedExpression](#parenthesizedexpression) { [LeftParenthesis](#leftparenthesis), [Expression](#expression), [RightParenthesis](#rightparenthesis) }
 * [Statement](#statement)
@@ -117,6 +120,13 @@ _(do not edit, this page is generated)_
     * [Parameter](#parameter)
 
 ## Kinds Properties
+
+### Add
+Key | ADD
+--- | ---
+Extends | [BinaryExpression](#binaryexpression), [Expression](#expression)
+Languages | Java, Go
+
 
 ### AndAssignment
 Key | AND_ASSIGNMENT
@@ -222,6 +232,8 @@ Languages | Go
 ### BinaryExpression
 Key | BINARY_EXPRESSION
 --- | ---
+Extends | [Expression](#expression)
+Direct sub-kinds | [Add](#add), [BitwiseAnd](#bitwiseand), [BitwiseAndNot](#bitwiseandnot), [BitwiseOr](#bitwiseor), [BitwiseXor](#bitwisexor), [Divide](#divide), [Equal](#equal), [GreaterOrEqual](#greaterorequal), [GreaterThan](#greaterthan), [LeftShift](#leftshift), [LessOrEqual](#lessorequal), [LessThan](#lessthan), [LogicalAnd](#logicaland), [LogicalOr](#logicalor), [Modulo](#modulo), [Multiply](#multiply), [NotEqual](#notequal), [RightShift](#rightshift), [Subtract](#subtract)
 Languages | Java, Go
 
 
@@ -232,10 +244,38 @@ Extends | [Literal](#literal)
 Languages | Java
 
 
+### BitwiseAnd
+Key | BITWISE_AND
+--- | ---
+Extends | [BinaryExpression](#binaryexpression), [Expression](#expression)
+Languages | Java, Go
+
+
+### BitwiseAndNot
+Key | BITWISE_AND_NOT
+--- | ---
+Extends | [BinaryExpression](#binaryexpression), [Expression](#expression)
+Languages | Go
+
+
 ### BitwiseComplement
 Key | BITWISE_COMPLEMENT
 --- | ---
 Extends | [UnaryExpression](#unaryexpression)
+Languages | Java, Go
+
+
+### BitwiseOr
+Key | BITWISE_OR
+--- | ---
+Extends | [BinaryExpression](#binaryexpression), [Expression](#expression)
+Languages | Java, Go
+
+
+### BitwiseXor
+Key | BITWISE_XOR
+--- | ---
+Extends | [BinaryExpression](#binaryexpression), [Expression](#expression)
 Languages | Java, Go
 
 
@@ -387,6 +427,13 @@ Key | DEFAULT_CASE
 Languages | Java, Go
 
 
+### Divide
+Key | DIVIDE
+--- | ---
+Extends | [BinaryExpression](#binaryexpression), [Expression](#expression)
+Languages | Java, Go
+
+
 ### DivideAssignment
 Key | DIVIDE_ASSIGNMENT
 --- | ---
@@ -432,10 +479,18 @@ Key | EOF
 Languages | Java, Go
 
 
+### Equal
+Key | EQUAL
+--- | ---
+Extends | [BinaryExpression](#binaryexpression), [Expression](#expression)
+Languages | Java, Go
+
+
 ### Expression
 Key | EXPRESSION
 --- | ---
-Direct sub-kinds | [FunctionLiteral](#functionliteral)
+Direct sub-kinds | [BinaryExpression](#binaryexpression), [FunctionLiteral](#functionliteral), [LeftOperand](#leftoperand), [RightOperand](#rightoperand)
+All sub-kinds | [Add](#add), [BinaryExpression](#binaryexpression), [BitwiseAnd](#bitwiseand), [BitwiseAndNot](#bitwiseandnot), [BitwiseOr](#bitwiseor), [BitwiseXor](#bitwisexor), [Divide](#divide), [Equal](#equal), [FunctionLiteral](#functionliteral), [GreaterOrEqual](#greaterorequal), [GreaterThan](#greaterthan), [LeftOperand](#leftoperand), [LeftShift](#leftshift), [LessOrEqual](#lessorequal), [LessThan](#lessthan), [LogicalAnd](#logicaland), [LogicalOr](#logicalor), [Modulo](#modulo), [Multiply](#multiply), [NotEqual](#notequal), [RightOperand](#rightoperand), [RightShift](#rightshift), [Subtract](#subtract)
 Languages | Java, Go
 
 
@@ -514,6 +569,20 @@ Components | [BranchLabel](#branchlabel)
 Languages | Go
 
 
+### GreaterOrEqual
+Key | GREATER_OR_EQUAL
+--- | ---
+Extends | [BinaryExpression](#binaryexpression), [Expression](#expression)
+Languages | Java, Go
+
+
+### GreaterThan
+Key | GREATER_THAN
+--- | ---
+Extends | [BinaryExpression](#binaryexpression), [Expression](#expression)
+Languages | Java, Go
+
+
 ### HexLiteral
 Key | HEX_LITERAL
 --- | ---
@@ -579,9 +648,23 @@ Key | LABEL
 Languages | Java, Go
 
 
+### LeftOperand
+Key | LEFT_OPERAND
+--- | ---
+Extends | [Expression](#expression)
+Languages | Java, Go
+
+
 ### LeftParenthesis
 Key | LEFT_PARENTHESIS
 --- | ---
+Languages | Java, Go
+
+
+### LeftShift
+Key | LEFT_SHIFT
+--- | ---
+Extends | [BinaryExpression](#binaryexpression), [Expression](#expression)
 Languages | Java, Go
 
 
@@ -592,6 +675,20 @@ Extends | [Assignment](#assignment)
 Languages | Java, Go
 
 
+### LessOrEqual
+Key | LESS_OR_EQUAL
+--- | ---
+Extends | [BinaryExpression](#binaryexpression), [Expression](#expression)
+Languages | Java, Go
+
+
+### LessThan
+Key | LESS_THAN
+--- | ---
+Extends | [BinaryExpression](#binaryexpression), [Expression](#expression)
+Languages | Java, Go
+
+
 ### Literal
 Key | LITERAL
 --- | ---
@@ -599,10 +696,24 @@ Direct sub-kinds | [BinaryLiteral](#binaryliteral), [BooleanLiteral](#booleanlit
 Languages | Go
 
 
+### LogicalAnd
+Key | LOGICAL_AND
+--- | ---
+Extends | [BinaryExpression](#binaryexpression), [Expression](#expression)
+Languages | Java, Go
+
+
 ### LogicalComplement
 Key | LOGICAL_COMPLEMENT
 --- | ---
 Extends | [UnaryExpression](#unaryexpression)
+Languages | Java, Go
+
+
+### LogicalOr
+Key | LOGICAL_OR
+--- | ---
+Extends | [BinaryExpression](#binaryexpression), [Expression](#expression)
 Languages | Java, Go
 
 
@@ -627,10 +738,31 @@ Extends | [Assignment](#assignment)
 Languages | Java, Go
 
 
+### Modulo
+Key | MODULO
+--- | ---
+Extends | [BinaryExpression](#binaryexpression), [Expression](#expression)
+Languages | Java, Go
+
+
+### Multiply
+Key | MULTIPLY
+--- | ---
+Extends | [BinaryExpression](#binaryexpression), [Expression](#expression)
+Languages | Java, Go
+
+
 ### MultiplyAssignment
 Key | MULTIPLY_ASSIGNMENT
 --- | ---
 Extends | [Assignment](#assignment)
+Languages | Java, Go
+
+
+### NotEqual
+Key | NOT_EQUAL
+--- | ---
+Extends | [BinaryExpression](#binaryexpression), [Expression](#expression)
 Languages | Java, Go
 
 
@@ -648,143 +780,15 @@ Extends | [Literal](#literal)
 Languages | Java, Go
 
 
+### Operand
+Key | OPERAND
+--- | ---
+Languages | Java, Go
+
+
 ### Operator
 Key | OPERATOR
 --- | ---
-Direct sub-kinds | [OperatorAdd](#operatoradd), [OperatorBitwiseAnd](#operatorbitwiseand), [OperatorBitwiseAndNot](#operatorbitwiseandnot), [OperatorBitwiseOr](#operatorbitwiseor), [OperatorBitwiseXor](#operatorbitwisexor), [OperatorDivide](#operatordivide), [OperatorEqual](#operatorequal), [OperatorGreaterOrEqual](#operatorgreaterorequal), [OperatorGreaterThan](#operatorgreaterthan), [OperatorLeftShift](#operatorleftshift), [OperatorLessOrEqual](#operatorlessorequal), [OperatorLessThan](#operatorlessthan), [OperatorLogicalAnd](#operatorlogicaland), [OperatorLogicalOr](#operatorlogicalor), [OperatorModulo](#operatormodulo), [OperatorMultiply](#operatormultiply), [OperatorNotEqual](#operatornotequal), [OperatorRightShift](#operatorrightshift), [OperatorSubtract](#operatorsubtract)
-Languages | Java, Go
-
-
-### OperatorAdd
-Key | OPERATOR_ADD
---- | ---
-Extends | [Operator](#operator)
-Languages | Java, Go
-
-
-### OperatorBitwiseAnd
-Key | OPERATOR_BITWISE_AND
---- | ---
-Extends | [Operator](#operator)
-Languages | Java, Go
-
-
-### OperatorBitwiseAndNot
-Key | OPERATOR_BITWISE_AND_NOT
---- | ---
-Extends | [Operator](#operator)
-Languages | Go
-
-
-### OperatorBitwiseOr
-Key | OPERATOR_BITWISE_OR
---- | ---
-Extends | [Operator](#operator)
-Languages | Java, Go
-
-
-### OperatorBitwiseXor
-Key | OPERATOR_BITWISE_XOR
---- | ---
-Extends | [Operator](#operator)
-Languages | Java, Go
-
-
-### OperatorDivide
-Key | OPERATOR_DIVIDE
---- | ---
-Extends | [Operator](#operator)
-Languages | Java, Go
-
-
-### OperatorEqual
-Key | OPERATOR_EQUAL
---- | ---
-Extends | [Operator](#operator)
-Languages | Java, Go
-
-
-### OperatorGreaterOrEqual
-Key | OPERATOR_GREATER_OR_EQUAL
---- | ---
-Extends | [Operator](#operator)
-Languages | Java, Go
-
-
-### OperatorGreaterThan
-Key | OPERATOR_GREATER_THAN
---- | ---
-Extends | [Operator](#operator)
-Languages | Java, Go
-
-
-### OperatorLeftShift
-Key | OPERATOR_LEFT_SHIFT
---- | ---
-Extends | [Operator](#operator)
-Languages | Java, Go
-
-
-### OperatorLessOrEqual
-Key | OPERATOR_LESS_OR_EQUAL
---- | ---
-Extends | [Operator](#operator)
-Languages | Java, Go
-
-
-### OperatorLessThan
-Key | OPERATOR_LESS_THAN
---- | ---
-Extends | [Operator](#operator)
-Languages | Java, Go
-
-
-### OperatorLogicalAnd
-Key | OPERATOR_LOGICAL_AND
---- | ---
-Extends | [Operator](#operator)
-Languages | Java, Go
-
-
-### OperatorLogicalOr
-Key | OPERATOR_LOGICAL_OR
---- | ---
-Extends | [Operator](#operator)
-Languages | Java, Go
-
-
-### OperatorModulo
-Key | OPERATOR_MODULO
---- | ---
-Extends | [Operator](#operator)
-Languages | Java, Go
-
-
-### OperatorMultiply
-Key | OPERATOR_MULTIPLY
---- | ---
-Extends | [Operator](#operator)
-Languages | Java, Go
-
-
-### OperatorNotEqual
-Key | OPERATOR_NOT_EQUAL
---- | ---
-Extends | [Operator](#operator)
-Languages | Java, Go
-
-
-### OperatorRightShift
-Key | OPERATOR_RIGHT_SHIFT
---- | ---
-Extends | [Operator](#operator)
-Languages | Java, Go
-
-
-### OperatorSubtract
-Key | OPERATOR_SUBTRACT
---- | ---
-Extends | [Operator](#operator)
 Languages | Java, Go
 
 
@@ -890,9 +894,23 @@ Extends | [UnconditionalJump](#unconditionaljump)
 Languages | Java, Go
 
 
+### RightOperand
+Key | RIGHT_OPERAND
+--- | ---
+Extends | [Expression](#expression)
+Languages | Java, Go
+
+
 ### RightParenthesis
 Key | RIGHT_PARENTHESIS
 --- | ---
+Languages | Java, Go
+
+
+### RightShift
+Key | RIGHT_SHIFT
+--- | ---
+Extends | [BinaryExpression](#binaryexpression), [Expression](#expression)
 Languages | Java, Go
 
 
@@ -921,6 +939,13 @@ Languages | Java, Go
 Key | STRUCTURED_COMMENT
 --- | ---
 Extends | [Comment](#comment)
+Languages | Java, Go
+
+
+### Subtract
+Key | SUBTRACT
+--- | ---
+Extends | [BinaryExpression](#binaryexpression), [Expression](#expression)
 Languages | Java, Go
 
 

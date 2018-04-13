@@ -343,6 +343,7 @@
                           "kinds": [
                             "EXPRESSION",
                             "BINARY_EXPRESSION",
+                            "ADD",
                             "ASSIGNMENT_VALUE"
                           ],
                           "nativeNode": "PLUS",
@@ -350,6 +351,7 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
+                                "LEFT_OPERAND",
                                 "DECIMAL_LITERAL"
                               ],
                               "nativeNode": "INT_LITERAL",
@@ -370,8 +372,7 @@
                             },
                             {
                               "kinds": [
-                                "OPERATOR",
-                                "OPERATOR_ADD"
+                                "OPERATOR"
                               ],
                               "nativeNode": "TOKEN",
                               "token": {
@@ -386,6 +387,7 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
+                                "RIGHT_OPERAND",
                                 "DECIMAL_LITERAL"
                               ],
                               "nativeNode": "INT_LITERAL",
@@ -474,6 +476,7 @@
                           "kinds": [
                             "EXPRESSION",
                             "BINARY_EXPRESSION",
+                            "SUBTRACT",
                             "ASSIGNMENT_VALUE"
                           ],
                           "nativeNode": "MINUS",
@@ -481,6 +484,7 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
+                                "LEFT_OPERAND",
                                 "DECIMAL_LITERAL"
                               ],
                               "nativeNode": "INT_LITERAL",
@@ -501,8 +505,7 @@
                             },
                             {
                               "kinds": [
-                                "OPERATOR",
-                                "OPERATOR_SUBTRACT"
+                                "OPERATOR"
                               ],
                               "nativeNode": "TOKEN",
                               "token": {
@@ -517,6 +520,7 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
+                                "RIGHT_OPERAND",
                                 "DECIMAL_LITERAL"
                               ],
                               "nativeNode": "INT_LITERAL",
@@ -605,6 +609,7 @@
                           "kinds": [
                             "EXPRESSION",
                             "BINARY_EXPRESSION",
+                            "MULTIPLY",
                             "ASSIGNMENT_VALUE"
                           ],
                           "nativeNode": "MULTIPLY",
@@ -612,6 +617,7 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
+                                "LEFT_OPERAND",
                                 "DECIMAL_LITERAL"
                               ],
                               "nativeNode": "INT_LITERAL",
@@ -632,8 +638,7 @@
                             },
                             {
                               "kinds": [
-                                "OPERATOR",
-                                "OPERATOR_MULTIPLY"
+                                "OPERATOR"
                               ],
                               "nativeNode": "TOKEN",
                               "token": {
@@ -648,6 +653,7 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
+                                "RIGHT_OPERAND",
                                 "DECIMAL_LITERAL"
                               ],
                               "nativeNode": "INT_LITERAL",
@@ -736,6 +742,7 @@
                           "kinds": [
                             "EXPRESSION",
                             "BINARY_EXPRESSION",
+                            "DIVIDE",
                             "ASSIGNMENT_VALUE"
                           ],
                           "nativeNode": "DIVIDE",
@@ -743,6 +750,7 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
+                                "LEFT_OPERAND",
                                 "DECIMAL_LITERAL"
                               ],
                               "nativeNode": "INT_LITERAL",
@@ -763,8 +771,7 @@
                             },
                             {
                               "kinds": [
-                                "OPERATOR",
-                                "OPERATOR_DIVIDE"
+                                "OPERATOR"
                               ],
                               "nativeNode": "TOKEN",
                               "token": {
@@ -779,6 +786,7 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
+                                "RIGHT_OPERAND",
                                 "DECIMAL_LITERAL"
                               ],
                               "nativeNode": "INT_LITERAL",
@@ -867,6 +875,7 @@
                           "kinds": [
                             "EXPRESSION",
                             "BINARY_EXPRESSION",
+                            "MODULO",
                             "ASSIGNMENT_VALUE"
                           ],
                           "nativeNode": "REMAINDER",
@@ -874,6 +883,7 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
+                                "LEFT_OPERAND",
                                 "DECIMAL_LITERAL"
                               ],
                               "nativeNode": "INT_LITERAL",
@@ -894,8 +904,7 @@
                             },
                             {
                               "kinds": [
-                                "OPERATOR",
-                                "OPERATOR_MODULO"
+                                "OPERATOR"
                               ],
                               "nativeNode": "TOKEN",
                               "token": {
@@ -910,6 +919,7 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
+                                "RIGHT_OPERAND",
                                 "DECIMAL_LITERAL"
                               ],
                               "nativeNode": "INT_LITERAL",
@@ -998,6 +1008,7 @@
                           "kinds": [
                             "EXPRESSION",
                             "BINARY_EXPRESSION",
+                            "LEFT_SHIFT",
                             "ASSIGNMENT_VALUE"
                           ],
                           "nativeNode": "LEFT_SHIFT",
@@ -1005,6 +1016,7 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
+                                "LEFT_OPERAND",
                                 "DECIMAL_LITERAL"
                               ],
                               "nativeNode": "INT_LITERAL",
@@ -1025,8 +1037,7 @@
                             },
                             {
                               "kinds": [
-                                "OPERATOR",
-                                "OPERATOR_LEFT_SHIFT"
+                                "OPERATOR"
                               ],
                               "nativeNode": "TOKEN",
                               "token": {
@@ -1041,6 +1052,7 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
+                                "RIGHT_OPERAND",
                                 "DECIMAL_LITERAL"
                               ],
                               "nativeNode": "INT_LITERAL",
@@ -1129,6 +1141,7 @@
                           "kinds": [
                             "EXPRESSION",
                             "BINARY_EXPRESSION",
+                            "RIGHT_SHIFT",
                             "ASSIGNMENT_VALUE"
                           ],
                           "nativeNode": "RIGHT_SHIFT",
@@ -1136,6 +1149,7 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
+                                "LEFT_OPERAND",
                                 "DECIMAL_LITERAL"
                               ],
                               "nativeNode": "INT_LITERAL",
@@ -1156,8 +1170,7 @@
                             },
                             {
                               "kinds": [
-                                "OPERATOR",
-                                "OPERATOR_RIGHT_SHIFT"
+                                "OPERATOR"
                               ],
                               "nativeNode": "TOKEN",
                               "token": {
@@ -1172,6 +1185,7 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
+                                "RIGHT_OPERAND",
                                 "DECIMAL_LITERAL"
                               ],
                               "nativeNode": "INT_LITERAL",
@@ -1260,6 +1274,7 @@
                           "kinds": [
                             "EXPRESSION",
                             "BINARY_EXPRESSION",
+                            "BITWISE_AND",
                             "ASSIGNMENT_VALUE"
                           ],
                           "nativeNode": "AND",
@@ -1267,6 +1282,7 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
+                                "LEFT_OPERAND",
                                 "DECIMAL_LITERAL"
                               ],
                               "nativeNode": "INT_LITERAL",
@@ -1287,8 +1303,7 @@
                             },
                             {
                               "kinds": [
-                                "OPERATOR",
-                                "OPERATOR_BITWISE_AND"
+                                "OPERATOR"
                               ],
                               "nativeNode": "TOKEN",
                               "token": {
@@ -1303,6 +1318,7 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
+                                "RIGHT_OPERAND",
                                 "DECIMAL_LITERAL"
                               ],
                               "nativeNode": "INT_LITERAL",
@@ -1391,6 +1407,7 @@
                           "kinds": [
                             "EXPRESSION",
                             "BINARY_EXPRESSION",
+                            "BITWISE_OR",
                             "ASSIGNMENT_VALUE"
                           ],
                           "nativeNode": "OR",
@@ -1398,6 +1415,7 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
+                                "LEFT_OPERAND",
                                 "DECIMAL_LITERAL"
                               ],
                               "nativeNode": "INT_LITERAL",
@@ -1418,8 +1436,7 @@
                             },
                             {
                               "kinds": [
-                                "OPERATOR",
-                                "OPERATOR_BITWISE_OR"
+                                "OPERATOR"
                               ],
                               "nativeNode": "TOKEN",
                               "token": {
@@ -1434,6 +1451,7 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
+                                "RIGHT_OPERAND",
                                 "DECIMAL_LITERAL"
                               ],
                               "nativeNode": "INT_LITERAL",
@@ -1522,6 +1540,7 @@
                           "kinds": [
                             "EXPRESSION",
                             "BINARY_EXPRESSION",
+                            "BITWISE_XOR",
                             "ASSIGNMENT_VALUE"
                           ],
                           "nativeNode": "XOR",
@@ -1529,6 +1548,7 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
+                                "LEFT_OPERAND",
                                 "DECIMAL_LITERAL"
                               ],
                               "nativeNode": "INT_LITERAL",
@@ -1549,8 +1569,7 @@
                             },
                             {
                               "kinds": [
-                                "OPERATOR",
-                                "OPERATOR_BITWISE_XOR"
+                                "OPERATOR"
                               ],
                               "nativeNode": "TOKEN",
                               "token": {
@@ -1565,6 +1584,7 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
+                                "RIGHT_OPERAND",
                                 "DECIMAL_LITERAL"
                               ],
                               "nativeNode": "INT_LITERAL",
@@ -1653,6 +1673,7 @@
                           "kinds": [
                             "EXPRESSION",
                             "BINARY_EXPRESSION",
+                            "EQUAL",
                             "ASSIGNMENT_VALUE"
                           ],
                           "nativeNode": "EQUAL_TO",
@@ -1660,6 +1681,7 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
+                                "LEFT_OPERAND",
                                 "DECIMAL_LITERAL"
                               ],
                               "nativeNode": "INT_LITERAL",
@@ -1680,8 +1702,7 @@
                             },
                             {
                               "kinds": [
-                                "OPERATOR",
-                                "OPERATOR_EQUAL"
+                                "OPERATOR"
                               ],
                               "nativeNode": "TOKEN",
                               "token": {
@@ -1696,6 +1717,7 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
+                                "RIGHT_OPERAND",
                                 "DECIMAL_LITERAL"
                               ],
                               "nativeNode": "INT_LITERAL",
@@ -1784,6 +1806,7 @@
                           "kinds": [
                             "EXPRESSION",
                             "BINARY_EXPRESSION",
+                            "NOT_EQUAL",
                             "ASSIGNMENT_VALUE"
                           ],
                           "nativeNode": "NOT_EQUAL_TO",
@@ -1791,6 +1814,7 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
+                                "LEFT_OPERAND",
                                 "DECIMAL_LITERAL"
                               ],
                               "nativeNode": "INT_LITERAL",
@@ -1811,8 +1835,7 @@
                             },
                             {
                               "kinds": [
-                                "OPERATOR",
-                                "OPERATOR_NOT_EQUAL"
+                                "OPERATOR"
                               ],
                               "nativeNode": "TOKEN",
                               "token": {
@@ -1827,6 +1850,7 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
+                                "RIGHT_OPERAND",
                                 "DECIMAL_LITERAL"
                               ],
                               "nativeNode": "INT_LITERAL",
@@ -1915,6 +1939,7 @@
                           "kinds": [
                             "EXPRESSION",
                             "BINARY_EXPRESSION",
+                            "LESS_THAN",
                             "ASSIGNMENT_VALUE"
                           ],
                           "nativeNode": "LESS_THAN",
@@ -1922,6 +1947,7 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
+                                "LEFT_OPERAND",
                                 "DECIMAL_LITERAL"
                               ],
                               "nativeNode": "INT_LITERAL",
@@ -1942,8 +1968,7 @@
                             },
                             {
                               "kinds": [
-                                "OPERATOR",
-                                "OPERATOR_LESS_THAN"
+                                "OPERATOR"
                               ],
                               "nativeNode": "TOKEN",
                               "token": {
@@ -1958,6 +1983,7 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
+                                "RIGHT_OPERAND",
                                 "DECIMAL_LITERAL"
                               ],
                               "nativeNode": "INT_LITERAL",
@@ -2046,6 +2072,7 @@
                           "kinds": [
                             "EXPRESSION",
                             "BINARY_EXPRESSION",
+                            "LESS_OR_EQUAL",
                             "ASSIGNMENT_VALUE"
                           ],
                           "nativeNode": "LESS_THAN_OR_EQUAL_TO",
@@ -2053,6 +2080,7 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
+                                "LEFT_OPERAND",
                                 "DECIMAL_LITERAL"
                               ],
                               "nativeNode": "INT_LITERAL",
@@ -2073,8 +2101,7 @@
                             },
                             {
                               "kinds": [
-                                "OPERATOR",
-                                "OPERATOR_LESS_OR_EQUAL"
+                                "OPERATOR"
                               ],
                               "nativeNode": "TOKEN",
                               "token": {
@@ -2089,6 +2116,7 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
+                                "RIGHT_OPERAND",
                                 "DECIMAL_LITERAL"
                               ],
                               "nativeNode": "INT_LITERAL",
@@ -2177,6 +2205,7 @@
                           "kinds": [
                             "EXPRESSION",
                             "BINARY_EXPRESSION",
+                            "GREATER_OR_EQUAL",
                             "ASSIGNMENT_VALUE"
                           ],
                           "nativeNode": "GREATER_THAN_OR_EQUAL_TO",
@@ -2184,6 +2213,7 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
+                                "LEFT_OPERAND",
                                 "DECIMAL_LITERAL"
                               ],
                               "nativeNode": "INT_LITERAL",
@@ -2204,8 +2234,7 @@
                             },
                             {
                               "kinds": [
-                                "OPERATOR",
-                                "OPERATOR_GREATER_OR_EQUAL"
+                                "OPERATOR"
                               ],
                               "nativeNode": "TOKEN",
                               "token": {
@@ -2220,6 +2249,7 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
+                                "RIGHT_OPERAND",
                                 "DECIMAL_LITERAL"
                               ],
                               "nativeNode": "INT_LITERAL",
@@ -2308,6 +2338,7 @@
                           "kinds": [
                             "EXPRESSION",
                             "BINARY_EXPRESSION",
+                            "GREATER_THAN",
                             "ASSIGNMENT_VALUE"
                           ],
                           "nativeNode": "GREATER_THAN",
@@ -2315,6 +2346,7 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
+                                "LEFT_OPERAND",
                                 "DECIMAL_LITERAL"
                               ],
                               "nativeNode": "INT_LITERAL",
@@ -2335,8 +2367,7 @@
                             },
                             {
                               "kinds": [
-                                "OPERATOR",
-                                "OPERATOR_GREATER_THAN"
+                                "OPERATOR"
                               ],
                               "nativeNode": "TOKEN",
                               "token": {
@@ -2351,6 +2382,7 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
+                                "RIGHT_OPERAND",
                                 "DECIMAL_LITERAL"
                               ],
                               "nativeNode": "INT_LITERAL",
@@ -2439,12 +2471,14 @@
                           "kinds": [
                             "EXPRESSION",
                             "BINARY_EXPRESSION",
+                            "LOGICAL_AND",
                             "ASSIGNMENT_VALUE"
                           ],
                           "nativeNode": "CONDITIONAL_AND",
                           "children": [
                             {
                               "kinds": [
+                                "LEFT_OPERAND",
                                 "IDENTIFIER"
                               ],
                               "nativeNode": "IDENTIFIER",
@@ -2465,8 +2499,7 @@
                             },
                             {
                               "kinds": [
-                                "OPERATOR",
-                                "OPERATOR_LOGICAL_AND"
+                                "OPERATOR"
                               ],
                               "nativeNode": "TOKEN",
                               "token": {
@@ -2481,6 +2514,7 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
+                                "RIGHT_OPERAND",
                                 "BOOLEAN_LITERAL"
                               ],
                               "nativeNode": "BOOLEAN_LITERAL",
@@ -2571,12 +2605,14 @@
                           "kinds": [
                             "EXPRESSION",
                             "BINARY_EXPRESSION",
+                            "LOGICAL_OR",
                             "ASSIGNMENT_VALUE"
                           ],
                           "nativeNode": "CONDITIONAL_OR",
                           "children": [
                             {
                               "kinds": [
+                                "LEFT_OPERAND",
                                 "IDENTIFIER"
                               ],
                               "nativeNode": "IDENTIFIER",
@@ -2597,8 +2633,7 @@
                             },
                             {
                               "kinds": [
-                                "OPERATOR",
-                                "OPERATOR_LOGICAL_OR"
+                                "OPERATOR"
                               ],
                               "nativeNode": "TOKEN",
                               "token": {
@@ -2613,6 +2648,7 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
+                                "RIGHT_OPERAND",
                                 "BOOLEAN_LITERAL"
                               ],
                               "nativeNode": "BOOLEAN_LITERAL",
@@ -2831,8 +2867,7 @@
                           "children": [
                             {
                               "kinds": [
-                                "OPERATOR",
-                                "OPERATOR_ADD"
+                                "OPERATOR"
                               ],
                               "nativeNode": "TOKEN",
                               "token": {
@@ -2847,7 +2882,8 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
-                                "DECIMAL_LITERAL"
+                                "DECIMAL_LITERAL",
+                                "OPERAND"
                               ],
                               "nativeNode": "INT_LITERAL",
                               "children": [
@@ -2942,8 +2978,7 @@
                           "children": [
                             {
                               "kinds": [
-                                "OPERATOR",
-                                "OPERATOR_SUBTRACT"
+                                "OPERATOR"
                               ],
                               "nativeNode": "TOKEN",
                               "token": {
@@ -2958,7 +2993,8 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
-                                "DECIMAL_LITERAL"
+                                "DECIMAL_LITERAL",
+                                "OPERAND"
                               ],
                               "nativeNode": "INT_LITERAL",
                               "children": [
@@ -3053,8 +3089,7 @@
                           "children": [
                             {
                               "kinds": [
-                                "OPERATOR",
-                                "OPERATOR_BITWISE_COMPLEMENT"
+                                "OPERATOR"
                               ],
                               "nativeNode": "TOKEN",
                               "token": {
@@ -3069,7 +3104,8 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
-                                "DECIMAL_LITERAL"
+                                "DECIMAL_LITERAL",
+                                "OPERAND"
                               ],
                               "nativeNode": "INT_LITERAL",
                               "children": [
@@ -3163,7 +3199,9 @@
                           "nativeNode": "LOGICAL_COMPLEMENT",
                           "children": [
                             {
-                              "kinds": [],
+                              "kinds": [
+                                "OPERATOR"
+                              ],
                               "nativeNode": "TOKEN",
                               "token": {
                                 "value": "!",
@@ -3176,7 +3214,8 @@
                             },
                             {
                               "kinds": [
-                                "IDENTIFIER"
+                                "IDENTIFIER",
+                                "OPERAND"
                               ],
                               "nativeNode": "IDENTIFIER",
                               "children": [
@@ -3349,7 +3388,8 @@
                       "children": [
                         {
                           "kinds": [
-                            "IDENTIFIER"
+                            "IDENTIFIER",
+                            "OPERAND"
                           ],
                           "nativeNode": "IDENTIFIER",
                           "children": [
@@ -3368,7 +3408,9 @@
                           ]
                         },
                         {
-                          "kinds": [],
+                          "kinds": [
+                            "OPERATOR"
+                          ],
                           "nativeNode": "TOKEN",
                           "token": {
                             "value": "++",
@@ -3410,7 +3452,9 @@
                       "nativeNode": "PREFIX_INCREMENT",
                       "children": [
                         {
-                          "kinds": [],
+                          "kinds": [
+                            "OPERATOR"
+                          ],
                           "nativeNode": "TOKEN",
                           "token": {
                             "value": "++",
@@ -3423,7 +3467,8 @@
                         },
                         {
                           "kinds": [
-                            "IDENTIFIER"
+                            "IDENTIFIER",
+                            "OPERAND"
                           ],
                           "nativeNode": "IDENTIFIER",
                           "children": [
@@ -3473,7 +3518,8 @@
                       "children": [
                         {
                           "kinds": [
-                            "IDENTIFIER"
+                            "IDENTIFIER",
+                            "OPERAND"
                           ],
                           "nativeNode": "IDENTIFIER",
                           "children": [
@@ -3492,7 +3538,9 @@
                           ]
                         },
                         {
-                          "kinds": [],
+                          "kinds": [
+                            "OPERATOR"
+                          ],
                           "nativeNode": "TOKEN",
                           "token": {
                             "value": "--",
@@ -3534,7 +3582,9 @@
                       "nativeNode": "PREFIX_DECREMENT",
                       "children": [
                         {
-                          "kinds": [],
+                          "kinds": [
+                            "OPERATOR"
+                          ],
                           "nativeNode": "TOKEN",
                           "token": {
                             "value": "--",
@@ -3547,7 +3597,8 @@
                         },
                         {
                           "kinds": [
-                            "IDENTIFIER"
+                            "IDENTIFIER",
+                            "OPERAND"
                           ],
                           "nativeNode": "IDENTIFIER",
                           "children": [

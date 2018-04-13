@@ -35,3 +35,11 @@ test {
 }
 
 test.dependsOn ':uast-generator-go:build'
+
+task updateDoc(type: JavaExec) {
+    description 'Update UAST documentation'
+    classpath sourceSets.test.runtimeClasspath
+    main = "org.sonar.uast.DocGenerator"
+}
+
+build.dependsOn 'updateDoc'

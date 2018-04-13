@@ -37,6 +37,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.sonar.commonruleengine.checks.TestUtils;
+import org.sonar.uast.generator.java.Generator;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -158,6 +159,13 @@ class UastNodeTest {
       if (!line.isEmpty()) {
         UastNode.Kind.valueOf(line);
       }
+    }
+  }
+
+  @Test
+  void java_parser_kinds_are_subset_of_common_kinds() {
+    for (String name : Generator.allKindNames()) {
+      UastNode.Kind.valueOf(name);
     }
   }
 

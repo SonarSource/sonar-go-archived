@@ -32,9 +32,10 @@ public class BinaryExpressionLikeTest {
 
   @Test
   void test() {
-    UastNode leftOperand = node(UastNode.Kind.IDENTIFIER);
-    UastNode operator = new UastNode(Collections.emptySet(), "", new UastNode.Token(42, 7, "+"), Collections.emptyList());
-    UastNode rightOperand = node(UastNode.Kind.IDENTIFIER);
+    UastNode leftOperand = node(UastNode.Kind.LEFT_OPERAND);
+    UastNode operator = new UastNode(Collections.singleton(UastNode.Kind.OPERATOR), "",
+      new UastNode.Token(42, 7, "+"), Collections.emptyList());
+    UastNode rightOperand = node(UastNode.Kind.RIGHT_OPERAND);
     UastNode binaryExpression = node(UastNode.Kind.BINARY_EXPRESSION, leftOperand, operator, rightOperand);
 
     BinaryExpressionLike assignmentLike = BinaryExpressionLike.from(binaryExpression);
