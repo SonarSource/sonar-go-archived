@@ -35,7 +35,8 @@ Run plugin integration tests:
 
 This SonarQube plugin uses an intermediate representation format to provide issues and metrics on a Go project.
 The intermediate format is a json file representing an UAST (Universal Abstract Syntax Tree).
-This is an example: [uast.json](https://github.com/SonarSource/sonar-go/blob/master/common-rule-engine/src/test/resources/reference.java.uast.json)
+
+[Universal Abstract Syntax Tree - Reference Documentation](common-rule-engine/docs/UAST-Reference.md)
 
 Uast node is defined by class [UastNode](common-rule-engine/src/main/java/org/sonar/uast/UastNode.java). Package [helpers](common-rule-engine/src/main/java/org/sonar/uast/helpers) 
 contains convenient classes to work with the tree.    
