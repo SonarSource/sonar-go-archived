@@ -61,13 +61,15 @@
         {
           "kinds": [
             "STATEMENT",
-            "ASSIGNMENT"
+            "ASSIGNMENT",
+            "VARIABLE_DECLARATION"
           ],
           "nativeNode": "VARIABLE",
           "children": [
             {
               "kinds": [
-                "IDENTIFIER"
+                "IDENTIFIER",
+                "TYPE"
               ],
               "nativeNode": "IDENTIFIER",
               "children": [
@@ -88,7 +90,8 @@
             {
               "kinds": [
                 "IDENTIFIER",
-                "ASSIGNMENT_TARGET"
+                "ASSIGNMENT_TARGET",
+                "VARIABLE_NAME"
               ],
               "nativeNode": "IDENTIFIER",
               "children": [
@@ -124,7 +127,8 @@
               "kinds": [
                 "EXPRESSION",
                 "STRING_LITERAL",
-                "ASSIGNMENT_VALUE"
+                "ASSIGNMENT_VALUE",
+                "INITIALIZER"
               ],
               "nativeNode": "STRING_LITERAL",
               "children": [
@@ -159,12 +163,15 @@
         {
           "kinds": [
             "STATEMENT",
-            "ASSIGNMENT"
+            "ASSIGNMENT",
+            "VARIABLE_DECLARATION"
           ],
           "nativeNode": "VARIABLE",
           "children": [
             {
-              "kinds": [],
+              "kinds": [
+                "TYPE"
+              ],
               "nativeNode": "PRIMITIVE_TYPE",
               "children": [
                 {
@@ -186,7 +193,8 @@
             {
               "kinds": [
                 "IDENTIFIER",
-                "ASSIGNMENT_TARGET"
+                "ASSIGNMENT_TARGET",
+                "VARIABLE_NAME"
               ],
               "nativeNode": "IDENTIFIER",
               "children": [
@@ -222,7 +230,8 @@
               "kinds": [
                 "EXPRESSION",
                 "ASSIGNMENT_VALUE",
-                "CHAR_LITERAL"
+                "CHAR_LITERAL",
+                "INITIALIZER"
               ],
               "nativeNode": "CHAR_LITERAL",
               "children": [
@@ -257,12 +266,15 @@
         {
           "kinds": [
             "STATEMENT",
-            "ASSIGNMENT"
+            "ASSIGNMENT",
+            "VARIABLE_DECLARATION"
           ],
           "nativeNode": "VARIABLE",
           "children": [
             {
-              "kinds": [],
+              "kinds": [
+                "TYPE"
+              ],
               "nativeNode": "PRIMITIVE_TYPE",
               "children": [
                 {
@@ -284,7 +296,8 @@
             {
               "kinds": [
                 "IDENTIFIER",
-                "ASSIGNMENT_TARGET"
+                "ASSIGNMENT_TARGET",
+                "VARIABLE_NAME"
               ],
               "nativeNode": "IDENTIFIER",
               "children": [
@@ -320,7 +333,8 @@
               "kinds": [
                 "EXPRESSION",
                 "DECIMAL_LITERAL",
-                "ASSIGNMENT_VALUE"
+                "ASSIGNMENT_VALUE",
+                "INITIALIZER"
               ],
               "nativeNode": "INT_LITERAL",
               "children": [
@@ -355,12 +369,15 @@
         {
           "kinds": [
             "STATEMENT",
-            "ASSIGNMENT"
+            "ASSIGNMENT",
+            "VARIABLE_DECLARATION"
           ],
           "nativeNode": "VARIABLE",
           "children": [
             {
-              "kinds": [],
+              "kinds": [
+                "TYPE"
+              ],
               "nativeNode": "PRIMITIVE_TYPE",
               "children": [
                 {
@@ -382,7 +399,8 @@
             {
               "kinds": [
                 "IDENTIFIER",
-                "ASSIGNMENT_TARGET"
+                "ASSIGNMENT_TARGET",
+                "VARIABLE_NAME"
               ],
               "nativeNode": "IDENTIFIER",
               "children": [
@@ -418,7 +436,8 @@
               "kinds": [
                 "EXPRESSION",
                 "HEX_LITERAL",
-                "ASSIGNMENT_VALUE"
+                "ASSIGNMENT_VALUE",
+                "INITIALIZER"
               ],
               "nativeNode": "INT_LITERAL",
               "children": [
@@ -453,12 +472,15 @@
         {
           "kinds": [
             "STATEMENT",
-            "ASSIGNMENT"
+            "ASSIGNMENT",
+            "VARIABLE_DECLARATION"
           ],
           "nativeNode": "VARIABLE",
           "children": [
             {
-              "kinds": [],
+              "kinds": [
+                "TYPE"
+              ],
               "nativeNode": "PRIMITIVE_TYPE",
               "children": [
                 {
@@ -480,7 +502,8 @@
             {
               "kinds": [
                 "IDENTIFIER",
-                "ASSIGNMENT_TARGET"
+                "ASSIGNMENT_TARGET",
+                "VARIABLE_NAME"
               ],
               "nativeNode": "IDENTIFIER",
               "children": [
@@ -516,7 +539,8 @@
               "kinds": [
                 "EXPRESSION",
                 "BINARY_LITERAL",
-                "ASSIGNMENT_VALUE"
+                "ASSIGNMENT_VALUE",
+                "INITIALIZER"
               ],
               "nativeNode": "INT_LITERAL",
               "children": [
@@ -551,12 +575,15 @@
         {
           "kinds": [
             "STATEMENT",
-            "ASSIGNMENT"
+            "ASSIGNMENT",
+            "VARIABLE_DECLARATION"
           ],
           "nativeNode": "VARIABLE",
           "children": [
             {
-              "kinds": [],
+              "kinds": [
+                "TYPE"
+              ],
               "nativeNode": "PRIMITIVE_TYPE",
               "children": [
                 {
@@ -578,7 +605,8 @@
             {
               "kinds": [
                 "IDENTIFIER",
-                "ASSIGNMENT_TARGET"
+                "ASSIGNMENT_TARGET",
+                "VARIABLE_NAME"
               ],
               "nativeNode": "IDENTIFIER",
               "children": [
@@ -614,7 +642,8 @@
               "kinds": [
                 "EXPRESSION",
                 "OCTAL_LITERAL",
-                "ASSIGNMENT_VALUE"
+                "ASSIGNMENT_VALUE",
+                "INITIALIZER"
               ],
               "nativeNode": "INT_LITERAL",
               "children": [
@@ -649,12 +678,15 @@
         {
           "kinds": [
             "STATEMENT",
-            "ASSIGNMENT"
+            "ASSIGNMENT",
+            "VARIABLE_DECLARATION"
           ],
           "nativeNode": "VARIABLE",
           "children": [
             {
-              "kinds": [],
+              "kinds": [
+                "TYPE"
+              ],
               "nativeNode": "PRIMITIVE_TYPE",
               "children": [
                 {
@@ -676,7 +708,8 @@
             {
               "kinds": [
                 "IDENTIFIER",
-                "ASSIGNMENT_TARGET"
+                "ASSIGNMENT_TARGET",
+                "VARIABLE_NAME"
               ],
               "nativeNode": "IDENTIFIER",
               "children": [
@@ -712,7 +745,8 @@
               "kinds": [
                 "EXPRESSION",
                 "DECIMAL_LITERAL",
-                "ASSIGNMENT_VALUE"
+                "ASSIGNMENT_VALUE",
+                "INITIALIZER"
               ],
               "nativeNode": "LONG_LITERAL",
               "children": [
@@ -747,13 +781,15 @@
         {
           "kinds": [
             "STATEMENT",
-            "ASSIGNMENT"
+            "ASSIGNMENT",
+            "VARIABLE_DECLARATION"
           ],
           "nativeNode": "VARIABLE",
           "children": [
             {
               "kinds": [
-                "IDENTIFIER"
+                "IDENTIFIER",
+                "TYPE"
               ],
               "nativeNode": "IDENTIFIER",
               "children": [
@@ -774,7 +810,8 @@
             {
               "kinds": [
                 "IDENTIFIER",
-                "ASSIGNMENT_TARGET"
+                "ASSIGNMENT_TARGET",
+                "VARIABLE_NAME"
               ],
               "nativeNode": "IDENTIFIER",
               "children": [
@@ -810,7 +847,8 @@
               "kinds": [
                 "EXPRESSION",
                 "NULL_LITERAL",
-                "ASSIGNMENT_VALUE"
+                "ASSIGNMENT_VALUE",
+                "INITIALIZER"
               ],
               "nativeNode": "NULL_LITERAL",
               "children": [
@@ -847,12 +885,15 @@
         {
           "kinds": [
             "STATEMENT",
-            "ASSIGNMENT"
+            "ASSIGNMENT",
+            "VARIABLE_DECLARATION"
           ],
           "nativeNode": "VARIABLE",
           "children": [
             {
-              "kinds": [],
+              "kinds": [
+                "TYPE"
+              ],
               "nativeNode": "PRIMITIVE_TYPE",
               "children": [
                 {
@@ -874,7 +915,8 @@
             {
               "kinds": [
                 "IDENTIFIER",
-                "ASSIGNMENT_TARGET"
+                "ASSIGNMENT_TARGET",
+                "VARIABLE_NAME"
               ],
               "nativeNode": "IDENTIFIER",
               "children": [
@@ -910,7 +952,8 @@
               "kinds": [
                 "EXPRESSION",
                 "BOOLEAN_LITERAL",
-                "ASSIGNMENT_VALUE"
+                "ASSIGNMENT_VALUE",
+                "INITIALIZER"
               ],
               "nativeNode": "BOOLEAN_LITERAL",
               "children": [
@@ -947,12 +990,15 @@
         {
           "kinds": [
             "STATEMENT",
-            "ASSIGNMENT"
+            "ASSIGNMENT",
+            "VARIABLE_DECLARATION"
           ],
           "nativeNode": "VARIABLE",
           "children": [
             {
-              "kinds": [],
+              "kinds": [
+                "TYPE"
+              ],
               "nativeNode": "PRIMITIVE_TYPE",
               "children": [
                 {
@@ -974,7 +1020,8 @@
             {
               "kinds": [
                 "IDENTIFIER",
-                "ASSIGNMENT_TARGET"
+                "ASSIGNMENT_TARGET",
+                "VARIABLE_NAME"
               ],
               "nativeNode": "IDENTIFIER",
               "children": [
@@ -1010,7 +1057,8 @@
               "kinds": [
                 "EXPRESSION",
                 "FLOAT_LITERAL",
-                "ASSIGNMENT_VALUE"
+                "ASSIGNMENT_VALUE",
+                "INITIALIZER"
               ],
               "nativeNode": "DOUBLE_LITERAL",
               "children": [
@@ -1045,12 +1093,15 @@
         {
           "kinds": [
             "STATEMENT",
-            "ASSIGNMENT"
+            "ASSIGNMENT",
+            "VARIABLE_DECLARATION"
           ],
           "nativeNode": "VARIABLE",
           "children": [
             {
-              "kinds": [],
+              "kinds": [
+                "TYPE"
+              ],
               "nativeNode": "PRIMITIVE_TYPE",
               "children": [
                 {
@@ -1072,7 +1123,8 @@
             {
               "kinds": [
                 "IDENTIFIER",
-                "ASSIGNMENT_TARGET"
+                "ASSIGNMENT_TARGET",
+                "VARIABLE_NAME"
               ],
               "nativeNode": "IDENTIFIER",
               "children": [
@@ -1108,7 +1160,8 @@
               "kinds": [
                 "EXPRESSION",
                 "FLOAT_LITERAL",
-                "ASSIGNMENT_VALUE"
+                "ASSIGNMENT_VALUE",
+                "INITIALIZER"
               ],
               "nativeNode": "FLOAT_LITERAL",
               "children": [

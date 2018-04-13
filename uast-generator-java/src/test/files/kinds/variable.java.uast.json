@@ -1,0 +1,592 @@
+{
+  "kinds": [
+    "COMPILATION_UNIT"
+  ],
+  "nativeNode": "COMPILATION_UNIT",
+  "children": [
+    {
+      "kinds": [
+        "CLASS",
+        "STATEMENT",
+        "TYPE"
+      ],
+      "nativeNode": "CLASS",
+      "children": [
+        {
+          "kinds": [
+            "KEYWORD"
+          ],
+          "nativeNode": "TOKEN",
+          "token": {
+            "value": "class",
+            "line": 1,
+            "endLine": 1,
+            "column": 1,
+            "endColumn": 5
+          },
+          "children": []
+        },
+        {
+          "kinds": [
+            "IDENTIFIER"
+          ],
+          "nativeNode": "IDENTIFIER",
+          "children": [
+            {
+              "kinds": [],
+              "nativeNode": "TOKEN",
+              "token": {
+                "value": "A",
+                "line": 1,
+                "endLine": 1,
+                "column": 7,
+                "endColumn": 7
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "kinds": [],
+          "nativeNode": "TOKEN",
+          "token": {
+            "value": "{",
+            "line": 1,
+            "endLine": 1,
+            "column": 9,
+            "endColumn": 9
+          },
+          "children": []
+        },
+        {
+          "kinds": [
+            "STATEMENT",
+            "ASSIGNMENT",
+            "VARIABLE_DECLARATION"
+          ],
+          "nativeNode": "VARIABLE",
+          "children": [
+            {
+              "kinds": [],
+              "nativeNode": "MODIFIERS",
+              "children": [
+                {
+                  "kinds": [
+                    "KEYWORD"
+                  ],
+                  "nativeNode": "TOKEN",
+                  "token": {
+                    "value": "public",
+                    "line": 2,
+                    "endLine": 2,
+                    "column": 3,
+                    "endColumn": 8
+                  },
+                  "children": []
+                },
+                {
+                  "kinds": [
+                    "KEYWORD"
+                  ],
+                  "nativeNode": "TOKEN",
+                  "token": {
+                    "value": "static",
+                    "line": 2,
+                    "endLine": 2,
+                    "column": 10,
+                    "endColumn": 15
+                  },
+                  "children": []
+                },
+                {
+                  "kinds": [
+                    "KEYWORD"
+                  ],
+                  "nativeNode": "TOKEN",
+                  "token": {
+                    "value": "final",
+                    "line": 2,
+                    "endLine": 2,
+                    "column": 17,
+                    "endColumn": 21
+                  },
+                  "children": []
+                }
+              ]
+            },
+            {
+              "kinds": [
+                "IDENTIFIER",
+                "TYPE"
+              ],
+              "nativeNode": "IDENTIFIER",
+              "children": [
+                {
+                  "kinds": [],
+                  "nativeNode": "TOKEN",
+                  "token": {
+                    "value": "String",
+                    "line": 2,
+                    "endLine": 2,
+                    "column": 23,
+                    "endColumn": 28
+                  },
+                  "children": []
+                }
+              ]
+            },
+            {
+              "kinds": [
+                "IDENTIFIER",
+                "ASSIGNMENT_TARGET",
+                "VARIABLE_NAME"
+              ],
+              "nativeNode": "IDENTIFIER",
+              "children": [
+                {
+                  "kinds": [],
+                  "nativeNode": "TOKEN",
+                  "token": {
+                    "value": "CONST",
+                    "line": 2,
+                    "endLine": 2,
+                    "column": 30,
+                    "endColumn": 34
+                  },
+                  "children": []
+                }
+              ]
+            },
+            {
+              "kinds": [
+                "ASSIGNMENT_OPERATOR"
+              ],
+              "nativeNode": "TOKEN",
+              "token": {
+                "value": "\u003d",
+                "line": 2,
+                "endLine": 2,
+                "column": 36,
+                "endColumn": 36
+              },
+              "children": []
+            },
+            {
+              "kinds": [
+                "EXPRESSION",
+                "STRING_LITERAL",
+                "ASSIGNMENT_VALUE",
+                "INITIALIZER"
+              ],
+              "nativeNode": "STRING_LITERAL",
+              "children": [
+                {
+                  "kinds": [],
+                  "nativeNode": "TOKEN",
+                  "token": {
+                    "value": "\"bla\"",
+                    "line": 2,
+                    "endLine": 2,
+                    "column": 38,
+                    "endColumn": 42
+                  },
+                  "children": []
+                }
+              ]
+            },
+            {
+              "kinds": [],
+              "nativeNode": "TOKEN",
+              "token": {
+                "value": ";",
+                "line": 2,
+                "endLine": 2,
+                "column": 43,
+                "endColumn": 43
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "kinds": [
+            "STATEMENT",
+            "VARIABLE_DECLARATION"
+          ],
+          "nativeNode": "VARIABLE",
+          "children": [
+            {
+              "kinds": [
+                "TYPE"
+              ],
+              "nativeNode": "PRIMITIVE_TYPE",
+              "children": [
+                {
+                  "kinds": [
+                    "KEYWORD"
+                  ],
+                  "nativeNode": "TOKEN",
+                  "token": {
+                    "value": "int",
+                    "line": 4,
+                    "endLine": 4,
+                    "column": 3,
+                    "endColumn": 5
+                  },
+                  "children": []
+                }
+              ]
+            },
+            {
+              "kinds": [
+                "IDENTIFIER",
+                "VARIABLE_NAME"
+              ],
+              "nativeNode": "IDENTIFIER",
+              "children": [
+                {
+                  "kinds": [],
+                  "nativeNode": "TOKEN",
+                  "token": {
+                    "value": "x",
+                    "line": 4,
+                    "endLine": 4,
+                    "column": 7,
+                    "endColumn": 7
+                  },
+                  "children": []
+                }
+              ]
+            },
+            {
+              "kinds": [],
+              "nativeNode": "TOKEN",
+              "token": {
+                "value": ";",
+                "line": 4,
+                "endLine": 4,
+                "column": 8,
+                "endColumn": 8
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "kinds": [
+            "FUNCTION"
+          ],
+          "nativeNode": "METHOD",
+          "children": [
+            {
+              "kinds": [
+                "RESULT_LIST",
+                "TYPE"
+              ],
+              "nativeNode": "PRIMITIVE_TYPE",
+              "children": [
+                {
+                  "kinds": [
+                    "KEYWORD"
+                  ],
+                  "nativeNode": "TOKEN",
+                  "token": {
+                    "value": "void",
+                    "line": 6,
+                    "endLine": 6,
+                    "column": 3,
+                    "endColumn": 6
+                  },
+                  "children": []
+                }
+              ]
+            },
+            {
+              "kinds": [
+                "FUNCTION_NAME",
+                "IDENTIFIER"
+              ],
+              "nativeNode": "IDENTIFIER",
+              "children": [
+                {
+                  "kinds": [],
+                  "nativeNode": "TOKEN",
+                  "token": {
+                    "value": "foo",
+                    "line": 6,
+                    "endLine": 6,
+                    "column": 8,
+                    "endColumn": 10
+                  },
+                  "children": []
+                }
+              ]
+            },
+            {
+              "kinds": [
+                "PARAMETER_LIST"
+              ],
+              "nativeNode": "List",
+              "children": [
+                {
+                  "kinds": [
+                    "LEFT_PARENTHESIS"
+                  ],
+                  "nativeNode": "TOKEN",
+                  "token": {
+                    "value": "(",
+                    "line": 6,
+                    "endLine": 6,
+                    "column": 11,
+                    "endColumn": 11
+                  },
+                  "children": []
+                },
+                {
+                  "kinds": [
+                    "RIGHT_PARENTHESIS"
+                  ],
+                  "nativeNode": "TOKEN",
+                  "token": {
+                    "value": ")",
+                    "line": 6,
+                    "endLine": 6,
+                    "column": 12,
+                    "endColumn": 12
+                  },
+                  "children": []
+                }
+              ]
+            },
+            {
+              "kinds": [
+                "BLOCK",
+                "STATEMENT"
+              ],
+              "nativeNode": "BLOCK",
+              "children": [
+                {
+                  "kinds": [],
+                  "nativeNode": "TOKEN",
+                  "token": {
+                    "value": "{",
+                    "line": 6,
+                    "endLine": 6,
+                    "column": 14,
+                    "endColumn": 14
+                  },
+                  "children": []
+                },
+                {
+                  "kinds": [
+                    "STATEMENT",
+                    "VARIABLE_DECLARATION"
+                  ],
+                  "nativeNode": "VARIABLE",
+                  "children": [
+                    {
+                      "kinds": [
+                        "TYPE"
+                      ],
+                      "nativeNode": "PRIMITIVE_TYPE",
+                      "children": [
+                        {
+                          "kinds": [
+                            "KEYWORD"
+                          ],
+                          "nativeNode": "TOKEN",
+                          "token": {
+                            "value": "int",
+                            "line": 7,
+                            "endLine": 7,
+                            "column": 5,
+                            "endColumn": 7
+                          },
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [
+                        "IDENTIFIER",
+                        "VARIABLE_NAME"
+                      ],
+                      "nativeNode": "IDENTIFIER",
+                      "children": [
+                        {
+                          "kinds": [],
+                          "nativeNode": "TOKEN",
+                          "token": {
+                            "value": "y",
+                            "line": 7,
+                            "endLine": 7,
+                            "column": 9,
+                            "endColumn": 9
+                          },
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [],
+                      "nativeNode": "TOKEN",
+                      "token": {
+                        "value": ";",
+                        "line": 7,
+                        "endLine": 7,
+                        "column": 10,
+                        "endColumn": 10
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "kinds": [
+                    "STATEMENT",
+                    "ASSIGNMENT",
+                    "VARIABLE_DECLARATION"
+                  ],
+                  "nativeNode": "VARIABLE",
+                  "children": [
+                    {
+                      "kinds": [
+                        "TYPE"
+                      ],
+                      "nativeNode": "PRIMITIVE_TYPE",
+                      "children": [
+                        {
+                          "kinds": [
+                            "KEYWORD"
+                          ],
+                          "nativeNode": "TOKEN",
+                          "token": {
+                            "value": "int",
+                            "line": 8,
+                            "endLine": 8,
+                            "column": 5,
+                            "endColumn": 7
+                          },
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [
+                        "IDENTIFIER",
+                        "ASSIGNMENT_TARGET",
+                        "VARIABLE_NAME"
+                      ],
+                      "nativeNode": "IDENTIFIER",
+                      "children": [
+                        {
+                          "kinds": [],
+                          "nativeNode": "TOKEN",
+                          "token": {
+                            "value": "x",
+                            "line": 8,
+                            "endLine": 8,
+                            "column": 9,
+                            "endColumn": 9
+                          },
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [
+                        "ASSIGNMENT_OPERATOR"
+                      ],
+                      "nativeNode": "TOKEN",
+                      "token": {
+                        "value": "\u003d",
+                        "line": 8,
+                        "endLine": 8,
+                        "column": 11,
+                        "endColumn": 11
+                      },
+                      "children": []
+                    },
+                    {
+                      "kinds": [
+                        "EXPRESSION",
+                        "DECIMAL_LITERAL",
+                        "ASSIGNMENT_VALUE",
+                        "INITIALIZER"
+                      ],
+                      "nativeNode": "INT_LITERAL",
+                      "children": [
+                        {
+                          "kinds": [],
+                          "nativeNode": "TOKEN",
+                          "token": {
+                            "value": "1",
+                            "line": 8,
+                            "endLine": 8,
+                            "column": 13,
+                            "endColumn": 13
+                          },
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [],
+                      "nativeNode": "TOKEN",
+                      "token": {
+                        "value": ";",
+                        "line": 8,
+                        "endLine": 8,
+                        "column": 14,
+                        "endColumn": 14
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "kinds": [],
+                  "nativeNode": "TOKEN",
+                  "token": {
+                    "value": "}",
+                    "line": 9,
+                    "endLine": 9,
+                    "column": 3,
+                    "endColumn": 3
+                  },
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kinds": [],
+          "nativeNode": "TOKEN",
+          "token": {
+            "value": "}",
+            "line": 11,
+            "endLine": 11,
+            "column": 1,
+            "endColumn": 1
+          },
+          "children": []
+        }
+      ]
+    },
+    {
+      "kinds": [
+        "EOF"
+      ],
+      "nativeNode": "TOKEN",
+      "token": {
+        "value": "",
+        "line": 11,
+        "endLine": 11,
+        "column": 2,
+        "endColumn": 1
+      },
+      "children": []
+    }
+  ]
+}

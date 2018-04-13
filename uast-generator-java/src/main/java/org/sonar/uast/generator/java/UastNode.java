@@ -160,7 +160,17 @@ class UastNode {
     ARRAY_ACCESS_EXPRESSION,
     ARRAY_OBJECT_EXPRESSION,
     ARRAY_KEY_EXPRESSION,
-    ;
+    CAST,
+    ENUM,
+    CONSTANT_DECLARATION,
+    IMPORT,
+    IMPORT_ENTRY,
+    INITIALIZER,
+    TYPE_TEST,
+    MEMBER_SELECT,
+    CALL,
+    PACKAGE,
+    TRY;
 
     @Nullable
     final String token;

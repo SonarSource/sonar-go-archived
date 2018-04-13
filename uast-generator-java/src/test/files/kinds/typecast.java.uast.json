@@ -130,6 +130,58 @@
                 },
                 {
                   "kinds": [
+                    "PARAMETER",
+                    "STATEMENT",
+                    "VARIABLE_DECLARATION"
+                  ],
+                  "nativeNode": "VARIABLE",
+                  "children": [
+                    {
+                      "kinds": [
+                        "IDENTIFIER",
+                        "TYPE"
+                      ],
+                      "nativeNode": "IDENTIFIER",
+                      "children": [
+                        {
+                          "kinds": [],
+                          "nativeNode": "TOKEN",
+                          "token": {
+                            "value": "Object",
+                            "line": 2,
+                            "endLine": 2,
+                            "column": 12,
+                            "endColumn": 17
+                          },
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [
+                        "IDENTIFIER",
+                        "VARIABLE_NAME"
+                      ],
+                      "nativeNode": "IDENTIFIER",
+                      "children": [
+                        {
+                          "kinds": [],
+                          "nativeNode": "TOKEN",
+                          "token": {
+                            "value": "o",
+                            "line": 2,
+                            "endLine": 2,
+                            "column": 19,
+                            "endColumn": 19
+                          },
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "kinds": [
                     "RIGHT_PARENTHESIS"
                   ],
                   "nativeNode": "TOKEN",
@@ -137,8 +189,8 @@
                     "value": ")",
                     "line": 2,
                     "endLine": 2,
-                    "column": 12,
-                    "endColumn": 12
+                    "column": 20,
+                    "endColumn": 20
                   },
                   "children": []
                 }
@@ -158,8 +210,8 @@
                     "value": "{",
                     "line": 2,
                     "endLine": 2,
-                    "column": 14,
-                    "endColumn": 14
+                    "column": 22,
+                    "endColumn": 22
                   },
                   "children": []
                 },
@@ -173,21 +225,20 @@
                   "children": [
                     {
                       "kinds": [
+                        "IDENTIFIER",
                         "TYPE"
                       ],
-                      "nativeNode": "PRIMITIVE_TYPE",
+                      "nativeNode": "IDENTIFIER",
                       "children": [
                         {
-                          "kinds": [
-                            "KEYWORD"
-                          ],
+                          "kinds": [],
                           "nativeNode": "TOKEN",
                           "token": {
-                            "value": "int",
+                            "value": "Integer",
                             "line": 3,
                             "endLine": 3,
                             "column": 5,
-                            "endColumn": 7
+                            "endColumn": 11
                           },
                           "children": []
                         }
@@ -205,11 +256,11 @@
                           "kinds": [],
                           "nativeNode": "TOKEN",
                           "token": {
-                            "value": "x",
+                            "value": "i",
                             "line": 3,
                             "endLine": 3,
-                            "column": 9,
-                            "endColumn": 9
+                            "column": 13,
+                            "endColumn": 13
                           },
                           "children": []
                         }
@@ -224,19 +275,19 @@
                         "value": "\u003d",
                         "line": 3,
                         "endLine": 3,
-                        "column": 11,
-                        "endColumn": 11
+                        "column": 15,
+                        "endColumn": 15
                       },
                       "children": []
                     },
                     {
                       "kinds": [
                         "EXPRESSION",
-                        "PARENTHESIZED_EXPRESSION",
                         "ASSIGNMENT_VALUE",
+                        "CAST",
                         "INITIALIZER"
                       ],
-                      "nativeNode": "PARENTHESIZED_EXPRESSION",
+                      "nativeNode": "TYPE_CAST",
                       "children": [
                         {
                           "kinds": [
@@ -247,27 +298,26 @@
                             "value": "(",
                             "line": 3,
                             "endLine": 3,
-                            "column": 13,
-                            "endColumn": 13
+                            "column": 17,
+                            "endColumn": 17
                           },
                           "children": []
                         },
                         {
                           "kinds": [
-                            "EXPRESSION",
-                            "DECIMAL_LITERAL"
+                            "IDENTIFIER"
                           ],
-                          "nativeNode": "INT_LITERAL",
+                          "nativeNode": "IDENTIFIER",
                           "children": [
                             {
                               "kinds": [],
                               "nativeNode": "TOKEN",
                               "token": {
-                                "value": "1",
+                                "value": "Integer",
                                 "line": 3,
                                 "endLine": 3,
-                                "column": 14,
-                                "endColumn": 14
+                                "column": 18,
+                                "endColumn": 24
                               },
                               "children": []
                             }
@@ -282,10 +332,30 @@
                             "value": ")",
                             "line": 3,
                             "endLine": 3,
-                            "column": 15,
-                            "endColumn": 15
+                            "column": 25,
+                            "endColumn": 25
                           },
                           "children": []
+                        },
+                        {
+                          "kinds": [
+                            "IDENTIFIER"
+                          ],
+                          "nativeNode": "IDENTIFIER",
+                          "children": [
+                            {
+                              "kinds": [],
+                              "nativeNode": "TOKEN",
+                              "token": {
+                                "value": "o",
+                                "line": 3,
+                                "endLine": 3,
+                                "column": 27,
+                                "endColumn": 27
+                              },
+                              "children": []
+                            }
+                          ]
                         }
                       ]
                     },
@@ -296,8 +366,8 @@
                         "value": ";",
                         "line": 3,
                         "endLine": 3,
-                        "column": 16,
-                        "endColumn": 16
+                        "column": 28,
+                        "endColumn": 28
                       },
                       "children": []
                     }
@@ -340,10 +410,10 @@
       "nativeNode": "TOKEN",
       "token": {
         "value": "",
-        "line": 6,
-        "endLine": 6,
-        "column": 1,
-        "endColumn": 0
+        "line": 5,
+        "endLine": 5,
+        "column": 2,
+        "endColumn": 1
       },
       "children": []
     }

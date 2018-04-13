@@ -1,0 +1,179 @@
+{
+  "kinds": [
+    "COMPILATION_UNIT"
+  ],
+  "nativeNode": "COMPILATION_UNIT",
+  "children": [
+    {
+      "kinds": [
+        "CLASS",
+        "STATEMENT",
+        "TYPE",
+        "ENUM"
+      ],
+      "nativeNode": "ENUM",
+      "children": [
+        {
+          "kinds": [
+            "KEYWORD"
+          ],
+          "nativeNode": "TOKEN",
+          "token": {
+            "value": "enum",
+            "line": 1,
+            "endLine": 1,
+            "column": 1,
+            "endColumn": 4
+          },
+          "children": []
+        },
+        {
+          "kinds": [
+            "IDENTIFIER"
+          ],
+          "nativeNode": "IDENTIFIER",
+          "children": [
+            {
+              "kinds": [],
+              "nativeNode": "TOKEN",
+              "token": {
+                "value": "Weekday",
+                "line": 1,
+                "endLine": 1,
+                "column": 6,
+                "endColumn": 12
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "kinds": [],
+          "nativeNode": "TOKEN",
+          "token": {
+            "value": "{",
+            "line": 1,
+            "endLine": 1,
+            "column": 14,
+            "endColumn": 14
+          },
+          "children": []
+        },
+        {
+          "kinds": [
+            "STATEMENT",
+            "CONSTANT_DECLARATION"
+          ],
+          "nativeNode": "ENUM_CONSTANT",
+          "children": [
+            {
+              "kinds": [
+                "EXPRESSION",
+                "CALL"
+              ],
+              "nativeNode": "NEW_CLASS",
+              "children": [
+                {
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
+                  "nativeNode": "IDENTIFIER",
+                  "children": [
+                    {
+                      "kinds": [],
+                      "nativeNode": "TOKEN",
+                      "token": {
+                        "value": "MONDAY",
+                        "line": 2,
+                        "endLine": 2,
+                        "column": 3,
+                        "endColumn": 8
+                      },
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kinds": [],
+              "nativeNode": "TOKEN",
+              "token": {
+                "value": ",",
+                "line": 2,
+                "endLine": 2,
+                "column": 9,
+                "endColumn": 9
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "kinds": [
+            "STATEMENT",
+            "CONSTANT_DECLARATION"
+          ],
+          "nativeNode": "ENUM_CONSTANT",
+          "children": [
+            {
+              "kinds": [
+                "EXPRESSION",
+                "CALL"
+              ],
+              "nativeNode": "NEW_CLASS",
+              "children": [
+                {
+                  "kinds": [
+                    "IDENTIFIER"
+                  ],
+                  "nativeNode": "IDENTIFIER",
+                  "children": [
+                    {
+                      "kinds": [],
+                      "nativeNode": "TOKEN",
+                      "token": {
+                        "value": "TUESDAY",
+                        "line": 2,
+                        "endLine": 2,
+                        "column": 11,
+                        "endColumn": 17
+                      },
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kinds": [],
+          "nativeNode": "TOKEN",
+          "token": {
+            "value": "}",
+            "line": 3,
+            "endLine": 3,
+            "column": 1,
+            "endColumn": 1
+          },
+          "children": []
+        }
+      ]
+    },
+    {
+      "kinds": [
+        "EOF"
+      ],
+      "nativeNode": "TOKEN",
+      "token": {
+        "value": "",
+        "line": 3,
+        "endLine": 3,
+        "column": 2,
+        "endColumn": 1
+      },
+      "children": []
+    }
+  ]
+}

@@ -248,6 +248,11 @@ public final class UastNode {
     TYPE_PARAMETER,
     WHILE(LOOP),
     DO_WHILE(LOOP),
+    CAST,
+    ENUM,
+    INITIALIZER,
+    TYPE_TEST,
+    TRY,
     ;
 
     private final List<Kind> extendedKinds;

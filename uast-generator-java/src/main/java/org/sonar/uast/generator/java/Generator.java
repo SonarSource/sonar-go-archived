@@ -60,6 +60,7 @@ import org.sonar.plugins.java.api.tree.ExpressionTree;
 import org.sonar.plugins.java.api.tree.ForStatementTree;
 import org.sonar.plugins.java.api.tree.IdentifierTree;
 import org.sonar.plugins.java.api.tree.IfStatementTree;
+import org.sonar.plugins.java.api.tree.ImportTree;
 import org.sonar.plugins.java.api.tree.LabeledStatementTree;
 import org.sonar.plugins.java.api.tree.LiteralTree;
 import org.sonar.plugins.java.api.tree.MethodInvocationTree;
@@ -162,10 +163,10 @@ public class Generator {
 
   private static UastNode newUastNode(Tree tree, List<UastNode> children) {
     return new UastNode(
-            uastKind(tree),
-            tree.kind().name(),
-            tree.is(Tree.Kind.TOKEN, Tree.Kind.TRIVIA) ? newToken(tree) : null,
-            children
+      uastKind(tree),
+      tree.kind().name(),
+      tree.is(Tree.Kind.TOKEN, Tree.Kind.TRIVIA) ? newToken(tree) : null,
+      children
     );
   }
 
@@ -183,10 +184,10 @@ public class Generator {
       text = ((SyntaxTrivia) javaToken).comment();
     }
     return new UastNode.Token(
-            line,
-            // as per UAST specification column starts at 1
-            column + 1,
-            text
+      line,
+      // as per UAST specification column starts at 1
+      column + 1,
+      text
     );
   }
 
@@ -204,8 +205,12 @@ public class Generator {
         result.add(UastNode.Kind.FUNCTION_LITERAL);
         break;
       case CLASS:
-      case ENUM:
       case INTERFACE:
+        result.add(UastNode.Kind.CLASS);
+        result.add(UastNode.Kind.TYPE);
+        break;
+      case ENUM:
+        result.add(UastNode.Kind.ENUM);
         result.add(UastNode.Kind.CLASS);
         result.add(UastNode.Kind.TYPE);
         break;
@@ -373,6 +378,42 @@ public class Generator {
       case ARRAY_TYPE:
         result.add(UastNode.Kind.TYPE);
         break;
+      case TYPE_CAST:
+        result.add(UastNode.Kind.CAST);
+        break;
+      case ENUM_CONSTANT:
+        result.add(UastNode.Kind.CONSTANT_DECLARATION);
+        break;
+      case IMPORT:
+        result.add(UastNode.Kind.IMPORT);
+        break;
+      case INITIALIZER:
+        result.add(UastNode.Kind.INITIALIZER);
+        break;
+      case VARIABLE:
+        result.add(UastNode.Kind.VARIABLE_DECLARATION);
+        break;
+      case INSTANCE_OF:
+        result.add(UastNode.Kind.TYPE_TEST);
+        break;
+      case MEMBER_SELECT:
+        result.add(UastNode.Kind.MEMBER_SELECT);
+        break;
+      case METHOD_INVOCATION:
+      case NEW_CLASS:
+        result.add(UastNode.Kind.CALL);
+        break;
+      case PACKAGE:
+        result.add(UastNode.Kind.PACKAGE);
+        break;
+      case PARAMETERIZED_TYPE:
+      case PRIMITIVE_TYPE:
+      case UNION_TYPE:
+        result.add(UastNode.Kind.TYPE);
+        break;
+      case TRY_STATEMENT:
+        result.add(UastNode.Kind.TRY);
+        break;
       default:
         break;
     }
@@ -425,6 +466,9 @@ public class Generator {
     @Override
     public void visitVariable(VariableTree tree) {
       super.visitVariable(tree);
+      addKind(tree.simpleName(), UastNode.Kind.VARIABLE_NAME);
+      addKind(tree.initializer(), UastNode.Kind.INITIALIZER);
+      addKind(tree.type(), UastNode.Kind.TYPE);
       if (tree.initializer() != null) {
         addKind(tree, UastNode.Kind.ASSIGNMENT);
         addKind(tree.simpleName(), UastNode.Kind.ASSIGNMENT_TARGET);
@@ -445,8 +489,7 @@ public class Generator {
       methodNode.children.remove(openParen);
       paramListChildren.add(openParen);
       tree.parameters().forEach(p -> {
-        addKind(p, UastNode.Kind.PARAMETER, UastNode.Kind.VARIABLE_DECLARATION);
-        addKind(p.simpleName(), UastNode.Kind.VARIABLE_NAME);
+        addKind(p, UastNode.Kind.PARAMETER);
         UastNode paramNode = treeUastNodeMap.get(p);
         methodNode.children.remove(paramNode);
         paramListChildren.add(paramNode);
@@ -531,6 +574,12 @@ public class Generator {
       addKind(tree.expression(), UastNode.Kind.ARRAY_OBJECT_EXPRESSION);
       addKind(tree.dimension().expression(), UastNode.Kind.ARRAY_KEY_EXPRESSION);
       super.visitArrayAccessExpression(tree);
+    }
+
+    @Override
+    public void visitImport(ImportTree tree) {
+      addKind(tree.qualifiedIdentifier(), UastNode.Kind.IMPORT_ENTRY);
+      super.visitImport(tree);
     }
 
     private void addKind(@Nullable Tree tree, UastNode.Kind... kind) {

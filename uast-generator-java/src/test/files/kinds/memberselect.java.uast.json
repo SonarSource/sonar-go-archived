@@ -60,6 +60,70 @@
         },
         {
           "kinds": [
+            "STATEMENT",
+            "VARIABLE_DECLARATION"
+          ],
+          "nativeNode": "VARIABLE",
+          "children": [
+            {
+              "kinds": [
+                "TYPE"
+              ],
+              "nativeNode": "PRIMITIVE_TYPE",
+              "children": [
+                {
+                  "kinds": [
+                    "KEYWORD"
+                  ],
+                  "nativeNode": "TOKEN",
+                  "token": {
+                    "value": "int",
+                    "line": 2,
+                    "endLine": 2,
+                    "column": 3,
+                    "endColumn": 5
+                  },
+                  "children": []
+                }
+              ]
+            },
+            {
+              "kinds": [
+                "IDENTIFIER",
+                "VARIABLE_NAME"
+              ],
+              "nativeNode": "IDENTIFIER",
+              "children": [
+                {
+                  "kinds": [],
+                  "nativeNode": "TOKEN",
+                  "token": {
+                    "value": "x",
+                    "line": 2,
+                    "endLine": 2,
+                    "column": 7,
+                    "endColumn": 7
+                  },
+                  "children": []
+                }
+              ]
+            },
+            {
+              "kinds": [],
+              "nativeNode": "TOKEN",
+              "token": {
+                "value": ";",
+                "line": 2,
+                "endLine": 2,
+                "column": 8,
+                "endColumn": 8
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "kinds": [
             "FUNCTION"
           ],
           "nativeNode": "METHOD",
@@ -78,8 +142,8 @@
                   "nativeNode": "TOKEN",
                   "token": {
                     "value": "void",
-                    "line": 2,
-                    "endLine": 2,
+                    "line": 3,
+                    "endLine": 3,
                     "column": 3,
                     "endColumn": 6
                   },
@@ -99,8 +163,8 @@
                   "nativeNode": "TOKEN",
                   "token": {
                     "value": "foo",
-                    "line": 2,
-                    "endLine": 2,
+                    "line": 3,
+                    "endLine": 3,
                     "column": 8,
                     "endColumn": 10
                   },
@@ -121,12 +185,64 @@
                   "nativeNode": "TOKEN",
                   "token": {
                     "value": "(",
-                    "line": 2,
-                    "endLine": 2,
+                    "line": 3,
+                    "endLine": 3,
                     "column": 11,
                     "endColumn": 11
                   },
                   "children": []
+                },
+                {
+                  "kinds": [
+                    "PARAMETER",
+                    "STATEMENT",
+                    "VARIABLE_DECLARATION"
+                  ],
+                  "nativeNode": "VARIABLE",
+                  "children": [
+                    {
+                      "kinds": [
+                        "IDENTIFIER",
+                        "TYPE"
+                      ],
+                      "nativeNode": "IDENTIFIER",
+                      "children": [
+                        {
+                          "kinds": [],
+                          "nativeNode": "TOKEN",
+                          "token": {
+                            "value": "A",
+                            "line": 3,
+                            "endLine": 3,
+                            "column": 12,
+                            "endColumn": 12
+                          },
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "kinds": [
+                        "IDENTIFIER",
+                        "VARIABLE_NAME"
+                      ],
+                      "nativeNode": "IDENTIFIER",
+                      "children": [
+                        {
+                          "kinds": [],
+                          "nativeNode": "TOKEN",
+                          "token": {
+                            "value": "o",
+                            "line": 3,
+                            "endLine": 3,
+                            "column": 14,
+                            "endColumn": 14
+                          },
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
                 },
                 {
                   "kinds": [
@@ -135,10 +251,10 @@
                   "nativeNode": "TOKEN",
                   "token": {
                     "value": ")",
-                    "line": 2,
-                    "endLine": 2,
-                    "column": 12,
-                    "endColumn": 12
+                    "line": 3,
+                    "endLine": 3,
+                    "column": 15,
+                    "endColumn": 15
                   },
                   "children": []
                 }
@@ -156,10 +272,10 @@
                   "nativeNode": "TOKEN",
                   "token": {
                     "value": "{",
-                    "line": 2,
-                    "endLine": 2,
-                    "column": 14,
-                    "endColumn": 14
+                    "line": 3,
+                    "endLine": 3,
+                    "column": 17,
+                    "endColumn": 17
                   },
                   "children": []
                 },
@@ -172,75 +288,35 @@
                     {
                       "kinds": [
                         "EXPRESSION",
-                        "CALL"
+                        "ASSIGNMENT"
                       ],
-                      "nativeNode": "METHOD_INVOCATION",
+                      "nativeNode": "ASSIGNMENT",
                       "children": [
                         {
                           "kinds": [
                             "EXPRESSION",
+                            "ASSIGNMENT_TARGET",
                             "MEMBER_SELECT"
                           ],
                           "nativeNode": "MEMBER_SELECT",
                           "children": [
                             {
                               "kinds": [
-                                "EXPRESSION",
-                                "MEMBER_SELECT"
+                                "IDENTIFIER"
                               ],
-                              "nativeNode": "MEMBER_SELECT",
+                              "nativeNode": "IDENTIFIER",
                               "children": [
-                                {
-                                  "kinds": [
-                                    "IDENTIFIER"
-                                  ],
-                                  "nativeNode": "IDENTIFIER",
-                                  "children": [
-                                    {
-                                      "kinds": [],
-                                      "nativeNode": "TOKEN",
-                                      "token": {
-                                        "value": "System",
-                                        "line": 3,
-                                        "endLine": 3,
-                                        "column": 5,
-                                        "endColumn": 10
-                                      },
-                                      "children": []
-                                    }
-                                  ]
-                                },
                                 {
                                   "kinds": [],
                                   "nativeNode": "TOKEN",
                                   "token": {
-                                    "value": ".",
-                                    "line": 3,
-                                    "endLine": 3,
-                                    "column": 11,
-                                    "endColumn": 11
+                                    "value": "o",
+                                    "line": 4,
+                                    "endLine": 4,
+                                    "column": 5,
+                                    "endColumn": 5
                                   },
                                   "children": []
-                                },
-                                {
-                                  "kinds": [
-                                    "IDENTIFIER"
-                                  ],
-                                  "nativeNode": "IDENTIFIER",
-                                  "children": [
-                                    {
-                                      "kinds": [],
-                                      "nativeNode": "TOKEN",
-                                      "token": {
-                                        "value": "out",
-                                        "line": 3,
-                                        "endLine": 3,
-                                        "column": 12,
-                                        "endColumn": 14
-                                      },
-                                      "children": []
-                                    }
-                                  ]
                                 }
                               ]
                             },
@@ -249,10 +325,10 @@
                               "nativeNode": "TOKEN",
                               "token": {
                                 "value": ".",
-                                "line": 3,
-                                "endLine": 3,
-                                "column": 15,
-                                "endColumn": 15
+                                "line": 4,
+                                "endLine": 4,
+                                "column": 6,
+                                "endColumn": 6
                               },
                               "children": []
                             },
@@ -266,11 +342,11 @@
                                   "kinds": [],
                                   "nativeNode": "TOKEN",
                                   "token": {
-                                    "value": "println",
-                                    "line": 3,
-                                    "endLine": 3,
-                                    "column": 16,
-                                    "endColumn": 22
+                                    "value": "x",
+                                    "line": 4,
+                                    "endLine": 4,
+                                    "column": 7,
+                                    "endColumn": 7
                                   },
                                   "children": []
                                 }
@@ -280,57 +356,35 @@
                         },
                         {
                           "kinds": [
-                            "ARGUMENTS"
+                            "ASSIGNMENT_OPERATOR"
                           ],
-                          "nativeNode": "ARGUMENTS",
+                          "nativeNode": "TOKEN",
+                          "token": {
+                            "value": "\u003d",
+                            "line": 4,
+                            "endLine": 4,
+                            "column": 9,
+                            "endColumn": 9
+                          },
+                          "children": []
+                        },
+                        {
+                          "kinds": [
+                            "EXPRESSION",
+                            "DECIMAL_LITERAL",
+                            "ASSIGNMENT_VALUE"
+                          ],
+                          "nativeNode": "INT_LITERAL",
                           "children": [
                             {
-                              "kinds": [
-                                "LEFT_PARENTHESIS"
-                              ],
+                              "kinds": [],
                               "nativeNode": "TOKEN",
                               "token": {
-                                "value": "(",
-                                "line": 3,
-                                "endLine": 3,
-                                "column": 23,
-                                "endColumn": 23
-                              },
-                              "children": []
-                            },
-                            {
-                              "kinds": [
-                                "EXPRESSION",
-                                "STRING_LITERAL",
-                                "ARGUMENT"
-                              ],
-                              "nativeNode": "STRING_LITERAL",
-                              "children": [
-                                {
-                                  "kinds": [],
-                                  "nativeNode": "TOKEN",
-                                  "token": {
-                                    "value": "\"yolo\"",
-                                    "line": 3,
-                                    "endLine": 3,
-                                    "column": 24,
-                                    "endColumn": 29
-                                  },
-                                  "children": []
-                                }
-                              ]
-                            },
-                            {
-                              "kinds": [
-                                "RIGHT_PARENTHESIS"
-                              ],
-                              "nativeNode": "TOKEN",
-                              "token": {
-                                "value": ")",
-                                "line": 3,
-                                "endLine": 3,
-                                "column": 30,
-                                "endColumn": 30
+                                "value": "1",
+                                "line": 4,
+                                "endLine": 4,
+                                "column": 11,
+                                "endColumn": 11
                               },
                               "children": []
                             }
@@ -343,10 +397,10 @@
                       "nativeNode": "TOKEN",
                       "token": {
                         "value": ";",
-                        "line": 3,
-                        "endLine": 3,
-                        "column": 31,
-                        "endColumn": 31
+                        "line": 4,
+                        "endLine": 4,
+                        "column": 12,
+                        "endColumn": 12
                       },
                       "children": []
                     }
@@ -357,8 +411,8 @@
                   "nativeNode": "TOKEN",
                   "token": {
                     "value": "}",
-                    "line": 4,
-                    "endLine": 4,
+                    "line": 5,
+                    "endLine": 5,
                     "column": 3,
                     "endColumn": 3
                   },
@@ -373,8 +427,8 @@
           "nativeNode": "TOKEN",
           "token": {
             "value": "}",
-            "line": 5,
-            "endLine": 5,
+            "line": 6,
+            "endLine": 6,
             "column": 1,
             "endColumn": 1
           },
@@ -391,8 +445,8 @@
         "value": "",
         "line": 6,
         "endLine": 6,
-        "column": 1,
-        "endColumn": 0
+        "column": 2,
+        "endColumn": 1
       },
       "children": []
     }

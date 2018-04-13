@@ -60,12 +60,15 @@
         },
         {
           "kinds": [
-            "STATEMENT"
+            "STATEMENT",
+            "VARIABLE_DECLARATION"
           ],
           "nativeNode": "VARIABLE",
           "children": [
             {
-              "kinds": [],
+              "kinds": [
+                "TYPE"
+              ],
               "nativeNode": "PRIMITIVE_TYPE",
               "children": [
                 {
@@ -86,7 +89,8 @@
             },
             {
               "kinds": [
-                "IDENTIFIER"
+                "IDENTIFIER",
+                "VARIABLE_NAME"
               ],
               "nativeNode": "IDENTIFIER",
               "children": [
@@ -120,12 +124,15 @@
         },
         {
           "kinds": [
-            "STATEMENT"
+            "STATEMENT",
+            "VARIABLE_DECLARATION"
           ],
           "nativeNode": "VARIABLE",
           "children": [
             {
-              "kinds": [],
+              "kinds": [
+                "TYPE"
+              ],
               "nativeNode": "PRIMITIVE_TYPE",
               "children": [
                 {
@@ -146,7 +153,8 @@
             },
             {
               "kinds": [
-                "IDENTIFIER"
+                "IDENTIFIER",
+                "VARIABLE_NAME"
               ],
               "nativeNode": "IDENTIFIER",
               "children": [
@@ -186,7 +194,8 @@
           "children": [
             {
               "kinds": [
-                "RESULT_LIST"
+                "RESULT_LIST",
+                "TYPE"
               ],
               "nativeNode": "PRIMITIVE_TYPE",
               "children": [
@@ -2666,7 +2675,8 @@
           "children": [
             {
               "kinds": [
-                "RESULT_LIST"
+                "RESULT_LIST",
+                "TYPE"
               ],
               "nativeNode": "PRIMITIVE_TYPE",
               "children": [
@@ -3226,7 +3236,8 @@
           "children": [
             {
               "kinds": [
-                "RESULT_LIST"
+                "RESULT_LIST",
+                "TYPE"
               ],
               "nativeNode": "PRIMITIVE_TYPE",
               "children": [
