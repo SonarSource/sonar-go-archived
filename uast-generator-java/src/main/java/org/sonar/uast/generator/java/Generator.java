@@ -32,6 +32,7 @@ import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -57,6 +58,7 @@ import org.sonar.plugins.java.api.tree.ForStatementTree;
 import org.sonar.plugins.java.api.tree.IdentifierTree;
 import org.sonar.plugins.java.api.tree.IfStatementTree;
 import org.sonar.plugins.java.api.tree.LabeledStatementTree;
+import org.sonar.plugins.java.api.tree.LiteralTree;
 import org.sonar.plugins.java.api.tree.MethodInvocationTree;
 import org.sonar.plugins.java.api.tree.MethodTree;
 import org.sonar.plugins.java.api.tree.ParenthesizedTree;
@@ -229,7 +231,6 @@ public class Generator {
         }
         break;
       case STRING_LITERAL:
-        result.add(UastNode.Kind.LITERAL);
         result.add(UastNode.Kind.STRING_LITERAL);
         break;
       case FOR_EACH_STATEMENT:
@@ -263,7 +264,6 @@ public class Generator {
         }
         break;
       case BOOLEAN_LITERAL:
-        result.add(UastNode.Kind.LITERAL);
         result.add(UastNode.Kind.BOOLEAN_LITERAL);
         break;
       case TOKEN:
@@ -341,8 +341,27 @@ public class Generator {
         result.add(UastNode.Kind.TYPE_PARAMETER);
         break;
       case CHAR_LITERAL:
-        result.add(UastNode.Kind.LITERAL);
         result.add(UastNode.Kind.CHAR_LITERAL);
+        break;
+      case NULL_LITERAL:
+        result.add(UastNode.Kind.NULL_LITERAL);
+        break;
+      case INT_LITERAL:
+      case LONG_LITERAL:
+        String value = ((LiteralTree) tree).value().toLowerCase(Locale.ROOT);
+        if (value.startsWith("0x")) {
+          result.add(UastNode.Kind.HEX_LITERAL);
+        } else if (value.startsWith("0b")) {
+          result.add(UastNode.Kind.BINARY_LITERAL);
+        } else if (value.startsWith("0") && value.length() > 1) {
+          result.add(UastNode.Kind.OCTAL_LITERAL);
+        } else {
+          result.add(UastNode.Kind.DECIMAL_LITERAL);
+        }
+        break;
+      case DOUBLE_LITERAL:
+      case FLOAT_LITERAL:
+        result.add(UastNode.Kind.FLOAT_LITERAL);
         break;
       default:
         break;

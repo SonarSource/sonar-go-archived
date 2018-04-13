@@ -265,6 +265,7 @@
                         {
                           "kinds": [
                             "EXPRESSION",
+                            "DECIMAL_LITERAL",
                             "ASSIGNMENT_VALUE"
                           ],
                           "nativeNode": "INT_LITERAL",
@@ -355,6 +356,7 @@
                         {
                           "kinds": [
                             "EXPRESSION",
+                            "DECIMAL_LITERAL",
                             "ASSIGNMENT_VALUE"
                           ],
                           "nativeNode": "INT_LITERAL",
@@ -443,6 +445,7 @@
                         {
                           "kinds": [
                             "EXPRESSION",
+                            "DECIMAL_LITERAL",
                             "ASSIGNMENT_VALUE"
                           ],
                           "nativeNode": "INT_LITERAL",
@@ -533,6 +536,7 @@
                         {
                           "kinds": [
                             "EXPRESSION",
+                            "DECIMAL_LITERAL",
                             "ASSIGNMENT_VALUE"
                           ],
                           "nativeNode": "INT_LITERAL",
@@ -623,6 +627,7 @@
                         {
                           "kinds": [
                             "EXPRESSION",
+                            "DECIMAL_LITERAL",
                             "ASSIGNMENT_VALUE"
                           ],
                           "nativeNode": "INT_LITERAL",
@@ -713,6 +718,7 @@
                         {
                           "kinds": [
                             "EXPRESSION",
+                            "DECIMAL_LITERAL",
                             "ASSIGNMENT_VALUE"
                           ],
                           "nativeNode": "INT_LITERAL",
@@ -803,6 +809,7 @@
                         {
                           "kinds": [
                             "EXPRESSION",
+                            "DECIMAL_LITERAL",
                             "ASSIGNMENT_VALUE"
                           ],
                           "nativeNode": "INT_LITERAL",
@@ -893,6 +900,7 @@
                         {
                           "kinds": [
                             "EXPRESSION",
+                            "DECIMAL_LITERAL",
                             "ASSIGNMENT_VALUE"
                           ],
                           "nativeNode": "INT_LITERAL",
@@ -983,6 +991,7 @@
                         {
                           "kinds": [
                             "EXPRESSION",
+                            "DECIMAL_LITERAL",
                             "ASSIGNMENT_VALUE"
                           ],
                           "nativeNode": "INT_LITERAL",
@@ -1073,6 +1082,7 @@
                         {
                           "kinds": [
                             "EXPRESSION",
+                            "DECIMAL_LITERAL",
                             "ASSIGNMENT_VALUE"
                           ],
                           "nativeNode": "INT_LITERAL",
@@ -1163,6 +1173,7 @@
                         {
                           "kinds": [
                             "EXPRESSION",
+                            "DECIMAL_LITERAL",
                             "ASSIGNMENT_VALUE"
                           ],
                           "nativeNode": "INT_LITERAL",
@@ -1253,6 +1264,7 @@
                         {
                           "kinds": [
                             "EXPRESSION",
+                            "DECIMAL_LITERAL",
                             "ASSIGNMENT_VALUE"
                           ],
                           "nativeNode": "INT_LITERAL",

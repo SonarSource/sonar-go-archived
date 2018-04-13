@@ -289,7 +289,6 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
-                                "LITERAL",
                                 "STRING_LITERAL",
                                 "ARGUMENT"
                               ],

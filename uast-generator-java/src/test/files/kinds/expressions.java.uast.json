@@ -240,7 +240,8 @@
                         },
                         {
                           "kinds": [
-                            "EXPRESSION"
+                            "EXPRESSION",
+                            "DECIMAL_LITERAL"
                           ],
                           "nativeNode": "INT_LITERAL",
                           "children": [
