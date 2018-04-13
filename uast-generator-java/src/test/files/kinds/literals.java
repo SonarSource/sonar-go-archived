@@ -2,7 +2,7 @@ class A {
 
   String s = "hello";
   char c = 'a';
-  int dec = 1;
+  int dec = 0;
   int hex = 0x1;
   int bin = 0b1;
   int oct = 07;

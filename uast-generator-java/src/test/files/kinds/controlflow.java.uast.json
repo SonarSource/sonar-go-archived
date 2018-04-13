@@ -1256,7 +1256,7 @@
                                 {
                                   "kinds": [
                                     "EXPRESSION",
-                                    "OCTAL_LITERAL",
+                                    "DECIMAL_LITERAL",
                                     "ASSIGNMENT_VALUE"
                                   ],
                                   "nativeNode": "INT_LITERAL",
@@ -1567,7 +1567,7 @@
                                         {
                                           "kinds": [
                                             "EXPRESSION",
-                                            "OCTAL_LITERAL",
+                                            "DECIMAL_LITERAL",
                                             "ASSIGNMENT_VALUE"
                                           ],
                                           "nativeNode": "INT_LITERAL",

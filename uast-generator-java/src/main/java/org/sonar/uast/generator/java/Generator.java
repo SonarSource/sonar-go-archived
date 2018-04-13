@@ -32,6 +32,7 @@ import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -347,12 +348,12 @@ public class Generator {
         break;
       case INT_LITERAL:
       case LONG_LITERAL:
-        String value = ((LiteralTree) tree).value().toLowerCase();
+        String value = ((LiteralTree) tree).value().toLowerCase(Locale.ROOT);
         if (value.startsWith("0x")) {
           result.add(UastNode.Kind.HEX_LITERAL);
         } else if (value.startsWith("0b")) {
           result.add(UastNode.Kind.BINARY_LITERAL);
-        } else if (value.startsWith("0")) {
+        } else if (value.startsWith("0") && value.length() > 1) {
           result.add(UastNode.Kind.OCTAL_LITERAL);
         } else {
           result.add(UastNode.Kind.DECIMAL_LITERAL);

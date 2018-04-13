@@ -328,7 +328,7 @@
                   "kinds": [],
                   "nativeNode": "TOKEN",
                   "token": {
-                    "value": "1",
+                    "value": "0",
                     "line": 5,
                     "endLine": 5,
                     "column": 13,
