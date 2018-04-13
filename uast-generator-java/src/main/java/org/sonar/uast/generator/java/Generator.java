@@ -27,8 +27,8 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.HashMap;
@@ -100,6 +100,10 @@ public class Generator {
     cut = (CompilationUnitTree) PARSER.parse(source);
     uast = visit(cut).findFirst().get();
     cut.accept(new PostprocessVisitor());
+  }
+
+  public static Set<String> allKindNames() {
+    return Arrays.stream(UastNode.Kind.values()).map(UastNode.Kind::name).collect(Collectors.toSet());
   }
 
   private static String readFile(Path path) {
