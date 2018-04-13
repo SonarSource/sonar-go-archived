@@ -1279,7 +1279,7 @@
                             {
                               "kinds": [
                                 "OPERATOR",
-                                "OPERATOR_BINARY_AND"
+                                "OPERATOR_BITWISE_AND"
                               ],
                               "nativeNode": "TOKEN",
                               "token": {
@@ -1410,7 +1410,7 @@
                             {
                               "kinds": [
                                 "OPERATOR",
-                                "OPERATOR_BINARY_OR"
+                                "OPERATOR_BITWISE_OR"
                               ],
                               "nativeNode": "TOKEN",
                               "token": {
@@ -1541,7 +1541,7 @@
                             {
                               "kinds": [
                                 "OPERATOR",
-                                "OPERATOR_BINARY_XOR"
+                                "OPERATOR_BITWISE_XOR"
                               ],
                               "nativeNode": "TOKEN",
                               "token": {
