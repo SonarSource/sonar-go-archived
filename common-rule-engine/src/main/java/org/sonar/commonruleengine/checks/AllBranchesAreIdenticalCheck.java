@@ -26,7 +26,6 @@ import org.sonar.api.batch.fs.InputFile;
 import org.sonar.check.Rule;
 import org.sonar.uast.UastNode;
 import org.sonar.uast.helpers.CaseLike;
-import org.sonar.uast.helpers.ElseLike;
 import org.sonar.uast.helpers.IfLike;
 import org.sonar.uast.helpers.SwitchLike;
 
@@ -83,7 +82,7 @@ public class AllBranchesAreIdenticalCheck extends Check {
     if (ifLike == null || visitedIfs.contains(node)) {
       return;
     }
-    ElseLike elseLike = ifLike.elseLike();
+    IfLike.ElseLike elseLike = ifLike.elseLike();
     boolean allSame = true;
     IfLike elseIf = ifLike.elseIf();
     while (elseIf != null) {

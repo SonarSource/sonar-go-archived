@@ -33,7 +33,7 @@ public class IfLike {
   @Nullable
   private final ElseLike elseLike;
 
-  public IfLike(UastNode node, UastNode ifKeyword, UastNode condition, UastNode thenNode, @Nullable ElseLike elseLike) {
+  private IfLike(UastNode node, UastNode ifKeyword, UastNode condition, UastNode thenNode, @Nullable ElseLike elseLike) {
     this.node = node;
     this.ifKeyword = ifKeyword;
     this.condition = condition;
@@ -83,4 +83,43 @@ public class IfLike {
     return elseLike != null ? elseLike.elseIf() : null;
   }
 
+  public static class ElseLike {
+
+    private final UastNode elseKeyword;
+    private final UastNode elseNode;
+
+    private ElseLike(UastNode elseKeyword, UastNode elseNode) {
+      this.elseKeyword = elseKeyword;
+      this.elseNode = elseNode;
+    }
+
+    @CheckForNull
+    private static ElseLike from(@Nullable UastNode node) {
+      if (node == null) {
+        return null;
+      }
+      if (node.kinds.contains(UastNode.Kind.IF)) {
+        Optional<UastNode> elseKeyword = node.getChild(UastNode.Kind.ELSE_KEYWORD);
+        Optional<UastNode> elseNode = node.getChild(UastNode.Kind.ELSE);
+        if (elseKeyword.isPresent() && elseNode.isPresent()) {
+          return new ElseLike(elseKeyword.get(), elseNode.get());
+        }
+      }
+      return null;
+    }
+
+    public UastNode elseKeyword() {
+      return elseKeyword;
+    }
+
+    public UastNode elseNode() {
+      return elseNode;
+    }
+
+    @CheckForNull
+    public IfLike elseIf() {
+      return IfLike.from(elseNode);
+    }
+
+  }
 }
