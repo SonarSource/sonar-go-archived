@@ -53,10 +53,7 @@
           "nativeNode": "TYPE_PARAMETERS",
           "children": [
             {
-              "kinds": [
-                "OPERATOR",
-                "OPERATOR_LESS_THAN"
-              ],
+              "kinds": [],
               "nativeNode": "TOKEN",
               "token": {
                 "value": "\u003c",
@@ -96,10 +93,7 @@
               ]
             },
             {
-              "kinds": [
-                "OPERATOR",
-                "OPERATOR_GREATER_THAN"
-              ],
+              "kinds": [],
               "nativeNode": "TOKEN",
               "token": {
                 "value": "\u003e",
@@ -291,10 +285,7 @@
               "nativeNode": "TYPE_ARGUMENTS",
               "children": [
                 {
-                  "kinds": [
-                    "OPERATOR",
-                    "OPERATOR_LESS_THAN"
-                  ],
+                  "kinds": [],
                   "nativeNode": "TOKEN",
                   "token": {
                     "value": "\u003c",
@@ -327,10 +318,7 @@
                   ]
                 },
                 {
-                  "kinds": [
-                    "OPERATOR",
-                    "OPERATOR_GREATER_THAN"
-                  ],
+                  "kinds": [],
                   "nativeNode": "TOKEN",
                   "token": {
                     "value": "\u003e",

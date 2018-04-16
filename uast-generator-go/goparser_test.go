@@ -467,7 +467,7 @@ func Test_mapExpr_Value(t *testing.T) {
 
 	actual := newTestNode(uast)
 	expected := TestNode{
-		kinds:      []Kind{ASSIGNMENT_VALUE, EXPRESSION, LITERAL, "INT_LITERAL", "DECIMAL_LITERAL"},
+		kinds:      []Kind{ASSIGNMENT_VALUE, EXPRESSION, LITERAL, INT_LITERAL, DECIMAL_LITERAL},
 		nativeNode: "[0](BasicLit)",
 		children:   0,
 		token:      Token{Value: "1", Line: 3, Column: 10},
@@ -579,9 +579,9 @@ func main() {
 }
 `
 	expectedOperators := []string{"||", "&&", "==", "!=", "<", "<=", ">", ">=", "+", "-", "|", "^", "*", "/", "%", "<<", ">>", "&", "&^"}
-	expectedOperatorKinds := []Kind{OPERATOR_LOGICAL_OR, OPERATOR_LOGICAL_AND, OPERATOR_EQUAL, OPERATOR_NOT_EQUAL, OPERATOR_LESS_THAN, OPERATOR_LESS_OR_EQUAL, OPERATOR_GREATER_THAN,
-		OPERATOR_GREATER_OR_EQUAL, OPERATOR_ADD, OPERATOR_SUBTRACT, OPERATOR_BITWISE_OR, OPERATOR_BITWISE_XOR, OPERATOR_MULTIPLY, OPERATOR_DIVIDE, OPERATOR_MODULO, OPERATOR_LEFT_SHIFT,
-		OPERATOR_RIGHT_SHIFT, OPERATOR_BITWISE_AND, OPERATOR_BITWISE_AND_NOT}
+	expectedOperatorKinds := []Kind{LOGICAL_OR, LOGICAL_AND, EQUAL, NOT_EQUAL, LESS_THAN, LESS_OR_EQUAL, GREATER_THAN,
+		GREATER_OR_EQUAL, ADD, SUBTRACT, BITWISE_OR, BITWISE_XOR, MULTIPLY, DIVIDE, MODULO, LEFT_SHIFT,
+		RIGHT_SHIFT, BITWISE_AND, BITWISE_AND_NOT}
 	body := uastFromString(t, source,
 		"Decls/[0](FuncDecl)/Body")
 
@@ -603,7 +603,7 @@ func main() {
 		uast := uastQuery(t, stmt, "Rhs([]Expr)/[0]")
 		actual := newTestNode(uast)
 		expected := TestNode{
-			kinds:      []Kind{ASSIGNMENT_VALUE, EXPRESSION, BINARY_EXPRESSION},
+			kinds:      []Kind{ASSIGNMENT_VALUE, EXPRESSION, BINARY_EXPRESSION, expectedOperatorKinds[i]},
 			nativeNode: "[0](BinaryExpr)",
 			children:   3,
 		}
@@ -616,7 +616,7 @@ func main() {
 			t.Fatalf("got '%v'; expected '%v'", actual, expected)
 		}
 
-		if !uast.Children[1].hasKind(expectedOperatorKinds[i]) {
+		if !uast.Children[1].hasKind(OPERATOR) {
 			t.Fatalf("got '%v'; expected '%v'", uast.Children[1].Kinds, expectedOperatorKinds[i])
 		}
 	}

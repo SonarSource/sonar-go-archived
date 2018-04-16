@@ -112,10 +112,7 @@
               "nativeNode": "IDENTIFIER",
               "children": [
                 {
-                  "kinds": [
-                    "OPERATOR",
-                    "OPERATOR_MULTIPLY"
-                  ],
+                  "kinds": [],
                   "nativeNode": "TOKEN",
                   "token": {
                     "value": "*",

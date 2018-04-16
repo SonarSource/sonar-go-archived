@@ -1328,12 +1328,14 @@
                         {
                           "kinds": [
                             "EXPRESSION",
-                            "BINARY_EXPRESSION"
+                            "BINARY_EXPRESSION",
+                            "LESS_THAN"
                           ],
                           "nativeNode": "LESS_THAN",
                           "children": [
                             {
                               "kinds": [
+                                "LEFT_OPERAND",
                                 "IDENTIFIER"
                               ],
                               "nativeNode": "IDENTIFIER",
@@ -1354,8 +1356,7 @@
                             },
                             {
                               "kinds": [
-                                "OPERATOR",
-                                "OPERATOR_LESS_THAN"
+                                "OPERATOR"
                               ],
                               "nativeNode": "TOKEN",
                               "token": {
@@ -1370,6 +1371,7 @@
                             {
                               "kinds": [
                                 "EXPRESSION",
+                                "RIGHT_OPERAND",
                                 "DECIMAL_LITERAL"
                               ],
                               "nativeNode": "INT_LITERAL",
@@ -1424,7 +1426,8 @@
                                   "children": [
                                     {
                                       "kinds": [
-                                        "IDENTIFIER"
+                                        "IDENTIFIER",
+                                        "OPERAND"
                                       ],
                                       "nativeNode": "IDENTIFIER",
                                       "children": [
@@ -1443,7 +1446,9 @@
                                       ]
                                     },
                                     {
-                                      "kinds": [],
+                                      "kinds": [
+                                        "OPERATOR"
+                                      ],
                                       "nativeNode": "TOKEN",
                                       "token": {
                                         "value": "++",
@@ -1644,12 +1649,14 @@
                                 {
                                   "kinds": [
                                     "EXPRESSION",
-                                    "BINARY_EXPRESSION"
+                                    "BINARY_EXPRESSION",
+                                    "LESS_THAN"
                                   ],
                                   "nativeNode": "LESS_THAN",
                                   "children": [
                                     {
                                       "kinds": [
+                                        "LEFT_OPERAND",
                                         "IDENTIFIER"
                                       ],
                                       "nativeNode": "IDENTIFIER",
@@ -1670,8 +1677,7 @@
                                     },
                                     {
                                       "kinds": [
-                                        "OPERATOR",
-                                        "OPERATOR_LESS_THAN"
+                                        "OPERATOR"
                                       ],
                                       "nativeNode": "TOKEN",
                                       "token": {
@@ -1686,6 +1692,7 @@
                                     {
                                       "kinds": [
                                         "EXPRESSION",
+                                        "RIGHT_OPERAND",
                                         "DECIMAL_LITERAL"
                                       ],
                                       "nativeNode": "INT_LITERAL",
@@ -1740,7 +1747,8 @@
                                           "children": [
                                             {
                                               "kinds": [
-                                                "IDENTIFIER"
+                                                "IDENTIFIER",
+                                                "OPERAND"
                                               ],
                                               "nativeNode": "IDENTIFIER",
                                               "children": [
@@ -1759,7 +1767,9 @@
                                               ]
                                             },
                                             {
-                                              "kinds": [],
+                                              "kinds": [
+                                                "OPERATOR"
+                                              ],
                                               "nativeNode": "TOKEN",
                                               "token": {
                                                 "value": "++",

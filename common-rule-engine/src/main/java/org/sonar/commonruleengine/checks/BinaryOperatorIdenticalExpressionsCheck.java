@@ -51,6 +51,7 @@ public class BinaryOperatorIdenticalExpressionsCheck extends Check {
 
   private static boolean isExcluded(BinaryExpressionLike binaryExpression) {
     // "=" not considered as binary operator for Java and Go, might be for other languages?
-    return binaryExpression.operator().is(UastNode.Kind.ASSIGNMENT_OPERATOR, UastNode.Kind.OPERATOR_ADD, UastNode.Kind.OPERATOR_MULTIPLY, UastNode.Kind.OPERATOR_LEFT_SHIFT);
+    return binaryExpression.operator().is(UastNode.Kind.ASSIGNMENT_OPERATOR) ||
+      binaryExpression.node().is(UastNode.Kind.ADD, UastNode.Kind.MULTIPLY, UastNode.Kind.LEFT_SHIFT);
   }
 }
