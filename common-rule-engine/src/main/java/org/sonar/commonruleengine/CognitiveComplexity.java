@@ -27,7 +27,6 @@ import javax.annotation.Nullable;
 import org.sonar.uast.UastNode;
 import org.sonar.uast.helpers.BinaryExpressionLike;
 import org.sonar.uast.helpers.BranchLike;
-import org.sonar.uast.helpers.ElseLike;
 import org.sonar.uast.helpers.IfLike;
 import org.sonar.uast.helpers.ParenthesizedLike;
 
@@ -154,7 +153,7 @@ public class CognitiveComplexity {
     if (node.is(UastNode.Kind.ELSE)) {
       IfLike ifNode = IfLike.from(parent);
       if (ifNode != null) {
-        ElseLike elseLike = ifNode.elseLike();
+        IfLike.ElseLike elseLike = ifNode.elseLike();
         if (elseLike != null) {
           return elseLike.elseKeyword();
         }

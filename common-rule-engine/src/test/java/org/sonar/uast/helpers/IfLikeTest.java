@@ -57,7 +57,7 @@ class IfLikeTest {
       "] }"));
     IfLike ifLike = IfLike.from(node);
     assertThat(ifLike).isNotNull();
-    ElseLike elseLike = ifLike.elseLike();
+    IfLike.ElseLike elseLike = ifLike.elseLike();
     assertThat(elseLike).isNotNull();
     assertThat(elseLike.elseKeyword().joinTokens()).isEqualTo("else");
     assertThat(elseLike.elseNode().joinTokens()).isEqualTo("statement2");
