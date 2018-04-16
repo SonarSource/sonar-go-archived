@@ -580,7 +580,7 @@ func main() {
 `
 	expectedOperators := []string{"||", "&&", "==", "!=", "<", "<=", ">", ">=", "+", "-", "|", "^", "*", "/", "%", "<<", ">>", "&", "&^"}
 	expectedOperatorKinds := []Kind{LOGICAL_OR, LOGICAL_AND, EQUAL, NOT_EQUAL, LESS_THAN, LESS_OR_EQUAL, GREATER_THAN,
-		GREATER_OR_EQUAL, ADD, SUBTRACT, BITWISE_OR, BITWISE_XOR, MULTIPLY, DIVIDE, MODULO, LEFT_SHIFT,
+		GREATER_OR_EQUAL, ADD, SUBTRACT, BITWISE_OR, BITWISE_XOR, MULTIPLY, DIVIDE, REMAINDER, LEFT_SHIFT,
 		RIGHT_SHIFT, BITWISE_AND, BITWISE_AND_NOT}
 	body := uastFromString(t, source,
 		"Decls/[0](FuncDecl)/Body")

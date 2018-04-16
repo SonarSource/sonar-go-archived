@@ -95,7 +95,7 @@ class UastNode {
     SUBTRACT,
     MULTIPLY,
     DIVIDE,
-    MODULO,
+    REMAINDER,
     BITWISE_AND,
     BITWISE_OR,
     BITWISE_XOR,

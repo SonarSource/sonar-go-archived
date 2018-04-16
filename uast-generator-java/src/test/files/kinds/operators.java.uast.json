@@ -875,7 +875,7 @@
                           "kinds": [
                             "EXPRESSION",
                             "BINARY_EXPRESSION",
-                            "MODULO",
+                            "REMAINDER",
                             "ASSIGNMENT_VALUE"
                           ],
                           "nativeNode": "REMAINDER",

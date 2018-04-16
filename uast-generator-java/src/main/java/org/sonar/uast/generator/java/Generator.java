@@ -433,7 +433,7 @@ public class Generator {
         break;
       case REMAINDER:
         result.add(UastNode.Kind.BINARY_EXPRESSION);
-        result.add(UastNode.Kind.MODULO);
+        result.add(UastNode.Kind.REMAINDER);
         break;
       case PLUS:
         result.add(UastNode.Kind.BINARY_EXPRESSION);

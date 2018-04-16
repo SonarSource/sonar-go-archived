@@ -126,7 +126,7 @@ var (
 	SUBTRACT                 = NewKind("SUBTRACT")
 	MULTIPLY                 = NewKind("MULTIPLY")
 	DIVIDE                   = NewKind("DIVIDE")
-	MODULO                   = NewKind("MODULO")
+	REMAINDER                = NewKind("REMAINDER")
 	BITWISE_AND              = NewKind("BITWISE_AND")
 	BITWISE_AND_NOT          = NewKind("BITWISE_AND_NOT")
 	BITWISE_OR               = NewKind("BITWISE_OR")
@@ -365,7 +365,7 @@ func (t *UastMapper) computeBinaryExpressionKind(op token.Token) []Kind {
 		return []Kind{BINARY_EXPRESSION, DIVIDE}
 		// %
 	case token.REM:
-		return []Kind{BINARY_EXPRESSION, MODULO}
+		return []Kind{BINARY_EXPRESSION, REMAINDER}
 
 		// &
 	case token.AND:

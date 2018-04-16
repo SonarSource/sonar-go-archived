@@ -59,9 +59,9 @@ _(do not edit, this page is generated)_
         * [LessThan](#lessthan)
         * [LogicalAnd](#logicaland)
         * [LogicalOr](#logicalor)
-        * [Modulo](#modulo)
         * [Multiply](#multiply)
         * [NotEqual](#notequal)
+        * [Remainder](#remainder)
         * [RightShift](#rightshift)
         * [Subtract](#subtract)
     * [FunctionLiteral](#functionliteral)
@@ -233,7 +233,7 @@ Languages | Go
 Key | BINARY_EXPRESSION
 --- | ---
 Extends | [Expression](#expression)
-Direct sub-kinds | [Add](#add), [BitwiseAnd](#bitwiseand), [BitwiseAndNot](#bitwiseandnot), [BitwiseOr](#bitwiseor), [BitwiseXor](#bitwisexor), [Divide](#divide), [Equal](#equal), [GreaterOrEqual](#greaterorequal), [GreaterThan](#greaterthan), [LeftShift](#leftshift), [LessOrEqual](#lessorequal), [LessThan](#lessthan), [LogicalAnd](#logicaland), [LogicalOr](#logicalor), [Modulo](#modulo), [Multiply](#multiply), [NotEqual](#notequal), [RightShift](#rightshift), [Subtract](#subtract)
+Direct sub-kinds | [Add](#add), [BitwiseAnd](#bitwiseand), [BitwiseAndNot](#bitwiseandnot), [BitwiseOr](#bitwiseor), [BitwiseXor](#bitwisexor), [Divide](#divide), [Equal](#equal), [GreaterOrEqual](#greaterorequal), [GreaterThan](#greaterthan), [LeftShift](#leftshift), [LessOrEqual](#lessorequal), [LessThan](#lessthan), [LogicalAnd](#logicaland), [LogicalOr](#logicalor), [Multiply](#multiply), [NotEqual](#notequal), [Remainder](#remainder), [RightShift](#rightshift), [Subtract](#subtract)
 Languages | Java, Go
 
 
@@ -490,7 +490,7 @@ Languages | Java, Go
 Key | EXPRESSION
 --- | ---
 Direct sub-kinds | [BinaryExpression](#binaryexpression), [FunctionLiteral](#functionliteral), [LeftOperand](#leftoperand), [RightOperand](#rightoperand)
-All sub-kinds | [Add](#add), [BinaryExpression](#binaryexpression), [BitwiseAnd](#bitwiseand), [BitwiseAndNot](#bitwiseandnot), [BitwiseOr](#bitwiseor), [BitwiseXor](#bitwisexor), [Divide](#divide), [Equal](#equal), [FunctionLiteral](#functionliteral), [GreaterOrEqual](#greaterorequal), [GreaterThan](#greaterthan), [LeftOperand](#leftoperand), [LeftShift](#leftshift), [LessOrEqual](#lessorequal), [LessThan](#lessthan), [LogicalAnd](#logicaland), [LogicalOr](#logicalor), [Modulo](#modulo), [Multiply](#multiply), [NotEqual](#notequal), [RightOperand](#rightoperand), [RightShift](#rightshift), [Subtract](#subtract)
+All sub-kinds | [Add](#add), [BinaryExpression](#binaryexpression), [BitwiseAnd](#bitwiseand), [BitwiseAndNot](#bitwiseandnot), [BitwiseOr](#bitwiseor), [BitwiseXor](#bitwisexor), [Divide](#divide), [Equal](#equal), [FunctionLiteral](#functionliteral), [GreaterOrEqual](#greaterorequal), [GreaterThan](#greaterthan), [LeftOperand](#leftoperand), [LeftShift](#leftshift), [LessOrEqual](#lessorequal), [LessThan](#lessthan), [LogicalAnd](#logicaland), [LogicalOr](#logicalor), [Multiply](#multiply), [NotEqual](#notequal), [Remainder](#remainder), [RightOperand](#rightoperand), [RightShift](#rightshift), [Subtract](#subtract)
 Languages | Java, Go
 
 
@@ -738,13 +738,6 @@ Extends | [Assignment](#assignment)
 Languages | Java, Go
 
 
-### Modulo
-Key | MODULO
---- | ---
-Extends | [BinaryExpression](#binaryexpression), [Expression](#expression)
-Languages | Java, Go
-
-
 ### Multiply
 Key | MULTIPLY
 --- | ---
@@ -872,6 +865,13 @@ Key | REFERENCE
 --- | ---
 Extends | [UnaryExpression](#unaryexpression)
 Languages | Go
+
+
+### Remainder
+Key | REMAINDER
+--- | ---
+Extends | [BinaryExpression](#binaryexpression), [Expression](#expression)
+Languages | Java, Go
 
 
 ### RemainderAssignment
