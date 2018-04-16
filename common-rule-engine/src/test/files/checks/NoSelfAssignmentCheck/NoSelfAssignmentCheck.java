@@ -34,3 +34,12 @@ class B {
     foo = bInstance.foo;
   }
 }
+
+class CompoundAssignments {
+  void foo() {
+    a += a;
+    a -= a;
+    a /= a;
+    a *= a;
+  }
+}

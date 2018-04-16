@@ -12,18 +12,19 @@ _(do not edit, this page is generated)_
 * [ArrayAccessExpression](#arrayaccessexpression) { [ArrayObjectExpression](#arrayobjectexpression), [ArrayKeyExpression](#arraykeyexpression) }
 * [Assert](#assert)
 * [Assignment](#assignment) { [AssignmentTargetList](#assignmenttargetlist), [AssignmentTarget](#assignmenttarget), [AssignmentOperator](#assignmentoperator), [AssignmentValueList](#assignmentvaluelist), [AssignmentValue](#assignmentvalue) }
-    * [AndAssignment](#andassignment)
-    * [AndNotAssignment](#andnotassignment)
     * [CompoundAssignment](#compoundassignment)
-    * [DivideAssignment](#divideassignment)
-    * [LeftShiftAssignment](#leftshiftassignment)
-    * [MinusAssignment](#minusassignment)
-    * [MultiplyAssignment](#multiplyassignment)
-    * [OrAssignment](#orassignment)
-    * [PlusAssignment](#plusassignment)
-    * [RemainderAssignment](#remainderassignment)
-    * [RightShiftAssignment](#rightshiftassignment)
-    * [XorAssignment](#xorassignment)
+        * [AndAssignment](#andassignment)
+        * [AndNotAssignment](#andnotassignment)
+        * [DivideAssignment](#divideassignment)
+        * [LeftShiftAssignment](#leftshiftassignment)
+        * [MinusAssignment](#minusassignment)
+        * [MultiplyAssignment](#multiplyassignment)
+        * [OrAssignment](#orassignment)
+        * [PlusAssignment](#plusassignment)
+        * [RemainderAssignment](#remainderassignment)
+        * [RightShiftAssignment](#rightshiftassignment)
+        * [UnsignedRightShiftAssignment](#unsignedrightshiftassignment)
+        * [XorAssignment](#xorassignment)
 * [Block](#block)
 * [Call](#call) { [Arguments](#arguments), [Argument](#argument) }
 * [Cast](#cast)
@@ -113,7 +114,6 @@ _(do not edit, this page is generated)_
     * [Goto](#goto) { [BranchLabel](#branchlabel) }
     * [Return](#return)
     * [Throw](#throw)
-* [UnsignedRightShiftAssignment](#unsignedrightshiftassignment)
 * [Unsupported](#unsupported)
 * [VariableDeclaration](#variabledeclaration) { [VariableName](#variablename), [Type](#type) }
     * [ConstantDeclaration](#constantdeclaration)
@@ -131,14 +131,14 @@ Languages | Java, Go
 ### AndAssignment
 Key | AND_ASSIGNMENT
 --- | ---
-Extends | [Assignment](#assignment)
+Extends | [Assignment](#assignment), [CompoundAssignment](#compoundassignment)
 Languages | Java, Go
 
 
 ### AndNotAssignment
 Key | AND_NOT_ASSIGNMENT
 --- | ---
-Extends | [Assignment](#assignment)
+Extends | [Assignment](#assignment), [CompoundAssignment](#compoundassignment)
 Languages | Go
 
 
@@ -194,7 +194,8 @@ Languages | Java
 ### Assignment
 Key | ASSIGNMENT
 --- | ---
-Direct sub-kinds | [AndAssignment](#andassignment), [AndNotAssignment](#andnotassignment), [CompoundAssignment](#compoundassignment), [DivideAssignment](#divideassignment), [LeftShiftAssignment](#leftshiftassignment), [MinusAssignment](#minusassignment), [MultiplyAssignment](#multiplyassignment), [OrAssignment](#orassignment), [PlusAssignment](#plusassignment), [RemainderAssignment](#remainderassignment), [RightShiftAssignment](#rightshiftassignment), [XorAssignment](#xorassignment)
+Direct sub-kinds | [CompoundAssignment](#compoundassignment)
+All sub-kinds | [AndAssignment](#andassignment), [AndNotAssignment](#andnotassignment), [CompoundAssignment](#compoundassignment), [DivideAssignment](#divideassignment), [LeftShiftAssignment](#leftshiftassignment), [MinusAssignment](#minusassignment), [MultiplyAssignment](#multiplyassignment), [OrAssignment](#orassignment), [PlusAssignment](#plusassignment), [RemainderAssignment](#remainderassignment), [RightShiftAssignment](#rightshiftassignment), [UnsignedRightShiftAssignment](#unsignedrightshiftassignment), [XorAssignment](#xorassignment)
 Components | [AssignmentTargetList](#assignmenttargetlist), [AssignmentTarget](#assignmenttarget), [AssignmentOperator](#assignmentoperator), [AssignmentValueList](#assignmentvaluelist), [AssignmentValue](#assignmentvalue)
 Languages | Java, Go
 
@@ -375,7 +376,8 @@ Languages | Java, Go
 Key | COMPOUND_ASSIGNMENT
 --- | ---
 Extends | [Assignment](#assignment)
-Languages | Java, Go
+Direct sub-kinds | [AndAssignment](#andassignment), [AndNotAssignment](#andnotassignment), [DivideAssignment](#divideassignment), [LeftShiftAssignment](#leftshiftassignment), [MinusAssignment](#minusassignment), [MultiplyAssignment](#multiplyassignment), [OrAssignment](#orassignment), [PlusAssignment](#plusassignment), [RemainderAssignment](#remainderassignment), [RightShiftAssignment](#rightshiftassignment), [UnsignedRightShiftAssignment](#unsignedrightshiftassignment), [XorAssignment](#xorassignment)
+Languages | Go
 
 
 ### Condition
@@ -437,7 +439,7 @@ Languages | Java, Go
 ### DivideAssignment
 Key | DIVIDE_ASSIGNMENT
 --- | ---
-Extends | [Assignment](#assignment)
+Extends | [Assignment](#assignment), [CompoundAssignment](#compoundassignment)
 Languages | Java, Go
 
 
@@ -671,7 +673,7 @@ Languages | Java, Go
 ### LeftShiftAssignment
 Key | LEFT_SHIFT_ASSIGNMENT
 --- | ---
-Extends | [Assignment](#assignment)
+Extends | [Assignment](#assignment), [CompoundAssignment](#compoundassignment)
 Languages | Java, Go
 
 
@@ -734,7 +736,7 @@ Languages | Java, Go
 ### MinusAssignment
 Key | MINUS_ASSIGNMENT
 --- | ---
-Extends | [Assignment](#assignment)
+Extends | [Assignment](#assignment), [CompoundAssignment](#compoundassignment)
 Languages | Java, Go
 
 
@@ -748,7 +750,7 @@ Languages | Java, Go
 ### MultiplyAssignment
 Key | MULTIPLY_ASSIGNMENT
 --- | ---
-Extends | [Assignment](#assignment)
+Extends | [Assignment](#assignment), [CompoundAssignment](#compoundassignment)
 Languages | Java, Go
 
 
@@ -788,7 +790,7 @@ Languages | Java, Go
 ### OrAssignment
 Key | OR_ASSIGNMENT
 --- | ---
-Extends | [Assignment](#assignment)
+Extends | [Assignment](#assignment), [CompoundAssignment](#compoundassignment)
 Languages | Java, Go
 
 
@@ -821,7 +823,7 @@ Languages | Java, Go
 ### PlusAssignment
 Key | PLUS_ASSIGNMENT
 --- | ---
-Extends | [Assignment](#assignment)
+Extends | [Assignment](#assignment), [CompoundAssignment](#compoundassignment)
 Languages | Java, Go
 
 
@@ -877,7 +879,7 @@ Languages | Java, Go
 ### RemainderAssignment
 Key | REMAINDER_ASSIGNMENT
 --- | ---
-Extends | [Assignment](#assignment)
+Extends | [Assignment](#assignment), [CompoundAssignment](#compoundassignment)
 Languages | Java, Go
 
 
@@ -917,7 +919,7 @@ Languages | Java, Go
 ### RightShiftAssignment
 Key | RIGHT_SHIFT_ASSIGNMENT
 --- | ---
-Extends | [Assignment](#assignment)
+Extends | [Assignment](#assignment), [CompoundAssignment](#compoundassignment)
 Languages | Java, Go
 
 
@@ -1046,6 +1048,7 @@ Languages |
 ### UnsignedRightShiftAssignment
 Key | UNSIGNED_RIGHT_SHIFT_ASSIGNMENT
 --- | ---
+Extends | [Assignment](#assignment), [CompoundAssignment](#compoundassignment)
 Languages | Java
 
 
@@ -1080,7 +1083,7 @@ Languages | Java
 ### XorAssignment
 Key | XOR_ASSIGNMENT
 --- | ---
-Extends | [Assignment](#assignment)
+Extends | [Assignment](#assignment), [CompoundAssignment](#compoundassignment)
 Languages | Java, Go
 
 

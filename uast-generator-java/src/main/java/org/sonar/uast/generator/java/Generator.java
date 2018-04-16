@@ -219,17 +219,37 @@ public class Generator {
         result.add(UastNode.Kind.ASSIGNMENT);
         break;
       case AND_ASSIGNMENT:
+        result.add(UastNode.Kind.AND_ASSIGNMENT);
+        break;
       case DIVIDE_ASSIGNMENT:
+        result.add(UastNode.Kind.DIVIDE_ASSIGNMENT);
+        break;
       case LEFT_SHIFT_ASSIGNMENT:
+        result.add(UastNode.Kind.LEFT_SHIFT_ASSIGNMENT);
+        break;
       case MINUS_ASSIGNMENT:
+        result.add(UastNode.Kind.MINUS_ASSIGNMENT);
+        break;
       case MULTIPLY_ASSIGNMENT:
+        result.add(UastNode.Kind.MULTIPLY_ASSIGNMENT);
+        break;
       case OR_ASSIGNMENT:
+        result.add(UastNode.Kind.OR_ASSIGNMENT);
+        break;
       case PLUS_ASSIGNMENT:
+        result.add(UastNode.Kind.PLUS_ASSIGNMENT);
+        break;
       case REMAINDER_ASSIGNMENT:
+        result.add(UastNode.Kind.REMAINDER_ASSIGNMENT);
+        break;
       case RIGHT_SHIFT_ASSIGNMENT:
+        result.add(UastNode.Kind.RIGHT_SHIFT_ASSIGNMENT);
+        break;
       case UNSIGNED_RIGHT_SHIFT_ASSIGNMENT:
+        result.add(UastNode.Kind.UNSIGNED_RIGHT_SHIFT_ASSIGNMENT);
+        break;
       case XOR_ASSIGNMENT:
-        addTokenKinds(((AssignmentExpressionTree) tree).operatorToken(), result);
+        result.add(UastNode.Kind.XOR_ASSIGNMENT);
         break;
       case BLOCK:
         result.add(UastNode.Kind.BLOCK);

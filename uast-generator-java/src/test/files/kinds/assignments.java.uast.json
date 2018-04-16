@@ -322,8 +322,6 @@
                     {
                       "kinds": [
                         "EXPRESSION",
-                        "ASSIGNMENT",
-                        "COMPOUND_ASSIGNMENT",
                         "PLUS_ASSIGNMENT"
                       ],
                       "nativeNode": "PLUS_ASSIGNMENT",
@@ -351,10 +349,7 @@
                         },
                         {
                           "kinds": [
-                            "ASSIGNMENT",
-                            "ASSIGNMENT_OPERATOR",
-                            "COMPOUND_ASSIGNMENT",
-                            "PLUS_ASSIGNMENT"
+                            "ASSIGNMENT_OPERATOR"
                           ],
                           "nativeNode": "TOKEN",
                           "token": {
@@ -413,7 +408,6 @@
                     {
                       "kinds": [
                         "EXPRESSION",
-                        "ASSIGNMENT",
                         "MINUS_ASSIGNMENT"
                       ],
                       "nativeNode": "MINUS_ASSIGNMENT",
@@ -441,9 +435,7 @@
                         },
                         {
                           "kinds": [
-                            "ASSIGNMENT",
-                            "ASSIGNMENT_OPERATOR",
-                            "MINUS_ASSIGNMENT"
+                            "ASSIGNMENT_OPERATOR"
                           ],
                           "nativeNode": "TOKEN",
                           "token": {
@@ -502,8 +494,6 @@
                     {
                       "kinds": [
                         "EXPRESSION",
-                        "ASSIGNMENT",
-                        "COMPOUND_ASSIGNMENT",
                         "MULTIPLY_ASSIGNMENT"
                       ],
                       "nativeNode": "MULTIPLY_ASSIGNMENT",
@@ -531,10 +521,7 @@
                         },
                         {
                           "kinds": [
-                            "ASSIGNMENT",
-                            "ASSIGNMENT_OPERATOR",
-                            "COMPOUND_ASSIGNMENT",
-                            "MULTIPLY_ASSIGNMENT"
+                            "ASSIGNMENT_OPERATOR"
                           ],
                           "nativeNode": "TOKEN",
                           "token": {
@@ -593,8 +580,6 @@
                     {
                       "kinds": [
                         "EXPRESSION",
-                        "ASSIGNMENT",
-                        "COMPOUND_ASSIGNMENT",
                         "DIVIDE_ASSIGNMENT"
                       ],
                       "nativeNode": "DIVIDE_ASSIGNMENT",
@@ -622,10 +607,7 @@
                         },
                         {
                           "kinds": [
-                            "ASSIGNMENT",
-                            "ASSIGNMENT_OPERATOR",
-                            "COMPOUND_ASSIGNMENT",
-                            "DIVIDE_ASSIGNMENT"
+                            "ASSIGNMENT_OPERATOR"
                           ],
                           "nativeNode": "TOKEN",
                           "token": {
@@ -684,8 +666,6 @@
                     {
                       "kinds": [
                         "EXPRESSION",
-                        "ASSIGNMENT",
-                        "COMPOUND_ASSIGNMENT",
                         "REMAINDER_ASSIGNMENT"
                       ],
                       "nativeNode": "REMAINDER_ASSIGNMENT",
@@ -713,10 +693,7 @@
                         },
                         {
                           "kinds": [
-                            "ASSIGNMENT",
-                            "ASSIGNMENT_OPERATOR",
-                            "COMPOUND_ASSIGNMENT",
-                            "REMAINDER_ASSIGNMENT"
+                            "ASSIGNMENT_OPERATOR"
                           ],
                           "nativeNode": "TOKEN",
                           "token": {
@@ -775,8 +752,6 @@
                     {
                       "kinds": [
                         "EXPRESSION",
-                        "ASSIGNMENT",
-                        "COMPOUND_ASSIGNMENT",
                         "LEFT_SHIFT_ASSIGNMENT"
                       ],
                       "nativeNode": "LEFT_SHIFT_ASSIGNMENT",
@@ -804,10 +779,7 @@
                         },
                         {
                           "kinds": [
-                            "ASSIGNMENT",
-                            "ASSIGNMENT_OPERATOR",
-                            "COMPOUND_ASSIGNMENT",
-                            "LEFT_SHIFT_ASSIGNMENT"
+                            "ASSIGNMENT_OPERATOR"
                           ],
                           "nativeNode": "TOKEN",
                           "token": {
@@ -866,8 +838,6 @@
                     {
                       "kinds": [
                         "EXPRESSION",
-                        "ASSIGNMENT",
-                        "COMPOUND_ASSIGNMENT",
                         "RIGHT_SHIFT_ASSIGNMENT"
                       ],
                       "nativeNode": "RIGHT_SHIFT_ASSIGNMENT",
@@ -895,10 +865,7 @@
                         },
                         {
                           "kinds": [
-                            "ASSIGNMENT",
-                            "ASSIGNMENT_OPERATOR",
-                            "COMPOUND_ASSIGNMENT",
-                            "RIGHT_SHIFT_ASSIGNMENT"
+                            "ASSIGNMENT_OPERATOR"
                           ],
                           "nativeNode": "TOKEN",
                           "token": {
@@ -957,8 +924,6 @@
                     {
                       "kinds": [
                         "EXPRESSION",
-                        "ASSIGNMENT",
-                        "COMPOUND_ASSIGNMENT",
                         "AND_ASSIGNMENT"
                       ],
                       "nativeNode": "AND_ASSIGNMENT",
@@ -986,10 +951,7 @@
                         },
                         {
                           "kinds": [
-                            "ASSIGNMENT",
-                            "ASSIGNMENT_OPERATOR",
-                            "COMPOUND_ASSIGNMENT",
-                            "AND_ASSIGNMENT"
+                            "ASSIGNMENT_OPERATOR"
                           ],
                           "nativeNode": "TOKEN",
                           "token": {
@@ -1048,8 +1010,6 @@
                     {
                       "kinds": [
                         "EXPRESSION",
-                        "ASSIGNMENT",
-                        "COMPOUND_ASSIGNMENT",
                         "OR_ASSIGNMENT"
                       ],
                       "nativeNode": "OR_ASSIGNMENT",
@@ -1077,10 +1037,7 @@
                         },
                         {
                           "kinds": [
-                            "ASSIGNMENT",
-                            "ASSIGNMENT_OPERATOR",
-                            "COMPOUND_ASSIGNMENT",
-                            "OR_ASSIGNMENT"
+                            "ASSIGNMENT_OPERATOR"
                           ],
                           "nativeNode": "TOKEN",
                           "token": {
@@ -1139,8 +1096,6 @@
                     {
                       "kinds": [
                         "EXPRESSION",
-                        "ASSIGNMENT",
-                        "COMPOUND_ASSIGNMENT",
                         "XOR_ASSIGNMENT"
                       ],
                       "nativeNode": "XOR_ASSIGNMENT",
@@ -1168,10 +1123,7 @@
                         },
                         {
                           "kinds": [
-                            "ASSIGNMENT",
-                            "ASSIGNMENT_OPERATOR",
-                            "COMPOUND_ASSIGNMENT",
-                            "XOR_ASSIGNMENT"
+                            "ASSIGNMENT_OPERATOR"
                           ],
                           "nativeNode": "TOKEN",
                           "token": {
@@ -1230,8 +1182,6 @@
                     {
                       "kinds": [
                         "EXPRESSION",
-                        "ASSIGNMENT",
-                        "COMPOUND_ASSIGNMENT",
                         "UNSIGNED_RIGHT_SHIFT_ASSIGNMENT"
                       ],
                       "nativeNode": "UNSIGNED_RIGHT_SHIFT_ASSIGNMENT",
@@ -1259,10 +1209,7 @@
                         },
                         {
                           "kinds": [
-                            "ASSIGNMENT",
-                            "ASSIGNMENT_OPERATOR",
-                            "COMPOUND_ASSIGNMENT",
-                            "UNSIGNED_RIGHT_SHIFT_ASSIGNMENT"
+                            "ASSIGNMENT_OPERATOR"
                           ],
                           "nativeNode": "TOKEN",
                           "token": {
