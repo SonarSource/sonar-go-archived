@@ -311,7 +311,7 @@ func (t *UastMapper) mapBasicLit(astNode *ast.BasicLit, kinds []Kind, fieldName 
 		kinds = append(kinds, INT_LITERAL)
 		if strings.HasPrefix(astNode.Value, "0x") || strings.HasPrefix(astNode.Value, "0X") {
 			kinds = append(kinds, HEX_LITERAL)
-		} else if strings.HasPrefix(astNode.Value, "0") {
+		} else if strings.HasPrefix(astNode.Value, "0") && len(astNode.Value) > 1 {
 			kinds = append(kinds, OCTAL_LITERAL)
 		} else {
 			kinds = append(kinds, DECIMAL_LITERAL)
