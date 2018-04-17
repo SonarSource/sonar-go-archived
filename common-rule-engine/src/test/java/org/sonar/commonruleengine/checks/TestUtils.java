@@ -136,9 +136,13 @@ public class TestUtils {
       Issue.Message primary = issue.getPrimary();
       UastNode.Token from = primary.from.firstToken();
       UastNode.Token to = primary.to.lastToken();
-      newIssue = verifier.reportIssue(issue.getMessage())
-        .onRange(from.line, from.column, to.endLine, to.endColumn)
-        .withGap(issue.getEffortToFix());
+      if (from == null && to == null) {
+        newIssue = verifier.reportIssue(issue.getMessage()).onLine(issue.getPrimary().from.token.line);
+      } else {
+        newIssue = verifier.reportIssue(issue.getMessage())
+          .onRange(from.line, from.column, to.endLine, to.endColumn)
+          .withGap(issue.getEffortToFix());
+      }
     } else {
       newIssue = verifier.reportIssue(issue.getMessage()).onFile();
     }
