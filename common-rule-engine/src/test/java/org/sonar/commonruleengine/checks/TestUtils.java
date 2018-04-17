@@ -134,11 +134,17 @@ public class TestUtils {
     SingleFileVerifier.Issue newIssue;
     if (issue.hasLocation()) {
       Issue.Message primary = issue.getPrimary();
-      UastNode.Token from = primary.from.firstToken();
-      UastNode.Token to = primary.to.lastToken();
-      if (from == null && to == null) {
-        newIssue = verifier.reportIssue(issue.getMessage()).onLine(issue.getPrimary().from.token.line);
+      UastNode fromUastNode = primary.from;
+      UastNode toUastNode = primary.to;
+      if (fromUastNode.is(UastNode.Kind.COMMENT)) {
+        UastNode.Token fromToken = fromUastNode.token;
+        UastNode.Token toToken = toUastNode.token;
+        newIssue = verifier.reportIssue(issue.getMessage())
+          .onRange(fromToken.line, fromToken.column, toToken.endLine, toToken.endColumn)
+          .withGap(issue.getEffortToFix());
       } else {
+        UastNode.Token from = fromUastNode.firstToken();
+        UastNode.Token to = toUastNode.lastToken();
         newIssue = verifier.reportIssue(issue.getMessage())
           .onRange(from.line, from.column, to.endLine, to.endColumn)
           .withGap(issue.getEffortToFix());
