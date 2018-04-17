@@ -41,6 +41,7 @@ import org.sonar.commonruleengine.checks.RedundantParenthesesCheck;
 import org.sonar.commonruleengine.checks.SwitchDefaultLocationCheck;
 import org.sonar.commonruleengine.checks.SwitchWithTooManyCaseCheck;
 import org.sonar.commonruleengine.checks.SwitchWithoutDefaultCheck;
+import org.sonar.commonruleengine.checks.TodoTagPresenceCheck;
 import org.sonar.commonruleengine.checks.TooManyParametersCheck;
 import org.sonar.commonruleengine.checks.UnconditionalJumpStatementCheck;
 import org.sonar.commonruleengine.checks.WrongAssignmentOperatorCheck;
@@ -73,8 +74,9 @@ public class GoChecks {
       SwitchDefaultLocationCheck.class,
       SwitchWithoutDefaultCheck.class,
       SwitchWithTooManyCaseCheck.class,
-      UnconditionalJumpStatementCheck.class,
+      TodoTagPresenceCheck.class,
       TooManyParametersCheck.class,
+      UnconditionalJumpStatementCheck.class,
       WrongAssignmentOperatorCheck.class
     );
   }
