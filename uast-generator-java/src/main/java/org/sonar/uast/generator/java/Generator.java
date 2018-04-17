@@ -50,6 +50,7 @@ import org.sonar.plugins.java.api.tree.ArrayAccessExpressionTree;
 import org.sonar.plugins.java.api.tree.AssignmentExpressionTree;
 import org.sonar.plugins.java.api.tree.BaseTreeVisitor;
 import org.sonar.plugins.java.api.tree.BinaryExpressionTree;
+import org.sonar.plugins.java.api.tree.BlockTree;
 import org.sonar.plugins.java.api.tree.BreakStatementTree;
 import org.sonar.plugins.java.api.tree.CaseLabelTree;
 import org.sonar.plugins.java.api.tree.CompilationUnitTree;
@@ -73,6 +74,7 @@ import org.sonar.plugins.java.api.tree.Tree;
 import org.sonar.plugins.java.api.tree.TypeArguments;
 import org.sonar.plugins.java.api.tree.UnaryExpressionTree;
 import org.sonar.plugins.java.api.tree.VariableTree;
+import org.sonar.uast.generator.java.UastNode.Kind;
 
 public class Generator {
 
@@ -524,6 +526,9 @@ public class Generator {
     }
     if (tree instanceof StatementTree) {
       result.add(UastNode.Kind.STATEMENT);
+    }
+    if (tree instanceof BlockTree) {
+      result.add(Kind.BLOCK);
     }
     if (isExpression(tree)) {
       result.add(UastNode.Kind.EXPRESSION);
