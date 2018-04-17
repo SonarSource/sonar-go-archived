@@ -636,15 +636,7 @@ public class Generator {
 
     @Override
     public void visitContinueStatement(ContinueStatementTree tree) {
-      // bug in the parser, see SONARJAVA-2723
-      IdentifierTree labelTree = tree.label();
-      if (labelTree != null) {
-        UastNode continueNode = treeUastNodeMap.get(tree);
-        UastNode label = newUastNode(labelTree, Collections.emptyList());
-        continueNode.children.add(label);
-        treeUastNodeMap.put(labelTree, label);
-        addKind(labelTree, UastNode.Kind.BRANCH_LABEL);
-      }
+      addKind(tree.label(), UastNode.Kind.BRANCH_LABEL);
       super.visitContinueStatement(tree);
     }
 
