@@ -80,9 +80,7 @@ public class FunctionLike {
 
   private List<UastNode> nestedParameters() {
     List<UastNode> parameters = new ArrayList<>();
-    node.children.stream()
-      .filter(child -> !child.kinds.contains(UastNode.Kind.BLOCK))
-      .forEach(child -> child.getDescendants(UastNode.Kind.PARAMETER, parameters::add));
+    node.children.stream().forEach(child -> child.getDescendants(UastNode.Kind.PARAMETER, parameters::add, UastNode.Kind.BLOCK));
     return Collections.unmodifiableList(parameters);
   }
 }
