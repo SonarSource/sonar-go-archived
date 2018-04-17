@@ -19,6 +19,7 @@
  */
 package org.sonar.go.plugin;
 
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -82,8 +83,8 @@ public class GoSensor implements Sensor {
     }
     List<InputFile> failedFiles = new ArrayList<>();
     for (InputFile inputFile : getInputFiles(context)) {
-      try {
-        UastNode uast = uastGenerator.createUast(inputFile.inputStream());
+      try (InputStream inputStream = inputFile.inputStream()){
+        UastNode uast = uastGenerator.createUast(inputStream);
         // FIXME currently *_test.go files are MAIN and not TEST, see issue #140
         if (inputFile.type() == InputFile.Type.MAIN) {
           Engine.ScanResult scanResult = ruleEngine.scan(uast, inputFile);
