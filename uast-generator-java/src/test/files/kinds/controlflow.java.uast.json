@@ -1889,14 +1889,6 @@
                                     "endColumn": 21
                                   },
                                   "children": []
-                                },
-                                {
-                                  "kinds": [
-                                    "BRANCH_LABEL",
-                                    "IDENTIFIER"
-                                  ],
-                                  "nativeNode": "IDENTIFIER",
-                                  "children": []
                                 }
                               ]
                             },
