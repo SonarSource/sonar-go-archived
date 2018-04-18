@@ -30,12 +30,6 @@
 'project:kubernetes/vendor/github.com/ugorji/go/codec/encode.go':[
 1089,
 ],
-'project:kubernetes/vendor/github.com/ugorji/go/codec/fast-path.generated.go':[
-375,
-1740,
-1825,
-15947,
-],
 'project:kubernetes/vendor/golang.org/x/net/html/parse.go':[
 728,
 ],
