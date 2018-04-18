@@ -19,7 +19,13 @@
  */
 package org.sonar.commonruleengine.checks;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.networknt.schema.JsonSchema;
+import com.networknt.schema.JsonSchemaFactory;
+import com.networknt.schema.ValidationMessage;
 import com.sonarsource.checks.verifier.SingleFileVerifier;
+import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
@@ -31,6 +37,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
+import java.util.stream.Collectors;
+import org.assertj.core.api.Assertions;
 import org.sonar.api.batch.fs.internal.TestInputFileBuilder;
 import org.sonar.commonruleengine.Engine;
 import org.sonar.commonruleengine.Issue;
@@ -55,6 +64,7 @@ public class TestUtils {
   public static void checkRuleOnJava(Check check, String filename) throws IOException {
     Path sourceFilename = testFile(check.getClass(), filename);
     Generator generator = new Generator(new String(Files.readAllBytes(sourceFilename)));
+    validateJsonString(generator.json());
     checkRule(check, sourceFilename, Uast.from(new StringReader(generator.json())));
   }
 
@@ -172,6 +182,26 @@ public class TestUtils {
       return "uast-generator-go-darwin-amd64";
     } else {
       return "uast-generator-go-linux-amd64";
+    }
+  }
+
+  private static void validateJsonString(String json) {
+    try {
+      JsonSchemaFactory f = new JsonSchemaFactory();
+      String collect = Files.readAllLines(new File("src/test/resources/schema.json").toPath()).stream().collect(Collectors.joining("\n"));
+      JsonSchema schema = f.getSchema(collect);
+
+      ObjectMapper mapper = new ObjectMapper();
+      JsonNode node = mapper.readTree(json);
+
+      Set<ValidationMessage> validate = schema.validate(node);
+      if (!validate.isEmpty()) {
+        System.out.println(json);
+        Assertions.fail(validate.stream().map(ValidationMessage::getMessage).collect(Collectors.joining("\n")));
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+      Assertions.fail("boom", e);
     }
   }
 
