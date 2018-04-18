@@ -40,6 +40,7 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.stream.Collectors;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.sonar.api.batch.fs.internal.TestInputFileBuilder;
 import org.sonar.commonruleengine.Engine;
 import org.sonar.commonruleengine.Issue;
@@ -183,6 +184,34 @@ public class TestUtils {
     } else {
       return "uast-generator-go-linux-amd64";
     }
+  }
+
+  @Test
+  void test() {
+    validateJsonString("{\n" +
+      "  \"kinds\": [\"COMPILATION_UNIT\"],\n" +
+      "  \"nativeNode\": \"nativeNode\"\n" +
+      "}\n");
+    /*validateJsonString("{\n" +
+      "  \"kinds\": [\"COMPILATION_UNIT\"],\n" +
+      "  \"nativeNode\": \"nativeNode\",\n" +
+      "  \"children\": [\n" +
+      "    {\n" +
+      "      \"kinds\": [\"IF\"],\n" +
+      "  \"nativeNode\": \"nativeNode\",\n" +
+      "      \"children\": [\n" +
+      "        {\n" +
+      "          \"kinds\": [\"COND\"],\n" +
+      "  \"nativeNode\": \"nativeNode\"\n" +
+      "        },\n" +
+      "        {\n" +
+      "          \"kinds\": [\"THEN\"],\n" +
+      "  \"nativeNode\": \"nativeNode\"\n" +
+      "        }\n" +
+      "      ]\n" +
+      "    }\n" +
+      "  ]\n" +
+      "}\n");*/
   }
 
   private static void validateJsonString(String json) {

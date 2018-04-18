@@ -13,22 +13,52 @@
         "endColumn": {"type":"number"}
       },
       "required":[ "value", "line", "endLine", "column", "endColumn"]
+    },
+    "if" : {
+      "type": "object",
+      "properties": {
+        "kinds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["IF"]
+          },
+          "additionalItems": false
+        },
+        "nativeNode": {
+          "type": "string"
+        },
+        "token": {
+          "$ref": "#/definitions/token"
+        },
+        "children": {
+          "type": "array",
+          "items": {"$ref": "#uastNode"},
+          "additionalItems": false
+        },
+        "required": ["kinds", "nativeNode", "children"]
+      }
     }
   },
   "id":"uastNode",
   "description": "Node from uast",
   "type":"object",
   "properties": {
-    "kinds" : {
-      "type":"array",
-      "items" : {"type" : "string"}
+    "kinds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["COMPILATION_UNIT"]
+      },
+      "additionalItems": false
     },
-    "nativeNode" : {"type":"string"},
-    "token" : { "$ref": "#/definitions/token"},
-    "children" : {
-      "type":"array",
-      "items" : {"$ref": "#/definitions/uastNode"}
-    }
-  },
-  "required" : ["kinds", "nativeNode", "children"]
+    "nativeNode": {"type": "string"},
+    "token": {"$ref": "#/definitions/token"},
+    "children": {
+      "type": "array",
+      "items": {"oneOf":[{"$ref": "#/definitions/if"},{"$ref": "#uastNode"}]},
+      "additionalItems": false
+    },
+    "required": ["kinds", "nativeNode", "children"]
+  }
 }
