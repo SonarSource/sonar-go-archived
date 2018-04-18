@@ -134,21 +134,20 @@ public class TestUtils {
     SingleFileVerifier.Issue newIssue;
     if (issue.hasLocation()) {
       Issue.Message primary = issue.getPrimary();
-      UastNode fromUastNode = primary.from;
-      UastNode toUastNode = primary.to;
-      if (fromUastNode.is(UastNode.Kind.COMMENT)) {
-        UastNode.Token fromToken = fromUastNode.token;
-        UastNode.Token toToken = toUastNode.token;
-        newIssue = verifier.reportIssue(issue.getMessage())
-          .onRange(fromToken.line, fromToken.column, toToken.endLine, toToken.endColumn)
-          .withGap(issue.getEffortToFix());
+      UastNode fromNode = primary.from;
+      UastNode toNode = primary.to;
+      UastNode.Token from;
+      UastNode.Token to;
+      if (fromNode.is(UastNode.Kind.COMMENT)) {
+        from = fromNode.token;
+        to = toNode.token;
       } else {
-        UastNode.Token from = fromUastNode.firstToken();
-        UastNode.Token to = toUastNode.lastToken();
-        newIssue = verifier.reportIssue(issue.getMessage())
-          .onRange(from.line, from.column, to.endLine, to.endColumn)
-          .withGap(issue.getEffortToFix());
+        from = fromNode.firstToken();
+        to = toNode.lastToken();
       }
+      newIssue = verifier.reportIssue(issue.getMessage())
+        .onRange(from.line, from.column, to.endLine, to.endColumn)
+        .withGap(issue.getEffortToFix());
     } else {
       newIssue = verifier.reportIssue(issue.getMessage()).onFile();
     }
