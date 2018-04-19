@@ -93,6 +93,7 @@ _(do not edit, this page is generated)_
 * [ParenthesizedExpression](#parenthesizedexpression) { [LeftParenthesis](#leftparenthesis), [Expression](#expression), [RightParenthesis](#rightparenthesis) }
 * [Statement](#statement)
     * [EmptyStatement](#emptystatement)
+    * [Switch](#switch) { [Case](#case), [Condition](#condition), [DefaultCase](#defaultcase), [Block](#block) }
 * [TypeArguments](#typearguments) { [TypeArgument](#typeargument) }
 * [TypeParameters](#typeparameters) { [TypeParameter](#typeparameter) }
 * [TypeTest](#typetest)
@@ -324,6 +325,7 @@ Languages | Java, Go
 ### Case
 Key | CASE
 --- | ---
+Direct sub-kinds | [DefaultCase](#defaultcase)
 Languages | Java, Go
 
 
@@ -433,6 +435,7 @@ Languages | Java, Go
 ### DefaultCase
 Key | DEFAULT_CASE
 --- | ---
+Extends | [Case](#case)
 Languages | Java, Go
 
 
@@ -933,7 +936,7 @@ Languages | Java, Go
 ### Statement
 Key | STATEMENT
 --- | ---
-Direct sub-kinds | [EmptyStatement](#emptystatement)
+Direct sub-kinds | [EmptyStatement](#emptystatement), [Switch](#switch)
 Languages | Java, Go
 
 
@@ -961,7 +964,7 @@ Languages | Java, Go
 ### Switch
 Key | SWITCH
 --- | ---
-Extends | [ConditionalJump](#conditionaljump)
+Extends | [ConditionalJump](#conditionaljump), [Statement](#statement)
 Components | [Case](#case), [Condition](#condition), [DefaultCase](#defaultcase), [Block](#block)
 Languages | Java, Go
 
