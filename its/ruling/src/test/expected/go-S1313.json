@@ -204,6 +204,7 @@
 ],
 'project:kubernetes/test/e2e_node/util.go':[
 48,
+190,
 ],
 'project:kubernetes/test/integration/federation/framework/federation.go':[
 101,
@@ -245,7 +246,15 @@
 ],
 'project:kubernetes/vendor/github.com/rackspace/gophercloud/openstack/compute/v2/servers/fixtures.go':[
 255,
+262,
+266,
+274,
+283,
 311,
+318,
+322,
+330,
+339,
 594,
 643,
 678,
@@ -266,6 +275,9 @@
 ],
 'project:kubernetes/vendor/github.com/samuel/go-zookeeper/zk/server_help.go':[
 50,
+],
+'project:kubernetes/vendor/github.com/storageos/go-api/event.go':[
+60,
 ],
 'project:kubernetes/vendor/golang.org/x/net/trace/trace.go':[
 106,
@@ -297,8 +309,5 @@
 ],
 'project:kubernetes/vendor/k8s.io/sample-apiserver/pkg/cmd/server/start.go':[
 89,
-],
-'project:samples/NoHardcodedIpAddress.go':[
-4,
 ],
 }

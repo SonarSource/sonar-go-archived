@@ -27,36 +27,36 @@ import org.sonar.uast.UastNode;
 import org.sonar.uast.helpers.LiteralLike;
 
 @Rule(key = "S1313")
-public class NoHardcodedIPAddressCheck extends Check {
+public class HardcodedIpAddressCheck extends Check {
 
-  private static final Matcher IPv4Matcher = Pattern.compile("([^\\d.]*\\/)?(?<ip>(?:\\d{1,3}\\.){3}\\d{1,3}(?!\\d|\\.))(\\/.*)?(:([0-9]+))?")
-    .matcher("");
+  private static final Pattern IPV4_PATTERN = Pattern.compile("([^\\d.]*\\/)?(?<ip>(?:\\d{1,3}\\.){3}\\d{1,3}(?!\\d|\\.))(:(\\d+{1,5}))?(\\/.*)?");
 
-  public NoHardcodedIPAddressCheck() {
+  public HardcodedIpAddressCheck() {
     super(UastNode.Kind.STRING_LITERAL);
   }
 
   @Override
   public void visitNode(UastNode node) {
     LiteralLike ipAddress = LiteralLike.from(node);
-    if (IPv4Matcher.reset(removeQuotes(ipAddress.value())).matches()) {
-      String ip = IPv4Matcher.group("ip");
-      if (validIPAddress(ip)) {
+    String ipAddressValue = removeQuotes(ipAddress.value());
+    Matcher ipv4Matcher = IPV4_PATTERN.matcher(ipAddressValue);
+    if (ipv4Matcher.matches()) {
+      String ip = ipv4Matcher.group("ip");
+      if (isValidIpAddress(ip)) {
         reportIssue(ipAddress.node(), "Make this IP \"" + ip + "\" address configurable.");
       }
     }
   }
 
   private static String removeQuotes(String string) {
-    if (string.length() > 2) {
+    if (string.length() >= 2) {
       return string.substring(1, string.length() - 1);
     }
     return string;
   }
 
-  private static boolean validIPAddress(String ip) {
+  private static boolean isValidIpAddress(String ip) {
     return Arrays.stream(ip.split("\\.")).mapToInt(Integer::parseInt)
-      .filter(num -> num <= 255)
-      .count() == 4;
+      .noneMatch(num -> num > 255);
   }
 }

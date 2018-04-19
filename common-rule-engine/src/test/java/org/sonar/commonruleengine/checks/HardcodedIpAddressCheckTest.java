@@ -21,14 +21,14 @@ package org.sonar.commonruleengine.checks;
 
 import org.junit.jupiter.api.Test;
 
-public class NoHardcodedIPAddressCheckTest {
+public class HardcodedIpAddressCheckTest {
   @Test
   void test_java() throws Exception {
-    TestUtils.checkRuleOnJava(new NoHardcodedIPAddressCheck());
+    TestUtils.checkRuleOnJava(new HardcodedIpAddressCheck());
   }
 
   @Test
   void test_go() throws Exception {
-    TestUtils.checkRuleOnGo(new NoHardcodedIPAddressCheck());
+    TestUtils.checkRuleOnGo(new HardcodedIpAddressCheck());
   }
 }
