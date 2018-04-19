@@ -29,7 +29,7 @@ import org.sonar.uast.helpers.LiteralLike;
 @Rule(key = "S1313")
 public class HardcodedIpAddressCheck extends Check {
 
-  private static final Pattern IPV4_PATTERN = Pattern.compile("([^\\d.]*\\/)?(?<ip>(?:\\d{1,3}\\.){3}\\d{1,3}(?!\\d|\\.))(:(\\d+{1,5}))?(\\/.*)?");
+  private static final Pattern IPV4_PATTERN = Pattern.compile("([^\\d.]*\\/)?(?<ip>(?:\\d{1,3}\\.){3}\\d{1,3}(?!\\d|\\.))(:(\\d{1,5}))?(\\/.*)?");
 
   public HardcodedIpAddressCheck() {
     super(UastNode.Kind.STRING_LITERAL);
@@ -37,13 +37,13 @@ public class HardcodedIpAddressCheck extends Check {
 
   @Override
   public void visitNode(UastNode node) {
-    LiteralLike ipAddress = LiteralLike.from(node);
-    String ipAddressValue = removeQuotes(ipAddress.value());
-    Matcher ipv4Matcher = IPV4_PATTERN.matcher(ipAddressValue);
+    LiteralLike literal = LiteralLike.from(node);
+    String content = removeQuotes(literal.value());
+    Matcher ipv4Matcher = IPV4_PATTERN.matcher(content);
     if (ipv4Matcher.matches()) {
       String ip = ipv4Matcher.group("ip");
       if (isValidIpAddress(ip)) {
-        reportIssue(ipAddress.node(), "Make this IP \"" + ip + "\" address configurable.");
+        reportIssue(literal.node(), "Make this IP \"" + ip + "\" address configurable.");
       }
     }
   }
