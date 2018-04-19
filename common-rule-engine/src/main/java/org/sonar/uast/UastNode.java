@@ -39,12 +39,18 @@ public final class UastNode {
   @Nullable
   public final Token token;
   public final List<UastNode> children;
+  @Nullable
+  private UastNode parent = null;
 
   public UastNode(Set<Kind> kinds, String nativeNode, @Nullable Token token, List<UastNode> children) {
     this.kinds = kinds.stream().flatMap(Kind::kindAndExtendedKindStream).collect(Collectors.toSet());
     this.nativeNode = nativeNode;
     this.token = token;
     this.children = children;
+
+    for (UastNode child : children) {
+      child.parent = this;
+    }
   }
 
   public static class Token {
@@ -290,6 +296,16 @@ public final class UastNode {
     return children.stream().filter(kind).findAny();
   }
 
+  public Optional<UastNode> getAncestor(Kind ancestorKind) {
+    if (parent == null) {
+      return Optional.empty();
+    }
+    if (parent.is(ancestorKind)) {
+      return Optional.of(parent);
+    }
+    return parent.getAncestor(ancestorKind);
+  }
+
   public List<UastNode> getChildren(Kind... kinds) {
     List<UastNode> selectedChildren = children.stream()
       .filter(child -> Arrays.stream(kinds).anyMatch(child.kinds::contains))
@@ -405,5 +421,4 @@ public final class UastNode {
       this.column = column;
     }
   }
-
 }
