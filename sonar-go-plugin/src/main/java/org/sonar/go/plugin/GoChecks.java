@@ -28,6 +28,7 @@ import org.sonar.commonruleengine.checks.EmptyBlockCheck;
 import org.sonar.commonruleengine.checks.FileHeaderCheck;
 import org.sonar.commonruleengine.checks.FunctionCognitiveComplexityCheck;
 import org.sonar.commonruleengine.checks.HardcodedIpAddressCheck;
+import org.sonar.commonruleengine.checks.FunctionNameConventionCheck;
 import org.sonar.commonruleengine.checks.NestedSwitchCheck;
 import org.sonar.commonruleengine.checks.NoHardcodedCredentialsCheck;
 import org.sonar.commonruleengine.checks.NoIdenticalConditionsCheck;
@@ -57,6 +58,7 @@ public class GoChecks {
       EmptyBlockCheck.class,
       FunctionCognitiveComplexityCheck.class,
       HardcodedIpAddressCheck.class,
+      FunctionNameConventionCheck.class,
       NestedSwitchCheck.class,
       NoIdenticalConditionsCheck.class,
       NoIdenticalFunctionsCheck.class,
