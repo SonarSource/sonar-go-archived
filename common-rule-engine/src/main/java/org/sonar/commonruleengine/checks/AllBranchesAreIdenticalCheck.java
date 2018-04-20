@@ -24,12 +24,13 @@ import java.util.List;
 import java.util.Set;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.check.Rule;
+import org.sonar.uast.SyntacticEquivalence;
 import org.sonar.uast.UastNode;
 import org.sonar.uast.helpers.CaseLike;
 import org.sonar.uast.helpers.IfLike;
 import org.sonar.uast.helpers.SwitchLike;
 
-import static org.sonar.uast.Uast.syntacticallyEquivalent;
+import static org.sonar.uast.SyntacticEquivalence.areEquivalent;
 
 /**
  * https://jira.sonarsource.com/browse/RSPEC-3923
@@ -71,7 +72,7 @@ public class AllBranchesAreIdenticalCheck extends Check {
     boolean allEquivalent = caseNodes.stream()
       .skip(1)
       .map(caseNode -> CaseLike.from(caseNode).body())
-      .allMatch(body -> syntacticallyEquivalent(firstCase, body));
+      .allMatch(body -> SyntacticEquivalence.areEquivalent(firstCase, body));
     if (allEquivalent) {
       reportIssue(switchLike.switchKeyword(), MESSAGE);
     }
@@ -87,7 +88,7 @@ public class AllBranchesAreIdenticalCheck extends Check {
     IfLike elseIf = ifLike.elseIf();
     while (elseIf != null) {
       visitedIfs.add(elseIf.node());
-      if (!syntacticallyEquivalent(ifLike.thenNode(), elseIf.thenNode())) {
+      if (!SyntacticEquivalence.areEquivalent(ifLike.thenNode(), elseIf.thenNode())) {
         allSame = false;
       }
       elseLike = elseIf.elseLike();
@@ -97,7 +98,7 @@ public class AllBranchesAreIdenticalCheck extends Check {
       // if without else is exception of the rule, see RSPEC
       return;
     }
-    allSame = allSame && syntacticallyEquivalent(ifLike.thenNode(), elseLike.elseNode());
+    allSame = allSame && SyntacticEquivalence.areEquivalent(ifLike.thenNode(), elseLike.elseNode());
     if (allSame) {
       reportIssue(ifLike.ifKeyword(), MESSAGE);
     }

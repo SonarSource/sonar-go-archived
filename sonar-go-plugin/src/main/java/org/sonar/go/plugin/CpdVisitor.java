@@ -37,14 +37,14 @@ public class CpdVisitor {
   }
 
   public void scan(UastNode node) {
-    if (node.kinds.contains(UastNode.Kind.COMMENT) || node.kinds.contains(UastNode.Kind.EOF)) {
+    if (node.is(UastNode.Kind.COMMENT, UastNode.Kind.EOF)) {
       return;
     }
 
     UastNode.Token token = node.token;
     if (token != null) {
       String text = token.value;
-      if (node.kinds.contains(UastNode.Kind.LITERAL)) {
+      if (node.is(UastNode.Kind.LITERAL)) {
         text = "LITERAL";
       }
 

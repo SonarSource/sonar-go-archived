@@ -20,10 +20,11 @@
 package org.sonar.commonruleengine.checks;
 
 import org.sonar.check.Rule;
+import org.sonar.uast.SyntacticEquivalence;
 import org.sonar.uast.UastNode;
 import org.sonar.uast.helpers.AssignmentLike;
 
-import static org.sonar.uast.Uast.syntacticallyEquivalent;
+import static org.sonar.uast.SyntacticEquivalence.areEquivalent;
 
 /**
  * https://jira.sonarsource.com/browse/RSPEC-1656
@@ -40,7 +41,7 @@ public class NoSelfAssignmentCheck extends Check {
     AssignmentLike assignment = AssignmentLike.from(node);
     if (assignment != null
       && node.isNot(UastNode.Kind.VARIABLE_DECLARATION, UastNode.Kind.COMPOUND_ASSIGNMENT)
-      && syntacticallyEquivalent(assignment.target(), assignment.value())) {
+      && SyntacticEquivalence.areEquivalent(assignment.target(), assignment.value())) {
       reportIssue(node, "Remove this self assignment");
     }
   }

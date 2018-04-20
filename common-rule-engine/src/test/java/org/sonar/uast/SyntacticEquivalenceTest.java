@@ -17,38 +17,20 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package org.sonar.uast.helpers;
+package org.sonar.uast;
 
-import java.util.Optional;
-import org.sonar.uast.UastNode;
+import java.io.StringReader;
+import org.junit.jupiter.api.Test;
 
-public class LiteralLike {
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
-  private final UastNode node;
+class SyntacticEquivalenceTest {
 
-  private LiteralLike(UastNode node) {
-    this.node = node;
-  }
-
-  public static LiteralLike from(UastNode node) {
-    if (node.is(UastNode.Kind.LITERAL)) {
-      return new LiteralLike(node);
-    }
-    if (node.children.size() == 1) {
-      Optional<UastNode> childLiteral = node.getChild(UastNode.Kind.LITERAL);
-      if (childLiteral.isPresent()) {
-        return new LiteralLike(childLiteral.get());
-      }
-    }
-    return null;
-  }
-
-  public UastNode node() {
-    return node;
-  }
-
-  public String value() {
-    return node.joinTokens();
+  @Test
+  void syntactically_equivalent_of_unsupported_node() throws Exception  {
+    UastNode node1 = UastNode.from(new StringReader("{ children: [ { kinds: [ 'UNSUPPORTED' ] } ] }"));
+    UastNode node2 = UastNode.from(new StringReader("{ children: [ { kinds: [ 'UNSUPPORTED' ] } ] }"));
+    assertFalse(SyntacticEquivalence.areEquivalent(node1, node2));
   }
 
 }

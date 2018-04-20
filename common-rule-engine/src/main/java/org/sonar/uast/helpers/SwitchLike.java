@@ -45,7 +45,7 @@ public class SwitchLike {
    */
   @Nullable
   public static SwitchLike from(UastNode node) {
-    if (!node.kinds.contains(UastNode.Kind.SWITCH)) {
+    if (!node.is(UastNode.Kind.SWITCH)) {
       return null;
     }
     return new SwitchLike(node, getCases(node));

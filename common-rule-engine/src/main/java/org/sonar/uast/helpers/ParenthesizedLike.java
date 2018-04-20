@@ -39,7 +39,7 @@ public class ParenthesizedLike {
 
   @Nullable
   public static ParenthesizedLike from(UastNode node) {
-    if (node.kinds.contains(UastNode.Kind.PARENTHESIZED_EXPRESSION)) {
+    if (node.is(UastNode.Kind.PARENTHESIZED_EXPRESSION)) {
       Optional<UastNode> leftParenthesis = node.getChild(UastNode.Kind.LEFT_PARENTHESIS);
       Optional<UastNode> expression = node.getChild(UastNode.Kind.EXPRESSION);
       Optional<UastNode> rightParenthesis = node.getChild(UastNode.Kind.RIGHT_PARENTHESIS);

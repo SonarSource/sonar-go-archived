@@ -19,6 +19,8 @@
  */
 package org.sonar.uast;
 
+import java.io.IOException;
+import java.io.Reader;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -51,6 +53,10 @@ public final class UastNode {
     for (UastNode child : children) {
       child.parent = this;
     }
+  }
+
+  public static UastNode from(Reader reader) throws IOException {
+    return Unmarshaller.unmarshal(reader);
   }
 
   public static class Token {

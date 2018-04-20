@@ -34,7 +34,6 @@ import java.util.Locale;
 import org.sonar.api.batch.fs.internal.TestInputFileBuilder;
 import org.sonar.commonruleengine.Engine;
 import org.sonar.commonruleengine.Issue;
-import org.sonar.uast.Uast;
 import org.sonar.uast.UastNode;
 import org.sonar.uast.generator.java.Generator;
 
@@ -42,7 +41,7 @@ public class TestUtils {
 
   public static UastNode uast(String json) {
     try {
-      return Uast.from(new StringReader(json));
+      return UastNode.from(new StringReader(json));
     } catch (IOException e) {
       throw new IllegalArgumentException("ERROR: '" + e.getMessage() + "', Invalid json: " + json, e);
     }
@@ -55,7 +54,7 @@ public class TestUtils {
   public static void checkRuleOnJava(Check check, String filename) throws IOException {
     Path sourceFilename = testFile(check.getClass(), filename);
     Generator generator = new Generator(new String(Files.readAllBytes(sourceFilename)));
-    checkRule(check, sourceFilename, Uast.from(new StringReader(generator.json())));
+    checkRule(check, sourceFilename, UastNode.from(new StringReader(generator.json())));
   }
 
   public static void checkRuleOnGo(Check check) throws IOException {
@@ -70,7 +69,7 @@ public class TestUtils {
 
   public static UastNode goUast(Path testFile) throws IOException {
     Path uastFile = createGoUast(testFile);
-    return Uast.from(Files.newBufferedReader(uastFile));
+    return UastNode.from(Files.newBufferedReader(uastFile));
   }
 
   private static Path createGoUast(Path testFile) throws IOException {

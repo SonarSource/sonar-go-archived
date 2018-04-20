@@ -49,7 +49,7 @@ public class ForLike {
 
   @CheckForNull
   public static ForLike from(UastNode node) {
-    if (node.kinds.contains(ForLike.KIND)) {
+    if (node.is(ForLike.KIND)) {
       Optional<UastNode> forKeyword = node.getChild(UastNode.Kind.FOR_KEYWORD);
       Optional<UastNode> condition = node.getChild(UastNode.Kind.CONDITION);
       Optional<UastNode> body = node.getChild(UastNode.Kind.BODY);

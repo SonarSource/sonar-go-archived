@@ -19,24 +19,18 @@
  */
 package org.sonar.uast;
 
-import java.io.IOException;
-import java.io.Reader;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 import javax.annotation.Nullable;
 
-public final class Uast {
+public final class SyntacticEquivalence {
 
-  private Uast() {
+  private SyntacticEquivalence() {
     // utility class
   }
 
-  public static UastNode from(Reader reader) throws IOException {
-    return Unmarshaller.unmarshal(reader);
-  }
-
-  public static boolean syntacticallyEquivalent(@Nullable UastNode node1, @Nullable UastNode node2) {
+  public static boolean areEquivalent(@Nullable UastNode node1, @Nullable UastNode node2) {
     if (node1 == null && node2 == null) {
       return true;
     }
@@ -49,7 +43,7 @@ public final class Uast {
     if (node2.token != null && !node1.token.value.equals(node2.token.value)) {
       return false;
     }
-    if (node1.kinds.contains(UastNode.Kind.UNSUPPORTED) || node2.kinds.contains(UastNode.Kind.UNSUPPORTED)) {
+    if (node1.is(UastNode.Kind.UNSUPPORTED) || node2.is(UastNode.Kind.UNSUPPORTED)) {
       return false;
     }
     CommentFilteredList list1 = new CommentFilteredList(node1.children);
@@ -60,21 +54,21 @@ public final class Uast {
     Iterator<UastNode> child1 = list1.iterator();
     Iterator<UastNode> child2 = list2.iterator();
     while (child1.hasNext()) {
-      if (!syntacticallyEquivalent(child1.next(), child2.next())) {
+      if (!areEquivalent(child1.next(), child2.next())) {
         return false;
       }
     }
     return true;
   }
 
-  public static boolean syntacticallyEquivalent(List<UastNode> node1, List<UastNode> node2) {
+  public static boolean areEquivalent(List<UastNode> node1, List<UastNode> node2) {
     if (node1.size() != node2.size()) {
       return false;
     }
     Iterator<UastNode> it1 = node1.iterator();
     Iterator<UastNode> it2 = node2.iterator();
     while (it1.hasNext()) {
-      if (!syntacticallyEquivalent(it1.next(), it2.next())) {
+      if (!areEquivalent(it1.next(), it2.next())) {
         return false;
       }
     }
@@ -103,7 +97,7 @@ public final class Uast {
       return new FilterIterator(children.iterator());
     }
 
-    private class FilterIterator implements Iterator<UastNode> {
+    private static class FilterIterator implements Iterator<UastNode> {
 
       private final Iterator<UastNode> iterator;
 
@@ -132,7 +126,7 @@ public final class Uast {
       private UastNode findNext() {
         while (iterator.hasNext()) {
           UastNode node = iterator.next();
-          if (!node.kinds.contains(UastNode.Kind.COMMENT)) {
+          if (!node.is(UastNode.Kind.COMMENT)) {
             return node;
           }
         }

@@ -27,7 +27,6 @@ import java.util.HashSet;
 import org.junit.jupiter.api.Test;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.batch.fs.internal.TestInputFileBuilder;
-import org.sonar.uast.Uast;
 import org.sonar.uast.UastNode;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -113,7 +112,7 @@ class MetricsVisitorTest {
 
   private Metrics getMetrics(String source) throws IOException {
     Engine engine = new Engine(Collections.emptyList());
-    UastNode node = Uast.from(new StringReader(source));
+    UastNode node = UastNode.from(new StringReader(source));
     InputFile inputFile = TestInputFileBuilder.create(".", "foo.go").setType(InputFile.Type.MAIN).build();
     return engine.scan(node, inputFile).metrics;
   }

@@ -33,7 +33,6 @@ import java.util.concurrent.TimeUnit;
 import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.utils.log.Logger;
 import org.sonar.api.utils.log.Loggers;
-import org.sonar.uast.Uast;
 import org.sonar.uast.UastNode;
 
 class UastGeneratorWrapper {
@@ -59,7 +58,7 @@ class UastGeneratorWrapper {
          InputStream in = process.getInputStream()) {
       copy(source, process.getOutputStream());
       out.close();
-      UastNode uastNode = Uast.from(new InputStreamReader(in, StandardCharsets.UTF_8));
+      UastNode uastNode = UastNode.from(new InputStreamReader(in, StandardCharsets.UTF_8));
       boolean exited = process.waitFor(5, TimeUnit.SECONDS);
       if (exited && process.exitValue() != 0) {
         throw new IllegalStateException("Parser returned non-zero exit value: " + process.exitValue());

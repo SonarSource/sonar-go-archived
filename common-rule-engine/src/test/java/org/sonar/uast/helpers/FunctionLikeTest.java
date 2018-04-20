@@ -21,7 +21,6 @@ package org.sonar.uast.helpers;
 
 import java.io.StringReader;
 import org.junit.jupiter.api.Test;
-import org.sonar.uast.Uast;
 import org.sonar.uast.UastNode;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -30,7 +29,7 @@ class FunctionLikeTest {
 
   @Test
   void test() throws Exception {
-    UastNode node = Uast.from(new StringReader("" +
+    UastNode node = UastNode.from(new StringReader("" +
       "{\"kinds\": [\"FUNCTION\"], \"children\": [\n" +
       "  {\"kinds\": [\"KEYWORD\"], \"token\": {\"value\":\"func\",\"line\":4,\"column\":1}},\n" +
       "  {\"kinds\": [\"FUNCTION_NAME\",\"IDENTIFIER\"], \"token\": {\"value\":\"conv\",\"line\":4,\"column\":6}},\n" +
