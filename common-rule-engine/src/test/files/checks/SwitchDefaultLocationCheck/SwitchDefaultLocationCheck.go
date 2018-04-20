@@ -1,8 +1,9 @@
 package main
 
-type f struct {
-	a, b, c int
-}
+import (
+	"time"
+	"fmt"
+)
 
 func foo(tag int, x interface{}) {
 	switch tag {
@@ -87,6 +88,38 @@ func foo(tag int, x interface{}) {
 	default:
 		bar("don't know the type")
 	}
+
+	c1 := make(chan string)
+	c2 := make(chan string)
+
+	go func() {
+		time.Sleep(1 * time.Second)
+		c1 <- "one"
+	}()
+	go func() {
+		time.Sleep(2 * time.Second)
+		c2 <- "two"
+	}()
+
+	switch tag { // Compliant
+	case 0:
+		bar("hello");
+		break;
+	case 1:
+		select {
+		case msg1 := <-c1:
+			fmt.Println("received", msg1)
+		default: // Compliant
+			fmt.Println("should not happen")
+		case msg2 := <-c2:
+			fmt.Println("received", msg2)
+		}
+		break;
+	case 2:
+		bar("hello");
+		break;
+	}
+
 }
 
 func bar(s ... string) {

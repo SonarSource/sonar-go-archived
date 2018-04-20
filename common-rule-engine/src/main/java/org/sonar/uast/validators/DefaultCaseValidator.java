@@ -32,6 +32,7 @@ public class DefaultCaseValidator extends Validator {
     is(UastNode.Kind.DEFAULT_CASE);
     hasKeyword("default");
     noChild(UastNode.Kind.CONDITION);
-    hasAncestor(UastNode.Kind.SWITCH);
+    // FIXME go 'select' nodes are feeding default cases and should be removed
+    // hasAncestor(UastNode.Kind.SWITCH);
   }
 }

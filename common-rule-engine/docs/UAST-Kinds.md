@@ -324,7 +324,6 @@ Languages | Java, Go
 ### Case
 Key | CASE
 --- | ---
-Direct sub-kinds | [DefaultCase](#defaultcase)
 Languages | Java, Go
 
 
@@ -434,7 +433,6 @@ Languages | Java, Go
 ### DefaultCase
 Key | DEFAULT_CASE
 --- | ---
-Extends | [Case](#case)
 Languages | Java, Go
 
 

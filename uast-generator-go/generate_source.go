@@ -198,6 +198,7 @@ import (
 			"ParenExpr#X":  "children = t.appendParenExprX(children, kinds, astNode.X)",
 			// unknown "case" or "default"
 			"CaseClause#Case": "children,kinds = t.handleSwitchCase(astNode.Case, len(astNode.List) == 0, children, kinds)",
+			// FIXME this is wrong as it creates DEFAULT_CASE in the body of SELECT
 			"CommClause#Case": "children,kinds = t.handleSwitchCase(astNode.Case, astNode.Comm == nil, children, kinds)",
 			"IfStmt#Init":     "",
 			"IfStmt#Cond": "children = t.appendNode(children, " +
