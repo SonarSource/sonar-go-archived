@@ -75,6 +75,6 @@ public class SwitchValidatorTest {
       keyword("switch"));
 
     Validator.ValidationException exception = assertThrows(Validator.ValidationException.class, () -> validate(switchNode));
-    assertThat(exception.getMessage()).isEqualTo("SwitchValidator: Should have one single child of kind 'EXPRESSION'.");
+    assertThat(exception.getMessage()).isEqualTo("SwitchValidator: Should have one single child of kind 'EXPRESSION' but got none.");
   }
 }

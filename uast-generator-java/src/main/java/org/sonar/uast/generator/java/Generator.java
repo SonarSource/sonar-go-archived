@@ -45,7 +45,6 @@ import javax.lang.model.SourceVersion;
 import org.sonar.java.ast.parser.JavaParser;
 import org.sonar.java.model.InternalSyntaxToken;
 import org.sonar.java.model.JavaTree;
-import org.sonar.plugins.java.api.tree.Arguments;
 import org.sonar.plugins.java.api.tree.ArrayAccessExpressionTree;
 import org.sonar.plugins.java.api.tree.AssignmentExpressionTree;
 import org.sonar.plugins.java.api.tree.BaseTreeVisitor;
@@ -58,15 +57,12 @@ import org.sonar.plugins.java.api.tree.ConditionalExpressionTree;
 import org.sonar.plugins.java.api.tree.ContinueStatementTree;
 import org.sonar.plugins.java.api.tree.ExpressionTree;
 import org.sonar.plugins.java.api.tree.ForStatementTree;
-import org.sonar.plugins.java.api.tree.IdentifierTree;
 import org.sonar.plugins.java.api.tree.IfStatementTree;
 import org.sonar.plugins.java.api.tree.ImportTree;
 import org.sonar.plugins.java.api.tree.LabeledStatementTree;
 import org.sonar.plugins.java.api.tree.LiteralTree;
 import org.sonar.plugins.java.api.tree.MethodInvocationTree;
 import org.sonar.plugins.java.api.tree.MethodTree;
-import org.sonar.plugins.java.api.tree.ParenthesizedTree;
-import org.sonar.plugins.java.api.tree.PrimitiveTypeTree;
 import org.sonar.plugins.java.api.tree.StatementTree;
 import org.sonar.plugins.java.api.tree.SyntaxToken;
 import org.sonar.plugins.java.api.tree.SyntaxTrivia;
@@ -533,8 +529,11 @@ public class Generator {
     if (tree instanceof BlockTree) {
       result.add(Kind.BLOCK);
     }
-    if (isExpression(tree)) {
+    if (tree instanceof ExpressionTree) {
       result.add(UastNode.Kind.EXPRESSION);
+      if(tree.parent().is(Tree.Kind.CASE_LABEL)) {
+        result.add(UastNode.Kind.CONDITION);
+      }
     }
     return result;
   }
@@ -547,15 +546,6 @@ public class Generator {
         result.addAll(kind.impliedKinds);
       }
     }
-  }
-
-  private static boolean isExpression(Tree tree) {
-    if (!(tree instanceof ExpressionTree) || (tree instanceof PrimitiveTypeTree)) {
-      return false;
-    }
-    return (tree.parent() instanceof Arguments) ||
-      (tree.parent() instanceof ParenthesizedTree) ||
-      !(tree instanceof IdentifierTree);
   }
 
   class PostprocessVisitor extends BaseTreeVisitor {

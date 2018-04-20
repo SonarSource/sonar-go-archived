@@ -19,6 +19,7 @@
  */
 package org.sonar.uast.validators;
 
+import java.util.List;
 import java.util.Optional;
 import org.sonar.uast.UastNode;
 import org.sonar.uast.Visitor;
@@ -82,8 +83,12 @@ public abstract class Validator extends Visitor {
   }
 
   public void singleChild(UastNode.Kind kind) {
-    if (node.getChildren(kind).size() != 1) {
-      fail("Should have one single child of kind '%s'.", kind);
+    List<UastNode> children = node.getChildren(kind);
+    if(children.isEmpty()) {
+      fail("Should have one single child of kind '%s' but got none.", kind);
+    }
+    if (children.size() != 1) {
+      fail("Should have one single child of kind '%s' but got %s.", kind, children);
     }
   }
 
