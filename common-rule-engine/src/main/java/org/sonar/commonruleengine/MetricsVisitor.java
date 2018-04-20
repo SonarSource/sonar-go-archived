@@ -40,7 +40,7 @@ public class MetricsVisitor {
     if (node.is(UastNode.Kind.FUNCTION)) {
       metrics.numberOfFunctions++;
     }
-    if (node.kinds.contains(UastNode.Kind.STATEMENT)) {
+    if (node.is(UastNode.Kind.STATEMENT)) {
       metrics.numberOfStatements++;
     }
     if (node.is(UastNode.Kind.STATEMENT, UastNode.Kind.EXPRESSION, UastNode.Kind.CASE, UastNode.Kind.LABEL)) {

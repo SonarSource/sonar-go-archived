@@ -43,7 +43,7 @@ public final class SyntacticEquivalence {
     if (node2.token != null && !node1.token.value.equals(node2.token.value)) {
       return false;
     }
-    if (node1.kinds.contains(UastNode.Kind.UNSUPPORTED) || node2.kinds.contains(UastNode.Kind.UNSUPPORTED)) {
+    if (node1.is(UastNode.Kind.UNSUPPORTED) || node2.is(UastNode.Kind.UNSUPPORTED)) {
       return false;
     }
     CommentFilteredList list1 = new CommentFilteredList(node1.children);
@@ -97,7 +97,7 @@ public final class SyntacticEquivalence {
       return new FilterIterator(children.iterator());
     }
 
-    private class FilterIterator implements Iterator<UastNode> {
+    private static class FilterIterator implements Iterator<UastNode> {
 
       private final Iterator<UastNode> iterator;
 
@@ -126,7 +126,7 @@ public final class SyntacticEquivalence {
       private UastNode findNext() {
         while (iterator.hasNext()) {
           UastNode node = iterator.next();
-          if (!node.kinds.contains(UastNode.Kind.COMMENT)) {
+          if (!node.is(UastNode.Kind.COMMENT)) {
             return node;
           }
         }
