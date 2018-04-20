@@ -27,7 +27,6 @@ import org.junit.jupiter.api.Test;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.batch.fs.internal.TestInputFileBuilder;
 import org.sonar.commonruleengine.checks.Check;
-import org.sonar.uast.Uast;
 import org.sonar.uast.UastNode;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -39,7 +38,7 @@ class EngineTest {
 
   @BeforeEach
   void setUp() throws Exception {
-    uast = Uast.from(new InputStreamReader(getClass().getResourceAsStream("/uast.json")));
+    uast = UastNode.from(new InputStreamReader(getClass().getResourceAsStream("/uast.json")));
   }
 
   @Test

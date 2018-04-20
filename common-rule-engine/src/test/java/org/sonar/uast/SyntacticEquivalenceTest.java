@@ -17,32 +17,20 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package org.sonar.commonruleengine.checks;
+package org.sonar.uast;
 
-import org.sonar.check.Rule;
-import org.sonar.uast.SyntacticEquivalence;
-import org.sonar.uast.UastNode;
-import org.sonar.uast.helpers.AssignmentLike;
+import java.io.StringReader;
+import org.junit.jupiter.api.Test;
 
-import static org.sonar.uast.SyntacticEquivalence.areEquivalent;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
-/**
- * https://jira.sonarsource.com/browse/RSPEC-1656
- */
-@Rule(key = "S1656")
-public class NoSelfAssignmentCheck extends Check {
+class SyntacticEquivalenceTest {
 
-  public NoSelfAssignmentCheck() {
-    super(AssignmentLike.KIND);
+  @Test
+  void syntactically_equivalent_of_unsupported_node() throws Exception  {
+    UastNode node1 = UastNode.from(new StringReader("{ children: [ { kinds: [ 'UNSUPPORTED' ] } ] }"));
+    UastNode node2 = UastNode.from(new StringReader("{ children: [ { kinds: [ 'UNSUPPORTED' ] } ] }"));
+    assertFalse(SyntacticEquivalence.areEquivalent(node1, node2));
   }
 
-  @Override
-  public void visitNode(UastNode node) {
-    AssignmentLike assignment = AssignmentLike.from(node);
-    if (assignment != null
-      && node.isNot(UastNode.Kind.VARIABLE_DECLARATION, UastNode.Kind.COMPOUND_ASSIGNMENT)
-      && SyntacticEquivalence.areEquivalent(assignment.target(), assignment.value())) {
-      reportIssue(node, "Remove this self assignment");
-    }
-  }
 }

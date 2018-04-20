@@ -21,7 +21,6 @@ package org.sonar.uast.helpers;
 
 import java.io.StringReader;
 import org.junit.jupiter.api.Test;
-import org.sonar.uast.Uast;
 import org.sonar.uast.UastNode;
 
 import static java.util.Collections.emptySet;
@@ -32,7 +31,7 @@ class LiteralLikeTest {
 
   @Test
   void test() throws Exception  {
-    UastNode literal = Uast.from(new StringReader("{ \"kinds\": [\"LITERAL\"], \"token\": {\"value\": \"foo\" , \"line\": 1, \"column\": 1} }"));
+    UastNode literal = UastNode.from(new StringReader("{ \"kinds\": [\"LITERAL\"], \"token\": {\"value\": \"foo\" , \"line\": 1, \"column\": 1} }"));
     LiteralLike literalLike = LiteralLike.from(literal);
     assertThat(literalLike).isNotNull();
     assertThat(literalLike.value()).isEqualTo("foo");
@@ -45,7 +44,7 @@ class LiteralLikeTest {
 
   @Test
   void literal_nested_as_only_child() throws Exception {
-    UastNode literal = Uast.from(new StringReader(
+    UastNode literal = UastNode.from(new StringReader(
       "{ \"kinds\": [], " +
         "\"children\": [{ \"kinds\": [\"LITERAL\"], \"token\": {\"value\": \"foo\" , \"line\": 1, \"column\": 1 } }]" +
         "}"));
@@ -57,7 +56,7 @@ class LiteralLikeTest {
 
   @Test
   void multiple_literal_children() throws Exception {
-    UastNode literal = Uast.from(new StringReader(
+    UastNode literal = UastNode.from(new StringReader(
       "{ \"kinds\": [], " +
         "\"children\": [" +
         "{ \"kinds\": [\"LITERAL\"], \"token\": {\"value\": \"foo\"  , \"line\": 1, \"column\": 1} }," +

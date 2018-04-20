@@ -21,10 +21,11 @@ package org.sonar.commonruleengine.checks;
 
 import org.sonar.check.Rule;
 import org.sonar.commonruleengine.Issue;
+import org.sonar.uast.SyntacticEquivalence;
 import org.sonar.uast.UastNode;
 import org.sonar.uast.helpers.BinaryExpressionLike;
 
-import static org.sonar.uast.Uast.syntacticallyEquivalent;
+import static org.sonar.uast.SyntacticEquivalence.areEquivalent;
 
 /**
  * https://jira.sonarsource.com/browse/RSPEC-1764
@@ -41,7 +42,7 @@ public class BinaryOperatorIdenticalExpressionsCheck extends Check {
     BinaryExpressionLike binaryExpression = BinaryExpressionLike.from(node);
     if (binaryExpression != null
       && !isExcluded(binaryExpression)
-      && syntacticallyEquivalent(binaryExpression.leftOperand(), binaryExpression.rightOperand())) {
+      && SyntacticEquivalence.areEquivalent(binaryExpression.leftOperand(), binaryExpression.rightOperand())) {
       String operator = binaryExpression.operator().joinTokens();
       reportIssue(binaryExpression.rightOperand(),
         "Correct one of the identical sub-expressions on both sides of operator \"" + operator + "\".",

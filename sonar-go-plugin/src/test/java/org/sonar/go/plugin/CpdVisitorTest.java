@@ -20,21 +20,18 @@
 package org.sonar.go.plugin;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.batch.fs.internal.TestInputFileBuilder;
 import org.sonar.api.batch.sensor.internal.SensorContextTester;
 import org.sonar.duplications.internal.pmd.TokensLine;
-import org.sonar.uast.Uast;
 import org.sonar.uast.UastNode;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -67,7 +64,7 @@ class CpdVisitorTest {
     sensorContext.fileSystem().add(inputFile);
     CpdVisitor cpdVisitor = new CpdVisitor(sensorContext, inputFile);
 
-    UastNode node = Uast.from(new StringReader(codeJson));
+    UastNode node = UastNode.from(new StringReader(codeJson));
     cpdVisitor.scan(node);
     cpdVisitor.save();
 

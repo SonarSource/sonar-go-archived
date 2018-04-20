@@ -24,10 +24,11 @@ import java.util.List;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.check.Rule;
 import org.sonar.commonruleengine.Issue;
+import org.sonar.uast.SyntacticEquivalence;
 import org.sonar.uast.UastNode;
 import org.sonar.uast.helpers.FunctionLike;
 
-import static org.sonar.uast.Uast.syntacticallyEquivalent;
+import static org.sonar.uast.SyntacticEquivalence.areEquivalent;
 
 /**
  * Rule https://jira.sonarsource.com/browse/RSPEC-4144
@@ -60,9 +61,9 @@ public class NoIdenticalFunctionsCheck extends Check {
         return;
       }
       for (FunctionLike function : functions) {
-        if (syntacticallyEquivalent(thisFunction.body(), function.body())
-          && syntacticallyEquivalent(thisFunction.parameters(), function.parameters())
-          && syntacticallyEquivalent(thisFunction.resultList(), function.resultList())) {
+        if (SyntacticEquivalence.areEquivalent(thisFunction.body(), function.body())
+          && areEquivalent(thisFunction.parameters(), function.parameters())
+          && areEquivalent(thisFunction.resultList(), function.resultList())) {
           reportIssue(thisFunction.name(),
             "Function is identical with function on line " + function.node().firstToken().line + ".",
             new Issue.Message(function.name(), "Original implementation"));
