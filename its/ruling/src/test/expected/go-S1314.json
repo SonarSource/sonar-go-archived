@@ -1,0 +1,10 @@
+{
+'project:kubernetes/vendor/github.com/cloudflare/cfssl/helpers/helpers.go':[
+41,
+45,
+],
+'project:kubernetes/vendor/github.com/spf13/afero/mem/file.go':[
+194,
+231,
+],
+}
