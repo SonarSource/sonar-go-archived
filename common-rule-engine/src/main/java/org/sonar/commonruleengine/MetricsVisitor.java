@@ -34,32 +34,29 @@ public class MetricsVisitor {
   }
 
   public void visitNode(UastNode node) {
-    if (node.kinds.contains(UastNode.Kind.CLASS)) {
+    if (node.is(UastNode.Kind.CLASS)) {
       metrics.numberOfClasses++;
     }
-    if (node.kinds.contains(UastNode.Kind.FUNCTION)) {
+    if (node.is(UastNode.Kind.FUNCTION)) {
       metrics.numberOfFunctions++;
     }
     if (node.kinds.contains(UastNode.Kind.STATEMENT)) {
       metrics.numberOfStatements++;
     }
-    if (node.kinds.contains(UastNode.Kind.STATEMENT) ||
-      node.kinds.contains(UastNode.Kind.EXPRESSION) ||
-      node.kinds.contains(UastNode.Kind.CASE) ||
-      node.kinds.contains(UastNode.Kind.LABEL)) {
+    if (node.is(UastNode.Kind.STATEMENT, UastNode.Kind.EXPRESSION, UastNode.Kind.CASE, UastNode.Kind.LABEL)) {
       addLines(metrics.executableLines, node.firstToken());
     }
     UastNode.Token token = node.token;
     if (token != null) {
-      visitToken(node.kinds, token);
+      visitToken(node, token);
     }
   }
 
-  public void visitToken(Set<UastNode.Kind> nodeKinds, UastNode.Token token) {
-    if (nodeKinds.contains(UastNode.Kind.EOF)) {
+  private void visitToken(UastNode node, UastNode.Token token) {
+    if (node.is(UastNode.Kind.EOF)) {
       return;
     }
-    Set<Integer> lineNumbers = nodeKinds.contains(UastNode.Kind.COMMENT) ? metrics.commentLines : metrics.linesOfCode;
+    Set<Integer> lineNumbers = node.is(UastNode.Kind.COMMENT) ? metrics.commentLines : metrics.linesOfCode;
     addLines(lineNumbers, token);
   }
 
