@@ -14,3 +14,14 @@ var h = 0X00
 func foo() {
   foo(010)   // Noncompliant
 }
+
+func ignoreBitwiseOperations() {
+  var a = 0
+  a &= 02
+  a |= 02
+  a = a & 02
+  a = a &^ 02
+  a = a | 02
+  a = a << 02
+  a = a >> 02
+}

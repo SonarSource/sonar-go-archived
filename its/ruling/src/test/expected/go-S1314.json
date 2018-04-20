@@ -3,14 +3,6 @@
 41,
 45,
 ],
-'project:kubernetes/vendor/github.com/pkg/sftp/server_unix.go':[
-62,
-66,
-70,
-82,
-86,
-90,
-],
 'project:kubernetes/vendor/github.com/spf13/afero/mem/file.go':[
 194,
 231,
