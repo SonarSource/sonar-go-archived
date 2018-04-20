@@ -48,6 +48,7 @@ import org.sonar.commonruleengine.Issue;
 import org.sonar.commonruleengine.Metrics;
 import org.sonar.commonruleengine.checks.Check;
 import org.sonar.uast.UastNode;
+import org.sonar.uast.validators.Validator;
 
 import static org.sonar.go.plugin.GoCoverageReport.saveCoverageReports;
 import static org.sonar.go.plugin.utils.PluginApiUtils.newRange;
@@ -93,6 +94,9 @@ public class GoSensor implements Sensor {
           saveCpdTokens(uast, context, inputFile);
         }
         saveHighlighting(uast, context, inputFile);
+      } catch (Validator.ValidationException e) {
+        failedFiles.add(inputFile);
+        LOG.error("Unable to validate UAST of file " + inputFile.toString(), e);
       } catch (Exception e) {
         failedFiles.add(inputFile);
         LOG.debug("Error analyzing file " + inputFile.toString(), e);

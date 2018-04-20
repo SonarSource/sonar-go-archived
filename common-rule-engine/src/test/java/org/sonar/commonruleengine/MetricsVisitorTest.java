@@ -100,7 +100,12 @@ class MetricsVisitorTest {
       "  {kinds:[ 'COMMENT'   ],  token: {line: 2, column: 2, value: '// Single line' }}," +
       "  {kinds:[ 'STATEMENT' ],  token: {line: 3, column: 2, value: 'b'}}," +
       "  {kinds:[ 'EXPRESSION' ], token: {line: 4, column: 2, value: 'x'}}," +
-      "  {kinds:[ 'CASE' ],       token: {line: 5, column: 2, value: 'case x:'}}," +
+      "  {kinds:['SWITCH'], " +
+      "children:[ " +
+      "   {kinds:['KEYWORD'], token:{line: 5, column: 2, value: 'switch'}}, " +
+      "   {kinds:['EXPRESSION']}, " +
+      "   {kinds:[ 'CASE' ], children:[{kinds:['KEYWORD'], token : {line: 5, column: 2, value: 'case'}}, {kinds:['CONDITION']}]}" +
+      "]}," +
       "  {kinds:[ 'LABEL' ],      token: {line: 6, column: 2, value: 'y:'}}" +
       "]}");
     assertEquals(new HashSet<>(Arrays.asList(1, 3, 4, 5, 6)), metrics.executableLines);

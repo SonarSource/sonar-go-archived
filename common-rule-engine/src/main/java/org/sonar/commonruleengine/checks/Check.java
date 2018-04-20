@@ -19,43 +19,14 @@
  */
 package org.sonar.commonruleengine.checks;
 
-import java.io.IOException;
-import java.util.Arrays;
-import org.sonar.api.batch.fs.InputFile;
-import org.sonar.commonruleengine.EngineContext;
 import org.sonar.commonruleengine.Issue;
 import org.sonar.uast.UastNode;
+import org.sonar.uast.Visitor;
 
-public abstract class Check {
-
-  private final UastNode.Kind[] kinds;
-  protected EngineContext context;
+public abstract class Check extends Visitor {
 
   public Check(UastNode.Kind... nodeKindsToVisit) {
-    this.kinds = nodeKindsToVisit;
-  }
-
-  /**
-   * This method is called only once by analysis
-   */
-  public void initialize(EngineContext context) {
-    this.context = context;
-    Arrays.stream(kinds).forEach(kind -> context.register(kind, this));
-  }
-
-  /**
-   * This method is called every time we enter a new file, allowing state cleaning for checks
-   * @param inputFile
-   */
-  public void enterFile(InputFile inputFile) throws IOException {
-  }
-
-  public abstract void visitNode(UastNode node);
-
-  /**
-   * This method is called after "visitNode(node)" of the node itself and all its descendants
-   */
-  public void leaveNode(UastNode node) {
+    super(nodeKindsToVisit);
   }
 
   protected final void reportIssue(UastNode node, String message) {
@@ -70,8 +41,7 @@ public abstract class Check {
     context.reportIssue(new Issue(this, new Issue.Message(from, to, message), null, secondaryMessages));
   }
 
-  protected final void reportIssue(UastNode from, UastNode to, String message, double effortToFix,
-                                   Issue.Message... secondaryMessages) {
+  protected final void reportIssue(UastNode from, UastNode to, String message, double effortToFix, Issue.Message... secondaryMessages) {
     context.reportIssue(new Issue(this, new Issue.Message(from, to, message), effortToFix, secondaryMessages));
   }
 

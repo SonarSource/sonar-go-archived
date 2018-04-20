@@ -28,6 +28,7 @@
         },
         {
           "kinds": [
+            "EXPRESSION",
             "IDENTIFIER"
           ],
           "nativeNode": "IDENTIFIER",
@@ -66,6 +67,7 @@
           "children": [
             {
               "kinds": [
+                "EXPRESSION",
                 "RESULT_LIST",
                 "TYPE"
               ],
@@ -104,6 +106,7 @@
             },
             {
               "kinds": [
+                "EXPRESSION",
                 "FUNCTION_NAME",
                 "IDENTIFIER"
               ],

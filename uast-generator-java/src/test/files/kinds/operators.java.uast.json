@@ -28,6 +28,7 @@
         },
         {
           "kinds": [
+            "EXPRESSION",
             "IDENTIFIER"
           ],
           "nativeNode": "IDENTIFIER",
@@ -67,6 +68,7 @@
           "children": [
             {
               "kinds": [
+                "EXPRESSION",
                 "TYPE"
               ],
               "nativeNode": "PRIMITIVE_TYPE",
@@ -89,6 +91,7 @@
             },
             {
               "kinds": [
+                "EXPRESSION",
                 "IDENTIFIER",
                 "VARIABLE_NAME"
               ],
@@ -131,6 +134,7 @@
           "children": [
             {
               "kinds": [
+                "EXPRESSION",
                 "TYPE"
               ],
               "nativeNode": "PRIMITIVE_TYPE",
@@ -153,6 +157,7 @@
             },
             {
               "kinds": [
+                "EXPRESSION",
                 "IDENTIFIER",
                 "VARIABLE_NAME"
               ],
@@ -194,6 +199,7 @@
           "children": [
             {
               "kinds": [
+                "EXPRESSION",
                 "RESULT_LIST",
                 "TYPE"
               ],
@@ -217,6 +223,7 @@
             },
             {
               "kinds": [
+                "EXPRESSION",
                 "FUNCTION_NAME",
                 "IDENTIFIER"
               ],
@@ -306,6 +313,7 @@
                       "children": [
                         {
                           "kinds": [
+                            "EXPRESSION",
                             "IDENTIFIER",
                             "ASSIGNMENT_TARGET"
                           ],
@@ -439,6 +447,7 @@
                       "children": [
                         {
                           "kinds": [
+                            "EXPRESSION",
                             "IDENTIFIER",
                             "ASSIGNMENT_TARGET"
                           ],
@@ -572,6 +581,7 @@
                       "children": [
                         {
                           "kinds": [
+                            "EXPRESSION",
                             "IDENTIFIER",
                             "ASSIGNMENT_TARGET"
                           ],
@@ -705,6 +715,7 @@
                       "children": [
                         {
                           "kinds": [
+                            "EXPRESSION",
                             "IDENTIFIER",
                             "ASSIGNMENT_TARGET"
                           ],
@@ -838,6 +849,7 @@
                       "children": [
                         {
                           "kinds": [
+                            "EXPRESSION",
                             "IDENTIFIER",
                             "ASSIGNMENT_TARGET"
                           ],
@@ -971,6 +983,7 @@
                       "children": [
                         {
                           "kinds": [
+                            "EXPRESSION",
                             "IDENTIFIER",
                             "ASSIGNMENT_TARGET"
                           ],
@@ -1104,6 +1117,7 @@
                       "children": [
                         {
                           "kinds": [
+                            "EXPRESSION",
                             "IDENTIFIER",
                             "ASSIGNMENT_TARGET"
                           ],
@@ -1237,6 +1251,7 @@
                       "children": [
                         {
                           "kinds": [
+                            "EXPRESSION",
                             "IDENTIFIER",
                             "ASSIGNMENT_TARGET"
                           ],
@@ -1370,6 +1385,7 @@
                       "children": [
                         {
                           "kinds": [
+                            "EXPRESSION",
                             "IDENTIFIER",
                             "ASSIGNMENT_TARGET"
                           ],
@@ -1503,6 +1519,7 @@
                       "children": [
                         {
                           "kinds": [
+                            "EXPRESSION",
                             "IDENTIFIER",
                             "ASSIGNMENT_TARGET"
                           ],
@@ -1636,6 +1653,7 @@
                       "children": [
                         {
                           "kinds": [
+                            "EXPRESSION",
                             "IDENTIFIER",
                             "ASSIGNMENT_TARGET"
                           ],
@@ -1769,6 +1787,7 @@
                       "children": [
                         {
                           "kinds": [
+                            "EXPRESSION",
                             "IDENTIFIER",
                             "ASSIGNMENT_TARGET"
                           ],
@@ -1902,6 +1921,7 @@
                       "children": [
                         {
                           "kinds": [
+                            "EXPRESSION",
                             "IDENTIFIER",
                             "ASSIGNMENT_TARGET"
                           ],
@@ -2035,6 +2055,7 @@
                       "children": [
                         {
                           "kinds": [
+                            "EXPRESSION",
                             "IDENTIFIER",
                             "ASSIGNMENT_TARGET"
                           ],
@@ -2168,6 +2189,7 @@
                       "children": [
                         {
                           "kinds": [
+                            "EXPRESSION",
                             "IDENTIFIER",
                             "ASSIGNMENT_TARGET"
                           ],
@@ -2301,6 +2323,7 @@
                       "children": [
                         {
                           "kinds": [
+                            "EXPRESSION",
                             "IDENTIFIER",
                             "ASSIGNMENT_TARGET"
                           ],
@@ -2434,6 +2457,7 @@
                       "children": [
                         {
                           "kinds": [
+                            "EXPRESSION",
                             "IDENTIFIER",
                             "ASSIGNMENT_TARGET"
                           ],
@@ -2478,6 +2502,7 @@
                           "children": [
                             {
                               "kinds": [
+                                "EXPRESSION",
                                 "LEFT_OPERAND",
                                 "IDENTIFIER"
                               ],
@@ -2568,6 +2593,7 @@
                       "children": [
                         {
                           "kinds": [
+                            "EXPRESSION",
                             "IDENTIFIER",
                             "ASSIGNMENT_TARGET"
                           ],
@@ -2612,6 +2638,7 @@
                           "children": [
                             {
                               "kinds": [
+                                "EXPRESSION",
                                 "LEFT_OPERAND",
                                 "IDENTIFIER"
                               ],
@@ -2711,6 +2738,7 @@
           "children": [
             {
               "kinds": [
+                "EXPRESSION",
                 "RESULT_LIST",
                 "TYPE"
               ],
@@ -2734,6 +2762,7 @@
             },
             {
               "kinds": [
+                "EXPRESSION",
                 "FUNCTION_NAME",
                 "IDENTIFIER"
               ],
@@ -2823,6 +2852,7 @@
                       "children": [
                         {
                           "kinds": [
+                            "EXPRESSION",
                             "IDENTIFIER",
                             "ASSIGNMENT_TARGET"
                           ],
@@ -2934,6 +2964,7 @@
                       "children": [
                         {
                           "kinds": [
+                            "EXPRESSION",
                             "IDENTIFIER",
                             "ASSIGNMENT_TARGET"
                           ],
@@ -3045,6 +3076,7 @@
                       "children": [
                         {
                           "kinds": [
+                            "EXPRESSION",
                             "IDENTIFIER",
                             "ASSIGNMENT_TARGET"
                           ],
@@ -3156,6 +3188,7 @@
                       "children": [
                         {
                           "kinds": [
+                            "EXPRESSION",
                             "IDENTIFIER",
                             "ASSIGNMENT_TARGET"
                           ],
@@ -3214,6 +3247,7 @@
                             },
                             {
                               "kinds": [
+                                "EXPRESSION",
                                 "IDENTIFIER",
                                 "OPERAND"
                               ],
@@ -3275,6 +3309,7 @@
           "children": [
             {
               "kinds": [
+                "EXPRESSION",
                 "RESULT_LIST",
                 "TYPE"
               ],
@@ -3298,6 +3333,7 @@
             },
             {
               "kinds": [
+                "EXPRESSION",
                 "FUNCTION_NAME",
                 "IDENTIFIER"
               ],
@@ -3388,6 +3424,7 @@
                       "children": [
                         {
                           "kinds": [
+                            "EXPRESSION",
                             "IDENTIFIER",
                             "OPERAND"
                           ],
@@ -3467,6 +3504,7 @@
                         },
                         {
                           "kinds": [
+                            "EXPRESSION",
                             "IDENTIFIER",
                             "OPERAND"
                           ],
@@ -3518,6 +3556,7 @@
                       "children": [
                         {
                           "kinds": [
+                            "EXPRESSION",
                             "IDENTIFIER",
                             "OPERAND"
                           ],
@@ -3597,6 +3636,7 @@
                         },
                         {
                           "kinds": [
+                            "EXPRESSION",
                             "IDENTIFIER",
                             "OPERAND"
                           ],
