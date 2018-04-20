@@ -135,6 +135,7 @@ public final class UastNode {
     ELSE,
     ELSE_KEYWORD,
     EOF,
+    CONSTRUCTOR,
     FUNCTION,
     FUNCTION_NAME,
     VARIABLE_DECLARATION,

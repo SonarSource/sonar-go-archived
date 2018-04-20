@@ -60,6 +60,7 @@
         },
         {
           "kinds": [
+            "CONSTRUCTOR",
             "FUNCTION"
           ],
           "nativeNode": "CONSTRUCTOR",

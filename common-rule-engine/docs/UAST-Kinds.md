@@ -43,6 +43,7 @@ _(do not edit, this page is generated)_
         * [While](#while) { [Condition](#condition), [Body](#body) }
     * [Switch](#switch) { [Case](#case), [Condition](#condition), [DefaultCase](#defaultcase), [Block](#block) }
     * [Try](#try)
+* [Constructor](#constructor)
 * [Enum](#enum)
 * [Expression](#expression)
     * [BinaryExpression](#binaryexpression)
@@ -406,6 +407,12 @@ Key | CONSTANT_DECLARATION
 --- | ---
 Extends | [VariableDeclaration](#variabledeclaration)
 Languages | Java, Go
+
+
+### Constructor
+Key | CONSTRUCTOR
+--- | ---
+Languages | Java
 
 
 ### Continue

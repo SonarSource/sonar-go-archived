@@ -67,6 +67,7 @@ class UastNode {
     ELSE,
     ELSE_KEYWORD("else", KEYWORD),
     EOF,
+    CONSTRUCTOR,
     FUNCTION,
     FUNCTION_NAME,
     // lambda, anonymous function
