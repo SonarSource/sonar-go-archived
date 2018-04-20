@@ -19,6 +19,7 @@
  */
 package org.sonar.go.plugin.utils;
 
+import java.util.Collections;
 import org.junit.jupiter.api.Test;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.uast.UastNode;
@@ -40,5 +41,35 @@ class PluginApiUtilsTest {
     PluginApiUtils.newRange(inputFile, token);
 
     verify(inputFile).newRange(eq(line), eq(column - 1), eq(line), eq(column - 1 + value.length()));
+  }
+
+  @Test
+  void newRange_should_use_single_token_for_comments() {
+    String value = "// this is\nmy comment!";
+    int line = 7;
+    int column = 13;
+    int endColumn = 11;
+
+    UastNode.Token commentToken = new UastNode.Token(line, column, value);
+    UastNode commentNode = new UastNode(Collections.singleton(UastNode.Kind.COMMENT), null, commentToken, Collections.emptyList());
+    InputFile inputFile = mock(InputFile.class);
+    PluginApiUtils.newRange(inputFile, commentNode, commentNode);
+
+    verify(inputFile).newRange(eq(line), eq(column - 1), eq(line + 1), eq(endColumn));
+  }
+
+  @Test
+  void newRange_should_use_single_token_for_structuredcomments() {
+    String value = "/* this is\nmy comment! */";
+    int line = 7;
+    int column = 13;
+    int endColumn = 14;
+
+    UastNode.Token commentToken = new UastNode.Token(line, column, value);
+    UastNode commentNode = new UastNode(Collections.singleton(UastNode.Kind.STRUCTURED_COMMENT), null, commentToken, Collections.emptyList());
+    InputFile inputFile = mock(InputFile.class);
+    PluginApiUtils.newRange(inputFile, commentNode, commentNode);
+
+    verify(inputFile).newRange(eq(line), eq(column - 1), eq(line + 1), eq(endColumn));
   }
 }

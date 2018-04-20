@@ -37,6 +37,9 @@ public class PluginApiUtils {
   }
 
   public static TextRange newRange(InputFile inputFile, UastNode from, UastNode to) {
+    if (from.is(UastNode.Kind.COMMENT, UastNode.Kind.STRUCTURED_COMMENT)) {
+      return newRange(inputFile, from.token);
+    }
     UastNode.Token firstToken = from.firstToken();
     UastNode.Token lastToken = to.lastToken();
     return inputFile.newRange(
