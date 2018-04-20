@@ -26,6 +26,7 @@ import org.sonar.commonruleengine.checks.BinaryOperatorIdenticalExpressionsCheck
 import org.sonar.commonruleengine.checks.DoublePrefixOperatorCheck;
 import org.sonar.commonruleengine.checks.FileHeaderCheck;
 import org.sonar.commonruleengine.checks.FunctionCognitiveComplexityCheck;
+import org.sonar.commonruleengine.checks.HardcodedIpAddressCheck;
 import org.sonar.commonruleengine.checks.NestedSwitchCheck;
 import org.sonar.commonruleengine.checks.NoHardcodedCredentialsCheck;
 import org.sonar.commonruleengine.checks.NoIdenticalConditionsCheck;
@@ -53,6 +54,7 @@ public class GoChecks {
       DoublePrefixOperatorCheck.class,
       FileHeaderCheck.class,
       FunctionCognitiveComplexityCheck.class,
+      HardcodedIpAddressCheck.class,
       NestedSwitchCheck.class,
       NoIdenticalConditionsCheck.class,
       NoIdenticalFunctionsCheck.class,
