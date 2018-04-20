@@ -201,8 +201,11 @@ public class Generator {
         result.add(UastNode.Kind.COMPILATION_UNIT);
         break;
       case METHOD:
+        result.add(UastNode.Kind.FUNCTION);
+        break;
       case CONSTRUCTOR:
         result.add(UastNode.Kind.FUNCTION);
+        result.add(UastNode.Kind.CONSTRUCTOR);
         break;
       case LAMBDA_EXPRESSION:
         result.add(UastNode.Kind.FUNCTION_LITERAL);
