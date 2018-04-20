@@ -20,11 +20,10 @@
 package org.sonar.uast.validators;
 
 import java.util.Optional;
-import java.util.function.Consumer;
-import org.sonar.commonruleengine.checks.Check;
 import org.sonar.uast.UastNode;
+import org.sonar.uast.Visitor;
 
-public abstract class Validator extends Check implements Consumer<UastNode> {
+public abstract class Validator extends Visitor {
 
   private UastNode node;
 
@@ -35,8 +34,10 @@ public abstract class Validator extends Check implements Consumer<UastNode> {
   @Override
   public final void visitNode(UastNode node) {
     this.node = node;
-    accept(node);
+    validate(node);
   }
+
+  public abstract void validate(UastNode node);
 
   private void fail(String errorMessage, Object... params) {
     throw new ValidationException(this.getClass().getSimpleName() + ": " + String.format(errorMessage, params));

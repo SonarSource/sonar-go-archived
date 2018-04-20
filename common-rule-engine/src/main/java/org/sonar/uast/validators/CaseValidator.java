@@ -28,7 +28,7 @@ public class CaseValidator extends Validator {
   }
 
   @Override
-  public void accept(UastNode node) {
+  public void validate(UastNode node) {
     if (node.is(UastNode.Kind.DEFAULT_CASE)) {
       // dedicated check
       return;

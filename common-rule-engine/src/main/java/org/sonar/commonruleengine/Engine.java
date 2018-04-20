@@ -20,7 +20,6 @@
 package org.sonar.commonruleengine;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -28,6 +27,7 @@ import java.util.stream.Collectors;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.commonruleengine.checks.Check;
 import org.sonar.uast.UastNode;
+import org.sonar.uast.Visitor;
 import org.sonar.uast.validators.Validator;
 import org.sonar.uast.validators.ValidatorList;
 
@@ -44,11 +44,9 @@ public class Engine {
     engineContext = new EngineContext();
     metricsVisitor = new MetricsVisitor();
     // should this be parameterized in order to switch ON/OFF validation?
-    Collection<Check> rulesWithValidators = new ArrayList<>();
     // add validators first, to validate before playing any rule
-    rulesWithValidators.addAll(validators);
-    rulesWithValidators.addAll(rules);
-    rulesWithValidators.forEach(rule -> rule.initialize(engineContext));
+    validators.forEach(rule -> rule.initialize(engineContext));
+    rules.forEach(rule -> rule.initialize(engineContext));
   }
 
 
@@ -61,17 +59,17 @@ public class Engine {
 
   private void visit(UastNode uast) {
     metricsVisitor.visitNode(uast);
-    Set<Check> checks = uast.kinds.stream()
-      .flatMap(kind -> engineContext.registeredChecks(kind).stream())
+    Set<Visitor> visitors = uast.kinds.stream()
+      .flatMap(kind -> engineContext.registeredVisitors(kind).stream())
       .collect(Collectors.toSet());
-    for (Check check : checks) {
-      check.visitNode(uast);
+    for (Visitor visitor : visitors) {
+      visitor.visitNode(uast);
     }
     for (UastNode child : uast.children) {
       visit(child);
     }
-    for (Check check : checks) {
-      check.leaveNode(uast);
+    for (Visitor visitor : visitors) {
+      visitor.leaveNode(uast);
     }
   }
 

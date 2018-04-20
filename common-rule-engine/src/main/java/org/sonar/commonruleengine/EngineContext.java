@@ -28,22 +28,22 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import org.sonar.api.batch.fs.InputFile;
-import org.sonar.commonruleengine.checks.Check;
 import org.sonar.uast.UastNode;
+import org.sonar.uast.Visitor;
 
 public class EngineContext {
 
   private List<Issue> issues = new ArrayList<>();
 
-  private Map<UastNode.Kind, List<Check>> registeredChecks = new EnumMap<>(UastNode.Kind.class);
-  private Set<Check> checks = null;
+  private Map<UastNode.Kind, List<Visitor>> registeredVisitors = new EnumMap<>(UastNode.Kind.class);
+  private Set<Visitor> visitors = null;
 
-  public void register(UastNode.Kind kind, Check check) {
-    registeredChecks.computeIfAbsent(kind, k -> new ArrayList<>()).add(check);
+  public void register(UastNode.Kind kind, Visitor visitor) {
+    registeredVisitors.computeIfAbsent(kind, k -> new ArrayList<>()).add(visitor);
   }
 
-  public List<Check> registeredChecks(UastNode.Kind kind) {
-    return registeredChecks.getOrDefault(kind, Collections.emptyList());
+  public List<Visitor> registeredVisitors(UastNode.Kind kind) {
+    return registeredVisitors.getOrDefault(kind, Collections.emptyList());
   }
 
   public void reportIssue(Issue issue) {
@@ -52,7 +52,7 @@ public class EngineContext {
 
   void enterFile(InputFile inputFile) throws IOException {
     issues.clear();
-    for (Check c : getChecks()) {
+    for (Visitor c : getVisitors()) {
       c.enterFile(inputFile);
     }
   }
@@ -61,10 +61,10 @@ public class EngineContext {
     return new ArrayList<>(issues);
   }
 
-  private Set<Check> getChecks() {
-    if (checks == null) {
-      checks = registeredChecks.values().stream().flatMap(List::stream).collect(Collectors.toSet());
+  private Set<Visitor> getVisitors() {
+    if (visitors == null) {
+      visitors = registeredVisitors.values().stream().flatMap(List::stream).collect(Collectors.toSet());
     }
-    return checks;
+    return visitors;
   }
 }

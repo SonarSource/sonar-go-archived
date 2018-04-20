@@ -28,7 +28,7 @@ public class DefaultCaseValidator extends Validator {
   }
 
   @Override
-  public void accept(UastNode node) {
+  public void validate(UastNode node) {
     is(UastNode.Kind.DEFAULT_CASE);
     hasKeyword("default");
     noChild(UastNode.Kind.CONDITION);
