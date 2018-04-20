@@ -39,7 +39,7 @@ public class ArrayAccessLike {
 
   @CheckForNull
   public static ArrayAccessLike from(UastNode node) {
-    if (node.kinds.contains(ArrayAccessLike.KIND)) {
+    if (node.is(ArrayAccessLike.KIND)) {
       Optional<UastNode> objectExpression = node.getChild(UastNode.Kind.ARRAY_OBJECT_EXPRESSION);
       Optional<UastNode> keyExpression = node.getChild(UastNode.Kind.ARRAY_KEY_EXPRESSION);
       if (objectExpression.isPresent() && keyExpression.isPresent()) {

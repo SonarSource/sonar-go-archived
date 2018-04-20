@@ -31,7 +31,7 @@ public class LiteralLike {
   }
 
   public static LiteralLike from(UastNode node) {
-    if (node.kinds.contains(UastNode.Kind.LITERAL)) {
+    if (node.is(UastNode.Kind.LITERAL)) {
       return new LiteralLike(node);
     }
     if (node.children.size() == 1) {

@@ -41,7 +41,7 @@ public class FunctionLike {
 
   @CheckForNull
   public static FunctionLike from(UastNode node) {
-    if (node.kinds.contains(KIND)) {
+    if (node.is(KIND)) {
       Optional<UastNode> nameNode = node.getChild(UastNode.Kind.FUNCTION_NAME);
       if (!nameNode.isPresent()) {
         return null;

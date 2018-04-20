@@ -47,7 +47,7 @@ public class AssignmentLike {
 
   @CheckForNull
   public static AssignmentLike from(UastNode node) {
-    if (node.kinds.contains(AssignmentLike.KIND)) {
+    if (node.is(AssignmentLike.KIND)) {
       Optional<UastNode> operator = node.getChild(UastNode.Kind.ASSIGNMENT_OPERATOR);
       if (!operator.isPresent()) {
         return null;

@@ -46,7 +46,7 @@ public class IfLike {
     if (node == null) {
       return null;
     }
-    if (node.kinds.contains(UastNode.Kind.IF)) {
+    if (node.is(UastNode.Kind.IF)) {
       Optional<UastNode> ifKeyword = node.getChild(UastNode.Kind.IF_KEYWORD);
       Optional<UastNode> condition = node.getChild(UastNode.Kind.CONDITION);
       Optional<UastNode> thenNode = node.getChild(UastNode.Kind.THEN);
@@ -98,7 +98,7 @@ public class IfLike {
       if (node == null) {
         return null;
       }
-      if (node.kinds.contains(UastNode.Kind.IF)) {
+      if (node.is(UastNode.Kind.IF)) {
         Optional<UastNode> elseKeyword = node.getChild(UastNode.Kind.ELSE_KEYWORD);
         Optional<UastNode> elseNode = node.getChild(UastNode.Kind.ELSE);
         if (elseKeyword.isPresent() && elseNode.isPresent()) {

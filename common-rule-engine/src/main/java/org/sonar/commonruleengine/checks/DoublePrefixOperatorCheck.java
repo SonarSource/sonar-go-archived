@@ -66,7 +66,7 @@ public class DoublePrefixOperatorCheck extends Check {
     }
     node.getChild(Kind.PARENTHESIZED_EXPRESSION).ifPresent(child ->{
       UastNode expression = ParenthesizedLike.from(child).expression();
-      if(expression.kinds.contains(kind)) {
+      if(expression.is(kind)) {
         reportIssue(expression);
       } else {
         checkDescendant(kind, expression);

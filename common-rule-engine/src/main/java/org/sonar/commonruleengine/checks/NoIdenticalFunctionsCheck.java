@@ -24,7 +24,6 @@ import java.util.List;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.check.Rule;
 import org.sonar.commonruleengine.Issue;
-import org.sonar.uast.SyntacticEquivalence;
 import org.sonar.uast.UastNode;
 import org.sonar.uast.helpers.FunctionLike;
 
@@ -49,10 +48,10 @@ public class NoIdenticalFunctionsCheck extends Check {
 
   @Override
   public void visitNode(UastNode node) {
-    if (node.kinds.contains(UastNode.Kind.CLASS)) {
+    if (node.is(UastNode.Kind.CLASS)) {
       functions.clear();
     }
-    if (node.kinds.contains(FunctionLike.KIND)) {
+    if (node.is(FunctionLike.KIND)) {
       FunctionLike thisFunction = FunctionLike.from(node);
       if (thisFunction == null) {
         return;
@@ -61,7 +60,7 @@ public class NoIdenticalFunctionsCheck extends Check {
         return;
       }
       for (FunctionLike function : functions) {
-        if (SyntacticEquivalence.areEquivalent(thisFunction.body(), function.body())
+        if (areEquivalent(thisFunction.body(), function.body())
           && areEquivalent(thisFunction.parameters(), function.parameters())
           && areEquivalent(thisFunction.resultList(), function.resultList())) {
           reportIssue(thisFunction.name(),

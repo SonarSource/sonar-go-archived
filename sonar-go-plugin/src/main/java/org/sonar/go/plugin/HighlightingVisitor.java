@@ -45,14 +45,14 @@ public class HighlightingVisitor {
 
   public void scanRecursively(UastNode node, boolean parentIsATypeDefinition) {
     UastNode.Token token = node.token;
-    boolean isATypeDefinition = parentIsATypeDefinition || node.kinds.contains(Kind.TYPE);
+    boolean isATypeDefinition = parentIsATypeDefinition || node.is(Kind.TYPE);
     if (token != null) {
-      if (node.kinds.contains(Kind.COMMENT)) {
-        highlight(token, node.kinds.contains(Kind.STRUCTURED_COMMENT) ? TypeOfText.STRUCTURED_COMMENT : TypeOfText.COMMENT);
-      } else if (node.kinds.contains(Kind.KEYWORD)) {
+      if (node.is(Kind.COMMENT)) {
+        highlight(token, node.is(Kind.STRUCTURED_COMMENT) ? TypeOfText.STRUCTURED_COMMENT : TypeOfText.COMMENT);
+      } else if (node.is(Kind.KEYWORD)) {
         highlight(token, TypeOfText.KEYWORD);
-      } else if (node.kinds.contains(Kind.LITERAL)) {
-        highlight(token, node.kinds.contains(Kind.STRING_LITERAL) ? TypeOfText.STRING : TypeOfText.CONSTANT);
+      } else if (node.is(Kind.LITERAL)) {
+        highlight(token, node.is(Kind.STRING_LITERAL) ? TypeOfText.STRING : TypeOfText.CONSTANT);
       } else if (isATypeDefinition) {
         highlight(token, TypeOfText.KEYWORD_LIGHT);
       }
