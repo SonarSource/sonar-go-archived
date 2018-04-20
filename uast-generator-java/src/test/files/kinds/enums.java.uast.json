@@ -29,6 +29,7 @@
         },
         {
           "kinds": [
+            "EXPRESSION",
             "IDENTIFIER"
           ],
           "nativeNode": "IDENTIFIER",
@@ -75,6 +76,7 @@
               "children": [
                 {
                   "kinds": [
+                    "EXPRESSION",
                     "IDENTIFIER"
                   ],
                   "nativeNode": "IDENTIFIER",
@@ -125,6 +127,7 @@
               "children": [
                 {
                   "kinds": [
+                    "EXPRESSION",
                     "IDENTIFIER"
                   ],
                   "nativeNode": "IDENTIFIER",

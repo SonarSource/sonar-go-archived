@@ -29,9 +29,8 @@ public class SwitchValidator extends Validator {
 
   @Override
   public void validate(UastNode t) {
-    is(UastNode.Kind.SWITCH, UastNode.Kind.STATEMENT);
+    is(UastNode.Kind.SWITCH);
     hasKeyword("switch");
-    singleChild(UastNode.Kind.EXPRESSION);
   }
 
 }

@@ -49,8 +49,7 @@ public class SwitchValidatorTest {
   @Test
   public void expected() throws Exception {
     UastNode switchNode = node(Sets.newHashSet(UastNode.Kind.SWITCH),
-      keyword("switch"),
-      node(UastNode.Kind.EXPRESSION));
+      keyword("switch"));
 
     try {
       validate(switchNode);
@@ -61,20 +60,10 @@ public class SwitchValidatorTest {
 
   @Test
   public void do_not_have_switch_keyword() throws Exception {
-    UastNode switchNode = node(Sets.newHashSet(UastNode.Kind.SWITCH, UastNode.Kind.STATEMENT),
-      keyword("label"),
-      node(UastNode.Kind.EXPRESSION));
+    UastNode switchNode = node(Sets.newHashSet(UastNode.Kind.SWITCH),
+      keyword("label"));
 
     Validator.ValidationException exception = assertThrows(Validator.ValidationException.class, () -> validate(switchNode));
     assertThat(exception.getMessage()).isEqualTo("SwitchValidator: Expected 'switch' as keyword but got 'label'.");
-  }
-
-  @Test
-  public void do_not_have_an_expression() throws Exception {
-    UastNode switchNode = node(Sets.newHashSet(UastNode.Kind.SWITCH, UastNode.Kind.STATEMENT),
-      keyword("switch"));
-
-    Validator.ValidationException exception = assertThrows(Validator.ValidationException.class, () -> validate(switchNode));
-    assertThat(exception.getMessage()).isEqualTo("SwitchValidator: Should have one single child of kind 'EXPRESSION' but got none.");
   }
 }

@@ -28,6 +28,7 @@
         },
         {
           "kinds": [
+            "EXPRESSION",
             "IDENTIFIER"
           ],
           "nativeNode": "IDENTIFIER",
@@ -75,6 +76,7 @@
               "children": [
                 {
                   "kinds": [
+                    "EXPRESSION",
                     "IDENTIFIER"
                   ],
                   "nativeNode": "IDENTIFIER",
@@ -113,6 +115,7 @@
                     },
                     {
                       "kinds": [
+                        "EXPRESSION",
                         "IDENTIFIER",
                         "TYPE_ARGUMENT"
                       ],
@@ -150,6 +153,7 @@
             },
             {
               "kinds": [
+                "EXPRESSION",
                 "IDENTIFIER",
                 "ASSIGNMENT_TARGET",
                 "VARIABLE_NAME"
@@ -202,6 +206,7 @@
                   "children": [
                     {
                       "kinds": [
+                        "EXPRESSION",
                         "IDENTIFIER",
                         "VARIABLE_NAME"
                       ],

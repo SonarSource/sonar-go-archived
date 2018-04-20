@@ -4,7 +4,7 @@ type f struct {
 	a, b, c int
 }
 
-func foo(tag int, x f) {
+func foo(tag int, x interface{}) {
 	switch tag {
 	default: // Compliant
 		bar()

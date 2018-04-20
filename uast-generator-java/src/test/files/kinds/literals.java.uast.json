@@ -28,6 +28,7 @@
         },
         {
           "kinds": [
+            "EXPRESSION",
             "IDENTIFIER"
           ],
           "nativeNode": "IDENTIFIER",
@@ -68,6 +69,7 @@
           "children": [
             {
               "kinds": [
+                "EXPRESSION",
                 "IDENTIFIER",
                 "TYPE"
               ],
@@ -89,6 +91,7 @@
             },
             {
               "kinds": [
+                "EXPRESSION",
                 "IDENTIFIER",
                 "ASSIGNMENT_TARGET",
                 "VARIABLE_NAME"
@@ -170,6 +173,7 @@
           "children": [
             {
               "kinds": [
+                "EXPRESSION",
                 "TYPE"
               ],
               "nativeNode": "PRIMITIVE_TYPE",
@@ -192,6 +196,7 @@
             },
             {
               "kinds": [
+                "EXPRESSION",
                 "IDENTIFIER",
                 "ASSIGNMENT_TARGET",
                 "VARIABLE_NAME"
@@ -273,6 +278,7 @@
           "children": [
             {
               "kinds": [
+                "EXPRESSION",
                 "TYPE"
               ],
               "nativeNode": "PRIMITIVE_TYPE",
@@ -295,6 +301,7 @@
             },
             {
               "kinds": [
+                "EXPRESSION",
                 "IDENTIFIER",
                 "ASSIGNMENT_TARGET",
                 "VARIABLE_NAME"
@@ -376,6 +383,7 @@
           "children": [
             {
               "kinds": [
+                "EXPRESSION",
                 "TYPE"
               ],
               "nativeNode": "PRIMITIVE_TYPE",
@@ -398,6 +406,7 @@
             },
             {
               "kinds": [
+                "EXPRESSION",
                 "IDENTIFIER",
                 "ASSIGNMENT_TARGET",
                 "VARIABLE_NAME"
@@ -479,6 +488,7 @@
           "children": [
             {
               "kinds": [
+                "EXPRESSION",
                 "TYPE"
               ],
               "nativeNode": "PRIMITIVE_TYPE",
@@ -501,6 +511,7 @@
             },
             {
               "kinds": [
+                "EXPRESSION",
                 "IDENTIFIER",
                 "ASSIGNMENT_TARGET",
                 "VARIABLE_NAME"
@@ -582,6 +593,7 @@
           "children": [
             {
               "kinds": [
+                "EXPRESSION",
                 "TYPE"
               ],
               "nativeNode": "PRIMITIVE_TYPE",
@@ -604,6 +616,7 @@
             },
             {
               "kinds": [
+                "EXPRESSION",
                 "IDENTIFIER",
                 "ASSIGNMENT_TARGET",
                 "VARIABLE_NAME"
@@ -685,6 +698,7 @@
           "children": [
             {
               "kinds": [
+                "EXPRESSION",
                 "TYPE"
               ],
               "nativeNode": "PRIMITIVE_TYPE",
@@ -707,6 +721,7 @@
             },
             {
               "kinds": [
+                "EXPRESSION",
                 "IDENTIFIER",
                 "ASSIGNMENT_TARGET",
                 "VARIABLE_NAME"
@@ -788,6 +803,7 @@
           "children": [
             {
               "kinds": [
+                "EXPRESSION",
                 "IDENTIFIER",
                 "TYPE"
               ],
@@ -809,6 +825,7 @@
             },
             {
               "kinds": [
+                "EXPRESSION",
                 "IDENTIFIER",
                 "ASSIGNMENT_TARGET",
                 "VARIABLE_NAME"
@@ -892,6 +909,7 @@
           "children": [
             {
               "kinds": [
+                "EXPRESSION",
                 "TYPE"
               ],
               "nativeNode": "PRIMITIVE_TYPE",
@@ -914,6 +932,7 @@
             },
             {
               "kinds": [
+                "EXPRESSION",
                 "IDENTIFIER",
                 "ASSIGNMENT_TARGET",
                 "VARIABLE_NAME"
@@ -997,6 +1016,7 @@
           "children": [
             {
               "kinds": [
+                "EXPRESSION",
                 "TYPE"
               ],
               "nativeNode": "PRIMITIVE_TYPE",
@@ -1019,6 +1039,7 @@
             },
             {
               "kinds": [
+                "EXPRESSION",
                 "IDENTIFIER",
                 "ASSIGNMENT_TARGET",
                 "VARIABLE_NAME"
@@ -1100,6 +1121,7 @@
           "children": [
             {
               "kinds": [
+                "EXPRESSION",
                 "TYPE"
               ],
               "nativeNode": "PRIMITIVE_TYPE",
@@ -1122,6 +1144,7 @@
             },
             {
               "kinds": [
+                "EXPRESSION",
                 "IDENTIFIER",
                 "ASSIGNMENT_TARGET",
                 "VARIABLE_NAME"
