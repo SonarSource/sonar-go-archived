@@ -29,7 +29,6 @@ import org.sonar.commonruleengine.checks.Check;
 import org.sonar.uast.UastNode;
 import org.sonar.uast.Visitor;
 import org.sonar.uast.validators.Validator;
-import org.sonar.uast.validators.ValidatorList;
 
 public class Engine {
 
@@ -37,7 +36,7 @@ public class Engine {
   private final MetricsVisitor metricsVisitor;
 
   public Engine(Collection<Check> rules) {
-    this(rules, ValidatorList.all());
+    this(rules, Validator.all());
   }
 
   public Engine(Collection<Check> rules, Collection<Validator> validators) {

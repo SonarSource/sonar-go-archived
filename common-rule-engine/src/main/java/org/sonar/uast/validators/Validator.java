@@ -19,6 +19,7 @@
  */
 package org.sonar.uast.validators;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import org.sonar.uast.UastNode;
@@ -30,6 +31,17 @@ public abstract class Validator extends Visitor {
 
   public Validator(UastNode.Kind targetKind) {
     super(targetKind);
+  }
+
+  public static List<Validator> all() {
+    return Arrays.asList(
+      new SwitchValidator(),
+      new DefaultCaseValidator(),
+      new CaseValidator(),
+      new IfValidator(),
+      new ForValidator(),
+      new BinaryExpressionValidator()
+    );
   }
 
   @Override
