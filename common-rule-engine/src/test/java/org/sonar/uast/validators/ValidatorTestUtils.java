@@ -19,8 +19,10 @@
  */
 package org.sonar.uast.validators;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -60,4 +62,44 @@ public final class ValidatorTestUtils {
     return new UastNode.Token(1, 1, value);
   }
 
+
+  public static class NodeBuilder {
+
+    Set<UastNode.Kind> kinds = EnumSet.noneOf(UastNode.Kind.class);
+    private String nativeNode;
+    private String tokenValue;
+    private List<UastNode> children = new ArrayList<>();
+
+    private NodeBuilder(UastNode.Kind... kinds) {
+      this.kinds.addAll(Arrays.asList(kinds));
+    }
+
+    static NodeBuilder buildNode(UastNode.Kind... kinds) {
+      return new NodeBuilder(kinds);
+    }
+
+    NodeBuilder addKind(UastNode.Kind kind) {
+      kinds.add(kind);
+      return this;
+    }
+
+    NodeBuilder addChildren(UastNode... child) {
+      children.addAll(Arrays.asList(child));
+      return this;
+    }
+
+    NodeBuilder nativeNode(String nativeNode) {
+      this.nativeNode = nativeNode;
+      return this;
+    }
+
+    NodeBuilder tokenValue(String tokenValue) {
+      this.tokenValue = tokenValue;
+      return this;
+    }
+
+    UastNode build() {
+      return new UastNode(kinds, nativeNode, tokenValue == null ? null : mockToken(tokenValue), children);
+    }
+  }
 }

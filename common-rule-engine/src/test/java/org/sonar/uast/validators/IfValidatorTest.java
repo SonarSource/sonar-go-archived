@@ -30,6 +30,7 @@ import org.sonar.uast.UastNode.Kind;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.sonar.uast.validators.ValidatorTestUtils.NodeBuilder.buildNode;
 import static org.sonar.uast.validators.ValidatorTestUtils.keyword;
 import static org.sonar.uast.validators.ValidatorTestUtils.node;
 
@@ -47,8 +48,8 @@ class IfValidatorTest {
 
   @Test
   void expected() {
-    UastNode ifNode = node(Kind.IF, keyword("if", Kind.IF_KEYWORD), node(Kind.CONDITION), node(Kind.THEN));
-    UastNode ifElseNode = node(Kind.IF, keyword("if", Kind.IF_KEYWORD), node(Kind.CONDITION), node(Kind.THEN),keyword("if", Kind.ELSE_KEYWORD),  node(Kind.ELSE));
+    UastNode ifNode = buildNode(Kind.IF).addChildren(keyword("if", Kind.IF_KEYWORD), node(Kind.CONDITION), node(Kind.THEN)).build();
+    UastNode ifElseNode = buildNode(Kind.IF).addChildren(keyword("if", Kind.IF_KEYWORD), node(Kind.CONDITION), node(Kind.THEN),keyword("if", Kind.ELSE_KEYWORD),  node(Kind.ELSE)).build();
     try {
       validate(ifNode);
       validate(ifElseNode);
