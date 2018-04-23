@@ -40,7 +40,8 @@ public abstract class Validator extends Visitor {
       new CaseValidator(),
       new IfValidator(),
       new ForValidator(),
-      new BinaryExpressionValidator()
+      new BinaryExpressionValidator(),
+      new ParenthesizedExpressionValidator()
     );
   }
 
