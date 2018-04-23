@@ -19,11 +19,19 @@
  */
 package org.sonar.uast.validators;
 
-import java.util.Arrays;
-import java.util.List;
+import org.sonar.uast.UastNode;
 
-public interface ValidatorList {
-  static List<Validator> all() {
-    return Arrays.asList(new SwitchValidator(), new DefaultCaseValidator(), new CaseValidator(), new IfValidator(), new ForValidator(), new BinaryExpressionValidator());
+public class BinaryExpressionValidator extends Validator {
+
+  public BinaryExpressionValidator() {
+    super(UastNode.Kind.BINARY_EXPRESSION);
+  }
+
+  @Override
+  public void validate(UastNode node) {
+    is(UastNode.Kind.BINARY_EXPRESSION);
+    singleChild(UastNode.Kind.LEFT_OPERAND);
+    singleChild(UastNode.Kind.OPERATOR);
+    singleChild(UastNode.Kind.RIGHT_OPERAND);
   }
 }
