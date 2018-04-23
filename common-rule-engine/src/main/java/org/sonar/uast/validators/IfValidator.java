@@ -33,5 +33,6 @@ public class IfValidator extends Validator {
     hasKeyword("if");
     singleChild(UastNode.Kind.CONDITION);
     singleChild(UastNode.Kind.THEN);
+    zeroOrOneChild(UastNode.Kind.ELSE).ifPresent(elseNode -> singleChild(UastNode.Kind.ELSE_KEYWORD));
   }
 }

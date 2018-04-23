@@ -25,6 +25,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.sonar.commonruleengine.Engine;
 import org.sonar.uast.UastNode;
+import org.sonar.uast.UastNode.Kind;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
@@ -46,9 +47,11 @@ class IfValidatorTest {
 
   @Test
   void expected() {
-    UastNode ifNode = node(UastNode.Kind.IF, keyword("if", UastNode.Kind.IF_KEYWORD), node(UastNode.Kind.CONDITION), node(UastNode.Kind.THEN));
+    UastNode ifNode = node(Kind.IF, keyword("if", Kind.IF_KEYWORD), node(Kind.CONDITION), node(Kind.THEN));
+    UastNode ifElseNode = node(Kind.IF, keyword("if", Kind.IF_KEYWORD), node(Kind.CONDITION), node(Kind.THEN),keyword("if", Kind.ELSE_KEYWORD),  node(Kind.ELSE));
     try {
       validate(ifNode);
+      validate(ifElseNode);
     } catch (Exception e) {
       fail("should not have failed", e);
     }
@@ -56,9 +59,15 @@ class IfValidatorTest {
 
   @Test
   void missing_if_keyword() {
-    UastNode ifNode = node(UastNode.Kind.IF, keyword("label"), node(UastNode.Kind.THEN));
-
+    UastNode ifNode = node(Kind.IF, keyword("label"), node(Kind.THEN));
     Validator.ValidationException exception = assertThrows(Validator.ValidationException.class, () -> validate(ifNode));
     assertThat(exception.getMessage()).isEqualTo("IfValidator: Expected 'if' as keyword but got 'label'.");
+  }
+
+  @Test
+  void missing_else_keyword() {
+    UastNode ifNode = node(Kind.IF, keyword("if", Kind.IF_KEYWORD), node(Kind.CONDITION), node(Kind.THEN), node(Kind.ELSE));
+    Validator.ValidationException exception = assertThrows(Validator.ValidationException.class, () -> validate(ifNode));
+    assertThat(exception.getMessage()).isEqualTo("IfValidator: Should have one single child of kind 'ELSE_KEYWORD' but got none.");
   }
 }
