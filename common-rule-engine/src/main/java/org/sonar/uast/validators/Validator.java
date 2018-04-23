@@ -92,6 +92,17 @@ public abstract class Validator extends Visitor {
     }
   }
 
+  public Optional<UastNode> zeroOrOneChild(UastNode.Kind kind) {
+    List<UastNode> children = node.getChildren(kind);
+    if(children.isEmpty()) {
+      return Optional.empty();
+    }
+    if (children.size() > 1) {
+      fail("Should have one single child of kind '%s' but got %s.", kind, children);
+    }
+    return Optional.of(children.get(0));
+  }
+
   public static class ValidationException extends RuntimeException {
 
     public ValidationException(String message) {

@@ -21,8 +21,10 @@ package org.sonar.uast.validators;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import org.sonar.uast.UastNode;
 import org.sonar.uast.UastNode.Token;
 
@@ -44,8 +46,10 @@ public final class ValidatorTestUtils {
     return new UastNode(kinds, "", null, childrenAsList);
   }
 
-  public static UastNode keyword(String value) {
-    return new UastNode(Collections.singleton(UastNode.Kind.KEYWORD), "", mockToken(value), Collections.emptyList());
+  public static UastNode keyword(String value, UastNode.Kind... additionalKinds) {
+    Set<UastNode.Kind> kinds = new HashSet<>(Arrays.stream(additionalKinds).collect(Collectors.toSet()));
+    kinds.add(UastNode.Kind.KEYWORD);
+    return new UastNode(kinds, "", mockToken(value), Collections.emptyList());
   }
 
   public static UastNode token(String value) {

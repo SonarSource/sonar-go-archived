@@ -19,11 +19,20 @@
  */
 package org.sonar.uast.validators;
 
-import java.util.Arrays;
-import java.util.List;
+import org.sonar.uast.UastNode;
 
-public interface ValidatorList {
-  static List<Validator> all() {
-    return Arrays.asList(new SwitchValidator(), new DefaultCaseValidator(), new CaseValidator(), new IfValidator());
+public class IfValidator extends Validator {
+
+  public IfValidator() {
+    super(UastNode.Kind.IF);
+  }
+
+  @Override
+  public void validate(UastNode node) {
+    is(UastNode.Kind.IF);
+    hasKeyword("if");
+    singleChild(UastNode.Kind.CONDITION);
+    singleChild(UastNode.Kind.THEN);
+    zeroOrOneChild(UastNode.Kind.ELSE).ifPresent(elseNode -> singleChild(UastNode.Kind.ELSE_KEYWORD));
   }
 }
