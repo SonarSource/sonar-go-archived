@@ -21,13 +21,15 @@ package org.sonar.commonruleengine;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.EnumMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.Collectors;
 import org.sonar.api.batch.fs.InputFile;
+import org.sonar.commonruleengine.checks.Check;
 import org.sonar.uast.UastNode;
 import org.sonar.uast.Visitor;
 
@@ -37,6 +39,10 @@ public class EngineContext {
 
   private Map<UastNode.Kind, List<Visitor>> registeredVisitors = new EnumMap<>(UastNode.Kind.class);
   private Set<Visitor> visitors = null;
+
+  public EngineContext(Collection<Check> visitors) {
+    this.visitors = new HashSet<>(visitors);
+  }
 
   public void register(UastNode.Kind kind, Visitor visitor) {
     registeredVisitors.computeIfAbsent(kind, k -> new ArrayList<>()).add(visitor);
@@ -62,9 +68,6 @@ public class EngineContext {
   }
 
   private Set<Visitor> getVisitors() {
-    if (visitors == null) {
-      visitors = registeredVisitors.values().stream().flatMap(List::stream).collect(Collectors.toSet());
-    }
     return visitors;
   }
 }

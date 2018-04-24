@@ -91,7 +91,7 @@ class GoSensorTest {
   }
 
   @Test
-  void test() throws IOException {
+  void test_issue() throws IOException {
     InputFile inputFile = createInputFile("lets.go", InputFile.Type.MAIN,
       "package main \n" +
         "\n" +
@@ -100,6 +100,26 @@ class GoSensorTest {
         "}");
     sensorContext.fileSystem().add(inputFile);
     GoSensor goSensor = getSensor("S2068");
+    goSensor.execute(sensorContext);
+    assertThat(sensorContext.allIssues()).hasSize(1);
+  }
+
+  @Test
+  void test_file_issue() throws IOException {
+    InputFile inputFile = createInputFile("lets.go", InputFile.Type.MAIN,
+      "// hey \n package main \n");
+    sensorContext.fileSystem().add(inputFile);
+    GoSensor goSensor = getSensor("S1451");
+    goSensor.execute(sensorContext);
+    assertThat(sensorContext.allIssues()).hasSize(1);
+  }
+
+  @Test
+  void test_line_issue() throws IOException {
+    InputFile inputFile = createInputFile("lets.go", InputFile.Type.MAIN,
+      "package                                                                                                                           main\n");
+    sensorContext.fileSystem().add(inputFile);
+    GoSensor goSensor = getSensor("S103");
     goSensor.execute(sensorContext);
     assertThat(sensorContext.allIssues()).hasSize(1);
   }
@@ -311,6 +331,9 @@ class GoSensorTest {
       NewActiveRule newActiveRule = rulesBuilder.create(RuleKey.of(GoRulesDefinition.REPOSITORY_KEY, key));
       if (activeRuleSet.contains(key)) {
         newActiveRule.activate();
+        if (key.equals("S1451")) {
+          newActiveRule.setParam("headerFormat", "some header format");
+        }
       }
     });
     ActiveRules activeRules = rulesBuilder.build();

@@ -44,12 +44,20 @@ public class Issue {
     return new Issue(check, new Message(null, message), null);
   }
 
+  public static Issue issueOnLine(Check check, int line, String message) {
+    return new Issue(check, new Message(line, message), null);
+  }
+
   public Check getCheck() {
     return check;
   }
 
-  public boolean hasLocation() {
+  public boolean hasNodeLocation() {
     return primaryMessage.from != null;
+  }
+
+  public boolean hasLineLocation() {
+    return primaryMessage.line != null;
   }
 
   public String getMessage() {
@@ -76,8 +84,12 @@ public class Issue {
   }
 
   public static class Message {
+    @Nullable
     public final UastNode from;
+    @Nullable
     public final UastNode to;
+    @Nullable
+    public final Integer line;
     @Nullable
     public final String description;
 
@@ -98,6 +110,14 @@ public class Issue {
       this.from = from;
       this.to = to;
       this.description = description;
+      this.line = null;
+    }
+
+    public Message(int line, String message) {
+      this.from = null;
+      this.to = null;
+      this.description = message;
+      this.line = line;
     }
 
     @Override

@@ -40,7 +40,7 @@ public class Engine {
   }
 
   public Engine(Collection<Check> rules, Collection<Validator> validators) {
-    engineContext = new EngineContext();
+    engineContext = new EngineContext(rules);
     metricsVisitor = new MetricsVisitor();
     // should this be parameterized in order to switch ON/OFF validation?
     // add validators first, to validate before playing any rule
