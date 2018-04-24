@@ -25,6 +25,7 @@ import org.sonar.commonruleengine.checks.AllBranchesAreIdenticalCheck;
 import org.sonar.commonruleengine.checks.BinaryOperatorIdenticalExpressionsCheck;
 import org.sonar.commonruleengine.checks.DoublePrefixOperatorCheck;
 import org.sonar.commonruleengine.checks.EmptyBlockCheck;
+import org.sonar.commonruleengine.checks.EmptyFunctionsCheck;
 import org.sonar.commonruleengine.checks.EmptyStatementsCheck;
 import org.sonar.commonruleengine.checks.FileHeaderCheck;
 import org.sonar.commonruleengine.checks.FixMeTagPresenceCheck;
@@ -63,6 +64,7 @@ public class GoChecks {
       DoublePrefixOperatorCheck.class,
       FileHeaderCheck.class,
       EmptyBlockCheck.class,
+      EmptyFunctionsCheck.class,
       EmptyStatementsCheck.class,
       FixMeTagPresenceCheck.class,
       FunctionCognitiveComplexityCheck.class,
