@@ -43,6 +43,7 @@ import org.sonar.commonruleengine.checks.NoSelfAssignmentCheck;
 import org.sonar.commonruleengine.checks.OctalNumberCheck;
 import org.sonar.commonruleengine.checks.RedundantBooleanLiteralCheck;
 import org.sonar.commonruleengine.checks.RedundantParenthesesCheck;
+import org.sonar.commonruleengine.checks.StringLiteralDuplicatedCheck;
 import org.sonar.commonruleengine.checks.SwitchDefaultLocationCheck;
 import org.sonar.commonruleengine.checks.SwitchWithTooManyCaseCheck;
 import org.sonar.commonruleengine.checks.SwitchWithoutDefaultCheck;
@@ -82,6 +83,7 @@ public class GoChecks {
       OctalNumberCheck.class,
       RedundantBooleanLiteralCheck.class,
       RedundantParenthesesCheck.class,
+      StringLiteralDuplicatedCheck.class,
       SwitchDefaultLocationCheck.class,
       SwitchWithoutDefaultCheck.class,
       SwitchWithTooManyCaseCheck.class,
