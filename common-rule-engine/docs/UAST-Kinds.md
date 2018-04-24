@@ -69,6 +69,18 @@ _(do not edit, this page is generated)_
     * [FunctionLiteral](#functionliteral)
     * [LeftOperand](#leftoperand)
     * [RightOperand](#rightoperand)
+    * [UnaryExpression](#unaryexpression)
+        * [BitwiseComplement](#bitwisecomplement)
+        * [ChannelDirection](#channeldirection)
+        * [LogicalComplement](#logicalcomplement)
+        * [Pointer](#pointer)
+        * [PostfixDecrement](#postfixdecrement)
+        * [PostfixIncrement](#postfixincrement)
+        * [PrefixDecrement](#prefixdecrement)
+        * [PrefixIncrement](#prefixincrement)
+        * [Reference](#reference)
+        * [UnaryMinus](#unaryminus)
+        * [UnaryPlus](#unaryplus)
 * [Function](#function) { [FunctionName](#functionname), [ResultList](#resultlist), [ParameterList](#parameterlist), [Parameter](#parameter), [Body](#body) }
 * [Identifier](#identifier)
 * [Import](#import) { [ImportEntry](#importentry) }
@@ -96,18 +108,6 @@ _(do not edit, this page is generated)_
 * [TypeArguments](#typearguments) { [TypeArgument](#typeargument) }
 * [TypeParameters](#typeparameters) { [TypeParameter](#typeparameter) }
 * [TypeTest](#typetest)
-* [UnaryExpression](#unaryexpression)
-    * [BitwiseComplement](#bitwisecomplement)
-    * [ChannelDirection](#channeldirection)
-    * [LogicalComplement](#logicalcomplement)
-    * [Pointer](#pointer)
-    * [PostfixDecrement](#postfixdecrement)
-    * [PostfixIncrement](#postfixincrement)
-    * [PrefixDecrement](#prefixdecrement)
-    * [PrefixIncrement](#prefixincrement)
-    * [Reference](#reference)
-    * [UnaryMinus](#unaryminus)
-    * [UnaryPlus](#unaryplus)
 * [UnconditionalJump](#unconditionaljump)
     * [Break](#break) { [BranchLabel](#branchlabel) }
     * [Continue](#continue) { [BranchLabel](#branchlabel) }
@@ -263,7 +263,7 @@ Languages | Go
 ### BitwiseComplement
 Key | BITWISE_COMPLEMENT
 --- | ---
-Extends | [UnaryExpression](#unaryexpression)
+Extends | [Expression](#expression), [UnaryExpression](#unaryexpression)
 Languages | Java, Go
 
 
@@ -342,7 +342,7 @@ Languages | Java
 ### ChannelDirection
 Key | CHANNEL_DIRECTION
 --- | ---
-Extends | [UnaryExpression](#unaryexpression)
+Extends | [Expression](#expression), [UnaryExpression](#unaryexpression)
 Languages | Go
 
 
@@ -498,8 +498,8 @@ Languages | Java, Go
 ### Expression
 Key | EXPRESSION
 --- | ---
-Direct sub-kinds | [BinaryExpression](#binaryexpression), [FunctionLiteral](#functionliteral), [LeftOperand](#leftoperand), [RightOperand](#rightoperand)
-All sub-kinds | [Add](#add), [BinaryExpression](#binaryexpression), [BitwiseAnd](#bitwiseand), [BitwiseAndNot](#bitwiseandnot), [BitwiseOr](#bitwiseor), [BitwiseXor](#bitwisexor), [Divide](#divide), [Equal](#equal), [FunctionLiteral](#functionliteral), [GreaterOrEqual](#greaterorequal), [GreaterThan](#greaterthan), [LeftOperand](#leftoperand), [LeftShift](#leftshift), [LessOrEqual](#lessorequal), [LessThan](#lessthan), [LogicalAnd](#logicaland), [LogicalOr](#logicalor), [Multiply](#multiply), [NotEqual](#notequal), [Remainder](#remainder), [RightOperand](#rightoperand), [RightShift](#rightshift), [Subtract](#subtract)
+Direct sub-kinds | [BinaryExpression](#binaryexpression), [FunctionLiteral](#functionliteral), [LeftOperand](#leftoperand), [RightOperand](#rightoperand), [UnaryExpression](#unaryexpression)
+All sub-kinds | [Add](#add), [BinaryExpression](#binaryexpression), [BitwiseAnd](#bitwiseand), [BitwiseAndNot](#bitwiseandnot), [BitwiseComplement](#bitwisecomplement), [BitwiseOr](#bitwiseor), [BitwiseXor](#bitwisexor), [ChannelDirection](#channeldirection), [Divide](#divide), [Equal](#equal), [FunctionLiteral](#functionliteral), [GreaterOrEqual](#greaterorequal), [GreaterThan](#greaterthan), [LeftOperand](#leftoperand), [LeftShift](#leftshift), [LessOrEqual](#lessorequal), [LessThan](#lessthan), [LogicalAnd](#logicaland), [LogicalComplement](#logicalcomplement), [LogicalOr](#logicalor), [Multiply](#multiply), [NotEqual](#notequal), [Pointer](#pointer), [PostfixDecrement](#postfixdecrement), [PostfixIncrement](#postfixincrement), [PrefixDecrement](#prefixdecrement), [PrefixIncrement](#prefixincrement), [Reference](#reference), [Remainder](#remainder), [RightOperand](#rightoperand), [RightShift](#rightshift), [Subtract](#subtract), [UnaryExpression](#unaryexpression), [UnaryMinus](#unaryminus), [UnaryPlus](#unaryplus)
 Languages | Java, Go
 
 
@@ -715,7 +715,7 @@ Languages | Java, Go
 ### LogicalComplement
 Key | LOGICAL_COMPLEMENT
 --- | ---
-Extends | [UnaryExpression](#unaryexpression)
+Extends | [Expression](#expression), [UnaryExpression](#unaryexpression)
 Languages | Java, Go
 
 
@@ -837,42 +837,42 @@ Languages | Java, Go
 ### Pointer
 Key | POINTER
 --- | ---
-Extends | [UnaryExpression](#unaryexpression)
+Extends | [Expression](#expression), [UnaryExpression](#unaryexpression)
 Languages | Go
 
 
 ### PostfixDecrement
 Key | POSTFIX_DECREMENT
 --- | ---
-Extends | [UnaryExpression](#unaryexpression)
+Extends | [Expression](#expression), [UnaryExpression](#unaryexpression)
 Languages | Java, Go
 
 
 ### PostfixIncrement
 Key | POSTFIX_INCREMENT
 --- | ---
-Extends | [UnaryExpression](#unaryexpression)
+Extends | [Expression](#expression), [UnaryExpression](#unaryexpression)
 Languages | Java, Go
 
 
 ### PrefixDecrement
 Key | PREFIX_DECREMENT
 --- | ---
-Extends | [UnaryExpression](#unaryexpression)
+Extends | [Expression](#expression), [UnaryExpression](#unaryexpression)
 Languages | Java
 
 
 ### PrefixIncrement
 Key | PREFIX_INCREMENT
 --- | ---
-Extends | [UnaryExpression](#unaryexpression)
+Extends | [Expression](#expression), [UnaryExpression](#unaryexpression)
 Languages | Java
 
 
 ### Reference
 Key | REFERENCE
 --- | ---
-Extends | [UnaryExpression](#unaryexpression)
+Extends | [Expression](#expression), [UnaryExpression](#unaryexpression)
 Languages | Go
 
 
@@ -1027,6 +1027,7 @@ Languages | Java
 ### UnaryExpression
 Key | UNARY_EXPRESSION
 --- | ---
+Extends | [Expression](#expression)
 Direct sub-kinds | [BitwiseComplement](#bitwisecomplement), [ChannelDirection](#channeldirection), [LogicalComplement](#logicalcomplement), [Pointer](#pointer), [PostfixDecrement](#postfixdecrement), [PostfixIncrement](#postfixincrement), [PrefixDecrement](#prefixdecrement), [PrefixIncrement](#prefixincrement), [Reference](#reference), [UnaryMinus](#unaryminus), [UnaryPlus](#unaryplus)
 Languages | Java, Go
 
@@ -1034,14 +1035,14 @@ Languages | Java, Go
 ### UnaryMinus
 Key | UNARY_MINUS
 --- | ---
-Extends | [UnaryExpression](#unaryexpression)
+Extends | [Expression](#expression), [UnaryExpression](#unaryexpression)
 Languages | Java, Go
 
 
 ### UnaryPlus
 Key | UNARY_PLUS
 --- | ---
-Extends | [UnaryExpression](#unaryexpression)
+Extends | [Expression](#expression), [UnaryExpression](#unaryexpression)
 Languages | Java, Go
 
 

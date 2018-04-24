@@ -291,15 +291,6 @@ func (t *UastMapper) mapPackageDecl(file *ast.File) *Node {
 	return t.createUastNode([]Kind{PACKAGE}, nil, children, "File.Package")
 }
 
-func (t *UastMapper) appendParenExprX(children []*Node, parentKinds []Kind, astNode ast.Expr) []*Node {
-	var kinds []Kind
-	if containsKind(parentKinds, EXPRESSION) {
-		kinds = append(kinds, EXPRESSION)
-	}
-	children = t.appendNode(children, t.mapExpr(astNode, kinds, "X"))
-	return children
-}
-
 func (t *UastMapper) mapBasicLit(astNode *ast.BasicLit, kinds []Kind, fieldName string) *Node {
 	if astNode == nil {
 		return nil

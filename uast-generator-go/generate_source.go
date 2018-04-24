@@ -110,6 +110,7 @@ import (
 			"ValueSpec#Type":           "TYPE",
 			"TypeSpec#Ident":           "TYPE",
 			"ParenExpr#Lparen":         "LEFT_PARENTHESIS",
+			"ParenExpr#X":              "EXPRESSION",
 			"ParenExpr#Rparen":         "RIGHT_PARENTHESIS",
 			"CallExpr#Lparen":          "LEFT_PARENTHESIS",
 			"CallExpr#Rparen":          "RIGHT_PARENTHESIS",
@@ -195,7 +196,6 @@ import (
 			// The mapping of each field can be replaced by some custom code. Put function definitions in 'goparser.go'
 			"File#Package": "children = t.appendNode(children, t.mapPackageDecl(astNode))",
 			"File#Name":    "",
-			"ParenExpr#X":  "children = t.appendParenExprX(children, kinds, astNode.X)",
 			// unknown "case" or "default"
 			"CaseClause#Case": "children,kinds = t.handleSwitchCase(astNode.Case, len(astNode.List) == 0, children, kinds)",
 			// FIXME this is wrong as it creates DEFAULT_CASE in the body of SELECT

@@ -58,14 +58,14 @@ class BinaryExpressionValidatorTest {
   void missing_left_or_right_operand_or_operator() {
     UastNode binaryOperator0 = node(Kind.BINARY_EXPRESSION, node(Kind.OPERATOR), node(Kind.RIGHT_OPERAND));
     Validator.ValidationException exception = assertThrows(Validator.ValidationException.class, () -> validate(binaryOperator0));
-    assertThat(exception.getMessage()).isEqualTo("BinaryExpressionValidator: Should have one single child of kind 'LEFT_OPERAND' but got none.");
+    assertThat(exception.getMessage()).isEqualTo("BinaryExpressionValidator at line N/A: Should have one single child of kind 'LEFT_OPERAND' but got none.");
 
     UastNode binaryOperator1 = node(Kind.BINARY_EXPRESSION, node(Kind.LEFT_OPERAND), node(Kind.OPERATOR));
     exception = assertThrows(Validator.ValidationException.class, () -> validate(binaryOperator1));
-    assertThat(exception.getMessage()).isEqualTo("BinaryExpressionValidator: Should have one single child of kind 'RIGHT_OPERAND' but got none.");
+    assertThat(exception.getMessage()).isEqualTo("BinaryExpressionValidator at line N/A: Should have one single child of kind 'RIGHT_OPERAND' but got none.");
 
     UastNode binaryOperator2 = node(Kind.BINARY_EXPRESSION, node(Kind.LEFT_OPERAND), node(Kind.RIGHT_OPERAND));
     exception = assertThrows(Validator.ValidationException.class, () -> validate(binaryOperator2));
-    assertThat(exception.getMessage()).isEqualTo("BinaryExpressionValidator: Should have one single child of kind 'OPERATOR' but got none.");
+    assertThat(exception.getMessage()).isEqualTo("BinaryExpressionValidator at line N/A: Should have one single child of kind 'OPERATOR' but got none.");
   }
 }

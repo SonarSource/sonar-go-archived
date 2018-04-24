@@ -40,7 +40,8 @@ public abstract class Validator extends Visitor {
       new CaseValidator(),
       new IfValidator(),
       new ForValidator(),
-      new BinaryExpressionValidator()
+      new BinaryExpressionValidator(),
+      new ParenthesizedExpressionValidator()
     );
   }
 
@@ -53,7 +54,12 @@ public abstract class Validator extends Visitor {
   public abstract void validate(UastNode node);
 
   private void fail(String errorMessage, Object... params) {
-    throw new ValidationException(this.getClass().getSimpleName() + ": " + String.format(errorMessage, params));
+    UastNode.Token token = node.firstToken();
+    String line = "N/A";
+    if (token != null) {
+      line = "" + token.line;
+    }
+    throw new ValidationException(this.getClass().getSimpleName() + " at line "+ line +": " + String.format(errorMessage, params));
   }
 
   public void is(UastNode.Kind... expectedKinds) {

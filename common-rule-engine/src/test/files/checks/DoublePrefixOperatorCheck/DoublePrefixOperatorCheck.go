@@ -1,4 +1,11 @@
 package DoublePrefixOperatorCheck
+func Convert_labels_Selector_To_string(in *labels.Selector, out *string) error {
+	if *in == nil {
+		return nil
+	}
+	*out = (*in).String()
+	return nil
+}
 func test1() {
   var a int = 1;
   var flag bool = true;

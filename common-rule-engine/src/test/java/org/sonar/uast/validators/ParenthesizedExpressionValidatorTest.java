@@ -31,15 +31,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.sonar.uast.validators.ValidatorTestUtils.NodeBuilder.buildNode;
-import static org.sonar.uast.validators.ValidatorTestUtils.keyword;
 import static org.sonar.uast.validators.ValidatorTestUtils.node;
 
-class IfValidatorTest {
+class ParenthesizedExpressionValidatorTest {
   private static Engine engine;
 
   @BeforeAll
   static void setUp() {
-    engine = new Engine(Collections.emptyList(), Collections.singleton(new IfValidator()));
+    engine = new Engine(Collections.emptyList(), Collections.singleton(new ParenthesizedExpressionValidator()));
   }
 
   private static void validate(UastNode node) throws IOException {
@@ -48,27 +47,27 @@ class IfValidatorTest {
 
   @Test
   void expected() {
-    UastNode ifNode = buildNode(Kind.IF).addChildren(keyword("if", Kind.IF_KEYWORD), node(Kind.CONDITION), node(Kind.THEN)).build();
-    UastNode ifElseNode = buildNode(Kind.IF).addChildren(keyword("if", Kind.IF_KEYWORD), node(Kind.CONDITION), node(Kind.THEN),keyword("if", Kind.ELSE_KEYWORD),  node(Kind.ELSE)).build();
+    UastNode parenthesisNode = buildNode(Kind.PARENTHESIZED_EXPRESSION).addChildren(node(Kind.LEFT_PARENTHESIS), node(Kind.EXPRESSION), node(Kind.RIGHT_PARENTHESIS)).build();
     try {
-      validate(ifNode);
-      validate(ifElseNode);
+      validate(parenthesisNode);
     } catch (Exception e) {
       fail("should not have failed", e);
     }
   }
 
   @Test
-  void missing_if_keyword() {
-    UastNode ifNode = node(Kind.IF, keyword("label"), node(Kind.THEN));
-    Validator.ValidationException exception = assertThrows(Validator.ValidationException.class, () -> validate(ifNode));
-    assertThat(exception.getMessage()).isEqualTo("IfValidator at line 1: Expected 'if' as keyword but got 'label'.");
-  }
+  void missing_left_right_parenth_or_expression() {
+    UastNode parenthesisNode0 = buildNode(Kind.PARENTHESIZED_EXPRESSION).addChildren(node(Kind.EXPRESSION), node(Kind.RIGHT_PARENTHESIS)).build();
+    Validator.ValidationException exception = assertThrows(Validator.ValidationException.class, () -> validate(parenthesisNode0));
+    assertThat(exception.getMessage()).isEqualTo("ParenthesizedExpressionValidator at line N/A: Should have one single child of kind 'LEFT_PARENTHESIS' but got none.");
 
-  @Test
-  void missing_else_keyword() {
-    UastNode ifNode = node(Kind.IF, keyword("if", Kind.IF_KEYWORD), node(Kind.CONDITION), node(Kind.THEN), node(Kind.ELSE));
-    Validator.ValidationException exception = assertThrows(Validator.ValidationException.class, () -> validate(ifNode));
-    assertThat(exception.getMessage()).isEqualTo("IfValidator at line 1: Should have one single child of kind 'ELSE_KEYWORD' but got none.");
+    UastNode parenthesisNode1 = buildNode(Kind.PARENTHESIZED_EXPRESSION).addChildren(node(Kind.LEFT_PARENTHESIS), node(Kind.EXPRESSION)).build();
+    exception = assertThrows(Validator.ValidationException.class, () -> validate(parenthesisNode1));
+    assertThat(exception.getMessage()).isEqualTo("ParenthesizedExpressionValidator at line N/A: Should have one single child of kind 'RIGHT_PARENTHESIS' but got none.");
+
+    UastNode parenthesisNode2 = buildNode(Kind.PARENTHESIZED_EXPRESSION).addChildren(node(Kind.LEFT_PARENTHESIS), node(Kind.RIGHT_PARENTHESIS)).build();
+    exception = assertThrows(Validator.ValidationException.class, () -> validate(parenthesisNode2));
+    assertThat(exception.getMessage()).isEqualTo("ParenthesizedExpressionValidator at line N/A: Should have one single child of kind 'EXPRESSION' but got none.");
+
   }
 }

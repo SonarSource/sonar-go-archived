@@ -69,7 +69,7 @@ public class DefaultCaseValidatorTest {
     UastNode node = node(UastNode.Kind.SWITCH, caseNode);
 
     Validator.ValidationException exception = assertThrows(Validator.ValidationException.class, () -> validate(node));
-    assertThat(exception.getMessage()).isEqualTo("DefaultCaseValidator: Expected 'default' as keyword but got 'case'.");
+    assertThat(exception.getMessage()).isEqualTo("DefaultCaseValidator at line 1: Expected 'default' as keyword but got 'case'.");
   }
 
   @Test
@@ -81,7 +81,7 @@ public class DefaultCaseValidatorTest {
     UastNode node = node(UastNode.Kind.SWITCH, caseNode);
 
     Validator.ValidationException exception = assertThrows(Validator.ValidationException.class, () -> validate(node));
-    assertThat(exception.getMessage()).isEqualTo("DefaultCaseValidator: Should not have any child of kind 'CONDITION'.");
+    assertThat(exception.getMessage()).isEqualTo("DefaultCaseValidator at line 1: Should not have any child of kind 'CONDITION'.");
   }
 
 }
