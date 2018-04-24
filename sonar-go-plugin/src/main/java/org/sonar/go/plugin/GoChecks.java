@@ -23,6 +23,7 @@ import java.util.Arrays;
 import java.util.List;
 import org.sonar.commonruleengine.checks.AllBranchesAreIdenticalCheck;
 import org.sonar.commonruleengine.checks.BinaryOperatorIdenticalExpressionsCheck;
+import org.sonar.commonruleengine.checks.CollapsibleIfCheck;
 import org.sonar.commonruleengine.checks.DoublePrefixOperatorCheck;
 import org.sonar.commonruleengine.checks.EmptyBlockCheck;
 import org.sonar.commonruleengine.checks.EmptyStatementsCheck;
@@ -60,6 +61,7 @@ public class GoChecks {
     return Arrays.asList(
       AllBranchesAreIdenticalCheck.class,
       BinaryOperatorIdenticalExpressionsCheck.class,
+      CollapsibleIfCheck.class,
       DoublePrefixOperatorCheck.class,
       FileHeaderCheck.class,
       EmptyBlockCheck.class,
