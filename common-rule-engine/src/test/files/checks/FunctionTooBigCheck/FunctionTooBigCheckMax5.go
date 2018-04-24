@@ -1,4 +1,4 @@
-package FunctionName
+package FunctionTooBigCheckMax5
 
 func foo1() {
 }

@@ -1,6 +1,10 @@
-package FunctionName
+package FunctionTooBig
 
 func foo1() {
+  foo2()
+  foo2()
+}
+func foo3() {
 }
 type AI interface {
     //define all methods that you want to override
