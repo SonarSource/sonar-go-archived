@@ -131,7 +131,7 @@ public class TestUtils {
 
   private static void reportIssueTo(SingleFileVerifier verifier, Issue issue) {
     SingleFileVerifier.Issue newIssue;
-    if (issue.hasLocation()) {
+    if (issue.hasNodeLocation()) {
       Issue.Message primary = issue.getPrimary();
       UastNode fromNode = primary.from;
       UastNode toNode = primary.to;
@@ -147,6 +147,8 @@ public class TestUtils {
       newIssue = verifier.reportIssue(issue.getMessage())
         .onRange(from.line, from.column, to.endLine, to.endColumn)
         .withGap(issue.getEffortToFix());
+    } else if (issue.hasLineLocation()) {
+      newIssue = verifier.reportIssue(issue.getMessage()).onLine(issue.getPrimary().line);
     } else {
       newIssue = verifier.reportIssue(issue.getMessage()).onFile();
     }

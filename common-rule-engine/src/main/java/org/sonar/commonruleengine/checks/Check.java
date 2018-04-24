@@ -48,4 +48,8 @@ public abstract class Check extends Visitor {
   protected final void reportIssueOnFile(String message) {
     context.reportIssue(Issue.issueOnFile(this, message));
   }
+
+  protected final void reportIssueOnLine(int line, String message) {
+    context.reportIssue(Issue.issueOnLine(this, line, message));
+  }
 }

@@ -117,8 +117,10 @@ public class GoSensor implements Sensor {
     NewIssueLocation location = newIssue.newLocation()
       .on(inputFile)
       .message(issue.getMessage());
-    if (issue.hasLocation()) {
+    if (issue.hasNodeLocation()) {
       location.at(newRange(inputFile, issue.getPrimary().from, issue.getPrimary().to));
+    } else if (issue.hasLineLocation()) {
+      location.at(inputFile.selectLine(issue.getPrimary().line));
     }
     newIssue.forRule(ruleKey).at(location).gap(issue.getEffortToFix());
 

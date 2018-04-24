@@ -51,10 +51,6 @@ public class FileHeaderCheck extends Check {
 
   private Pattern headerPattern;
 
-  public FileHeaderCheck() {
-    super(UastNode.Kind.COMPILATION_UNIT);
-  }
-
   @Override
   public void initialize(EngineContext context) {
     super.initialize(context);
