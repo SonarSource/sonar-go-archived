@@ -105,7 +105,7 @@ public class CaseValidatorTest {
     UastNode switchNode = node(UastNode.Kind.SWITCH, caseNode);
 
     Validator.ValidationException exception = assertThrows(Validator.ValidationException.class, () -> validate(switchNode));
-    assertThat(exception.getMessage()).isEqualTo("CaseValidator: Expected 'case' as keyword but got 'default'.");
+    assertThat(exception.getMessage()).isEqualTo("CaseValidator at line 1: Expected 'case' as keyword but got 'default'.");
   }
 
   @Test
@@ -117,7 +117,7 @@ public class CaseValidatorTest {
     UastNode parent = node(UastNode.Kind.ADD, caseNode);
 
     Validator.ValidationException exception = assertThrows(Validator.ValidationException.class, () -> validate(parent));
-    assertThat(exception.getMessage()).isEqualTo("CaseValidator: Should have a node of kind 'SWITCH' as ancestor.");
+    assertThat(exception.getMessage()).isEqualTo("CaseValidator at line 1: Should have a node of kind 'SWITCH' as ancestor.");
   }
 
   @Test
@@ -128,7 +128,7 @@ public class CaseValidatorTest {
     UastNode switchNode = node(UastNode.Kind.SWITCH, caseNode);
 
     Validator.ValidationException exception = assertThrows(Validator.ValidationException.class, () -> validate(switchNode));
-    assertThat(exception.getMessage()).isEqualTo("CaseValidator: Should have at least one child of kind 'CONDITION'.");
+    assertThat(exception.getMessage()).isEqualTo("CaseValidator at line 1: Should have at least one child of kind 'CONDITION'.");
   }
 
 }

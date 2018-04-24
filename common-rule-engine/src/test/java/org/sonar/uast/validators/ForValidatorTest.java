@@ -63,7 +63,7 @@ class ForValidatorTest {
       .addChildren(node(UastNode.Kind.BODY))
       .build();
     Assertions.assertThatThrownBy(() -> validate(forNode))
-      .hasMessage("ForValidator: No keyword found.");
+      .hasMessage("ForValidator at line N/A: No keyword found.");
   }
 
   @Test
@@ -72,7 +72,7 @@ class ForValidatorTest {
       .addChildren(keyword("for"), node(UastNode.Kind.FOR_INIT), node(UastNode.Kind.CONDITION), node(UastNode.Kind.FOR_UPDATE))
       .build();
     Assertions.assertThatThrownBy(() -> validate(forNode))
-      .hasMessage("ForValidator: Should have one single child of kind 'BODY' but got none.");
+      .hasMessage("ForValidator at line 1: Should have one single child of kind 'BODY' but got none.");
   }
 
   @Test
@@ -81,7 +81,7 @@ class ForValidatorTest {
       .addChildren(keyword("for"), node(UastNode.Kind.FOR_INIT), node(UastNode.Kind.FOR_INIT), node(UastNode.Kind.CONDITION), node(UastNode.Kind.FOR_UPDATE))
       .build();
     Assertions.assertThatThrownBy(() -> validate(forNode))
-      .hasMessage("ForValidator: Should have one single child of kind 'FOR_INIT' but got [[FOR_INIT], [FOR_INIT]].");
+      .hasMessage("ForValidator at line 1: Should have one single child of kind 'FOR_INIT' but got [[FOR_INIT], [FOR_INIT]].");
   }
 
 }

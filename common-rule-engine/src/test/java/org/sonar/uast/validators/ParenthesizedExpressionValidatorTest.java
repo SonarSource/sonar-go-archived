@@ -59,15 +59,15 @@ class ParenthesizedExpressionValidatorTest {
   void missing_left_right_parenth_or_expression() {
     UastNode parenthesisNode0 = buildNode(Kind.PARENTHESIZED_EXPRESSION).addChildren(node(Kind.EXPRESSION), node(Kind.RIGHT_PARENTHESIS)).build();
     Validator.ValidationException exception = assertThrows(Validator.ValidationException.class, () -> validate(parenthesisNode0));
-    assertThat(exception.getMessage()).isEqualTo("ParenthesizedExpressionValidator: Should have one single child of kind 'LEFT_PARENTHESIS' but got none.");
+    assertThat(exception.getMessage()).isEqualTo("ParenthesizedExpressionValidator at line N/A: Should have one single child of kind 'LEFT_PARENTHESIS' but got none.");
 
     UastNode parenthesisNode1 = buildNode(Kind.PARENTHESIZED_EXPRESSION).addChildren(node(Kind.LEFT_PARENTHESIS), node(Kind.EXPRESSION)).build();
     exception = assertThrows(Validator.ValidationException.class, () -> validate(parenthesisNode1));
-    assertThat(exception.getMessage()).isEqualTo("ParenthesizedExpressionValidator: Should have one single child of kind 'RIGHT_PARENTHESIS' but got none.");
+    assertThat(exception.getMessage()).isEqualTo("ParenthesizedExpressionValidator at line N/A: Should have one single child of kind 'RIGHT_PARENTHESIS' but got none.");
 
     UastNode parenthesisNode2 = buildNode(Kind.PARENTHESIZED_EXPRESSION).addChildren(node(Kind.LEFT_PARENTHESIS), node(Kind.RIGHT_PARENTHESIS)).build();
     exception = assertThrows(Validator.ValidationException.class, () -> validate(parenthesisNode2));
-    assertThat(exception.getMessage()).isEqualTo("ParenthesizedExpressionValidator: Should have one single child of kind 'EXPRESSION' but got none.");
+    assertThat(exception.getMessage()).isEqualTo("ParenthesizedExpressionValidator at line N/A: Should have one single child of kind 'EXPRESSION' but got none.");
 
   }
 }

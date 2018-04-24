@@ -62,13 +62,13 @@ class IfValidatorTest {
   void missing_if_keyword() {
     UastNode ifNode = node(Kind.IF, keyword("label"), node(Kind.THEN));
     Validator.ValidationException exception = assertThrows(Validator.ValidationException.class, () -> validate(ifNode));
-    assertThat(exception.getMessage()).isEqualTo("IfValidator: Expected 'if' as keyword but got 'label'.");
+    assertThat(exception.getMessage()).isEqualTo("IfValidator at line 1: Expected 'if' as keyword but got 'label'.");
   }
 
   @Test
   void missing_else_keyword() {
     UastNode ifNode = node(Kind.IF, keyword("if", Kind.IF_KEYWORD), node(Kind.CONDITION), node(Kind.THEN), node(Kind.ELSE));
     Validator.ValidationException exception = assertThrows(Validator.ValidationException.class, () -> validate(ifNode));
-    assertThat(exception.getMessage()).isEqualTo("IfValidator: Should have one single child of kind 'ELSE_KEYWORD' but got none.");
+    assertThat(exception.getMessage()).isEqualTo("IfValidator at line 1: Should have one single child of kind 'ELSE_KEYWORD' but got none.");
   }
 }

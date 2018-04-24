@@ -64,6 +64,6 @@ public class SwitchValidatorTest {
       keyword("label"));
 
     Validator.ValidationException exception = assertThrows(Validator.ValidationException.class, () -> validate(switchNode));
-    assertThat(exception.getMessage()).isEqualTo("SwitchValidator: Expected 'switch' as keyword but got 'label'.");
+    assertThat(exception.getMessage()).isEqualTo("SwitchValidator at line 1: Expected 'switch' as keyword but got 'label'.");
   }
 }
