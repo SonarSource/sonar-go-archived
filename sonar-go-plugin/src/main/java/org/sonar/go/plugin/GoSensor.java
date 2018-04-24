@@ -21,12 +21,9 @@ package org.sonar.go.plugin;
 
 import java.io.InputStream;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-import java.util.stream.Collectors;
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.batch.measure.Metric;
@@ -82,7 +79,7 @@ public class GoSensor implements Sensor {
       LOG.error("Error initializing UAST generator", e);
       return;
     }
-    List<InputFile> failedFiles = new ArrayList<>();
+
     for (InputFile inputFile : getInputFiles(context)) {
       try (InputStream inputStream = inputFile.inputStream()){
         UastNode uast = uastGenerator.createUast(inputStream);
@@ -95,17 +92,12 @@ public class GoSensor implements Sensor {
         }
         saveHighlighting(uast, context, inputFile);
       } catch (Validator.ValidationException e) {
-        failedFiles.add(inputFile);
         LOG.error("Unable to validate UAST of file " + inputFile.toString(), e);
       } catch (Exception e) {
-        failedFiles.add(inputFile);
-        LOG.debug("Error analyzing file " + inputFile.toString(), e);
+        LOG.error("Error analyzing file " + inputFile.toString(), e);
       }
     }
-    if (!failedFiles.isEmpty()) {
-      String failedFilesAsString = failedFiles.stream().map(InputFile::toString).collect(Collectors.joining("\n"));
-      LOG.error("Failed to analyze {} file(s). Turn on debug message to see the details. Failed files:\n{}", failedFiles.size(), failedFilesAsString);
-    }
+
     saveCoverageReports(context, GoCoverageReport.GoContext.DEFAULT);
   }
 

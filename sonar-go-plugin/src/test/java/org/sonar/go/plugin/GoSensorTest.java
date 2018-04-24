@@ -121,7 +121,7 @@ class GoSensorTest {
     GoSensor goSensor = getSensor("S2068");
     goSensor.execute(sensorContext);
     assertThat(logTester.logs(LoggerLevel.ERROR).stream().collect(Collectors.joining("\n")))
-      .contains("Failed to analyze 1 file(s). Turn on debug message to see the details. Failed files:\nlets.go")
+      .contains("Error analyzing file lets.go")
       .contains("Coverage report can't be loaded, file not found:").contains("invalid-coverage-path.out");
   }
 
@@ -132,8 +132,7 @@ class GoSensorTest {
     GoSensor goSensor = getSensor("S2068");
     goSensor.execute(sensorContext);
 
-    assertThat(logTester.logs(LoggerLevel.ERROR)).contains("Failed to analyze 1 file(s). Turn on debug message to see the details. Failed files:\nlets.go");
-    assertThat(logTester.logs(LoggerLevel.DEBUG)).contains("Error analyzing file lets.go");
+    assertThat(logTester.logs(LoggerLevel.ERROR)).contains("Error analyzing file lets.go");
     // test log from external process asynchronously
     await().until(() -> logTester.logs(LoggerLevel.DEBUG).contains("panic: -:1:1: expected 'package', found 'EOF'"));
   }
