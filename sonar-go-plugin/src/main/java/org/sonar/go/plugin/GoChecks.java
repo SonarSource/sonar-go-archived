@@ -51,6 +51,7 @@ import org.sonar.commonruleengine.checks.TodoTagPresenceCheck;
 import org.sonar.commonruleengine.checks.TooLongLineCheck;
 import org.sonar.commonruleengine.checks.TooManyParametersCheck;
 import org.sonar.commonruleengine.checks.UnconditionalJumpStatementCheck;
+import org.sonar.commonruleengine.checks.UselessIfCheck;
 import org.sonar.commonruleengine.checks.WrongAssignmentOperatorCheck;
 
 public class GoChecks {
@@ -91,6 +92,7 @@ public class GoChecks {
       TooLongLineCheck.class,
       TooManyParametersCheck.class,
       UnconditionalJumpStatementCheck.class,
+      UselessIfCheck.class,
       WrongAssignmentOperatorCheck.class
     );
   }
