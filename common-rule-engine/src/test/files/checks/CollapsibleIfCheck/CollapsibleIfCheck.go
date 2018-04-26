@@ -82,4 +82,10 @@ func foo() {
     }
   }
 
+  // exclude if nested 'if' condition has simple statement ("x := 42;" in this case)
+  if true {
+    if x := 42; false {
+    }
+  }
+
 }

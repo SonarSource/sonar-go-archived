@@ -20,6 +20,7 @@
 package org.sonar.commonruleengine.checks;
 
 import java.util.List;
+import java.util.Optional;
 import org.sonar.check.Rule;
 import org.sonar.commonruleengine.Issue;
 import org.sonar.uast.UastNode;
@@ -47,7 +48,7 @@ public class CollapsibleIfCheck extends Check {
           }
         }
 
-        if (statementNode.is(Kind.IF) && !hasElse(statementNode)) {
+        if (statementNode.is(Kind.IF) && !hasElse(statementNode) && hasSimpleCondition(statementNode)) {
           reportIssue(
             getReportingLocationForIf(node),
             MESSAGE,
@@ -55,6 +56,12 @@ public class CollapsibleIfCheck extends Check {
         }
       }
     }
+  }
+
+
+  private static boolean hasSimpleCondition(UastNode ifStatementNode) {
+    Optional<UastNode> condition = ifStatementNode.getChild(Kind.CONDITION);
+    return condition.isPresent() && !condition.get().getChild(Kind.STATEMENT).isPresent();
   }
 
   private static boolean hasElse(UastNode node) {
