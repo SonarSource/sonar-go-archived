@@ -9,7 +9,7 @@ class A{
     return "";
   }
 
-// Noncompliant@+1 {{Add a nested comment explaining why this method is empty or complete the implementation.}}
+// Noncompliant@+1 {{Add a nested comment explaining why this function is empty or complete the implementation.}}
   private foo(){
   }
 

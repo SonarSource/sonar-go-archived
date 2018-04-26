@@ -37,7 +37,7 @@ public class EmptyFunctionCheck extends Check {
     block.ifPresent(blck -> {
       if (blck.children.stream().allMatch(child -> isBraceBracket(child.token))) {
         reportIssue(node,
-          "Add a nested comment explaining why this method is empty or complete the implementation.");
+          "Add a nested comment explaining why this function is empty or complete the implementation.");
       }
     });
   }

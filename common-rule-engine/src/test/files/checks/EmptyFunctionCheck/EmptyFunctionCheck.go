@@ -5,7 +5,7 @@ import "fmt"
 func bar(a, b int) string{
 	return ""
 }
-// Noncompliant@+1 {{Add a nested comment explaining why this method is empty or complete the implementation.}}
+// Noncompliant@+1 {{Add a nested comment explaining why this function is empty or complete the implementation.}}
 func foo(){}
 
 // Noncompliant@+1
