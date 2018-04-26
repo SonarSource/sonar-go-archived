@@ -19,15 +19,26 @@
  */
 package org.sonar.commonruleengine.checks;
 
+import java.nio.file.Path;
 import org.junit.jupiter.api.Test;
 
+import static org.sonar.commonruleengine.checks.TestUtils.checkNoIssue;
 import static org.sonar.commonruleengine.checks.TestUtils.checkRuleOnGo;
+import static org.sonar.commonruleengine.checks.TestUtils.goUast;
+import static org.sonar.commonruleengine.checks.TestUtils.testFile;
 
 class TooManyLinesInFileCheckTest {
 
   @Test
   void test_go() throws Exception {
     checkRuleOnGo(new TooManyLinesInFileCheck());
+  }
+
+  @Test
+  void test_go_compliant() throws Exception {
+    TooManyLinesInFileCheck check = new TooManyLinesInFileCheck();
+    Path testFile = testFile(check.getClass(), "TooManyLinesInFileCheckCompliant.go");
+    checkNoIssue(check, testFile, goUast(testFile));
   }
 
   @Test
