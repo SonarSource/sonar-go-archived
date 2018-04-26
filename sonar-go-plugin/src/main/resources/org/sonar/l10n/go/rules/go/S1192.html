@@ -4,14 +4,14 @@
 <p>With the default threshold of 3:</p>
 <pre>
 func run() {
-	prepare("foo")  // Noncompliant; 'foo' is duplicated 3 times
-	execute("foo")
-	release("foo")
+	prepare("This should be a constant")  // Noncompliant; 'foo' is duplicated 3 times
+	execute("This should be a constant")
+	release("This should be a constant")
 }
 </pre>
 <h2>Compliant Solution</h2>
 <pre>
-const ACTION = "foo"
+const ACTION = "This should be a constant"
 
 func run() {
 	prepare(ACTION)

@@ -66,7 +66,7 @@ public class StringLiteralDuplicatedCheck extends Check {
     if (literal != null) {
       String literalValue = literal.value();
       if (literalValue.length() > MINIMAL_LITERAL_LENGTH) {
-        List<UastNode> occurrenceList = occurrences.computeIfAbsent(literalValue, v -> new ArrayList<>());
+        List<UastNode> occurrenceList = occurrences.computeIfAbsent(literalValue, key -> new ArrayList<>());
         occurrenceList.add(node);
       }
     }
@@ -77,10 +77,12 @@ public class StringLiteralDuplicatedCheck extends Check {
     if (node.is(UastNode.Kind.COMPILATION_UNIT)) {
       occurrences.values().stream()
         .filter(nodes -> nodes.size() >= threshold)
-        .forEach(nodes -> reportIssue(nodes.iterator().next(),
-          "Define a constant instead of duplicating this literal " + nodes.size() + " times.", secondaryMessages(nodes)));
+        .forEach(nodes -> {
+          UastNode firstNode = nodes.iterator().next();
+          reportIssue(firstNode, firstNode,
+            "Define a constant instead of duplicating this literal " + nodes.size() + " times.", nodes.size(), secondaryMessages(nodes));
+        });
     }
-    super.leaveNode(node);
   }
 
   private Issue.Message[] secondaryMessages(List<UastNode> nodes) {
