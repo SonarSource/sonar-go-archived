@@ -30,6 +30,7 @@ import org.sonar.commonruleengine.checks.FileHeaderCheck;
 import org.sonar.commonruleengine.checks.FixMeTagPresenceCheck;
 import org.sonar.commonruleengine.checks.FunctionCognitiveComplexityCheck;
 import org.sonar.commonruleengine.checks.FunctionNameConventionCheck;
+import org.sonar.commonruleengine.checks.FunctionTooBigCheck;
 import org.sonar.commonruleengine.checks.HardcodedIpAddressCheck;
 import org.sonar.commonruleengine.checks.IfElseIfWithoutElseCheck;
 import org.sonar.commonruleengine.checks.NestedSwitchCheck;
@@ -65,6 +66,7 @@ public class GoChecks {
       EmptyStatementsCheck.class,
       FixMeTagPresenceCheck.class,
       FunctionCognitiveComplexityCheck.class,
+      FunctionTooBigCheck.class,
       HardcodedIpAddressCheck.class,
       IfElseIfWithoutElseCheck.class,
       FunctionNameConventionCheck.class,
