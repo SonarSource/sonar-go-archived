@@ -24,15 +24,15 @@ import org.junit.jupiter.api.Test;
 import static org.sonar.commonruleengine.checks.TestUtils.checkRuleOnGo;
 import static org.sonar.commonruleengine.checks.TestUtils.checkRuleOnJava;
 
-public class EmptyFunctionsCheckTest {
+public class EmptyFunctionCheckTest {
 
   @Test
   void test_java() throws Exception {
-    checkRuleOnJava(new EmptyFunctionsCheck());
+    checkRuleOnJava(new EmptyFunctionCheck());
   }
 
   @Test
   void test_go() throws Exception {
-    checkRuleOnGo(new EmptyFunctionsCheck());
+    checkRuleOnGo(new EmptyFunctionCheck());
   }
 }

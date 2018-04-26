@@ -25,9 +25,9 @@ import org.sonar.check.Rule;
 import org.sonar.uast.UastNode;
 
 @Rule(key = "S1186")
-public class EmptyFunctionsCheck extends Check {
+public class EmptyFunctionCheck extends Check {
 
-  public EmptyFunctionsCheck() {
+  public EmptyFunctionCheck() {
     super(UastNode.Kind.FUNCTION, UastNode.Kind.FUNCTION_LITERAL);
   }
 

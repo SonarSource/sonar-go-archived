@@ -14,10 +14,6 @@
 'project:kubernetes/vendor/github.com/coreos/etcd/etcdserver/api/v3rpc/util.go':[
 29,
 ],
-'project:kubernetes/vendor/github.com/mesos/mesos-go/mesosproto/mesos.pb.go':[
-30944,
-32136,
-],
 'project:kubernetes/vendor/github.com/prometheus/client_golang/prometheus/http.go':[
 426,
 ],
