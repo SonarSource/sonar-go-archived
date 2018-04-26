@@ -65,7 +65,7 @@ import (
 			NewTypeKind((*ast.SwitchStmt)(nil), "SWITCH"),
 			NewTypeKind((*ast.TypeSwitchStmt)(nil), "SWITCH"),
 			NewTypeKind((*ast.CaseClause)(nil), "CASE"),
-			NewTypeKind((*ast.LabeledStmt)(nil), "LABEL"),
+			NewTypeKind((*ast.LabeledStmt)(nil), "LABEL, STATEMENT"),
 			NewTypeKind((*ast.BadDecl)(nil), "UNSUPPORTED"),
 			NewTypeKind((*ast.BadExpr)(nil), "UNSUPPORTED"),
 			NewTypeKind((*ast.BadStmt)(nil), "UNSUPPORTED"),

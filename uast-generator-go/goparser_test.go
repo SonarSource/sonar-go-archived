@@ -786,7 +786,7 @@ label1:
 
 	actual := newTestNode(label1)
 	expected := TestNode{
-		kinds:      []Kind{LABEL},
+		kinds:      []Kind{LABEL, STATEMENT},
 		nativeNode: "[1](LabeledStmt)",
 		children:   3,
 	}
