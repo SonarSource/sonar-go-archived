@@ -49,6 +49,7 @@ import org.sonar.commonruleengine.checks.SwitchWithTooManyCaseCheck;
 import org.sonar.commonruleengine.checks.SwitchWithoutDefaultCheck;
 import org.sonar.commonruleengine.checks.TodoTagPresenceCheck;
 import org.sonar.commonruleengine.checks.TooLongLineCheck;
+import org.sonar.commonruleengine.checks.TooManyLinesInFileCheck;
 import org.sonar.commonruleengine.checks.TooManyParametersCheck;
 import org.sonar.commonruleengine.checks.UnconditionalJumpStatementCheck;
 import org.sonar.commonruleengine.checks.UselessIfCheck;
@@ -90,6 +91,7 @@ public class GoChecks {
       SwitchWithTooManyCaseCheck.class,
       TodoTagPresenceCheck.class,
       TooLongLineCheck.class,
+      TooManyLinesInFileCheck.class,
       TooManyParametersCheck.class,
       UnconditionalJumpStatementCheck.class,
       UselessIfCheck.class,
