@@ -31,6 +31,7 @@ import org.sonar.commonruleengine.checks.FixMeTagPresenceCheck;
 import org.sonar.commonruleengine.checks.FunctionCognitiveComplexityCheck;
 import org.sonar.commonruleengine.checks.FunctionNameConventionCheck;
 import org.sonar.commonruleengine.checks.HardcodedIpAddressCheck;
+import org.sonar.commonruleengine.checks.IfElseIfWithoutElseCheck;
 import org.sonar.commonruleengine.checks.NestedSwitchCheck;
 import org.sonar.commonruleengine.checks.NoHardcodedCredentialsCheck;
 import org.sonar.commonruleengine.checks.NoIdenticalConditionsCheck;
@@ -65,6 +66,7 @@ public class GoChecks {
       FixMeTagPresenceCheck.class,
       FunctionCognitiveComplexityCheck.class,
       HardcodedIpAddressCheck.class,
+      IfElseIfWithoutElseCheck.class,
       FunctionNameConventionCheck.class,
       NestedSwitchCheck.class,
       NoIdenticalConditionsCheck.class,
