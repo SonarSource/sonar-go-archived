@@ -86,6 +86,6 @@ public class StringLiteralDuplicatedCheck extends Check {
   }
 
   private Issue.Message[] secondaryMessages(List<UastNode> nodes) {
-    return nodes.stream().map(node -> new Issue.Message(node, "Duplication")).toArray(Issue.Message[]::new);
+    return nodes.stream().skip(1).map(node -> new Issue.Message(node, "Duplication")).toArray(Issue.Message[]::new);
   }
 }
