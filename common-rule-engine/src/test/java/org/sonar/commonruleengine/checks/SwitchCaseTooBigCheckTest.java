@@ -28,4 +28,11 @@ public class SwitchCaseTooBigCheckTest {
   void test_go() throws Exception {
     checkRuleOnGo(new SwitchCaseTooBigCheck());
   }
+
+  @Test
+  void test_go_custom_threshold() throws Exception {
+    SwitchCaseTooBigCheck check = new SwitchCaseTooBigCheck();
+    check.max = 3;
+    checkRuleOnGo(check, "SwitchCaseTooBigCheckMax3.go");
+  }
 }

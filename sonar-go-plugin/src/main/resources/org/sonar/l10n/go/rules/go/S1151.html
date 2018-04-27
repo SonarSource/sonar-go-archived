@@ -2,7 +2,7 @@
 clause contains too many statements this highly decreases the readability of the overall control flow statement. In such case, the content of the
 <code>case</code> clause should be extracted into a dedicated method.</p>
 <h2>Noncompliant Code Example</h2>
-<p>With the default threshold of 3:</p>
+<p>With the default threshold of 5:</p>
 <pre>
 func foo(tag int) {
 	switch tag {
@@ -11,6 +11,8 @@ func foo(tag int) {
 		methodCall2()
 		methodCall3()
 		methodCall4()
+                methodCall5()
+                methodCall6()
 	case 1:
 		bar()
 	}
@@ -32,6 +34,8 @@ func executeAll() {
 	methodCall2()
 	methodCall3()
 	methodCall4()
+        methodCall5()
+        methodCall6()
 }
 </pre>
 
