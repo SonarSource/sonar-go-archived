@@ -28,3 +28,11 @@ label:
 	fmt.Print("labeled statement")
 	fmt.Print("labeled statement")
 }
+
+func switchcase(x int) {
+	switch x {
+	case 1:
+		return // Noncompliant
+		fmt.Print("Hello")
+	}
+}

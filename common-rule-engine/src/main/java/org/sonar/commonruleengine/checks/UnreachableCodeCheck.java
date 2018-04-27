@@ -44,7 +44,7 @@ public class UnreachableCodeCheck extends Check {
       UastNode jump = stmtIterator.previous();
       stmtIterator.next();
       UastNode stmt = stmtIterator.next();
-      if (stmt.is(UastNode.Kind.STATEMENT) && stmt.isNot(UastNode.Kind.LABEL)) {
+      if (stmt.isNot(UastNode.Kind.LABEL)) {
         reportIssue(jump, "Refactor this piece of code to not have any dead code after this " + jump.firstToken().value + ".");
       }
     }
