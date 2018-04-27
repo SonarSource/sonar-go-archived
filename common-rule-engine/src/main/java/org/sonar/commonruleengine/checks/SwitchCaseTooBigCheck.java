@@ -22,6 +22,7 @@ package org.sonar.commonruleengine.checks;
 import org.sonar.check.Rule;
 import org.sonar.check.RuleProperty;
 import org.sonar.uast.UastNode;
+import org.sonar.uast.helpers.CaseLike;
 
 @Rule(key = "S1151")
 public class SwitchCaseTooBigCheck extends Check {
@@ -40,11 +41,14 @@ public class SwitchCaseTooBigCheck extends Check {
 
   @Override
   public void visitNode(UastNode node) {
-    int caseLength = node.lastToken().line - node.firstToken().line;
-    if (caseLength > max) {
-      node.getChild(UastNode.Kind.KEYWORD).ifPresent(caseKeyword -> reportIssue(caseKeyword,
-        "Reduce this switch case number of lines from " + caseLength + " to at most " + max
-          + ", for example by extracting code into methods."));
+    UastNode caseBody = CaseLike.from(node).body();
+    if (caseBody != null) {
+      int caseLength = caseBody.lastToken().line - caseBody.firstToken().line + 1;
+      if (caseLength > max) {
+        node.getChild(UastNode.Kind.KEYWORD).ifPresent(caseKeyword -> reportIssue(caseKeyword,
+          "Reduce this switch case number of lines from " + caseLength + " to at most " + max
+            + ", for example by extracting code into methods."));
+      }
     }
   }
 }
