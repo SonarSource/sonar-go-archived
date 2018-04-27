@@ -57,6 +57,7 @@ import org.sonar.commonruleengine.checks.TooManyParametersCheck;
 import org.sonar.commonruleengine.checks.TwoBranchesAreIdenticalCheck;
 import org.sonar.commonruleengine.checks.UnconditionalJumpStatementCheck;
 import org.sonar.commonruleengine.checks.UnreachableCodeCheck;
+import org.sonar.commonruleengine.checks.UnusedParameterCheck;
 import org.sonar.commonruleengine.checks.UselessIfCheck;
 import org.sonar.commonruleengine.checks.WrongAssignmentOperatorCheck;
 
@@ -104,6 +105,7 @@ public class GoChecks {
       TwoBranchesAreIdenticalCheck.class,
       UnconditionalJumpStatementCheck.class,
       UnreachableCodeCheck.class,
+      UnusedParameterCheck.class,
       UselessIfCheck.class,
       WrongAssignmentOperatorCheck.class
     );

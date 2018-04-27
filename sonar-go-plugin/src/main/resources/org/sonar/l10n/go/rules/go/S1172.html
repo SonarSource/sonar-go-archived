@@ -1,0 +1,29 @@
+<p>Unused parameters are misleading. Whatever the values passed to such parameters, the behavior will be the same.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+func compute(start int) { // Noncompliant; start is not used
+	sum := 0
+	for i := 0; i &lt; 10; i++ {
+		sum += i
+	}
+	fmt.Println("Result:", sum)
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+func compute() {
+	sum := 0
+	for i := 0; i &lt; 10; i++ {
+		sum += i
+	}
+	fmt.Println("Result:", sum)
+}
+</pre>
+<h2>See</h2>
+<ul>
+  <li> MISRA C++:2008, 0-1-11 - There shall be no unused parameters (named or unnamed) in nonvirtual functions. </li>
+  <li> MISRA C:2012, 2.7 - There should be no unused parameters in functions </li>
+  <li> <a href="https://www.securecoding.cert.org/confluence/x/NYA5">CERT, MSC12-C.</a> - Detect and remove code that has no effect or is never
+  executed </li>
+</ul>
+
