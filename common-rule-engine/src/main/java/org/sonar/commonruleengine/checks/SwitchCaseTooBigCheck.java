@@ -47,7 +47,7 @@ public class SwitchCaseTooBigCheck extends Check {
       if (caseLength > max) {
         node.getChild(UastNode.Kind.KEYWORD).ifPresent(caseKeyword -> reportIssue(caseKeyword,
           "Reduce this switch case number of lines from " + caseLength + " to at most " + max
-            + ", for example by extracting code into methods."));
+            + ", for example by extracting code into functions."));
       }
     }
   }
