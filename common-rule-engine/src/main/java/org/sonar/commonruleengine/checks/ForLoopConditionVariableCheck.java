@@ -43,6 +43,9 @@ public class ForLoopConditionVariableCheck extends Check {
       Set<String> identifiersInCondition = getIdentifierNames(optionalConditionClause.get());
       Set<String> identifiersInUpdate = getIdentifierNames(optionalUpdateClause.get());
       Set<String> intersection = new HashSet<>(identifiersInCondition);
+      if (identifiersInCondition.isEmpty() || identifiersInCondition.size() > 2) {
+        return;
+      }
       intersection.retainAll(identifiersInUpdate);
       if (intersection.isEmpty()) {
         reportIssue(node.getChild(Kind.KEYWORD).orElse(node), MESSAGE);

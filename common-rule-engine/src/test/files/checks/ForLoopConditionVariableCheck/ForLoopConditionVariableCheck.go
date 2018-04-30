@@ -6,9 +6,6 @@ func nok() {
     // ...
   }
 
-  for i := 1; foo(something) > somethingElse; i++ { // Noncompliant
-    // ...
-  }
 }
 
 func ok() {
@@ -26,6 +23,16 @@ func ok() {
   }
 
   for i := 1; i <= 10; {
+    // ...
+  }
+
+  // ok, more than 2 identifiers in condition
+  for i := 1; foo(something) > somethingElse; i++ {
+    // ...
+  }
+
+  // ok, no identifiers
+  for i := 1; true; i++ {
     // ...
   }
 
