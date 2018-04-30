@@ -47,12 +47,8 @@ public class UnusedParameterCheck extends Check {
       return;
     }
 
-    List<UastNode> parameterNames = new ArrayList<>();
-    node.getDescendants(Kind.PARAMETER_LIST, parameterDeclaration ->
-      parameterDeclaration.getDescendants(Kind.VARIABLE_NAME, parameterNames::add));
-
-    Set<UastNode> identifiersInBody = new HashSet<>();
-    functionBody.get().getDescendants(Kind.IDENTIFIER, identifiersInBody::add);
+    List<UastNode> parameterNames = getParameterNameNodes(node);
+    Set<String> identifiersInBody = getIdentifierNames(functionBody.get());
 
     List<UastNode> unusedParameters = parameterNames.stream()
       .filter(parameterName -> !isParameterUsed(parameterName, identifiersInBody))
@@ -67,16 +63,32 @@ public class UnusedParameterCheck extends Check {
     }
   }
 
-  private static boolean isParameterUsed(UastNode parameterName, Set<UastNode> identifiersInBody) {
-    // looks like parameter name is always identifier with token, this check is here for extra safety
-    if (parameterName.is(Kind.IDENTIFIER) && parameterName.token != null) {
-      String name = parameterName.token.value;
-      if (name.equals("_")) {
-        return true;
+  private static Set<String> getIdentifierNames(UastNode functionBody) {
+    Set<String> identifiersInBody = new HashSet<>();
+    functionBody.getDescendants(Kind.IDENTIFIER, identifier -> {
+      if (identifier.token != null) {
+        identifiersInBody.add(identifier.token.value);
       }
-      return identifiersInBody.stream().anyMatch(identifier -> identifier.token != null && identifier.token.value.equals(name));
-    }
-    return true;
+    });
+    return identifiersInBody;
+  }
+
+  private static List<UastNode> getParameterNameNodes(UastNode functionNode) {
+    List<UastNode> parameterNames = new ArrayList<>();
+    functionNode.getDescendants(Kind.PARAMETER_LIST, parameterDeclaration ->
+      parameterDeclaration.getDescendants(Kind.VARIABLE_NAME, parameterName -> {
+        // looks like parameter name is always identifier with token, this check is here for extra safety
+        if (parameterName.is(Kind.IDENTIFIER) && parameterName.token != null) {
+          parameterNames.add(parameterName);
+        }
+      })
+    );
+    return parameterNames;
+  }
+
+  private static boolean isParameterUsed(UastNode parameterName, Set<String> identifiersInBody) {
+    String name = parameterName.token.value;
+    return name.equals("_") || identifiersInBody.contains(name);
   }
 
   private static boolean isMethod(UastNode functionNode) {
