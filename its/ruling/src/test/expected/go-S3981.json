@@ -1,0 +1,8 @@
+{
+'project:kubernetes/federation/pkg/dnsprovider/tests/commontests.go':[
+138,
+],
+'project:kubernetes/vendor/github.com/samuel/go-zookeeper/zk/conn.go':[
+345,
+],
+}
