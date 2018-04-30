@@ -24,7 +24,8 @@ import org.sonar.api.batch.fs.internal.DefaultInputFile;
 import org.sonar.api.batch.fs.internal.TestInputFileBuilder;
 import org.sonar.api.config.internal.MapSettings;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 class GoExclusionsFileFilterTest {
 
@@ -33,10 +34,10 @@ class GoExclusionsFileFilterTest {
     MapSettings settings = new MapSettings();
     settings.setProperty(GoPlugin.EXCLUSIONS_KEY, GoPlugin.EXCLUSIONS_DEFAULT_VALUE);
     GoExclusionsFileFilter filter = new GoExclusionsFileFilter(settings.asConfig());
-    assertEquals(true, filter.accept(inputFile("file.go")));
-    assertEquals(false, filter.accept(inputFile("vendor/file.go")));
-    assertEquals(false, filter.accept(inputFile("vendor/someDir/file.go")));
-    assertEquals(false, filter.accept(inputFile("someDir/vendor/file.go")));
+    assertTrue(filter.accept(inputFile("file.go")));
+    assertFalse(filter.accept(inputFile("vendor/file.go")));
+    assertFalse(filter.accept(inputFile("vendor/someDir/file.go")));
+    assertFalse(filter.accept(inputFile("someDir/vendor/file.go")));
   }
 
   @Test
@@ -44,8 +45,8 @@ class GoExclusionsFileFilterTest {
     MapSettings settings = new MapSettings();
     settings.setProperty(GoPlugin.EXCLUSIONS_KEY, GoPlugin.EXCLUSIONS_DEFAULT_VALUE);
     GoExclusionsFileFilter filter = new GoExclusionsFileFilter(settings.asConfig());
-    assertEquals(false, filter.accept(inputFile("vendor/file.go")));
-    assertEquals(true, filter.accept(inputFile("vendor/file.json")));
+    assertFalse(filter.accept(inputFile("vendor/file.go")));
+    assertTrue(filter.accept(inputFile("vendor/file.json")));
   }
 
   @Test
@@ -55,10 +56,10 @@ class GoExclusionsFileFilterTest {
     settings.setProperty(GoPlugin.EXCLUSIONS_KEY, "");
     GoExclusionsFileFilter filter = new GoExclusionsFileFilter(settings.asConfig());
 
-    assertEquals(true, filter.accept(inputFile("file.go")));
-    assertEquals(true, filter.accept(inputFile("vendor/file.go")));
-    assertEquals(true, filter.accept(inputFile("vendor/someDir/file.go")));
-    assertEquals(true, filter.accept(inputFile("someDir/vendor/file.go")));
+    assertTrue(filter.accept(inputFile("file.go")));
+    assertTrue(filter.accept(inputFile("vendor/file.go")));
+    assertTrue(filter.accept(inputFile("vendor/someDir/file.go")));
+    assertTrue(filter.accept(inputFile("someDir/vendor/file.go")));
   }
 
   @Test
@@ -68,10 +69,10 @@ class GoExclusionsFileFilterTest {
     settings.setProperty(GoPlugin.EXCLUSIONS_KEY, "**/lib/**");
     GoExclusionsFileFilter filter = new GoExclusionsFileFilter(settings.asConfig());
 
-    assertEquals(true, filter.accept(inputFile("file.go")));
-    assertEquals(true, filter.accept(inputFile("vendor/file.go")));
-    assertEquals(false, filter.accept(inputFile("lib/file.go")));
-    assertEquals(false, filter.accept(inputFile("someDir/lib/file.go")));
+    assertTrue(filter.accept(inputFile("file.go")));
+    assertTrue(filter.accept(inputFile("vendor/file.go")));
+    assertFalse(filter.accept(inputFile("lib/file.go")));
+    assertFalse(filter.accept(inputFile("someDir/lib/file.go")));
   }
 
   @Test
@@ -80,8 +81,8 @@ class GoExclusionsFileFilterTest {
     settings.setProperty(GoPlugin.EXCLUSIONS_KEY, "," + GoPlugin.EXCLUSIONS_DEFAULT_VALUE + ",");
     GoExclusionsFileFilter filter = new GoExclusionsFileFilter(settings.asConfig());
 
-    assertEquals(true, filter.accept(inputFile("file.go")));
-    assertEquals(false, filter.accept(inputFile("vendor/file.go")));
+    assertTrue(filter.accept(inputFile("file.go")));
+    assertFalse(filter.accept(inputFile("vendor/file.go")));
   }
 
   private DefaultInputFile inputFile(String file) {
