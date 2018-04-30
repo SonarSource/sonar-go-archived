@@ -24,13 +24,16 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.batch.fs.internal.TestInputFileBuilder;
 import org.sonar.api.batch.sensor.internal.SensorContextTester;
 import org.sonar.api.config.internal.MapSettings;
+import org.sonar.api.utils.log.LoggerLevel;
 import org.sonar.go.plugin.GoCoverageReport.Coverage;
 import org.sonar.go.plugin.GoCoverageReport.CoverageStat;
 import org.sonar.go.plugin.GoCoverageReport.FileCoverage;
@@ -44,6 +47,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class GoCoverageReportTest {
 
   static final Path COVERAGE_DIR = Paths.get("src", "test", "resources", "coverage");
+
+  @RegisterExtension
+  static JUnit5LogTester logTester = new JUnit5LogTester();
 
   @Test
   void mode_line() {
@@ -122,11 +128,12 @@ class GoCoverageReportTest {
   }
 
   @Test
-  void file_coverage() {
-    FileCoverage file = new FileCoverage(COVERAGE_DIR.resolve("cover.go").toString());
-    assertThat(file.lineMap.size()).isEqualTo(0);
-    file.add(new CoverageStat(2, "cover.go:4.11,6.3 1 3"));
-    file.add(new CoverageStat(3, "cover.go:6.3,8.3 1 0"));
+  void file_coverage() throws Exception {
+    List<CoverageStat> coverageStats = Arrays.asList(
+      new CoverageStat(2, "cover.go:4.11,6.3 1 3"),
+      new CoverageStat(3, "cover.go:6.3,8.3 1 0"));
+    FileCoverage file = new FileCoverage(coverageStats, Files.readAllLines(COVERAGE_DIR.resolve("cover.go")));
+
     assertThat(file.lineMap.keySet()).containsExactlyInAnyOrder(5, 6, 7);
     assertThat(file.lineMap.get(4)).isNull();
     assertThat(file.lineMap.get(5).hits).isEqualTo(3);
@@ -143,8 +150,10 @@ class GoCoverageReportTest {
     coverage.add(new CoverageStat(3, "main.go:4.2,4.7 1 0"));
     coverage.add(new CoverageStat(4, "other.go:3.2,4.12 1 1"));
     assertThat(coverage.fileMap.keySet()).containsExactlyInAnyOrder("/home/paul/go/main.go", "/home/paul/go/other.go");
-    assertThat(coverage.fileMap.get("/home/paul/go/main.go").lineMap.keySet()).containsExactlyInAnyOrder(2, 4);
-    assertThat(coverage.fileMap.get("/home/paul/go/other.go").lineMap.keySet()).containsExactlyInAnyOrder(3, 4);
+    List<CoverageStat> coverageStats = coverage.fileMap.get("/home/paul/go/main.go");
+    FileCoverage fileCoverage = new FileCoverage(coverageStats, null);
+    assertThat(fileCoverage.lineMap.keySet()).containsExactlyInAnyOrder(2, 4);
+    assertThat(new FileCoverage(coverage.fileMap.get("/home/paul/go/other.go"), null).lineMap.keySet()).containsExactlyInAnyOrder(3, 4);
   }
 
   @Test
@@ -204,8 +213,9 @@ class GoCoverageReportTest {
       .setLanguage("go")
       .setType(InputFile.Type.MAIN)
       .initMetadata(content)
+      .setContents(content)
       .build());
-    GoContext goContext = new GoContext(File.separatorChar, COVERAGE_DIR.toString());
+    GoContext goContext = new GoContext(File.separatorChar, baseDir.toString());
     GoCoverageReport.saveCoverageReports(context, goContext);
     String fileKey = "moduleKey:cover.go";
     assertThat(context.lineHits(fileKey, 3)).isNull();
@@ -218,11 +228,42 @@ class GoCoverageReportTest {
     assertThat(context.lineHits(fileKey, 8)).isNull();
   }
 
+  @Test
+  void coverage_fuzzy_inputfile() throws Exception {
+    Path baseDir = COVERAGE_DIR.toAbsolutePath();
+    SensorContextTester context = SensorContextTester.create(baseDir);
+    context.setSettings(new MapSettings());
+    context.settings().setProperty("sonar.go.coverage.reportPaths", "coverage.fuzzy.out");
+    Path goFilePath = baseDir.resolve("cover.go");
+    String content = new String(Files.readAllBytes(goFilePath), UTF_8);
+    context.fileSystem().add(TestInputFileBuilder.create("moduleKey", baseDir.toFile(), goFilePath.toFile())
+      .setLanguage("go")
+      .setType(InputFile.Type.MAIN)
+      .initMetadata(content)
+      .setContents(content)
+      .build());
+    GoContext goContext = new GoContext(File.separatorChar, "");
+    GoCoverageReport.saveCoverageReports(context, goContext);
+    String fileKey = "moduleKey:cover.go";
+    assertThat(context.lineHits(fileKey, 3)).isNull();
+    assertThat(context.lineHits(fileKey, 4)).isEqualTo(1);
+    assertThat(context.lineHits(fileKey, 5)).isEqualTo(2);
+    assertThat(context.conditions(fileKey, 5)).isNull();
+    assertThat(context.coveredConditions(fileKey, 5)).isNull();
+    assertThat(context.lineHits(fileKey, 6)).isEqualTo(0);
+    assertThat(context.lineHits(fileKey, 7)).isEqualTo(0);
+    assertThat(context.lineHits(fileKey, 8)).isNull();
+
+    String ignoredFileLog = "File 'doesntexists.go' is not included in the project, ignoring coverage";
+    assertThat(logTester.logs(LoggerLevel.WARN)).contains(ignoredFileLog);
+  }
+
   void assertCoverGo(Path coverageFile, GoContext goContext, String absolutePath) throws IOException {
     Coverage coverage = new Coverage(goContext);
     GoCoverageReport.parse(coverageFile, coverage);
     assertThat(coverage.fileMap.keySet()).containsExactlyInAnyOrder(absolutePath);
-    FileCoverage fileCoverage = coverage.fileMap.get(absolutePath);
+    List<CoverageStat> coverageStats = coverage.fileMap.get(absolutePath);
+    FileCoverage fileCoverage = new FileCoverage(coverageStats, null);
     assertThat(fileCoverage.lineMap.keySet()).containsExactlyInAnyOrder(3, 4, 5, 6, 7, 8);
     assertThat(fileCoverage.lineMap.get(2)).isNull();
     assertThat(fileCoverage.lineMap.get(3).hits).isEqualTo(1);

@@ -23,10 +23,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -35,6 +35,7 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.annotation.Nullable;
+import org.sonar.api.batch.fs.FilePredicates;
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.batch.sensor.SensorContext;
@@ -60,34 +61,51 @@ public final class GoCoverageReport {
   private GoCoverageReport() {
   }
 
-  public static void saveCoverageReports(SensorContext sensorContext, GoContext goContext) {
-    try {
-      Coverage coverage = new Coverage(goContext);
-      for (Path reportPath : getReportPaths(sensorContext)) {
-        parse(reportPath, coverage);
+  public static void saveCoverageReports(SensorContext sensorContext, GoContext goContext) throws IOException {
+    Coverage coverage = new Coverage(goContext);
+    for (Path reportPath : getReportPaths(sensorContext)) {
+      parse(reportPath, coverage);
+    }
+    for (Map.Entry<String, List<CoverageStat>> entry : coverage.fileMap.entrySet()) {
+      try {
+        saveFileCoverage(sensorContext, entry.getKey(), entry.getValue());
+      } catch (Exception e) {
+        LOG.error("Error saving coverage info for file " + entry.getKey(), e);
       }
-      for (Map.Entry<String, FileCoverage> entry : coverage.fileMap.entrySet()) {
-        saveFileCoverage(sensorContext, entry.getValue());
-      }
-    } catch (IOException | RuntimeException e) {
-      LOG.error("Coverage import failed: {}", e.getMessage(), e);
     }
   }
 
-  private static void saveFileCoverage(SensorContext sensorContext, FileCoverage fileCoverage) {
-    String absolutePath = fileCoverage.absolutePath.toString();
+  private static void saveFileCoverage(SensorContext sensorContext, String filePath, List<CoverageStat> coverageStats) throws IOException {
     FileSystem fileSystem = sensorContext.fileSystem();
-    InputFile inputFile = fileSystem.inputFile(fileSystem.predicates().hasAbsolutePath(absolutePath));
+    InputFile inputFile = findInputFile(filePath, fileSystem);
     if (inputFile != null) {
-      LOG.debug("Saving coverage measures for file '{}'", absolutePath);
+      LOG.debug("Saving coverage measures for file '{}'", filePath);
+      List<String> lines = Arrays.asList(inputFile.contents().split("\\r?\\n"));
       NewCoverage newCoverage = sensorContext.newCoverage().onFile(inputFile);
+      FileCoverage fileCoverage = new FileCoverage(coverageStats, lines);
       for (Map.Entry<Integer, LineCoverage> entry : fileCoverage.lineMap.entrySet()) {
         newCoverage.lineHits(entry.getKey(), entry.getValue().hits);
       }
       newCoverage.save();
     } else {
-      LOG.warn("File '{}' is not included in the project, ignoring coverage", absolutePath);
+      LOG.warn("File '{}' is not included in the project, ignoring coverage", filePath);
     }
+  }
+
+  private static InputFile findInputFile(String absolutePath, FileSystem fileSystem) {
+    FilePredicates predicates = fileSystem.predicates();
+    InputFile inputFile = fileSystem.inputFile(predicates.hasAbsolutePath(absolutePath));
+    if (inputFile != null) {
+      return inputFile;
+    }
+    LOG.debug("Resolving file {} using relative path", absolutePath);
+    Path path = Paths.get(absolutePath);
+    inputFile = fileSystem.inputFile(predicates.hasRelativePath(path.toString()));
+    while (inputFile == null && path.getNameCount() > 1) {
+      path = path.subpath(1, path.getNameCount());
+      inputFile = fileSystem.inputFile(predicates.hasRelativePath(path.toString()));
+    }
+    return inputFile;
   }
 
   static List<Path> getReportPaths(SensorContext sensorContext) {
@@ -137,7 +155,7 @@ public final class GoCoverageReport {
 
   static class Coverage {
     final GoContext goContext;
-    Map<String, FileCoverage> fileMap = new HashMap<>();
+    Map<String, List<CoverageStat>> fileMap = new HashMap<>();
 
     Coverage(GoContext goContext) {
       this.goContext = goContext;
@@ -145,28 +163,21 @@ public final class GoCoverageReport {
 
     void add(CoverageStat coverage) {
       fileMap
-        .computeIfAbsent(coverage.resolvePath(goContext), FileCoverage::new)
+        .computeIfAbsent(coverage.resolvePath(goContext), key -> new ArrayList<>())
         .add(coverage);
     }
   }
 
   static class FileCoverage {
     Map<Integer, LineCoverage> lineMap = new HashMap<>();
-    Path absolutePath;
     List<String> lines;
 
-    public FileCoverage(String filePath) {
-      absolutePath = Paths.get(filePath).toAbsolutePath().normalize();
-      if (absolutePath.toFile().exists()) {
-        try {
-          lines = Files.readAllLines(absolutePath, UTF_8);
-        } catch (IOException e) {
-          throw new IllegalStateException(e);
-        }
-      }
+    public FileCoverage(List<CoverageStat> coverageStats, @Nullable List<String> lines) {
+      this.lines = lines;
+      coverageStats.forEach(this::add);
     }
 
-    void add(CoverageStat coverage) {
+    private void add(CoverageStat coverage) {
       int startLine = findStartIgnoringBrace(coverage);
       int endLine = findEndIgnoringBrace(coverage, startLine);
       for (int line = startLine; line <= endLine; line++) {

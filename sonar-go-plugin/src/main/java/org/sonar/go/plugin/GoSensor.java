@@ -81,7 +81,7 @@ public class GoSensor implements Sensor {
     }
 
     for (InputFile inputFile : getInputFiles(context)) {
-      try (InputStream inputStream = inputFile.inputStream()){
+      try (InputStream inputStream = inputFile.inputStream()) {
         UastNode uast = uastGenerator.createUast(inputStream);
         // FIXME currently *_test.go files are MAIN and not TEST, see issue #140
         if (inputFile.type() == InputFile.Type.MAIN) {
@@ -97,8 +97,11 @@ public class GoSensor implements Sensor {
         LOG.error("Error analyzing file " + inputFile.toString(), e);
       }
     }
-
-    saveCoverageReports(context, GoCoverageReport.GoContext.DEFAULT);
+    try {
+      saveCoverageReports(context, GoCoverageReport.GoContext.DEFAULT);
+    } catch (Exception e) {
+      LOG.error("Coverage import failed: {}", e.getMessage(), e);
+    }
   }
 
   private void reportIssue(Issue issue, SensorContext context, InputFile inputFile) {
