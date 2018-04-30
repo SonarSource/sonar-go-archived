@@ -1,0 +1,15 @@
+<p>It can be extremely confusing when a <code>for</code> condition tests a variable which is not updated inside the <code>for</code> post
+statement.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+for i := 1; i &lt;= 10; j++ { // Noncompliant
+	// ...
+}
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+for i := 1; i &lt;= 10; i++ {
+	// ...
+}
+</pre>
+

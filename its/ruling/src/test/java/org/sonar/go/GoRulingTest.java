@@ -80,7 +80,7 @@ public class GoRulingTest {
       .setProperty("sonar.exclusions", "**/*generated*.go, **/*.pb.go")
       .setProperty("sonar.tests", ".")
       .setProperty("sonar.test.inclusions", "**/*_test.go")
-      .setProperty("sonar.analysis.mode", "preview")
+//      .setProperty("sonar.analysis.mode", "preview")
       .setProperty("dump.old", FileLocation.of("src/test/expected").getFile().getAbsolutePath())
       .setProperty("dump.new", FileLocation.of("build/actual").getFile().getAbsolutePath())
       .setProperty("lits.differences", litsDifferencesFile.getAbsolutePath())
