@@ -21,7 +21,6 @@ else
   export PULL_REQUEST_NUMBER=$TRAVIS_PULL_REQUEST
 fi
 
-export GOPATH="${TRAVIS_BUILD_DIR}/uast-generator-go/.gogradle/project_gopath"
 gradle_cmd="./gradlew --no-daemon --console plain"
 sonar_analysis="-DbuildNumber=$BUILD_NUMBER \
         -Dsonar.host.url=$SONAR_HOST_URL \

@@ -4,7 +4,6 @@ plugins {
 
 sonarqube {
   properties {
-    property 'sonar.projectBaseDir', "${project.projectDir}/.gogradle/project_gopath/src/github.com/SonarSource/sonar-go/uast-generator-go"
     property 'sonar.sources', '.'
     property 'sonar.exclusions', '**/*_test.go,**/generate_source.go,**/*_generated.go,**/build/**,**/.gogradle/**'
     property 'sonar.tests', '.'
