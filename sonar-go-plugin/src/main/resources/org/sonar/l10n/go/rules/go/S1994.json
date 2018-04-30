@@ -1,0 +1,16 @@
+{
+  "title": "\"for\" loop increment clauses should modify the loops' counters",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "20min"
+  },
+  "tags": [
+    "confusing"
+  ],
+  "defaultSeverity": "Critical",
+  "ruleSpecification": "RSPEC-1994",
+  "sqKey": "S1994",
+  "scope": "All"
+}
