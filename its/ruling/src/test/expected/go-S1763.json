@@ -1,8 +1,4 @@
 {
-'project:kubernetes/vendor/github.com/opencontainers/runc/libcontainer/configs/namespaces_syscall_unsupported.go':[
-6,
-13,
-],
 'project:samples/UnreachableCode.go':[
 7,
 ],

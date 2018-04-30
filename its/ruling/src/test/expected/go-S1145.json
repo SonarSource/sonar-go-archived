@@ -9,13 +9,4 @@
 'project:kubernetes/staging/src/k8s.io/apiserver/pkg/apis/example/fuzzer/fuzzer.go':[
 35,
 ],
-'project:kubernetes/vendor/github.com/Microsoft/go-winio/zsyscall_windows.go':[
-348,
-],
-'project:kubernetes/vendor/k8s.io/apimachinery/pkg/api/testing/fuzzer.go':[
-80,
-],
-'project:kubernetes/vendor/k8s.io/apiserver/pkg/apis/example/fuzzer/fuzzer.go':[
-35,
-],
 }
