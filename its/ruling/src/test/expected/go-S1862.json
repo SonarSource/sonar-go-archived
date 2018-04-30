@@ -1,10 +1,4 @@
 {
-'project:kubernetes/vendor/github.com/coreos/etcd/etcdserver/api/v3rpc/util.go':[
-67,
-],
-'project:kubernetes/vendor/github.com/stretchr/objx/value.go':[
-33,
-],
 'project:samples/NoIdenticalConditions.go':[
 6,
 ],

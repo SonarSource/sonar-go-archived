@@ -2,13 +2,4 @@
 'project:kubernetes/staging/src/k8s.io/client-go/examples/create-update-delete-deployment/main.go':[
 157,
 ],
-'project:kubernetes/vendor/github.com/coreos/go-systemd/unit/deserialize.go':[
-242,
-],
-'project:kubernetes/vendor/google.golang.org/grpc/server.go':[
-680,
-],
-'project:kubernetes/vendor/k8s.io/client-go/examples/create-update-delete-deployment/main.go':[
-157,
-],
 }

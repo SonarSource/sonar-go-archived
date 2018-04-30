@@ -19,23 +19,27 @@
  */
 package org.sonar.go.plugin;
 
-import org.junit.jupiter.api.Test;
-import org.sonar.api.Plugin;
-import org.sonar.api.SonarQubeSide;
-import org.sonar.api.SonarRuntime;
-import org.sonar.api.internal.SonarRuntimeImpl;
-import org.sonar.api.utils.Version;
+import org.sonar.api.batch.fs.InputFile;
+import org.sonar.api.batch.fs.InputFileFilter;
+import org.sonar.api.config.Configuration;
+import org.sonar.api.utils.WildcardPattern;
 
-import static org.assertj.core.api.Assertions.assertThat;
+public class GoExclusionsFileFilter implements InputFileFilter {
 
-class GoPluginTest {
+  private final Configuration configuration;
 
-  @Test
-  void count_extension_points() {
-    SonarRuntime runtime = SonarRuntimeImpl.forSonarQube(Version.create(6, 7), SonarQubeSide.SCANNER);
-    Plugin.Context context = new Plugin.Context(runtime);
-    Plugin underTest = new GoPlugin();
-    underTest.define(context);
-    assertThat(context.getExtensions()).hasSize(8);
+  public GoExclusionsFileFilter(Configuration configuration) {
+    this.configuration = configuration;
   }
+
+  @Override
+  public boolean accept(InputFile inputFile) {
+    if (!GoLanguage.KEY.equals(inputFile.language())) {
+      return true;
+    }
+    String[] excludedPatterns = this.configuration.getStringArray(GoPlugin.EXCLUSIONS_KEY);
+    String relativePath = inputFile.uri().toString();
+    return !WildcardPattern.match(WildcardPattern.create(excludedPatterns), relativePath);
+  }
+
 }
