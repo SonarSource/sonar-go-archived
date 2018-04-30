@@ -24,6 +24,7 @@ import java.util.List;
 import org.sonar.commonruleengine.checks.AllBranchesAreIdenticalCheck;
 import org.sonar.commonruleengine.checks.BinaryOperatorIdenticalExpressionsCheck;
 import org.sonar.commonruleengine.checks.CollapsibleIfCheck;
+import org.sonar.commonruleengine.checks.CollectionSizeCheck;
 import org.sonar.commonruleengine.checks.DoublePrefixOperatorCheck;
 import org.sonar.commonruleengine.checks.EmptyBlockCheck;
 import org.sonar.commonruleengine.checks.EmptyFunctionCheck;
@@ -69,6 +70,7 @@ public class GoChecks {
       AllBranchesAreIdenticalCheck.class,
       BinaryOperatorIdenticalExpressionsCheck.class,
       CollapsibleIfCheck.class,
+      CollectionSizeCheck.class,
       DoublePrefixOperatorCheck.class,
       FileHeaderCheck.class,
       EmptyBlockCheck.class,
