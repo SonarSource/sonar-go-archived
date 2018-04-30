@@ -37,3 +37,6 @@ func foo(p int) { // FN
 
    bar(1)
 }
+
+// function without body
+func flushICache(begin, end uintptr)  // implemented externally

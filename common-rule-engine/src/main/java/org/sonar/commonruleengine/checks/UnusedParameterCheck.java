@@ -42,25 +42,21 @@ public class UnusedParameterCheck extends Check {
 
   @Override
   public void visitNode(UastNode node) {
-    List<UastNode> parameterDeclarations = new ArrayList<>();
-    node.getDescendants(Kind.PARAMETER_LIST, parameterDeclarations::add);
+    Optional<UastNode> functionBody = node.getChild(Kind.BLOCK);
+    if (isMethod(node) || !functionBody.isPresent()) {
+      return;
+    }
 
     List<UastNode> parameterNames = new ArrayList<>();
-    for (UastNode parameterDeclaration : parameterDeclarations) {
-      // exclude methods (functions having receiver clause)
-      if (parameterDeclaration.nativeNode.contains("Recv")) {
-        return;
-      } else {
-        parameterDeclaration.getDescendants(Kind.VARIABLE_NAME, parameterNames::add);
-      }
-    }
+    node.getDescendants(Kind.PARAMETER_LIST, parameterDeclaration ->
+      parameterDeclaration.getDescendants(Kind.VARIABLE_NAME, parameterNames::add));
 
-    List<UastNode> unusedParameters = new ArrayList<>();
-    for (UastNode parameterName : parameterNames) {
-      if (!isParameterUsed(node, parameterName)) {
-        unusedParameters.add(parameterName);
-      }
-    }
+    Set<UastNode> identifiersInBody = new HashSet<>();
+    functionBody.get().getDescendants(Kind.IDENTIFIER, identifiersInBody::add);
+
+    List<UastNode> unusedParameters = parameterNames.stream()
+      .filter(parameterName -> !isParameterUsed(parameterName, identifiersInBody))
+      .collect(Collectors.toList());
 
     if (!unusedParameters.isEmpty()) {
       String parametersJoined = unusedParameters.stream()
@@ -69,24 +65,31 @@ public class UnusedParameterCheck extends Check {
       String message = String.format(MESSAGE, parametersJoined);
       reportIssue(unusedParameters.get(0), message, secondaryMessages(unusedParameters));
     }
-
   }
 
-  private static boolean isParameterUsed(UastNode functionNode, UastNode parameterName) {
+  private static boolean isParameterUsed(UastNode parameterName, Set<UastNode> identifiersInBody) {
+    // looks like parameter name is always identifier with token, this check is here for extra safety
     if (parameterName.is(Kind.IDENTIFIER) && parameterName.token != null) {
       String name = parameterName.token.value;
       if (name.equals("_")) {
         return true;
       }
-      Optional<UastNode> functionBody = functionNode.getChild(Kind.BLOCK);
-      if (functionBody.isPresent()) {
-        Set<UastNode> identifiersInBody = new HashSet<>();
-        functionBody.get().getDescendants(Kind.IDENTIFIER, identifiersInBody::add);
-        return identifiersInBody.stream().anyMatch(identifier -> identifier.token != null && identifier.token.value.equals(name));
+      return identifiersInBody.stream().anyMatch(identifier -> identifier.token != null && identifier.token.value.equals(name));
+    }
+    return true;
+  }
+
+  private static boolean isMethod(UastNode functionNode) {
+    List<UastNode> parameterDeclarations = new ArrayList<>();
+    functionNode.getDescendants(Kind.PARAMETER_LIST, parameterDeclarations::add);
+
+    for (UastNode parameterDeclaration : parameterDeclarations) {
+      if (parameterDeclaration.nativeNode.contains("Recv")) {
+        return true;
       }
     }
 
-    return true;
+    return false;
   }
 
   private static Issue.Message[] secondaryMessages(List<UastNode> nodes) {
