@@ -63,8 +63,12 @@ public class NestedControlFlowCheck extends Check {
 
   private void checkNesting(UastNode node) {
     if (nesting.size() == max) {
-      Issue.Message[] secondary = nesting.stream().map(n -> new Issue.Message(n.getChild(UastNode.Kind.KEYWORD).orElse(node), "Nesting +1")).toArray(Issue.Message[]::new);
-      reportIssue(node.getChild(UastNode.Kind.KEYWORD).orElse(node), "Refactor this code to not nest more than " + max + " control flow statements.", secondary);
+      Issue.Message[] secondary = nesting.stream()
+        .map(n -> new Issue.Message(n.getChild(UastNode.Kind.KEYWORD).orElse(node), "Nesting +1"))
+        .toArray(Issue.Message[]::new);
+      reportIssue(node.getChild(UastNode.Kind.KEYWORD).orElse(node),
+        "Refactor this code to not nest more than " + max + " control flow statements.",
+        secondary);
     }
   }
 }

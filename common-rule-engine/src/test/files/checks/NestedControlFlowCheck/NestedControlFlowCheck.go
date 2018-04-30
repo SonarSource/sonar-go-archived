@@ -2,13 +2,13 @@ package NestedControlFlowCheck
 
 func nesting(condition1, condition2, condition4, condition5 bool) {
     if condition1 {
-//  ^^>
+//  ^^> {{Nesting +1}}
         if condition2 {
-//      ^^>
+//      ^^> {{Nesting +1}}
             for i := 1; i <= 10; i++ {
-//          ^^^>
+//          ^^^> {{Nesting +1}}
                 if condition4 {
-//              ^^>
+//              ^^> {{Nesting +1}}
                     if condition5 { // Noncompliant {{Refactor this code to not nest more than 4 control flow statements.}}
 //                  ^^
      }
