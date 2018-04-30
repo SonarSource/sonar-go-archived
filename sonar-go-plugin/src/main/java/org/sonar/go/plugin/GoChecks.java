@@ -36,6 +36,7 @@ import org.sonar.commonruleengine.checks.FunctionNameConventionCheck;
 import org.sonar.commonruleengine.checks.FunctionTooBigCheck;
 import org.sonar.commonruleengine.checks.HardcodedIpAddressCheck;
 import org.sonar.commonruleengine.checks.IfElseIfWithoutElseCheck;
+import org.sonar.commonruleengine.checks.NestedControlFlowCheck;
 import org.sonar.commonruleengine.checks.NestedSwitchCheck;
 import org.sonar.commonruleengine.checks.NoHardcodedCredentialsCheck;
 import org.sonar.commonruleengine.checks.NoIdenticalConditionsCheck;
@@ -83,6 +84,7 @@ public class GoChecks {
       IfElseIfWithoutElseCheck.class,
       FunctionNameConventionCheck.class,
       NestedSwitchCheck.class,
+      NestedControlFlowCheck.class,
       NoIdenticalConditionsCheck.class,
       NoIdenticalFunctionsCheck.class,
       NoHardcodedCredentialsCheck.class,
