@@ -568,10 +568,10 @@ var missingKeywordToken = map[byte]string{
 	't': "type", 'r': "range", 'e': "else", 'c': "chan", '<': "<-"}
 
 var missingKeywordTokenKinds = map[string][]Kind{
-	"chan": {KEYWORD},
-	"else": {ELSE_KEYWORD, KEYWORD},
+	"chan":  {KEYWORD},
+	"else":  {ELSE_KEYWORD, KEYWORD},
 	"range": {KEYWORD},
-	"type": {KEYWORD},
+	"type":  {KEYWORD},
 }
 
 func (t *UastMapper) appendMissingToken(children []*Node, offset, endOffset int) []*Node {
