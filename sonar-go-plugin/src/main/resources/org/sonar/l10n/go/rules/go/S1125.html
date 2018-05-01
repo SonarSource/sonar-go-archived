@@ -5,8 +5,7 @@ if boolFunc() == true {
     // ...
 }
 
-flag := x || true
-
+flag := x &amp;&amp; true
 </pre>
 <h2>Compliant Solution</h2>
 <pre>
@@ -15,6 +14,5 @@ if boolFunc() {
 }
 
 flag := x
-
 </pre>
 
