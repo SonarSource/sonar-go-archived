@@ -568,7 +568,10 @@ var missingKeywordToken = map[byte]string{
 	't': "type", 'r': "range", 'e': "else", 'c': "chan", '<': "<-"}
 
 var missingKeywordTokenKinds = map[string][]Kind{
-	"else": {ELSE_KEYWORD},
+	"chan": {KEYWORD},
+	"else": {ELSE_KEYWORD, KEYWORD},
+	"range": {KEYWORD},
+	"type": {KEYWORD},
 }
 
 func (t *UastMapper) appendMissingToken(children []*Node, offset, endOffset int) []*Node {
@@ -791,13 +794,4 @@ func (t *UastMapper) computeUnaryExprKind(op token.Token) []Kind {
 		// should all be covered
 		return []Kind{}
 	}
-}
-
-func containsKind(kinds []Kind, kind Kind) bool {
-	for _, k := range kinds {
-		if k == kind {
-			return true
-		}
-	}
-	return false
 }
