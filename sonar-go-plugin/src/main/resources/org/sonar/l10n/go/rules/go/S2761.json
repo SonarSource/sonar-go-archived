@@ -1,5 +1,5 @@
 {
-  "title": "Doubled prefix operators \"!!\" and \"~~\" should not be used",
+  "title": "Unary prefix operators should not be repeated",
   "type": "BUG",
   "status": "ready",
   "remediation": {

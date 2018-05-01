@@ -1,20 +1,21 @@
-<p>Calling the <code>!</code> or <code>~</code> prefix operator twice does nothing: the second invocation undoes the first. Such mistakes are
-typically caused by accidentally double-tapping the key in question without noticing.</p>
-<p>Either this is a bug, if the operator was actually meant to be called once, or misleading if done on purpose.</p>
+<p>The needless repetition of an operator is usually a typo. There is no reason to write <code>!!!i</code> when <code>!i</code> will do.</p>
+<p>On the other hand, the repetition of increment and decrement operators may have been done on purpose, but doing so obfuscates the meaning, and
+should be simplified.</p>
+<p>This rule raises an issue for sequences of: <code>!</code>, <code>^</code>, <code>-</code>, and <code>+</code>.</p>
 <h2>Noncompliant Code Example</h2>
 <pre>
-int v1 = 0;
-bool v2 = false;
+  var a int = 1
+  var flag bool = true
 
-var v3 = !!v1; // Noncompliant
-var v4 = ~~v2; // Noncompliant
+  var a1 int = ^^^a // Noncompliant
+  var flag2 bool  = !!!flag  // Noncompliant
 </pre>
 <h2>Compliant Solution</h2>
 <pre>
-int v1 = 0;
-bool v2 = false;
+  var a int = 1
+  var flag bool = true
 
-var v3 = !v1;
-var v4 = ~v2;
+  var a1 int = ^a
+  var flag2 bool  = !flag
 </pre>
 

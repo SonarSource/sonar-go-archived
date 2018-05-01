@@ -1,5 +1,5 @@
-<p>When two methods have the same implementation, either it was a mistake - something else was intended - or the duplication was intentional, but may
-be confusing to maintainers. In the latter case, one implementation should invoke the other.</p>
+<p>When two functions have the same implementation, either it was a mistake - something else was intended - or the duplication was intentional, but
+may be confusing to maintainers. In the latter case, one implementation should invoke the other.</p>
 <h2>Noncompliant Code Example</h2>
 <pre>
 func fun1() (x, y int) {
@@ -27,5 +27,5 @@ func fun2() (x, y int) {  // Compliant
 }
 </pre>
 <h2>Exceptions</h2>
-<p>Methods that are not accessors (getters and setters), with fewer than 2 statements are ignored.</p>
+<p>Functions with fewer than 2 statements are ignored.</p>
 
