@@ -34,3 +34,9 @@ func test1() {
   var h1 int  = ^^hash; // Noncompliant
   var h2 int  = ^^hashCodep; // Noncompliant
 }
+
+func test(a,b,c bool) {
+  if !(a && !b) {
+
+  }
+}
