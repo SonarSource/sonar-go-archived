@@ -68,8 +68,6 @@ public class DoublePrefixOperatorCheck extends Check {
       UastNode expression = ParenthesizedLike.from(child).expression();
       if(expression.is(kind)) {
         reportIssue(expression);
-      } else {
-        checkDescendant(kind, expression);
       }
     });
   }
