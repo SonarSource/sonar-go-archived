@@ -867,7 +867,7 @@ func foo(c bool) {
 
 	actual = newTestNode(ifStmt.Children[3])
 	expected = TestNode{
-		kinds: []Kind{ELSE_KEYWORD},
+		kinds: []Kind{ELSE_KEYWORD, KEYWORD},
 		token: Token{Value: "else", Line: 4, Column: 7},
 	}
 
