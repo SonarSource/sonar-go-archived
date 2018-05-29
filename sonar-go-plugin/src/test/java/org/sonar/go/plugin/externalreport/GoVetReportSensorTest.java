@@ -98,12 +98,17 @@ class GoVetReportSensorTest {
   @Test
   void issues_with_sonarqube_72() {
     List<ExternalIssue> externalIssues = executeSensor(7, 2, "govet-report.txt");
-    assertThat(externalIssues).hasSize(1);
+    assertThat(externalIssues).hasSize(2);
 
     ExternalIssue first = externalIssues.get(0);
     assertThat(first.severity()).isEqualTo(Severity.MAJOR);
-    assertThat(first.primaryLocation().message()).isEqualTo("TODO replace with a real report");
+    assertThat(first.primaryLocation().message()).isEqualTo("comparison of function Foo == nil is always false");
     assertThat(first.primaryLocation().textRange().start().line()).isEqualTo(1);
+
+    ExternalIssue second = externalIssues.get(1);
+    assertThat(second.severity()).isEqualTo(Severity.MAJOR);
+    assertThat(second.primaryLocation().message()).isEqualTo("Printf format %s has arg &str of wrong type *string");
+    assertThat(second.primaryLocation().textRange().start().line()).isEqualTo(2);
 
     assertThat(logTester.logs(LoggerLevel.ERROR)).isEmpty();
   }
@@ -121,6 +126,17 @@ class GoVetReportSensorTest {
     assertThat(externalIssues).isEmpty();
     assertThat(logTester.logs(LoggerLevel.ERROR)).hasSize(1);
     assertThat(logTester.logs(LoggerLevel.ERROR).get(0)).startsWith("No issues information will be saved as the report file");
+  }
+
+  @Test
+  void should_parse_govet_report() {
+    String input = "./vendor/github.com/foo/go-bar/hello_world.go:550: redundant or: n == 2 || n == 2";
+    List<GoVetReportSensor.GoVetError> goVetErrors = GoVetReportSensor.fromGovetFormat(input);
+    assertThat(goVetErrors).hasSize(1);
+    GoVetReportSensor.GoVetError goVetError = goVetErrors.get(0);
+    assertThat(goVetError.filename).isEqualTo("./vendor/github.com/foo/go-bar/hello_world.go");
+    assertThat(goVetError.lineNumber).isEqualTo(550);
+    assertThat(goVetError.message).isEqualTo("redundant or: n == 2 || n == 2");
   }
 
   private List<ExternalIssue> executeSensor(int majorVersion, int minorVersion, @Nullable String reportFileName) {

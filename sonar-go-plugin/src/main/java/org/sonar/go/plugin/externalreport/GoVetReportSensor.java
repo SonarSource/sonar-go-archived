@@ -22,6 +22,11 @@ package org.sonar.go.plugin.externalreport;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.utils.log.Logger;
 import org.sonar.api.utils.log.Loggers;
@@ -47,12 +52,36 @@ public class GoVetReportSensor extends AbstractReportSensor {
   void importReport(File report, SensorContext context) {
     LOG.info("Importing {}", report.getAbsoluteFile());
     try {
-      // TODO read the report file
       String reportContent = new String(Files.readAllBytes(report.toPath()), UTF_8);
-      addLineIssue(context, "main.go", 1, reportContent);
+      List<GoVetError> goVetErrors = fromGovetFormat(reportContent);
+      for (GoVetError goVetError : goVetErrors) {
+        addLineIssue(context, goVetError.filename, goVetError.lineNumber, goVetError.message);
+      }
     } catch (IOException e) {
       LOG.error("No issues information will be saved as the report file '{}' can't be read.", report.getPath(), e);
     }
   }
 
+  static List<GoVetError> fromGovetFormat(String input) {
+    String lines[] = input.split("\\r?\\n");
+    Pattern govetLine = Pattern.compile("([^:]+):(\\d+):(.*)");
+    ArrayList<GoVetError> goVetErrors = new ArrayList<>();
+    for (String line : lines) {
+      Matcher matcher = govetLine.matcher(line);
+      if (matcher.matches()) {
+        GoVetError govetError = new GoVetError();
+        govetError.filename = matcher.group(1).trim();
+        govetError.lineNumber = Integer.parseInt(matcher.group(2).trim());
+        govetError.message = matcher.group(3).trim();
+        goVetErrors.add(govetError);
+      }
+    }
+    return goVetErrors;
+  }
+
+  static class GoVetError {
+    int lineNumber;
+    String message;
+    String filename;
+  }
 }
