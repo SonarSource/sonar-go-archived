@@ -22,6 +22,7 @@ package org.sonar.go.plugin;
 import org.sonar.api.Plugin;
 import org.sonar.api.config.PropertyDefinition;
 import org.sonar.api.resources.Qualifiers;
+import org.sonar.go.plugin.externalreport.GoVetReportSensor;
 
 public class GoPlugin implements Plugin {
 
@@ -40,6 +41,7 @@ public class GoPlugin implements Plugin {
       GoRulesDefinition.class,
       SonarWayProfile.class,
       GoExclusionsFileFilter.class,
+      GoVetReportSensor.class,
 
       PropertyDefinition.builder(GoLanguage.FILE_SUFFIXES_KEY)
         .name("File Suffixes")
