@@ -31,6 +31,8 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 public class GoVetReportSensor extends AbstractReportSensor {
   private static final Logger LOG = Loggers.get(GoVetReportSensor.class);
 
+  public static final String PROPERTY_KEY = "sonar.go.govet.reportPaths";
+
   @Override
   String linterName() {
     return "govet";
@@ -38,7 +40,7 @@ public class GoVetReportSensor extends AbstractReportSensor {
 
   @Override
   String reportsPropertyName() {
-    return "sonar.go.govet.reportPaths";
+    return PROPERTY_KEY;
   }
 
   @Override
