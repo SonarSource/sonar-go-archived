@@ -64,14 +64,14 @@ public class GoVetReportTest {
           issue.ruleKey() + "|" +
           issue.severity() + "|" +
           issue.debt() + "|" +
-          issue.line() + "|" +
+          "line:" + issue.line() + "|" +
           issue.message())
         .sorted()
         .collect(Collectors.joining("\n"));
 
       assertThat(issueReport).isEqualTo(
-        "project-id:SelfAssignement.go|external_govet:generic|MAJOR|5min|7|self-assignment of name to name\n" +
-        "project-id:SelfAssignement.go|external_govet:generic|MAJOR|5min|9|self-assignment of user.name to user.name");
+        "project-id:SelfAssignement.go|external_govet:generic|MAJOR|5min|line:7|self-assignment of name to name\n" +
+        "project-id:SelfAssignement.go|external_govet:generic|MAJOR|5min|line:9|self-assignment of user.name to user.name");
     } else {
       assertThat(issues).hasSize(14);
     }

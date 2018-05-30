@@ -82,7 +82,7 @@ public class GoPlugin implements Plugin {
       PropertyDefinition.builder(GoVetReportSensor.PROPERTY_KEY)
         .index(30)
         .name("\"go vet\" Report Files")
-        .description("Paths (absolute or relative) to the files with \"go vet\" errors/issues.")
+        .description("Paths (absolute or relative) to the files with \"go vet\" issues.")
         .category(GO_CATEGORY)
         .subCategory(EXTERNAL_LINTER_SUBCATEGORY)
         .onQualifiers(Qualifiers.PROJECT)

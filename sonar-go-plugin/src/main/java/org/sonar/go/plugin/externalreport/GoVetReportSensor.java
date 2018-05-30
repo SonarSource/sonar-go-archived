@@ -40,8 +40,13 @@ public class GoVetReportSensor extends AbstractReportSensor {
   private static final Pattern GOVET_LINE_REGEX = Pattern.compile("(?<file>[^:]+):(?<line>\\d+):(?<message>.*)");
 
   @Override
-  String linterName() {
+  String linterId() {
     return "govet";
+  }
+
+  @Override
+  String linterName() {
+    return "go vet";
   }
 
   @Override
@@ -71,6 +76,10 @@ public class GoVetReportSensor extends AbstractReportSensor {
         govetError.lineNumber = Integer.parseInt(matcher.group("line").trim());
         govetError.message = matcher.group("message").trim();
         goVetErrors.add(govetError);
+      } else {
+        if (!line.isEmpty() && !line.startsWith("exit status")) {
+          LOG.debug("Unexpected go vet line: " + line);
+        }
       }
     }
     return goVetErrors;

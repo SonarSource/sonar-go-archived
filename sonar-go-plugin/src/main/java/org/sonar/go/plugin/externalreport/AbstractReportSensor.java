@@ -42,6 +42,8 @@ public abstract class AbstractReportSensor implements Sensor {
   static final long DEFAULT_REMEDIATION_COST = 5L;
   static final Severity DEFAULT_SEVERITY = Severity.MAJOR;
 
+  abstract String linterId();
+
   abstract String linterName();
 
   abstract String reportsPropertyName();
@@ -107,8 +109,8 @@ public abstract class AbstractReportSensor implements Sensor {
 
       newExternalIssue
         .at(primaryLocation)
-        .forRule(RuleKey.of(linterName(), "generic"))
-        .type(RuleType.CODE_SMELL)
+        .forRule(RuleKey.of(linterId(), "generic"))
+        .type(RuleType.BUG)
         .severity(DEFAULT_SEVERITY)
         .remediationEffortMinutes(DEFAULT_REMEDIATION_COST)
         .save();

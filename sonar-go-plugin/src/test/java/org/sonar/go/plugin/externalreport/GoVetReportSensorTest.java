@@ -85,7 +85,7 @@ class GoVetReportSensorTest {
   public void test_descriptor() throws Exception {
     DefaultSensorDescriptor sensorDescriptor = new DefaultSensorDescriptor();
     sensor.describe(sensorDescriptor);
-    assertThat(sensorDescriptor.name()).isEqualTo("Import of govet issues");
+    assertThat(sensorDescriptor.name()).isEqualTo("Import of go vet issues");
     assertThat(sensorDescriptor.languages()).containsOnly("go");
   }
 
