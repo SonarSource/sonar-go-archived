@@ -25,6 +25,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javax.annotation.Nullable;
 import org.junit.jupiter.api.BeforeEach;
@@ -129,9 +130,9 @@ class GoVetReportSensorTest {
   }
 
   @Test
-  void should_parse_govet_report() {
-    String input = "./vendor/github.com/foo/go-bar/hello_world.go:550: redundant or: n == 2 || n == 2";
-    List<GoVetReportSensor.GoVetError> goVetErrors = GoVetReportSensor.fromGovetFormat(input);
+  void should_parse_govet_report_line() {
+    List<String> lines = Collections.singletonList("./vendor/github.com/foo/go-bar/hello_world.go:550: redundant or: n == 2 || n == 2");
+    List<GoVetReportSensor.GoVetError> goVetErrors = GoVetReportSensor.fromGovetFormat(lines);
     assertThat(goVetErrors).hasSize(1);
     GoVetReportSensor.GoVetError goVetError = goVetErrors.get(0);
     assertThat(goVetError.filename).isEqualTo("./vendor/github.com/foo/go-bar/hello_world.go");

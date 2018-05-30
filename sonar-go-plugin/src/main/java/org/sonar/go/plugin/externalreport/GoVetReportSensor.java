@@ -26,7 +26,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.utils.log.Logger;
 import org.sonar.api.utils.log.Loggers;
@@ -37,6 +36,8 @@ public class GoVetReportSensor extends AbstractReportSensor {
   private static final Logger LOG = Loggers.get(GoVetReportSensor.class);
 
   public static final String PROPERTY_KEY = "sonar.go.govet.reportPaths";
+
+  private static final Pattern GOVET_LINE_REGEX = Pattern.compile("(?<file>[^:]+):(?<line>\\d+):(?<message>.*)");
 
   @Override
   String linterName() {
@@ -52,9 +53,7 @@ public class GoVetReportSensor extends AbstractReportSensor {
   void importReport(File report, SensorContext context) {
     LOG.info("Importing {}", report.getAbsoluteFile());
     try {
-      String reportContent = new String(Files.readAllBytes(report.toPath()), UTF_8);
-      List<GoVetError> goVetErrors = fromGovetFormat(reportContent);
-      for (GoVetError goVetError : goVetErrors) {
+      for (GoVetError goVetError : fromGovetFormat(Files.readAllLines(report.toPath(), UTF_8))) {
         addLineIssue(context, goVetError.filename, goVetError.lineNumber, goVetError.message);
       }
     } catch (IOException e) {
@@ -62,17 +61,15 @@ public class GoVetReportSensor extends AbstractReportSensor {
     }
   }
 
-  static List<GoVetError> fromGovetFormat(String input) {
-    String lines[] = input.split("\\r?\\n");
-    Pattern govetLine = Pattern.compile("([^:]+):(\\d+):(.*)");
+  static List<GoVetError> fromGovetFormat(List<String> lines) {
     ArrayList<GoVetError> goVetErrors = new ArrayList<>();
     for (String line : lines) {
-      Matcher matcher = govetLine.matcher(line);
+      Matcher matcher = GOVET_LINE_REGEX.matcher(line);
       if (matcher.matches()) {
         GoVetError govetError = new GoVetError();
-        govetError.filename = matcher.group(1).trim();
-        govetError.lineNumber = Integer.parseInt(matcher.group(2).trim());
-        govetError.message = matcher.group(3).trim();
+        govetError.filename = matcher.group("file").trim();
+        govetError.lineNumber = Integer.parseInt(matcher.group("line").trim());
+        govetError.message = matcher.group("message").trim();
         goVetErrors.add(govetError);
       }
     }
