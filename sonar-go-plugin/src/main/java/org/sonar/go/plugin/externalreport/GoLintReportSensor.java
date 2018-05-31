@@ -26,17 +26,17 @@ import org.sonar.api.rules.RuleType;
 import org.sonar.api.utils.log.Logger;
 import org.sonar.api.utils.log.Loggers;
 
-public class GoVetReportSensor extends AbstractReportSensor {
+public class GoLintReportSensor extends AbstractReportSensor {
 
   private static final Logger LOG = Loggers.get(GoVetReportSensor.class);
 
-  public static final String PROPERTY_KEY = "sonar.go.govet.reportPaths";
+  public static final String PROPERTY_KEY = "sonar.go.golint.reportPaths";
 
-  private static final Pattern GO_VET_LINE_REGEX = Pattern.compile("(?<file>[^:]+):(?<line>\\d+):(?<message>.*)");
+  private static final Pattern GO_LINT_LINE_REGEX = Pattern.compile("(?<file>[^:]+):(?<line>\\d+):\\d*:(?<message>.*)");
 
   @Override
   String linterName() {
-    return "go vet";
+    return "Golint";
   }
 
   @Override
@@ -47,16 +47,16 @@ public class GoVetReportSensor extends AbstractReportSensor {
   @Nullable
   @Override
   ExternalIssue parse(String line) {
-    Matcher matcher = GO_VET_LINE_REGEX.matcher(line);
+    Matcher matcher = GO_LINT_LINE_REGEX.matcher(line);
     if (matcher.matches()) {
       return new ExternalIssue(
-        "govet",
-        RuleType.BUG,
+        "golint",
+        RuleType.CODE_SMELL,
         "generic",
         matcher.group("file").trim(),
         Integer.parseInt(matcher.group("line").trim()),
         matcher.group("message").trim());
-    } else if (!line.isEmpty() && !line.startsWith("exit status")) {
+    } else if (!line.isEmpty()) {
       LOG.debug(logPrefix() + "Unexpected line: " + line);
     }
     return null;
