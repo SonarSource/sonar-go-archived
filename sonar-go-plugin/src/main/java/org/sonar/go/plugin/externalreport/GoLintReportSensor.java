@@ -54,7 +54,7 @@ public class GoLintReportSensor extends AbstractReportSensor {
       String filename = matcher.group("file").trim();
       int lineNumber = Integer.parseInt(matcher.group("line").trim());
       String message = matcher.group("message").trim();
-      return new ExternalIssue(LINTER_ID, RuleType.CODE_SMELL, GENERIC_ISSUE_KEY, filename, lineNumber, message);
+      return new ExternalIssue(LINTER_ID, RuleType.CODE_SMELL, null, filename, lineNumber, message);
     } else {
       LOG.debug(logPrefix() + "Unexpected line: " + line);
     }

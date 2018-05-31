@@ -22,6 +22,7 @@ package org.sonar.go.plugin.externalreport;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.annotation.Nullable;
+
 import org.sonar.api.rules.RuleType;
 import org.sonar.api.utils.log.Logger;
 import org.sonar.api.utils.log.Loggers;
@@ -34,6 +35,9 @@ public class GoMetaLinterReportSensor extends AbstractReportSensor {
 
   private static final Pattern GO_META_LINTER_REGEX = Pattern.compile("(?<file>[^:]+):(?<line>\\d+):\\d*:" +
     "(?<severity>(error|warning)):(?<message>.*)\\((?<linter>[^\\(]*)\\)");
+
+  private static final Pattern RULE_KEY_REGEX = Pattern.compile("\\((?<ruleKey>[A-Za-z0-9_-]{1,20})\\)$");
+
 
   @Override
   String linterName() {
@@ -55,7 +59,13 @@ public class GoMetaLinterReportSensor extends AbstractReportSensor {
       String filename = matcher.group("file").trim();
       int lineNumber = Integer.parseInt(matcher.group("line").trim());
       String message = matcher.group("message").trim();
-      return new ExternalIssue(linter, type, GENERIC_ISSUE_KEY, filename, lineNumber, message);
+      Matcher ruleKeyMatcher = RULE_KEY_REGEX.matcher(message);
+      String ruleKey = null;
+      if (ruleKeyMatcher.find()) {
+        ruleKey = ruleKeyMatcher.group("ruleKey");
+        message = message.substring(0, ruleKeyMatcher.start()).trim();
+      }
+      return new ExternalIssue(linter, type, ruleKey, filename, lineNumber, message);
     } else {
       LOG.debug(logPrefix() + "Unexpected line: " + line);
     }

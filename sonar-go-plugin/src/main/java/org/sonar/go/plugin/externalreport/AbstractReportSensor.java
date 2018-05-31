@@ -23,6 +23,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import javax.annotation.Nullable;
+
 import org.sonar.api.batch.fs.FilePredicates;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.batch.rule.Severity;
@@ -38,6 +39,7 @@ import org.sonar.api.utils.log.Loggers;
 import org.sonar.go.plugin.GoLanguage;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
+import static org.sonar.go.plugin.externalreport.GoVetReportSensor.LINTER_ID;
 
 public abstract class AbstractReportSensor implements Sensor {
 
@@ -90,22 +92,22 @@ public abstract class AbstractReportSensor implements Sensor {
       }
     } catch (IOException e) {
       LOG.error(logPrefix() + "No issues information will be saved as the report file '{}' can't be read.",
-        report.getPath(), e);
+              report.getPath(), e);
     }
   }
 
   @Override
   public void describe(SensorDescriptor sensorDescriptor) {
     sensorDescriptor
-      .onlyOnLanguage(GoLanguage.KEY)
-      .onlyWhenConfiguration(conf -> conf.hasKey(reportsPropertyName()))
-      .name("Import of " + linterName() + " issues");
+            .onlyOnLanguage(GoLanguage.KEY)
+            .onlyWhenConfiguration(conf -> conf.hasKey(reportsPropertyName()))
+            .name("Import of " + linterName() + " issues");
   }
 
   /**
-    * Returns a java.io.File for the given path.
-    * If path is not absolute, returns a File with module base directory as parent path.
-    */
+   * Returns a java.io.File for the given path.
+   * If path is not absolute, returns a File with module base directory as parent path.
+   */
   static File getIOFile(File baseDir, String path) {
     File file = new File(path);
     if (!file.isAbsolute()) {
@@ -129,17 +131,27 @@ public abstract class AbstractReportSensor implements Sensor {
     if (inputFile != null) {
       NewExternalIssue newExternalIssue = context.newExternalIssue();
       NewIssueLocation primaryLocation = newExternalIssue.newLocation()
-        .message(issue.message)
-        .on(inputFile)
-        .at(inputFile.selectLine(issue.lineNumber));
+              .message(issue.message)
+              .on(inputFile)
+              .at(inputFile.selectLine(issue.lineNumber));
 
       newExternalIssue
-        .at(primaryLocation)
-        .forRule(RuleKey.of(issue.linter, issue.ruleKey))
-        .type(issue.type)
-        .severity(DEFAULT_SEVERITY)
-        .remediationEffortMinutes(DEFAULT_REMEDIATION_COST)
-        .save();
+              .at(primaryLocation)
+              .forRule(RuleKey.of(issue.linter, mapRuleKey(issue.ruleKey, issue.message, issue.linter)))
+              .type(issue.type)
+              .severity(DEFAULT_SEVERITY)
+              .remediationEffortMinutes(DEFAULT_REMEDIATION_COST)
+              .save();
     }
+  }
+
+  private String mapRuleKey(@Nullable String ruleKey, String message, String linter) {
+    if (ruleKey != null) {
+      return ruleKey;
+    }
+    if (linter.equals(LINTER_ID)) {
+      return GoVetKeys.lookup(message);
+    }
+    return GENERIC_ISSUE_KEY;
   }
 }

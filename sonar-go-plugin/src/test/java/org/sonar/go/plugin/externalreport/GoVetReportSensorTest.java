@@ -20,6 +20,7 @@
 package org.sonar.go.plugin.externalreport;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -91,6 +92,14 @@ class GoVetReportSensorTest {
   }
 
   @Test
+  void all_issues_with_sonarqube_72() throws IOException {
+    SensorContextTester context = ExternalLinterSensorHelper.createContext(7, 2);
+    context.settings().setProperty("sonar.go.govet.reportPaths", REPORT_BASE_PATH.resolve("all-govet-report.txt").toString());
+    List<ExternalIssue> externalIssues = ExternalLinterSensorHelper.executeSensor(new GoVetReportSensor(), context);
+    assertThat(externalIssues).hasSize(411);
+  }
+
+  @Test
   void no_issues_with_invalid_report_path() throws IOException {
     SensorContextTester context = ExternalLinterSensorHelper.createContext(7, 2);
     context.settings().setProperty("sonar.go.govet.reportPaths", REPORT_BASE_PATH.resolve("invalid-path.txt").toString());
@@ -118,10 +127,45 @@ class GoVetReportSensorTest {
     assertThat(issue).isNotNull();
     assertThat(issue.linter).isEqualTo("govet");
     assertThat(issue.type).isEqualTo(RuleType.BUG);
-    assertThat(issue.ruleKey).isEqualTo("issue");
+    assertThat(issue.ruleKey).isNull();
     assertThat(issue.filename).isEqualTo("./vendor/github.com/foo/go-bar/hello_world.go");
     assertThat(issue.lineNumber).isEqualTo(550);
     assertThat(issue.message).isEqualTo("redundant or: n == 2 || n == 2");
   }
 
+  @Test
+  void should_match_govet_keys() throws IOException {
+    SensorContextTester context = ExternalLinterSensorHelper.createContext(7, 2);
+    context.settings().setProperty("sonar.go.govet.reportPaths", REPORT_BASE_PATH.resolve("govet-report.txt").toString());
+    List<ExternalIssue> externalIssues = ExternalLinterSensorHelper.executeSensor(new GoVetReportSensor(), context);
+    List<String> keys = new ArrayList<>();
+    for (ExternalIssue externalIssue : externalIssues) {
+      for (ExternalKey key : GoVetKeys.GO_VET_KEYS) {
+        if (key.matches.test(externalIssue.primaryLocation().message())) {
+          keys.add(key.key);
+          break;
+        }
+      }
+    }
+    assertThat(keys).hasSize(2);
+    assertThat(keys.get(0)).isEqualTo("nilfunc");
+    assertThat(keys.get(1)).isEqualTo("printf");
+  }
+
+  @Test
+  void should_match_govet_all_keys() throws IOException {
+    SensorContextTester context = ExternalLinterSensorHelper.createContext(7, 2);
+    context.settings().setProperty("sonar.go.govet.reportPaths", REPORT_BASE_PATH.resolve("all-govet-report.txt").toString());
+    List<ExternalIssue> externalIssues = ExternalLinterSensorHelper.executeSensor(new GoVetReportSensor(), context);
+    List<String> keys = new ArrayList<>();
+    for (ExternalIssue externalIssue : externalIssues) {
+      for (ExternalKey key : GoVetKeys.GO_VET_KEYS) {
+        if (key.matches.test(externalIssue.primaryLocation().message())) {
+          keys.add(key.key);
+          break;
+        }
+      }
+    }
+    assertThat(keys).hasSize(411);
+  }
 }

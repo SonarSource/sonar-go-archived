@@ -124,7 +124,7 @@ class GoLintReportSensorTest {
     assertThat(issue).isNotNull();
     assertThat(issue.linter).isEqualTo("golint");
     assertThat(issue.type).isEqualTo(RuleType.CODE_SMELL);
-    assertThat(issue.ruleKey).isEqualTo("issue");
+    assertThat(issue.ruleKey).isNull();
     assertThat(issue.filename).isEqualTo("./vendor/github.com/foo/go-bar/hello_world.go");
     assertThat(issue.lineNumber).isEqualTo(550);
     assertThat(issue.message).isEqualTo("redundant or: n == 2 || n == 2");

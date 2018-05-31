@@ -47,8 +47,8 @@ public class ExternalLinterReportTest {
     if (orchestrator.getServer().version().isGreaterThanOrEquals("7.2")) {
       assertThat(issues).hasSize(2);
       assertThat(formatIssues(issues)).isEqualTo(
-        "SelfAssignement.go|external_govet:issue|MAJOR|5min|line:7|self-assignment of name to name\n" +
-          "SelfAssignement.go|external_govet:issue|MAJOR|5min|line:9|self-assignment of user.name to user.name");
+        "SelfAssignement.go|external_govet:assign|MAJOR|5min|line:7|self-assignment of name to name\n" +
+          "SelfAssignement.go|external_govet:assign|MAJOR|5min|line:9|self-assignment of user.name to user.name");
     } else {
       assertThat(issues).isEmpty();
     }
@@ -90,12 +90,12 @@ public class ExternalLinterReportTest {
       assertThat(formatIssues(issues)).isEqualTo(
         "SelfAssignement.go|external_golint:issue|MAJOR|5min|line:1|package comment should be of the form \"Package samples ...\"\n" +
           "SelfAssignement.go|external_golint:issue|MAJOR|5min|line:4|exported type User should have comment or be unexported\n" +
-          "SelfAssignement.go|external_govet:issue|MAJOR|5min|line:7|self-assignment of name to name\n" +
-          "SelfAssignement.go|external_govet:issue|MAJOR|5min|line:9|self-assignment of user.name to user.name\n" +
-          "SelfAssignement.go|external_megacheck:issue|MAJOR|5min|line:4|field name is unused (U1000)\n" +
-          "SelfAssignement.go|external_megacheck:issue|MAJOR|5min|line:6|func (*User).rename is unused (U1000)\n" +
-          "SelfAssignement.go|external_megacheck:issue|MAJOR|5min|line:7|self-assignment of name to name (SA4018)\n" +
-          "SelfAssignement.go|external_megacheck:issue|MAJOR|5min|line:9|self-assignment of user.name to user.name (SA4018)");
+          "SelfAssignement.go|external_govet:assign|MAJOR|5min|line:7|self-assignment of name to name\n" +
+          "SelfAssignement.go|external_govet:assign|MAJOR|5min|line:9|self-assignment of user.name to user.name\n" +
+          "SelfAssignement.go|external_megacheck:SA4018|MAJOR|5min|line:7|self-assignment of name to name\n" +
+          "SelfAssignement.go|external_megacheck:SA4018|MAJOR|5min|line:9|self-assignment of user.name to user.name\n" +
+          "SelfAssignement.go|external_megacheck:U1000|MAJOR|5min|line:4|field name is unused\n" +
+          "SelfAssignement.go|external_megacheck:U1000|MAJOR|5min|line:6|func (*User).rename is unused");
     } else {
       assertThat(issues).isEmpty();
     }

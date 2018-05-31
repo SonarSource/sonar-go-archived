@@ -21,16 +21,19 @@ package org.sonar.go.plugin.externalreport;
 
 import org.sonar.api.rules.RuleType;
 
+import javax.annotation.Nullable;
+
 class ExternalIssue {
 
   final String linter;
   final RuleType type;
+  @Nullable
   final String ruleKey;
   final String filename;
   final int lineNumber;
   final String message;
 
-  ExternalIssue(String linter, RuleType type, String ruleKey, String filename, int lineNumber, String message) {
+  ExternalIssue(String linter, RuleType type, @Nullable String ruleKey, String filename, int lineNumber, String message) {
     this.linter = linter;
     this.type = type;
     this.ruleKey = ruleKey;
