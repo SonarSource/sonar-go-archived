@@ -44,6 +44,7 @@ import static java.util.Collections.singletonList;
 @Suite.SuiteClasses({
   GoIntegrationTest.class,
   GoTest.class,
+  GoVetReportTest.class,
 })
 public class Tests {
 
@@ -54,7 +55,7 @@ public class Tests {
   public static final Orchestrator ORCHESTRATOR;
 
   static {
-    String defaultRuntimeVersion = "true".equals(System.getenv("SONARSOURCE_QA")) ? null : "LATEST_RELEASE[6.7]";
+    String defaultRuntimeVersion = "true".equals(System.getenv("SONARSOURCE_QA")) ? null : "7.2.0.12501"; // TODO LATEST_RELEASE[7.2]
     OrchestratorBuilder builder = Orchestrator.builderEnv()
       .setSonarVersion(System.getProperty("sonar.runtimeVersion", defaultRuntimeVersion))
       .restoreProfileAtStartup(FileLocation.ofClasspath(RESOURCE_DIRECTORY + "/empty-profile.xml"));

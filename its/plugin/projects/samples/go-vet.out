@@ -1,0 +1,3 @@
+SelfAssignement.go:7: self-assignment of name to name
+SelfAssignement.go:9: self-assignment of user.name to user.name
+exit status 1
