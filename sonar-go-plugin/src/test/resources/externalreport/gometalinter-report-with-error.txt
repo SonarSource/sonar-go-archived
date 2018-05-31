@@ -1,0 +1,2 @@
+invalid-invalid-invalid
+main.go:1:6:warning: exported type User should have comment or be unexported (golint)

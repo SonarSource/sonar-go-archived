@@ -79,6 +79,28 @@ public class ExternalLinterReportTest {
     }
   }
 
+  @Test
+  public void should_import_gometalinter_issues() {
+    String projectKey = "gometalinter-project";
+    orchestrator.executeBuild(createBuild(projectKey,
+      "sonar.go.gometalinter.reportPaths", "gometalinter.out"));
+    List<Issue> issues = getExternalIssues(orchestrator, projectKey);
+    if (orchestrator.getServer().version().isGreaterThanOrEquals("7.2")) {
+      assertThat(issues).hasSize(8);
+      assertThat(formatIssues(issues)).isEqualTo(
+        "SelfAssignement.go|external_golint:generic|MAJOR|5min|line:1|package comment should be of the form \"Package samples ...\"\n" +
+          "SelfAssignement.go|external_golint:generic|MAJOR|5min|line:4|exported type User should have comment or be unexported\n" +
+          "SelfAssignement.go|external_govet:generic|MAJOR|5min|line:7|self-assignment of name to name\n" +
+          "SelfAssignement.go|external_govet:generic|MAJOR|5min|line:9|self-assignment of user.name to user.name\n" +
+          "SelfAssignement.go|external_megacheck:generic|MAJOR|5min|line:4|field name is unused (U1000)\n" +
+          "SelfAssignement.go|external_megacheck:generic|MAJOR|5min|line:6|func (*User).rename is unused (U1000)\n" +
+          "SelfAssignement.go|external_megacheck:generic|MAJOR|5min|line:7|self-assignment of name to name (SA4018)\n" +
+          "SelfAssignement.go|external_megacheck:generic|MAJOR|5min|line:9|self-assignment of user.name to user.name (SA4018)");
+    } else {
+      assertThat(issues).isEmpty();
+    }
+  }
+
   private static SonarScanner createBuild(String projectKey, String propertyName, String propertyValue) {
     return SonarScanner.create()
       .setProjectKey(projectKey)

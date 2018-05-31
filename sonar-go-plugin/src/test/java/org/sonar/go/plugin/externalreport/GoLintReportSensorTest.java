@@ -80,8 +80,8 @@ class GoLintReportSensorTest {
     ExternalIssue second = externalIssues.get(1);
     assertThat(second.type()).isEqualTo(RuleType.CODE_SMELL);
     assertThat(second.severity()).isEqualTo(Severity.MAJOR);
-    assertThat(first.ruleKey().repository()).isEqualTo("golint");
-    assertThat(first.ruleKey().rule()).isEqualTo("generic");
+    assertThat(second.ruleKey().repository()).isEqualTo("golint");
+    assertThat(second.ruleKey().rule()).isEqualTo("generic");
     assertThat(second.primaryLocation().message()).isEqualTo("exported type User should have comment or be unexported");
     assertThat(second.primaryLocation().textRange().start().line()).isEqualTo(2);
 

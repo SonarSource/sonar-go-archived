@@ -1,0 +1,8 @@
+SelfAssignement.go:1:1:warning: package comment should be of the form "Package samples ..." (golint)
+SelfAssignement.go:4:6:warning: exported type User should have comment or be unexported (golint)
+SelfAssignement.go:7:3:warning: self-assignment of name to name (SA4018) (megacheck)
+SelfAssignement.go:9:3:warning: self-assignment of user.name to user.name (SA4018) (megacheck)
+SelfAssignement.go:4:20:warning: field name is unused (U1000) (megacheck)
+SelfAssignement.go:6:19:warning: func (*User).rename is unused (U1000) (megacheck)
+SelfAssignement.go:7::error: self-assignment of name to name (vet)
+SelfAssignement.go:9::error: self-assignment of user.name to user.name (vet)
