@@ -97,6 +97,7 @@ public abstract class AbstractReportSensor implements Sensor {
   public void describe(SensorDescriptor sensorDescriptor) {
     sensorDescriptor
       .onlyOnLanguage(GoLanguage.KEY)
+      .onlyWhenConfiguration(conf -> conf.hasKey(reportsPropertyName()))
       .name("Import of " + linterName() + " issues");
   }
 
