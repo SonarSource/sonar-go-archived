@@ -35,7 +35,7 @@ import org.sonar.go.plugin.JUnit5LogTester;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.sonar.go.plugin.externalreport.ExternalLinterSensorHelper.REPORT_BASE_PATH;
 
-class GoVetReportSensorTest {
+class GoLintReportSensorTest {
 
   @RegisterExtension
   static JUnit5LogTester logTester = new JUnit5LogTester();
@@ -48,44 +48,50 @@ class GoVetReportSensorTest {
   @Test
   public void test_descriptor() {
     DefaultSensorDescriptor sensorDescriptor = new DefaultSensorDescriptor();
-    new GoVetReportSensor().describe(sensorDescriptor);
-    assertThat(sensorDescriptor.name()).isEqualTo("Import of go vet issues");
+    new GoLintReportSensor().describe(sensorDescriptor);
+    assertThat(sensorDescriptor.name()).isEqualTo("Import of Golint issues");
     assertThat(sensorDescriptor.languages()).containsOnly("go");
   }
 
   @Test
   void no_issues_with_sonarqube_71() throws IOException {
     SensorContextTester context = ExternalLinterSensorHelper.createContext(7, 1);
-    context.settings().setProperty("sonar.go.govet.reportPaths", REPORT_BASE_PATH.resolve("govet-report.txt").toString());
-    List<ExternalIssue> externalIssues = ExternalLinterSensorHelper.executeSensor(new GoVetReportSensor(), context);
+    context.settings().setProperty("sonar.go.golint.reportPaths", REPORT_BASE_PATH.resolve("golint-report.txt").toString());
+    List<ExternalIssue> externalIssues = ExternalLinterSensorHelper.executeSensor(new GoLintReportSensor(), context);
     assertThat(externalIssues).isEmpty();
-    assertThat(logTester.logs(LoggerLevel.ERROR)).containsExactly("GoVetReportSensor: Import of external issues requires SonarQube 7.2 or greater.");
+    assertThat(logTester.logs(LoggerLevel.ERROR)).containsExactly("GoLintReportSensor: Import of external issues requires SonarQube 7.2 or greater.");
   }
 
   @Test
   void issues_with_sonarqube_72() throws IOException {
     SensorContextTester context = ExternalLinterSensorHelper.createContext(7, 2);
-    context.settings().setProperty("sonar.go.govet.reportPaths", REPORT_BASE_PATH.resolve("govet-report.txt").toString());
-    List<ExternalIssue> externalIssues = ExternalLinterSensorHelper.executeSensor(new GoVetReportSensor(), context);
+    context.settings().setProperty("sonar.go.golint.reportPaths", REPORT_BASE_PATH.resolve("golint-report.txt").toString());
+    List<ExternalIssue> externalIssues = ExternalLinterSensorHelper.executeSensor(new GoLintReportSensor(), context);
     assertThat(externalIssues).hasSize(2);
 
     ExternalIssue first = externalIssues.get(0);
+    assertThat(first.type()).isEqualTo(RuleType.CODE_SMELL);
     assertThat(first.severity()).isEqualTo(Severity.MAJOR);
-    assertThat(first.primaryLocation().message()).isEqualTo("comparison of function Foo == nil is always false");
+    assertThat(first.ruleKey().repository()).isEqualTo("golint");
+    assertThat(first.ruleKey().rule()).isEqualTo("issue");
+    assertThat(first.primaryLocation().message()).isEqualTo("package comment should be of the form \"Package samples ...\"");
     assertThat(first.primaryLocation().textRange().start().line()).isEqualTo(1);
 
     ExternalIssue second = externalIssues.get(1);
+    assertThat(second.type()).isEqualTo(RuleType.CODE_SMELL);
     assertThat(second.severity()).isEqualTo(Severity.MAJOR);
-    assertThat(second.primaryLocation().message()).isEqualTo("Printf format %s has arg &str of wrong type *string");
+    assertThat(second.ruleKey().repository()).isEqualTo("golint");
+    assertThat(second.ruleKey().rule()).isEqualTo("issue");
+    assertThat(second.primaryLocation().message()).isEqualTo("exported type User should have comment or be unexported");
     assertThat(second.primaryLocation().textRange().start().line()).isEqualTo(2);
 
     assertThat(logTester.logs(LoggerLevel.ERROR)).isEmpty();
   }
 
   @Test
-  void no_issues_without_govet_property() throws IOException {
+  void no_issues_without_golint_property() throws IOException {
     SensorContextTester context = ExternalLinterSensorHelper.createContext(7, 2);
-    List<ExternalIssue> externalIssues = ExternalLinterSensorHelper.executeSensor(new GoVetReportSensor(), context);
+    List<ExternalIssue> externalIssues = ExternalLinterSensorHelper.executeSensor(new GoLintReportSensor(), context);
     assertThat(externalIssues).isEmpty();
     assertThat(logTester.logs(LoggerLevel.ERROR)).isEmpty();
   }
@@ -93,31 +99,31 @@ class GoVetReportSensorTest {
   @Test
   void no_issues_with_invalid_report_path() throws IOException {
     SensorContextTester context = ExternalLinterSensorHelper.createContext(7, 2);
-    context.settings().setProperty("sonar.go.govet.reportPaths", REPORT_BASE_PATH.resolve("invalid-path.txt").toString());
-    List<ExternalIssue> externalIssues = ExternalLinterSensorHelper.executeSensor(new GoVetReportSensor(), context);
+    context.settings().setProperty("sonar.go.golint.reportPaths", REPORT_BASE_PATH.resolve("invalid-path.txt").toString());
+    List<ExternalIssue> externalIssues = ExternalLinterSensorHelper.executeSensor(new GoLintReportSensor(), context);
     assertThat(externalIssues).isEmpty();
     assertThat(logTester.logs(LoggerLevel.ERROR)).hasSize(1);
-    assertThat(logTester.logs(LoggerLevel.ERROR).get(0)).startsWith("GoVetReportSensor: No issues information will be saved as the report file");
+    assertThat(logTester.logs(LoggerLevel.ERROR).get(0)).startsWith("GoLintReportSensor: No issues information will be saved as the report file");
   }
 
   @Test
   void no_issues_with_invalid_report_line() throws IOException {
     SensorContextTester context = ExternalLinterSensorHelper.createContext(7, 2);
-    context.settings().setProperty("sonar.go.govet.reportPaths", REPORT_BASE_PATH.resolve("govet-report-with-error.txt").toString());
-    List<ExternalIssue> externalIssues = ExternalLinterSensorHelper.executeSensor(new GoVetReportSensor(), context);
+    context.settings().setProperty("sonar.go.golint.reportPaths", REPORT_BASE_PATH.resolve("golint-report-with-error.txt").toString());
+    List<ExternalIssue> externalIssues = ExternalLinterSensorHelper.executeSensor(new GoLintReportSensor(), context);
     assertThat(externalIssues).hasSize(1);
     assertThat(logTester.logs(LoggerLevel.ERROR)).hasSize(0);
     assertThat(logTester.logs(LoggerLevel.DEBUG)).hasSize(1);
-    assertThat(logTester.logs(LoggerLevel.DEBUG).get(0)).startsWith("GoVetReportSensor: Unexpected line: abcdefghijkl");
+    assertThat(logTester.logs(LoggerLevel.DEBUG).get(0)).startsWith("GoLintReportSensor: Unexpected line: xyz");
   }
 
   @Test
-  void should_parse_govet_report_line() {
-    String line = "./vendor/github.com/foo/go-bar/hello_world.go:550: redundant or: n == 2 || n == 2";
-    org.sonar.go.plugin.externalreport.ExternalIssue issue = new GoVetReportSensor().parse(line);
+  void should_parse_golint_report_line() {
+    String line = "./vendor/github.com/foo/go-bar/hello_world.go:550:12: redundant or: n == 2 || n == 2";
+    org.sonar.go.plugin.externalreport.ExternalIssue issue = new GoLintReportSensor().parse(line);
     assertThat(issue).isNotNull();
-    assertThat(issue.linter).isEqualTo("govet");
-    assertThat(issue.type).isEqualTo(RuleType.BUG);
+    assertThat(issue.linter).isEqualTo("golint");
+    assertThat(issue.type).isEqualTo(RuleType.CODE_SMELL);
     assertThat(issue.ruleKey).isEqualTo("issue");
     assertThat(issue.filename).isEqualTo("./vendor/github.com/foo/go-bar/hello_world.go");
     assertThat(issue.lineNumber).isEqualTo(550);

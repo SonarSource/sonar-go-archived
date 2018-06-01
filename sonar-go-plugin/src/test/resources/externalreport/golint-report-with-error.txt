@@ -1,0 +1,2 @@
+xyz
+main.go:1:: package comment should be of the form "Package samples ..."

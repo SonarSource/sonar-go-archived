@@ -1,0 +1,2 @@
+main.go:1:: package comment should be of the form "Package samples ..."
+main.go:2:6: exported type User should have comment or be unexported

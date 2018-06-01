@@ -1,0 +1,11 @@
+SelfAssignement.go:1:1: package comment should be of the form "Package samples ..."
+SelfAssignement.go:4:6: exported type User should have comment or be unexported
+TabCharacter.go:1:1: package comment should be of the form "Package samples ..."
+TodoTagPresence.go:1:1: package comment should be of the form "Package samples ..."
+TooLongLine.go:1:1: package comment should be of the form "Package samples ..."
+TooManyParameters.go:1:1: package comment should be of the form "Package samples ..."
+pivot.go:10:5: don't use underscores in Go names; var ascii_uppercase should be asciiUppercase
+pivot.go:11:5: don't use underscores in Go names; var ascii_lowercase should be asciiLowercase
+pivot.go:12:5: don't use underscores in Go names; var ascii_uppercase_len should be asciiUppercaseLen
+pivot.go:13:5: don't use underscores in Go names; var ascii_lowercase_len should be asciiLowercaseLen
+pivot.go:14:5: don't use underscores in Go names; var ascii_allowed should be asciiAllowed

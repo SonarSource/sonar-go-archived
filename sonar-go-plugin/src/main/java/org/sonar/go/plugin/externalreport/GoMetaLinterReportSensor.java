@@ -26,19 +26,18 @@ import org.sonar.api.rules.RuleType;
 import org.sonar.api.utils.log.Logger;
 import org.sonar.api.utils.log.Loggers;
 
-public class GoVetReportSensor extends AbstractReportSensor {
+public class GoMetaLinterReportSensor extends AbstractReportSensor {
 
-  private static final Logger LOG = Loggers.get(GoVetReportSensor.class);
+  private static final Logger LOG = Loggers.get(GoMetaLinterReportSensor.class);
 
-  public static final String PROPERTY_KEY = "sonar.go.govet.reportPaths";
+  public static final String PROPERTY_KEY = "sonar.go.gometalinter.reportPaths";
 
-  private static final Pattern GO_VET_LINE_REGEX = Pattern.compile("(?<file>[^:]+):(?<line>\\d+):(?<message>.*)");
-
-  static final String LINTER_ID = "govet";
+  private static final Pattern GO_META_LINTER_REGEX = Pattern.compile("(?<file>[^:]+):(?<line>\\d+):\\d*:" +
+    "(?<severity>(error|warning)):(?<message>.*)\\((?<linter>[^\\(]*)\\)");
 
   @Override
   String linterName() {
-    return "go vet";
+    return "GoMetaLinter";
   }
 
   @Override
@@ -49,16 +48,25 @@ public class GoVetReportSensor extends AbstractReportSensor {
   @Nullable
   @Override
   ExternalIssue parse(String line) {
-    Matcher matcher = GO_VET_LINE_REGEX.matcher(line);
+    Matcher matcher = GO_META_LINTER_REGEX.matcher(line);
     if (matcher.matches()) {
+      String linter = mapLinterName(matcher.group("linter").trim());
+      RuleType type = "error".equals(matcher.group("severity")) ? RuleType.BUG : RuleType.CODE_SMELL;
       String filename = matcher.group("file").trim();
       int lineNumber = Integer.parseInt(matcher.group("line").trim());
       String message = matcher.group("message").trim();
-      return new ExternalIssue(LINTER_ID, RuleType.BUG, GENERIC_ISSUE_KEY, filename, lineNumber, message);
-    } else if (!line.startsWith("exit status")) {
+      return new ExternalIssue(linter, type, GENERIC_ISSUE_KEY, filename, lineNumber, message);
+    } else {
       LOG.debug(logPrefix() + "Unexpected line: " + line);
     }
     return null;
+  }
+
+  private static String mapLinterName(String linter) {
+    if ("vet".equals(linter)) {
+      return GoVetReportSensor.LINTER_ID;
+    }
+    return linter;
   }
 
 }

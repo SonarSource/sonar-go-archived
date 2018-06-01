@@ -22,6 +22,9 @@ package org.sonar.go.plugin;
 import org.sonar.api.Plugin;
 import org.sonar.api.config.PropertyDefinition;
 import org.sonar.api.resources.Qualifiers;
+import org.sonar.api.utils.Version;
+import org.sonar.go.plugin.externalreport.GoLintReportSensor;
+import org.sonar.go.plugin.externalreport.GoMetaLinterReportSensor;
 import org.sonar.go.plugin.externalreport.GoVetReportSensor;
 
 public class GoPlugin implements Plugin {
@@ -45,6 +48,8 @@ public class GoPlugin implements Plugin {
       SonarWayProfile.class,
       GoExclusionsFileFilter.class,
       GoVetReportSensor.class,
+      GoLintReportSensor.class,
+      GoMetaLinterReportSensor.class,
 
       PropertyDefinition.builder(GoLanguage.FILE_SUFFIXES_KEY)
         .index(10)
@@ -77,18 +82,43 @@ public class GoPlugin implements Plugin {
         .onQualifiers(Qualifiers.PROJECT)
         .defaultValue(GoCoverageReport.DEFAULT_REPORT_PATH)
         .multiValues(true)
-        .build(),
+        .build());
 
-      PropertyDefinition.builder(GoVetReportSensor.PROPERTY_KEY)
-        .index(30)
-        .name("\"go vet\" Report Files")
-        .description("Paths (absolute or relative) to the files with \"go vet\" issues.")
-        .category(GO_CATEGORY)
-        .subCategory(EXTERNAL_LINTER_SUBCATEGORY)
-        .onQualifiers(Qualifiers.PROJECT)
-        .defaultValue("")
-        .multiValues(true)
-        .build()
-    );
+    if (context.getSonarQubeVersion().isGreaterThanOrEqual(Version.create(7, 2))) {
+      context.addExtensions(
+
+        PropertyDefinition.builder(GoVetReportSensor.PROPERTY_KEY)
+          .index(30)
+          .name("\"go vet\" Report Files")
+          .description("Paths (absolute or relative) to the files with \"go vet\" issues.")
+          .category(GO_CATEGORY)
+          .subCategory(EXTERNAL_LINTER_SUBCATEGORY)
+          .onQualifiers(Qualifiers.PROJECT)
+          .defaultValue("")
+          .multiValues(true)
+          .build(),
+
+        PropertyDefinition.builder(GoLintReportSensor.PROPERTY_KEY)
+          .index(31)
+          .name("Golint Report Files")
+          .description("Paths (absolute or relative) to the files with Golint issues.")
+          .category(GO_CATEGORY)
+          .subCategory(EXTERNAL_LINTER_SUBCATEGORY)
+          .onQualifiers(Qualifiers.PROJECT)
+          .defaultValue("")
+          .multiValues(true)
+          .build(),
+
+        PropertyDefinition.builder(GoMetaLinterReportSensor.PROPERTY_KEY)
+          .index(32)
+          .name("GoMetaLinter Report Files")
+          .description("Paths (absolute or relative) to the files with GoMetaLinter issues.")
+          .category(GO_CATEGORY)
+          .subCategory(EXTERNAL_LINTER_SUBCATEGORY)
+          .onQualifiers(Qualifiers.PROJECT)
+          .defaultValue("")
+          .multiValues(true)
+          .build());
+    }
   }
 }

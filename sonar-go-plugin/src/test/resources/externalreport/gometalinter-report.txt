@@ -1,0 +1,3 @@
+main.go:1::error: self-assignment of name to name (vet)
+main.go:2:5:warning: other (declaration) of ascii_allowed (interfacer)
+main.go:3:6:warning: exported type User should have comment or be unexported (golint)

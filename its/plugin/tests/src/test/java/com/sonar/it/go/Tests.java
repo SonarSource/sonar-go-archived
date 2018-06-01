@@ -44,7 +44,7 @@ import static java.util.Collections.singletonList;
 @Suite.SuiteClasses({
   GoIntegrationTest.class,
   GoTest.class,
-  GoVetReportTest.class,
+  ExternalLinterReportTest.class,
 })
 public class Tests {
 
