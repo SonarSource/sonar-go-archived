@@ -140,7 +140,7 @@ class GoVetReportSensorTest {
     List<ExternalIssue> externalIssues = ExternalLinterSensorHelper.executeSensor(new GoVetReportSensor(), context);
     List<String> keys = new ArrayList<>();
     for (ExternalIssue externalIssue : externalIssues) {
-      for (ExternalKey key : GoVetKeys.GO_VET_KEYS) {
+      for (GoVetKeys.ExternalKey key : GoVetKeys.GO_VET_KEYS) {
         if (key.matches.test(externalIssue.primaryLocation().message())) {
           keys.add(key.key);
           break;
@@ -159,7 +159,7 @@ class GoVetReportSensorTest {
     List<ExternalIssue> externalIssues = ExternalLinterSensorHelper.executeSensor(new GoVetReportSensor(), context);
     List<String> keys = new ArrayList<>();
     for (ExternalIssue externalIssue : externalIssues) {
-      for (ExternalKey key : GoVetKeys.GO_VET_KEYS) {
+      for (GoVetKeys.ExternalKey key : GoVetKeys.GO_VET_KEYS) {
         if (key.matches.test(externalIssue.primaryLocation().message())) {
           keys.add(key.key);
           break;

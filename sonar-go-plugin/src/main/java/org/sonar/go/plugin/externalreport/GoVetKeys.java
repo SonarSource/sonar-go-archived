@@ -25,7 +25,11 @@ import java.util.function.Predicate;
 
 public class GoVetKeys {
 
-  public static final List<ExternalKey> GO_VET_KEYS = Arrays.asList(
+  private GoVetKeys() {
+    // utility class, forbidden constructor
+  }
+
+  static final List<ExternalKey> GO_VET_KEYS = Arrays.asList(
           new ExternalKey("asmdecl", msg -> msg.startsWith("Invalid") && msg.contains("(FP\\)")),
           new ExternalKey("assign", msg -> msg.startsWith("self-assignment of")),
           new ExternalKey("atomic", msg -> msg.equals("direct assignment to atomic value")),
@@ -43,7 +47,11 @@ public class GoVetKeys {
           new ExternalKey("shadow", msg -> msg.contains("shadows declaration at")),
           new ExternalKey("shift", msg -> msg.contains("too small for shift")),
           new ExternalKey("structtags", msg -> msg.contains("struct field") && msg.contains("tag")),
-          new ExternalKey("tests", msg -> msg.contains("has malformed") || msg.contains("refers to unknown") || msg.endsWith("should return nothing") || msg.endsWith("should be niladic")),
+          new ExternalKey("tests", msg ->
+                          msg.contains("has malformed") ||
+                          msg.contains("refers to unknown") ||
+                          msg.endsWith("should return nothing") ||
+                          msg.endsWith("should be niladic")),
           new ExternalKey("unreachable", msg -> msg.equals("unreachable code")),
           new ExternalKey("unusedresult", msg -> msg.endsWith("call not used")),
           new ExternalKey("unsafeptr", msg -> msg.equals("possible misuse of unsafe.Pointer"))
@@ -57,16 +65,17 @@ public class GoVetKeys {
             .orElse(AbstractReportSensor.GENERIC_ISSUE_KEY);
   }
 
-}
+  static class ExternalKey {
+    String key;
+    Predicate<String> matches;
 
-class ExternalKey {
-  String key;
-  Predicate<String> matches;
-
-  ExternalKey(String key, Predicate<String> matches) {
-    this.key = key;
-    this.matches = matches;
+    ExternalKey(String key, Predicate<String> matches) {
+      this.key = key;
+      this.matches = matches;
+    }
   }
 }
+
+
 
 

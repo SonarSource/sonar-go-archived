@@ -145,7 +145,7 @@ public abstract class AbstractReportSensor implements Sensor {
     }
   }
 
-  private String mapRuleKey(@Nullable String ruleKey, String message, String linter) {
+  private static String mapRuleKey(@Nullable String ruleKey, String message, String linter) {
     if (ruleKey != null) {
       return ruleKey;
     }
