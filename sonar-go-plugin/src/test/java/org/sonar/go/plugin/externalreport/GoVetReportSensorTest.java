@@ -118,7 +118,7 @@ class GoVetReportSensorTest {
     assertThat(issue).isNotNull();
     assertThat(issue.linter).isEqualTo("govet");
     assertThat(issue.type).isEqualTo(RuleType.BUG);
-    assertThat(issue.ruleKey).isEqualTo("generic");
+    assertThat(issue.ruleKey).isEqualTo("issue");
     assertThat(issue.filename).isEqualTo("./vendor/github.com/foo/go-bar/hello_world.go");
     assertThat(issue.lineNumber).isEqualTo(550);
     assertThat(issue.message).isEqualTo("redundant or: n == 2 || n == 2");

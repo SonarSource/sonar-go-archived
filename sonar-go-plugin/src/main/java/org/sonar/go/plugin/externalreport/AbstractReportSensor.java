@@ -45,6 +45,7 @@ public abstract class AbstractReportSensor implements Sensor {
 
   static final long DEFAULT_REMEDIATION_COST = 5L;
   static final Severity DEFAULT_SEVERITY = Severity.MAJOR;
+  static final String GENERIC_ISSUE_KEY = "issue";
 
   abstract String linterName();
 

@@ -50,14 +50,13 @@ public class GoMetaLinterReportSensor extends AbstractReportSensor {
   ExternalIssue parse(String line) {
     Matcher matcher = GO_META_LINTER_REGEX.matcher(line);
     if (matcher.matches()) {
-      return new ExternalIssue(
-        mapLinterName(matcher.group("linter").trim()),
-        "error".equals(matcher.group("severity")) ? RuleType.BUG : RuleType.CODE_SMELL,
-        "generic",
-        matcher.group("file").trim(),
-        Integer.parseInt(matcher.group("line").trim()),
-        matcher.group("message").trim());
-    } else if (!line.isEmpty()) {
+      String linter = mapLinterName(matcher.group("linter").trim());
+      RuleType type = "error".equals(matcher.group("severity")) ? RuleType.BUG : RuleType.CODE_SMELL;
+      String filename = matcher.group("file").trim();
+      int lineNumber = Integer.parseInt(matcher.group("line").trim());
+      String message = matcher.group("message").trim();
+      return new ExternalIssue(linter, type, GENERIC_ISSUE_KEY, filename, lineNumber, message);
+    } else {
       LOG.debug(logPrefix() + "Unexpected line: " + line);
     }
     return null;
@@ -65,7 +64,7 @@ public class GoMetaLinterReportSensor extends AbstractReportSensor {
 
   private static String mapLinterName(String linter) {
     if ("vet".equals(linter)) {
-      return "govet";
+      return GoVetReportSensor.LINTER_ID;
     }
     return linter;
   }

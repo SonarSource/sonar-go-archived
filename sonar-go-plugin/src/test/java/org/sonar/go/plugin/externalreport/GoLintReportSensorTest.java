@@ -73,7 +73,7 @@ class GoLintReportSensorTest {
     assertThat(first.type()).isEqualTo(RuleType.CODE_SMELL);
     assertThat(first.severity()).isEqualTo(Severity.MAJOR);
     assertThat(first.ruleKey().repository()).isEqualTo("golint");
-    assertThat(first.ruleKey().rule()).isEqualTo("generic");
+    assertThat(first.ruleKey().rule()).isEqualTo("issue");
     assertThat(first.primaryLocation().message()).isEqualTo("package comment should be of the form \"Package samples ...\"");
     assertThat(first.primaryLocation().textRange().start().line()).isEqualTo(1);
 
@@ -81,7 +81,7 @@ class GoLintReportSensorTest {
     assertThat(second.type()).isEqualTo(RuleType.CODE_SMELL);
     assertThat(second.severity()).isEqualTo(Severity.MAJOR);
     assertThat(second.ruleKey().repository()).isEqualTo("golint");
-    assertThat(second.ruleKey().rule()).isEqualTo("generic");
+    assertThat(second.ruleKey().rule()).isEqualTo("issue");
     assertThat(second.primaryLocation().message()).isEqualTo("exported type User should have comment or be unexported");
     assertThat(second.primaryLocation().textRange().start().line()).isEqualTo(2);
 
@@ -124,7 +124,7 @@ class GoLintReportSensorTest {
     assertThat(issue).isNotNull();
     assertThat(issue.linter).isEqualTo("golint");
     assertThat(issue.type).isEqualTo(RuleType.CODE_SMELL);
-    assertThat(issue.ruleKey).isEqualTo("generic");
+    assertThat(issue.ruleKey).isEqualTo("issue");
     assertThat(issue.filename).isEqualTo("./vendor/github.com/foo/go-bar/hello_world.go");
     assertThat(issue.lineNumber).isEqualTo(550);
     assertThat(issue.message).isEqualTo("redundant or: n == 2 || n == 2");

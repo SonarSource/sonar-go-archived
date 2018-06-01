@@ -34,6 +34,8 @@ public class GoLintReportSensor extends AbstractReportSensor {
 
   private static final Pattern GO_LINT_LINE_REGEX = Pattern.compile("(?<file>[^:]+):(?<line>\\d+):\\d*:(?<message>.*)");
 
+  private static final String LINTER_ID = "golint";
+
   @Override
   String linterName() {
     return "Golint";
@@ -49,14 +51,11 @@ public class GoLintReportSensor extends AbstractReportSensor {
   ExternalIssue parse(String line) {
     Matcher matcher = GO_LINT_LINE_REGEX.matcher(line);
     if (matcher.matches()) {
-      return new ExternalIssue(
-        "golint",
-        RuleType.CODE_SMELL,
-        "generic",
-        matcher.group("file").trim(),
-        Integer.parseInt(matcher.group("line").trim()),
-        matcher.group("message").trim());
-    } else if (!line.isEmpty()) {
+      String filename = matcher.group("file").trim();
+      int lineNumber = Integer.parseInt(matcher.group("line").trim());
+      String message = matcher.group("message").trim();
+      return new ExternalIssue(LINTER_ID, RuleType.CODE_SMELL, GENERIC_ISSUE_KEY, filename, lineNumber, message);
+    } else {
       LOG.debug(logPrefix() + "Unexpected line: " + line);
     }
     return null;

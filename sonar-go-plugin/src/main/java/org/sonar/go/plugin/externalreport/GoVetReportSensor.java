@@ -34,6 +34,8 @@ public class GoVetReportSensor extends AbstractReportSensor {
 
   private static final Pattern GO_VET_LINE_REGEX = Pattern.compile("(?<file>[^:]+):(?<line>\\d+):(?<message>.*)");
 
+  static final String LINTER_ID = "govet";
+
   @Override
   String linterName() {
     return "go vet";
@@ -49,14 +51,11 @@ public class GoVetReportSensor extends AbstractReportSensor {
   ExternalIssue parse(String line) {
     Matcher matcher = GO_VET_LINE_REGEX.matcher(line);
     if (matcher.matches()) {
-      return new ExternalIssue(
-        "govet",
-        RuleType.BUG,
-        "generic",
-        matcher.group("file").trim(),
-        Integer.parseInt(matcher.group("line").trim()),
-        matcher.group("message").trim());
-    } else if (!line.isEmpty() && !line.startsWith("exit status")) {
+      String filename = matcher.group("file").trim();
+      int lineNumber = Integer.parseInt(matcher.group("line").trim());
+      String message = matcher.group("message").trim();
+      return new ExternalIssue(LINTER_ID, RuleType.BUG, GENERIC_ISSUE_KEY, filename, lineNumber, message);
+    } else if (!line.startsWith("exit status")) {
       LOG.debug(logPrefix() + "Unexpected line: " + line);
     }
     return null;

@@ -63,7 +63,7 @@ class GoMetaLinterReportSensorTest {
     assertThat(first.type()).isEqualTo(RuleType.BUG);
     assertThat(first.severity()).isEqualTo(Severity.MAJOR);
     assertThat(first.ruleKey().repository()).isEqualTo("govet");
-    assertThat(first.ruleKey().rule()).isEqualTo("generic");
+    assertThat(first.ruleKey().rule()).isEqualTo("issue");
     assertThat(first.primaryLocation().message()).isEqualTo("self-assignment of name to name");
     assertThat(first.primaryLocation().textRange().start().line()).isEqualTo(1);
 
@@ -71,7 +71,7 @@ class GoMetaLinterReportSensorTest {
     assertThat(second.type()).isEqualTo(RuleType.CODE_SMELL);
     assertThat(second.severity()).isEqualTo(Severity.MAJOR);
     assertThat(second.ruleKey().repository()).isEqualTo("interfacer");
-    assertThat(second.ruleKey().rule()).isEqualTo("generic");
+    assertThat(second.ruleKey().rule()).isEqualTo("issue");
     assertThat(second.primaryLocation().message()).isEqualTo("other (declaration) of ascii_allowed");
     assertThat(second.primaryLocation().textRange().start().line()).isEqualTo(2);
 
@@ -79,7 +79,7 @@ class GoMetaLinterReportSensorTest {
     assertThat(third.type()).isEqualTo(RuleType.CODE_SMELL);
     assertThat(third.severity()).isEqualTo(Severity.MAJOR);
     assertThat(third.ruleKey().repository()).isEqualTo("golint");
-    assertThat(third.ruleKey().rule()).isEqualTo("generic");
+    assertThat(third.ruleKey().rule()).isEqualTo("issue");
     assertThat(third.primaryLocation().message()).isEqualTo("exported type User should have comment or be unexported");
     assertThat(third.primaryLocation().textRange().start().line()).isEqualTo(3);
 
@@ -104,7 +104,7 @@ class GoMetaLinterReportSensorTest {
     assertThat(issue).isNotNull();
     assertThat(issue.linter).isEqualTo("golint");
     assertThat(issue.type).isEqualTo(RuleType.CODE_SMELL);
-    assertThat(issue.ruleKey).isEqualTo("generic");
+    assertThat(issue.ruleKey).isEqualTo("issue");
     assertThat(issue.filename).isEqualTo("SelfAssignement.go");
     assertThat(issue.lineNumber).isEqualTo(4);
     assertThat(issue.message).isEqualTo("exported type User should have comment or be unexported");
@@ -117,7 +117,7 @@ class GoMetaLinterReportSensorTest {
     assertThat(issue).isNotNull();
     assertThat(issue.linter).isEqualTo("gotype");
     assertThat(issue.type).isEqualTo(RuleType.BUG);
-    assertThat(issue.ruleKey).isEqualTo("generic");
+    assertThat(issue.ruleKey).isEqualTo("issue");
     assertThat(issue.filename).isEqualTo("duplication/pivot.go");
     assertThat(issue.lineNumber).isEqualTo(14);
     assertThat(issue.message).isEqualTo("ascii_allowed redeclared in this block");
