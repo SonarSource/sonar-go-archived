@@ -20,6 +20,7 @@
 package org.sonar.go.plugin.externalreport;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -73,7 +74,7 @@ class GoLintReportSensorTest {
     assertThat(first.type()).isEqualTo(RuleType.CODE_SMELL);
     assertThat(first.severity()).isEqualTo(Severity.MAJOR);
     assertThat(first.ruleKey().repository()).isEqualTo("golint");
-    assertThat(first.ruleKey().rule()).isEqualTo("issue");
+    assertThat(first.ruleKey().rule()).isEqualTo("PackageCommentForm");
     assertThat(first.primaryLocation().message()).isEqualTo("package comment should be of the form \"Package samples ...\"");
     assertThat(first.primaryLocation().textRange().start().line()).isEqualTo(1);
 
@@ -81,7 +82,7 @@ class GoLintReportSensorTest {
     assertThat(second.type()).isEqualTo(RuleType.CODE_SMELL);
     assertThat(second.severity()).isEqualTo(Severity.MAJOR);
     assertThat(second.ruleKey().repository()).isEqualTo("golint");
-    assertThat(second.ruleKey().rule()).isEqualTo("issue");
+    assertThat(second.ruleKey().rule()).isEqualTo("ExportedHaveComment");
     assertThat(second.primaryLocation().message()).isEqualTo("exported type User should have comment or be unexported");
     assertThat(second.primaryLocation().textRange().start().line()).isEqualTo(2);
 
@@ -128,6 +129,23 @@ class GoLintReportSensorTest {
     assertThat(issue.filename).isEqualTo("./vendor/github.com/foo/go-bar/hello_world.go");
     assertThat(issue.lineNumber).isEqualTo(550);
     assertThat(issue.message).isEqualTo("redundant or: n == 2 || n == 2");
+  }
+
+  @Test
+  void should_match_golint_all_keys() throws IOException {
+    SensorContextTester context = ExternalLinterSensorHelper.createContext(7, 2);
+    context.settings().setProperty("sonar.go.govet.reportPaths", REPORT_BASE_PATH.resolve("all-golint-report.txt").toString());
+    List<ExternalIssue> externalIssues = ExternalLinterSensorHelper.executeSensor(new GoVetReportSensor(), context);
+    List<String> keys = new ArrayList<>();
+    for (ExternalIssue externalIssue : externalIssues) {
+      for (ExternalKeyUtils.ExternalKey key : ExternalKeyUtils.GO_LINT_KEYS) {
+        if (key.matches.test(externalIssue.primaryLocation().message().substring(3))) {
+          keys.add(key.key);
+          break;
+        }
+      }
+    }
+    assertThat(keys).hasSize(113);
   }
 
 }

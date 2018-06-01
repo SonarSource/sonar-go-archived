@@ -9,3 +9,15 @@ To generate file `all-govet-report`:
 ```
 go tool vet <PATH TO GO REPO>/src/cmd/vet/testdata 2>&1 | sed 's/[^:]*:[0-9]*:/main.go:1:/ > ./resources/externalreport/all-govet-report.txt'
 ```
+
+## golint
+
+To generate file `all-govet-report`:
+
+- Clone [golint repository locally](https://github.com/golang/lint) (commit 470b6b0bb3005eda157f0275e2e4895055396a81)
+
+```
+for X in <PATH TO GOLINT REPO>/testdata; do
+    golint $X | sed s/[^:]*:[0-9]*:[0-9]*:/main.go:1:1:/ >> ./resources/externalreport/all-golint-report.txt
+done
+```

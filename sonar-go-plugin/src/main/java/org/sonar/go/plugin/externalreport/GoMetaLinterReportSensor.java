@@ -38,7 +38,6 @@ public class GoMetaLinterReportSensor extends AbstractReportSensor {
 
   private static final Pattern RULE_KEY_REGEX = Pattern.compile("\\((?<ruleKey>[A-Za-z0-9_-]{1,20})\\)$");
 
-
   @Override
   String linterName() {
     return "GoMetaLinter";

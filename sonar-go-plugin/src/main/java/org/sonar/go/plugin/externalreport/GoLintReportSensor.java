@@ -34,7 +34,7 @@ public class GoLintReportSensor extends AbstractReportSensor {
 
   private static final Pattern GO_LINT_LINE_REGEX = Pattern.compile("(?<file>[^:]+):(?<line>\\d+):\\d*:(?<message>.*)");
 
-  private static final String LINTER_ID = "golint";
+  static final String LINTER_ID = "golint";
 
   @Override
   String linterName() {

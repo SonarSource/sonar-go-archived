@@ -39,7 +39,6 @@ import org.sonar.api.utils.log.Loggers;
 import org.sonar.go.plugin.GoLanguage;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
-import static org.sonar.go.plugin.externalreport.GoVetReportSensor.LINTER_ID;
 
 public abstract class AbstractReportSensor implements Sensor {
 
@@ -149,8 +148,8 @@ public abstract class AbstractReportSensor implements Sensor {
     if (ruleKey != null) {
       return ruleKey;
     }
-    if (linter.equals(LINTER_ID)) {
-      return GoVetKeys.lookup(message);
+    if (linter.equals(GoVetReportSensor.LINTER_ID) || linter.equals(GoLintReportSensor.LINTER_ID)) {
+      return ExternalKeyUtils.lookup(message, linter);
     }
     return GENERIC_ISSUE_KEY;
   }

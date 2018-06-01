@@ -79,7 +79,7 @@ class GoMetaLinterReportSensorTest {
     assertThat(third.type()).isEqualTo(RuleType.CODE_SMELL);
     assertThat(third.severity()).isEqualTo(Severity.MAJOR);
     assertThat(third.ruleKey().repository()).isEqualTo("golint");
-    assertThat(third.ruleKey().rule()).isEqualTo("issue");
+    assertThat(third.ruleKey().rule()).isEqualTo("ExportedHaveComment");
     assertThat(third.primaryLocation().message()).isEqualTo("exported type User should have comment or be unexported");
     assertThat(third.primaryLocation().textRange().start().line()).isEqualTo(3);
 
