@@ -98,12 +98,15 @@ public class ExternalKeyUtils {
   );
 
   public static String lookup(String message, String linter) {
-    List<ExternalKey> keys = linter.equals(GoVetReportSensor.LINTER_ID) ? GO_VET_KEYS : GO_LINT_KEYS;
-    return keys.stream()
-            .filter(externalKey -> externalKey.matches.test(message))
-            .map(externalKey -> externalKey.key)
-            .findFirst()
-            .orElse(AbstractReportSensor.GENERIC_ISSUE_KEY);
+    if (linter.equals(GoVetReportSensor.LINTER_ID) || linter.equals(GoLintReportSensor.LINTER_ID)) {
+      List<ExternalKey> keys = linter.equals(GoVetReportSensor.LINTER_ID) ? GO_VET_KEYS : GO_LINT_KEYS;
+      return keys.stream()
+        .filter(externalKey -> externalKey.matches.test(message))
+        .map(externalKey -> externalKey.key)
+        .findFirst()
+        .orElse(null);
+    }
+    return null;
   }
 
   static class ExternalKey {

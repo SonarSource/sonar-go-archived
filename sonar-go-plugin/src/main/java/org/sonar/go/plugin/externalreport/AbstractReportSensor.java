@@ -23,7 +23,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import javax.annotation.Nullable;
-
 import org.sonar.api.batch.fs.FilePredicates;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.batch.rule.Severity;
@@ -91,7 +90,7 @@ public abstract class AbstractReportSensor implements Sensor {
       }
     } catch (IOException e) {
       LOG.error(logPrefix() + "No issues information will be saved as the report file '{}' can't be read.",
-              report.getPath(), e);
+        report.getPath(), e);
     }
   }
 
@@ -134,9 +133,10 @@ public abstract class AbstractReportSensor implements Sensor {
               .on(inputFile)
               .at(inputFile.selectLine(issue.lineNumber));
 
+      String ruleKey = mapRuleKey(issue);
       newExternalIssue
               .at(primaryLocation)
-              .forRule(RuleKey.of(issue.linter, mapRuleKey(issue.ruleKey, issue.message, issue.linter)))
+              .forRule(RuleKey.of(issue.linter, ruleKey))
               .type(issue.type)
               .severity(DEFAULT_SEVERITY)
               .remediationEffortMinutes(DEFAULT_REMEDIATION_COST)
@@ -144,13 +144,11 @@ public abstract class AbstractReportSensor implements Sensor {
     }
   }
 
-  private static String mapRuleKey(@Nullable String ruleKey, String message, String linter) {
-    if (ruleKey != null) {
-      return ruleKey;
+  private static String mapRuleKey(ExternalIssue issue) {
+    if (issue.ruleKey != null) {
+      return issue.ruleKey;
     }
-    if (linter.equals(GoVetReportSensor.LINTER_ID) || linter.equals(GoLintReportSensor.LINTER_ID)) {
-      return ExternalKeyUtils.lookup(message, linter);
-    }
-    return GENERIC_ISSUE_KEY;
+    String key = ExternalKeyUtils.lookup(issue.message, issue.linter);
+    return key != null ? key : GENERIC_ISSUE_KEY;
   }
 }

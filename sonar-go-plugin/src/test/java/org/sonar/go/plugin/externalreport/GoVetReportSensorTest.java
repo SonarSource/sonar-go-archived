@@ -96,7 +96,7 @@ class GoVetReportSensorTest {
     SensorContextTester context = ExternalLinterSensorHelper.createContext(7, 2);
     context.settings().setProperty("sonar.go.govet.reportPaths", REPORT_BASE_PATH.resolve("all-govet-report.txt").toString());
     List<ExternalIssue> externalIssues = ExternalLinterSensorHelper.executeSensor(new GoVetReportSensor(), context);
-    assertThat(externalIssues).hasSize(411);
+    assertThat(externalIssues).hasSize(260);
   }
 
   @Test
@@ -166,6 +166,6 @@ class GoVetReportSensorTest {
         }
       }
     }
-    assertThat(keys).hasSize(411);
+    assertThat(keys).hasSize(260);
   }
 }

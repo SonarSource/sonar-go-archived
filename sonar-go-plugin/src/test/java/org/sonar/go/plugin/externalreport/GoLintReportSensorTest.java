@@ -145,7 +145,7 @@ class GoLintReportSensorTest {
         }
       }
     }
-    assertThat(keys).hasSize(113);
+    assertThat(keys).hasSize(102);
   }
 
 }
