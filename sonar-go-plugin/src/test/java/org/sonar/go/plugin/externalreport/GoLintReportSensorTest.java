@@ -21,9 +21,7 @@ package org.sonar.go.plugin.externalreport;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Stream;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
@@ -36,6 +34,7 @@ import org.sonar.api.utils.log.LoggerLevel;
 import org.sonar.go.plugin.JUnit5LogTester;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.sonar.go.plugin.externalreport.AbstractReportSensor.GENERIC_ISSUE_KEY;
 import static org.sonar.go.plugin.externalreport.ExternalLinterSensorHelper.REPORT_BASE_PATH;
 
 class GoLintReportSensorTest {
@@ -127,7 +126,7 @@ class GoLintReportSensorTest {
     assertThat(issue).isNotNull();
     assertThat(issue.linter).isEqualTo("golint");
     assertThat(issue.type).isEqualTo(RuleType.CODE_SMELL);
-    assertThat(issue.ruleKey).isNull();
+    assertThat(issue.ruleKey).isEqualTo(GENERIC_ISSUE_KEY);
     assertThat(issue.filename).isEqualTo("./vendor/github.com/foo/go-bar/hello_world.go");
     assertThat(issue.lineNumber).isEqualTo(550);
     assertThat(issue.message).isEqualTo("redundant or: n == 2 || n == 2");
@@ -136,12 +135,25 @@ class GoLintReportSensorTest {
   @Test
   void should_match_golint_all_keys() throws IOException {
     SensorContextTester context = ExternalLinterSensorHelper.createContext(7, 2);
-    context.settings().setProperty("sonar.go.govet.reportPaths", REPORT_BASE_PATH.resolve("all-golint-report.txt").toString());
-    List<ExternalIssue> externalIssues = ExternalLinterSensorHelper.executeSensor(new GoVetReportSensor(), context);
-    Stream<String> notMatchedKeys = externalIssues.stream()
-      .map(externalIssue -> ExternalKeyUtils.lookup(externalIssue.primaryLocation().message(), GoLintReportSensor.LINTER_ID))
-      .filter(Objects::isNull);
+    context.settings().setProperty("sonar.go.golint.reportPaths", REPORT_BASE_PATH.resolve("all-golint-report.txt").toString());
+    // all 102 messages from report are parsed correctly
+    List<ExternalIssue> externalIssues = ExternalLinterSensorHelper.executeSensor(new GoLintReportSensor(), context);
+    assertThat(externalIssues).hasSize(102);
+    // 31 distinct rule keys are present in the report
+    Stream<String> uniqueKeys = externalIssues.stream().map(externalIssue -> externalIssue.ruleKey().rule()).distinct();
+    assertThat(uniqueKeys).hasSize(31);
+    // all messages are associated to a rule key
+    Stream<ExternalIssue> notMatchedKeys = externalIssues.stream()
+      .filter(externalIssue -> externalIssue.ruleKey().rule().equals(GENERIC_ISSUE_KEY));
     assertThat(notMatchedKeys).hasSize(0);
+  }
+
+  @Test
+  void should_match_to_generic_issue_if_match_not_found() throws IOException {
+    SensorContextTester context = ExternalLinterSensorHelper.createContext(7, 2);
+    context.settings().setProperty("sonar.go.golint.reportPaths", REPORT_BASE_PATH.resolve("golint-with-unknown-message.txt").toString());
+    List<ExternalIssue> externalIssues = ExternalLinterSensorHelper.executeSensor(new GoLintReportSensor(), context);
+    assertThat(externalIssues.get(0).ruleKey().rule()).isEqualTo(GENERIC_ISSUE_KEY);
   }
 
 }

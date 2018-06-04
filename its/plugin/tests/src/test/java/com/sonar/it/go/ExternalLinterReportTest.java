@@ -22,10 +22,8 @@ package com.sonar.it.go;
 import com.sonar.orchestrator.Orchestrator;
 import com.sonar.orchestrator.build.SonarScanner;
 import com.sonar.orchestrator.container.Server;
-
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.junit.ClassRule;
 import org.junit.Test;
 import org.sonar.wsclient.SonarClient;

@@ -21,7 +21,6 @@ package org.sonar.go.plugin.externalreport;
 
 import java.io.IOException;
 import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
@@ -33,6 +32,7 @@ import org.sonar.api.utils.log.LoggerLevel;
 import org.sonar.go.plugin.JUnit5LogTester;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.sonar.go.plugin.externalreport.AbstractReportSensor.GENERIC_ISSUE_KEY;
 import static org.sonar.go.plugin.externalreport.ExternalLinterSensorHelper.REPORT_BASE_PATH;
 
 class GoMetaLinterReportSensorTest {
@@ -105,7 +105,7 @@ class GoMetaLinterReportSensorTest {
     assertThat(issue).isNotNull();
     assertThat(issue.linter).isEqualTo("golint");
     assertThat(issue.type).isEqualTo(RuleType.CODE_SMELL);
-    assertThat(issue.ruleKey).isNull();
+    assertThat(issue.ruleKey).isEqualTo("ExportedHaveComment");
     assertThat(issue.filename).isEqualTo("SelfAssignement.go");
     assertThat(issue.lineNumber).isEqualTo(4);
     assertThat(issue.message).isEqualTo("exported type User should have comment or be unexported");
@@ -118,7 +118,7 @@ class GoMetaLinterReportSensorTest {
     assertThat(issue).isNotNull();
     assertThat(issue.linter).isEqualTo("gotype");
     assertThat(issue.type).isEqualTo(RuleType.BUG);
-    assertThat(issue.ruleKey).isNull();
+    assertThat(issue.ruleKey).isEqualTo(GENERIC_ISSUE_KEY);
     assertThat(issue.filename).isEqualTo("duplication/pivot.go");
     assertThat(issue.lineNumber).isEqualTo(14);
     assertThat(issue.message).isEqualTo("ascii_allowed redeclared in this block");
@@ -144,7 +144,7 @@ class GoMetaLinterReportSensorTest {
     assertThat(issue).isNotNull();
     assertThat(issue.linter).isEqualTo("megacheck");
     assertThat(issue.type).isEqualTo(RuleType.CODE_SMELL);
-    assertThat(issue.ruleKey).isNull();
+    assertThat(issue.ruleKey).isEqualTo(GENERIC_ISSUE_KEY);
     assertThat(issue.filename).isEqualTo("SelfAssignement.go");
     assertThat(issue.lineNumber).isEqualTo(6);
     assertThat(issue.message).isEqualTo("func (*User).rename is unused (Not a rule key)");

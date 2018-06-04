@@ -23,7 +23,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import javax.annotation.Nullable;
-
 import org.sonar.api.batch.fs.FilePredicates;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.batch.rule.Severity;
@@ -104,9 +103,9 @@ public abstract class AbstractReportSensor implements Sensor {
   }
 
   /**
-   * Returns a java.io.File for the given path.
-   * If path is not absolute, returns a File with module base directory as parent path.
-   */
+    * Returns a java.io.File for the given path.
+    * If path is not absolute, returns a File with module base directory as parent path.
+    */
   static File getIOFile(File baseDir, String path) {
     File file = new File(path);
     if (!file.isAbsolute()) {
@@ -134,22 +133,13 @@ public abstract class AbstractReportSensor implements Sensor {
         .on(inputFile)
         .at(inputFile.selectLine(issue.lineNumber));
 
-      String ruleKey = mapRuleKey(issue);
       newExternalIssue
         .at(primaryLocation)
-        .forRule(RuleKey.of(issue.linter, ruleKey))
+        .forRule(RuleKey.of(issue.linter, issue.ruleKey))
         .type(issue.type)
         .severity(DEFAULT_SEVERITY)
         .remediationEffortMinutes(DEFAULT_REMEDIATION_COST)
         .save();
     }
-  }
-
-  private static String mapRuleKey(ExternalIssue issue) {
-    if (issue.ruleKey != null) {
-      return issue.ruleKey;
-    }
-    String key = ExternalKeyUtils.lookup(issue.message, issue.linter);
-    return key != null ? key : GENERIC_ISSUE_KEY;
   }
 }

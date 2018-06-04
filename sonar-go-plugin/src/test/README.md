@@ -1,6 +1,6 @@
 # External Linter Reports
 
-`Go vet` and `Golint` don't have a key associated to each issue.
+`Go vet` and `Golint` reports don't have a key associated to each issue.
 Within `sonar-go` we are generating a key based on, respectively, `go vet` and `golint` error messages.
 
 In order to maintain the ("error message" - "key") matching, we generate a report from officially supported test data, i.e.:
@@ -29,5 +29,4 @@ for X in <PATH TO GOLINT REPO>/testdata; do
 done
 ```
 
-Note: In the reports, we are replacing origin file name with "main.go" to avoid committing all the test data files.
-"main.go" is always present during testing, because we are generating it in "ExternalLinterSensorHelper" class
+Note: In the reports, we are replacing origin file name with "main.go" to simplify report processing while unit testing.

@@ -20,14 +20,14 @@
 package org.sonar.go.plugin.externalreport;
 
 import org.sonar.api.rules.RuleType;
-
 import javax.annotation.Nullable;
+
+import static org.sonar.go.plugin.externalreport.AbstractReportSensor.GENERIC_ISSUE_KEY;
 
 class ExternalIssue {
 
   final String linter;
   final RuleType type;
-  @Nullable
   final String ruleKey;
   final String filename;
   final int lineNumber;
@@ -36,10 +36,18 @@ class ExternalIssue {
   ExternalIssue(String linter, RuleType type, @Nullable String ruleKey, String filename, int lineNumber, String message) {
     this.linter = linter;
     this.type = type;
-    this.ruleKey = ruleKey;
+    this.ruleKey = mapRuleKey(linter, ruleKey, message);
     this.filename = filename;
     this.lineNumber = lineNumber;
     this.message = message;
+  }
+
+  private static String mapRuleKey(String linter, @Nullable String ruleKey, String message) {
+    if (ruleKey != null) {
+      return ruleKey;
+    }
+    String key = ExternalKeyUtils.lookup(message, linter);
+    return key != null ? key : GENERIC_ISSUE_KEY;
   }
 
 }
