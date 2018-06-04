@@ -139,8 +139,8 @@ class GoLintReportSensorTest {
     context.settings().setProperty("sonar.go.govet.reportPaths", REPORT_BASE_PATH.resolve("all-golint-report.txt").toString());
     List<ExternalIssue> externalIssues = ExternalLinterSensorHelper.executeSensor(new GoVetReportSensor(), context);
     Stream<String> notMatchedKeys = externalIssues.stream()
-            .map(externalIssue -> ExternalKeyUtils.lookup(externalIssue.primaryLocation().message(), GoLintReportSensor.LINTER_ID))
-            .filter(Objects::isNull);
+      .map(externalIssue -> ExternalKeyUtils.lookup(externalIssue.primaryLocation().message(), GoLintReportSensor.LINTER_ID))
+      .filter(Objects::isNull);
     assertThat(notMatchedKeys).hasSize(0);
   }
 

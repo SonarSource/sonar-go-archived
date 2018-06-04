@@ -20,8 +20,6 @@
 package org.sonar.go.plugin.externalreport;
 
 import java.io.IOException;
-import java.security.Key;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
@@ -38,7 +36,6 @@ import org.sonar.api.utils.log.LoggerLevel;
 import org.sonar.go.plugin.JUnit5LogTester;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.sonar.go.plugin.externalreport.AbstractReportSensor.GENERIC_ISSUE_KEY;
 import static org.sonar.go.plugin.externalreport.ExternalLinterSensorHelper.REPORT_BASE_PATH;
 import static org.sonar.go.plugin.externalreport.GoVetReportSensor.LINTER_ID;
 

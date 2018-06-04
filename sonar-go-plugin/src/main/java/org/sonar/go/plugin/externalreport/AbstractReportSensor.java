@@ -23,6 +23,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import javax.annotation.Nullable;
+
 import org.sonar.api.batch.fs.FilePredicates;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.batch.rule.Severity;
@@ -97,9 +98,9 @@ public abstract class AbstractReportSensor implements Sensor {
   @Override
   public void describe(SensorDescriptor sensorDescriptor) {
     sensorDescriptor
-            .onlyOnLanguage(GoLanguage.KEY)
-            .onlyWhenConfiguration(conf -> conf.hasKey(reportsPropertyName()))
-            .name("Import of " + linterName() + " issues");
+      .onlyOnLanguage(GoLanguage.KEY)
+      .onlyWhenConfiguration(conf -> conf.hasKey(reportsPropertyName()))
+      .name("Import of " + linterName() + " issues");
   }
 
   /**
@@ -129,18 +130,18 @@ public abstract class AbstractReportSensor implements Sensor {
     if (inputFile != null) {
       NewExternalIssue newExternalIssue = context.newExternalIssue();
       NewIssueLocation primaryLocation = newExternalIssue.newLocation()
-              .message(issue.message)
-              .on(inputFile)
-              .at(inputFile.selectLine(issue.lineNumber));
+        .message(issue.message)
+        .on(inputFile)
+        .at(inputFile.selectLine(issue.lineNumber));
 
       String ruleKey = mapRuleKey(issue);
       newExternalIssue
-              .at(primaryLocation)
-              .forRule(RuleKey.of(issue.linter, ruleKey))
-              .type(issue.type)
-              .severity(DEFAULT_SEVERITY)
-              .remediationEffortMinutes(DEFAULT_REMEDIATION_COST)
-              .save();
+        .at(primaryLocation)
+        .forRule(RuleKey.of(issue.linter, ruleKey))
+        .type(issue.type)
+        .severity(DEFAULT_SEVERITY)
+        .remediationEffortMinutes(DEFAULT_REMEDIATION_COST)
+        .save();
     }
   }
 

@@ -21,6 +21,7 @@ package org.sonar.go.plugin.externalreport;
 
 import java.io.IOException;
 import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
@@ -135,6 +136,7 @@ class GoMetaLinterReportSensorTest {
     assertThat(issue.lineNumber).isEqualTo(6);
     assertThat(issue.message).isEqualTo("func (*User).rename is unused");
   }
+
   @Test
   void should_parse_gometalinter_report_error_line_with_invalid_rulekey() {
     String line = "SelfAssignement.go:6:19:warning: func (*User).rename is unused (Not a rule key) (megacheck)";

@@ -22,8 +22,10 @@ package com.sonar.it.go;
 import com.sonar.orchestrator.Orchestrator;
 import com.sonar.orchestrator.build.SonarScanner;
 import com.sonar.orchestrator.container.Server;
+
 import java.util.List;
 import java.util.stream.Collectors;
+
 import org.junit.ClassRule;
 import org.junit.Test;
 import org.sonar.wsclient.SonarClient;
@@ -63,7 +65,7 @@ public class ExternalLinterReportTest {
     if (orchestrator.getServer().version().isGreaterThanOrEquals("7.2")) {
       assertThat(issues).hasSize(11);
       assertThat(formatIssues(issues)).isEqualTo(
-          "SelfAssignement.go|external_golint:ExportedHaveComment|MAJOR|5min|line:4|exported type User should have comment or be unexported\n" +
+        "SelfAssignement.go|external_golint:ExportedHaveComment|MAJOR|5min|line:4|exported type User should have comment or be unexported\n" +
           "SelfAssignement.go|external_golint:PackageCommentForm|MAJOR|5min|line:1|package comment should be of the form \"Package samples ...\"\n" +
           "TabCharacter.go|external_golint:PackageCommentForm|MAJOR|5min|line:1|package comment should be of the form \"Package samples ...\"\n" +
           "TodoTagPresence.go|external_golint:PackageCommentForm|MAJOR|5min|line:1|package comment should be of the form \"Package samples ...\"\n" +
@@ -88,7 +90,7 @@ public class ExternalLinterReportTest {
     if (orchestrator.getServer().version().isGreaterThanOrEquals("7.2")) {
       assertThat(issues).hasSize(8);
       assertThat(formatIssues(issues)).isEqualTo(
-          "SelfAssignement.go|external_golint:ExportedHaveComment|MAJOR|5min|line:4|exported type User should have comment or be unexported\n" +
+        "SelfAssignement.go|external_golint:ExportedHaveComment|MAJOR|5min|line:4|exported type User should have comment or be unexported\n" +
           "SelfAssignement.go|external_golint:PackageCommentForm|MAJOR|5min|line:1|package comment should be of the form \"Package samples ...\"\n" +
           "SelfAssignement.go|external_govet:assign|MAJOR|5min|line:7|self-assignment of name to name\n" +
           "SelfAssignement.go|external_govet:assign|MAJOR|5min|line:9|self-assignment of user.name to user.name\n" +
