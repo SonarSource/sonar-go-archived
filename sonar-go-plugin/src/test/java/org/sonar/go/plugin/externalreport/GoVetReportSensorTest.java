@@ -20,8 +20,12 @@
 package org.sonar.go.plugin.externalreport;
 
 import java.io.IOException;
+import java.security.Key;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Stream;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
@@ -34,7 +38,9 @@ import org.sonar.api.utils.log.LoggerLevel;
 import org.sonar.go.plugin.JUnit5LogTester;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.sonar.go.plugin.externalreport.AbstractReportSensor.GENERIC_ISSUE_KEY;
 import static org.sonar.go.plugin.externalreport.ExternalLinterSensorHelper.REPORT_BASE_PATH;
+import static org.sonar.go.plugin.externalreport.GoVetReportSensor.LINTER_ID;
 
 class GoVetReportSensorTest {
 
@@ -71,11 +77,13 @@ class GoVetReportSensorTest {
     assertThat(externalIssues).hasSize(2);
 
     ExternalIssue first = externalIssues.get(0);
+    assertThat(first.ruleKey().rule()).isEqualTo("nilfunc");
     assertThat(first.severity()).isEqualTo(Severity.MAJOR);
     assertThat(first.primaryLocation().message()).isEqualTo("comparison of function Foo == nil is always false");
     assertThat(first.primaryLocation().textRange().start().line()).isEqualTo(1);
 
     ExternalIssue second = externalIssues.get(1);
+    assertThat(second.ruleKey().rule()).isEqualTo("printf");
     assertThat(second.severity()).isEqualTo(Severity.MAJOR);
     assertThat(second.primaryLocation().message()).isEqualTo("Printf format %s has arg &str of wrong type *string");
     assertThat(second.primaryLocation().textRange().start().line()).isEqualTo(2);
@@ -89,14 +97,6 @@ class GoVetReportSensorTest {
     List<ExternalIssue> externalIssues = ExternalLinterSensorHelper.executeSensor(new GoVetReportSensor(), context);
     assertThat(externalIssues).isEmpty();
     assertThat(logTester.logs(LoggerLevel.ERROR)).isEmpty();
-  }
-
-  @Test
-  void all_issues_with_sonarqube_72() throws IOException {
-    SensorContextTester context = ExternalLinterSensorHelper.createContext(7, 2);
-    context.settings().setProperty("sonar.go.govet.reportPaths", REPORT_BASE_PATH.resolve("all-govet-report.txt").toString());
-    List<ExternalIssue> externalIssues = ExternalLinterSensorHelper.executeSensor(new GoVetReportSensor(), context);
-    assertThat(externalIssues).hasSize(260);
   }
 
   @Test
@@ -134,38 +134,13 @@ class GoVetReportSensorTest {
   }
 
   @Test
-  void should_match_govet_keys() throws IOException {
-    SensorContextTester context = ExternalLinterSensorHelper.createContext(7, 2);
-    context.settings().setProperty("sonar.go.govet.reportPaths", REPORT_BASE_PATH.resolve("govet-report.txt").toString());
-    List<ExternalIssue> externalIssues = ExternalLinterSensorHelper.executeSensor(new GoVetReportSensor(), context);
-    List<String> keys = new ArrayList<>();
-    for (ExternalIssue externalIssue : externalIssues) {
-      for (ExternalKeyUtils.ExternalKey key : ExternalKeyUtils.GO_VET_KEYS) {
-        if (key.matches.test(externalIssue.primaryLocation().message())) {
-          keys.add(key.key);
-          break;
-        }
-      }
-    }
-    assertThat(keys).hasSize(2);
-    assertThat(keys.get(0)).isEqualTo("nilfunc");
-    assertThat(keys.get(1)).isEqualTo("printf");
-  }
-
-  @Test
   void should_match_govet_all_keys() throws IOException {
     SensorContextTester context = ExternalLinterSensorHelper.createContext(7, 2);
     context.settings().setProperty("sonar.go.govet.reportPaths", REPORT_BASE_PATH.resolve("all-govet-report.txt").toString());
     List<ExternalIssue> externalIssues = ExternalLinterSensorHelper.executeSensor(new GoVetReportSensor(), context);
-    List<String> keys = new ArrayList<>();
-    for (ExternalIssue externalIssue : externalIssues) {
-      for (ExternalKeyUtils.ExternalKey key : ExternalKeyUtils.GO_VET_KEYS) {
-        if (key.matches.test(externalIssue.primaryLocation().message())) {
-          keys.add(key.key);
-          break;
-        }
-      }
-    }
-    assertThat(keys).hasSize(260);
+    Stream<String> notMatchedKeys = externalIssues.stream()
+      .map(externalIssue -> ExternalKeyUtils.lookup(externalIssue.primaryLocation().message(), LINTER_ID))
+      .filter(Objects::isNull);
+    assertThat(notMatchedKeys).hasSize(0);
   }
 }

@@ -20,8 +20,10 @@
 package org.sonar.go.plugin.externalreport;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Stream;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
@@ -136,16 +138,10 @@ class GoLintReportSensorTest {
     SensorContextTester context = ExternalLinterSensorHelper.createContext(7, 2);
     context.settings().setProperty("sonar.go.govet.reportPaths", REPORT_BASE_PATH.resolve("all-golint-report.txt").toString());
     List<ExternalIssue> externalIssues = ExternalLinterSensorHelper.executeSensor(new GoVetReportSensor(), context);
-    List<String> keys = new ArrayList<>();
-    for (ExternalIssue externalIssue : externalIssues) {
-      for (ExternalKeyUtils.ExternalKey key : ExternalKeyUtils.GO_LINT_KEYS) {
-        if (key.matches.test(externalIssue.primaryLocation().message().substring(3))) {
-          keys.add(key.key);
-          break;
-        }
-      }
-    }
-    assertThat(keys).hasSize(102);
+    Stream<String> notMatchedKeys = externalIssues.stream()
+            .map(externalIssue -> ExternalKeyUtils.lookup(externalIssue.primaryLocation().message(), GoLintReportSensor.LINTER_ID))
+            .filter(Objects::isNull);
+    assertThat(notMatchedKeys).hasSize(0);
   }
 
 }
