@@ -1,0 +1,260 @@
+main.go:1: (i8 + 1) (8 bits) too small for shift of 8
+main.go:1: +build comment must appear before package clause and be followed by a blank line
+main.go:1: Bad passes lock by value: testdata.CustomLock
+main.go:1: Bad passes lock by value: testdata.L0 contains testdata.L1 contains testdata.L2
+main.go:1: Bad passes lock by value: testdata.LocalOnce contains sync.Mutex
+main.go:1: BadFunc passes lock by value: sync.Mutex
+main.go:1: BadFunc passes lock by value: testdata.EmbeddedRWMutex
+main.go:1: BadFunc passes lock by value: testdata.FieldMutex contains sync.Mutex
+main.go:1: BadFunc2 passes lock by value: sync.Map contains sync.Mutex
+main.go:1: BadMeth passes lock by value: testdata.EmbeddedRWMutex
+main.go:1: BadMeth passes lock by value: testdata.FieldMutex contains sync.Mutex
+main.go:1: BenchmarkbadSuffix has malformed name: first letter after 'Benchmark' must not be lowercase
+main.go:1: Error call has possible formatting directive %d
+main.go:1: ExampleBuf refers to unknown identifier: Buf
+main.go:1: ExampleBuf_Append refers to unknown identifier: Buf
+main.go:1: ExampleBuf_Append_Bad has malformed example suffix: Bad
+main.go:1: ExampleBuf_Append_Bad refers to unknown identifier: Buf
+main.go:1: ExampleBuf_Append_suffix refers to unknown identifier: Buf
+main.go:1: ExampleBuf_Clear refers to unknown field or method: Buf.Clear
+main.go:1: ExampleBuf_Clear refers to unknown identifier: Buf
+main.go:1: ExampleBuf_Len refers to unknown identifier: Buf
+main.go:1: ExampleBuf_Len should be niladic
+main.go:1: ExampleBuf_Reset refers to unknown identifier: Buf
+main.go:1: ExampleBuf_Reset should return nothing
+main.go:1: ExampleBuf_suffix refers to unknown identifier: Buf
+main.go:1: ExamplePuffer refers to unknown identifier: Puffer
+main.go:1: ExamplePuffer_Append refers to unknown identifier: Puffer
+main.go:1: ExamplePuffer_suffix refers to unknown identifier: Puffer
+main.go:1: Example_BadSuffix has malformed example suffix: BadSuffix
+main.go:1: Log call has possible formatting directive %d
+main.go:1: Logf format %d has arg "hi" of wrong type string
+main.go:1: Printf call has arguments but no formatting directives
+main.go:1: Printf call needs 1 arg but has 2 args
+main.go:1: Printf call needs 2 args but has 4 args
+main.go:1: Printf format % is missing verb at end of string
+main.go:1: Printf format %*% uses non-int 0.22 as argument of *
+main.go:1: Printf format %-10d reads arg #4, but call has only 3 args
+main.go:1: Printf format %.*d uses non-int "hi" as argument of *
+main.go:1: Printf format %.*d uses non-int s as argument of *
+main.go:1: Printf format %.3v reads arg #3, but call has only 2 args
+main.go:1: Printf format %6g has arg 'x' of wrong type rune
+main.go:1: Printf format %E has arg true of wrong type bool
+main.go:1: Printf format %F has arg 'x' of wrong type rune
+main.go:1: Printf format %G has arg i of wrong type int
+main.go:1: Printf format %U has arg x of wrong type float64
+main.go:1: Printf format %X has arg 2.3 of wrong type float64
+main.go:1: Printf format %[1][ has unknown verb [
+main.go:1: Printf format %[2]*.[1]*[3]d uses non-int "hi" as argument of *
+main.go:1: Printf format %[xd is missing closing ]
+main.go:1: Printf format %b has arg "hi" of wrong type string
+main.go:1: Printf format %c has arg 2.3 of wrong type float64
+main.go:1: Printf format %d arg someFunction is a func value, not called
+main.go:1: Printf format %d has arg &notPercentDV of wrong type *testdata.notPercentDStruct
+main.go:1: Printf format %d has arg 2.3 of wrong type float64
+main.go:1: Printf format %d has arg BoolFormatter(true) of wrong type testdata.BoolFormatter
+main.go:1: Printf format %d has arg notPercentDV of wrong type testdata.notPercentDStruct
+main.go:1: Printf format %e has arg "hi" of wrong type string
+main.go:1: Printf format %f has arg "hi" of wrong type string
+main.go:1: Printf format %g has arg "hi" of wrong type string
+main.go:1: Printf format %g has arg imap of wrong type map[int]int
+main.go:1: Printf format %o has arg x of wrong type float64
+main.go:1: Printf format %p has arg 23 of wrong type int
+main.go:1: Printf format %q has arg notstringerarrayv of wrong type testdata.notstringerarray
+main.go:1: Printf format %q has arg notstringerv of wrong type testdata.notstringer
+main.go:1: Printf format %q has arg x of wrong type float64
+main.go:1: Printf format %s has arg &ue of wrong type *testdata.unexportedError
+main.go:1: Printf format %s has arg &uef of wrong type *testdata.unexportedErrorOtherFields
+main.go:1: Printf format %s has arg &us of wrong type *testdata.unexportedStringer
+main.go:1: Printf format %s has arg &usf of wrong type *testdata.unexportedStringerOtherFields
+main.go:1: Printf format %s has arg 123 of wrong type int
+main.go:1: Printf format %s has arg b of wrong type bool
+main.go:1: Printf format %s has arg byte(65) of wrong type byte
+main.go:1: Printf format %s has arg embeddedStringerv of wrong type testdata.embeddedStringer
+main.go:1: Printf format %s has arg intSlice of wrong type []int
+main.go:1: Printf format %s has arg nonStringerArray of wrong type [1]testdata.unexportedStringer
+main.go:1: Printf format %s has arg stringerv of wrong type testdata.ptrStringer
+main.go:1: Printf format %s has arg uce of wrong type testdata.unexportedCustomError
+main.go:1: Printf format %s has arg ue of wrong type testdata.unexportedError
+main.go:1: Printf format %s has arg uef of wrong type testdata.unexportedErrorOtherFields
+main.go:1: Printf format %s has arg uei of wrong type testdata.unexportedErrorInterface
+main.go:1: Printf format %s has arg us of wrong type testdata.unexportedStringer
+main.go:1: Printf format %s has arg usf of wrong type testdata.unexportedStringerOtherFields
+main.go:1: Printf format %s reads arg #2, but call has only 1 arg
+main.go:1: Printf format %t has arg 1 + 2i of wrong type complex128
+main.go:1: Printf format %t has arg 23 of wrong type int
+main.go:1: Printf format %t has arg c of wrong type complex64
+main.go:1: Printf format %t has arg embeddedStringerv of wrong type testdata.embeddedStringer
+main.go:1: Printf format %t has arg notstringerarrayv of wrong type testdata.notstringerarray
+main.go:1: Printf format %t has arg notstringerv of wrong type testdata.notstringer
+main.go:1: Printf format %t has arg stringerarrayv of wrong type testdata.stringerarray
+main.go:1: Printf format %t has arg stringerv of wrong type testdata.ptrStringer
+main.go:1: Printf format %v arg someFunction is a func value, not called
+main.go:1: Printf format %x has arg nil of wrong type untyped nil
+main.go:1: Printf format has invalid argument index [-2]
+main.go:1: Printf format has invalid argument index [0]
+main.go:1: Printf format has invalid argument index [2234234234234]
+main.go:1: Printf format has invalid argument index [3]
+main.go:1: Printf format has invalid argument index [x]
+main.go:1: Println arg list ends with redundant newline
+main.go:1: Println arg someFunction is a func value, not called
+main.go:1: Println call has possible formatting directive %s
+main.go:1: Println call has possible formatting directive %v
+main.go:1: Println does not take io.Writer but has first arg os.Stdout
+main.go:1: Sprintf call needs 1 arg but has 2 args
+main.go:1: Sprintf format %v with arg &s causes recursive String method call
+main.go:1: Sprintf format %v with arg s causes recursive String method call
+main.go:1: Sprintf format has invalid argument index [3]
+main.go:1: Sprintln arg p causes recursive call to String method
+main.go:1: Sprintln arg s causes recursive call to String method
+main.go:1: TestbadSuffix has malformed name: first letter after 'Test' must not be lowercase
+main.go:1: TestemptyImportBadSuffix has malformed name: first letter after 'Test' must not be lowercase
+main.go:1: assignment copies lock value to *p: sync.Mutex
+main.go:1: assignment copies lock value to *tp: testdata.Tlock contains sync.Once contains sync.Mutex
+main.go:1: assignment copies lock value to condY: sync.Cond contains sync.noCopy
+main.go:1: assignment copies lock value to mmuA: sync.Mutex
+main.go:1: assignment copies lock value to mmuB: sync.Mutex
+main.go:1: assignment copies lock value to muA: sync.Mutex
+main.go:1: assignment copies lock value to muB: sync.Mutex
+main.go:1: assignment copies lock value to onceY: sync.Once contains sync.Mutex
+main.go:1: assignment copies lock value to poolY: sync.Pool contains sync.noCopy
+main.go:1: assignment copies lock value to rwmuY: sync.RWMutex
+main.go:1: assignment copies lock value to t: testdata.Tlock contains sync.Once contains sync.Mutex
+main.go:1: assignment copies lock value to wgY: sync.WaitGroup contains sync.noCopy
+main.go:1: assignment copies lock value to y: sync.Mutex
+main.go:1: call of Sizeof copies lock value: sync.Mutex
+main.go:1: call of cap copies lock value: sync.Mutex
+main.go:1: call of f copies lock value: struct{lock sync.Mutex} contains sync.Mutex
+main.go:1: call of f copies lock value: sync.Mutex
+main.go:1: call of fntab[0] copies lock value: struct{lock sync.Mutex} contains sync.Mutex
+main.go:1: call of len copies lock value: sync.Mutex
+main.go:1: call of new copies lock value: testdata.Tlock contains sync.Once contains sync.Mutex
+main.go:1: call of unsafe.Sizeof copies lock value: sync.Mutex
+main.go:1: comparison of function F != nil is always true
+main.go:1: comparison of function F == nil is always false
+main.go:1: comparison of function M != nil is always true
+main.go:1: comparison of function M == nil is always false
+main.go:1: direct assignment to atomic value
+main.go:1: flag.Flag composite literal uses unkeyed fields
+main.go:1: func passes lock by value: sync.Map contains sync.Mutex
+main.go:1: func passes lock by value: sync.Mutex
+main.go:1: go/scanner.Error composite literal uses unkeyed fields
+main.go:1: h (64 bits) too small for shift of 64
+main.go:1: i (64 bits) too small for shift of 64
+main.go:1: i16 (16 bits) too small for shift of 16
+main.go:1: i32 (32 bits) too small for shift of 32
+main.go:1: i64 (64 bits) too small for shift of 64
+main.go:1: i8 (8 bits) too small for shift of 8
+main.go:1: literal copies lock value from *tp: testdata.Tlock contains sync.Once contains sync.Mutex
+main.go:1: literal copies lock value from *x: sync.Mutex
+main.go:1: literal copies lock value from t: testdata.Tlock contains sync.Once contains sync.Mutex
+main.go:1: loop variable f captured by func literal
+main.go:1: loop variable i captured by func literal
+main.go:1: loop variable j captured by func literal
+main.go:1: loop variable p captured by func literal
+main.go:1: loop variable v captured by func literal
+main.go:1: method ReadByte() byte should have signature ReadByte() (byte, error)
+main.go:1: method Scan(x fmt.ScanState, c byte) should have signature Scan(fmt.ScanState, rune) error
+main.go:1: p (64 bits) too small for shift of 64
+main.go:1: possible malformed +build comment
+main.go:1: possible misuse of unsafe.Pointer
+main.go:1: possibly passing Go type with embedded pointer to C
+main.go:1: range var k copies lock: sync.Mutex
+main.go:1: range var m copies lock: sync.Mutex
+main.go:1: range var mu copies lock: sync.Mutex
+main.go:1: range var t.mu copies lock: sync.Mutex
+main.go:1: range var v copies lock: sync.Mutex
+main.go:1: redundant and: f != nil && f != nil
+main.go:1: redundant and: i != 1 && i != 1
+main.go:1: redundant and: i == 0 && i == 0
+main.go:1: redundant or: f == nil || f == nil
+main.go:1: redundant or: i != 0 || i != 0
+main.go:1: redundant or: i == 1 || i == 1
+main.go:1: redundant or: i == 1*2*3 || i == 1*2*3
+main.go:1: redundant or: i == j || i == j
+main.go:1: redundant or: i+1 == 1 || i+1 == 1
+main.go:1: redundant or: j == 0 || j == 0
+main.go:1: redundant or: v == w || v == w
+main.go:1: result of (bytes.Buffer).String call not used
+main.go:1: result of (error).Error call not used
+main.go:1: result of errors.New call not used
+main.go:1: result of fmt.Errorf call not used
+main.go:1: result of fmt.Sprint call not used
+main.go:1: result of fmt.Sprintf call not used
+main.go:1: return copies lock value: struct{lock sync.Mutex} contains sync.Mutex
+main.go:1: return copies lock value: sync.Mutex
+main.go:1: self-assignment of s.l[0] to s.l[0]
+main.go:1: self-assignment of s.x to s.x
+main.go:1: self-assignment of x to x
+main.go:1: struct field AnonymousJSON repeats json tag "a" also at structtag.go:46
+main.go:1: struct field AnonymousXML repeats xml attribute tag "b" also at structtag.go:76
+main.go:1: struct field AnonymousXML repeats xml tag "a" also at structtag.go:60
+main.go:1: struct field DupAttr repeats xml attribute tag "b" also at structtag.go:76
+main.go:1: struct field DupOmitAttr repeats xml attribute tag "b" also at structtag.go:76
+main.go:1: struct field DuplicateJSON repeats json tag "a" also at structtag.go:46
+main.go:1: struct field DuplicateOmitJSON repeats json tag "a" also at structtag.go:46
+main.go:1: struct field DuplicateOmitXML repeats xml tag "a" also at structtag.go:60
+main.go:1: struct field DuplicateXML repeats xml tag "a" also at structtag.go:60
+main.go:1: struct field tag "ct\brl:\"char\"" not compatible with reflect.StructTag.Get: bad syntax for struct tag pair
+main.go:1: struct field tag "x:`y`" not compatible with reflect.StructTag.Get: bad syntax for struct tag value
+main.go:1: struct field tag `	x:"y"` not compatible with reflect.StructTag.Get: bad syntax for struct tag key
+main.go:1: struct field tag `:"emptykey"` not compatible with reflect.StructTag.Get: bad syntax for struct tag key
+main.go:1: struct field tag `hello` not compatible with reflect.StructTag.Get: bad syntax for struct tag pair
+main.go:1: struct field tag `json:"b, omitempty"` not compatible with reflect.StructTag.Get: suspicious space in struct tag value
+main.go:1: struct field tag `json:"d,omitempty, string"` not compatible with reflect.StructTag.Get: suspicious space in struct tag value
+main.go:1: struct field tag `x:"foo",y:"bar"` not compatible with reflect.StructTag.Get: key:"value" pairs not separated by spaces
+main.go:1: struct field tag `x:"foo"y:"bar"` not compatible with reflect.StructTag.Get: key:"value" pairs not separated by spaces
+main.go:1: struct field tag `x:"noEndQuote` not compatible with reflect.StructTag.Get: bad syntax for struct tag value
+main.go:1: struct field tag `x:"trunc\x0"` not compatible with reflect.StructTag.Get: bad syntax for struct tag value
+main.go:1: struct field tag `x:"y"	x:"y"` not compatible with reflect.StructTag.Get: key:"value" pairs not separated by spaces
+main.go:1: struct field tag `xml:" "` not compatible with reflect.StructTag.Get: suspicious space in struct tag value
+main.go:1: struct field tag `xml:" g"` not compatible with reflect.StructTag.Get: suspicious space in struct tag value
+main.go:1: struct field tag `xml:" l local,omitempty"` not compatible with reflect.StructTag.Get: suspicious space in struct tag value
+main.go:1: struct field tag `xml:"f "` not compatible with reflect.StructTag.Get: suspicious space in struct tag value
+main.go:1: struct field tag `xml:"h ,omitempty"` not compatible with reflect.StructTag.Get: suspicious space in struct tag value
+main.go:1: struct field tag `xml:"i, omitempty"` not compatible with reflect.StructTag.Get: suspicious space in struct tag value
+main.go:1: struct field tag `xml:"j local ,omitempty"` not compatible with reflect.StructTag.Get: suspicious space in struct tag value
+main.go:1: struct field tag `xml:"k local, omitempty"` not compatible with reflect.StructTag.Get: suspicious space in struct tag value
+main.go:1: struct field tag `xml:"m  local,omitempty"` not compatible with reflect.StructTag.Get: suspicious space in struct tag value
+main.go:1: struct field x has json tag but is not exported
+main.go:1: struct field y has xml tag but is not exported
+main.go:1: suspect and: 0 == i && 1 == i
+main.go:1: suspect and: 0 == i && i == 1
+main.go:1: suspect and: i == 0 && 1 == i
+main.go:1: suspect and: i == 0 && i == 1
+main.go:1: suspect or: "et" != "alii" || "et" != "cetera"
+main.go:1: suspect or: 0 != i || 1 != i
+main.go:1: suspect or: 0 != i || i != 1
+main.go:1: suspect or: i != 0 || 1 != i
+main.go:1: suspect or: i != 0 || i != 1
+main.go:1: suspect or: i != 0 || i != 1<<4
+main.go:1: suspect or: i+3 != 7 || i+3 != 9
+main.go:1: suspect or: s != "one" || s != "the other"
+main.go:1: the cancel function is not used on all paths (possible context leak)
+main.go:1: the cancel function returned by context.WithCancel should be called, not discarded, to avoid a context leak
+main.go:1: the cancel function returned by context.WithDeadline should be called, not discarded, to avoid a context leak
+main.go:1: the cancel function returned by context.WithTimeout should be called, not discarded, to avoid a context leak
+main.go:1: the cancel2 function is not used on all paths (possible context leak)
+main.go:1: the cancel3 function is not used on all paths (possible context leak)
+main.go:1: this return statement may be reached without using the cancel var defined on line 107
+main.go:1: this return statement may be reached without using the cancel var defined on line 131
+main.go:1: this return statement may be reached without using the cancel var defined on line 17
+main.go:1: this return statement may be reached without using the cancel var defined on line 42
+main.go:1: this return statement may be reached without using the cancel var defined on line 62
+main.go:1: this return statement may be reached without using the cancel var defined on line 91
+main.go:1: this return statement may be reached without using the cancel2 var defined on line 21
+main.go:1: this return statement may be reached without using the cancel3 var defined on line 27
+main.go:1: u (64 bits) too small for shift of 64
+main.go:1: u16 (16 bits) too small for shift of 16
+main.go:1: u32 (32 bits) too small for shift of 32
+main.go:1: u64 (64 bits) too small for shift of 64
+main.go:1: u8 (8 bits) too small for shift of 8
+main.go:1: unicode.CaseRange composite literal uses unkeyed fields
+main.go:1: using res before checking for errors
+main.go:1: using resp before checking for errors
+main.go:1: variable declaration copies lock value to condYY: sync.Cond contains sync.noCopy
+main.go:1: variable declaration copies lock value to onceYY: sync.Once contains sync.Mutex
+main.go:1: variable declaration copies lock value to poolYY: sync.Pool contains sync.noCopy
+main.go:1: variable declaration copies lock value to rwmuYY: sync.RWMutex
+main.go:1: variable declaration copies lock value to wgYY: sync.WaitGroup contains sync.noCopy
+main.go:1: variable declaration copies lock value to z: testdata.Tlock contains sync.Once contains sync.Mutex

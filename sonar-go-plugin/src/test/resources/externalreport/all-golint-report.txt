@@ -1,0 +1,102 @@
+main.go:1:1: a blank import should be only in a main or test package, or have a comment justifying it
+main.go:1:1: comment on exported const InlineWhatever should be of the form "InlineWhatever ..."
+main.go:1:1: comment on exported const Thing should be of the form "Thing ..."
+main.go:1:1: comment on exported const WhatDoesHeDo should be of the form "WhatDoesHeDo ..."
+main.go:1:1: comment on exported method U.G should be of the form "G ..."
+main.go:1:1: comment on exported type U should be of the form "U ..." (with optional leading article)
+main.go:1:1: const fooId should be fooID
+main.go:1:1: context.Context should be the first parameter of a function
+main.go:1:1: don't use ALL_CAPS in Go names; use CamelCase
+main.go:1:1: don't use MixedCaps in package name; PkgName should be pkgname
+main.go:1:1: don't use an underscore in package name
+main.go:1:1: don't use leading k in Go names; const kLeadingKay should be leadingKay
+main.go:1:1: don't use underscores in Go names; func WhyAreYouUsingCapitalLetters_InACFunctionName should be WhyAreYouUsingCapitalLettersInACFunctionName
+main.go:1:1: don't use underscores in Go names; func f_it should be fIt
+main.go:1:1: don't use underscores in Go names; func parameter bad_name should be badName
+main.go:1:1: don't use underscores in Go names; func parameter but_use_go_param_names should be butUseGoParamNames
+main.go:1:1: don't use underscores in Go names; func result no_way should be noWay
+main.go:1:1: don't use underscores in Go names; interface method parameter foo_bar should be fooBar
+main.go:1:1: don't use underscores in Go names; method parameter more_under should be moreUnder
+main.go:1:1: don't use underscores in Go names; method result still_more should be stillMore
+main.go:1:1: don't use underscores in Go names; struct field x_damn should be xDamn
+main.go:1:1: don't use underscores in Go names; type t_wow should be tWow
+main.go:1:1: don't use underscores in Go names; var more_underscore should be moreUnderscore
+main.go:1:1: don't use underscores in Go names; var var_name should be varName
+main.go:1:1: error should be the last type when returning multiple items
+main.go:1:1: error strings should not be capitalized or end with punctuation or a newline
+main.go:1:1: error var E2 should have name of the form ErrFoo
+main.go:1:1: error var Exp should have name of the form ErrFoo
+main.go:1:1: error var e1 should have name of the form errFoo
+main.go:1:1: error var unexp should have name of the form errFoo
+main.go:1:1: exported const SomeUndocumented should have comment (or a comment on this block) or be unexported
+main.go:1:1: exported const UndocAgain should have comment or be unexported
+main.go:1:1: exported const Whatsit should have comment (or a comment on this block) or be unexported
+main.go:1:1: exported const X should have comment or be unexported
+main.go:1:1: exported func Exported returns unexported type foo.hidden, which can be annoying to use
+main.go:1:1: exported func ExportedIntReturner returns unexported type foo.int, which can be annoying to use
+main.go:1:1: exported method MethodOnT returns unexported type foo.hidden, which can be annoying to use
+main.go:1:1: exported method T.F should have comment or be unexported
+main.go:1:1: exported method T.Len should have comment or be unexported
+main.go:1:1: exported method U.Other should have comment or be unexported
+main.go:1:1: exported method V.H should have comment or be unexported
+main.go:1:1: exported type T should have comment or be unexported
+main.go:1:1: exported var W should have comment or be unexported
+main.go:1:1: exported var Z should have its own declaration
+main.go:1:1: func name will be used as donut.DonutRank by other packages, and that stutters; consider calling this Rank
+main.go:1:1: if block ends with a return statement, so drop this else and outdent its block
+main.go:1:1: if block ends with a return statement, so drop this else and outdent its block (move short variable declaration to its own line if necessary)
+main.go:1:1: package comment is detached; there should be no blank lines between it and the package statement
+main.go:1:1: package comment should be of the form "Package testdata ..."
+main.go:1:1: package comment should not have leading space
+main.go:1:1: range var theIp should be theIP
+main.go:1:1: receiver name a should be consistent with previous receiver name b for bar
+main.go:1:1: receiver name should be a reflection of its identity; don't use generic names such as "this" or "self"
+main.go:1:1: receiver name should not be an underscore, omit the name if it is unused
+main.go:1:1: should drop = "" from declaration of var myZeroStr; it is the zero value
+main.go:1:1: should drop = '\000' from declaration of var myZeroRune2; it is the zero value
+main.go:1:1: should drop = '\x00' from declaration of var myZeroRune; it is the zero value
+main.go:1:1: should drop = 0 from declaration of var myZeroInt; it is the zero value
+main.go:1:1: should drop = 0. from declaration of var myZeroFlt; it is the zero value
+main.go:1:1: should drop = 0.0 from declaration of var myZeroF64; it is the zero value
+main.go:1:1: should drop = 0i from declaration of var myZeroImg; it is the zero value
+main.go:1:1: should drop = `` from declaration of var myZeroRaw; it is the zero value
+main.go:1:1: should drop = nil from declaration of var myZeroPtr; it is the zero value
+main.go:1:1: should not use basic type bool as key in context.WithValue
+main.go:1:1: should not use basic type byte as key in context.WithValue
+main.go:1:1: should not use basic type complex128 as key in context.WithValue
+main.go:1:1: should not use basic type complex64 as key in context.WithValue
+main.go:1:1: should not use basic type float32 as key in context.WithValue
+main.go:1:1: should not use basic type float64 as key in context.WithValue
+main.go:1:1: should not use basic type int as key in context.WithValue
+main.go:1:1: should not use basic type int16 as key in context.WithValue
+main.go:1:1: should not use basic type int32 as key in context.WithValue
+main.go:1:1: should not use basic type int64 as key in context.WithValue
+main.go:1:1: should not use basic type int8 as key in context.WithValue
+main.go:1:1: should not use basic type rune as key in context.WithValue
+main.go:1:1: should not use basic type string as key in context.WithValue
+main.go:1:1: should not use basic type uint as key in context.WithValue
+main.go:1:1: should not use basic type uint16 as key in context.WithValue
+main.go:1:1: should not use basic type uint32 as key in context.WithValue
+main.go:1:1: should not use basic type uint64 as key in context.WithValue
+main.go:1:1: should not use basic type uint8 as key in context.WithValue
+main.go:1:1: should not use basic type uintptr as key in context.WithValue
+main.go:1:1: should not use dot imports
+main.go:1:1: should omit 2nd value from range; this loop is equivalent to `for x := range ...`
+main.go:1:1: should omit 2nd value from range; this loop is equivalent to `for y = range ...`
+main.go:1:1: should omit type *http.ServeMux from declaration of var mux; it will be inferred from the right-hand side
+main.go:1:1: should omit type int from declaration of var myInt; it will be inferred from the right-hand side
+main.go:1:1: should omit type io.Writer from declaration of var out2; it will be inferred from the right-hand side
+main.go:1:1: should omit type string from declaration of var y; it will be inferred from the right-hand side
+main.go:1:1: should omit values from range; this loop is equivalent to `for range ...`
+main.go:1:1: should replace errors.New(fmt.Sprintf(...)) with fmt.Errorf(...)
+main.go:1:1: should replace t.Error(fmt.Sprintf(...)) with t.Errorf(...)
+main.go:1:1: should replace x += 1 with x++
+main.go:1:1: should replace y -= 1 with y--
+main.go:1:1: struct field Url should be URL
+main.go:1:1: type name will be used as donut.DonutMaker by other packages, and that stutters; consider calling this Maker
+main.go:1:1: var isEof should be isEOF
+main.go:1:1: var myJson should be myJSON
+main.go:1:1: var qId should be qID
+main.go:1:1: var rpcTimeoutMsec is of type *time.Duration; don't use unit-specific suffix "Msec"
+main.go:1:1: var tApi should be tAPI
+main.go:1:1: var timeoutSecs is of type time.Duration; don't use unit-specific suffix "Secs"

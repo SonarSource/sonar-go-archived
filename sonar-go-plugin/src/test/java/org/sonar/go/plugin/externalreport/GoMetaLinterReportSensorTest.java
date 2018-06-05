@@ -32,6 +32,7 @@ import org.sonar.api.utils.log.LoggerLevel;
 import org.sonar.go.plugin.JUnit5LogTester;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.sonar.go.plugin.externalreport.AbstractReportSensor.GENERIC_ISSUE_KEY;
 import static org.sonar.go.plugin.externalreport.ExternalLinterSensorHelper.REPORT_BASE_PATH;
 
 class GoMetaLinterReportSensorTest {
@@ -63,7 +64,7 @@ class GoMetaLinterReportSensorTest {
     assertThat(first.type()).isEqualTo(RuleType.BUG);
     assertThat(first.severity()).isEqualTo(Severity.MAJOR);
     assertThat(first.ruleKey().repository()).isEqualTo("govet");
-    assertThat(first.ruleKey().rule()).isEqualTo("issue");
+    assertThat(first.ruleKey().rule()).isEqualTo("assign");
     assertThat(first.primaryLocation().message()).isEqualTo("self-assignment of name to name");
     assertThat(first.primaryLocation().textRange().start().line()).isEqualTo(1);
 
@@ -79,7 +80,7 @@ class GoMetaLinterReportSensorTest {
     assertThat(third.type()).isEqualTo(RuleType.CODE_SMELL);
     assertThat(third.severity()).isEqualTo(Severity.MAJOR);
     assertThat(third.ruleKey().repository()).isEqualTo("golint");
-    assertThat(third.ruleKey().rule()).isEqualTo("issue");
+    assertThat(third.ruleKey().rule()).isEqualTo("ExportedHaveComment");
     assertThat(third.primaryLocation().message()).isEqualTo("exported type User should have comment or be unexported");
     assertThat(third.primaryLocation().textRange().start().line()).isEqualTo(3);
 
@@ -104,7 +105,7 @@ class GoMetaLinterReportSensorTest {
     assertThat(issue).isNotNull();
     assertThat(issue.linter).isEqualTo("golint");
     assertThat(issue.type).isEqualTo(RuleType.CODE_SMELL);
-    assertThat(issue.ruleKey).isEqualTo("issue");
+    assertThat(issue.ruleKey).isEqualTo("ExportedHaveComment");
     assertThat(issue.filename).isEqualTo("SelfAssignement.go");
     assertThat(issue.lineNumber).isEqualTo(4);
     assertThat(issue.message).isEqualTo("exported type User should have comment or be unexported");
@@ -117,10 +118,36 @@ class GoMetaLinterReportSensorTest {
     assertThat(issue).isNotNull();
     assertThat(issue.linter).isEqualTo("gotype");
     assertThat(issue.type).isEqualTo(RuleType.BUG);
-    assertThat(issue.ruleKey).isEqualTo("issue");
+    assertThat(issue.ruleKey).isEqualTo(GENERIC_ISSUE_KEY);
     assertThat(issue.filename).isEqualTo("duplication/pivot.go");
     assertThat(issue.lineNumber).isEqualTo(14);
     assertThat(issue.message).isEqualTo("ascii_allowed redeclared in this block");
+  }
+
+  @Test
+  void should_parse_gometalinter_report_error_line_with_rulekey() {
+    String line = "SelfAssignement.go:6:19:warning: func (*User).rename is unused (U1000) (megacheck)";
+    org.sonar.go.plugin.externalreport.ExternalIssue issue = new GoMetaLinterReportSensor().parse(line);
+    assertThat(issue).isNotNull();
+    assertThat(issue.linter).isEqualTo("megacheck");
+    assertThat(issue.type).isEqualTo(RuleType.CODE_SMELL);
+    assertThat(issue.ruleKey).isEqualTo("U1000");
+    assertThat(issue.filename).isEqualTo("SelfAssignement.go");
+    assertThat(issue.lineNumber).isEqualTo(6);
+    assertThat(issue.message).isEqualTo("func (*User).rename is unused");
+  }
+
+  @Test
+  void should_parse_gometalinter_report_error_line_with_invalid_rulekey() {
+    String line = "SelfAssignement.go:6:19:warning: func (*User).rename is unused (Not a rule key) (megacheck)";
+    org.sonar.go.plugin.externalreport.ExternalIssue issue = new GoMetaLinterReportSensor().parse(line);
+    assertThat(issue).isNotNull();
+    assertThat(issue.linter).isEqualTo("megacheck");
+    assertThat(issue.type).isEqualTo(RuleType.CODE_SMELL);
+    assertThat(issue.ruleKey).isEqualTo(GENERIC_ISSUE_KEY);
+    assertThat(issue.filename).isEqualTo("SelfAssignement.go");
+    assertThat(issue.lineNumber).isEqualTo(6);
+    assertThat(issue.message).isEqualTo("func (*User).rename is unused (Not a rule key)");
   }
 
 }
