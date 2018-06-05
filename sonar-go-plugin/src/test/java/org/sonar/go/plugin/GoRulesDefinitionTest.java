@@ -19,10 +19,13 @@
  */
 package org.sonar.go.plugin;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 import org.sonar.api.rules.RuleType;
 import org.sonar.api.server.debt.DebtRemediationFunction;
 import org.sonar.api.server.rule.RulesDefinition;
+import org.sonar.go.plugin.externalreport.ExternalKeyUtils;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -65,8 +68,23 @@ class GoRulesDefinitionTest {
     assertThat(golintRepository.isExternal()).isEqualTo(true);
     assertThat(govetRepository.isExternal()).isEqualTo(true);
 
-    assertThat(golintRepository.rules().size()).isEqualTo(0); // fixme 18
+    assertThat(golintRepository.rules().size()).isEqualTo(18);
+    assertThat(ExternalKeyUtils.GO_LINT_KEYS.size()).isEqualTo(34); // TODO should be 18
+
     assertThat(govetRepository.rules().size()).isEqualTo(21);
+    assertThat(ExternalKeyUtils.GO_VET_KEYS.size()).isEqualTo(21);
+
+    List<String> govetKeysWithoutDefinition = ExternalKeyUtils.GO_VET_KEYS.stream()
+      .map(x -> x.key)
+      .filter(key -> govetRepository.rule(key) == null)
+      .collect(Collectors.toList());
+    assertThat(govetKeysWithoutDefinition).isEmpty();
+
+    List<String> golintKeysWithoutDefinition = ExternalKeyUtils.GO_LINT_KEYS.stream()
+      .map(x -> x.key)
+      .filter(key -> golintRepository.rule(key) == null)
+      .collect(Collectors.toList());
+    assertThat(golintKeysWithoutDefinition).hasSize(34); // TODO should be empty
   }
 
   private void assertRuleProperties(RulesDefinition.Repository repository) {

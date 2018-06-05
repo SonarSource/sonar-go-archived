@@ -29,12 +29,12 @@ public class ExternalKeyUtils {
     // utility class, forbidden constructor
   }
 
-  static final List<ExternalKey> GO_VET_KEYS = Arrays.asList(
+  public static final List<ExternalKey> GO_VET_KEYS = Arrays.asList(
     new ExternalKey("asmdecl", msg -> msg.startsWith("Invalid") && msg.contains("(FP\\)")),
     new ExternalKey("assign", msg -> msg.startsWith("self-assignment of")),
     new ExternalKey("atomic", msg -> msg.equals("direct assignment to atomic value")),
     new ExternalKey("bool", msg -> msg.startsWith("redundant") || msg.startsWith("suspect")),
-    new ExternalKey("buildtag", msg -> msg.contains("build comment")),
+    new ExternalKey("buildtags", msg -> msg.contains("build comment")),
     new ExternalKey("cgocall", msg -> msg.equals("possibly passing Go type with embedded pointer to C")),
     new ExternalKey("composites", msg -> msg.endsWith("composite literal uses unkeyed fields")),
     new ExternalKey("copylocks", msg -> msg.contains("passes lock by value:") || msg.contains("copies lock")),
@@ -57,7 +57,8 @@ public class ExternalKeyUtils {
     new ExternalKey("unsafeptr", msg -> msg.equals("possible misuse of unsafe.Pointer"))
   );
 
-  static final List<ExternalKey> GO_LINT_KEYS = Arrays.asList(
+
+  public static final List<ExternalKey> GO_LINT_KEYS = Arrays.asList(
     new ExternalKey("PackageComment", msg ->
       msg.startsWith("package comment should be of the form") ||
         msg.startsWith("package comment should not have leading space") ||
@@ -107,9 +108,9 @@ public class ExternalKeyUtils {
     return null;
   }
 
-  static class ExternalKey {
-    String key;
-    Predicate<String> matches;
+  public static class ExternalKey {
+    public final String key;
+    public final Predicate<String> matches;
 
     ExternalKey(String key, Predicate<String> matches) {
       this.key = key;
