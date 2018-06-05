@@ -1,0 +1,108 @@
+[
+  {
+    "key": "asmdecl",
+    "name": "Check assembly against Go declarations",
+    "description": "Mismatches between assembly files and Go function declarations."
+  },
+  {
+    "key": "assign",
+    "name": "Useless assignments",
+    "description": "Check for useless assignments."
+  },
+  {
+    "key": "atomic",
+    "name": "Atomic mistakes",
+    "description": "Common mistaken usages of the sync/atomic package."
+  },
+  {
+    "key": "bool",
+    "name": "Boolean conditions",
+    "description": "Mistakes involving boolean operators."
+  },
+  {
+    "key": "buildtags",
+    "name": "check that +build tags are valid",
+    "description": "Badly formed or misplaced +build tags."
+  },
+  {
+    "key": "cgocall",
+    "name": "Invalid uses of cgo",
+    "description": "Detect some violations of the cgo pointer passing rules."
+  },
+  {
+    "key": "composites",
+    "name": "Unkeyed composite literals",
+    "description": "Composite struct literals that do not use the field-keyed syntax."
+  },
+  {
+    "key": "copylocks",
+    "name": "Copying locks",
+    "description": "Locks that are erroneously passed by value."
+  },
+  {
+    "key": "httpresponse",
+    "name": "HTTP responses used incorrectly",
+    "description": "Mistakes deferring a function call on an HTTP response before checking whether the error returned with the response was nil."
+  },
+  {
+    "key": "lostcancel",
+    "name": "Failure to call the cancelation function returned by WithCancel",
+    "description": "The cancelation function returned by context.WithCancel, WithTimeout, and WithDeadline must be called or the new context will remain live until its parent context is cancelled. (The background context is never cancelled.)"
+  },
+  {
+    "key": "methods",
+    "name": "Check that canonically named methods are canonically defined",
+    "description": "Non-standard signatures for methods with familiar names, including: Format GobEncode GobDecode MarshalJSON MarshalXML Peek ReadByte ReadFrom ReadRune Scan Seek UnmarshalJSON UnreadByte UnreadRune WriteByte WriteTo"
+  },
+  {
+    "key": "nilfunc",
+    "name": "Nil function comparison",
+    "description": "Comparisons between functions and nil."
+  },
+  {
+    "key": "printf",
+    "name": "Check printf-like invocations",
+    "description": "Suspicious calls to functions in the Printf family, including any functions with these names, disregarding case: Print Printf Println Fprint Fprintf Fprintln Sprint Sprintf Sprintln Error Errorf Fatal Fatalf Log Logf Panic Panicf Panicln. The -printfuncs flag can be used to redefine this list. If the function name ends with an 'f', the function is assumed to take a format descriptor string in the manner of fmt.Printf. If not, vet complains about arguments that look like format descriptor strings. It also checks for errors such as using a Writer as the first argument of Printf."
+  },
+  {
+    "key": "rangeloops",
+    "name": "Range loop variables",
+    "description": "Incorrect uses of range loop variables in closures."
+  },
+  {
+    "key": "shadow",
+    "name": "Shadowed variables",
+    "description": "Variables that may have been unintentionally shadowed."
+  },
+  {
+    "key": "shift",
+    "name": "Check for useless shifts",
+    "description": "Shifts equal to or longer than the variable's length."
+  },
+  {
+    "key": "structtags",
+    "name": "Check that struct field tags have canonical format and apply to exported fields as needed",
+    "description": "Struct tags that do not follow the format understood by reflect.StructTag.Get. Well-known encoding struct tags (json, xml) used with unexported fields."
+  },
+  {
+    "key": "tests",
+    "name": "Check for common mistaken usages of tests/documentation examples",
+    "description": "Mistakes involving tests including functions with incorrect names or signatures and example tests that document identifiers not in the package."
+  },
+  {
+    //  deadcode.go
+    "key": "unreachable",
+    "name": "Check for unreachable code",
+    "description": "Check for unreachable code."
+  },
+  {
+    "key": "unsafeptr",
+    "name": "Misuse of unsafe Pointers",
+    "description": "Likely incorrect uses of unsafe.Pointer to convert integers to pointers. A conversion from uintptr to unsafe.Pointer is invalid if it implies that there is a uintptr-typed word in memory that holds a pointer value, because that word will be invisible to stack copying and to the garbage collector."
+  },
+  {
+    "key": "unusedresult",
+    "name": "Unused result of certain function calls",
+    "description": "Calls to well-known functions and methods that return a value that is discarded.  By default, this includes functions like fmt.Errorf and fmt.Sprintf and methods like String and Error. The flags -unusedfuncs and -unusedstringmethods control the set."
+  }
+]

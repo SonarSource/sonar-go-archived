@@ -20,6 +20,7 @@
 package org.sonar.go.plugin.externalreport;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -29,12 +30,12 @@ public class ExternalKeyUtils {
     // utility class, forbidden constructor
   }
 
-  static final List<ExternalKey> GO_VET_KEYS = Arrays.asList(
+  public static final List<ExternalKey> GO_VET_KEYS = Collections.unmodifiableList(Arrays.asList(
     new ExternalKey("asmdecl", msg -> msg.startsWith("Invalid") && msg.contains("(FP\\)")),
     new ExternalKey("assign", msg -> msg.startsWith("self-assignment of")),
     new ExternalKey("atomic", msg -> msg.equals("direct assignment to atomic value")),
     new ExternalKey("bool", msg -> msg.startsWith("redundant") || msg.startsWith("suspect")),
-    new ExternalKey("buildtag", msg -> msg.contains("build comment")),
+    new ExternalKey("buildtags", msg -> msg.contains("build comment")),
     new ExternalKey("cgocall", msg -> msg.equals("possibly passing Go type with embedded pointer to C")),
     new ExternalKey("composites", msg -> msg.endsWith("composite literal uses unkeyed fields")),
     new ExternalKey("copylocks", msg -> msg.contains("passes lock by value:") || msg.contains("copies lock")),
@@ -55,9 +56,10 @@ public class ExternalKeyUtils {
     new ExternalKey("unreachable", msg -> msg.equals("unreachable code")),
     new ExternalKey("unusedresult", msg -> msg.endsWith("call not used")),
     new ExternalKey("unsafeptr", msg -> msg.equals("possible misuse of unsafe.Pointer"))
-  );
+  ));
 
-  static final List<ExternalKey> GO_LINT_KEYS = Arrays.asList(
+
+  public static final List<ExternalKey> GO_LINT_KEYS = Collections.unmodifiableList(Arrays.asList(
     new ExternalKey("PackageComment", msg ->
       msg.startsWith("package comment should be of the form") ||
         msg.startsWith("package comment should not have leading space") ||
@@ -83,7 +85,7 @@ public class ExternalKeyUtils {
     new ExternalKey("ErrorReturn", msg -> msg.startsWith("error should be the last type when returning multiple items")),
     new ExternalKey("UnexportedReturn", msg -> msg.contains("returns unexported type") && msg.endsWith("which can be annoying to use")),
     new ExternalKey("TimeNames", msg -> msg.contains("don't use unit-specific suffix")),
-    new ExternalKey("ContextKeyType", msg -> msg.startsWith("should not use basic type") && msg.endsWith("as key in context.WithValue")),
+    new ExternalKey("ContextKeyTypes", msg -> msg.startsWith("should not use basic type") && msg.endsWith("as key in context.WithValue")),
     new ExternalKey("ContextArgs", msg -> msg.equals("context.Context should be the first parameter of a function")),
     new ExternalKey("Names", msg ->
       msg.startsWith("don't use an underscore in package name") ||
@@ -93,7 +95,7 @@ public class ExternalKeyUtils {
         msg.matches("(range var|struct field|[\\w]+) [\\w_]+ should be [\\w_]+") ||
         msg.startsWith("don't use MixedCaps in package name;")
     )
-  );
+  ));
 
   public static String lookup(String message, String linter) {
     if (linter.equals(GoVetReportSensor.LINTER_ID) || linter.equals(GoLintReportSensor.LINTER_ID)) {
@@ -107,9 +109,9 @@ public class ExternalKeyUtils {
     return null;
   }
 
-  static class ExternalKey {
-    String key;
-    Predicate<String> matches;
+  public static class ExternalKey {
+    public final String key;
+    public final Predicate<String> matches;
 
     ExternalKey(String key, Predicate<String> matches) {
       this.key = key;
