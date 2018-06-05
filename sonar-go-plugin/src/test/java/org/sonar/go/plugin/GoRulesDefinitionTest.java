@@ -69,7 +69,7 @@ class GoRulesDefinitionTest {
     assertThat(govetRepository.isExternal()).isEqualTo(true);
 
     assertThat(golintRepository.rules().size()).isEqualTo(18);
-    assertThat(ExternalKeyUtils.GO_LINT_KEYS.size()).isEqualTo(34); // TODO should be 18
+    assertThat(ExternalKeyUtils.GO_LINT_KEYS.size()).isEqualTo(18);
 
     assertThat(govetRepository.rules().size()).isEqualTo(21);
     assertThat(ExternalKeyUtils.GO_VET_KEYS.size()).isEqualTo(21);
@@ -84,7 +84,7 @@ class GoRulesDefinitionTest {
       .map(x -> x.key)
       .filter(key -> golintRepository.rule(key) == null)
       .collect(Collectors.toList());
-    assertThat(golintKeysWithoutDefinition).hasSize(34); // TODO should be empty
+    assertThat(golintKeysWithoutDefinition).isEmpty();
   }
 
   private void assertRuleProperties(RulesDefinition.Repository repository) {

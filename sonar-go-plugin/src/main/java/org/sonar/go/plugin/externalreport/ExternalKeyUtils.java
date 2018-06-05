@@ -84,7 +84,7 @@ public class ExternalKeyUtils {
     new ExternalKey("ErrorReturn", msg -> msg.startsWith("error should be the last type when returning multiple items")),
     new ExternalKey("UnexportedReturn", msg -> msg.contains("returns unexported type") && msg.endsWith("which can be annoying to use")),
     new ExternalKey("TimeNames", msg -> msg.contains("don't use unit-specific suffix")),
-    new ExternalKey("ContextKeyType", msg -> msg.startsWith("should not use basic type") && msg.endsWith("as key in context.WithValue")),
+    new ExternalKey("ContextKeyTypes", msg -> msg.startsWith("should not use basic type") && msg.endsWith("as key in context.WithValue")),
     new ExternalKey("ContextArgs", msg -> msg.equals("context.Context should be the first parameter of a function")),
     new ExternalKey("Names", msg ->
       msg.startsWith("don't use an underscore in package name") ||
