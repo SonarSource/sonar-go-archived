@@ -20,11 +20,20 @@
 package org.sonar.go.plugin;
 
 import org.sonar.api.server.rule.RulesDefinition;
+import org.sonar.go.plugin.externalreport.AbstractReportSensor;
+import org.sonar.go.plugin.externalreport.GoLintReportSensor;
+import org.sonar.go.plugin.externalreport.GoVetReportSensor;
 import org.sonarsource.analyzer.commons.RuleMetadataLoader;
 
 public class GoRulesDefinition implements RulesDefinition {
 
   public static final String REPOSITORY_KEY = "go";
+  
+  private boolean externalIssuesSupported;
+
+  public GoRulesDefinition(boolean externalIssuesSupported) {
+    this.externalIssuesSupported = externalIssuesSupported;
+  }
 
   @Override
   public void define(Context context) {
@@ -33,5 +42,10 @@ public class GoRulesDefinition implements RulesDefinition {
     RuleMetadataLoader metadataLoader = new RuleMetadataLoader(GoPlugin.RESOURCE_FOLDER);
     metadataLoader.addRulesByAnnotatedClass(repository, GoChecks.getChecks());
     repository.done();
+
+    if (externalIssuesSupported) {
+      AbstractReportSensor.createExternalRuleRepository(context, GoVetReportSensor.LINTER_ID, GoVetReportSensor.LINTER_NAME);
+      AbstractReportSensor.createExternalRuleRepository(context, GoLintReportSensor.LINTER_ID, GoLintReportSensor.LINTER_NAME);
+    }
   }
 }

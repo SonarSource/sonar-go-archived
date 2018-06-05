@@ -34,11 +34,12 @@ public class GoVetReportSensor extends AbstractReportSensor {
 
   private static final Pattern GO_VET_LINE_REGEX = Pattern.compile("(?<file>[^:]+):(?<line>\\d+):(?<message>.*)");
 
-  static final String LINTER_ID = "govet";
+  public static final String LINTER_ID = "govet";
+  public static final String LINTER_NAME = "go vet";
 
   @Override
   String linterName() {
-    return "go vet";
+    return LINTER_NAME;
   }
 
   @Override

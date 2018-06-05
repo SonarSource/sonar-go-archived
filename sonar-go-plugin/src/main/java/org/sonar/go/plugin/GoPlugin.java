@@ -37,14 +37,16 @@ public class GoPlugin implements Plugin {
   private static final String GO_CATEGORY = "Go";
   private static final String GENERAL_SUBCATEGORY = "General";
   private static final String COVERAGE_SUBCATEGORY = "Coverage";
-  private static final String EXTERNAL_LINTER_SUBCATEGORY = "External Linter";
+  private static final String EXTERNAL_LINTER_SUBCATEGORY = "Popular Rule Engines";
 
   @Override
   public void define(Context context) {
+    boolean externalIssuesSupported = context.getSonarQubeVersion().isGreaterThanOrEqual(Version.create(7, 2));
+
     context.addExtensions(
       GoLanguage.class,
       GoSensor.class,
-      GoRulesDefinition.class,
+      new GoRulesDefinition(externalIssuesSupported),
       SonarWayProfile.class,
       GoExclusionsFileFilter.class,
       GoVetReportSensor.class,
@@ -84,7 +86,7 @@ public class GoPlugin implements Plugin {
         .multiValues(true)
         .build());
 
-    if (context.getSonarQubeVersion().isGreaterThanOrEqual(Version.create(7, 2))) {
+    if (externalIssuesSupported) {
       context.addExtensions(
 
         PropertyDefinition.builder(GoVetReportSensor.PROPERTY_KEY)

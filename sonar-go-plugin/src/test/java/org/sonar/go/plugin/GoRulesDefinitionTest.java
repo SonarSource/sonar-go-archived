@@ -30,21 +30,43 @@ class GoRulesDefinitionTest {
 
   @Test
   void test() {
-    RulesDefinition.Repository repository = buildRepository();
-
-    assertThat(repository.name()).isEqualTo("SonarAnalyzer");
-    assertThat(repository.language()).isEqualTo("go");
-    assertThat(repository.rules()).hasSize(GoChecks.getChecks().size());
-
-    assertRuleProperties(repository);
-    assertAllRuleParametersHaveDescription(repository);
-  }
-
-  private RulesDefinition.Repository buildRepository() {
-    GoRulesDefinition rulesDefinition = new GoRulesDefinition();
+    GoRulesDefinition rulesDefinition = new GoRulesDefinition(false);
     RulesDefinition.Context context = new RulesDefinition.Context();
     rulesDefinition.define(context);
-    return context.repository("go");
+
+    assertThat(context.repositories()).hasSize(1);
+
+    RulesDefinition.Repository goRepository = context.repository("go");
+
+    assertThat(goRepository.name()).isEqualTo("SonarAnalyzer");
+    assertThat(goRepository.language()).isEqualTo("go");
+    assertThat(goRepository.rules()).hasSize(GoChecks.getChecks().size());
+
+    assertRuleProperties(goRepository);
+    assertAllRuleParametersHaveDescription(goRepository);
+  }
+
+  @Test
+  public void test_external_repositories() {
+    GoRulesDefinition rulesDefinition = new GoRulesDefinition(true);
+    RulesDefinition.Context context = new RulesDefinition.Context();
+    rulesDefinition.define(context);
+    RulesDefinition.Repository golintRepository = context.repository("external_golint");
+    RulesDefinition.Repository govetRepository = context.repository("external_govet");
+
+    assertThat(context.repositories()).hasSize(3);
+
+    assertThat(golintRepository.name()).isEqualTo("Golint");
+    assertThat(govetRepository.name()).isEqualTo("go vet");
+
+    assertThat(golintRepository.language()).isEqualTo("go");
+    assertThat(govetRepository.language()).isEqualTo("go");
+
+    assertThat(golintRepository.isExternal()).isEqualTo(true);
+    assertThat(govetRepository.isExternal()).isEqualTo(true);
+
+    assertThat(golintRepository.rules().size()).isEqualTo(0); // fixme 18
+    assertThat(govetRepository.rules().size()).isEqualTo(21);
   }
 
   private void assertRuleProperties(RulesDefinition.Repository repository) {
