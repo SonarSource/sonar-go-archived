@@ -79,7 +79,7 @@ public class ExternalKeyUtils {
         msg.startsWith("don't use MixedCaps in package name;")
       ),
     new ExternalKey("VarDecls", msg -> (msg.contains("from declaration of var") && msg.endsWith("it is the zero value")) ||
-      msg.startsWith("should omit type") && msg.endsWith("it will be inferred from the right-hand side")),
+      (msg.startsWith("should omit type") && msg.endsWith("it will be inferred from the right-hand side"))),
     new ExternalKey("Elses", msg -> msg.contains("if block ends with a return statement, so drop this else and outdent its block")),
     new ExternalKey("Ranges", msg -> msg.matches("should omit (2nd value|values) from range; this loop is equivalent to .*")),
     new ExternalKey("Errorf", msg -> msg.matches("should replace [a-zA-Z0-9\\.]+\\\\(fmt.Sprintf\\\\(...\\\\)\\\\) with [a-zA-Z0-9]+.Errorf\\\\(...\\\\)")),
