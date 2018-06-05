@@ -20,6 +20,7 @@
 package org.sonar.go.plugin.externalreport;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -29,7 +30,7 @@ public class ExternalKeyUtils {
     // utility class, forbidden constructor
   }
 
-  public static final List<ExternalKey> GO_VET_KEYS = Arrays.asList(
+  public static final List<ExternalKey> GO_VET_KEYS = Collections.unmodifiableList(Arrays.asList(
     new ExternalKey("asmdecl", msg -> msg.startsWith("Invalid") && msg.contains("(FP\\)")),
     new ExternalKey("assign", msg -> msg.startsWith("self-assignment of")),
     new ExternalKey("atomic", msg -> msg.equals("direct assignment to atomic value")),
@@ -55,10 +56,10 @@ public class ExternalKeyUtils {
     new ExternalKey("unreachable", msg -> msg.equals("unreachable code")),
     new ExternalKey("unusedresult", msg -> msg.endsWith("call not used")),
     new ExternalKey("unsafeptr", msg -> msg.equals("possible misuse of unsafe.Pointer"))
-  );
+  ));
 
 
-  public static final List<ExternalKey> GO_LINT_KEYS = Arrays.asList(
+  public static final List<ExternalKey> GO_LINT_KEYS = Collections.unmodifiableList(Arrays.asList(
     new ExternalKey("PackageComment", msg ->
       msg.startsWith("package comment should be of the form") ||
         msg.startsWith("package comment should not have leading space") ||
@@ -94,7 +95,7 @@ public class ExternalKeyUtils {
         msg.matches("(range var|struct field|[\\w]+) [\\w_]+ should be [\\w_]+") ||
         msg.startsWith("don't use MixedCaps in package name;")
     )
-  );
+  ));
 
   public static String lookup(String message, String linter) {
     if (linter.equals(GoVetReportSensor.LINTER_ID) || linter.equals(GoLintReportSensor.LINTER_ID)) {
