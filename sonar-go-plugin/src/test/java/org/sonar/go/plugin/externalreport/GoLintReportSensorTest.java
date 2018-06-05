@@ -139,9 +139,9 @@ class GoLintReportSensorTest {
     // all 102 messages from report are parsed correctly
     List<ExternalIssue> externalIssues = ExternalLinterSensorHelper.executeSensor(new GoLintReportSensor(), context);
     assertThat(externalIssues).hasSize(102);
-    // 17 distinct rule keys are present in the report
+    // 18 distinct rule keys are present in the report
     Stream<String> uniqueKeys = externalIssues.stream().map(externalIssue -> externalIssue.ruleKey().rule()).distinct();
-    assertThat(uniqueKeys).hasSize(17);
+    assertThat(uniqueKeys).hasSize(18);
     // all messages are associated to a rule key
     Stream<ExternalIssue> notMatchedKeys = externalIssues.stream()
       .filter(externalIssue -> externalIssue.ruleKey().rule().equals(GENERIC_ISSUE_KEY));

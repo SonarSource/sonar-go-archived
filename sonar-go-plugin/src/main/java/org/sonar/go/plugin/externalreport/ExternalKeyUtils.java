@@ -65,36 +65,34 @@ public class ExternalKeyUtils {
         msg.equals("should have a package comment, unless it's in another file for this package")),
     new ExternalKey("BlankImports", msg -> msg.equals("a blank import should be only in a main or test package, or have a comment justifying it")),
     new ExternalKey("Imports", msg -> msg.equals("should not use dot imports")),
-    new ExternalKey("Exported", msg -> msg.matches("exported [a-zA-Z0-9\\.]+ [a-zA-Z0-9\\.]+ should have comment[\\(\\) a-zA-Z0-9]* or be unexported") ||
-      msg.matches("comment on exported type [a-zA-Z0-9]+ should be of the form \"[a-zA-Z0-9]+ ...\" \\\\(with optional leading article\\\\)") ||
+    new ExternalKey("Exported", msg -> (msg.startsWith("exported") && msg.endsWith("or be unexported")) ||
       msg.startsWith("comment on exported") ||
       msg.endsWith("should have its own declaration") ||
-      msg.matches("[a-zA-Z0-9]+ name will be used as [a-zA-Z0-9]+.[a-zA-Z0-9]+ by other packages, and that stutters; consider calling this [a-zA-Z0-9]+")),
+      msg.contains("by other packages, and that stutters; consider calling this")),
+    new ExternalKey("VarDecls", msg -> msg.contains("from declaration of var")),
+    new ExternalKey("Elses", msg -> msg.startsWith("if block ends with a return statement, so drop this else and outdent its block")),
+    new ExternalKey("Ranges", msg -> msg.contains("from range; this loop is equivalent to")),
+    new ExternalKey("Errorf", msg -> msg.contains("(fmt.Sprintf(...)) with") && msg.contains(".Errorf(...)")),
+    new ExternalKey("Errors", msg -> msg.startsWith("error var ") && msg.contains("should have name of the form ")),
+    new ExternalKey("ErrorStrings", msg -> msg.equals("error strings should not be capitalized or end with punctuation or a newline")),
+    new ExternalKey("ReceiverNames", msg ->
+      msg.contains("should be consistent with previous receiver name") ||
+        msg.startsWith("receiver name should not be an underscore") ||
+        msg.equals("receiver name should be a reflection of its identity; don't use generic names such as \"this\" or \"self\"")),
+    new ExternalKey("IncDec", msg -> msg.startsWith("should replace") && !msg.contains("(fmt.Sprintf(...)) with")),
+    new ExternalKey("ErrorReturn", msg -> msg.startsWith("error should be the last type when returning multiple items")),
+    new ExternalKey("UnexportedReturn", msg -> msg.contains("returns unexported type") && msg.endsWith("which can be annoying to use")),
+    new ExternalKey("TimeNames", msg -> msg.contains("don't use unit-specific suffix")),
+    new ExternalKey("ContextKeyType", msg -> msg.startsWith("should not use basic type") && msg.endsWith("as key in context.WithValue")),
+    new ExternalKey("ContextArgs", msg -> msg.equals("context.Context should be the first parameter of a function")),
     new ExternalKey("Names", msg ->
       msg.startsWith("don't use an underscore in package name") ||
         msg.startsWith("don't use ALL_CAPS in Go names; use CamelCase") ||
         msg.startsWith("don't use leading k in Go names;") ||
         msg.startsWith("don't use underscores in Go names;") ||
-        msg.matches("(range var|struct field|[a-zA-Z0-9]+) [a-zA-Z0-9]+ should be [a-zA-Z0-9]+") ||
+        msg.matches("(range var|struct field|[\\w]+) [\\w_]+ should be [\\w_]+") ||
         msg.startsWith("don't use MixedCaps in package name;")
-      ),
-    new ExternalKey("VarDecls", msg -> (msg.contains("from declaration of var") && msg.endsWith("it is the zero value")) ||
-      (msg.startsWith("should omit type") && msg.endsWith("it will be inferred from the right-hand side"))),
-    new ExternalKey("Elses", msg -> msg.contains("if block ends with a return statement, so drop this else and outdent its block")),
-    new ExternalKey("Ranges", msg -> msg.matches("should omit (2nd value|values) from range; this loop is equivalent to .*")),
-    new ExternalKey("Errorf", msg -> msg.matches("should replace [a-zA-Z0-9\\.]+\\\\(fmt.Sprintf\\\\(...\\\\)\\\\) with [a-zA-Z0-9]+.Errorf\\\\(...\\\\)")),
-    new ExternalKey("Errors", msg -> msg.matches("error var [a-zA-Z0-9]+ should have name of the form [a-zA-Z0-9]+")),
-    new ExternalKey("ErrorStrings", msg -> msg.startsWith("error strings should not be capitalized or end with punctuation or a newline")),
-    new ExternalKey("ReceiverNames", msg ->
-      msg.contains("should be consistent with previous receiver name") ||
-        msg.startsWith("receiver name should not be an underscore") ||
-        msg.equals("receiver name should be a reflection of its identity; don't use generic names such as \"this\" or \"self\"")),
-    new ExternalKey("IncDec", msg -> msg.matches("should replace [a-zA-Z0-9\\-\\+=\\.\\(\\) ]+ with [a-zA-Z0-9\\-\\+\\.\\(\\)]+")),
-    new ExternalKey("ErrorReturn", msg -> msg.startsWith("error should be the last type when returning multiple items")),
-    new ExternalKey("UnexportedReturn", msg -> msg.contains("returns unexported type") && msg.endsWith("which can be annoying to use")),
-    new ExternalKey("TimeNames", msg -> msg.contains("don't use unit-specific suffix")),
-    new ExternalKey("ContextKeyType", msg -> msg.startsWith("should not use basic type") && msg.endsWith("as key in context.WithValue")),
-    new ExternalKey("ContextArgs", msg -> msg.equals("context.Context should be the first parameter of a function"))
+    )
   );
 
   public static String lookup(String message, String linter) {
