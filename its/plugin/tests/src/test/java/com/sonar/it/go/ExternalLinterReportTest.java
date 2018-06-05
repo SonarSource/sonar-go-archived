@@ -63,17 +63,18 @@ public class ExternalLinterReportTest {
     if (orchestrator.getServer().version().isGreaterThanOrEquals("7.2")) {
       assertThat(issues).hasSize(11);
       assertThat(formatIssues(issues)).isEqualTo(
-        "SelfAssignement.go|external_golint:ExportedHaveComment|MAJOR|5min|line:4|exported type User should have comment or be unexported\n" +
-          "SelfAssignement.go|external_golint:PackageCommentForm|MAJOR|5min|line:1|package comment should be of the form \"Package samples ...\"\n" +
-          "TabCharacter.go|external_golint:PackageCommentForm|MAJOR|5min|line:1|package comment should be of the form \"Package samples ...\"\n" +
-          "TodoTagPresence.go|external_golint:PackageCommentForm|MAJOR|5min|line:1|package comment should be of the form \"Package samples ...\"\n" +
-          "TooLongLine.go|external_golint:PackageCommentForm|MAJOR|5min|line:1|package comment should be of the form \"Package samples ...\"\n" +
-          "TooManyParameters.go|external_golint:PackageCommentForm|MAJOR|5min|line:1|package comment should be of the form \"Package samples ...\"\n" +
-          "pivot.go|external_golint:UnderscoreInGoName|MAJOR|5min|line:10|don't use underscores in Go names; var ascii_uppercase should be asciiUppercase\n" +
-          "pivot.go|external_golint:UnderscoreInGoName|MAJOR|5min|line:11|don't use underscores in Go names; var ascii_lowercase should be asciiLowercase\n" +
-          "pivot.go|external_golint:UnderscoreInGoName|MAJOR|5min|line:12|don't use underscores in Go names; var ascii_uppercase_len should be asciiUppercaseLen\n" +
-          "pivot.go|external_golint:UnderscoreInGoName|MAJOR|5min|line:13|don't use underscores in Go names; var ascii_lowercase_len should be asciiLowercaseLen\n" +
-          "pivot.go|external_golint:UnderscoreInGoName|MAJOR|5min|line:14|don't use underscores in Go names; var ascii_allowed should be asciiAllowed");
+        "SelfAssignement.go|external_golint:Exported|MAJOR|5min|line:4|exported type User should have comment or be unexported\n" +
+          "SelfAssignement.go|external_golint:PackageComment|MAJOR|5min|line:1|package comment should be of the form \"Package samples ...\"\n" +
+          "TabCharacter.go|external_golint:PackageComment|MAJOR|5min|line:1|package comment should be of the form \"Package samples ...\"\n" +
+          "TodoTagPresence.go|external_golint:PackageComment|MAJOR|5min|line:1|package comment should be of the form \"Package samples ...\"\n" +
+          "TooLongLine.go|external_golint:PackageComment|MAJOR|5min|line:1|package comment should be of the form \"Package samples ...\"\n" +
+          "TooManyParameters.go|external_golint:PackageComment|MAJOR|5min|line:1|package comment should be of the form \"Package samples ...\"\n" +
+          "pivot.go|external_golint:Names|MAJOR|5min|line:10|don't use underscores in Go names; var ascii_uppercase should be asciiUppercase\n" +
+          "pivot.go|external_golint:Names|MAJOR|5min|line:11|don't use underscores in Go names; var ascii_lowercase should be asciiLowercase\n" +
+          "pivot.go|external_golint:Names|MAJOR|5min|line:12|don't use underscores in Go names; var ascii_uppercase_len should be asciiUppercaseLen\n" +
+          "pivot.go|external_golint:Names|MAJOR|5min|line:13|don't use underscores in Go names; var ascii_lowercase_len should be asciiLowercaseLen\n" +
+          "pivot.go|external_golint:Names|MAJOR|5min|line:14|don't use underscores in Go names; var ascii_allowed should be asciiAllowed"
+      );
     } else {
       assertThat(issues).isEmpty();
     }
@@ -88,8 +89,8 @@ public class ExternalLinterReportTest {
     if (orchestrator.getServer().version().isGreaterThanOrEquals("7.2")) {
       assertThat(issues).hasSize(8);
       assertThat(formatIssues(issues)).isEqualTo(
-        "SelfAssignement.go|external_golint:ExportedHaveComment|MAJOR|5min|line:4|exported type User should have comment or be unexported\n" +
-          "SelfAssignement.go|external_golint:PackageCommentForm|MAJOR|5min|line:1|package comment should be of the form \"Package samples ...\"\n" +
+        "SelfAssignement.go|external_golint:Exported|MAJOR|5min|line:4|exported type User should have comment or be unexported\n" +
+          "SelfAssignement.go|external_golint:PackageComment|MAJOR|5min|line:1|package comment should be of the form \"Package samples ...\"\n" +
           "SelfAssignement.go|external_govet:assign|MAJOR|5min|line:7|self-assignment of name to name\n" +
           "SelfAssignement.go|external_govet:assign|MAJOR|5min|line:9|self-assignment of user.name to user.name\n" +
           "SelfAssignement.go|external_megacheck:SA4018|MAJOR|5min|line:7|self-assignment of name to name\n" +

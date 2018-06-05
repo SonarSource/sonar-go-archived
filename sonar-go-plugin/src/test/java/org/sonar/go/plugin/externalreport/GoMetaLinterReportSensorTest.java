@@ -80,7 +80,7 @@ class GoMetaLinterReportSensorTest {
     assertThat(third.type()).isEqualTo(RuleType.CODE_SMELL);
     assertThat(third.severity()).isEqualTo(Severity.MAJOR);
     assertThat(third.ruleKey().repository()).isEqualTo("golint");
-    assertThat(third.ruleKey().rule()).isEqualTo("ExportedHaveComment");
+    assertThat(third.ruleKey().rule()).isEqualTo("Exported");
     assertThat(third.primaryLocation().message()).isEqualTo("exported type User should have comment or be unexported");
     assertThat(third.primaryLocation().textRange().start().line()).isEqualTo(3);
 
@@ -105,7 +105,7 @@ class GoMetaLinterReportSensorTest {
     assertThat(issue).isNotNull();
     assertThat(issue.linter).isEqualTo("golint");
     assertThat(issue.type).isEqualTo(RuleType.CODE_SMELL);
-    assertThat(issue.ruleKey).isEqualTo("ExportedHaveComment");
+    assertThat(issue.ruleKey).isEqualTo("Exported");
     assertThat(issue.filename).isEqualTo("SelfAssignement.go");
     assertThat(issue.lineNumber).isEqualTo(4);
     assertThat(issue.message).isEqualTo("exported type User should have comment or be unexported");
