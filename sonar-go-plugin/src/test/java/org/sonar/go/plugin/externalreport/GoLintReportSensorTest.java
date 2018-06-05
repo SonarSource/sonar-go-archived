@@ -75,7 +75,7 @@ class GoLintReportSensorTest {
     assertThat(first.type()).isEqualTo(RuleType.CODE_SMELL);
     assertThat(first.severity()).isEqualTo(Severity.MAJOR);
     assertThat(first.ruleKey().repository()).isEqualTo("golint");
-    assertThat(first.ruleKey().rule()).isEqualTo("PackageCommentForm");
+    assertThat(first.ruleKey().rule()).isEqualTo("PackageComment");
     assertThat(first.primaryLocation().message()).isEqualTo("package comment should be of the form \"Package samples ...\"");
     assertThat(first.primaryLocation().textRange().start().line()).isEqualTo(1);
 
@@ -83,7 +83,7 @@ class GoLintReportSensorTest {
     assertThat(second.type()).isEqualTo(RuleType.CODE_SMELL);
     assertThat(second.severity()).isEqualTo(Severity.MAJOR);
     assertThat(second.ruleKey().repository()).isEqualTo("golint");
-    assertThat(second.ruleKey().rule()).isEqualTo("ExportedHaveComment");
+    assertThat(second.ruleKey().rule()).isEqualTo("Exported");
     assertThat(second.primaryLocation().message()).isEqualTo("exported type User should have comment or be unexported");
     assertThat(second.primaryLocation().textRange().start().line()).isEqualTo(2);
 
@@ -139,9 +139,9 @@ class GoLintReportSensorTest {
     // all 102 messages from report are parsed correctly
     List<ExternalIssue> externalIssues = ExternalLinterSensorHelper.executeSensor(new GoLintReportSensor(), context);
     assertThat(externalIssues).hasSize(102);
-    // 31 distinct rule keys are present in the report
+    // 18 distinct rule keys are present in the report
     Stream<String> uniqueKeys = externalIssues.stream().map(externalIssue -> externalIssue.ruleKey().rule()).distinct();
-    assertThat(uniqueKeys).hasSize(31);
+    assertThat(uniqueKeys).hasSize(18);
     // all messages are associated to a rule key
     Stream<ExternalIssue> notMatchedKeys = externalIssues.stream()
       .filter(externalIssue -> externalIssue.ruleKey().rule().equals(GENERIC_ISSUE_KEY));
