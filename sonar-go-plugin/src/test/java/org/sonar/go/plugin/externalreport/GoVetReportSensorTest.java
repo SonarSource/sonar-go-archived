@@ -69,7 +69,7 @@ class GoVetReportSensorTest {
     SensorContextTester context = ExternalLinterSensorHelper.createContext(7, 2);
     context.settings().setProperty("sonar.go.govet.reportPaths", REPORT_BASE_PATH.resolve("govet-report.txt").toString());
     List<ExternalIssue> externalIssues = ExternalLinterSensorHelper.executeSensor(new GoVetReportSensor(), context);
-    assertThat(externalIssues).hasSize(2);
+    assertThat(externalIssues).hasSize(3);
 
     ExternalIssue first = externalIssues.get(0);
     assertThat(first.ruleKey().rule()).isEqualTo("nilfunc");
@@ -82,6 +82,12 @@ class GoVetReportSensorTest {
     assertThat(second.severity()).isEqualTo(Severity.MAJOR);
     assertThat(second.primaryLocation().message()).isEqualTo("Printf format %s has arg &str of wrong type *string");
     assertThat(second.primaryLocation().textRange().start().line()).isEqualTo(2);
+
+    ExternalIssue third = externalIssues.get(2);
+    assertThat(third.ruleKey().rule()).isEqualTo("unreachable");
+    assertThat(third.severity()).isEqualTo(Severity.MAJOR);
+    assertThat(third.primaryLocation().message()).isEqualTo("unreachable code");
+    assertThat(third.primaryLocation().textRange().start().line()).isEqualTo(2);
 
     assertThat(logTester.logs(LoggerLevel.ERROR)).isEmpty();
   }
@@ -134,14 +140,23 @@ class GoVetReportSensorTest {
     context.settings().setProperty("sonar.go.govet.reportPaths", REPORT_BASE_PATH.resolve("all-govet-report.txt").toString());
     // all 260 messages from report are parsed correctly
     List<ExternalIssue> externalIssues = ExternalLinterSensorHelper.executeSensor(new GoVetReportSensor(), context);
-    assertThat(externalIssues).hasSize(260);
-    // 18 distinct rule keys are present in the report
+    assertThat(externalIssues).hasSize(263);
+    // 19 distinct rule keys are present in the report
     Stream<String> uniqueKeys = externalIssues.stream().map(externalIssue -> externalIssue.ruleKey().rule()).distinct();
-    assertThat(uniqueKeys).hasSize(18);
+    assertThat(uniqueKeys).hasSize(19);
     // all messages are associated to a rule key
-    Stream<ExternalIssue> notMatchedKeys = externalIssues.stream()
-      .filter(externalIssue -> externalIssue.ruleKey().rule().equals(GENERIC_ISSUE_KEY));
-    assertThat(notMatchedKeys).hasSize(0);
+    assertThat(externalIssues).filteredOn("ruleKey.rule", GENERIC_ISSUE_KEY).hasSize(0);
+  }
+
+  @Test
+  void should_match_govet_asm_keys() throws IOException {
+    SensorContextTester context = ExternalLinterSensorHelper.createContext(7, 2);
+    context.settings().setProperty("sonar.go.govet.reportPaths", REPORT_BASE_PATH.resolve("asm-govet-report.txt").toString());
+    // all 260 messages from report are parsed correctly
+    List<ExternalIssue> externalIssues = ExternalLinterSensorHelper.executeSensor(new GoVetReportSensor(), context);
+    assertThat(externalIssues).hasSize(734);
+    // all messages should be matched to asmdecl rule key
+    assertThat(externalIssues).extracting("ruleKey.rule").containsOnly("asmdecl");
   }
 
   @Test

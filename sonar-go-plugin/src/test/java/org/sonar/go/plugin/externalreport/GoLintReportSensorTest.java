@@ -143,9 +143,7 @@ class GoLintReportSensorTest {
     Stream<String> uniqueKeys = externalIssues.stream().map(externalIssue -> externalIssue.ruleKey().rule()).distinct();
     assertThat(uniqueKeys).hasSize(18);
     // all messages are associated to a rule key
-    Stream<ExternalIssue> notMatchedKeys = externalIssues.stream()
-      .filter(externalIssue -> externalIssue.ruleKey().rule().equals(GENERIC_ISSUE_KEY));
-    assertThat(notMatchedKeys).hasSize(0);
+    assertThat(externalIssues).filteredOn("ruleKey.rule", GENERIC_ISSUE_KEY).hasSize(0);
   }
 
   @Test

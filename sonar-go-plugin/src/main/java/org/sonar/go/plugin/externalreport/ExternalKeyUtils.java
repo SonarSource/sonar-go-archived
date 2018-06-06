@@ -31,7 +31,7 @@ public class ExternalKeyUtils {
   }
 
   public static final List<ExternalKey> GO_VET_KEYS = Collections.unmodifiableList(Arrays.asList(
-    new ExternalKey("asmdecl", msg -> msg.startsWith("Invalid") && msg.contains("(FP\\)")),
+    new ExternalKey("asmdecl", msg -> msg.contains("(FP)") || msg.contains("wrong argument size") || msg.endsWith("points beyond argument frame")),
     new ExternalKey("assign", msg -> msg.startsWith("self-assignment of")),
     new ExternalKey("atomic", msg -> msg.equals("direct assignment to atomic value")),
     new ExternalKey("bool", msg -> msg.startsWith("redundant") || msg.startsWith("suspect")),

@@ -134,6 +134,9 @@ main.go:1: comparison of function F != nil is always true
 main.go:1: comparison of function F == nil is always false
 main.go:1: comparison of function M != nil is always true
 main.go:1: comparison of function M == nil is always false
+main.go:1: declaration of "err" shadows declaration at testdata/shadow.go:13
+main.go:1: declaration of "x" shadows declaration at testdata/atomic.go:16
+main.go:1: declaration of "x" shadows declaration at testdata/shadow.go:14
 main.go:1: direct assignment to atomic value
 main.go:1: flag.Flag composite literal uses unkeyed fields
 main.go:1: func passes lock by value: sync.Map contains sync.Mutex

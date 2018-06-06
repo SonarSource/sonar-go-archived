@@ -12,9 +12,15 @@ In order to maintain the ("error message" - "key") matching, we generate a repor
 To generate file `all-govet-report`:
 
 - Clone [golang repository locally](https://github.com/golang/go) (commit 3d6e4ec0a8c2ef47211519b21b020131c0434003)
+- go to <PATH TO GO REPO>/src/cmd/vet
 - Execute the following command 
 ```
-go tool vet <PATH TO GO REPO>/src/cmd/vet/testdata 2>&1 | sed 's/[^:]*:[0-9]*:/main.go:1:/ | sort --unique > ./resources/externalreport/all-govet-report.txt'
+go tool vet -shadow -all testdata 2>&1 | sed s/[^:]*:[0-9]*:/main.go:1:/ | sort --unique > ./resources/externalreport/all-govet-report.txt'
+```
+
+To generate file `asm-govet-report` (for assembly related issues)
+```
+go tool vet <PATH TO GO REPO>/src/cmd/vet/testdata/asm/asm.go <PATH TO GO REPO>/src/cmd/vet/testdata/asm/*.s  2>&1 | sed s/[^:]*:[0-9]*:/main.go:1:/ | sort --unique > ./resources/externalreport/asm-govet-report.txt'
 ```
 
 ## golint
