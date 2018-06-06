@@ -66,7 +66,14 @@ class GoPathContext {
     return parentPath + fileSeparator + childPath;
   }
 
-  String resolveUsingGoPath(String filePath) {
+  /**
+   * Try to resolve the absolute path of the given filePath. If filePath is relative,
+   * try to append the first GOPATH entry where this file exists, otherwise return
+   * a non-existing absolute path using the first GOPATH entry (or just filePath itself
+   * if GOPATH is empty).
+   * See GoCoverageReport#findInputFile to understand why a non-existing file is useful.
+   */
+  String resolve(String filePath) {
     return resolvedPaths.computeIfAbsent(filePath, path -> {
       if (path.startsWith(LINUX_ABSOLUTE_PREFIX)) {
         return path.substring(1);

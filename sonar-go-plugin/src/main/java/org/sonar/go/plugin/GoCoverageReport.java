@@ -162,7 +162,7 @@ public final class GoCoverageReport {
 
     void add(CoverageStat coverage) {
       fileMap
-        .computeIfAbsent(goContext.resolveUsingGoPath(coverage.filePath), key -> new ArrayList<>())
+        .computeIfAbsent(goContext.resolve(coverage.filePath), key -> new ArrayList<>())
         .add(coverage);
     }
   }
