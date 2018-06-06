@@ -1,3 +1,4 @@
 main.go:1: comparison of function Foo == nil is always false
 main.go:2: Printf format %s has arg &str of wrong type *string
+main.go:2: unreachable code
 exit status 1

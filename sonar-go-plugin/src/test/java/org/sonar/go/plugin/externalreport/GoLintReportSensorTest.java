@@ -136,16 +136,13 @@ class GoLintReportSensorTest {
   void should_match_golint_all_keys() throws IOException {
     SensorContextTester context = ExternalLinterSensorHelper.createContext(7, 2);
     context.settings().setProperty("sonar.go.golint.reportPaths", REPORT_BASE_PATH.resolve("all-golint-report.txt").toString());
-    // all 102 messages from report are parsed correctly
     List<ExternalIssue> externalIssues = ExternalLinterSensorHelper.executeSensor(new GoLintReportSensor(), context);
     assertThat(externalIssues).hasSize(102);
-    // 18 distinct rule keys are present in the report
+
     Stream<String> uniqueKeys = externalIssues.stream().map(externalIssue -> externalIssue.ruleKey().rule()).distinct();
     assertThat(uniqueKeys).hasSize(18);
     // all messages are associated to a rule key
-    Stream<ExternalIssue> notMatchedKeys = externalIssues.stream()
-      .filter(externalIssue -> externalIssue.ruleKey().rule().equals(GENERIC_ISSUE_KEY));
-    assertThat(notMatchedKeys).hasSize(0);
+    assertThat(externalIssues).filteredOn("ruleKey.rule", GENERIC_ISSUE_KEY).hasSize(0);
   }
 
   @Test

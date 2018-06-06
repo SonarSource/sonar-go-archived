@@ -1,0 +1,734 @@
+main.go:1: [386] arg1: 4(SP) should be x+0(FP)
+main.go:1: [386] arg1: 5(SP) should be y+1(FP)
+main.go:1: [386] arg1: invalid MOVL of x+0(FP); int8 is 1-byte value
+main.go:1: [386] arg1: invalid MOVL of y+1(FP); uint8 is 1-byte value
+main.go:1: [386] arg1: invalid MOVQ of x+0(FP); int8 is 1-byte value
+main.go:1: [386] arg1: invalid MOVQ of y+1(FP); uint8 is 1-byte value
+main.go:1: [386] arg1: invalid MOVW of x+0(FP); int8 is 1-byte value
+main.go:1: [386] arg1: invalid MOVW of y+1(FP); uint8 is 1-byte value
+main.go:1: [386] arg1: invalid TESTL of x+0(FP); int8 is 1-byte value
+main.go:1: [386] arg1: invalid TESTL of y+1(FP); uint8 is 1-byte value
+main.go:1: [386] arg1: invalid TESTQ of x+0(FP); int8 is 1-byte value
+main.go:1: [386] arg1: invalid TESTQ of y+1(FP); uint8 is 1-byte value
+main.go:1: [386] arg1: invalid TESTW of x+0(FP); int8 is 1-byte value
+main.go:1: [386] arg1: invalid TESTW of y+1(FP); uint8 is 1-byte value
+main.go:1: [386] arg1: invalid offset x+1(FP); expected x+0(FP)
+main.go:1: [386] arg1: invalid offset y+2(FP); expected y+1(FP)
+main.go:1: [386] arg1: use of 6(SP) points beyond argument frame
+main.go:1: [386] arg2: invalid MOVB of x+0(FP); int16 is 2-byte value
+main.go:1: [386] arg2: invalid MOVB of y+2(FP); uint16 is 2-byte value
+main.go:1: [386] arg2: invalid MOVL of x+0(FP); int16 is 2-byte value
+main.go:1: [386] arg2: invalid MOVL of y+2(FP); uint16 is 2-byte value
+main.go:1: [386] arg2: invalid MOVQ of x+0(FP); int16 is 2-byte value
+main.go:1: [386] arg2: invalid MOVQ of y+2(FP); uint16 is 2-byte value
+main.go:1: [386] arg2: invalid TESTB of x+0(FP); int16 is 2-byte value
+main.go:1: [386] arg2: invalid TESTB of y+2(FP); uint16 is 2-byte value
+main.go:1: [386] arg2: invalid TESTL of x+0(FP); int16 is 2-byte value
+main.go:1: [386] arg2: invalid TESTL of y+2(FP); uint16 is 2-byte value
+main.go:1: [386] arg2: invalid TESTQ of x+0(FP); int16 is 2-byte value
+main.go:1: [386] arg2: invalid TESTQ of y+2(FP); uint16 is 2-byte value
+main.go:1: [386] arg2: invalid offset x+2(FP); expected x+0(FP)
+main.go:1: [386] arg2: invalid offset y+0(FP); expected y+2(FP)
+main.go:1: [386] arg4: invalid MOVB of x+0(FP); int32 is 4-byte value
+main.go:1: [386] arg4: invalid MOVB of y+4(FP); uint32 is 4-byte value
+main.go:1: [386] arg4: invalid MOVQ of x+0(FP); int32 is 4-byte value
+main.go:1: [386] arg4: invalid MOVQ of y+4(FP); uint32 is 4-byte value
+main.go:1: [386] arg4: invalid MOVW of x+0(FP); int32 is 4-byte value
+main.go:1: [386] arg4: invalid MOVW of y+4(FP); uint32 is 4-byte value
+main.go:1: [386] arg4: invalid TESTB of x+0(FP); int32 is 4-byte value
+main.go:1: [386] arg4: invalid TESTB of y+4(FP); uint32 is 4-byte value
+main.go:1: [386] arg4: invalid TESTQ of x+0(FP); int32 is 4-byte value
+main.go:1: [386] arg4: invalid TESTQ of y+4(FP); uint32 is 4-byte value
+main.go:1: [386] arg4: invalid TESTW of x+0(FP); int32 is 4-byte value
+main.go:1: [386] arg4: invalid TESTW of y+4(FP); uint32 is 4-byte value
+main.go:1: [386] arg4: invalid offset x+4(FP); expected x+0(FP)
+main.go:1: [386] arg4: invalid offset y+2(FP); expected y+4(FP)
+main.go:1: [386] arg4: wrong argument size 2; expected $...-8
+main.go:1: [386] arg8: invalid MOVB of x+0(FP); int64 is 8-byte value containing x_lo+0(FP) and x_hi+4(FP)
+main.go:1: [386] arg8: invalid MOVB of y+8(FP); uint64 is 8-byte value containing y_lo+8(FP) and y_hi+12(FP)
+main.go:1: [386] arg8: invalid MOVL of x+0(FP); int64 is 8-byte value containing x_lo+0(FP) and x_hi+4(FP)
+main.go:1: [386] arg8: invalid MOVL of y+8(FP); uint64 is 8-byte value containing y_lo+8(FP) and y_hi+12(FP)
+main.go:1: [386] arg8: invalid MOVW of x+0(FP); int64 is 8-byte value containing x_lo+0(FP) and x_hi+4(FP)
+main.go:1: [386] arg8: invalid MOVW of y+8(FP); uint64 is 8-byte value containing y_lo+8(FP) and y_hi+12(FP)
+main.go:1: [386] arg8: invalid TESTB of x+0(FP); int64 is 8-byte value containing x_lo+0(FP) and x_hi+4(FP)
+main.go:1: [386] arg8: invalid TESTB of y+8(FP); uint64 is 8-byte value containing y_lo+8(FP) and y_hi+12(FP)
+main.go:1: [386] arg8: invalid TESTL of x+0(FP); int64 is 8-byte value containing x_lo+0(FP) and x_hi+4(FP)
+main.go:1: [386] arg8: invalid TESTL of y+8(FP); uint64 is 8-byte value containing y_lo+8(FP) and y_hi+12(FP)
+main.go:1: [386] arg8: invalid TESTW of x+0(FP); int64 is 8-byte value containing x_lo+0(FP) and x_hi+4(FP)
+main.go:1: [386] arg8: invalid TESTW of y+8(FP); uint64 is 8-byte value containing y_lo+8(FP) and y_hi+12(FP)
+main.go:1: [386] arg8: invalid offset x+8(FP); expected x+0(FP), x_lo+0(FP), or x_hi+4(FP)
+main.go:1: [386] arg8: invalid offset y+2(FP); expected y+8(FP), y_lo+8(FP), or y_hi+12(FP)
+main.go:1: [386] arg8: wrong argument size 2; expected $...-16
+main.go:1: [386] argiface: invalid MOVQ of x+0(FP); interface type is 4-byte value containing x_type+0(FP) and x_data+4(FP)
+main.go:1: [386] argiface: invalid MOVQ of x_data+4(FP); interface data is 4-byte value
+main.go:1: [386] argiface: invalid MOVQ of x_type+0(FP); interface type is 4-byte value
+main.go:1: [386] argiface: invalid MOVQ of y+8(FP); interface itable is 4-byte value containing y_itable+8(FP) and y_data+12(FP)
+main.go:1: [386] argiface: invalid MOVQ of y_data+12(FP); interface data is 4-byte value
+main.go:1: [386] argiface: invalid MOVQ of y_itable+8(FP); interface itable is 4-byte value
+main.go:1: [386] argiface: invalid MOVW of x+0(FP); interface type is 4-byte value containing x_type+0(FP) and x_data+4(FP)
+main.go:1: [386] argiface: invalid MOVW of x_data+4(FP); interface data is 4-byte value
+main.go:1: [386] argiface: invalid MOVW of x_type+0(FP); interface type is 4-byte value
+main.go:1: [386] argiface: invalid MOVW of y+8(FP); interface itable is 4-byte value containing y_itable+8(FP) and y_data+12(FP)
+main.go:1: [386] argiface: invalid MOVW of y_data+12(FP); interface data is 4-byte value
+main.go:1: [386] argiface: invalid MOVW of y_itable+8(FP); interface itable is 4-byte value
+main.go:1: [386] argiface: invalid offset x_data+0(FP); expected x_data+4(FP)
+main.go:1: [386] argiface: invalid offset y_data+8(FP); expected y_data+12(FP)
+main.go:1: [386] argiface: unknown variable x_itable; offset 0 is x_type+0(FP)
+main.go:1: [386] argiface: unknown variable x_itable; offset 1 is x_type+0(FP)
+main.go:1: [386] argiface: unknown variable y_type; offset 8 is y_itable+8(FP)
+main.go:1: [386] argint: invalid MOVB of x+0(FP); int is 4-byte value
+main.go:1: [386] argint: invalid MOVB of y+4(FP); uint is 4-byte value
+main.go:1: [386] argint: invalid MOVQ of x+0(FP); int is 4-byte value
+main.go:1: [386] argint: invalid MOVQ of y+4(FP); uint is 4-byte value
+main.go:1: [386] argint: invalid MOVW of x+0(FP); int is 4-byte value
+main.go:1: [386] argint: invalid MOVW of y+4(FP); uint is 4-byte value
+main.go:1: [386] argint: invalid TESTB of x+0(FP); int is 4-byte value
+main.go:1: [386] argint: invalid TESTB of y+4(FP); uint is 4-byte value
+main.go:1: [386] argint: invalid TESTQ of x+0(FP); int is 4-byte value
+main.go:1: [386] argint: invalid TESTQ of y+4(FP); uint is 4-byte value
+main.go:1: [386] argint: invalid TESTW of x+0(FP); int is 4-byte value
+main.go:1: [386] argint: invalid TESTW of y+4(FP); uint is 4-byte value
+main.go:1: [386] argint: invalid offset x+4(FP); expected x+0(FP)
+main.go:1: [386] argint: invalid offset y+2(FP); expected y+4(FP)
+main.go:1: [386] argint: wrong argument size 2; expected $...-8
+main.go:1: [386] argptr: invalid MOVB of x+0(FP); *byte is 4-byte value
+main.go:1: [386] argptr: invalid MOVB of y+4(FP); *byte is 4-byte value
+main.go:1: [386] argptr: invalid MOVQ of x+0(FP); *byte is 4-byte value
+main.go:1: [386] argptr: invalid MOVQ of y+4(FP); *byte is 4-byte value
+main.go:1: [386] argptr: invalid MOVW of c+8(FP); chan int is 4-byte value
+main.go:1: [386] argptr: invalid MOVW of f+16(FP); func() is 4-byte value
+main.go:1: [386] argptr: invalid MOVW of m+12(FP); map[int]int is 4-byte value
+main.go:1: [386] argptr: invalid MOVW of x+0(FP); *byte is 4-byte value
+main.go:1: [386] argptr: invalid MOVW of y+4(FP); *byte is 4-byte value
+main.go:1: [386] argptr: invalid TESTB of x+0(FP); *byte is 4-byte value
+main.go:1: [386] argptr: invalid TESTB of y+4(FP); *byte is 4-byte value
+main.go:1: [386] argptr: invalid TESTQ of x+0(FP); *byte is 4-byte value
+main.go:1: [386] argptr: invalid TESTQ of y+4(FP); *byte is 4-byte value
+main.go:1: [386] argptr: invalid TESTW of x+0(FP); *byte is 4-byte value
+main.go:1: [386] argptr: invalid TESTW of y+4(FP); *byte is 4-byte value
+main.go:1: [386] argptr: invalid offset x+4(FP); expected x+0(FP)
+main.go:1: [386] argptr: invalid offset y+2(FP); expected y+4(FP)
+main.go:1: [386] argptr: wrong argument size 2; expected $...-20
+main.go:1: [386] argslice: invalid MOVQ of x+0(FP); slice base is 4-byte value containing x_base+0(FP), x_len+4(FP), and x_cap+8(FP)
+main.go:1: [386] argslice: invalid MOVQ of x_base+0(FP); slice base is 4-byte value
+main.go:1: [386] argslice: invalid MOVQ of x_cap+8(FP); slice cap is 4-byte value
+main.go:1: [386] argslice: invalid MOVQ of x_len+4(FP); slice len is 4-byte value
+main.go:1: [386] argslice: invalid MOVW of x+0(FP); slice base is 4-byte value containing x_base+0(FP), x_len+4(FP), and x_cap+8(FP)
+main.go:1: [386] argslice: invalid MOVW of x_base+0(FP); slice base is 4-byte value
+main.go:1: [386] argslice: invalid MOVW of x_cap+8(FP); slice cap is 4-byte value
+main.go:1: [386] argslice: invalid MOVW of x_len+4(FP); slice len is 4-byte value
+main.go:1: [386] argslice: invalid offset x_cap+0(FP); expected x_cap+8(FP)
+main.go:1: [386] argslice: invalid offset x_len+0(FP); expected x_len+4(FP)
+main.go:1: [386] argslice: invalid offset y+0(FP); expected y+12(FP), y_base+12(FP), y_len+16(FP), or y_cap+20(FP)
+main.go:1: [386] argslice: invalid offset y_cap+8(FP); expected y_cap+20(FP)
+main.go:1: [386] argslice: invalid offset y_len+4(FP); expected y_len+16(FP)
+main.go:1: [386] argslice: wrong argument size 0; expected $...-24
+main.go:1: [386] argstring: invalid MOVQ of x+0(FP); string base is 4-byte value containing x_base+0(FP) and x_len+4(FP)
+main.go:1: [386] argstring: invalid MOVQ of x_base+0(FP); string base is 4-byte value
+main.go:1: [386] argstring: invalid MOVQ of x_len+4(FP); string len is 4-byte value
+main.go:1: [386] argstring: invalid MOVW of x+0(FP); string base is 4-byte value containing x_base+0(FP) and x_len+4(FP)
+main.go:1: [386] argstring: invalid MOVW of x_base+0(FP); string base is 4-byte value
+main.go:1: [386] argstring: invalid MOVW of x_len+4(FP); string len is 4-byte value
+main.go:1: [386] argstring: invalid offset x_len+0(FP); expected x_len+4(FP)
+main.go:1: [386] argstring: invalid offset y+0(FP); expected y+8(FP), y_base+8(FP), or y_len+12(FP)
+main.go:1: [386] argstring: invalid offset y_len+4(FP); expected y_len+12(FP)
+main.go:1: [386] argstring: wrong argument size 0; expected $...-16
+main.go:1: [386] returnbyte: invalid MOVL of ret+4(FP); byte is 1-byte value
+main.go:1: [386] returnbyte: invalid MOVQ of ret+4(FP); byte is 1-byte value
+main.go:1: [386] returnbyte: invalid MOVW of ret+4(FP); byte is 1-byte value
+main.go:1: [386] returnbyte: invalid offset ret+3(FP); expected ret+4(FP)
+main.go:1: [386] returnint: invalid MOVB of ret+0(FP); int is 4-byte value
+main.go:1: [386] returnint: invalid MOVQ of ret+0(FP); int is 4-byte value
+main.go:1: [386] returnint: invalid MOVW of ret+0(FP); int is 4-byte value
+main.go:1: [386] returnint: invalid offset ret+1(FP); expected ret+0(FP)
+main.go:1: [386] returnint: unknown variable r; offset 0 is ret+0(FP)
+main.go:1: [386] returnintmissing: RET without writing to 4-byte ret+0(FP)
+main.go:1: [386] returnnamed: invalid MOVQ of r1+4(FP); int is 4-byte value
+main.go:1: [amd64] arg1: 8(SP) should be x+0(FP)
+main.go:1: [amd64] arg1: 9(SP) should be y+1(FP)
+main.go:1: [amd64] arg1: invalid MOVL of x+0(FP); int8 is 1-byte value
+main.go:1: [amd64] arg1: invalid MOVL of y+1(FP); uint8 is 1-byte value
+main.go:1: [amd64] arg1: invalid MOVQ of x+0(FP); int8 is 1-byte value
+main.go:1: [amd64] arg1: invalid MOVQ of y+1(FP); uint8 is 1-byte value
+main.go:1: [amd64] arg1: invalid MOVW of x+0(FP); int8 is 1-byte value
+main.go:1: [amd64] arg1: invalid MOVW of y+1(FP); uint8 is 1-byte value
+main.go:1: [amd64] arg1: invalid TESTL of x+0(FP); int8 is 1-byte value
+main.go:1: [amd64] arg1: invalid TESTL of y+1(FP); uint8 is 1-byte value
+main.go:1: [amd64] arg1: invalid TESTQ of x+0(FP); int8 is 1-byte value
+main.go:1: [amd64] arg1: invalid TESTQ of y+1(FP); uint8 is 1-byte value
+main.go:1: [amd64] arg1: invalid TESTW of x+0(FP); int8 is 1-byte value
+main.go:1: [amd64] arg1: invalid TESTW of y+1(FP); uint8 is 1-byte value
+main.go:1: [amd64] arg1: invalid offset x+1(FP); expected x+0(FP)
+main.go:1: [amd64] arg1: invalid offset y+2(FP); expected y+1(FP)
+main.go:1: [amd64] arg1: use of 10(SP) points beyond argument frame
+main.go:1: [amd64] arg2: invalid MOVB of x+0(FP); int16 is 2-byte value
+main.go:1: [amd64] arg2: invalid MOVB of y+2(FP); uint16 is 2-byte value
+main.go:1: [amd64] arg2: invalid MOVL of x+0(FP); int16 is 2-byte value
+main.go:1: [amd64] arg2: invalid MOVL of y+2(FP); uint16 is 2-byte value
+main.go:1: [amd64] arg2: invalid MOVQ of x+0(FP); int16 is 2-byte value
+main.go:1: [amd64] arg2: invalid MOVQ of y+2(FP); uint16 is 2-byte value
+main.go:1: [amd64] arg2: invalid TESTB of x+0(FP); int16 is 2-byte value
+main.go:1: [amd64] arg2: invalid TESTB of y+2(FP); uint16 is 2-byte value
+main.go:1: [amd64] arg2: invalid TESTL of x+0(FP); int16 is 2-byte value
+main.go:1: [amd64] arg2: invalid TESTL of y+2(FP); uint16 is 2-byte value
+main.go:1: [amd64] arg2: invalid TESTQ of x+0(FP); int16 is 2-byte value
+main.go:1: [amd64] arg2: invalid TESTQ of y+2(FP); uint16 is 2-byte value
+main.go:1: [amd64] arg2: invalid offset x+2(FP); expected x+0(FP)
+main.go:1: [amd64] arg2: invalid offset y+0(FP); expected y+2(FP)
+main.go:1: [amd64] arg4: invalid MOVB of x+0(FP); int32 is 4-byte value
+main.go:1: [amd64] arg4: invalid MOVB of y+4(FP); uint32 is 4-byte value
+main.go:1: [amd64] arg4: invalid MOVQ of x+0(FP); int32 is 4-byte value
+main.go:1: [amd64] arg4: invalid MOVQ of y+4(FP); uint32 is 4-byte value
+main.go:1: [amd64] arg4: invalid MOVW of x+0(FP); int32 is 4-byte value
+main.go:1: [amd64] arg4: invalid MOVW of y+4(FP); uint32 is 4-byte value
+main.go:1: [amd64] arg4: invalid TESTB of x+0(FP); int32 is 4-byte value
+main.go:1: [amd64] arg4: invalid TESTB of y+4(FP); uint32 is 4-byte value
+main.go:1: [amd64] arg4: invalid TESTQ of x+0(FP); int32 is 4-byte value
+main.go:1: [amd64] arg4: invalid TESTQ of y+4(FP); uint32 is 4-byte value
+main.go:1: [amd64] arg4: invalid TESTW of x+0(FP); int32 is 4-byte value
+main.go:1: [amd64] arg4: invalid TESTW of y+4(FP); uint32 is 4-byte value
+main.go:1: [amd64] arg4: invalid offset x+4(FP); expected x+0(FP)
+main.go:1: [amd64] arg4: invalid offset y+2(FP); expected y+4(FP)
+main.go:1: [amd64] arg4: wrong argument size 2; expected $...-8
+main.go:1: [amd64] arg8: invalid MOVB of x+0(FP); int64 is 8-byte value
+main.go:1: [amd64] arg8: invalid MOVB of y+8(FP); uint64 is 8-byte value
+main.go:1: [amd64] arg8: invalid MOVL of x+0(FP); int64 is 8-byte value
+main.go:1: [amd64] arg8: invalid MOVL of y+8(FP); uint64 is 8-byte value
+main.go:1: [amd64] arg8: invalid MOVW of x+0(FP); int64 is 8-byte value
+main.go:1: [amd64] arg8: invalid MOVW of y+8(FP); uint64 is 8-byte value
+main.go:1: [amd64] arg8: invalid TESTB of x+0(FP); int64 is 8-byte value
+main.go:1: [amd64] arg8: invalid TESTB of y+8(FP); uint64 is 8-byte value
+main.go:1: [amd64] arg8: invalid TESTL of x+0(FP); int64 is 8-byte value
+main.go:1: [amd64] arg8: invalid TESTL of y+8(FP); uint64 is 8-byte value
+main.go:1: [amd64] arg8: invalid TESTW of x+0(FP); int64 is 8-byte value
+main.go:1: [amd64] arg8: invalid TESTW of y+8(FP); uint64 is 8-byte value
+main.go:1: [amd64] arg8: invalid offset x+8(FP); expected x+0(FP)
+main.go:1: [amd64] arg8: invalid offset y+2(FP); expected y+8(FP)
+main.go:1: [amd64] arg8: wrong argument size 2; expected $...-16
+main.go:1: [amd64] argarray: invalid MOVQ of x+0(FP); [2]testdata.S is 48-byte value
+main.go:1: [amd64] argarray: invalid MOVQ of x_0_i+0(FP); int32 is 4-byte value
+main.go:1: [amd64] argarray: invalid offset x_0_b+0(FP); expected x_0_b+4(FP)
+main.go:1: [amd64] argarray: invalid offset x_0_s+16(FP); expected x_0_s+8(FP), x_0_s_base+8(FP), or x_0_s_len+16(FP)
+main.go:1: [amd64] argarray: invalid offset x_1_s+40(FP); expected x_1_s+32(FP), x_1_s_base+32(FP), or x_1_s_len+40(FP)
+main.go:1: [amd64] argarray: unknown variable foo; offset 25 is x_1_i+24(FP)
+main.go:1: [amd64] argarray: wrong argument size 0; expected $...-48
+main.go:1: [amd64] argcomplex: invalid MOVSD of x+0(FP); complex64 is 8-byte value containing x_real+0(FP) and x_imag+4(FP)
+main.go:1: [amd64] argcomplex: invalid MOVSD of x_imag+4(FP); imag(complex64) is 4-byte value
+main.go:1: [amd64] argcomplex: invalid MOVSD of x_real+0(FP); real(complex64) is 4-byte value
+main.go:1: [amd64] argcomplex: invalid MOVSD of y+8(FP); complex128 is 16-byte value containing y_real+8(FP) and y_imag+16(FP)
+main.go:1: [amd64] argcomplex: invalid MOVSS of x+0(FP); complex64 is 8-byte value containing x_real+0(FP) and x_imag+4(FP)
+main.go:1: [amd64] argcomplex: invalid MOVSS of y_imag+16(FP); imag(complex128) is 8-byte value
+main.go:1: [amd64] argcomplex: invalid MOVSS of y_real+8(FP); real(complex128) is 8-byte value
+main.go:1: [amd64] argcomplex: invalid offset x_imag+8(FP); expected x_imag+4(FP)
+main.go:1: [amd64] argcomplex: invalid offset x_real+4(FP); expected x_real+0(FP)
+main.go:1: [amd64] argcomplex: invalid offset y_imag+24(FP); expected y_imag+16(FP)
+main.go:1: [amd64] argcomplex: invalid offset y_real+16(FP); expected y_real+8(FP)
+main.go:1: [amd64] argcomplex: wrong argument size 0; expected $...-24
+main.go:1: [amd64] argiface: invalid MOVL of x+0(FP); interface type is 8-byte value containing x_type+0(FP) and x_data+8(FP)
+main.go:1: [amd64] argiface: invalid MOVL of x_data+8(FP); interface data is 8-byte value
+main.go:1: [amd64] argiface: invalid MOVL of x_type+0(FP); interface type is 8-byte value
+main.go:1: [amd64] argiface: invalid MOVL of y+16(FP); interface itable is 8-byte value containing y_itable+16(FP) and y_data+24(FP)
+main.go:1: [amd64] argiface: invalid MOVL of y_data+24(FP); interface data is 8-byte value
+main.go:1: [amd64] argiface: invalid MOVL of y_itable+16(FP); interface itable is 8-byte value
+main.go:1: [amd64] argiface: invalid MOVW of x+0(FP); interface type is 8-byte value containing x_type+0(FP) and x_data+8(FP)
+main.go:1: [amd64] argiface: invalid MOVW of x_data+8(FP); interface data is 8-byte value
+main.go:1: [amd64] argiface: invalid MOVW of x_type+0(FP); interface type is 8-byte value
+main.go:1: [amd64] argiface: invalid MOVW of y+16(FP); interface itable is 8-byte value containing y_itable+16(FP) and y_data+24(FP)
+main.go:1: [amd64] argiface: invalid MOVW of y_data+24(FP); interface data is 8-byte value
+main.go:1: [amd64] argiface: invalid MOVW of y_itable+16(FP); interface itable is 8-byte value
+main.go:1: [amd64] argiface: invalid offset x_data+0(FP); expected x_data+8(FP)
+main.go:1: [amd64] argiface: invalid offset y_data+16(FP); expected y_data+24(FP)
+main.go:1: [amd64] argiface: unknown variable x_itable; offset 0 is x_type+0(FP)
+main.go:1: [amd64] argiface: unknown variable x_itable; offset 1 is x_type+0(FP)
+main.go:1: [amd64] argiface: unknown variable y_type; offset 16 is y_itable+16(FP)
+main.go:1: [amd64] argint: invalid MOVB of x+0(FP); int is 8-byte value
+main.go:1: [amd64] argint: invalid MOVB of y+8(FP); uint is 8-byte value
+main.go:1: [amd64] argint: invalid MOVL of x+0(FP); int is 8-byte value
+main.go:1: [amd64] argint: invalid MOVL of y+8(FP); uint is 8-byte value
+main.go:1: [amd64] argint: invalid MOVW of x+0(FP); int is 8-byte value
+main.go:1: [amd64] argint: invalid MOVW of y+8(FP); uint is 8-byte value
+main.go:1: [amd64] argint: invalid TESTB of x+0(FP); int is 8-byte value
+main.go:1: [amd64] argint: invalid TESTB of y+8(FP); uint is 8-byte value
+main.go:1: [amd64] argint: invalid TESTL of x+0(FP); int is 8-byte value
+main.go:1: [amd64] argint: invalid TESTL of y+8(FP); uint is 8-byte value
+main.go:1: [amd64] argint: invalid TESTW of x+0(FP); int is 8-byte value
+main.go:1: [amd64] argint: invalid TESTW of y+8(FP); uint is 8-byte value
+main.go:1: [amd64] argint: invalid offset x+8(FP); expected x+0(FP)
+main.go:1: [amd64] argint: invalid offset y+2(FP); expected y+8(FP)
+main.go:1: [amd64] argint: wrong argument size 2; expected $...-16
+main.go:1: [amd64] argptr: invalid MOVB of x+0(FP); *byte is 8-byte value
+main.go:1: [amd64] argptr: invalid MOVB of y+8(FP); *byte is 8-byte value
+main.go:1: [amd64] argptr: invalid MOVL of c+16(FP); chan int is 8-byte value
+main.go:1: [amd64] argptr: invalid MOVL of f+32(FP); func() is 8-byte value
+main.go:1: [amd64] argptr: invalid MOVL of m+24(FP); map[int]int is 8-byte value
+main.go:1: [amd64] argptr: invalid MOVL of x+0(FP); *byte is 8-byte value
+main.go:1: [amd64] argptr: invalid MOVL of y+8(FP); *byte is 8-byte value
+main.go:1: [amd64] argptr: invalid MOVW of x+0(FP); *byte is 8-byte value
+main.go:1: [amd64] argptr: invalid MOVW of y+8(FP); *byte is 8-byte value
+main.go:1: [amd64] argptr: invalid TESTB of x+0(FP); *byte is 8-byte value
+main.go:1: [amd64] argptr: invalid TESTB of y+8(FP); *byte is 8-byte value
+main.go:1: [amd64] argptr: invalid TESTL of x+0(FP); *byte is 8-byte value
+main.go:1: [amd64] argptr: invalid TESTL of y+8(FP); *byte is 8-byte value
+main.go:1: [amd64] argptr: invalid TESTW of x+0(FP); *byte is 8-byte value
+main.go:1: [amd64] argptr: invalid TESTW of y+8(FP); *byte is 8-byte value
+main.go:1: [amd64] argptr: invalid offset x+8(FP); expected x+0(FP)
+main.go:1: [amd64] argptr: invalid offset y+2(FP); expected y+8(FP)
+main.go:1: [amd64] argptr: wrong argument size 2; expected $...-40
+main.go:1: [amd64] argslice: invalid MOVL of x+0(FP); slice base is 8-byte value containing x_base+0(FP), x_len+8(FP), and x_cap+16(FP)
+main.go:1: [amd64] argslice: invalid MOVL of x_base+0(FP); slice base is 8-byte value
+main.go:1: [amd64] argslice: invalid MOVL of x_cap+16(FP); slice cap is 8-byte value
+main.go:1: [amd64] argslice: invalid MOVL of x_len+8(FP); slice len is 8-byte value
+main.go:1: [amd64] argslice: invalid MOVW of x+0(FP); slice base is 8-byte value containing x_base+0(FP), x_len+8(FP), and x_cap+16(FP)
+main.go:1: [amd64] argslice: invalid MOVW of x_base+0(FP); slice base is 8-byte value
+main.go:1: [amd64] argslice: invalid MOVW of x_cap+16(FP); slice cap is 8-byte value
+main.go:1: [amd64] argslice: invalid MOVW of x_len+8(FP); slice len is 8-byte value
+main.go:1: [amd64] argslice: invalid offset x_cap+0(FP); expected x_cap+16(FP)
+main.go:1: [amd64] argslice: invalid offset x_len+0(FP); expected x_len+8(FP)
+main.go:1: [amd64] argslice: invalid offset y+0(FP); expected y+24(FP), y_base+24(FP), y_len+32(FP), or y_cap+40(FP)
+main.go:1: [amd64] argslice: invalid offset y_cap+16(FP); expected y_cap+40(FP)
+main.go:1: [amd64] argslice: invalid offset y_len+8(FP); expected y_len+32(FP)
+main.go:1: [amd64] argslice: wrong argument size 0; expected $...-48
+main.go:1: [amd64] argstring: invalid MOVL of x+0(FP); string base is 8-byte value containing x_base+0(FP) and x_len+8(FP)
+main.go:1: [amd64] argstring: invalid MOVL of x_base+0(FP); string base is 8-byte value
+main.go:1: [amd64] argstring: invalid MOVL of x_len+8(FP); string len is 8-byte value
+main.go:1: [amd64] argstring: invalid MOVW of x+0(FP); string base is 8-byte value containing x_base+0(FP) and x_len+8(FP)
+main.go:1: [amd64] argstring: invalid MOVW of x_base+0(FP); string base is 8-byte value
+main.go:1: [amd64] argstring: invalid MOVW of x_len+8(FP); string len is 8-byte value
+main.go:1: [amd64] argstring: invalid offset x_len+0(FP); expected x_len+8(FP)
+main.go:1: [amd64] argstring: invalid offset y+0(FP); expected y+16(FP), y_base+16(FP), or y_len+24(FP)
+main.go:1: [amd64] argstring: invalid offset y_len+8(FP); expected y_len+24(FP)
+main.go:1: [amd64] argstring: wrong argument size 0; expected $...-32
+main.go:1: [amd64] argstruct: invalid MOVQ of x+0(FP); testdata.S is 24-byte value
+main.go:1: [amd64] argstruct: invalid MOVQ of x_i+0(FP); int32 is 4-byte value
+main.go:1: [amd64] argstruct: invalid offset x_b+0(FP); expected x_b+4(FP)
+main.go:1: [amd64] argstruct: invalid offset x_s+16(FP); expected x_s+8(FP), x_s_base+8(FP), or x_s_len+16(FP)
+main.go:1: [amd64] argstruct: wrong argument size 0; expected $...-24
+main.go:1: [amd64] returnbyte: invalid MOVL of ret+8(FP); byte is 1-byte value
+main.go:1: [amd64] returnbyte: invalid MOVQ of ret+8(FP); byte is 1-byte value
+main.go:1: [amd64] returnbyte: invalid MOVW of ret+8(FP); byte is 1-byte value
+main.go:1: [amd64] returnbyte: invalid offset ret+7(FP); expected ret+8(FP)
+main.go:1: [amd64] returnint: invalid MOVB of ret+0(FP); int is 8-byte value
+main.go:1: [amd64] returnint: invalid MOVL of ret+0(FP); int is 8-byte value
+main.go:1: [amd64] returnint: invalid MOVW of ret+0(FP); int is 8-byte value
+main.go:1: [amd64] returnint: invalid offset ret+1(FP); expected ret+0(FP)
+main.go:1: [amd64] returnint: unknown variable r; offset 0 is ret+0(FP)
+main.go:1: [amd64] returnintmissing: RET without writing to 8-byte ret+0(FP)
+main.go:1: [amd64] returnnamed: invalid MOVL of r1+8(FP); int is 8-byte value
+main.go:1: [arm] arg1: 8(R13) should be x+0(FP)
+main.go:1: [arm] arg1: 9(R13) should be y+1(FP)
+main.go:1: [arm] arg1: invalid MOVH of x+0(FP); int8 is 1-byte value
+main.go:1: [arm] arg1: invalid MOVH of y+1(FP); uint8 is 1-byte value
+main.go:1: [arm] arg1: invalid MOVW of x+0(FP); int8 is 1-byte value
+main.go:1: [arm] arg1: invalid MOVW of y+1(FP); uint8 is 1-byte value
+main.go:1: [arm] arg1: invalid offset x+1(FP); expected x+0(FP)
+main.go:1: [arm] arg1: invalid offset y+2(FP); expected y+1(FP)
+main.go:1: [arm] arg1: use of 10(R13) points beyond argument frame
+main.go:1: [arm] arg2: invalid MOVB of x+0(FP); int16 is 2-byte value
+main.go:1: [arm] arg2: invalid MOVB of y+2(FP); uint16 is 2-byte value
+main.go:1: [arm] arg2: invalid MOVW of x+0(FP); int16 is 2-byte value
+main.go:1: [arm] arg2: invalid MOVW of y+2(FP); uint16 is 2-byte value
+main.go:1: [arm] arg2: invalid offset x+2(FP); expected x+0(FP)
+main.go:1: [arm] arg2: invalid offset y+0(FP); expected y+2(FP)
+main.go:1: [arm] arg4: invalid MOVB of x+0(FP); int32 is 4-byte value
+main.go:1: [arm] arg4: invalid MOVB of y+4(FP); uint32 is 4-byte value
+main.go:1: [arm] arg4: invalid MOVH of x+0(FP); int32 is 4-byte value
+main.go:1: [arm] arg4: invalid MOVH of y+4(FP); uint32 is 4-byte value
+main.go:1: [arm] arg4: invalid offset x+4(FP); expected x+0(FP)
+main.go:1: [arm] arg4: invalid offset y+2(FP); expected y+4(FP)
+main.go:1: [arm] arg4: wrong argument size 2; expected $...-8
+main.go:1: [arm] arg8: invalid MOVB of x+0(FP); int64 is 8-byte value containing x_lo+0(FP) and x_hi+4(FP)
+main.go:1: [arm] arg8: invalid MOVB of y+8(FP); uint64 is 8-byte value containing y_lo+8(FP) and y_hi+12(FP)
+main.go:1: [arm] arg8: invalid MOVH of x+0(FP); int64 is 8-byte value containing x_lo+0(FP) and x_hi+4(FP)
+main.go:1: [arm] arg8: invalid MOVH of y+8(FP); uint64 is 8-byte value containing y_lo+8(FP) and y_hi+12(FP)
+main.go:1: [arm] arg8: invalid MOVW of x+0(FP); int64 is 8-byte value containing x_lo+0(FP) and x_hi+4(FP)
+main.go:1: [arm] arg8: invalid MOVW of y+8(FP); uint64 is 8-byte value containing y_lo+8(FP) and y_hi+12(FP)
+main.go:1: [arm] arg8: invalid offset x+8(FP); expected x+0(FP), x_lo+0(FP), or x_hi+4(FP)
+main.go:1: [arm] arg8: invalid offset y+2(FP); expected y+8(FP), y_lo+8(FP), or y_hi+12(FP)
+main.go:1: [arm] arg8: wrong argument size 2; expected $...-16
+main.go:1: [arm] argiface: invalid MOVH of x+0(FP); interface type is 4-byte value containing x_type+0(FP) and x_data+4(FP)
+main.go:1: [arm] argiface: invalid MOVH of x_data+4(FP); interface data is 4-byte value
+main.go:1: [arm] argiface: invalid MOVH of x_type+0(FP); interface type is 4-byte value
+main.go:1: [arm] argiface: invalid MOVH of y+8(FP); interface itable is 4-byte value containing y_itable+8(FP) and y_data+12(FP)
+main.go:1: [arm] argiface: invalid MOVH of y_data+12(FP); interface data is 4-byte value
+main.go:1: [arm] argiface: invalid MOVH of y_itable+8(FP); interface itable is 4-byte value
+main.go:1: [arm] argiface: invalid offset x_data+0(FP); expected x_data+4(FP)
+main.go:1: [arm] argiface: invalid offset y_data+8(FP); expected y_data+12(FP)
+main.go:1: [arm] argiface: unknown variable x_itable; offset 0 is x_type+0(FP)
+main.go:1: [arm] argiface: unknown variable x_itable; offset 1 is x_type+0(FP)
+main.go:1: [arm] argiface: unknown variable y_type; offset 8 is y_itable+8(FP)
+main.go:1: [arm] argint: invalid MOVB of x+0(FP); int is 4-byte value
+main.go:1: [arm] argint: invalid MOVB of y+4(FP); uint is 4-byte value
+main.go:1: [arm] argint: invalid MOVH of x+0(FP); int is 4-byte value
+main.go:1: [arm] argint: invalid MOVH of y+4(FP); uint is 4-byte value
+main.go:1: [arm] argint: invalid offset x+4(FP); expected x+0(FP)
+main.go:1: [arm] argint: invalid offset y+2(FP); expected y+4(FP)
+main.go:1: [arm] argint: wrong argument size 2; expected $...-8
+main.go:1: [arm] argptr: invalid MOVB of x+0(FP); *byte is 4-byte value
+main.go:1: [arm] argptr: invalid MOVB of y+4(FP); *byte is 4-byte value
+main.go:1: [arm] argptr: invalid MOVH of c+8(FP); chan int is 4-byte value
+main.go:1: [arm] argptr: invalid MOVH of f+16(FP); func() is 4-byte value
+main.go:1: [arm] argptr: invalid MOVH of m+12(FP); map[int]int is 4-byte value
+main.go:1: [arm] argptr: invalid MOVH of x+0(FP); *byte is 4-byte value
+main.go:1: [arm] argptr: invalid MOVH of y+4(FP); *byte is 4-byte value
+main.go:1: [arm] argptr: invalid offset x+4(FP); expected x+0(FP)
+main.go:1: [arm] argptr: invalid offset y+2(FP); expected y+4(FP)
+main.go:1: [arm] argptr: wrong argument size 2; expected $...-20
+main.go:1: [arm] argslice: invalid MOVH of x+0(FP); slice base is 4-byte value containing x_base+0(FP), x_len+4(FP), and x_cap+8(FP)
+main.go:1: [arm] argslice: invalid MOVH of x_base+0(FP); slice base is 4-byte value
+main.go:1: [arm] argslice: invalid MOVH of x_cap+8(FP); slice cap is 4-byte value
+main.go:1: [arm] argslice: invalid MOVH of x_len+4(FP); slice len is 4-byte value
+main.go:1: [arm] argslice: invalid offset x_cap+0(FP); expected x_cap+8(FP)
+main.go:1: [arm] argslice: invalid offset x_len+0(FP); expected x_len+4(FP)
+main.go:1: [arm] argslice: invalid offset y+0(FP); expected y+12(FP), y_base+12(FP), y_len+16(FP), or y_cap+20(FP)
+main.go:1: [arm] argslice: invalid offset y_cap+8(FP); expected y_cap+20(FP)
+main.go:1: [arm] argslice: invalid offset y_len+4(FP); expected y_len+16(FP)
+main.go:1: [arm] argslice: wrong argument size 0; expected $...-24
+main.go:1: [arm] argstring: invalid MOVH of x+0(FP); string base is 4-byte value containing x_base+0(FP) and x_len+4(FP)
+main.go:1: [arm] argstring: invalid MOVH of x_base+0(FP); string base is 4-byte value
+main.go:1: [arm] argstring: invalid MOVH of x_len+4(FP); string len is 4-byte value
+main.go:1: [arm] argstring: invalid offset x_len+0(FP); expected x_len+4(FP)
+main.go:1: [arm] argstring: invalid offset y+0(FP); expected y+8(FP), y_base+8(FP), or y_len+12(FP)
+main.go:1: [arm] argstring: invalid offset y_len+4(FP); expected y_len+12(FP)
+main.go:1: [arm] argstring: wrong argument size 0; expected $...-16
+main.go:1: [arm] noframe1: use of 12(R13) points beyond argument frame
+main.go:1: [arm] noframe2: 8(R13) should be x+0(FP)
+main.go:1: [arm] noframe2: use of 12(R13) points beyond argument frame
+main.go:1: [arm] returnbyte: invalid MOVH of ret+4(FP); byte is 1-byte value
+main.go:1: [arm] returnbyte: invalid MOVW of ret+4(FP); byte is 1-byte value
+main.go:1: [arm] returnbyte: invalid offset ret+3(FP); expected ret+4(FP)
+main.go:1: [arm] returnint: invalid MOVB of ret+0(FP); int is 4-byte value
+main.go:1: [arm] returnint: invalid MOVH of ret+0(FP); int is 4-byte value
+main.go:1: [arm] returnint: invalid offset ret+1(FP); expected ret+0(FP)
+main.go:1: [arm] returnint: unknown variable r; offset 0 is ret+0(FP)
+main.go:1: [arm] returnintmissing: RET without writing to 4-byte ret+0(FP)
+main.go:1: [arm] returnnamed: invalid MOVB of r1+4(FP); int is 4-byte value
+main.go:1: [mips64] arg1: 16(R29) should be x+0(FP)
+main.go:1: [mips64] arg1: 17(R29) should be y+1(FP)
+main.go:1: [mips64] arg1: invalid MOVH of x+0(FP); int8 is 1-byte value
+main.go:1: [mips64] arg1: invalid MOVHU of y+1(FP); uint8 is 1-byte value
+main.go:1: [mips64] arg1: invalid MOVV of x+0(FP); int8 is 1-byte value
+main.go:1: [mips64] arg1: invalid MOVV of y+1(FP); uint8 is 1-byte value
+main.go:1: [mips64] arg1: invalid MOVW of x+0(FP); int8 is 1-byte value
+main.go:1: [mips64] arg1: invalid MOVWU of y+1(FP); uint8 is 1-byte value
+main.go:1: [mips64] arg1: invalid offset x+1(FP); expected x+0(FP)
+main.go:1: [mips64] arg1: invalid offset y+2(FP); expected y+1(FP)
+main.go:1: [mips64] arg1: use of 18(R29) points beyond argument frame
+main.go:1: [mips64] arg2: invalid MOVB of y+2(FP); uint16 is 2-byte value
+main.go:1: [mips64] arg2: invalid MOVBU of x+0(FP); int16 is 2-byte value
+main.go:1: [mips64] arg2: invalid MOVV of x+0(FP); int16 is 2-byte value
+main.go:1: [mips64] arg2: invalid MOVV of y+2(FP); uint16 is 2-byte value
+main.go:1: [mips64] arg2: invalid MOVW of y+2(FP); uint16 is 2-byte value
+main.go:1: [mips64] arg2: invalid MOVWU of x+0(FP); int16 is 2-byte value
+main.go:1: [mips64] arg2: invalid offset x+2(FP); expected x+0(FP)
+main.go:1: [mips64] arg2: invalid offset y+0(FP); expected y+2(FP)
+main.go:1: [mips64] arg4: invalid MOVB of x+0(FP); int32 is 4-byte value
+main.go:1: [mips64] arg4: invalid MOVB of y+4(FP); uint32 is 4-byte value
+main.go:1: [mips64] arg4: invalid MOVH of x+0(FP); int32 is 4-byte value
+main.go:1: [mips64] arg4: invalid MOVH of y+4(FP); uint32 is 4-byte value
+main.go:1: [mips64] arg4: invalid MOVV of x+0(FP); int32 is 4-byte value
+main.go:1: [mips64] arg4: invalid MOVV of y+4(FP); uint32 is 4-byte value
+main.go:1: [mips64] arg4: invalid offset x+4(FP); expected x+0(FP)
+main.go:1: [mips64] arg4: invalid offset y+2(FP); expected y+4(FP)
+main.go:1: [mips64] arg4: wrong argument size 2; expected $...-8
+main.go:1: [mips64] arg8: invalid MOVB of x+0(FP); int64 is 8-byte value
+main.go:1: [mips64] arg8: invalid MOVB of y+8(FP); uint64 is 8-byte value
+main.go:1: [mips64] arg8: invalid MOVH of x+0(FP); int64 is 8-byte value
+main.go:1: [mips64] arg8: invalid MOVH of y+8(FP); uint64 is 8-byte value
+main.go:1: [mips64] arg8: invalid MOVW of x+0(FP); int64 is 8-byte value
+main.go:1: [mips64] arg8: invalid MOVW of y+8(FP); uint64 is 8-byte value
+main.go:1: [mips64] arg8: invalid offset x+8(FP); expected x+0(FP)
+main.go:1: [mips64] arg8: invalid offset y+2(FP); expected y+8(FP)
+main.go:1: [mips64] arg8: wrong argument size 2; expected $...-16
+main.go:1: [mips64] argiface: invalid MOVH of x+0(FP); interface type is 8-byte value containing x_type+0(FP) and x_data+8(FP)
+main.go:1: [mips64] argiface: invalid MOVH of x_data+8(FP); interface data is 8-byte value
+main.go:1: [mips64] argiface: invalid MOVH of x_type+0(FP); interface type is 8-byte value
+main.go:1: [mips64] argiface: invalid MOVH of y+16(FP); interface itable is 8-byte value containing y_itable+16(FP) and y_data+24(FP)
+main.go:1: [mips64] argiface: invalid MOVH of y_data+24(FP); interface data is 8-byte value
+main.go:1: [mips64] argiface: invalid MOVH of y_itable+16(FP); interface itable is 8-byte value
+main.go:1: [mips64] argiface: invalid MOVW of x+0(FP); interface type is 8-byte value containing x_type+0(FP) and x_data+8(FP)
+main.go:1: [mips64] argiface: invalid MOVW of x_data+8(FP); interface data is 8-byte value
+main.go:1: [mips64] argiface: invalid MOVW of x_type+0(FP); interface type is 8-byte value
+main.go:1: [mips64] argiface: invalid MOVW of y+16(FP); interface itable is 8-byte value containing y_itable+16(FP) and y_data+24(FP)
+main.go:1: [mips64] argiface: invalid MOVW of y_data+24(FP); interface data is 8-byte value
+main.go:1: [mips64] argiface: invalid MOVW of y_itable+16(FP); interface itable is 8-byte value
+main.go:1: [mips64] argiface: invalid offset x_data+0(FP); expected x_data+8(FP)
+main.go:1: [mips64] argiface: invalid offset y_data+16(FP); expected y_data+24(FP)
+main.go:1: [mips64] argiface: unknown variable x_itable; offset 0 is x_type+0(FP)
+main.go:1: [mips64] argiface: unknown variable x_itable; offset 1 is x_type+0(FP)
+main.go:1: [mips64] argiface: unknown variable y_type; offset 16 is y_itable+16(FP)
+main.go:1: [mips64] argint: invalid MOVB of x+0(FP); int is 8-byte value
+main.go:1: [mips64] argint: invalid MOVB of y+8(FP); uint is 8-byte value
+main.go:1: [mips64] argint: invalid MOVH of x+0(FP); int is 8-byte value
+main.go:1: [mips64] argint: invalid MOVH of y+8(FP); uint is 8-byte value
+main.go:1: [mips64] argint: invalid MOVW of x+0(FP); int is 8-byte value
+main.go:1: [mips64] argint: invalid MOVW of y+8(FP); uint is 8-byte value
+main.go:1: [mips64] argint: invalid offset x+8(FP); expected x+0(FP)
+main.go:1: [mips64] argint: invalid offset y+2(FP); expected y+8(FP)
+main.go:1: [mips64] argint: wrong argument size 2; expected $...-16
+main.go:1: [mips64] argptr: invalid MOVB of x+0(FP); *byte is 8-byte value
+main.go:1: [mips64] argptr: invalid MOVB of y+8(FP); *byte is 8-byte value
+main.go:1: [mips64] argptr: invalid MOVH of x+0(FP); *byte is 8-byte value
+main.go:1: [mips64] argptr: invalid MOVH of y+8(FP); *byte is 8-byte value
+main.go:1: [mips64] argptr: invalid MOVW of c+16(FP); chan int is 8-byte value
+main.go:1: [mips64] argptr: invalid MOVW of f+32(FP); func() is 8-byte value
+main.go:1: [mips64] argptr: invalid MOVW of m+24(FP); map[int]int is 8-byte value
+main.go:1: [mips64] argptr: invalid MOVW of x+0(FP); *byte is 8-byte value
+main.go:1: [mips64] argptr: invalid MOVW of y+8(FP); *byte is 8-byte value
+main.go:1: [mips64] argptr: invalid offset x+8(FP); expected x+0(FP)
+main.go:1: [mips64] argptr: invalid offset y+2(FP); expected y+8(FP)
+main.go:1: [mips64] argptr: wrong argument size 2; expected $...-40
+main.go:1: [mips64] argslice: invalid MOVH of x+0(FP); slice base is 8-byte value containing x_base+0(FP), x_len+8(FP), and x_cap+16(FP)
+main.go:1: [mips64] argslice: invalid MOVH of x_base+0(FP); slice base is 8-byte value
+main.go:1: [mips64] argslice: invalid MOVH of x_cap+16(FP); slice cap is 8-byte value
+main.go:1: [mips64] argslice: invalid MOVH of x_len+8(FP); slice len is 8-byte value
+main.go:1: [mips64] argslice: invalid MOVW of x+0(FP); slice base is 8-byte value containing x_base+0(FP), x_len+8(FP), and x_cap+16(FP)
+main.go:1: [mips64] argslice: invalid MOVW of x_base+0(FP); slice base is 8-byte value
+main.go:1: [mips64] argslice: invalid MOVW of x_cap+16(FP); slice cap is 8-byte value
+main.go:1: [mips64] argslice: invalid MOVW of x_len+8(FP); slice len is 8-byte value
+main.go:1: [mips64] argslice: invalid offset x_cap+0(FP); expected x_cap+16(FP)
+main.go:1: [mips64] argslice: invalid offset x_len+0(FP); expected x_len+8(FP)
+main.go:1: [mips64] argslice: invalid offset y+0(FP); expected y+24(FP), y_base+24(FP), y_len+32(FP), or y_cap+40(FP)
+main.go:1: [mips64] argslice: invalid offset y_cap+16(FP); expected y_cap+40(FP)
+main.go:1: [mips64] argslice: invalid offset y_len+8(FP); expected y_len+32(FP)
+main.go:1: [mips64] argslice: wrong argument size 0; expected $...-48
+main.go:1: [mips64] argstring: invalid MOVH of x+0(FP); string base is 8-byte value containing x_base+0(FP) and x_len+8(FP)
+main.go:1: [mips64] argstring: invalid MOVH of x_base+0(FP); string base is 8-byte value
+main.go:1: [mips64] argstring: invalid MOVH of x_len+8(FP); string len is 8-byte value
+main.go:1: [mips64] argstring: invalid MOVW of x+0(FP); string base is 8-byte value containing x_base+0(FP) and x_len+8(FP)
+main.go:1: [mips64] argstring: invalid MOVW of x_base+0(FP); string base is 8-byte value
+main.go:1: [mips64] argstring: invalid MOVW of x_len+8(FP); string len is 8-byte value
+main.go:1: [mips64] argstring: invalid offset x_len+0(FP); expected x_len+8(FP)
+main.go:1: [mips64] argstring: invalid offset y+0(FP); expected y+16(FP), y_base+16(FP), or y_len+24(FP)
+main.go:1: [mips64] argstring: invalid offset y_len+8(FP); expected y_len+24(FP)
+main.go:1: [mips64] argstring: wrong argument size 0; expected $...-32
+main.go:1: [mips64] returnbyte: invalid MOVH of ret+8(FP); byte is 1-byte value
+main.go:1: [mips64] returnbyte: invalid MOVV of ret+8(FP); byte is 1-byte value
+main.go:1: [mips64] returnbyte: invalid MOVW of ret+8(FP); byte is 1-byte value
+main.go:1: [mips64] returnbyte: invalid offset ret+7(FP); expected ret+8(FP)
+main.go:1: [mips64] returnint: invalid MOVB of ret+0(FP); int is 8-byte value
+main.go:1: [mips64] returnint: invalid MOVH of ret+0(FP); int is 8-byte value
+main.go:1: [mips64] returnint: invalid MOVW of ret+0(FP); int is 8-byte value
+main.go:1: [mips64] returnint: invalid offset ret+1(FP); expected ret+0(FP)
+main.go:1: [mips64] returnint: unknown variable r; offset 0 is ret+0(FP)
+main.go:1: [mips64] returnintmissing: RET without writing to 8-byte ret+0(FP)
+main.go:1: [mips64] returnnamed: invalid MOVW of r1+8(FP); int is 8-byte value
+main.go:1: [ppc64] arg1: 16(R1) should be x+0(FP)
+main.go:1: [ppc64] arg1: 17(R1) should be y+1(FP)
+main.go:1: [ppc64] arg1: invalid MOVD of x+0(FP); int8 is 1-byte value
+main.go:1: [ppc64] arg1: invalid MOVD of y+1(FP); uint8 is 1-byte value
+main.go:1: [ppc64] arg1: invalid MOVH of x+0(FP); int8 is 1-byte value
+main.go:1: [ppc64] arg1: invalid MOVHZ of y+1(FP); uint8 is 1-byte value
+main.go:1: [ppc64] arg1: invalid MOVW of x+0(FP); int8 is 1-byte value
+main.go:1: [ppc64] arg1: invalid MOVWZ of y+1(FP); uint8 is 1-byte value
+main.go:1: [ppc64] arg1: invalid offset x+1(FP); expected x+0(FP)
+main.go:1: [ppc64] arg1: invalid offset y+2(FP); expected y+1(FP)
+main.go:1: [ppc64] arg1: use of 18(R1) points beyond argument frame
+main.go:1: [ppc64] arg2: invalid MOVB of y+2(FP); uint16 is 2-byte value
+main.go:1: [ppc64] arg2: invalid MOVBZ of x+0(FP); int16 is 2-byte value
+main.go:1: [ppc64] arg2: invalid MOVD of x+0(FP); int16 is 2-byte value
+main.go:1: [ppc64] arg2: invalid MOVD of y+2(FP); uint16 is 2-byte value
+main.go:1: [ppc64] arg2: invalid MOVW of y+2(FP); uint16 is 2-byte value
+main.go:1: [ppc64] arg2: invalid MOVWZ of x+0(FP); int16 is 2-byte value
+main.go:1: [ppc64] arg2: invalid offset x+2(FP); expected x+0(FP)
+main.go:1: [ppc64] arg2: invalid offset y+0(FP); expected y+2(FP)
+main.go:1: [ppc64] arg4: invalid MOVB of x+0(FP); int32 is 4-byte value
+main.go:1: [ppc64] arg4: invalid MOVB of y+4(FP); uint32 is 4-byte value
+main.go:1: [ppc64] arg4: invalid MOVD of x+0(FP); int32 is 4-byte value
+main.go:1: [ppc64] arg4: invalid MOVD of y+4(FP); uint32 is 4-byte value
+main.go:1: [ppc64] arg4: invalid MOVH of x+0(FP); int32 is 4-byte value
+main.go:1: [ppc64] arg4: invalid MOVH of y+4(FP); uint32 is 4-byte value
+main.go:1: [ppc64] arg4: invalid offset x+4(FP); expected x+0(FP)
+main.go:1: [ppc64] arg4: invalid offset y+2(FP); expected y+4(FP)
+main.go:1: [ppc64] arg4: wrong argument size 2; expected $...-8
+main.go:1: [ppc64] arg8: invalid MOVB of x+0(FP); int64 is 8-byte value
+main.go:1: [ppc64] arg8: invalid MOVB of y+8(FP); uint64 is 8-byte value
+main.go:1: [ppc64] arg8: invalid MOVH of x+0(FP); int64 is 8-byte value
+main.go:1: [ppc64] arg8: invalid MOVH of y+8(FP); uint64 is 8-byte value
+main.go:1: [ppc64] arg8: invalid MOVW of x+0(FP); int64 is 8-byte value
+main.go:1: [ppc64] arg8: invalid MOVW of y+8(FP); uint64 is 8-byte value
+main.go:1: [ppc64] arg8: invalid offset x+8(FP); expected x+0(FP)
+main.go:1: [ppc64] arg8: invalid offset y+2(FP); expected y+8(FP)
+main.go:1: [ppc64] arg8: wrong argument size 2; expected $...-16
+main.go:1: [ppc64] argiface: invalid MOVH of x+0(FP); interface type is 8-byte value containing x_type+0(FP) and x_data+8(FP)
+main.go:1: [ppc64] argiface: invalid MOVH of x_data+8(FP); interface data is 8-byte value
+main.go:1: [ppc64] argiface: invalid MOVH of x_type+0(FP); interface type is 8-byte value
+main.go:1: [ppc64] argiface: invalid MOVH of y+16(FP); interface itable is 8-byte value containing y_itable+16(FP) and y_data+24(FP)
+main.go:1: [ppc64] argiface: invalid MOVH of y_data+24(FP); interface data is 8-byte value
+main.go:1: [ppc64] argiface: invalid MOVH of y_itable+16(FP); interface itable is 8-byte value
+main.go:1: [ppc64] argiface: invalid MOVW of x+0(FP); interface type is 8-byte value containing x_type+0(FP) and x_data+8(FP)
+main.go:1: [ppc64] argiface: invalid MOVW of x_data+8(FP); interface data is 8-byte value
+main.go:1: [ppc64] argiface: invalid MOVW of x_type+0(FP); interface type is 8-byte value
+main.go:1: [ppc64] argiface: invalid MOVW of y+16(FP); interface itable is 8-byte value containing y_itable+16(FP) and y_data+24(FP)
+main.go:1: [ppc64] argiface: invalid MOVW of y_data+24(FP); interface data is 8-byte value
+main.go:1: [ppc64] argiface: invalid MOVW of y_itable+16(FP); interface itable is 8-byte value
+main.go:1: [ppc64] argiface: invalid offset x_data+0(FP); expected x_data+8(FP)
+main.go:1: [ppc64] argiface: invalid offset y_data+16(FP); expected y_data+24(FP)
+main.go:1: [ppc64] argiface: unknown variable x_itable; offset 0 is x_type+0(FP)
+main.go:1: [ppc64] argiface: unknown variable x_itable; offset 1 is x_type+0(FP)
+main.go:1: [ppc64] argiface: unknown variable y_type; offset 16 is y_itable+16(FP)
+main.go:1: [ppc64] argint: invalid MOVB of x+0(FP); int is 8-byte value
+main.go:1: [ppc64] argint: invalid MOVB of y+8(FP); uint is 8-byte value
+main.go:1: [ppc64] argint: invalid MOVH of x+0(FP); int is 8-byte value
+main.go:1: [ppc64] argint: invalid MOVH of y+8(FP); uint is 8-byte value
+main.go:1: [ppc64] argint: invalid MOVW of x+0(FP); int is 8-byte value
+main.go:1: [ppc64] argint: invalid MOVW of y+8(FP); uint is 8-byte value
+main.go:1: [ppc64] argint: invalid offset x+8(FP); expected x+0(FP)
+main.go:1: [ppc64] argint: invalid offset y+2(FP); expected y+8(FP)
+main.go:1: [ppc64] argint: wrong argument size 2; expected $...-16
+main.go:1: [ppc64] argptr: invalid MOVB of x+0(FP); *byte is 8-byte value
+main.go:1: [ppc64] argptr: invalid MOVB of y+8(FP); *byte is 8-byte value
+main.go:1: [ppc64] argptr: invalid MOVH of x+0(FP); *byte is 8-byte value
+main.go:1: [ppc64] argptr: invalid MOVH of y+8(FP); *byte is 8-byte value
+main.go:1: [ppc64] argptr: invalid MOVW of c+16(FP); chan int is 8-byte value
+main.go:1: [ppc64] argptr: invalid MOVW of f+32(FP); func() is 8-byte value
+main.go:1: [ppc64] argptr: invalid MOVW of m+24(FP); map[int]int is 8-byte value
+main.go:1: [ppc64] argptr: invalid MOVW of x+0(FP); *byte is 8-byte value
+main.go:1: [ppc64] argptr: invalid MOVW of y+8(FP); *byte is 8-byte value
+main.go:1: [ppc64] argptr: invalid offset x+8(FP); expected x+0(FP)
+main.go:1: [ppc64] argptr: invalid offset y+2(FP); expected y+8(FP)
+main.go:1: [ppc64] argptr: wrong argument size 2; expected $...-40
+main.go:1: [ppc64] argslice: invalid MOVH of x+0(FP); slice base is 8-byte value containing x_base+0(FP), x_len+8(FP), and x_cap+16(FP)
+main.go:1: [ppc64] argslice: invalid MOVH of x_base+0(FP); slice base is 8-byte value
+main.go:1: [ppc64] argslice: invalid MOVH of x_cap+16(FP); slice cap is 8-byte value
+main.go:1: [ppc64] argslice: invalid MOVH of x_len+8(FP); slice len is 8-byte value
+main.go:1: [ppc64] argslice: invalid MOVW of x+0(FP); slice base is 8-byte value containing x_base+0(FP), x_len+8(FP), and x_cap+16(FP)
+main.go:1: [ppc64] argslice: invalid MOVW of x_base+0(FP); slice base is 8-byte value
+main.go:1: [ppc64] argslice: invalid MOVW of x_cap+16(FP); slice cap is 8-byte value
+main.go:1: [ppc64] argslice: invalid MOVW of x_len+8(FP); slice len is 8-byte value
+main.go:1: [ppc64] argslice: invalid offset x_cap+0(FP); expected x_cap+16(FP)
+main.go:1: [ppc64] argslice: invalid offset x_len+0(FP); expected x_len+8(FP)
+main.go:1: [ppc64] argslice: invalid offset y+0(FP); expected y+24(FP), y_base+24(FP), y_len+32(FP), or y_cap+40(FP)
+main.go:1: [ppc64] argslice: invalid offset y_cap+16(FP); expected y_cap+40(FP)
+main.go:1: [ppc64] argslice: invalid offset y_len+8(FP); expected y_len+32(FP)
+main.go:1: [ppc64] argslice: wrong argument size 0; expected $...-48
+main.go:1: [ppc64] argstring: invalid MOVH of x+0(FP); string base is 8-byte value containing x_base+0(FP) and x_len+8(FP)
+main.go:1: [ppc64] argstring: invalid MOVH of x_base+0(FP); string base is 8-byte value
+main.go:1: [ppc64] argstring: invalid MOVH of x_len+8(FP); string len is 8-byte value
+main.go:1: [ppc64] argstring: invalid MOVW of x+0(FP); string base is 8-byte value containing x_base+0(FP) and x_len+8(FP)
+main.go:1: [ppc64] argstring: invalid MOVW of x_base+0(FP); string base is 8-byte value
+main.go:1: [ppc64] argstring: invalid MOVW of x_len+8(FP); string len is 8-byte value
+main.go:1: [ppc64] argstring: invalid offset x_len+0(FP); expected x_len+8(FP)
+main.go:1: [ppc64] argstring: invalid offset y+0(FP); expected y+16(FP), y_base+16(FP), or y_len+24(FP)
+main.go:1: [ppc64] argstring: invalid offset y_len+8(FP); expected y_len+24(FP)
+main.go:1: [ppc64] argstring: wrong argument size 0; expected $...-32
+main.go:1: [ppc64] returnbyte: invalid MOVD of ret+8(FP); byte is 1-byte value
+main.go:1: [ppc64] returnbyte: invalid MOVH of ret+8(FP); byte is 1-byte value
+main.go:1: [ppc64] returnbyte: invalid MOVW of ret+8(FP); byte is 1-byte value
+main.go:1: [ppc64] returnbyte: invalid offset ret+7(FP); expected ret+8(FP)
+main.go:1: [ppc64] returnint: invalid MOVB of ret+0(FP); int is 8-byte value
+main.go:1: [ppc64] returnint: invalid MOVH of ret+0(FP); int is 8-byte value
+main.go:1: [ppc64] returnint: invalid MOVW of ret+0(FP); int is 8-byte value
+main.go:1: [ppc64] returnint: invalid offset ret+1(FP); expected ret+0(FP)
+main.go:1: [ppc64] returnint: unknown variable r; offset 0 is ret+0(FP)
+main.go:1: [ppc64] returnintmissing: RET without writing to 8-byte ret+0(FP)
+main.go:1: [ppc64] returnnamed: invalid MOVW of r1+8(FP); int is 8-byte value
+main.go:1: [s390x] arg1: 16(R15) should be x+0(FP)
+main.go:1: [s390x] arg1: 17(R15) should be y+1(FP)
+main.go:1: [s390x] arg1: invalid MOVD of x+0(FP); int8 is 1-byte value
+main.go:1: [s390x] arg1: invalid MOVD of y+1(FP); uint8 is 1-byte value
+main.go:1: [s390x] arg1: invalid MOVH of x+0(FP); int8 is 1-byte value
+main.go:1: [s390x] arg1: invalid MOVHZ of y+1(FP); uint8 is 1-byte value
+main.go:1: [s390x] arg1: invalid MOVW of x+0(FP); int8 is 1-byte value
+main.go:1: [s390x] arg1: invalid MOVWZ of y+1(FP); uint8 is 1-byte value
+main.go:1: [s390x] arg1: invalid offset x+1(FP); expected x+0(FP)
+main.go:1: [s390x] arg1: invalid offset y+2(FP); expected y+1(FP)
+main.go:1: [s390x] arg1: use of 18(R15) points beyond argument frame
+main.go:1: [s390x] arg2: invalid MOVB of y+2(FP); uint16 is 2-byte value
+main.go:1: [s390x] arg2: invalid MOVBZ of x+0(FP); int16 is 2-byte value
+main.go:1: [s390x] arg2: invalid MOVD of x+0(FP); int16 is 2-byte value
+main.go:1: [s390x] arg2: invalid MOVD of y+2(FP); uint16 is 2-byte value
+main.go:1: [s390x] arg2: invalid MOVW of y+2(FP); uint16 is 2-byte value
+main.go:1: [s390x] arg2: invalid MOVWZ of x+0(FP); int16 is 2-byte value
+main.go:1: [s390x] arg2: invalid offset x+2(FP); expected x+0(FP)
+main.go:1: [s390x] arg2: invalid offset y+0(FP); expected y+2(FP)
+main.go:1: [s390x] arg4: invalid MOVB of x+0(FP); int32 is 4-byte value
+main.go:1: [s390x] arg4: invalid MOVB of y+4(FP); uint32 is 4-byte value
+main.go:1: [s390x] arg4: invalid MOVD of x+0(FP); int32 is 4-byte value
+main.go:1: [s390x] arg4: invalid MOVD of y+4(FP); uint32 is 4-byte value
+main.go:1: [s390x] arg4: invalid MOVH of x+0(FP); int32 is 4-byte value
+main.go:1: [s390x] arg4: invalid MOVH of y+4(FP); uint32 is 4-byte value
+main.go:1: [s390x] arg4: invalid offset x+4(FP); expected x+0(FP)
+main.go:1: [s390x] arg4: invalid offset y+2(FP); expected y+4(FP)
+main.go:1: [s390x] arg4: wrong argument size 2; expected $...-8
+main.go:1: [s390x] arg8: invalid MOVB of x+0(FP); int64 is 8-byte value
+main.go:1: [s390x] arg8: invalid MOVB of y+8(FP); uint64 is 8-byte value
+main.go:1: [s390x] arg8: invalid MOVH of x+0(FP); int64 is 8-byte value
+main.go:1: [s390x] arg8: invalid MOVH of y+8(FP); uint64 is 8-byte value
+main.go:1: [s390x] arg8: invalid MOVW of x+0(FP); int64 is 8-byte value
+main.go:1: [s390x] arg8: invalid MOVW of y+8(FP); uint64 is 8-byte value
+main.go:1: [s390x] arg8: invalid offset x+8(FP); expected x+0(FP)
+main.go:1: [s390x] arg8: invalid offset y+2(FP); expected y+8(FP)
+main.go:1: [s390x] arg8: wrong argument size 2; expected $...-16
+main.go:1: [s390x] argiface: invalid MOVH of x+0(FP); interface type is 8-byte value containing x_type+0(FP) and x_data+8(FP)
+main.go:1: [s390x] argiface: invalid MOVH of x_data+8(FP); interface data is 8-byte value
+main.go:1: [s390x] argiface: invalid MOVH of x_type+0(FP); interface type is 8-byte value
+main.go:1: [s390x] argiface: invalid MOVH of y+16(FP); interface itable is 8-byte value containing y_itable+16(FP) and y_data+24(FP)
+main.go:1: [s390x] argiface: invalid MOVH of y_data+24(FP); interface data is 8-byte value
+main.go:1: [s390x] argiface: invalid MOVH of y_itable+16(FP); interface itable is 8-byte value
+main.go:1: [s390x] argiface: invalid MOVW of x+0(FP); interface type is 8-byte value containing x_type+0(FP) and x_data+8(FP)
+main.go:1: [s390x] argiface: invalid MOVW of x_data+8(FP); interface data is 8-byte value
+main.go:1: [s390x] argiface: invalid MOVW of x_type+0(FP); interface type is 8-byte value
+main.go:1: [s390x] argiface: invalid MOVW of y+16(FP); interface itable is 8-byte value containing y_itable+16(FP) and y_data+24(FP)
+main.go:1: [s390x] argiface: invalid MOVW of y_data+24(FP); interface data is 8-byte value
+main.go:1: [s390x] argiface: invalid MOVW of y_itable+16(FP); interface itable is 8-byte value
+main.go:1: [s390x] argiface: invalid offset x_data+0(FP); expected x_data+8(FP)
+main.go:1: [s390x] argiface: invalid offset y_data+16(FP); expected y_data+24(FP)
+main.go:1: [s390x] argiface: unknown variable x_itable; offset 0 is x_type+0(FP)
+main.go:1: [s390x] argiface: unknown variable x_itable; offset 1 is x_type+0(FP)
+main.go:1: [s390x] argiface: unknown variable y_type; offset 16 is y_itable+16(FP)
+main.go:1: [s390x] argint: invalid MOVB of x+0(FP); int is 8-byte value
+main.go:1: [s390x] argint: invalid MOVB of y+8(FP); uint is 8-byte value
+main.go:1: [s390x] argint: invalid MOVH of x+0(FP); int is 8-byte value
+main.go:1: [s390x] argint: invalid MOVH of y+8(FP); uint is 8-byte value
+main.go:1: [s390x] argint: invalid MOVW of x+0(FP); int is 8-byte value
+main.go:1: [s390x] argint: invalid MOVW of y+8(FP); uint is 8-byte value
+main.go:1: [s390x] argint: invalid offset x+8(FP); expected x+0(FP)
+main.go:1: [s390x] argint: invalid offset y+2(FP); expected y+8(FP)
+main.go:1: [s390x] argint: wrong argument size 2; expected $...-16
+main.go:1: [s390x] argptr: invalid MOVB of x+0(FP); *byte is 8-byte value
+main.go:1: [s390x] argptr: invalid MOVB of y+8(FP); *byte is 8-byte value
+main.go:1: [s390x] argptr: invalid MOVH of x+0(FP); *byte is 8-byte value
+main.go:1: [s390x] argptr: invalid MOVH of y+8(FP); *byte is 8-byte value
+main.go:1: [s390x] argptr: invalid MOVW of c+16(FP); chan int is 8-byte value
+main.go:1: [s390x] argptr: invalid MOVW of f+32(FP); func() is 8-byte value
+main.go:1: [s390x] argptr: invalid MOVW of m+24(FP); map[int]int is 8-byte value
+main.go:1: [s390x] argptr: invalid MOVW of x+0(FP); *byte is 8-byte value
+main.go:1: [s390x] argptr: invalid MOVW of y+8(FP); *byte is 8-byte value
+main.go:1: [s390x] argptr: invalid offset x+8(FP); expected x+0(FP)
+main.go:1: [s390x] argptr: invalid offset y+2(FP); expected y+8(FP)
+main.go:1: [s390x] argptr: wrong argument size 2; expected $...-40
+main.go:1: [s390x] argslice: invalid MOVH of x+0(FP); slice base is 8-byte value containing x_base+0(FP), x_len+8(FP), and x_cap+16(FP)
+main.go:1: [s390x] argslice: invalid MOVH of x_base+0(FP); slice base is 8-byte value
+main.go:1: [s390x] argslice: invalid MOVH of x_cap+16(FP); slice cap is 8-byte value
+main.go:1: [s390x] argslice: invalid MOVH of x_len+8(FP); slice len is 8-byte value
+main.go:1: [s390x] argslice: invalid MOVW of x+0(FP); slice base is 8-byte value containing x_base+0(FP), x_len+8(FP), and x_cap+16(FP)
+main.go:1: [s390x] argslice: invalid MOVW of x_base+0(FP); slice base is 8-byte value
+main.go:1: [s390x] argslice: invalid MOVW of x_cap+16(FP); slice cap is 8-byte value
+main.go:1: [s390x] argslice: invalid MOVW of x_len+8(FP); slice len is 8-byte value
+main.go:1: [s390x] argslice: invalid offset x_cap+0(FP); expected x_cap+16(FP)
+main.go:1: [s390x] argslice: invalid offset x_len+0(FP); expected x_len+8(FP)
+main.go:1: [s390x] argslice: invalid offset y+0(FP); expected y+24(FP), y_base+24(FP), y_len+32(FP), or y_cap+40(FP)
+main.go:1: [s390x] argslice: invalid offset y_cap+16(FP); expected y_cap+40(FP)
+main.go:1: [s390x] argslice: invalid offset y_len+8(FP); expected y_len+32(FP)
+main.go:1: [s390x] argslice: wrong argument size 0; expected $...-48
+main.go:1: [s390x] argstring: invalid MOVH of x+0(FP); string base is 8-byte value containing x_base+0(FP) and x_len+8(FP)
+main.go:1: [s390x] argstring: invalid MOVH of x_base+0(FP); string base is 8-byte value
+main.go:1: [s390x] argstring: invalid MOVH of x_len+8(FP); string len is 8-byte value
+main.go:1: [s390x] argstring: invalid MOVW of x+0(FP); string base is 8-byte value containing x_base+0(FP) and x_len+8(FP)
+main.go:1: [s390x] argstring: invalid MOVW of x_base+0(FP); string base is 8-byte value
+main.go:1: [s390x] argstring: invalid MOVW of x_len+8(FP); string len is 8-byte value
+main.go:1: [s390x] argstring: invalid offset x_len+0(FP); expected x_len+8(FP)
+main.go:1: [s390x] argstring: invalid offset y+0(FP); expected y+16(FP), y_base+16(FP), or y_len+24(FP)
+main.go:1: [s390x] argstring: invalid offset y_len+8(FP); expected y_len+24(FP)
+main.go:1: [s390x] argstring: wrong argument size 0; expected $...-32
+main.go:1: [s390x] returnbyte: invalid MOVD of ret+8(FP); byte is 1-byte value
+main.go:1: [s390x] returnbyte: invalid MOVH of ret+8(FP); byte is 1-byte value
+main.go:1: [s390x] returnbyte: invalid MOVW of ret+8(FP); byte is 1-byte value
+main.go:1: [s390x] returnbyte: invalid offset ret+7(FP); expected ret+8(FP)
+main.go:1: [s390x] returnint: invalid MOVB of ret+0(FP); int is 8-byte value
+main.go:1: [s390x] returnint: invalid MOVH of ret+0(FP); int is 8-byte value
+main.go:1: [s390x] returnint: invalid MOVW of ret+0(FP); int is 8-byte value
+main.go:1: [s390x] returnint: invalid offset ret+1(FP); expected ret+0(FP)
+main.go:1: [s390x] returnint: unknown variable r; offset 0 is ret+0(FP)
+main.go:1: [s390x] returnintmissing: RET without writing to 8-byte ret+0(FP)
+main.go:1: [s390x] returnnamed: invalid MOVW of r1+8(FP); int is 8-byte value
