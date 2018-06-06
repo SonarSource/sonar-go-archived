@@ -98,7 +98,7 @@ public class GoSensor implements Sensor {
       }
     }
     try {
-      saveCoverageReports(context, GoCoverageReport.GoContext.DEFAULT);
+      saveCoverageReports(context, GoPathContext.DEFAULT);
     } catch (Exception e) {
       LOG.error("Coverage import failed: {}", e.getMessage(), e);
     }
