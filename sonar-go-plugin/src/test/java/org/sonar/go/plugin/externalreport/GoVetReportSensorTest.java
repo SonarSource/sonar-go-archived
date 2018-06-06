@@ -138,10 +138,9 @@ class GoVetReportSensorTest {
   void should_match_govet_all_keys() throws IOException {
     SensorContextTester context = ExternalLinterSensorHelper.createContext(7, 2);
     context.settings().setProperty("sonar.go.govet.reportPaths", REPORT_BASE_PATH.resolve("all-govet-report.txt").toString());
-    // all 260 messages from report are parsed correctly
     List<ExternalIssue> externalIssues = ExternalLinterSensorHelper.executeSensor(new GoVetReportSensor(), context);
     assertThat(externalIssues).hasSize(263);
-    // 19 distinct rule keys are present in the report
+
     Stream<String> uniqueKeys = externalIssues.stream().map(externalIssue -> externalIssue.ruleKey().rule()).distinct();
     assertThat(uniqueKeys).hasSize(19);
     // all messages are associated to a rule key
@@ -152,7 +151,6 @@ class GoVetReportSensorTest {
   void should_match_govet_asm_keys() throws IOException {
     SensorContextTester context = ExternalLinterSensorHelper.createContext(7, 2);
     context.settings().setProperty("sonar.go.govet.reportPaths", REPORT_BASE_PATH.resolve("asm-govet-report.txt").toString());
-    // all 260 messages from report are parsed correctly
     List<ExternalIssue> externalIssues = ExternalLinterSensorHelper.executeSensor(new GoVetReportSensor(), context);
     assertThat(externalIssues).hasSize(734);
     // all messages should be matched to asmdecl rule key
