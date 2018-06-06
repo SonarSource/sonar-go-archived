@@ -142,7 +142,7 @@ class GoSensorTest {
     goSensor.execute(sensorContext);
     assertThat(logTester.logs(LoggerLevel.ERROR).stream().collect(Collectors.joining("\n")))
       .contains("Error analyzing file lets.go")
-      .contains("Coverage report can't be loaded, file not found:").contains("invalid-coverage-path.out");
+      .contains("Coverage report can't be loaded, file(s) not found for pattern:").contains("invalid-coverage-path.out");
   }
 
   @Test
