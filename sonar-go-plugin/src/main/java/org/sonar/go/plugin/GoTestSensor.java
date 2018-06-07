@@ -75,7 +75,7 @@ public class GoTestSensor implements Sensor {
     testInfoByFile.forEach((key, value) -> saveTestMetrics(context, key, value));
   }
 
-  private List<Path> getReportPaths(SensorContext context) {
+  private static List<Path> getReportPaths(SensorContext context) {
     List<Path> result = new ArrayList<>();
     String[] reportPaths = context.config().getStringArray(REPORT_PATH_KEY);
     for (String reportPath : reportPaths) {
@@ -198,7 +198,7 @@ public class GoTestSensor implements Sensor {
   }
 
 
-  private void saveTestMetrics(SensorContext context, InputFile testFile, List<TestInfo> tests) {
+  private static void saveTestMetrics(SensorContext context, InputFile testFile, List<TestInfo> tests) {
     int skip = 0;
     long timeMs = 0;
     int fail = 0;
