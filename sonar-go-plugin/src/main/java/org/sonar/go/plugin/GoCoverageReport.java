@@ -19,7 +19,6 @@
  */
 package org.sonar.go.plugin;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -61,7 +60,7 @@ public final class GoCoverageReport {
   private GoCoverageReport() {
   }
 
-  public static void saveCoverageReports(SensorContext sensorContext, GoContext goContext) throws IOException {
+  public static void saveCoverageReports(SensorContext sensorContext, GoPathContext goContext) throws IOException {
     Coverage coverage = new Coverage(goContext);
     for (Path reportPath : getReportPaths(sensorContext)) {
       parse(reportPath, coverage);
@@ -92,6 +91,13 @@ public final class GoCoverageReport {
     }
   }
 
+  /**
+   *  It is possible that absolutePath references a file that does not exist in the file system.
+   *  It happens when go tests where executed on a different computer.
+   *  Even when absolute path does not match a file of the project, this method try to find a valid
+   *  mach using a shorter relative path.
+   *  @see <a href="https://github.com/SonarSource/sonar-go/issues/218">sonar-go/issues/218</a>
+   */
   private static InputFile findInputFile(String absolutePath, FileSystem fileSystem) {
     FilePredicates predicates = fileSystem.predicates();
     InputFile inputFile = fileSystem.inputFile(predicates.hasAbsolutePath(absolutePath));
@@ -154,16 +160,16 @@ public final class GoCoverageReport {
   }
 
   static class Coverage {
-    final GoContext goContext;
+    final GoPathContext goContext;
     Map<String, List<CoverageStat>> fileMap = new HashMap<>();
 
-    Coverage(GoContext goContext) {
+    Coverage(GoPathContext goContext) {
       this.goContext = goContext;
     }
 
     void add(CoverageStat coverage) {
       fileMap
-        .computeIfAbsent(coverage.resolvePath(goContext), key -> new ArrayList<>())
+        .computeIfAbsent(goContext.resolve(coverage.filePath), key -> new ArrayList<>())
         .add(coverage);
     }
   }
@@ -236,10 +242,6 @@ public final class GoCoverageReport {
 
   static class CoverageStat {
 
-    static final String LINUX_ABSOLUTE_PREFIX = "_/";
-    static final String WINDOWS_ABSOLUTE_PREFIX = "_\\";
-    static final Pattern WINDOWS_ABSOLUTE_REGEX = Pattern.compile("^_\\\\(\\w)_\\\\");
-
     final String filePath;
     final int startLine;
     final int startCol;
@@ -262,39 +264,6 @@ public final class GoCoverageReport {
       count = Integer.parseInt(matcher.group(7));
     }
 
-    String resolvePath(GoContext context) {
-      if (filePath.startsWith(LINUX_ABSOLUTE_PREFIX)) {
-        return filePath.substring(1);
-      } else if (filePath.startsWith(WINDOWS_ABSOLUTE_PREFIX)) {
-        Matcher matcher = WINDOWS_ABSOLUTE_REGEX.matcher(filePath);
-        if (matcher.find()) {
-          matcher.reset();
-          return matcher.replaceFirst("$1:\\\\");
-        }
-      } else if (context.goPath != null && !context.goPath.isEmpty()) {
-        return context.goPath + context.fileSeparator + filePath;
-      }
-      return filePath;
-    }
   }
 
-  static class GoContext {
-    static final GoContext DEFAULT = new GoContext(File.separatorChar, defaultGoSrcPath());
-    final char fileSeparator;
-    final String goPath;
-
-    GoContext(char fileSeparator, @Nullable String goPath) {
-      this.fileSeparator = fileSeparator;
-      this.goPath = goPath;
-    }
-
-    @Nullable
-    static String defaultGoSrcPath() {
-      String path = System.getenv("GOPATH");
-      if (path != null && !path.isEmpty()) {
-        return path + File.separatorChar + "src";
-      }
-      return null;
-    }
-  }
 }

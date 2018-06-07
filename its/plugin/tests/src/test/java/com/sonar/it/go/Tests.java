@@ -55,7 +55,7 @@ public class Tests {
   public static final Orchestrator ORCHESTRATOR;
 
   static {
-    String defaultRuntimeVersion = "true".equals(System.getenv("SONARSOURCE_QA")) ? null : "7.2.0.12501"; // TODO LATEST_RELEASE[7.2]
+    String defaultRuntimeVersion = "true".equals(System.getenv("SONARSOURCE_QA")) ? null : "7.2.0.12767"; // TODO LATEST_RELEASE[7.2]
     OrchestratorBuilder builder = Orchestrator.builderEnv()
       .setSonarVersion(System.getProperty("sonar.runtimeVersion", defaultRuntimeVersion))
       .restoreProfileAtStartup(FileLocation.ofClasspath(RESOURCE_DIRECTORY + "/empty-profile.xml"));
