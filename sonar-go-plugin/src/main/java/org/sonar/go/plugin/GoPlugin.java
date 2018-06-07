@@ -56,7 +56,7 @@ public class GoPlugin implements Plugin {
       PropertyDefinition.builder(GoLanguage.FILE_SUFFIXES_KEY)
         .index(10)
         .name("File Suffixes")
-        .description("Comma-separated list of suffixes for files to analyze.")
+        .description("List of suffixes for files to analyze.")
         .category(GO_CATEGORY)
         .subCategory(GENERAL_SUBCATEGORY)
         .onQualifiers(Qualifiers.PROJECT)
