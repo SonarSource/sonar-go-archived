@@ -30,6 +30,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
+import org.sonar.api.batch.fs.FileSystem;
 
 class GoPathContext {
   private static final String LINUX_ABSOLUTE_PREFIX = "_/";
@@ -67,11 +68,12 @@ class GoPathContext {
   }
 
   /**
-   * Try to resolve the absolute path of the given filePath. If filePath is relative,
+   * Try to resolve the absolute path of the given filePath. If filePath is absolute
+   * (start with _) return the absolute path without the '_'. If filePath is relative,
    * try to append the first GOPATH entry where this file exists, otherwise return
    * a non-existing absolute path using the first GOPATH entry (or just filePath itself
    * if GOPATH is empty).
-   * See GoCoverageReport#findInputFile to understand why a non-existing file is useful.
+   * See {@link GoCoverageReport#findInputFile(String, FileSystem)}
    */
   String resolve(String filePath) {
     return resolvedPaths.computeIfAbsent(filePath, path -> {

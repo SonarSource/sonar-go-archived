@@ -47,6 +47,8 @@ class GoPathContextTest {
       Files.createDirectory(srcDir);
       Path existingFile = srcDir.resolve("file.go");
       Files.createFile(existingFile);
+      Path packageDir = dirWithFile.resolve("my-package");
+      Files.createDirectory(packageDir);
       tmpDirWithFile[i] = dirWithFile.toAbsolutePath().toString();
       existingFileAbsolutePath[i] = existingFile.toAbsolutePath().toString();
     }
@@ -96,6 +98,14 @@ class GoPathContextTest {
     assertThat(context.resolve("file.go")).isEqualTo(existingFileAbsolutePath[0]);
     assertThat(context.resolvedPaths.keySet()).containsExactly("file.go");
     assertThat(context.resolvedPaths.values()).containsExactly(existingFileAbsolutePath[0]);
+  }
+
+  @Test
+  void resolve_existing_directory() throws IOException {
+    String goPath = tmpDirWithFile[0];
+    GoPathContext context = new GoPathContext(File.separatorChar, File.pathSeparator, goPath);
+    String expected = tmpDirWithFile[0] + File.separatorChar + "src" + File.separatorChar + "my-package";
+    assertThat(context.resolve("my-package")).isEqualTo(expected);
   }
 
   @Test

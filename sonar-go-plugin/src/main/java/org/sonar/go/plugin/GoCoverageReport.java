@@ -91,6 +91,13 @@ public final class GoCoverageReport {
     }
   }
 
+  /**
+   *  It is possible that absolutePath references a file that does not exist in the file system.
+   *  It happens when go tests where executed on a different computer.
+   *  Even when absolute path does not match a file of the project, this method try to find a valid
+   *  mach using a shorter relative path.
+   *  @see <a href="https://github.com/SonarSource/sonar-go/issues/218">sonar-go/issues/218</a>
+   */
   private static InputFile findInputFile(String absolutePath, FileSystem fileSystem) {
     FilePredicates predicates = fileSystem.predicates();
     InputFile inputFile = fileSystem.inputFile(predicates.hasAbsolutePath(absolutePath));
