@@ -148,11 +148,6 @@ class GoTestSensorTest {
     assertThat(context.measure(barTestFile.key(), CoreMetrics.TEST_EXECUTION_TIME).value()).isEqualTo(7);
   }
 
-  @Test
-  void failed_to_match_package() {
-
-  }
-
   private DefaultInputFile getTestInputFile(DefaultFileSystem fs, String content, String relativePath) {
     DefaultInputFile nestedTestFile = new TestInputFileBuilder("moduleKey", relativePath)
       .setLanguage("go")
