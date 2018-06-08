@@ -67,14 +67,14 @@ public class GoIntegrationTest {
   @Test
   public void project_metrics() {
     // Size
-    assertThat(getProjectMeasureAsDouble("ncloc")).isEqualTo(176d);
-    assertThat(getProjectMeasureAsDouble("lines")).isEqualTo(230d);
+    assertThat(getProjectMeasureAsDouble("ncloc")).isEqualTo(185d);
+    assertThat(getProjectMeasureAsDouble("lines")).isEqualTo(242d);
     assertThat(getProjectMeasureAsDouble("files")).isEqualTo(12d);
     assertThat(getProjectMeasureAsDouble("classes")).isEqualTo(4d);
-    assertThat(getProjectMeasureAsDouble("functions")).isEqualTo(18d);
+    assertThat(getProjectMeasureAsDouble("functions")).isEqualTo(21d);
 
     // Comments
-    assertThat(getProjectMeasureAsDouble("comment_lines_density")).isEqualTo(7.9d);
+    assertThat(getProjectMeasureAsDouble("comment_lines_density")).isEqualTo(7.5d);
     assertThat(getProjectMeasureAsDouble("comment_lines")).isEqualTo(15d);
     assertThat(getProjectMeasureAsDouble("public_documented_api_density")).isNull();
     assertThat(getProjectMeasureAsDouble("public_undocumented_api")).isNull();
@@ -94,7 +94,7 @@ public class GoIntegrationTest {
     assertThat(getProjectMeasureAsDouble("duplicated_lines")).isEqualTo(135d);
     assertThat(getProjectMeasureAsDouble("duplicated_blocks")).isEqualTo(5d);
     assertThat(getProjectMeasureAsDouble("duplicated_files")).isEqualTo(3d);
-    assertThat(getProjectMeasureAsDouble("duplicated_lines_density")).isEqualTo(58.7d);
+    assertThat(getProjectMeasureAsDouble("duplicated_lines_density")).isEqualTo(55.8d);
   }
 
   @Test

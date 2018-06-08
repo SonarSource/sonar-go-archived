@@ -18,3 +18,15 @@ func Test_rot13(t *testing.T) {
 		t.Fatalf("got '%v'; expected %v", actual, expected)
 	}
 }
+
+func Test_I_m_diabolic(t *testing.T) {
+  t.Fatal("I'm diabolic")
+}
+
+func Test_I_m_shy(t *testing.T) {
+  t.Skip("I'm shy")
+}
+
+func Test_I_m_scared(t *testing.T) {
+  panic("I'am scared")
+}
