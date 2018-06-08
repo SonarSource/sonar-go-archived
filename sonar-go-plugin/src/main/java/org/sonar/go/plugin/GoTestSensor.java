@@ -229,7 +229,7 @@ public class GoTestSensor implements Sensor {
     }
 
     boolean isRelevant() {
-      return Action != null && Test != null && Package != null &&
+      return Action != null && Test != null && Package != null && Elapsed != null &&
         (Action.equals("pass") || Action.equals("fail") || Action.equals("skip"));
     }
   }
