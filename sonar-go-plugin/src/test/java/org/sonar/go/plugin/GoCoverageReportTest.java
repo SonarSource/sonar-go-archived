@@ -191,6 +191,12 @@ class GoCoverageReportTest {
       Paths.get("src", "test", "resources", "coverage", "glob", "coverage.glob.out"),
       Paths.get("src", "test", "resources", "coverage", "test1", "coverage.out"),
       Paths.get("src", "test", "resources", "coverage", "coverage1.out"));
+
+    context.settings().setProperty("sonar.go.coverage.reportPaths",
+      "**/coverage.glob.out");
+    Stream<Path> reportPaths2 = GoCoverageReport.getReportPaths(context);
+    assertThat(reportPaths2).containsExactlyInAnyOrder(
+      Paths.get("src", "test", "resources", "coverage", "glob", "coverage.glob.out"));
   }
 
   @Test
