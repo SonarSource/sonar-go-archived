@@ -22,17 +22,19 @@ package org.sonar.go.plugin;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import javax.annotation.Nullable;
 import org.sonar.api.batch.fs.FilePredicates;
 import org.sonar.api.batch.fs.FileSystem;
@@ -40,6 +42,7 @@ import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.batch.sensor.coverage.NewCoverage;
 import org.sonar.api.config.Configuration;
+import org.sonar.api.utils.WildcardPattern;
 import org.sonar.api.utils.log.Logger;
 import org.sonar.api.utils.log.Loggers;
 
@@ -50,7 +53,6 @@ public final class GoCoverageReport {
   private static final Logger LOG = Loggers.get(GoCoverageReport.class);
 
   public static final String REPORT_PATH_KEY = "sonar.go.coverage.reportPaths";
-  public static final String DEFAULT_REPORT_PATH = "coverage.out";
 
   // See ParseProfiles function:
   // https://github.com/golang/go/blob/master/src/cmd/cover/profile.go
@@ -60,18 +62,16 @@ public final class GoCoverageReport {
   private GoCoverageReport() {
   }
 
-  public static void saveCoverageReports(SensorContext sensorContext, GoPathContext goContext) throws IOException {
+  public static void saveCoverageReports(SensorContext sensorContext, GoPathContext goContext) {
     Coverage coverage = new Coverage(goContext);
-    for (Path reportPath : getReportPaths(sensorContext)) {
-      parse(reportPath, coverage);
-    }
-    for (Map.Entry<String, List<CoverageStat>> entry : coverage.fileMap.entrySet()) {
+    getReportPaths(sensorContext).forEach(reportPath -> parse(reportPath, coverage));
+    coverage.fileMap.forEach((filePath, coverageStats) -> {
       try {
-        saveFileCoverage(sensorContext, entry.getKey(), entry.getValue());
+        saveFileCoverage(sensorContext, filePath, coverageStats);
       } catch (Exception e) {
-        LOG.error("Error saving coverage info for file " + entry.getKey(), e);
+        LOG.error("Error saving coverage info for file " + filePath, e);
       }
-    }
+    });
   }
 
   private static void saveFileCoverage(SensorContext sensorContext, String filePath, List<CoverageStat> coverageStats) throws IOException {
@@ -114,34 +114,50 @@ public final class GoCoverageReport {
     return inputFile;
   }
 
-  static List<Path> getReportPaths(SensorContext sensorContext) {
+  static Stream<Path> getReportPaths(SensorContext sensorContext) {
     Configuration config = sensorContext.config();
     Path baseDir = sensorContext.fileSystem().baseDir().toPath();
-    Path defaultReportPath = baseDir.resolve(DEFAULT_REPORT_PATH);
-    if (!config.hasKey(REPORT_PATH_KEY)) {
-      if (defaultReportPath.toFile().exists()) {
-        return Collections.singletonList(defaultReportPath);
-      } else {
-        return Collections.emptyList();
-      }
-    }
     String[] reportPaths = config.getStringArray(REPORT_PATH_KEY);
-    List<Path> result = new ArrayList<>();
-    for (String reportPath : reportPaths) {
+    return Arrays.stream(reportPaths).flatMap(reportPath -> {
       Path path = Paths.get(reportPath);
       if (!path.isAbsolute()) {
         path = baseDir.resolve(path);
       }
       if (path.toFile().exists()) {
-        result.add(path);
-      } else {
-        LOG.error("Coverage report can't be loaded, file not found: '{}', ignoring this file.", path);
+        return Stream.of(path);
       }
-    }
-    return result;
+      return getPatternPaths(baseDir, reportPath);
+    });
   }
 
-  static void parse(Path reportPath, Coverage coverage) throws IOException {
+  static Stream<Path> getPatternPaths(Path baseDir, String reportPath) {
+    try (Stream<Path> paths = Files.walk(baseDir, 999)) {
+      return findMatchingPaths(baseDir, reportPath, paths);
+
+    } catch (IOException e) {
+      LOG.error("Error finding coverage files using pattern {}", reportPath);
+      return Stream.empty();
+    }
+  }
+
+  static Stream<Path> findMatchingPaths(Path baseDir, String reportPath, Stream<Path> paths) {
+    WildcardPattern globPattern = WildcardPattern.create(reportPath);
+
+    List<Path> matchingPaths = paths
+      .filter(currentPath -> {
+        Path normalizedPath = baseDir.toAbsolutePath().relativize(currentPath.toAbsolutePath());
+        return globPattern.match(normalizedPath.toString());
+      })
+      .collect(Collectors.toList());
+
+    if (matchingPaths.isEmpty()) {
+      LOG.error("Coverage report can't be loaded, file(s) not found for pattern: '{}', ignoring this file.", reportPath);
+    }
+
+    return matchingPaths.stream();
+  }
+
+  static void parse(Path reportPath, Coverage coverage) {
     LOG.info("Load coverage report from '{}'", reportPath);
     try (InputStream input = new FileInputStream(reportPath.toFile())) {
       Scanner scanner = new Scanner(input, UTF_8.name());
@@ -156,6 +172,8 @@ public final class GoCoverageReport {
         }
         lineNumber++;
       }
+    } catch (IOException e) {
+      LOG.error("Error parsing coverage info for file {}: {}", reportPath, e.getMessage());
     }
   }
 

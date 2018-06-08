@@ -27,6 +27,7 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sonar.api.batch.fs.InputFile;
@@ -171,10 +172,45 @@ class GoCoverageReportTest {
     Path coverageFile1 = COVERAGE_DIR.resolve("coverage.linux.relative.out").toAbsolutePath();
     context.settings().setProperty("sonar.go.coverage.reportPaths",
       coverageFile1 + ",coverage.linux.absolute.out");
-    List<Path> reportPaths = GoCoverageReport.getReportPaths(context);
+    Stream<Path> reportPaths = GoCoverageReport.getReportPaths(context);
     assertThat(reportPaths).containsExactlyInAnyOrder(
       coverageFile1,
       Paths.get("src", "test", "resources", "coverage", "coverage.linux.absolute.out"));
+  }
+
+  @Test
+  public void get_report_paths_with_wildcards() {
+    SensorContextTester context = SensorContextTester.create(COVERAGE_DIR);
+    context.setSettings(new MapSettings());
+    context.settings().setProperty("sonar.go.coverage.reportPaths",
+      "*.absolute.out,glob/*.out, test*/*.out, coverage?.out");
+    Stream<Path> reportPaths = GoCoverageReport.getReportPaths(context);
+    assertThat(reportPaths).containsExactlyInAnyOrder(
+      Paths.get("src", "test", "resources", "coverage", "coverage.linux.absolute.out"),
+      Paths.get("src", "test", "resources", "coverage", "coverage.win.absolute.out"),
+      Paths.get("src", "test", "resources", "coverage", "glob", "coverage.glob.out"),
+      Paths.get("src", "test", "resources", "coverage", "test1", "coverage.out"),
+      Paths.get("src", "test", "resources", "coverage", "coverage1.out"));
+
+    context.settings().setProperty("sonar.go.coverage.reportPaths",
+      "**/coverage.glob.out");
+    Stream<Path> reportPaths2 = GoCoverageReport.getReportPaths(context);
+    assertThat(reportPaths2).containsExactlyInAnyOrder(
+      Paths.get("src", "test", "resources", "coverage", "glob", "coverage.glob.out"));
+  }
+
+  @Test
+  public void should_continue_if_parsing_fails() {
+    SensorContextTester context = SensorContextTester.create(COVERAGE_DIR);
+    context.setSettings(new MapSettings());
+    context.settings().setProperty("sonar.go.coverage.reportPaths",
+      "test1/coverage.out, coverage.relative.out");
+    Path baseDir = COVERAGE_DIR.toAbsolutePath();
+    GoPathContext goContext = new GoPathContext(File.separatorChar, File.pathSeparator, baseDir.toString());
+    GoCoverageReport.saveCoverageReports(context, goContext);
+    String errorMessageForInvalidFile = "Error parsing coverage info for file src/test/resources/coverage/test1/coverage.out: Invalid go coverage, expect 'mode:' on the first line.";
+    String errorMessageForValidFile = "Error parsing coverage info for file src/test/resources/coverage/coverage.relative.out: Invalid go coverage, expect 'mode:' on the first line.";
+    assertThat(logTester.logs(LoggerLevel.ERROR)).contains(errorMessageForInvalidFile).doesNotContain(errorMessageForValidFile);
   }
 
   @Test
