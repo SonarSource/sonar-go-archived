@@ -45,7 +45,6 @@ public class GoTestReportTest {
       .setProjectVersion("1")
       .setSourceEncoding("UTF-8")
       .setSourceDirs(".")
-      .setProperty("sonar.inclusions", "**/*.go")
       .setProperty("sonar.tests", ".")
       .setProperty("sonar.test.inclusions", "**/*_test.go")
       .setProjectDir(Tests.projectDirectoryFor("samples"))
