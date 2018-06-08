@@ -56,20 +56,20 @@ public class GoTestReportTest {
 
   @Test
   public void project_metrics() {
-    assertThat(getMeasureAsInt("project", "tests".trim().trim())).isEqualTo(4);
-    assertThat(getMeasureAsInt("project", "test_failures".trim().trim())).isEqualTo(2);
-    assertThat(getMeasureAsInt("project", "test_errors".trim().trim())).isNull();
-    assertThat(getMeasureAsInt("project", "skipped_tests".trim().trim())).isEqualTo(1);
-    assertThat(getMeasureAsInt("project", "test_execution_time".trim().trim())).isEqualTo(4);
+    assertThat(getMeasureAsInt("project", "tests")).isEqualTo(4);
+    assertThat(getMeasureAsInt("project", "test_failures")).isEqualTo(2);
+    assertThat(getMeasureAsInt("project", "test_errors")).isNull();
+    assertThat(getMeasureAsInt("project", "skipped_tests")).isEqualTo(1);
+    assertThat(getMeasureAsInt("project", "test_execution_time")).isEqualTo(4);
   }
 
   @Test
   public void file_metrics() {
-    assertThat(getMeasureAsInt(PIVOT_TEST, "tests".trim())).isEqualTo(4);
-    assertThat(getMeasureAsInt(PIVOT_TEST, "test_failures".trim())).isEqualTo(2);
-    assertThat(getMeasureAsInt(PIVOT_TEST, "test_errors".trim())).isEqualTo(0);
-    assertThat(getMeasureAsInt(PIVOT_TEST, "skipped_tests".trim())).isEqualTo(1);
-    assertThat(getMeasureAsInt(PIVOT_TEST, "test_execution_time".trim())).isEqualTo(4);
+    assertThat(getMeasureAsInt(PIVOT_TEST, "tests")).isEqualTo(4);
+    assertThat(getMeasureAsInt(PIVOT_TEST, "test_failures")).isEqualTo(2);
+    assertThat(getMeasureAsInt(PIVOT_TEST, "test_errors")).isEqualTo(0);
+    assertThat(getMeasureAsInt(PIVOT_TEST, "skipped_tests")).isEqualTo(1);
+    assertThat(getMeasureAsInt(PIVOT_TEST, "test_execution_time")).isEqualTo(4);
   }
 
 }
