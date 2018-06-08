@@ -118,19 +118,30 @@ public final class GoCoverageReport {
     Configuration config = sensorContext.config();
     Path baseDir = sensorContext.fileSystem().baseDir().toPath();
     String[] reportPaths = config.getStringArray(REPORT_PATH_KEY);
-    return Arrays.stream(reportPaths).flatMap(reportPath -> {
-      Path path = Paths.get(reportPath);
-      if (!path.isAbsolute()) {
-        path = baseDir.resolve(path);
-      }
-      if (path.toFile().exists()) {
-        return Stream.of(path);
-      }
-      return getPatternPaths(baseDir, reportPath);
-    });
+    return Arrays.stream(reportPaths).flatMap(reportPath ->
+      isWildcard(reportPath)
+        ? getPatternPaths(baseDir, reportPath)
+        : getRegularPath(baseDir, reportPath));
   }
 
-  static Stream<Path> getPatternPaths(Path baseDir, String reportPath) {
+  private static Stream<Path> getRegularPath(Path baseDir, String reportPath) {
+    Path path = Paths.get(reportPath);
+    if (!path.isAbsolute()) {
+      path = baseDir.resolve(path);
+    }
+    if (path.toFile().exists()) {
+      return Stream.of(path);
+    }
+
+    LOG.error("Coverage report can't be loaded, report file not found, ignoring this file {}.", reportPath);
+    return Stream.empty();
+  }
+
+  private static boolean isWildcard(String path) {
+    return path.contains("*") || path.contains("?");
+  }
+
+  private static Stream<Path> getPatternPaths(Path baseDir, String reportPath) {
     try (Stream<Path> paths = Files.walk(baseDir, 999)) {
       return findMatchingPaths(baseDir, reportPath, paths);
 
@@ -140,13 +151,18 @@ public final class GoCoverageReport {
     }
   }
 
-  static Stream<Path> findMatchingPaths(Path baseDir, String reportPath, Stream<Path> paths) {
-    WildcardPattern globPattern = WildcardPattern.create(reportPath);
+  private static String toUnixLikePath(String path) {
+    return path.replace("\\", "/");
+  }
+
+  private static Stream<Path> findMatchingPaths(Path baseDir, String reportPath, Stream<Path> paths) {
+    WildcardPattern globPattern = WildcardPattern.create(toUnixLikePath(reportPath));
 
     List<Path> matchingPaths = paths
       .filter(currentPath -> {
         Path normalizedPath = baseDir.toAbsolutePath().relativize(currentPath.toAbsolutePath());
-        return globPattern.match(normalizedPath.toString());
+        String pathToMatch = toUnixLikePath(normalizedPath.toString());
+        return globPattern.match(pathToMatch);
       })
       .collect(Collectors.toList());
 

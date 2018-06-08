@@ -183,7 +183,7 @@ class GoCoverageReportTest {
     SensorContextTester context = SensorContextTester.create(COVERAGE_DIR);
     context.setSettings(new MapSettings());
     context.settings().setProperty("sonar.go.coverage.reportPaths",
-      "*.absolute.out,glob/*.out, test*/*.out, coverage?.out");
+      "*.absolute.out,glob" + File.separator +"*.out, test*" + File.separator +"*.out, coverage?.out");
     Stream<Path> reportPaths = GoCoverageReport.getReportPaths(context);
     assertThat(reportPaths).containsExactlyInAnyOrder(
       Paths.get("src", "test", "resources", "coverage", "coverage.linux.absolute.out"),
@@ -193,7 +193,7 @@ class GoCoverageReportTest {
       Paths.get("src", "test", "resources", "coverage", "coverage1.out"));
 
     context.settings().setProperty("sonar.go.coverage.reportPaths",
-      "**/coverage.glob.out");
+      "**" + File.separator +"coverage.glob.out");
     Stream<Path> reportPaths2 = GoCoverageReport.getReportPaths(context);
     assertThat(reportPaths2).containsExactlyInAnyOrder(
       Paths.get("src", "test", "resources", "coverage", "glob", "coverage.glob.out"));
@@ -204,13 +204,13 @@ class GoCoverageReportTest {
     SensorContextTester context = SensorContextTester.create(COVERAGE_DIR);
     context.setSettings(new MapSettings());
     context.settings().setProperty("sonar.go.coverage.reportPaths",
-      "test1/coverage.out, coverage.relative.out");
+      "test1" + File.separator + "coverage.out, coverage.relative.out");
     Path baseDir = COVERAGE_DIR.toAbsolutePath();
     GoPathContext goContext = new GoPathContext(File.separatorChar, File.pathSeparator, baseDir.toString());
     GoCoverageReport.saveCoverageReports(context, goContext);
-    String errorMessageForInvalidFile = "Error parsing coverage info for file src/test/resources/coverage/test1/coverage.out: Invalid go coverage, expect 'mode:' on the first line.";
-    String errorMessageForValidFile = "Error parsing coverage info for file src/test/resources/coverage/coverage.relative.out: Invalid go coverage, expect 'mode:' on the first line.";
-    assertThat(logTester.logs(LoggerLevel.ERROR)).contains(errorMessageForInvalidFile).doesNotContain(errorMessageForValidFile);
+
+    assertThat(logTester.logs(LoggerLevel.ERROR)).hasSize(1);
+    assertThat(logTester.logs(LoggerLevel.ERROR).get(0)).endsWith("coverage.out: Invalid go coverage, expect 'mode:' on the first line.");
   }
 
   @Test
