@@ -1,0 +1,34 @@
+{"Time":"2018-06-08T10:21:14.402856787+02:00","Action":"run","Package":"samples","Test":"Test_rot13"}
+{"Time":"2018-06-08T10:21:14.403027275+02:00","Action":"output","Package":"samples","Test":"Test_rot13","Output":"=== RUN   Test_rot13\n"}
+{"Time":"2018-06-08T10:21:14.403047732+02:00","Action":"output","Package":"samples","Test":"Test_rot13","Output":"--- PASS: Test_rot13 (0.00s)\n"}
+{"Time":"2018-06-08T10:21:14.403053494+02:00","Action":"pass","Package":"samples","Test":"Test_rot13","Elapsed":0}
+{"Time":"2018-06-08T10:21:14.403077354+02:00","Action":"run","Package":"samples","Test":"Test_I_m_diabolic"}
+{"Time":"2018-06-08T10:21:14.403082549+02:00","Action":"output","Package":"samples","Test":"Test_I_m_diabolic","Output":"=== RUN   Test_I_m_diabolic\n"}
+{"Time":"2018-06-08T10:21:14.403087893+02:00","Action":"output","Package":"samples","Test":"Test_I_m_diabolic","Output":"--- FAIL: Test_I_m_diabolic (0.00s)\n"}
+{"Time":"2018-06-08T10:21:14.403091874+02:00","Action":"output","Package":"samples","Test":"Test_I_m_diabolic","Output":"\tpivot_test.go:23: I'm diabolic\n"}
+{"Time":"2018-06-08T10:21:14.403096042+02:00","Action":"fail","Package":"samples","Test":"Test_I_m_diabolic","Elapsed":0}
+{"Time":"2018-06-08T10:21:14.403099545+02:00","Action":"run","Package":"samples","Test":"Test_I_m_shy"}
+{"Time":"2018-06-08T10:21:14.403102719+02:00","Action":"output","Package":"samples","Test":"Test_I_m_shy","Output":"=== RUN   Test_I_m_shy\n"}
+{"Time":"2018-06-08T10:21:14.403107094+02:00","Action":"output","Package":"samples","Test":"Test_I_m_shy","Output":"--- SKIP: Test_I_m_shy (0.00s)\n"}
+{"Time":"2018-06-08T10:21:14.403110809+02:00","Action":"output","Package":"samples","Test":"Test_I_m_shy","Output":"\tpivot_test.go:27: I'm shy\n"}
+{"Time":"2018-06-08T10:21:14.40311465+02:00","Action":"skip","Package":"samples","Test":"Test_I_m_shy","Elapsed":0}
+{"Time":"2018-06-08T10:21:14.403118193+02:00","Action":"run","Package":"samples","Test":"Test_I_m_scared"}
+{"Time":"2018-06-08T10:21:14.403121389+02:00","Action":"output","Package":"samples","Test":"Test_I_m_scared","Output":"=== RUN   Test_I_m_scared\n"}
+{"Time":"2018-06-08T10:21:14.403125638+02:00","Action":"output","Package":"samples","Test":"Test_I_m_scared","Output":"--- FAIL: Test_I_m_scared (0.00s)\n"}
+{"Time":"2018-06-08T10:21:14.405088641+02:00","Action":"output","Package":"samples","Test":"Test_I_m_scared","Output":"panic: I'am scared [recovered]\n"}
+{"Time":"2018-06-08T10:21:14.405096983+02:00","Action":"output","Package":"samples","Test":"Test_I_m_scared","Output":"\tpanic: I'am scared\n"}
+{"Time":"2018-06-08T10:21:14.405100938+02:00","Action":"output","Package":"samples","Test":"Test_I_m_scared","Output":"\n"}
+{"Time":"2018-06-08T10:21:14.405104521+02:00","Action":"output","Package":"samples","Test":"Test_I_m_scared","Output":"goroutine 21 [running]:\n"}
+{"Time":"2018-06-08T10:21:14.405109505+02:00","Action":"output","Package":"samples","Test":"Test_I_m_scared","Output":"testing.tRunner.func1(0xc4200e43c0)\n"}
+{"Time":"2018-06-08T10:21:14.405113454+02:00","Action":"output","Package":"samples","Test":"Test_I_m_scared","Output":"\t/home/alban/.gradle/go/binary/1.10/go/src/testing/testing.go:742 +0x29d\n"}
+{"Time":"2018-06-08T10:21:14.405118682+02:00","Action":"output","Package":"samples","Test":"Test_I_m_scared","Output":"panic(0x4ffe60, 0x547bd0)\n"}
+{"Time":"2018-06-08T10:21:14.405123134+02:00","Action":"output","Package":"samples","Test":"Test_I_m_scared","Output":"\t/home/alban/.gradle/go/binary/1.10/go/src/runtime/panic.go:505 +0x229\n"}
+{"Time":"2018-06-08T10:21:14.405126982+02:00","Action":"output","Package":"samples","Test":"Test_I_m_scared","Output":"samples.Test_I_m_scared(0xc4200e43c0)\n"}
+{"Time":"2018-06-08T10:21:14.405133214+02:00","Action":"output","Package":"samples","Test":"Test_I_m_scared","Output":"\t/home/alban/go/src/samples/pivot_test.go:31 +0x39\n"}
+{"Time":"2018-06-08T10:21:14.405137671+02:00","Action":"output","Package":"samples","Test":"Test_I_m_scared","Output":"testing.tRunner(0xc4200e43c0, 0x538a40)\n"}
+{"Time":"2018-06-08T10:21:14.405141337+02:00","Action":"output","Package":"samples","Test":"Test_I_m_scared","Output":"\t/home/alban/.gradle/go/binary/1.10/go/src/testing/testing.go:777 +0xd0\n"}
+{"Time":"2018-06-08T10:21:14.405147869+02:00","Action":"output","Package":"samples","Test":"Test_I_m_scared","Output":"created by testing.(*T).Run\n"}
+{"Time":"2018-06-08T10:21:14.405152663+02:00","Action":"output","Package":"samples","Test":"Test_I_m_scared","Output":"\t/home/alban/.gradle/go/binary/1.10/go/src/testing/testing.go:824 +0x2e0\n"}
+{"Time":"2018-06-08T10:21:14.40531034+02:00","Action":"output","Package":"samples","Test":"Test_I_m_scared","Output":"exit status 2\n"}
+{"Time":"2018-06-08T10:21:14.405326924+02:00","Action":"output","Package":"samples","Test":"Test_I_m_scared","Output":"FAIL\tsamples\t0.004s\n"}
+{"Time":"2018-06-08T10:21:14.405333012+02:00","Action":"fail","Package":"samples","Test":"Test_I_m_scared","Elapsed":0.004}
