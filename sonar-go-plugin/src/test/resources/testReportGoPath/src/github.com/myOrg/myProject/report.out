@@ -1,0 +1,29 @@
+{"Time":"","Action":"run","Package":"github.com/myOrg/myProject","Test":"TestFoo1"}
+{"Time":"","Action":"output","Package":"github.com/myOrg/myProject","Test":"TestFoo1","Output":"=== RUN   Test1\n"}
+{"Time":"","Action":"output","Package":"github.com/myOrg/myProject","Test":"TestFoo1","Output":"--- PASS: Test1 (0.001s)\n"}
+{"Time":"","Action":"pass","Package":"github.com/myOrg/myProject","Test":"TestFoo1","Elapsed":0.001}
+invalid line
+{"Time":"","Action":"run","Package":"github.com/myOrg/myProject","Test":"TestFoo2"}
+{"Time":"","Action":"output","Package":"github.com/myOrg/myProject","Test":"TestFoo2","Output":"=== RUN   Test1\n"}
+{"Time":"","Action":"output","Package":"github.com/myOrg/myProject","Test":"TestFoo2","Output":"--- PASS: Test1 (0.001s)\n"}
+{"Time":"","Action":"fail","Package":"github.com/myOrg/myProject","Test":"TestFoo2","Elapsed":0.002}
+
+{"Time":"","Action":"run","Package":"github.com/myOrg/myProject","Test":"TestBar"}
+{"Time":"","Action":"output","Package":"github.com/myOrg/myProject","Test":"TestBar","Output":"=== RUN   Test1\n"}
+{"Time":"","Action":"output","Package":"github.com/myOrg/myProject","Test":"TestBar","Output":"--- PASS: Test1 (0.001s)\n"}
+{"Time":"","Action":"skip","Package":"github.com/myOrg/myProject","Test":"TestBar","Elapsed":0.007}
+
+{"Time":"","Action":"run","Package":"github.com/myOrg/myProject","Test":"TestINVALID"}
+{"Time":"","Action":"output","Package":"github.com/myOrg/myProject","Test":"TestINVALID","Output":"=== RUN   Test1\n"}
+{"Time":"","Action":"output","Package":"github.com/myOrg/myProject","Test":"TestINVALID","Output":"--- PASS: Test1 (0.001s)\n"}
+{"Time":"","Action":"skip","Package":"github.com/myOrg/myProject","Test":"TestINVALID","Elapsed":0.007}
+
+{"Time":"","Action":"run","Package":"github.com/myOrg/INVALID","Test":"TestBar"}
+{"Time":"","Action":"output","Package":"github.com/myOrg/INVALID","Test":"TestBar","Output":"=== RUN   Test1\n"}
+{"Time":"","Action":"output","Package":"github.com/myOrg/INVALID","Test":"TestBar","Output":"--- PASS: Test1 (0.001s)\n"}
+{"Time":"","Action":"skip","Package":"github.com/myOrg/INVALID","Test":"TestBar","Elapsed":0.007}
+
+{ invalid json }
+{"Time":"","Action":"output","Package":"github.com/myOrg/myProject","Output":"PASS\n"}
+{"Time":"","Action":"output","Package":"github.com/myOrg/myProject","Output":"ok  \tgithub.com/myOrg/myProject\t0.010s\n"}
+{"Time":"","Action":"pass","Package":"github.com/myOrg/myProject","Elapsed":0.010}
