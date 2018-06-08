@@ -43,6 +43,14 @@ pipeline {
                         runPlugin "LATEST_RELEASE[6.7]"
                     }
                 }
+                stage('plugin-lts-windows') {
+                    agent {
+                        label 'windows'
+                    }
+                    steps {
+                        runPlugin "LATEST_RELEASE[6.7]"
+                    }
+                }
                 stage('plugin-latest') {
                     agent {
                         label 'linux'
