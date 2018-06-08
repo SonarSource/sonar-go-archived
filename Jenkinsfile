@@ -43,6 +43,14 @@ pipeline {
                         runPlugin "LATEST_RELEASE[6.7]"
                     }
                 }
+                stage('ci-windows') {
+                    agent {
+                        label 'windows'
+                    }
+                    steps {
+                         sh "./gradlew --no-daemon --console plain build"
+                    }
+                }
                 stage('plugin-lts-windows') {
                     agent {
                         label 'windows'
