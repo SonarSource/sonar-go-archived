@@ -1,5 +1,5 @@
 plugins {
-  id 'com.github.blindpirate.gogradle' version '0.8.1'
+  id 'com.github.blindpirate.gogradle' version '0.9.1'
 }
 
 sonarqube {
@@ -9,6 +9,7 @@ sonarqube {
     property 'sonar.tests', '.'
     property 'sonar.test.inclusions', '**/*_test.go'
     property 'sonar.test.exclusions', '**/build/**,**/.gogradle/**'
+    property 'sonar.go.tests.reportPaths', '${project.projectDir}/.gogradle/reports/test-report.out'
     property 'sonar.go.coverage.reportPaths', "${project.projectDir}/.gogradle/reports/coverage/profiles/github.com%2FSonarSource%2Fsonar-go%2Fuast-generator-go.out"
   }
 }
@@ -22,8 +23,15 @@ task generateSource(type: com.github.blindpirate.gogradle.Go) {
     go 'run generate_source.go'
 }
 
+task generateTestReport(type: com.github.blindpirate.gogradle.Go) {
+  go ('test -json') {
+    stdout writeTo('.gogradle/reports/test-report.out')
+  }
+}
+
 build.dependsOn check
 installDependencies.dependsOn generateSource
+test.dependsOn generateTestReport
 
 build {
   targetPlatform = ['linux-amd64', 'windows-amd64', 'darwin-amd64']
