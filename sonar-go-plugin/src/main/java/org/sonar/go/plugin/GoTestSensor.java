@@ -31,7 +31,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -58,7 +57,7 @@ public class GoTestSensor implements Sensor {
   GoPathContext goPathContext = GoPathContext.DEFAULT;
 
   // caching package <-> test input files
-  private Map<String, Set<InputFile>> testFilesByPackage = new HashMap<>();
+  private Map<String, List<InputFile>> testFilesByPackage = new HashMap<>();
 
   @Override
   public void describe(SensorDescriptor descriptor) {
@@ -105,9 +104,9 @@ public class GoTestSensor implements Sensor {
         InputFile testFile = findTestFile(context.fileSystem(), testInfo);
 
         if (testFile != null) {
-          List<TestInfo> tests = testInfoByFile.getOrDefault(testFile, new ArrayList<>());
-          tests.add(testInfo);
-          testInfoByFile.put(testFile, tests);
+          testInfoByFile
+            .computeIfAbsent(testFile, key -> new ArrayList<>())
+            .add(testInfo);
         } else {
           LOG.warn("Failed to find test file for package " + testInfo.Package + " and test " + testInfo.Test);
         }
@@ -133,11 +132,9 @@ public class GoTestSensor implements Sensor {
 
   @Nullable
   InputFile findTestFile(FileSystem fileSystem, TestInfo testInfo) throws IOException {
-    FilePredicates predicates = fileSystem.predicates();
-
-    Set<InputFile> testInputFilesInPackage = testFilesByPackage.computeIfAbsent(
+    List<InputFile> testInputFilesInPackage = testFilesByPackage.computeIfAbsent(
       testInfo.Package,
-      goPackage -> getTestFilesForPackage(fileSystem, predicates, goPackage));
+      goPackage -> getTestFilesForPackage(fileSystem, goPackage));
 
     Pattern pattern = Pattern.compile("^func\\s+" + testInfo.Test + "\\s*\\(", Pattern.MULTILINE);
     for (InputFile testFile : testInputFilesInPackage) {
@@ -149,13 +146,14 @@ public class GoTestSensor implements Sensor {
     return null;
   }
 
-  private Set<InputFile> getTestFilesForPackage(FileSystem fileSystem, FilePredicates predicates, String goPackage) {
+  private List<InputFile> getTestFilesForPackage(FileSystem fileSystem, String goPackage) {
+    FilePredicates predicates = fileSystem.predicates();
     String packageDirectory = goPathContext.resolve(goPackage);
 
     if (!new File(packageDirectory).exists()) {
       packageDirectory = findPackageDirectory(goPackage, fileSystem);
       if (packageDirectory == null) {
-        return Collections.emptySet();
+        return Collections.emptyList();
       }
     }
 
@@ -163,11 +161,11 @@ public class GoTestSensor implements Sensor {
       return stream
         .map(path -> fileSystem.inputFile(testFilePredicate(predicates, path)))
         .filter(Objects::nonNull)
-        .collect(Collectors.toSet());
+        .collect(Collectors.toList());
 
     } catch (IOException e) {
       LOG.warn("Failed to read package directory " + packageDirectory, e);
-      return Collections.emptySet();
+      return Collections.emptyList();
     }
   }
 
@@ -203,7 +201,7 @@ public class GoTestSensor implements Sensor {
     long timeMs = 0;
     int fail = 0;
     for (TestInfo test : tests) {
-      timeMs += Double.parseDouble(test.Elapsed) * 1000;
+      timeMs += test.Elapsed * 1000;
       if (test.Action.equals("skip")) {
         skip++;
       } else if (test.Action.equals("fail")) {
@@ -221,9 +219,9 @@ public class GoTestSensor implements Sensor {
     String Action;
     String Package;
     String Test;
-    String Elapsed;
+    Double Elapsed;
 
-    TestInfo(String action, String aPackage, String test, String elapsed) {
+    TestInfo(String action, String aPackage, String test, Double elapsed) {
       Action = action;
       Package = aPackage;
       Test = test;

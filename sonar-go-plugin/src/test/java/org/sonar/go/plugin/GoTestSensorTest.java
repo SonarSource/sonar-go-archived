@@ -54,7 +54,7 @@ class GoTestSensorTest {
     } else {
       transformedPackageAbsPath = "_\\" + packageAbsPath.toString().replaceFirst(":", "_");
     }
-    TestInfo testInfo = new TestInfo("pass", transformedPackageAbsPath, "TestFoo", "42");
+    TestInfo testInfo = new TestInfo("pass", transformedPackageAbsPath, "TestFoo", 42.);
 
     SensorContextTester contextTester = SensorContextTester.create(packageAbsPath);
     DefaultFileSystem fs = contextTester.fileSystem();
@@ -69,7 +69,7 @@ class GoTestSensorTest {
     GoTestSensor goTestSensor = new GoTestSensor();
     goTestSensor.goPathContext = new GoPathContext(File.separatorChar, File.pathSeparator, goPath.toString());
 
-    TestInfo testInfo = new TestInfo("pass", packagePath.toString(), "TestFoo", "42");
+    TestInfo testInfo = new TestInfo("pass", packagePath.toString(), "TestFoo", 42.);
 
     Path baseDir = goPath.resolve("src").resolve(packagePath);
     SensorContextTester contextTester = SensorContextTester.create(baseDir);
@@ -87,8 +87,8 @@ class GoTestSensorTest {
     GoTestSensor goTestSensor = new GoTestSensor();
     goTestSensor.goPathContext = new GoPathContext(File.separatorChar, File.pathSeparator, null);
 
-    TestInfo testInfoTop = new TestInfo("pass", packagePath.toString(), "TestFoo", "42");
-    TestInfo testInfoNested = new TestInfo("pass", nestedPackagePath.toString(), "TestFoo", "42");
+    TestInfo testInfoTop = new TestInfo("pass", packagePath.toString(), "TestFoo", 42.);
+    TestInfo testInfoNested = new TestInfo("pass", nestedPackagePath.toString(), "TestFoo", 42.);
 
     Path baseDir = Paths.get("src", "test", "resources", "myProject").toAbsolutePath();
     SensorContextTester contextTester = SensorContextTester.create(baseDir);
