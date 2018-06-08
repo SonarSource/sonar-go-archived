@@ -52,6 +52,6 @@ elif [ "$TRAVIS_PULL_REQUEST" != "false" ] && [ -n "${GITHUB_TOKEN:-}" ]; then
         -Dsonar.pullrequest.github.repository=$TRAVIS_REPO_SLUG
 else
     echo 'Build feature branch or external pull request'
-    ${gradle_cmd} -DbuildNumber=$BUILD_NUMBER build artifactoryPublish
+    ${gradle_cmd} -DbuildNumber=$BUILD_NUMBER build
 fi
 
