@@ -93,7 +93,6 @@ public class GoPlugin implements Plugin {
         .category(GO_CATEGORY)
         .subCategory(TEST_COVERAGE_SUBCATEGORY)
         .onQualifiers(Qualifiers.PROJECT)
-        .defaultValue(GoCoverageReport.DEFAULT_REPORT_PATH)
         .multiValues(true)
         .build());
 

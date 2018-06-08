@@ -27,6 +27,7 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sonar.api.batch.fs.InputFile;
@@ -38,7 +39,6 @@ import org.sonar.go.plugin.GoCoverageReport.Coverage;
 import org.sonar.go.plugin.GoCoverageReport.CoverageStat;
 import org.sonar.go.plugin.GoCoverageReport.FileCoverage;
 import org.sonar.go.plugin.GoCoverageReport.LineCoverage;
-import org.sonar.go.plugin.externalreport.GoVetReportSensor;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -172,7 +172,7 @@ class GoCoverageReportTest {
     Path coverageFile1 = COVERAGE_DIR.resolve("coverage.linux.relative.out").toAbsolutePath();
     context.settings().setProperty("sonar.go.coverage.reportPaths",
       coverageFile1 + ",coverage.linux.absolute.out");
-    List<Path> reportPaths = GoCoverageReport.getReportPaths(context);
+    Stream<Path> reportPaths = GoCoverageReport.getReportPaths(context);
     assertThat(reportPaths).containsExactlyInAnyOrder(
       coverageFile1,
       Paths.get("src", "test", "resources", "coverage", "coverage.linux.absolute.out"));
@@ -183,13 +183,14 @@ class GoCoverageReportTest {
     SensorContextTester context = SensorContextTester.create(COVERAGE_DIR);
     context.setSettings(new MapSettings());
     context.settings().setProperty("sonar.go.coverage.reportPaths",
-      "*.absolute.out,glob/*.out, test*/*.out");
-    List<Path> reportPaths = GoCoverageReport.getReportPaths(context);
+      "*.absolute.out,glob/*.out, test*/*.out, coverage?.out");
+    Stream<Path> reportPaths = GoCoverageReport.getReportPaths(context);
     assertThat(reportPaths).containsExactlyInAnyOrder(
       Paths.get("src", "test", "resources", "coverage", "coverage.linux.absolute.out"),
       Paths.get("src", "test", "resources", "coverage", "coverage.win.absolute.out"),
       Paths.get("src", "test", "resources", "coverage", "glob", "coverage.glob.out"),
-      Paths.get("src", "test", "resources", "coverage", "test1", "coverage.out"));
+      Paths.get("src", "test", "resources", "coverage", "test1", "coverage.out"),
+      Paths.get("src", "test", "resources", "coverage", "coverage1.out"));
   }
 
   @Test
