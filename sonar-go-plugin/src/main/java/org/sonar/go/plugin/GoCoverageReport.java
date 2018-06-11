@@ -152,7 +152,7 @@ public final class GoCoverageReport {
   }
 
   private static String toUnixLikePath(String path) {
-    return path.replace("\\", "/");
+    return path.replace('\\', '/');
   }
 
   private static Stream<Path> findMatchingPaths(Path baseDir, String reportPath, Stream<Path> paths) {
