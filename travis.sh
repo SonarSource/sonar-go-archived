@@ -3,7 +3,7 @@ set -euo pipefail
 
 function configureTravis {
   mkdir -p ~/.local
-  curl -sSL https://github.com/SonarSource/travis-utils/tarball/v47 | tar zx --strip-components 1 -C ~/.local
+  curl -sSL https://github.com/SonarSource/travis-utils/tarball/v48 | tar zx --strip-components 1 -C ~/.local
   source ~/.local/bin/install
 }
 configureTravis
@@ -52,6 +52,6 @@ elif [ "$TRAVIS_PULL_REQUEST" != "false" ] && [ -n "${GITHUB_TOKEN:-}" ]; then
         -Dsonar.pullrequest.github.repository=$TRAVIS_REPO_SLUG
 else
     echo 'Build feature branch or external pull request'
-    ${gradle_cmd} -DbuildNumber=$BUILD_NUMBER build artifactoryPublish
+    ${gradle_cmd} -DbuildNumber=$BUILD_NUMBER build
 fi
 
