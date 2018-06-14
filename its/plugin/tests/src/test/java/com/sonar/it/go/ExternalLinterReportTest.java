@@ -44,7 +44,7 @@ public class ExternalLinterReportTest {
     orchestrator.executeBuild(createBuild(projectKey,
       "sonar.go.govet.reportPaths", "go-vet.out"));
     List<Issue> issues = getExternalIssues(orchestrator, projectKey);
-    if (orchestrator.getServer().version().isGreaterThanOrEquals("7.2")) {
+    if (orchestrator.getServer().version().isGreaterThanOrEquals(7, 2)) {
       assertThat(issues).hasSize(2);
       assertThat(formatIssues(issues)).isEqualTo(
         "SelfAssignement.go|external_govet:assign|MAJOR|5min|line:7|self-assignment of name to name\n" +
@@ -60,7 +60,7 @@ public class ExternalLinterReportTest {
     orchestrator.executeBuild(createBuild(projectKey,
       "sonar.go.golint.reportPaths", "golint.out"));
     List<Issue> issues = getExternalIssues(orchestrator, projectKey);
-    if (orchestrator.getServer().version().isGreaterThanOrEquals("7.2")) {
+    if (orchestrator.getServer().version().isGreaterThanOrEquals(7, 2)) {
       assertThat(issues).hasSize(11);
       assertThat(formatIssues(issues)).isEqualTo(
         "SelfAssignement.go|external_golint:Exported|MAJOR|5min|line:4|exported type User should have comment or be unexported\n" +
@@ -86,7 +86,7 @@ public class ExternalLinterReportTest {
     orchestrator.executeBuild(createBuild(projectKey,
       "sonar.go.gometalinter.reportPaths", "gometalinter.out"));
     List<Issue> issues = getExternalIssues(orchestrator, projectKey);
-    if (orchestrator.getServer().version().isGreaterThanOrEquals("7.2")) {
+    if (orchestrator.getServer().version().isGreaterThanOrEquals(7, 2)) {
       assertThat(issues).hasSize(8);
       assertThat(formatIssues(issues)).isEqualTo(
         "SelfAssignement.go|external_golint:Exported|MAJOR|5min|line:4|exported type User should have comment or be unexported\n" +

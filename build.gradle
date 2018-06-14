@@ -60,8 +60,8 @@ subprojects {
                 entry 'sonar-analyzer-commons'
                 entry 'sonar-analyzer-test-commons'
             }
-            dependency 'org.sonarsource.sonarqube:sonar-plugin-api:7.2.0.12767' // TODO use SQ release candidate version
-            dependency 'org.sonarsource.orchestrator:sonar-orchestrator:3.17.0.1491'
+            dependency 'org.sonarsource.sonarqube:sonar-plugin-api:7.2-RC1'
+            dependency 'org.sonarsource.orchestrator:sonar-orchestrator:3.19.0.1641'
         }
     }
 
