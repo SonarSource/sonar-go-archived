@@ -37,9 +37,12 @@ public class UnreachableCodeCheck extends Check {
     ListIterator<UastNode> stmtIterator = statements.listIterator();
     while (stmtIterator.hasNext()) {
       if (stmtIterator.next().is(UastNode.Kind.UNCONDITIONAL_JUMP)) {
-        break;
+        checkDeadCode(stmtIterator);
       }
     }
+  }
+
+  private void checkDeadCode(ListIterator<UastNode> stmtIterator) {
     if (stmtIterator.hasNext()) {
       UastNode jump = stmtIterator.previous();
       stmtIterator.next();
