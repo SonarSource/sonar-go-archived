@@ -36,3 +36,11 @@ func switchcase(x int) {
 		fmt.Print("Hello")
 	}
 }
+
+func multipleJumps() {
+	goto lable
+lable:
+	fmt.Println("happen")
+	return // Noncompliant {{Refactor this piece of code to not have any dead code after this return.}}
+	fmt.Println("never happen")
+}
