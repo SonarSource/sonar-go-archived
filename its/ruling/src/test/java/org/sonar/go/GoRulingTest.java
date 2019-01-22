@@ -45,7 +45,7 @@ public class GoRulingTest {
     String defaultRuntimeVersion = "true".equals(System.getenv("SONARSOURCE_QA")) ? null : "LATEST_RELEASE[6.7]";
     OrchestratorBuilder builder = Orchestrator.builderEnv()
       .setSonarVersion(System.getProperty("sonar.runtimeVersion", defaultRuntimeVersion))
-      .addPlugin(MavenLocation.of("org.sonarsource.sonar-lits-plugin", "sonar-lits-plugin", "0.6"));
+      .addPlugin(MavenLocation.of("org.sonarsource.sonar-lits-plugin", "sonar-lits-plugin", "0.8.0.1209"));
 
     String goVersion = System.getProperty("goVersion");
     Location goLocation;
