@@ -136,6 +136,10 @@ public class GoTestSensor implements Sensor {
       testInfo.Package,
       goPackage -> getTestFilesForPackage(fileSystem, goPackage));
 
+    // If the test was actually a sub-test, the name is of the form
+    // "TestFunc/Sub_Test_Name".
+    testName := testInfo.Test.Split("/", 2)[0]
+
     Pattern pattern = Pattern.compile("^func\\s+" + testInfo.Test + "\\s*\\(", Pattern.MULTILINE);
     for (InputFile testFile : testInputFilesInPackage) {
       if (pattern.matcher(testFile.contents()).find()) {
