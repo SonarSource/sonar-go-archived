@@ -140,7 +140,7 @@ public class GoTestSensor implements Sensor {
     // "TestFunc/Sub_Test_Name".
     testName := testInfo.Test.Split("/", 2)[0]
 
-    Pattern pattern = Pattern.compile("^func\\s+" + testInfo.Test + "\\s*\\(", Pattern.MULTILINE);
+    Pattern pattern = Pattern.compile("^func\\s+" + testName + "\\s*\\(", Pattern.MULTILINE);
     for (InputFile testFile : testInputFilesInPackage) {
       if (pattern.matcher(testFile.contents()).find()) {
         return testFile;
