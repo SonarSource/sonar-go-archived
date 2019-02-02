@@ -148,6 +148,28 @@ class GoTestSensorTest {
     assertThat(context.measure(barTestFile.key(), CoreMetrics.TEST_EXECUTION_TIME).value()).isEqualTo(7);
   }
 
+  @Test
+  void subtest_in_report() throws IOException {
+    Path packageAbsPath = goPath.resolve("src").resolve(packagePath);
+
+    GoTestSensor goTestSensor = new GoTestSensor();
+    goTestSensor.goPathContext = new GoPathContext(File.separatorChar, File.pathSeparator, null);
+    String transformedPackageAbsPath;
+    if (File.pathSeparator.equals(":")) {
+      transformedPackageAbsPath = "_" + packageAbsPath;
+    } else {
+      transformedPackageAbsPath = "_\\" + packageAbsPath.toString().replaceFirst(":", "_");
+    }
+    TestInfo testInfo = new TestInfo("pass", transformedPackageAbsPath, "TestFoo/Subtest_Name", 42.);
+
+    SensorContextTester contextTester = SensorContextTester.create(packageAbsPath);
+    DefaultFileSystem fs = contextTester.fileSystem();
+    DefaultInputFile testFile = getTestInputFile(fs, "func TestFoo(", "foo_test.go");
+
+    InputFile foundTestFile = goTestSensor.findTestFile(fs, testInfo);
+    assertThat(foundTestFile).isEqualTo(testFile);
+  }
+
   private DefaultInputFile getTestInputFile(DefaultFileSystem fs, String content, String relativePath) {
     DefaultInputFile nestedTestFile = new TestInputFileBuilder("moduleKey", relativePath)
       .setLanguage("go")
