@@ -138,7 +138,7 @@ public class GoTestSensor implements Sensor {
 
     // If the test was actually a sub-test, the name is of the form
     // "TestFunc/Sub_Test_Name".
-    testName := testInfo.Test.split("/", 2)[0]
+    String testName = testInfo.Test.split("/", 2)[0];
 
     Pattern pattern = Pattern.compile("^func\\s+" + testName + "\\s*\\(", Pattern.MULTILINE);
     for (InputFile testFile : testInputFilesInPackage) {
