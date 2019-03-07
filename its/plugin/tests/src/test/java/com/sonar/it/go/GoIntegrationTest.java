@@ -88,7 +88,6 @@ public class GoIntegrationTest {
     assertThat(getProjectMeasureAsDouble("cognitive_complexity")).isEqualTo(16d);
     assertThat(getProjectMeasure("function_complexity_distribution")).isNull();
     assertThat(getProjectMeasure("file_complexity_distribution")).isNull();
-    assertThat(getProjectMeasureAsDouble("class_complexity_distribution")).isNull();
 
     // Duplications
     assertThat(getProjectMeasureAsDouble("duplicated_lines")).isEqualTo(135d);
