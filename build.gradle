@@ -30,7 +30,7 @@ allprojects {
     repositories {
         def repository = project.hasProperty('cix') ? 'sonarsource-qa' : 'sonarsource'
         maven {
-            url "https://repox.sonarsource.com/${repository}"
+            url "https://repox.jfrog.io/repox/${repository}"
         }
     }
 }
