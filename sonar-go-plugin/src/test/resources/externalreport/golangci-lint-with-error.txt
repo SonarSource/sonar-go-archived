@@ -1,0 +1,2 @@
+thisisaninvalidline
+main.go:5:29  errcheck     Error return value of `(*encoding/json.Encoder).Encode` is not checked

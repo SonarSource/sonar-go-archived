@@ -1,0 +1,5 @@
+main.go:5:29  errcheck     Error return value of `(*encoding/json.Encoder).Encode` is not checked
+main.go:3:29  errcheck     Error return value of `(*encoding/json.Encoder).Encode` is not checked
+main.go:2:9   govet        Errorf format %v reads arg #1, but call has 0 args
+main.go:1:28  errcheck     Error return value of `(*encoding/json.Encoder).Encode` is not checked
+main.go:2:17  staticcheck  session.New is deprecated: Use NewSession functions to create sessions instead. NewSession has the same functionality as New except an error can be returned when the func is called instead of waiting to receive an error until a request is made.

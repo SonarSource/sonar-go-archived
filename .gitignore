@@ -39,3 +39,6 @@ build/
 
 # --- Maven and Orchestrator
 target/
+
+# --- jenv
+.java-version
