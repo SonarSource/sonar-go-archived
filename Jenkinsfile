@@ -65,12 +65,12 @@ pipeline {
                         runPlugin "LATEST_RELEASE"
                     }
                 }
-                stage('plugin-dev') {
+                stage('plugin-dogfood') {
                     agent {
                         label 'linux'
                     }
                     steps {
-                        runPlugin "DEV"
+                        runPlugin "DOGFOOD"
                     }
                 }
             }
@@ -96,20 +96,20 @@ pipeline {
 def runRuling(String sqRuntimeVersion) {
     withQAEnv {
         sh "ruling=true ./gradlew -DbuildNumber=${params.CI_BUILD_NUMBER} -Dsonar.runtimeVersion=${sqRuntimeVersion} " +
-                "-Dorchestrator.artifactory.apiKey=${env.ARTIFACTORY_PRIVATE_API_KEY}  --console plain --no-daemon --info :its:ruling:check"
+                "-Dorchestrator.artifactory.apiKey=${env.ARTIFACTORY_API_KEY}  --console plain --no-daemon --info :its:ruling:check"
     }
 }
 
 def runPlugin(String sqRuntimeVersion) {
     withQAEnv {
         sh "./gradlew -DbuildNumber=${params.CI_BUILD_NUMBER} -Dsonar.runtimeVersion=${sqRuntimeVersion} " +
-                "-Dorchestrator.artifactory.apiKey=${env.ARTIFACTORY_PRIVATE_API_KEY}  --console plain --no-daemon --info integrationTest"
+                "-Dorchestrator.artifactory.apiKey=${env.ARTIFACTORY_API_KEY}  --console plain --no-daemon --info integrationTest"
     }
 }
 
 def withQAEnv(def body) {
     checkout scm
-    withCredentials([string(credentialsId: 'ARTIFACTORY_PRIVATE_API_KEY', variable: 'ARTIFACTORY_PRIVATE_API_KEY'),
+    withCredentials([string(credentialsId: 'ARTIFACTORY_PRIVATE_API_KEY', variable: 'ARTIFACTORY_API_KEY'),
                      usernamePassword(credentialsId: 'ARTIFACTORY_PRIVATE_USER', passwordVariable: 'ARTIFACTORY_PRIVATE_PASSWORD', usernameVariable: 'ARTIFACTORY_PRIVATE_USERNAME')]) {
         wrap([$class: 'Xvfb']) {
             body.call()
