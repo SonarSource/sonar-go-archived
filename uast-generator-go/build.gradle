@@ -1,5 +1,5 @@
 plugins {
-  id 'com.github.blindpirate.gogradle' version '0.9.1'
+  id 'com.github.blindpirate.gogradle' version '0.11.3'
 }
 
 sonarqube {
@@ -29,11 +29,11 @@ task generateTestReport(type: com.github.blindpirate.gogradle.Go) {
   }
 }
 
-build.dependsOn check
+goBuild.dependsOn goCheck
 installDependencies.dependsOn generateSource
-test.dependsOn generateTestReport
+goTest.dependsOn generateTestReport
 
-build {
+goBuild {
   targetPlatform = ['linux-amd64', 'windows-amd64', 'darwin-amd64']
   outputLocation = './build/uast-generator-go-${GOOS}-${GOARCH}${GOEXE}'
 }

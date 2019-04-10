@@ -1,6 +1,5 @@
 plugins {
     id 'java'
-    id 'jacoco'
 }
 
 compileJava {
@@ -34,7 +33,7 @@ test {
     }
 }
 
-test.dependsOn ':uast-generator-go:build'
+test.dependsOn ':uast-generator-go:goBuild'
 
 task updateDoc(type: JavaExec) {
     description 'Update UAST documentation'

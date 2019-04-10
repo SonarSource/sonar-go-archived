@@ -41,6 +41,7 @@ subprojects {
 
     apply plugin: 'com.github.hierynomus.license'
     apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'jacoco'
     dependencyManagement {
         dependencies {
             dependency 'com.google.code.gson:gson:2.8.2'
@@ -61,8 +62,12 @@ subprojects {
                 entry 'sonar-analyzer-test-commons'
             }
             dependency 'org.sonarsource.sonarqube:sonar-plugin-api:7.2-RC1'
-            dependency 'org.sonarsource.orchestrator:sonar-orchestrator:3.19.0.1641'
+            dependency 'org.sonarsource.orchestrator:sonar-orchestrator:3.24.0.1993'
         }
+    }
+
+    jacoco {
+        toolVersion = "0.8.3"
     }
 
     license {
