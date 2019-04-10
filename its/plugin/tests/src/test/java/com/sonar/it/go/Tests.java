@@ -31,12 +31,11 @@ import org.apache.commons.lang.StringUtils;
 import org.junit.ClassRule;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
-import org.sonarqube.ws.WsMeasures;
-import org.sonarqube.ws.WsMeasures.Measure;
+import org.sonarqube.ws.Measures;
 import org.sonarqube.ws.client.HttpConnector;
 import org.sonarqube.ws.client.WsClient;
 import org.sonarqube.ws.client.WsClientFactories;
-import org.sonarqube.ws.client.measure.ComponentWsRequest;
+import org.sonarqube.ws.client.measures.ComponentRequest;
 
 import static java.util.Collections.singletonList;
 
@@ -76,28 +75,27 @@ public class Tests {
     return new File(Tests.PROJECT_ROOT_DIR, projectDirName);
   }
 
-  @CheckForNull
-  static Measure getMeasure(String componentKey, String metricKey) {
-    WsMeasures.ComponentWsResponse response = newWsClient().measures().component(new ComponentWsRequest()
+  static Measures.Measure getMeasure(String componentKey, String metricKey) {
+    Measures.ComponentWsResponse response = newWsClient().measures().component(new ComponentRequest()
       .setComponent(componentKey)
       .setMetricKeys(singletonList(metricKey)));
-    List<Measure> measures = response.getComponent().getMeasuresList();
+    List<Measures.Measure> measures = response.getComponent().getMeasuresList();
     return measures.size() == 1 ? measures.get(0) : null;
   }
 
   @CheckForNull
   static Integer getMeasureAsInt(String componentKey, String metricKey) {
-    Measure measure = getMeasure(componentKey, metricKey);
+    Measures.Measure measure = getMeasure(componentKey, metricKey);
     return (measure == null) ? null : Integer.parseInt(measure.getValue());
   }
 
   @CheckForNull
   static Double getMeasureAsDouble(String componentKey, String metricKey) {
-    Measure measure = getMeasure(componentKey, metricKey);
+    Measures.Measure measure = getMeasure(componentKey, metricKey);
     return (measure == null) ? null : Double.parseDouble(measure.getValue());
   }
 
-  private static WsClient newWsClient() {
+  static WsClient newWsClient() {
     return WsClientFactories.getDefault().newClient(HttpConnector.newBuilder()
       .url(ORCHESTRATOR.getServer().getUrl())
       .build());

@@ -21,16 +21,15 @@ package com.sonar.it.go;
 
 import com.sonar.orchestrator.Orchestrator;
 import com.sonar.orchestrator.build.SonarScanner;
-import com.sonar.orchestrator.container.Server;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.junit.ClassRule;
 import org.junit.Test;
-import org.sonar.wsclient.SonarClient;
-import org.sonar.wsclient.issue.Issue;
-import org.sonar.wsclient.issue.IssueClient;
-import org.sonar.wsclient.issue.IssueQuery;
+import org.sonarqube.ws.Issues;
+import org.sonarqube.ws.client.issues.SearchRequest;
 
+import static com.sonar.it.go.Tests.newWsClient;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ExternalLinterReportTest {
@@ -43,7 +42,7 @@ public class ExternalLinterReportTest {
     String projectKey = "go-vet-project";
     orchestrator.executeBuild(createBuild(projectKey,
       "sonar.go.govet.reportPaths", "go-vet.out"));
-    List<Issue> issues = getExternalIssues(orchestrator, projectKey);
+    List<Issues.Issue> issues = getExternalIssues(projectKey);
     if (orchestrator.getServer().version().isGreaterThanOrEquals(7, 2)) {
       assertThat(issues).hasSize(2);
       assertThat(formatIssues(issues)).isEqualTo(
@@ -59,7 +58,7 @@ public class ExternalLinterReportTest {
     String projectKey = "golint-project";
     orchestrator.executeBuild(createBuild(projectKey,
       "sonar.go.golint.reportPaths", "golint.out"));
-    List<Issue> issues = getExternalIssues(orchestrator, projectKey);
+    List<Issues.Issue> issues = getExternalIssues(projectKey);
     if (orchestrator.getServer().version().isGreaterThanOrEquals(7, 2)) {
       assertThat(issues).hasSize(11);
       assertThat(formatIssues(issues)).isEqualTo(
@@ -85,7 +84,7 @@ public class ExternalLinterReportTest {
     String projectKey = "gometalinter-project";
     orchestrator.executeBuild(createBuild(projectKey,
       "sonar.go.gometalinter.reportPaths", "gometalinter.out"));
-    List<Issue> issues = getExternalIssues(orchestrator, projectKey);
+    List<Issues.Issue> issues = getExternalIssues(projectKey);
     if (orchestrator.getServer().version().isGreaterThanOrEquals(7, 2)) {
       assertThat(issues).hasSize(8);
       assertThat(formatIssues(issues)).isEqualTo(
@@ -113,28 +112,28 @@ public class ExternalLinterReportTest {
       .setProjectDir(Tests.projectDirectoryFor("samples"));
   }
 
-  private static List<Issue> getExternalIssues(Orchestrator orchestrator, String projectKey) {
-    Server server = orchestrator.getServer();
-    IssueClient issueClient = SonarClient.create(server.getUrl()).issueClient();
-    return issueClient.find(IssueQuery.create().componentRoots(projectKey)).list().stream()
-      .filter(issue -> issue.ruleKey().startsWith("external_"))
+  private static List<Issues.Issue> getExternalIssues(String projectKey) {
+    SearchRequest request = new SearchRequest();
+    request.setProjects(Collections.singletonList(projectKey));
+    return newWsClient().issues().search(request).getIssuesList().stream()
+      .filter(issue -> !issue.getExternalRuleEngine().isEmpty())
       .collect(Collectors.toList());
   }
 
-  private static String formatIssues(List<Issue> issues) {
+  private static String formatIssues(List<Issues.Issue> issues) {
     return issues.stream()
       .map(issue -> filePath(issue) + "|" +
-        issue.ruleKey() + "|" +
-        issue.severity() + "|" +
-        issue.debt() + "|" +
-        "line:" + issue.line() + "|" +
-        issue.message())
+        issue.getRule() + "|" +
+        issue.getSeverity() + "|" +
+        issue.getDebt() + "|" +
+        "line:" + issue.getLine() + "|" +
+        issue.getMessage())
       .sorted()
       .collect(Collectors.joining("\n"));
   }
 
-  private static String filePath(Issue issue) {
-    return issue.componentKey().substring(issue.componentKey().indexOf(':') + 1);
+  private static String filePath(Issues.Issue issue) {
+    return issue.getComponent().substring(issue.getComponent().indexOf(':') + 1);
   }
 
 }
