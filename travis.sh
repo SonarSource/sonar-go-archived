@@ -21,7 +21,7 @@ else
   export PULL_REQUEST_NUMBER=$TRAVIS_PULL_REQUEST
 fi
 
-gradle_cmd="./gradlew --no-daemon --console plain"
+gradle_cmd="./gradlew -i --stacktrace --no-daemon --console plain"
 sonar_analysis="-DbuildNumber=$BUILD_NUMBER \
         -Dsonar.host.url=$SONAR_HOST_URL \
         -Dsonar.login=$SONAR_TOKEN \
