@@ -28,7 +28,7 @@ import org.junit.ClassRule;
 import org.junit.Test;
 import org.sonar.wsclient.issue.IssueClient;
 import org.sonar.wsclient.issue.IssueQuery;
-import org.sonarqube.ws.WsMeasures.Measure;
+import org.sonarqube.ws.Measures;
 
 import static com.sonar.it.go.Tests.getMeasure;
 import static com.sonar.it.go.Tests.getMeasureAsDouble;
@@ -140,7 +140,7 @@ public class GoIntegrationTest {
     return lineNumbers;
   }
 
-  private Measure getProjectMeasure(String metricKey) {
+  private Measures.Measure getProjectMeasure(String metricKey) {
     return getMeasure("project", metricKey.trim());
   }
 
@@ -148,7 +148,7 @@ public class GoIntegrationTest {
     return getMeasureAsDouble("project", metricKey.trim());
   }
 
-  private Measure getFileMeasure(String metricKey) {
+  private Measures.Measure getFileMeasure(String metricKey) {
     return getMeasure(PIVOT_SOURCE_FILE, metricKey.trim());
   }
 
