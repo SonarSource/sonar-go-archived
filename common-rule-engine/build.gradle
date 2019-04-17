@@ -1,15 +1,3 @@
-plugins {
-    id 'java'
-}
-
-compileJava {
-    sourceCompatibility = 1.8
-    targetCompatibility = 1.8
-    options.encoding = "UTF-8"
-}
-
-compileTestJava.options.encoding = "UTF-8"
-
 dependencies {
     compile     'com.google.code.gson:gson'
     compileOnly 'com.google.code.findbugs:jsr305'
