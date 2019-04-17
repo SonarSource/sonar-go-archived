@@ -42,6 +42,7 @@ subprojects {
     apply plugin: 'com.github.hierynomus.license'
     apply plugin: 'io.spring.dependency-management'
     apply plugin: 'jacoco'
+    apply plugin: 'java'
     dependencyManagement {
         dependencies {
             dependency 'com.google.code.gson:gson:2.8.2'
@@ -65,6 +66,13 @@ subprojects {
             dependency 'org.sonarsource.orchestrator:sonar-orchestrator:3.24.0.1993'
         }
     }
+
+    compileJava {
+        options.encoding = "UTF-8"
+        options.compilerArgs.addAll(['--release', '8'])
+    }
+
+    compileTestJava.options.encoding = "UTF-8"
 
     jacoco {
         toolVersion = "0.8.3"
