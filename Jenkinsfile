@@ -47,7 +47,9 @@ pipeline {
             label 'windows'
           }
           steps {
-            sh "./gradlew --no-daemon --console plain build"
+            withQAEnv {
+              sh "./gradlew --no-daemon --console plain build"
+            }
           }
         }
         stage('plugin-lts-windows') {
