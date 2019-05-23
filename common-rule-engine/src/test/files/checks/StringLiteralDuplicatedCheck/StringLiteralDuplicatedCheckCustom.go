@@ -14,3 +14,11 @@ func duplication3(s string) {
 	duplication("Another literal")
 	duplication("Another literal")
 }
+
+type duplication4 struct {
+	A int `json:"string"`  // Compliant
+	B int `json:"string"`
+	C int `json:"string"`
+	D int `json:"string"`
+	E int `json:"string"`
+}

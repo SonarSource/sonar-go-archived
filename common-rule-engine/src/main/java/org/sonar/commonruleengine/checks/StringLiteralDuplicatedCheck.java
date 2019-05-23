@@ -62,6 +62,11 @@ public class StringLiteralDuplicatedCheck extends Check {
 
   @Override
   public void visitNode(UastNode node) {
+    // Ignore Tags
+    if (node.nativeNode.startsWith("Tag(")) {
+      return;
+    }
+
     LiteralLike literal = LiteralLike.from(node);
     if (literal != null) {
       String literalValue = literal.value();
