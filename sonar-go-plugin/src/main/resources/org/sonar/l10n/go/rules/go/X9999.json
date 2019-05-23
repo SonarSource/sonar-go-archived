@@ -1,0 +1,16 @@
+{
+  "title": "Insecure 'unsafe' package should not be used",
+  "type": "VULNERABILITY",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "5min"
+  },
+  "tags": [
+    "misra"
+  ],
+  "defaultSeverity": "Blocker",
+  "ruleSpecification": "CHANGEME-9999",
+  "sqKey": "X9999",
+  "scope": "All"
+}

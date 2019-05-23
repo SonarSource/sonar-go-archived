@@ -42,6 +42,7 @@ import org.sonar.commonruleengine.checks.NestedSwitchCheck;
 import org.sonar.commonruleengine.checks.NoHardcodedCredentialsCheck;
 import org.sonar.commonruleengine.checks.NoIdenticalConditionsCheck;
 import org.sonar.commonruleengine.checks.NoIdenticalFunctionsCheck;
+import org.sonar.commonruleengine.checks.NoImportUnsafeCheck;
 import org.sonar.commonruleengine.checks.NoSelfAssignmentCheck;
 import org.sonar.commonruleengine.checks.OctalNumberCheck;
 import org.sonar.commonruleengine.checks.RedundantBooleanLiteralCheck;
@@ -90,6 +91,7 @@ public class GoChecks {
       NestedControlFlowCheck.class,
       NoIdenticalConditionsCheck.class,
       NoIdenticalFunctionsCheck.class,
+      NoImportUnsafeCheck.class,
       NoHardcodedCredentialsCheck.class,
       NoSelfAssignmentCheck.class,
       OctalNumberCheck.class,

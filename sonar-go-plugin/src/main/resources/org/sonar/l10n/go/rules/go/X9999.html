@@ -1,0 +1,29 @@
+<p>When using functions of the 'unsafe' package in Go, it's up to the developer to make sure the size of the buffer to be written to is large enough to avoid buffer overflows. Buffer overflows can cause the program to crash at a minimum. At worst, a carefully crafted overflow can cause malicious code to be executed.</p>
+<p>Packages that import unsafe may be non-portable and are not protected by the Go 1 compatibility guidelines. Go team reserves the right to make changes to the implementation that may break such programs.</p>
+
+<h2>Noncompliant Code Example</h2>
+<pre>
+	import (
+		"fmt"
+		"unsafe"
+	)
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+	import (
+		"fmt"
+	)
+</pre>
+<h2>See</h2>
+<ul>
+	<li> <a href="http://cwe.mitre.org/data/definitions/120">MITRE, CWE-120</a> - Buffer Copy without Checking Size of Input ('Classic Buffer Overflow')
+	</li>
+	<li> <a href="http://cwe.mitre.org/data/definitions/676">MITRE, CWE-676</a> - Use of Potentially Dangerous Function </li>
+	<li> OWASP Top 10 2017 Category A9 - Using Components with Known Vulnerabilities </li>
+	<li> <a href="https://www.securecoding.cert.org/confluence/x/QwY">CERT, STR07-C.</a> - Use the bounds-checking interfaces for string manipulation
+	</li>
+	<li> <a href="https://www.sans.org/top25-software-errors/#cat2">SANS Top 25</a> - Risky Resource Management </li>
+	<li> <a href="https://golang.org/pkg/unsafe/">Go 'unsafe' package reference</a> - Go 'unsafe' package reference  </li>
+	<li> <a href="https://golang.org/doc/go1compat">Go 1 compatibility guidelines</a> - Go 1 compatibility guidelines  </li>
+  </ul>
+
