@@ -67,13 +67,11 @@ subprojects {
         }
     }
 
-    compileJava {
-        options.encoding = "UTF-8"
+    tasks.withType(JavaCompile) {
         options.compilerArgs.addAll(['--release', '8'])
+        options.encoding = 'UTF-8'
     }
-
-    compileTestJava.options.encoding = "UTF-8"
-
+    
     jacoco {
         toolVersion = "0.8.3"
     }
@@ -137,6 +135,8 @@ subprojects {
         }
     }
 }
+
+
 
 artifactory {
     clientConfig.setIncludeEnvVars(true)
