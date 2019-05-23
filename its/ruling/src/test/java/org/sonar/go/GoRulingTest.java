@@ -74,7 +74,7 @@ public class GoRulingTest {
       .setProjectName("project")
       .setProjectVersion("1")
       .setLanguage("go")
-      .setSourceDirs("./")
+      .setSourceDirs(".")
       .setSourceEncoding("utf-8")
       .setProperty("sonar.inclusions", "**/*.go")
       .setProperty("sonar.exclusions", "**/*generated*.go, **/*.pb.go")
