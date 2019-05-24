@@ -200,11 +200,9 @@ class GoSensorTest {
 
     assertThat(fileLinesContext.saveCount).isEqualTo(1);
 
-    assertThat(fileLinesContext.metrics.keySet()).containsExactlyInAnyOrder(
-      CoreMetrics.COMMENT_LINES_DATA_KEY, CoreMetrics.NCLOC_DATA_KEY, CoreMetrics.EXECUTABLE_LINES_DATA_KEY);
+    assertThat(fileLinesContext.metrics.keySet()).containsExactlyInAnyOrder(CoreMetrics.NCLOC_DATA_KEY,
+      CoreMetrics.EXECUTABLE_LINES_DATA_KEY);
 
-    assertThat(fileLinesContext.metrics.get(CoreMetrics.COMMENT_LINES_DATA_KEY)).containsExactlyInAnyOrder(
-      "1:1", "11:1", "19:1");
 
     assertThat(fileLinesContext.metrics.get(CoreMetrics.NCLOC_DATA_KEY)).containsExactlyInAnyOrder(
       "2:1", "3:1", "4:1", "5:1", "6:1", "7:1", "8:1", "9:1", "10:1", "11:1",

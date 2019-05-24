@@ -138,7 +138,6 @@ public class GoSensor implements Sensor {
 
     FileLinesContext linesContext = fileLinesContextFactory.createFor(inputFile);
     saveLinesMetrics(linesContext, metrics.linesOfCode, CoreMetrics.NCLOC_DATA_KEY);
-    saveLinesMetrics(linesContext, metrics.commentLines, CoreMetrics.COMMENT_LINES_DATA_KEY);
     saveLinesMetrics(linesContext, metrics.executableLines, CoreMetrics.EXECUTABLE_LINES_DATA_KEY);
     linesContext.save();
   }
