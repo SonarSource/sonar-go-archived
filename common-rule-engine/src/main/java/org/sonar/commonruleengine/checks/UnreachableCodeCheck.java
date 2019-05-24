@@ -36,20 +36,14 @@ public class UnreachableCodeCheck extends Check {
     List<UastNode> statements = node.getChildren(UastNode.Kind.STATEMENT);
     ListIterator<UastNode> stmtIterator = statements.listIterator();
     while (stmtIterator.hasNext()) {
-      if (stmtIterator.next().is(UastNode.Kind.UNCONDITIONAL_JUMP)) {
-        checkDeadCode(stmtIterator);
+      UastNode statement = stmtIterator.next();
+      if (statement.is(UastNode.Kind.UNCONDITIONAL_JUMP) && stmtIterator.hasNext()) {
+        UastNode afterJump = stmtIterator.next();
+        if (afterJump.isNot(UastNode.Kind.LABEL)) {
+          reportIssue(statement, "Refactor this piece of code to not have any dead code after this " + statement.firstToken().value + ".");
+        }
       }
     }
   }
 
-  private void checkDeadCode(ListIterator<UastNode> stmtIterator) {
-    if (stmtIterator.hasNext()) {
-      UastNode jump = stmtIterator.previous();
-      stmtIterator.next();
-      UastNode stmt = stmtIterator.next();
-      if (stmt.isNot(UastNode.Kind.LABEL)) {
-        reportIssue(jump, "Refactor this piece of code to not have any dead code after this " + jump.firstToken().value + ".");
-      }
-    }
-  }
 }
