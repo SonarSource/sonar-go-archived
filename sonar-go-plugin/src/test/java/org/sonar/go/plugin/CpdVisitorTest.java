@@ -30,8 +30,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.batch.fs.internal.TestInputFileBuilder;
+import org.sonar.api.batch.sensor.cpd.internal.TokensLine;
 import org.sonar.api.batch.sensor.internal.SensorContextTester;
-import org.sonar.duplications.internal.pmd.TokensLine;
 import org.sonar.uast.UastNode;
 
 import static org.assertj.core.api.Assertions.assertThat;

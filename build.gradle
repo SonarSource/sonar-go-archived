@@ -62,7 +62,7 @@ subprojects {
                 entry 'sonar-analyzer-commons'
                 entry 'sonar-analyzer-test-commons'
             }
-            dependency 'org.sonarsource.sonarqube:sonar-plugin-api:7.2-RC1'
+            dependency 'org.sonarsource.sonarqube:sonar-plugin-api:7.7'
             dependency 'org.sonarsource.orchestrator:sonar-orchestrator:3.24.0.1993'
         }
     }

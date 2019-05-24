@@ -326,12 +326,13 @@ class GoSensorTest {
     List<String> allKeys = ruleClasses.stream().map(ruleClass -> ((org.sonar.check.Rule) ruleClass.getAnnotations()[0]).key()).collect(Collectors.toList());
     ActiveRulesBuilder rulesBuilder = new ActiveRulesBuilder();
     allKeys.forEach(key -> {
-      NewActiveRule newActiveRule = rulesBuilder.create(RuleKey.of(GoRulesDefinition.REPOSITORY_KEY, key));
       if (activeRuleSet.contains(key)) {
-        newActiveRule.activate();
+        NewActiveRule.Builder newActiveRuleBuilder = new NewActiveRule.Builder()
+          .setRuleKey(RuleKey.of(GoRulesDefinition.REPOSITORY_KEY, key));
         if (key.equals("S1451")) {
-          newActiveRule.setParam("headerFormat", "some header format");
+          newActiveRuleBuilder.setParam("headerFormat", "some header format");
         }
+        rulesBuilder.addRule(newActiveRuleBuilder.build());
       }
     });
     ActiveRules activeRules = rulesBuilder.build();
@@ -361,19 +362,9 @@ class GoSensorTest {
     }
 
     @Override
-    public Integer getIntValue(String metricKey, int line) {
-      throw new UnsupportedOperationException();
-    }
-
-    @Override
     public void setStringValue(String metricKey, int line, String value) {
       metrics.computeIfAbsent(metricKey, key -> new HashSet<>())
         .add(line + ":" + value);
-    }
-
-    @Override
-    public String getStringValue(String metricKey, int line) {
-      throw new UnsupportedOperationException();
     }
 
     @Override
