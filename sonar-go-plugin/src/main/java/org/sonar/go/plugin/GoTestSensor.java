@@ -85,7 +85,7 @@ public class GoTestSensor implements Sensor {
       if (path.toFile().exists()) {
         result.add(path);
       } else {
-        LOG.error("Coverage report can't be loaded, file not found: '{}', ignoring this file.", path);
+        LOG.error("Test report can't be loaded, file not found: '{}', ignoring this file.", path);
       }
     }
 

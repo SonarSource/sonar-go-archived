@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.RegisterExtension;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.batch.fs.InputFile.Type;
 import org.sonar.api.batch.fs.internal.DefaultFileSystem;
@@ -33,11 +34,15 @@ import org.sonar.api.batch.sensor.internal.DefaultSensorDescriptor;
 import org.sonar.api.batch.sensor.internal.SensorContextTester;
 import org.sonar.api.config.internal.MapSettings;
 import org.sonar.api.measures.CoreMetrics;
+import org.sonar.api.utils.log.LoggerLevel;
 import org.sonar.go.plugin.GoTestSensor.TestInfo;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class GoTestSensorTest {
+
+  @RegisterExtension
+  static JUnit5LogTester logTester = new JUnit5LogTester();
 
   private final Path goPath = Paths.get("src", "test", "resources", "testReportGoPath").toAbsolutePath();
   private final Path packagePath = Paths.get("github.com", "myOrg", "myProject");
@@ -146,6 +151,8 @@ class GoTestSensorTest {
     assertThat(context.measure(barTestFile.key(), CoreMetrics.TEST_FAILURES).value()).isEqualTo(0);
     assertThat(context.measure(barTestFile.key(), CoreMetrics.TEST_ERRORS)).isNull();
     assertThat(context.measure(barTestFile.key(), CoreMetrics.TEST_EXECUTION_TIME).value()).isEqualTo(7);
+    assertThat(String.join("\n", logTester.logs(LoggerLevel.ERROR)))
+      .contains("Test report can't be loaded, file not found");
   }
 
   private DefaultInputFile getTestInputFile(DefaultFileSystem fs, String content, String relativePath) {
