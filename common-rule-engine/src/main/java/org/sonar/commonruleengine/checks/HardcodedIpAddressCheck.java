@@ -42,10 +42,16 @@ public class HardcodedIpAddressCheck extends Check {
     Matcher ipv4Matcher = IPV4_PATTERN.matcher(content);
     if (ipv4Matcher.matches()) {
       String ip = ipv4Matcher.group("ip");
-      if (isValidIpAddress(ip)) {
+      if (isValidIpAddress(ip) && !isExceptionalAddress(ip)) {
         reportIssue(literal.node(), "Make this IP \"" + ip + "\" address configurable.");
       }
     }
+  }
+
+  private boolean isExceptionalAddress(String ip) {
+    return ip.startsWith("127.") ||
+      "0.0.0.0".equals(ip) ||
+      "255.255.255.255".equals(ip);
   }
 
   private static String removeQuotes(String string) {
