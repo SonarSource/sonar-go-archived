@@ -144,7 +144,7 @@ class GoVetReportSensorTest {
     Stream<String> uniqueKeys = externalIssues.stream().map(externalIssue -> externalIssue.ruleKey().rule()).distinct();
     assertThat(uniqueKeys).hasSize(19);
     // all messages are associated to a rule key
-    assertThat(externalIssues).filteredOn("ruleKey.rule", GENERIC_ISSUE_KEY).hasSize(0);
+    assertThat(externalIssues).filteredOn(i -> i.ruleKey().rule().equals(GENERIC_ISSUE_KEY)).hasSize(0);
   }
 
   @Test
@@ -154,7 +154,7 @@ class GoVetReportSensorTest {
     List<ExternalIssue> externalIssues = ExternalLinterSensorHelper.executeSensor(new GoVetReportSensor(), context);
     assertThat(externalIssues).hasSize(734);
     // all messages should be matched to asmdecl rule key
-    assertThat(externalIssues).extracting("ruleKey.rule").containsOnly("asmdecl");
+    assertThat(externalIssues).extracting(i -> i.ruleKey().rule()).containsOnly("asmdecl");
   }
 
   @Test
