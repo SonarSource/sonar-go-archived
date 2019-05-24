@@ -28,7 +28,7 @@ import org.sonar.api.utils.log.Loggers;
 
 public class GoLintReportSensor extends AbstractReportSensor {
 
-  private static final Logger LOG = Loggers.get(GoVetReportSensor.class);
+  private static final Logger LOG = Loggers.get(GoLintReportSensor.class);
 
   public static final String PROPERTY_KEY = "sonar.go.golint.reportPaths";
 
