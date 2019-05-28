@@ -136,7 +136,11 @@ public class GoTestSensor implements Sensor {
       testInfo.Package,
       goPackage -> getTestFilesForPackage(fileSystem, goPackage));
 
-    Pattern pattern = Pattern.compile("^func\\s+" + testInfo.Test + "\\s*\\(", Pattern.MULTILINE);
+    // If the test was actually a sub-test, the name is of the form
+    // "TestFunc/Sub_Test_Name".
+    String testName = testInfo.Test.split("/", 2)[0];
+
+    Pattern pattern = Pattern.compile("^func\\s+" + testName + "\\s*\\(", Pattern.MULTILINE);
     for (InputFile testFile : testInputFilesInPackage) {
       if (pattern.matcher(testFile.contents()).find()) {
         return testFile;
@@ -157,7 +161,7 @@ public class GoTestSensor implements Sensor {
       }
     }
 
-    try (Stream<Path> stream = Files.list(Paths.get(packageDirectory))){
+    try (Stream<Path> stream = Files.list(Paths.get(packageDirectory))) {
       return stream
         .map(path -> fileSystem.inputFile(testFilePredicate(predicates, path)))
         .filter(Objects::nonNull)
