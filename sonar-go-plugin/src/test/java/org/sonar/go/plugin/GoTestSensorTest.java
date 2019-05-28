@@ -21,6 +21,7 @@ package org.sonar.go.plugin;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
@@ -163,5 +164,27 @@ class GoTestSensorTest {
       .build();
     fs.add(nestedTestFile);
     return nestedTestFile;
+  }
+
+
+  @Test
+  void subtests() throws Exception {
+    GoTestSensor goTestSensor = new GoTestSensor();
+    goTestSensor.goPathContext = new GoPathContext(File.separatorChar, File.pathSeparator, goPath.toString());
+
+    Path baseDir = goPath.resolve("src").resolve(packagePath);
+
+    SensorContextTester context = SensorContextTester.create(baseDir);
+    DefaultFileSystem fs = context.fileSystem();
+    DefaultInputFile mulTestFile = getTestInputFile(fs, new String(Files.readAllBytes(baseDir.resolve("mul_test.go"))), "mul_test.go");
+
+    MapSettings settings = new MapSettings();
+    String absoluteReportPath = baseDir.resolve("subtest_report.json").toString();
+    settings.setProperty(GoTestSensor.REPORT_PATH_KEY, absoluteReportPath);
+    context.setSettings(settings);
+
+    goTestSensor.execute(context);
+
+    assertThat(context.measure(mulTestFile.key(), CoreMetrics.TESTS).value()).isEqualTo(4);
   }
 }
