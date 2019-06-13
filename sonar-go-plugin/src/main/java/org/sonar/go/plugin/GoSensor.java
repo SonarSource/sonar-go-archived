@@ -46,6 +46,7 @@ import org.sonar.commonruleengine.Metrics;
 import org.sonar.commonruleengine.checks.Check;
 import org.sonar.uast.UastNode;
 import org.sonar.uast.validators.Validator;
+import org.sonarsource.slang.api.Tree;
 
 import static org.sonar.go.plugin.GoCoverageReport.saveCoverageReports;
 import static org.sonar.go.plugin.utils.PluginApiUtils.newRange;
@@ -73,8 +74,10 @@ public class GoSensor implements Sensor {
   public void execute(SensorContext context) {
     Engine ruleEngine = new Engine(checks.all());
     UastGeneratorWrapper uastGenerator;
+    SlangGeneratorWrapper slangGenerator;
     try {
       uastGenerator = new UastGeneratorWrapper(context);
+      slangGenerator = new SlangGeneratorWrapper(context);
     } catch (Exception e) {
       LOG.error("Error initializing UAST generator", e);
       return;
@@ -82,6 +85,9 @@ public class GoSensor implements Sensor {
 
     for (InputFile inputFile : getInputFiles(context)) {
       try (InputStream inputStream = inputFile.inputStream()) {
+
+        //Tree slangTree = slangGenerator.createSlangTree(inputStream);
+
         UastNode uast = uastGenerator.createUast(inputStream);
         // FIXME currently *_test.go files are MAIN and not TEST, see issue #140
         if (inputFile.type() == InputFile.Type.MAIN) {

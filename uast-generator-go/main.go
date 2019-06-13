@@ -30,9 +30,10 @@ func exit() {
 }
 
 type Params struct {
-	dumpAst   bool
-	dumpKinds bool
-	path      string
+	dumpAst      bool
+	dumpKinds    bool
+	path         string
+	slangAstFlag bool
 }
 
 func parseArgs() Params {
@@ -41,6 +42,7 @@ func parseArgs() Params {
 		flag.PrintDefaults()
 	}
 
+	slangAstFlag := flag.Bool("slang", false, "return SLANG ast")
 	dumpAstFlag := flag.Bool("d", false, "dump ast (instead of JSON)")
 	dumpKinds := flag.Bool("k", false, "dump supported uast kinds")
 	flag.Parse()
@@ -52,14 +54,16 @@ func parseArgs() Params {
 		exit()
 	}
 	return Params{
-		dumpAst:   *dumpAstFlag,
-		dumpKinds: *dumpKinds,
-		path:      path,
+		dumpAst:      *dumpAstFlag,
+		dumpKinds:    *dumpKinds,
+		path:         path,
+		slangAstFlag: *slangAstFlag,
 	}
 }
 
 func main() {
 	params := parseArgs()
+
 	if params.dumpKinds {
 		for _, kind := range allKinds {
 			fmt.Println(kind)
@@ -67,6 +71,7 @@ func main() {
 		return
 	}
 
+	//Produce go AST
 	fileSet, astFile, fileContent, err := readAstFile(params.path)
 	if err != nil {
 		panic(err)
@@ -75,7 +80,12 @@ func main() {
 	if params.dumpAst {
 		fmt.Println(render(astFile))
 	} else {
-		uast := toUast(fileSet, astFile, fileContent)
-		PrintJson(uast)
+		if params.slangAstFlag {
+			//slangNode := toSlangAst(fileSet, astFile, fileContent)
+			//fmt.Println(slangNode.SlangTree)
+		} else {
+			uast := toUast(fileSet, astFile, fileContent)
+			PrintJson(uast)
+		}
 	}
 }
