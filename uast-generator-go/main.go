@@ -81,8 +81,8 @@ func main() {
 		fmt.Println(render(astFile))
 	} else {
 		if params.slangAstFlag {
-			//slangNode := toSlangAst(fileSet, astFile, fileContent)
-			//fmt.Println(slangNode.SlangTree)
+			slangNode := toSlangAst(fileSet, astFile, fileContent)
+			fmt.Println(slangNode.SlangTree)
 		} else {
 			uast := toUast(fileSet, astFile, fileContent)
 			PrintJson(uast)
