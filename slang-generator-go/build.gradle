@@ -1,0 +1,40 @@
+plugins {
+  id 'com.github.blindpirate.gogradle' version '0.11.3'
+}
+
+//sonarqube {
+//  properties {
+//    property 'sonar.sources', '.'
+//    property 'sonar.exclusions', '**/*_test.go,**/generate_source.go,**/*_generated.go,**/build/**,**/.gogradle/**'
+//    property 'sonar.tests', '.'
+//    property 'sonar.test.inclusions', '**/*_test.go'
+//    property 'sonar.test.exclusions', '**/build/**,**/.gogradle/**'
+//    property 'sonar.go.tests.reportPaths', "${project.projectDir}/.gogradle/reports/test-report.out"
+//    property 'sonar.go.coverage.reportPaths', "${project.projectDir}/.gogradle/reports/coverage/profiles/github.com%2FSonarSource%2Fsonar-go%2Fuast-generator-go.out"
+//  }
+//}
+
+
+golang {
+  packagePath = 'github.com/SonarSource/sonar-go/slang-generator-go'
+  goVersion = '1.10'
+}
+
+task generateSource(type: com.github.blindpirate.gogradle.Go) {
+    go 'run generate_source.go'
+}
+
+task generateTestReport(type: com.github.blindpirate.gogradle.Go) {
+  go ('test -json') {
+    stdout writeTo('.gogradle/reports/test-report.out')
+  }
+}
+
+goBuild.dependsOn goCheck
+installDependencies.dependsOn generateSource
+goTest.dependsOn generateTestReport
+
+goBuild {
+  targetPlatform = ['linux-amd64', 'windows-amd64', 'darwin-amd64']
+  outputLocation = './build/slang-generator-go-${GOOS}-${GOARCH}${GOEXE}'
+}
