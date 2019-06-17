@@ -35,9 +35,9 @@ import (
 
 
 type Token struct {
-	Value  string `json:"value,omitempty"`
-	Line   int    `json:"line"`
-	Column int    `json:"column"`
+	Value     string     `json:"text"`
+	TextRange *TextRange `json:"textRange"`
+	TokenType string    `json:"type"`
 }
 
 type Node struct {
@@ -47,23 +47,20 @@ type Node struct {
 	offset    int // position of first character belonging to the node
 	endOffset int // position of first character immediately after the node
 	//Slang fields
-	SlangTree string
+	SlangType string `json:"@type"`
 	TextRange  *TextRange
-	ParentField string
+	ParentField string `json:"-"`
 }
 
 type TextRange struct {
-	Start *TextPointer
-	End   *TextPointer
+	StartLine       int
+	StartColumn       int
+	EndLine       int
+	EndColumn       int
 }
 
-type TextPointer struct {
-	Line       int
-	LineOffset int
-}
-
-func toSlangTree(fileSet *token.FileSet, astFile *ast.File, fileContent string) *Node {
-	return NewUastMapper(fileSet, astFile, fileContent).toUast()
+func toSlangTree(fileSet *token.FileSet, astFile *ast.File, fileContent string) (*Node, []*Node, []*Token) {
+	return NewSlangMapper(fileSet, astFile, fileContent).toSlang()
 }
 
 func readAstFile(filename string) (fileSet *token.FileSet, astFile *ast.File, fileContent string, err error) {
@@ -95,39 +92,52 @@ func readAstString(filename string, fileContent string) (fileSet *token.FileSet,
 	return
 }
 
-type UastMapper struct {
+type SlangMapper struct {
 	astFile           *ast.File
 	fileContent       string
 	hasCarriageReturn bool
 	file              *token.File
 	comments          []*Node
 	commentPos        int
+	tokens 		      []*Token
 	paranoiac         bool
 }
 
-func NewUastMapper(fileSet *token.FileSet, astFile *ast.File, fileContent string) *UastMapper {
-	t := &UastMapper{
+func NewSlangMapper(fileSet *token.FileSet, astFile *ast.File, fileContent string) *SlangMapper {
+	t := &SlangMapper{
 		astFile:           astFile,
 		fileContent:       fileContent,
 		hasCarriageReturn: strings.IndexByte(fileContent, '\r') != -1,
 		file:              fileSet.File(astFile.Pos()),
+		tokens:			   nil,
 		paranoiac:         true,
 	}
-	//t.comments = t.mapAllComments()
-	//t.commentPos = 0
+	t.comments = t.mapAllComments()
+	t.commentPos = 0
 	return t
 }
 
-func (t *UastMapper) toUast() *Node {
+func (t *SlangMapper) toSlang() (*Node, []*Node, []*Token) {
 	compilationUnit := t.mapFile(t.astFile,  "")
 
 	if t.paranoiac && (compilationUnit.offset < 0 || compilationUnit.endOffset > len(t.fileContent)) {
 		panic("Unexpected compilationUnit" + t.location(compilationUnit.offset, compilationUnit.endOffset))
 	}
-	return compilationUnit
+	return compilationUnit, t.comments, t.tokens
 }
 
-func (t *UastMapper) mapPackageDecl(file *ast.File) *Node {
+func (t *SlangMapper) mapAllComments() []*Node {
+	var list []*Node
+	for _, commentGroup := range t.astFile.Comments {
+		for _, comment := range commentGroup.List {
+			node := t.createUastExpectedToken(comment.Pos(), comment.Text, "")
+			list = append(list, node)
+		}
+	}
+	return list
+}
+
+func (t *SlangMapper) mapPackageDecl(file *ast.File) *Node {
 	var children []*Node
 	// "package" node is the very first node, header comments are appended before
 	packageNode := t.createUastExpectedToken(file.Package, token.PACKAGE.String(), "")
@@ -139,12 +149,12 @@ func (t *UastMapper) mapPackageDecl(file *ast.File) *Node {
 	return t.createNativeNode(nil, children, "File.Package")
 }
 
-func (t *UastMapper) appendNodeList(parentList []*Node, children []*Node, nativeNode string) []*Node {
+func (t *SlangMapper) appendNodeList(parentList []*Node, children []*Node, nativeNode string) []*Node {
 	// TODO provide the next Token offset, so the last separator can be part of the children
 	return t.appendNode(parentList, t.createNativeNode(nil, children, nativeNode))
 }
 
-func (t *UastMapper) mapBasicLit(astNode *ast.BasicLit, fieldName string) *Node {
+func (t *SlangMapper) mapBasicLit(astNode *ast.BasicLit, fieldName string) *Node {
 	if astNode == nil {
 		return nil
 	}
@@ -152,7 +162,7 @@ func (t *UastMapper) mapBasicLit(astNode *ast.BasicLit, fieldName string) *Node 
 	return t.createUastExpectedToken(astNode.Pos(), astNode.Value, fieldName+"(BasicLit)")
 }
 
-func (t *UastMapper) handleSwitchCase(casePos token.Pos, isDefault bool, children []*Node) []*Node {
+func (t *SlangMapper) handleSwitchCase(casePos token.Pos, isDefault bool, children []*Node) []*Node {
 	tok := token.CASE
 	if isDefault {
 		tok = token.DEFAULT
@@ -161,7 +171,7 @@ func (t *UastMapper) handleSwitchCase(casePos token.Pos, isDefault bool, childre
 	return children
 }
 
-func (t *UastMapper) mapIfStmt(astNode *ast.IfStmt, fieldName string) *Node {
+func (t *SlangMapper) mapIfStmt(astNode *ast.IfStmt, fieldName string) *Node {
 	if astNode == nil {
 		return nil
 	}
@@ -173,7 +183,7 @@ func (t *UastMapper) mapIfStmt(astNode *ast.IfStmt, fieldName string) *Node {
 	return t.createNativeNode(astNode, children, fieldName+"(IfStmt)")
 }
 
-func (t *UastMapper) createAdditionalInitAndCond(astInit ast.Stmt, astCond ast.Expr) *Node {
+func (t *SlangMapper) createAdditionalInitAndCond(astInit ast.Stmt, astCond ast.Expr) *Node {
 	var children []*Node
 	children = t.appendNode(children, t.mapStmt(astInit, "Init"))
 	children = t.appendNode(children, t.mapExpr(astCond,  "Cond"))
@@ -181,14 +191,19 @@ func (t *UastMapper) createAdditionalInitAndCond(astInit ast.Stmt, astCond ast.E
 }
 
 //Create Native node
-func (t *UastMapper) createNativeNode(astNode ast.Node, children []*Node, nativeNode string) *Node {
+func (t *SlangMapper) createNativeNode(astNode ast.Node, children []*Node, nativeNode string) *Node {
 	if len(children) > 0 {
 		return &Node{
 			Children:   children,
 			offset:     children[0].offset,
 			endOffset:  children[len(children)-1].endOffset,
-			SlangTree: "Native",
-			TextRange: &TextRange{Start: children[0].TextRange.Start, End: children[len(children)-1].TextRange.End},
+			SlangType: "Native",
+			TextRange: &TextRange{
+				StartLine: children[0].TextRange.StartLine,
+				StartColumn: children[0].TextRange.StartColumn,
+				EndLine: children[len(children)-1].TextRange.EndLine,
+				EndColumn: children[len(children)-1].TextRange.EndColumn,
+			},
 			ParentField: "nativeChild",
 		}
 
@@ -201,7 +216,7 @@ func (t *UastMapper) createNativeNode(astNode ast.Node, children []*Node, native
 	}
 }
 
-func (t *UastMapper) createToken(offset, endOffset int, nativeNode string) *Node {
+func (t *SlangMapper) createToken(offset, endOffset int, nativeNode string) *Node {
 	if offset < 0 || endOffset < offset || endOffset > len(t.fileContent) {
 		location := t.location(offset, endOffset)
 		panic("Invalid token" + location)
@@ -240,24 +255,34 @@ func (t *UastMapper) createToken(offset, endOffset int, nativeNode string) *Node
 		endColumn = 1
 	}
 
-	return &Node{
-		Token: &Token{
-			Line:   startLine,
-			Column: startColumn,
-			Value:  t.fileContent[offset:endOffset],
+	slangToken := &Token{
+		TextRange: &TextRange{
+			StartLine: startLine,
+			StartColumn: startColumn,
+			EndLine:endLine,
+			EndColumn:endColumn,
 		},
+		Value:  t.fileContent[offset:endOffset],
+	}
+
+	t.tokens = append(t.tokens, slangToken)
+
+	return &Node{
+		Token: slangToken,
 		offset:     offset,
 		endOffset:  endOffset,
-		SlangTree: "Token",
+		SlangType: "Token",
 		TextRange: &TextRange{
-			Start:  &TextPointer{Line: startLine, LineOffset: startColumn},
-			End:    &TextPointer{Line: endLine, LineOffset: endColumn},
+			StartLine: startLine,
+			StartColumn: startColumn,
+			EndLine:endLine,
+			EndColumn:endColumn,
 		},
 		ParentField: "",
 	}
 }
 
-func (t *UastMapper) createUastTokenFromPosAstToken(pos token.Pos, tok token.Token, nativeNode string) *Node {
+func (t *SlangMapper) createUastTokenFromPosAstToken(pos token.Pos, tok token.Token, nativeNode string) *Node {
 	if pos == token.NoPos {
 		return nil
 	}
@@ -273,7 +298,7 @@ func (t *UastMapper) createUastTokenFromPosAstToken(pos token.Pos, tok token.Tok
 	return t.createUastExpectedToken(pos, tok.String(), nativeNode)
 }
 
-func (t *UastMapper) createUastExpectedToken(pos token.Pos, expectedValue string, nativeNode string) *Node {
+func (t *SlangMapper) createUastExpectedToken(pos token.Pos, expectedValue string, nativeNode string) *Node {
 	if pos == token.NoPos {
 		return nil
 	}
@@ -292,7 +317,7 @@ func (t *UastMapper) createUastExpectedToken(pos token.Pos, expectedValue string
 	return node
 }
 
-func (t *UastMapper) computeEndOffsetSupportingMultiLineToken(offset int, value string) (int, string) {
+func (t *SlangMapper) computeEndOffsetSupportingMultiLineToken(offset int, value string) (int, string) {
 	length := len(value)
 	endOffset := offset + length
 	if offset < 0 || !t.hasCarriageReturn {
@@ -313,7 +338,7 @@ func (t *UastMapper) computeEndOffsetSupportingMultiLineToken(offset int, value 
 	return endOffset, value
 }
 
-func (t *UastMapper) toPosition(offset int) token.Position {
+func (t *SlangMapper) toPosition(offset int) token.Position {
 	position := t.file.Position(t.file.Pos(offset))
 	if t.paranoiac && !position.IsValid() {
 		panic("Invalid offset" + t.location(offset, offset))
@@ -321,7 +346,7 @@ func (t *UastMapper) toPosition(offset int) token.Position {
 	return position
 }
 
-func (t *UastMapper) appendNode(children []*Node, child *Node) []*Node {
+func (t *SlangMapper) appendNode(children []*Node, child *Node) []*Node {
 	if child == nil {
 		return children
 	}
@@ -338,7 +363,7 @@ func (t *UastMapper) appendNode(children []*Node, child *Node) []*Node {
 	return t.appendNodeCheckOrder(children, child)
 }
 
-func (t *UastMapper) appendCommentOrMissingToken(children []*Node, offset, endOffset int) []*Node {
+func (t *SlangMapper) appendCommentOrMissingToken(children []*Node, offset, endOffset int) []*Node {
 	if len(t.comments) == 0 {
 		return t.appendMissingToken(children, offset, endOffset)
 	}
@@ -363,7 +388,7 @@ func (t *UastMapper) appendCommentOrMissingToken(children []*Node, offset, endOf
 	return t.appendMissingToken(children, offset, endOffset)
 }
 
-func (t *UastMapper) appendNodeCheckOrder(parentList []*Node, child *Node) []*Node {
+func (t *SlangMapper) appendNodeCheckOrder(parentList []*Node, child *Node) []*Node {
 	if child == nil {
 		return parentList
 	}
@@ -380,7 +405,7 @@ var missingKeywordToken = map[byte]string{
 	',': ",", ';': ";", '.': ".", '[': "[", ']': "]", '=': "=", ':': ":",
 	't': "type", 'r': "range", 'e': "else", 'c': "chan", '<': "<-"}
 
-func (t *UastMapper) appendMissingToken(children []*Node, offset, endOffset int) []*Node {
+func (t *SlangMapper) appendMissingToken(children []*Node, offset, endOffset int) []*Node {
 	if offset < 0 || endOffset < offset || endOffset > len(t.fileContent) {
 		return nil
 	}
@@ -410,7 +435,7 @@ func (t *UastMapper) appendMissingToken(children []*Node, offset, endOffset int)
 	return children
 }
 
-func (t *UastMapper) location(offset, endOffset int) string {
+func (t *SlangMapper) location(offset, endOffset int) string {
 	var out bytes.Buffer
 	out.WriteString(fmt.Sprintf(" at offset %d:%d for file %s", offset, endOffset, t.file.Name()))
 	if 0 <= offset && offset <= t.file.Size() {

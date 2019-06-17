@@ -74,8 +74,8 @@ func main() {
 		fmt.Println(render(astFile))
 	} else {
 		if params.slangAstFlag {
-			slangTree := toSlangTree(fileSet, astFile, fileContent)
-			fmt.Println(toJsonSlang(slangTree))
+			slangTree, comments, tokens := toSlangTree(fileSet, astFile, fileContent)
+			fmt.Println(toJsonSlang(slangTree, comments, tokens))
 		}
 	}
 }

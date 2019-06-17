@@ -305,7 +305,7 @@ func (t *AstContext) visitStructType(structType reflect.Type) {
 		t.writeLn("")
 		methodName := "map" + structType.Name() + variation
 		arguments := "astNode *" + structType.String() + ", fieldName string"
-		t.writeLn("func (t *UastMapper) " + methodName + "(" + arguments + ") *Node {")
+		t.writeLn("func (t *SlangMapper) " + methodName + "(" + arguments + ") *Node {")
 		t.writeLn("\tif astNode == nil {")
 		t.writeLn("\t\treturn nil")
 		t.writeLn("\t}")
@@ -433,7 +433,7 @@ func (t *AstContext) visitInterfaceType(interfaceType reflect.Type) {
 	t.writeLn("")
 	methodName := "map" + interfaceType.Name()
 	arguments := "astNode " + interfaceType.String() + ", nativeNode string"
-	t.writeLn("func (t *UastMapper) " + methodName + "(" + arguments + ") *Node {")
+	t.writeLn("func (t *SlangMapper) " + methodName + "(" + arguments + ") *Node {")
 	t.writeLn("\tswitch node := astNode.(type) {")
 	for _, astStruct := range t.getStructTypesThatImplement(interfaceType) {
 		if !t.TypeToIgnore[astStruct.String()] {

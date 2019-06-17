@@ -40,7 +40,7 @@ func main() {
 
 func uastFromString(t *testing.T, source string, nodeQueryPath string) *Node {
 	fileSet, astNode := astFromString(source)
-	slangTree := toSlangTree(fileSet, astNode, source)
+	slangTree, _, _ := toSlangTree(fileSet, astNode, source)
 	return slangTree
 }
 
@@ -53,8 +53,6 @@ func astFromString(source string) (fileSet *token.FileSet, astFile *ast.File) {
 }
 
 func Test_mapFile(t *testing.T) {
-	fmt.Printf("")
-
 	slangTree := uastFromString(t, example_hello_world, "")
-	fmt.Printf(toJsonSlang(slangTree))
+	fmt.Printf(toJsonSlang(slangTree, nil, nil))
 }
