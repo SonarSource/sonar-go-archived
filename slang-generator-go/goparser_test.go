@@ -26,22 +26,17 @@ import (
 	"fmt"
 	"go/ast"
 	"go/token"
+	"io/ioutil"
+	"os"
+	"path/filepath"
+	"reflect"
+	"strings"
 	"testing"
 )
 
-const (
-	example_hello_world = `package main
-import "fmt"
-func main() {
-	msg := "hello, world"
-    fmt.Println(msg)
-}`
-)
-
-func uastFromString(t *testing.T, source string, nodeQueryPath string) *Node {
+func slangFromString(t *testing.T, source string, nodeQueryPath string) (*Node, []*Node, []*Token) {
 	fileSet, astNode := astFromString(source)
-	slangTree, _, _ := toSlangTree(fileSet, astNode, source)
-	return slangTree
+	return toSlangTree(fileSet, astNode, source)
 }
 
 func astFromString(source string) (fileSet *token.FileSet, astFile *ast.File) {
@@ -53,6 +48,46 @@ func astFromString(source string) (fileSet *token.FileSet, astFile *ast.File) {
 }
 
 func Test_mapFile(t *testing.T) {
-	slangTree := uastFromString(t, example_hello_world, "")
-	fmt.Printf(toJsonSlang(slangTree, nil, nil))
+	for _, file := range getAllGoFiles("resources/ast") {
+		source, err := ioutil.ReadFile(file)
+		if err != nil {
+			panic(err)
+		}
+
+		actual := toJsonSlang(slangFromString(t, string(source), ""))
+
+		dat, err := ioutil.ReadFile(strings.Replace(file, "go", "txt", 1))
+		if err != nil {
+			panic(err)
+		}
+
+		expected := string(dat)
+
+
+		
+
+		if !reflect.DeepEqual(expected, actual) {
+			t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+		}
+
+		fmt.Println(file)
+	}
 }
+
+
+func getAllGoFiles(folder string) []string {
+	var files []string
+
+	err := filepath.Walk(folder, func(path string, info os.FileInfo, err error) error {
+		if strings.HasSuffix(path, ".go") {
+			files = append(files, path)
+		}
+		return nil
+	})
+	if err != nil {
+		panic(err)
+	}
+	return files
+}
+
+

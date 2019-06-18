@@ -1,0 +1,85 @@
+{ 
+  "treeMetaData": {
+    "comments": [
+            {"text":"// +build ignore", "contentText":" +build ignore", "range":"1:1:1:17", "contentRange": "1:3:1:17"}
+    ],
+    "tokens": [
+      {"text":"// +build ignore","textRange":"1:1:1:17","type":""},
+      {"text":"package","textRange":"3:1:3:8","type":""},
+      {"text":"main","textRange":"3:9:3:13","type":""},
+      {"text":"import","textRange":"5:1:5:7","type":""},
+      {"text":"\"fmt\"","textRange":"5:8:5:13","type":""},
+      {"text":"func","textRange":"7:1:7:5","type":""},
+      {"text":"main","textRange":"7:6:7:10","type":""},
+      {"text":"(","textRange":"7:10:7:11","type":""},
+      {"text":")","textRange":"7:11:7:12","type":""},
+      {"text":"{","textRange":"7:13:7:14","type":""},
+      {"text":"msg","textRange":"8:2:8:5","type":""},
+      {"text":":=","textRange":"8:6:8:8","type":""},
+      {"text":"\"hello, world\"","textRange":"8:9:8:23","type":""},
+      {"text":"fmt","textRange":"9:2:9:5","type":""},
+      {"text":"Println","textRange":"9:6:9:13","type":""},
+      {"text":".","textRange":"9:5:9:6","type":""},
+      {"text":"(","textRange":"9:13:9:14","type":""},
+      {"text":"msg","textRange":"9:14:9:17","type":""},
+      {"text":")","textRange":"9:17:9:18","type":""},
+      {"text":"}","textRange":"10:1:10:2","type":""},
+
+    ]
+  },
+  "tree":
+    {"@type": "Native", "metaData": "1:1:10:2","children":[
+      {"@type": "Native", "metaData": "1:1:3:13","children":[
+        {"@type": "Token", "metaData": "1:1:1:17"},
+        {"@type": "Token", "metaData": "3:1:3:8"},
+        {"@type": "Token", "metaData": "3:9:3:13"}
+      ]},
+      {"@type": "Native", "metaData": "5:1:10:2","children":[
+        {"@type": "Native", "metaData": "5:1:5:13","children":[
+          {"@type": "Token", "metaData": "5:1:5:7"},
+          {"@type": "Native", "metaData": "5:8:5:13","children":[
+            {"@type": "Native", "metaData": "5:8:5:13","children":[
+              {"@type": "Token", "metaData": "5:8:5:13"}
+            ]}
+          ]}
+        ]},
+        {"@type": "Native", "metaData": "7:1:10:2","children":[
+          {"@type": "Token", "metaData": "7:1:7:5"},
+          {"@type": "Token", "metaData": "7:6:7:10"},
+          {"@type": "Native", "metaData": "7:10:7:12","children":[
+            {"@type": "Native", "metaData": "7:10:7:12","children":[
+              {"@type": "Token", "metaData": "7:10:7:11"},
+              {"@type": "Token", "metaData": "7:11:7:12"}
+            ]}
+          ]},
+          {"@type": "Native", "metaData": "7:13:10:2","children":[
+            {"@type": "Token", "metaData": "7:13:7:14"},
+            {"@type": "Native", "metaData": "8:2:8:23","children":[
+              {"@type": "Native", "metaData": "8:2:8:5","children":[
+                {"@type": "Token", "metaData": "8:2:8:5"}
+              ]},
+              {"@type": "Token", "metaData": "8:6:8:8"},
+              {"@type": "Native", "metaData": "8:9:8:23","children":[
+                {"@type": "Token", "metaData": "8:9:8:23"}
+              ]}
+            ]},
+            {"@type": "Native", "metaData": "9:2:9:18","children":[
+              {"@type": "Native", "metaData": "9:2:9:18","children":[
+                {"@type": "Native", "metaData": "9:2:9:13","children":[
+                  {"@type": "Token", "metaData": "9:2:9:5"},
+                  {"@type": "Token", "metaData": "9:5:9:6"},
+                  {"@type": "Token", "metaData": "9:6:9:13"}
+                ]},
+                {"@type": "Token", "metaData": "9:13:9:14"},
+                {"@type": "Native", "metaData": "9:14:9:17","children":[
+                  {"@type": "Token", "metaData": "9:14:9:17"}
+                ]},
+                {"@type": "Token", "metaData": "9:17:9:18"}
+              ]}
+            ]},
+            {"@type": "Token", "metaData": "10:1:10:2"}
+          ]}
+        ]}
+      ]}
+    ]}
+} 
