@@ -214,6 +214,7 @@ func (t *SlangMapper) createAdditionalInitAndCond(astInit ast.Stmt, astCond ast.
 func (t *SlangMapper) createNativeNode(astNode ast.Node, children []*Node, nativeNode string) *Node {
 	slangField := make(map[string]interface{})
 	slangField["children"] = children
+	slangField["nativeKind"] = nativeNode
 
 	return t.createNode(astNode, children, nativeNode, "Native", slangField)
 }
@@ -313,7 +314,10 @@ func (t *SlangMapper) createLeafNode(offset, endOffset int, nativeNode, slangTyp
 }
 
 func (t *SlangMapper) createToken(offset, endOffset int, nativeNode string) *Node {
-	return t.createLeafNode(offset, endOffset, nativeNode, "Native", nil)
+	slangField := make(map[string]interface{})
+	slangField["nativeKind"] = nativeNode
+
+	return t.createLeafNode(offset, endOffset, nativeNode, "Native", slangField)
 }
 
 func (t *SlangMapper) createUastTokenFromPosAstToken(pos token.Pos, tok token.Token, nativeNode string) *Node {
