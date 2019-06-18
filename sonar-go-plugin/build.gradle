@@ -6,15 +6,20 @@ plugins {
 shadowJar.dependsOn ':uast-generator-go:goBuild'
 test.dependsOn ':uast-generator-go:goBuild'
 
+shadowJar.dependsOn ':slang-generator-go:goBuild'
+test.dependsOn ':slang-generator-go:goBuild'
+
 dependencies {
     compile project(':common-rule-engine')
     // dependency on uast-generator-go binaries
     runtime files(project(':uast-generator-go').buildDir)
+    runtime files(project(':slang-generator-go').buildDir)
 
     compile     'com.google.code.gson:gson'
     compileOnly 'com.google.code.findbugs:jsr305'
     compile     'org.sonarsource.analyzer-commons:sonar-analyzer-commons'
     compile     'org.sonarsource.sonarqube:sonar-plugin-api'
+    // using temporarily scala-dependency to get SLANG packages
     compile(group: 'org.sonarsource.slang', name: 'sonar-scala-plugin', version: '1.6.0.339')
 
     testCompile 'org.mockito:mockito-core'

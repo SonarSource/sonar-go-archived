@@ -49,6 +49,6 @@ public class SlangGeneratorWrapperTest {
     SlangGeneratorWrapper generator = new SlangGeneratorWrapper(sensorContext);
     ByteArrayInputStream in = new ByteArrayInputStream("package main\nfunc foo() {}".getBytes(StandardCharsets.UTF_8));
 
-    Tree slangTree = generator.createSlangTree(in);
+    assertThat(generator.createSlangTree(in)).isNull();
   }
 }

@@ -59,8 +59,8 @@ public class SlangGeneratorWrapper {
       copy(source, process.getOutputStream());
       out.close();
 
-      SlangUnmarshaller slangUnmarshaller = new SlangUnmarshaller(new InputStreamReader(in, StandardCharsets.UTF_8));
-      Tree slangTree = slangUnmarshaller.readNode();
+      // input stream should be used to consume SLANG version of the file
+      in.close();
 
       boolean exited = process.waitFor(5, TimeUnit.SECONDS);
       if (exited && process.exitValue() != 0) {
@@ -70,7 +70,7 @@ public class SlangGeneratorWrapper {
         process.destroyForcibly();
         throw new IllegalStateException("Took too long to parse. External process killed forcibly");
       }
-      return slangTree;
+      return null;
     }
   }
 
@@ -113,11 +113,11 @@ public class SlangGeneratorWrapper {
     private static String getExecutableForCurrentOS() {
       String os = System.getProperty("os.name").toLowerCase(Locale.ROOT);
       if (os.contains("win")) {
-        return "uast-generator-go-windows-amd64.exe";
+        return "slang-generator-go-windows-amd64.exe";
       } else if (os.contains("mac")) {
-        return "uast-generator-go-darwin-amd64";
+        return "slang-generator-go-darwin-amd64";
       } else {
-        return "uast-generator-go-linux-amd64";
+        return "slang-generator-go-linux-amd64";
       }
     }
   }

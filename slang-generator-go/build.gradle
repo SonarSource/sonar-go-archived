@@ -1,5 +1,5 @@
 plugins {
-  id 'com.github.blindpirate.gogradle' version '0.11.3'
+  id 'com.github.blindpirate.gogradle' version '0.11.4'
 }
 
 //sonarqube {
@@ -14,10 +14,9 @@ plugins {
 //  }
 //}
 
-
 golang {
   packagePath = 'github.com/SonarSource/sonar-go/slang-generator-go'
-  goVersion = '1.10'
+  goVersion = '1.12.6'
 }
 
 task generateSource(type: com.github.blindpirate.gogradle.Go) {
