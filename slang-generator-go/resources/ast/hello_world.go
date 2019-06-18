@@ -1,6 +1,6 @@
 // +build ignore
 
-package ast
+package main
 
 import "fmt"
 

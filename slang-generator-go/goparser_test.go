@@ -34,7 +34,7 @@ import (
 	"testing"
 )
 
-func slangFromString(t *testing.T, source string, nodeQueryPath string) (*Node, []*Node, []*Token) {
+func slangFromString(source string, nodeQueryPath string) (*Node, []*Node, []*Token) {
 	fileSet, astNode := astFromString(source)
 	return toSlangTree(fileSet, astNode, source)
 }
@@ -47,6 +47,23 @@ func astFromString(source string) (fileSet *token.FileSet, astFile *ast.File) {
 	return
 }
 
+func Test_fix_all_go_files_test_automatically(t *testing.T) {
+	for _, file := range getAllGoFiles("resources/ast") {
+		source, err := ioutil.ReadFile(file)
+		if err != nil {
+			panic(err)
+		}
+
+		actual := toJsonSlang(slangFromString(string(source), ""))
+		d1 := []byte(actual)
+		errWrite := ioutil.WriteFile(strings.Replace(file, "go", "txt", 1), d1, 0644)
+		if errWrite != nil {
+			panic(errWrite)
+		}
+	}
+}
+
+
 func Test_mapFile(t *testing.T) {
 	for _, file := range getAllGoFiles("resources/ast") {
 		source, err := ioutil.ReadFile(file)
@@ -54,7 +71,7 @@ func Test_mapFile(t *testing.T) {
 			panic(err)
 		}
 
-		actual := toJsonSlang(slangFromString(t, string(source), ""))
+		actual := toJsonSlang(slangFromString(string(source), ""))
 
 		dat, err := ioutil.ReadFile(strings.Replace(file, "go", "txt", 1))
 		if err != nil {
@@ -62,9 +79,6 @@ func Test_mapFile(t *testing.T) {
 		}
 
 		expected := string(dat)
-
-
-		
 
 		if !reflect.DeepEqual(expected, actual) {
 			t.Fatalf("got: %#v\nexpected: %#v", actual, expected)

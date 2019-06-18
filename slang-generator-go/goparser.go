@@ -175,23 +175,33 @@ func (t *SlangMapper) mapIfStmt(astNode *ast.IfStmt, fieldName string) *Node {
 		return nil
 	}
 	var children []*Node
-	m := make(map[string]interface{})
-
 	children = t.appendNode(children, t.createUastTokenFromPosAstToken(astNode.If, token.IF, "If"))
 	children = t.appendNode(children, t.createAdditionalInitAndCond(astNode.Init, astNode.Cond))
 	children = t.appendNode(children, t.mapBlockStmt(astNode.Body, "Body"))
 	children = t.appendNode(children, t.mapStmt(astNode.Else, "Else"))
 	nNode := t.createNativeNode(astNode, children, fieldName+"(IfStmt)")
-	m["keyword"] = &TextRange{
-		StartLine:   0,
-		StartColumn: 1,
-		EndLine:     2,
-		EndColumn:   3,
-	}
-	nNode.SlangField = m
-	nNode.SlangType = "IF"
 	return nNode
 }
+
+func (t *SlangMapper) mapIdent(astNode *ast.Ident, fieldName string) *Node {
+	if astNode == nil {
+		return nil
+	}
+	slangField := make(map[string]interface{})
+	var slangType string
+
+	switch astNode.Name {
+	case "true", "false", "nil":
+		slangType = "Litteral"
+		slangField["value"] = astNode.Name
+	default:
+		slangType = "Identifier"
+		slangField["name"] = astNode.Name
+	}
+	var children []*Node
+	return t.createNode(astNode, children, fieldName + "(Ident)", slangType, slangField)
+}
+
 
 func (t *SlangMapper) createAdditionalInitAndCond(astInit ast.Stmt, astCond ast.Expr) *Node {
 	var children []*Node
@@ -202,24 +212,31 @@ func (t *SlangMapper) createAdditionalInitAndCond(astInit ast.Stmt, astCond ast.
 
 //Create Native node
 func (t *SlangMapper) createNativeNode(astNode ast.Node, children []*Node, nativeNode string) *Node {
-	if len(children) > 0 {
-		m := make(map[string]interface{})
-		m["children"] = children
+	slangField := make(map[string]interface{})
+	slangField["children"] = children
 
+	return t.createNode(astNode, children, nativeNode, "Native", slangField)
+}
+
+func (t *SlangMapper) createNode(astNode ast.Node, children []*Node, nativeNode, slangType string, slangField map[string]interface{})*Node {
+	if len(children) > 0 {
 		return &Node{
 			Children:  children,
 			offset:    children[0].offset,
 			endOffset: children[len(children)-1].endOffset,
-			SlangType: "Native",
+			SlangType: slangType,
 			TextRange: &TextRange{
 				StartLine:   children[0].TextRange.StartLine,
 				StartColumn: children[0].TextRange.StartColumn,
 				EndLine:     children[len(children)-1].TextRange.EndLine,
 				EndColumn:   children[len(children)-1].TextRange.EndColumn,
 			},
-			SlangField: m,
+			SlangField: slangField,
 		}
-
+	} else if slangField != nil {
+		offset := t.file.Offset(astNode.Pos())
+		endOffset := t.file.Offset(astNode.End())
+		return t.createLeafNode(offset, endOffset, nativeNode, slangType, slangField)
 	} else if astNode != nil {
 		offset := t.file.Offset(astNode.Pos())
 		endOffset := t.file.Offset(astNode.End())
@@ -229,7 +246,7 @@ func (t *SlangMapper) createNativeNode(astNode ast.Node, children []*Node, nativ
 	}
 }
 
-func (t *SlangMapper) createToken(offset, endOffset int, nativeNode string) *Node {
+func (t *SlangMapper) createLeafNode(offset, endOffset int, nativeNode, slangType string, slangField map[string]interface{}) *Node {
 	if offset < 0 || endOffset < offset || endOffset > len(t.fileContent) {
 		location := t.location(offset, endOffset)
 		panic("Invalid token" + location)
@@ -284,15 +301,19 @@ func (t *SlangMapper) createToken(offset, endOffset int, nativeNode string) *Nod
 		Token:     slangToken,
 		offset:    offset,
 		endOffset: endOffset,
-		SlangType: "Token",
+		SlangType: slangType,
 		TextRange: &TextRange{
 			StartLine:   startLine,
 			StartColumn: startColumn,
 			EndLine:     endLine,
 			EndColumn:   endColumn,
 		},
-		SlangField: nil,
+		SlangField: slangField,
 	}
+}
+
+func (t *SlangMapper) createToken(offset, endOffset int, nativeNode string) *Node {
+	return t.createLeafNode(offset, endOffset, nativeNode, "Native", nil)
 }
 
 func (t *SlangMapper) createUastTokenFromPosAstToken(pos token.Pos, tok token.Token, nativeNode string) *Node {

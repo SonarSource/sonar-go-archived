@@ -30,54 +30,54 @@
   "tree":
     {"@type": "Native", "metaData": "1:1:10:2","children":[
       {"@type": "Native", "metaData": "1:1:3:13","children":[
-        {"@type": "Token", "metaData": "1:1:1:17"},
-        {"@type": "Token", "metaData": "3:1:3:8"},
-        {"@type": "Token", "metaData": "3:9:3:13"}
+        {"@type": "Native", "metaData": "1:1:1:17"},
+        {"@type": "Native", "metaData": "3:1:3:8"},
+        {"@type": "Identifier", "metaData": "3:9:3:13","name":"main"}
       ]},
       {"@type": "Native", "metaData": "5:1:10:2","children":[
         {"@type": "Native", "metaData": "5:1:5:13","children":[
-          {"@type": "Token", "metaData": "5:1:5:7"},
+          {"@type": "Native", "metaData": "5:1:5:7"},
           {"@type": "Native", "metaData": "5:8:5:13","children":[
             {"@type": "Native", "metaData": "5:8:5:13","children":[
-              {"@type": "Token", "metaData": "5:8:5:13"}
+              {"@type": "Native", "metaData": "5:8:5:13"}
             ]}
           ]}
         ]},
         {"@type": "Native", "metaData": "7:1:10:2","children":[
-          {"@type": "Token", "metaData": "7:1:7:5"},
-          {"@type": "Token", "metaData": "7:6:7:10"},
+          {"@type": "Native", "metaData": "7:1:7:5"},
+          {"@type": "Identifier", "metaData": "7:6:7:10","name":"main"},
           {"@type": "Native", "metaData": "7:10:7:12","children":[
             {"@type": "Native", "metaData": "7:10:7:12","children":[
-              {"@type": "Token", "metaData": "7:10:7:11"},
-              {"@type": "Token", "metaData": "7:11:7:12"}
+              {"@type": "Native", "metaData": "7:10:7:11"},
+              {"@type": "Native", "metaData": "7:11:7:12"}
             ]}
           ]},
           {"@type": "Native", "metaData": "7:13:10:2","children":[
-            {"@type": "Token", "metaData": "7:13:7:14"},
+            {"@type": "Native", "metaData": "7:13:7:14"},
             {"@type": "Native", "metaData": "8:2:8:23","children":[
               {"@type": "Native", "metaData": "8:2:8:5","children":[
-                {"@type": "Token", "metaData": "8:2:8:5"}
+                {"@type": "Identifier", "metaData": "8:2:8:5","name":"msg"}
               ]},
-              {"@type": "Token", "metaData": "8:6:8:8"},
+              {"@type": "Native", "metaData": "8:6:8:8"},
               {"@type": "Native", "metaData": "8:9:8:23","children":[
-                {"@type": "Token", "metaData": "8:9:8:23"}
+                {"@type": "Native", "metaData": "8:9:8:23"}
               ]}
             ]},
             {"@type": "Native", "metaData": "9:2:9:18","children":[
               {"@type": "Native", "metaData": "9:2:9:18","children":[
                 {"@type": "Native", "metaData": "9:2:9:13","children":[
-                  {"@type": "Token", "metaData": "9:2:9:5"},
-                  {"@type": "Token", "metaData": "9:5:9:6"},
-                  {"@type": "Token", "metaData": "9:6:9:13"}
+                  {"@type": "Identifier", "metaData": "9:2:9:5","name":"fmt"},
+                  {"@type": "Native", "metaData": "9:5:9:6"},
+                  {"@type": "Identifier", "metaData": "9:6:9:13","name":"Println"}
                 ]},
-                {"@type": "Token", "metaData": "9:13:9:14"},
+                {"@type": "Native", "metaData": "9:13:9:14"},
                 {"@type": "Native", "metaData": "9:14:9:17","children":[
-                  {"@type": "Token", "metaData": "9:14:9:17"}
+                  {"@type": "Identifier", "metaData": "9:14:9:17","name":"msg"}
                 ]},
-                {"@type": "Token", "metaData": "9:17:9:18"}
+                {"@type": "Native", "metaData": "9:17:9:18"}
               ]}
             ]},
-            {"@type": "Token", "metaData": "10:1:10:2"}
+            {"@type": "Native", "metaData": "10:1:10:2"}
           ]}
         ]}
       ]}
