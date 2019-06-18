@@ -36,26 +36,26 @@ import (
 type Token struct {
 	Value     string     `json:"text"`
 	TextRange *TextRange `json:"textRange"`
-	TokenType string    `json:"type"`
+	TokenType string     `json:"type"`
 }
 
 type Node struct {
-	Token      *Token  `json:"-"`
-	Children   []*Node `json:"-"`
+	Token    *Token  `json:"-"`
+	Children []*Node `json:"-"`
 	// internal fields
 	offset    int // position of first character belonging to the node
 	endOffset int // position of first character immediately after the node
 	//Slang fields
-	SlangType string `json:"@type"`
-	TextRange  *TextRange `json:"metaData"`
+	SlangType  string                 `json:"@type"`
+	TextRange  *TextRange             `json:"metaData"`
 	SlangField map[string]interface{} `json:"slangF"`
 }
 
 type TextRange struct {
-	StartLine       int
-	StartColumn       int
-	EndLine       int
-	EndColumn       int
+	StartLine   int
+	StartColumn int
+	EndLine     int
+	EndColumn   int
 }
 
 func toSlangTree(fileSet *token.FileSet, astFile *ast.File, fileContent string) (*Node, []*Node, []*Token) {
@@ -98,7 +98,7 @@ type SlangMapper struct {
 	file              *token.File
 	comments          []*Node
 	commentPos        int
-	tokens 		      []*Token
+	tokens            []*Token
 	paranoiac         bool
 }
 
@@ -108,7 +108,7 @@ func NewSlangMapper(fileSet *token.FileSet, astFile *ast.File, fileContent strin
 		fileContent:       fileContent,
 		hasCarriageReturn: strings.IndexByte(fileContent, '\r') != -1,
 		file:              fileSet.File(astFile.Pos()),
-		tokens:			   nil,
+		tokens:            nil,
 		paranoiac:         true,
 	}
 	t.comments = t.mapAllComments()
@@ -117,7 +117,7 @@ func NewSlangMapper(fileSet *token.FileSet, astFile *ast.File, fileContent strin
 }
 
 func (t *SlangMapper) toSlang() (*Node, []*Node, []*Token) {
-	compilationUnit := t.mapFile(t.astFile,  "")
+	compilationUnit := t.mapFile(t.astFile, "")
 
 	if t.paranoiac && (compilationUnit.offset < 0 || compilationUnit.endOffset > len(t.fileContent)) {
 		panic("Unexpected compilationUnit" + t.location(compilationUnit.offset, compilationUnit.endOffset))
@@ -196,8 +196,8 @@ func (t *SlangMapper) mapIfStmt(astNode *ast.IfStmt, fieldName string) *Node {
 func (t *SlangMapper) createAdditionalInitAndCond(astInit ast.Stmt, astCond ast.Expr) *Node {
 	var children []*Node
 	children = t.appendNode(children, t.mapStmt(astInit, "Init"))
-	children = t.appendNode(children, t.mapExpr(astCond,  "Cond"))
-	return t.createNativeNode( nil, children, "InitAndCond")
+	children = t.appendNode(children, t.mapExpr(astCond, "Cond"))
+	return t.createNativeNode(nil, children, "InitAndCond")
 }
 
 //Create Native node
@@ -207,15 +207,15 @@ func (t *SlangMapper) createNativeNode(astNode ast.Node, children []*Node, nativ
 		m["children"] = children
 
 		return &Node{
-			Children:   children,
-			offset:     children[0].offset,
-			endOffset:  children[len(children)-1].endOffset,
+			Children:  children,
+			offset:    children[0].offset,
+			endOffset: children[len(children)-1].endOffset,
 			SlangType: "Native",
 			TextRange: &TextRange{
-				StartLine: children[0].TextRange.StartLine,
+				StartLine:   children[0].TextRange.StartLine,
 				StartColumn: children[0].TextRange.StartColumn,
-				EndLine: children[len(children)-1].TextRange.EndLine,
-				EndColumn: children[len(children)-1].TextRange.EndColumn,
+				EndLine:     children[len(children)-1].TextRange.EndLine,
+				EndColumn:   children[len(children)-1].TextRange.EndColumn,
 			},
 			SlangField: m,
 		}
@@ -234,7 +234,7 @@ func (t *SlangMapper) createToken(offset, endOffset int, nativeNode string) *Nod
 		location := t.location(offset, endOffset)
 		panic("Invalid token" + location)
 	}
-	if endOffset == offset{
+	if endOffset == offset {
 		if t.paranoiac {
 			location := t.location(offset, endOffset)
 			panic("Invalid empty token" + location)
@@ -270,26 +270,26 @@ func (t *SlangMapper) createToken(offset, endOffset int, nativeNode string) *Nod
 
 	slangToken := &Token{
 		TextRange: &TextRange{
-			StartLine: startLine,
+			StartLine:   startLine,
 			StartColumn: startColumn,
-			EndLine:endLine,
-			EndColumn:endColumn,
+			EndLine:     endLine,
+			EndColumn:   endColumn,
 		},
-		Value:  t.fileContent[offset:endOffset],
+		Value: t.fileContent[offset:endOffset],
 	}
 
 	t.tokens = append(t.tokens, slangToken)
 
 	return &Node{
-		Token: slangToken,
-		offset:     offset,
-		endOffset:  endOffset,
+		Token:     slangToken,
+		offset:    offset,
+		endOffset: endOffset,
 		SlangType: "Token",
 		TextRange: &TextRange{
-			StartLine: startLine,
+			StartLine:   startLine,
 			StartColumn: startColumn,
-			EndLine:endLine,
-			EndColumn:endColumn,
+			EndLine:     endLine,
+			EndColumn:   endColumn,
 		},
 		SlangField: nil,
 	}

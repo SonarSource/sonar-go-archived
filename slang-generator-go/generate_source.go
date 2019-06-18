@@ -75,14 +75,13 @@ import (
 			"IfStmt#Init":     "",
 			"IfStmt#Cond": "children = t.appendNode(children, " +
 				"t.createAdditionalInitAndCond(astNode.Init, astNode.Cond))",
-			"File#Imports":    "",
-			"File#Unresolved": "",
+			"File#Imports":      "",
+			"File#Unresolved":   "",
 			"ChanType#Begin":    "",
 			"ChanType#Arrow":    "",
 			"ChanType#Dir":      "",
 			"ImportSpec#EndPos": "",
 			"FuncTypeDecl#Func": "",
-
 		},
 		ForceLeafNode: map[string]bool{
 			// Fields from the given struct types are ignored, this produce terminal node with token
@@ -200,7 +199,7 @@ import (
 		TypeProcessed: map[reflect.Type]bool{
 			//Node already implemented inside goparser.go
 			typeOf((*ast.BasicLit)(nil)): true,
-			typeOf((*ast.IfStmt)(nil)): true,
+			typeOf((*ast.IfStmt)(nil)):   true,
 		},
 		AllAstStruct: typeOfList(
 			// "Go" does not provide a way to enumerate struct types that inherit from a given interface.
@@ -424,7 +423,6 @@ func (t *AstContext) mapField(fullName string, fieldType reflect.Type, name, fie
 	methodMane := "t.map" + fieldType.Name() + t.FieldVariationMap[fullName]
 	return methodMane + "(" + addressPrefix + name + ", \"" + fieldName + "\")"
 }
-
 
 func (t *AstContext) visitInterfaceType(interfaceType reflect.Type) {
 	if interfaceType.Kind() != reflect.Interface {
