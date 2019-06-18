@@ -33,7 +33,6 @@ import (
 	"unicode/utf8"
 )
 
-
 type Token struct {
 	Value     string     `json:"text"`
 	TextRange *TextRange `json:"textRange"`
@@ -41,15 +40,15 @@ type Token struct {
 }
 
 type Node struct {
-	Token      *Token  `json:"token,omitempty"`
-	Children   []*Node `json:"children,omitempty"`
+	Token      *Token  `json:"-"`
+	Children   []*Node `json:"-"`
 	// internal fields
 	offset    int // position of first character belonging to the node
 	endOffset int // position of first character immediately after the node
 	//Slang fields
 	SlangType string `json:"@type"`
-	TextRange  *TextRange
-	ParentField string `json:"-"`
+	TextRange  *TextRange `json:"metaData"`
+	SlangField map[string]interface{} `json:"slangF"`
 }
 
 type TextRange struct {
@@ -176,11 +175,22 @@ func (t *SlangMapper) mapIfStmt(astNode *ast.IfStmt, fieldName string) *Node {
 		return nil
 	}
 	var children []*Node
+	m := make(map[string]interface{})
+
 	children = t.appendNode(children, t.createUastTokenFromPosAstToken(astNode.If, token.IF, "If"))
 	children = t.appendNode(children, t.createAdditionalInitAndCond(astNode.Init, astNode.Cond))
 	children = t.appendNode(children, t.mapBlockStmt(astNode.Body, "Body"))
 	children = t.appendNode(children, t.mapStmt(astNode.Else, "Else"))
-	return t.createNativeNode(astNode, children, fieldName+"(IfStmt)")
+	nNode := t.createNativeNode(astNode, children, fieldName+"(IfStmt)")
+	m["keyword"] = &TextRange{
+		StartLine:   0,
+		StartColumn: 1,
+		EndLine:     2,
+		EndColumn:   3,
+	}
+	nNode.SlangField = m
+	nNode.SlangType = "IF"
+	return nNode
 }
 
 func (t *SlangMapper) createAdditionalInitAndCond(astInit ast.Stmt, astCond ast.Expr) *Node {
@@ -193,6 +203,9 @@ func (t *SlangMapper) createAdditionalInitAndCond(astInit ast.Stmt, astCond ast.
 //Create Native node
 func (t *SlangMapper) createNativeNode(astNode ast.Node, children []*Node, nativeNode string) *Node {
 	if len(children) > 0 {
+		m := make(map[string]interface{})
+		m["children"] = children
+
 		return &Node{
 			Children:   children,
 			offset:     children[0].offset,
@@ -204,7 +217,7 @@ func (t *SlangMapper) createNativeNode(astNode ast.Node, children []*Node, nativ
 				EndLine: children[len(children)-1].TextRange.EndLine,
 				EndColumn: children[len(children)-1].TextRange.EndColumn,
 			},
-			ParentField: "nativeChild",
+			SlangField: m,
 		}
 
 	} else if astNode != nil {
@@ -278,7 +291,7 @@ func (t *SlangMapper) createToken(offset, endOffset int, nativeNode string) *Nod
 			EndLine:endLine,
 			EndColumn:endColumn,
 		},
-		ParentField: "",
+		SlangField: nil,
 	}
 }
 
