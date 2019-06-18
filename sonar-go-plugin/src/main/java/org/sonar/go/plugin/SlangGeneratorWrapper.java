@@ -19,6 +19,7 @@
  */
 package org.sonar.go.plugin;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -59,6 +60,18 @@ public class SlangGeneratorWrapper {
       copy(source, process.getOutputStream());
       out.close();
 
+
+      StringBuilder stringBuilder = new StringBuilder();
+      String line = null;
+
+      try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8))) {
+        while ((line = bufferedReader.readLine()) != null) {
+          stringBuilder.append(line);
+        }
+      }
+
+      System.out.println(stringBuilder.toString());
+
       // input stream should be used to consume SLANG version of the file
       in.close();
 
@@ -92,7 +105,7 @@ public class SlangGeneratorWrapper {
 
     @Override
     public List<String> getCommand() {
-      return Arrays.asList(command, "-slang", "-");
+      return Arrays.asList(command, "-");
     }
 
     private String extract(File workDir) throws IOException {
@@ -106,6 +119,7 @@ public class SlangGeneratorWrapper {
            InputStream in = streamOfExecutable) {
         copy(in, destStream);
         dest.setExecutable(true);
+
         return dest.getAbsolutePath();
       }
     }
