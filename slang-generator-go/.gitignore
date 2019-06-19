@@ -2,3 +2,5 @@
 goparser_generated.go
 # Binary which can be build
 slang-generator-go
+# libraries used for tests
+vendor/

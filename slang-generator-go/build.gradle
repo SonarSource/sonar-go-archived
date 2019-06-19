@@ -19,19 +19,22 @@ golang {
   goVersion = '1.12.6'
 }
 
+dependencies {
+  golang {
+    test name:'github.com/stretchr/testify'
+  }
+}
+
 task generateSource(type: com.github.blindpirate.gogradle.Go) {
     go 'run generate_source.go'
 }
 
-task generateTestReport(type: com.github.blindpirate.gogradle.Go) {
-  go ('test -json') {
-    stdout writeTo('.gogradle/reports/test-report.out')
-  }
-}
+clean.dependsOn goClean
 
 goBuild.dependsOn goCheck
 installDependencies.dependsOn generateSource
-goTest.dependsOn generateTestReport
+
+check.dependsOn goCheck
 
 goBuild {
   targetPlatform = ['linux-amd64', 'windows-amd64', 'darwin-amd64']

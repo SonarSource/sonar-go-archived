@@ -24,12 +24,12 @@ package main
 
 import (
 	"encoding/json"
+	"github.com/stretchr/testify/assert"
 	"go/ast"
 	"go/token"
 	"io/ioutil"
 	"os"
 	"path/filepath"
-	"reflect"
 	"strings"
 	"testing"
 )
@@ -89,7 +89,7 @@ func Test_mapFile(t *testing.T) {
 			panic(err2)
 		}
 
-		if !reflect.DeepEqual(jsonExpected, jsonActual) {
+		if !assert.Equal(t, jsonExpected, jsonActual) {
 			t.Fatalf("got: %#v\nexpected: %#v", jsonActual, jsonExpected)
 		}
 	}
