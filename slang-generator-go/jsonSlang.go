@@ -146,7 +146,7 @@ type KeyValue struct {
 	Value interface{}
 }
 
-func sortSlangField(slangField map[string]interface{}) ([]KeyValue)  {
+func sortSlangField(slangField map[string]interface{}) []KeyValue {
 	var sortedField []KeyValue
 	for k, v := range slangField {
 		sortedField = append(sortedField, KeyValue{k, v})
@@ -156,7 +156,7 @@ func sortSlangField(slangField map[string]interface{}) ([]KeyValue)  {
 		return sortedField[i].Key > sortedField[j].Key
 	})
 
-	return sortedField;
+	return sortedField
 }
 
 func writeObjectSlang(dst *bytes.Buffer, obj interface{}) {

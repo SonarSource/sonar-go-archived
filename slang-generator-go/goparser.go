@@ -199,9 +199,8 @@ func (t *SlangMapper) mapIdent(astNode *ast.Ident, fieldName string) *Node {
 		slangField["name"] = astNode.Name
 	}
 	var children []*Node
-	return t.createNode(astNode, children, fieldName + "(Ident)", slangType, slangField)
+	return t.createNode(astNode, children, fieldName+"(Ident)", slangType, slangField)
 }
-
 
 func (t *SlangMapper) createAdditionalInitAndCond(astInit ast.Stmt, astCond ast.Expr) *Node {
 	var children []*Node
@@ -219,7 +218,7 @@ func (t *SlangMapper) createNativeNode(astNode ast.Node, children []*Node, nativ
 	return t.createNode(astNode, children, nativeNode, "Native", slangField)
 }
 
-func (t *SlangMapper) createNode(astNode ast.Node, children []*Node, nativeNode, slangType string, slangField map[string]interface{})*Node {
+func (t *SlangMapper) createNode(astNode ast.Node, children []*Node, nativeNode, slangType string, slangField map[string]interface{}) *Node {
 	if len(children) > 0 {
 		return &Node{
 			Children:  children,

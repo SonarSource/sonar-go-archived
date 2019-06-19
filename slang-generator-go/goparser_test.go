@@ -64,8 +64,6 @@ func Test_fix_all_go_files_test_automatically(t *testing.T) {
 	}
 }
 
-
-
 func Test_mapFile(t *testing.T) {
 	for _, file := range getAllGoFiles("resources/ast") {
 		source, err := ioutil.ReadFile(file)

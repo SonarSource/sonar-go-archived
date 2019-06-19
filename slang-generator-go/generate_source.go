@@ -200,7 +200,7 @@ import (
 			//Node already implemented inside goparser.go
 			typeOf((*ast.BasicLit)(nil)): true,
 			typeOf((*ast.IfStmt)(nil)):   true,
-			typeOf((*ast.Ident)(nil)):   true,
+			typeOf((*ast.Ident)(nil)):    true,
 		},
 		AllAstStruct: typeOfList(
 			// "Go" does not provide a way to enumerate struct types that inherit from a given interface.
