@@ -80,6 +80,7 @@ func marshallComment(dst *bytes.Buffer, comment *Node, prefix string) {
 
 func marshalIndentSlang(dst *bytes.Buffer, node *Node, prefix, indent string) {
 	if node == nil {
+		dst.WriteString(prefix + "null")
 		return
 	}
 
@@ -112,8 +113,6 @@ func marshalIndentSlang(dst *bytes.Buffer, node *Node, prefix, indent string) {
 				}
 				marshalIndentSlang(dst, obj[size-1], prefix+indent, indent)
 				dst.WriteString("\n" + prefix + "]")
-			case nil:
-				dst.WriteString("null")
 			default:
 				writeObjectSlang(dst, obj)
 			}
@@ -164,6 +163,7 @@ func writeObjectSlang(dst *bytes.Buffer, obj interface{}) {
 	if err != nil {
 		panic(err)
 	}
+
 	dst.Write(b)
 }
 

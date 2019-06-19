@@ -1,0 +1,22 @@
+package main
+
+func returnTrue() bool {
+	return true
+}
+
+func emptyReturn() {
+	return
+}
+
+func twoReturn() string {
+	if true {
+		return "true"
+	} else {
+		return "false"
+	}
+}
+
+func multipleReturnValue() (string, int, string) {
+	b := "b"
+	return b, 2, "c" //Currently mapped to a native node
+}

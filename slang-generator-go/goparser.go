@@ -29,6 +29,7 @@ import (
 	"go/token"
 	"io/ioutil"
 	"os"
+	"strconv"
 	"strings"
 	"unicode/utf8"
 )
@@ -183,6 +184,33 @@ func (t *SlangMapper) mapIfStmt(astNode *ast.IfStmt, fieldName string) *Node {
 	return nNode
 }
 
+func (t *SlangMapper) mapReturnStmt(astNode *ast.ReturnStmt, fieldName string) *Node {
+	if astNode == nil {
+		return nil
+	}
+	var children []*Node
+	slangField := make(map[string]interface{})
+	returnToken := t.createUastTokenFromPosAstToken(astNode.Return, token.RETURN, "Return")
+	slangField["keyword"] = returnToken.Token.TextRange
+	children = t.appendNode(children, returnToken)
+
+	if len(astNode.Results) == 0 {
+		slangField["body"] = nil
+	} else if len(astNode.Results) == 1 {
+		body := t.mapExpr(astNode.Results[0], "["+strconv.Itoa(0)+"]")
+		slangField["body"] = body
+		children = t.appendNode(children, body)
+	} else {
+		//Slang does not support multiple body, map the whole node to native
+		for i := 0; i < len(astNode.Results); i++ {
+			children = t.appendNode(children, t.mapExpr(astNode.Results[i], "["+strconv.Itoa(i)+"]"))
+		}
+		return t.createNativeNode(astNode, children, fieldName+"(ReturnStmt)")
+	}
+
+	return t.createNode(astNode, children, fieldName+"(ReturnStmt)", "Return", slangField)
+}
+
 func (t *SlangMapper) mapIdent(astNode *ast.Ident, fieldName string) *Node {
 	if astNode == nil {
 		return nil
@@ -233,7 +261,7 @@ func (t *SlangMapper) createNode(astNode ast.Node, children []*Node, nativeNode,
 			},
 			SlangField: slangField,
 		}
-	} else if slangField != nil {
+	} else if slangField != nil && astNode != nil {
 		offset := t.file.Offset(astNode.Pos())
 		endOffset := t.file.Offset(astNode.End())
 		return t.createLeafNode(offset, endOffset, nativeNode, slangType, slangField)
