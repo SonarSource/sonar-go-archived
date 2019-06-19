@@ -47,7 +47,7 @@ func astFromString(source string) (fileSet *token.FileSet, astFile *ast.File) {
 	return
 }
 
-//Update all .txt files in resources/ast from all .go files
+//Update all .txt files in resources/ast from all .go.source files
 func Test_fix_all_go_files_test_automatically(t *testing.T) {
 	for _, file := range getAllGoFiles("resources/ast") {
 		source, err := ioutil.ReadFile(file)
@@ -57,7 +57,7 @@ func Test_fix_all_go_files_test_automatically(t *testing.T) {
 
 		actual := toJsonSlang(slangFromString(string(source), ""))
 		d1 := []byte(actual)
-		errWrite := ioutil.WriteFile(strings.Replace(file, "go", "txt", 1), d1, 0644)
+		errWrite := ioutil.WriteFile(strings.Replace(file, "go.source", "json", 1), d1, 0644)
 		if errWrite != nil {
 			panic(errWrite)
 		}
@@ -78,7 +78,7 @@ func Test_mapFile(t *testing.T) {
 			panic(err1)
 		}
 
-		expectedData, err := ioutil.ReadFile(strings.Replace(file, "go", "txt", 1))
+		expectedData, err := ioutil.ReadFile(strings.Replace(file, "go.source", "json", 1))
 		if err != nil {
 			panic(err)
 		}
@@ -99,7 +99,7 @@ func getAllGoFiles(folder string) []string {
 	var files []string
 
 	err := filepath.Walk(folder, func(path string, info os.FileInfo, err error) error {
-		if strings.HasSuffix(path, ".go") {
+		if strings.HasSuffix(path, ".go.source") {
 			files = append(files, path)
 		}
 		return nil
