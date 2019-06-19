@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"sort"
 	"strings"
 )
 
@@ -21,19 +22,34 @@ func toJsonSlang(node *Node, comments []*Node, tokens []*Token) string {
 func marshallSlangMetaData(dst *bytes.Buffer, comments []*Node, tokens []*Token, indent string) {
 	dst.WriteString(indent + "\"treeMetaData\": {\n")
 	dst.WriteString(strings.Repeat(indent, 2) + "\"comments\": [\n")
-	for _, element := range comments {
+
+	sizeComments := len(comments)
+	if sizeComments != 0 {
+		for i := 0; i < sizeComments-1; i++ {
+			dst.WriteString(strings.Repeat(indent, 3))
+			marshallComment(dst, comments[i], strings.Repeat(indent, 3))
+			dst.WriteString(",\n")
+		}
 		dst.WriteString(strings.Repeat(indent, 3))
-		marshallComment(dst, element, strings.Repeat(indent, 3))
+		marshallComment(dst, comments[sizeComments-1], strings.Repeat(indent, 3))
+		dst.WriteString("\n")
 	}
+
 	dst.WriteString(strings.Repeat(indent, 2) + "],\n")
 
 	dst.WriteString(strings.Repeat(indent, 2) + "\"tokens\": [\n")
-	for _, element := range tokens {
+	sizeTokens := len(tokens)
+	if sizeTokens != 0 {
+		for i := 0; i < sizeTokens-1; i++ {
+			dst.WriteString(strings.Repeat(indent, 3))
+			writeObjectSlang(dst, tokens[i])
+			dst.WriteString(",\n")
+		}
 		dst.WriteString(strings.Repeat(indent, 3))
-		writeObjectSlang(dst, element)
-		dst.WriteString(",\n")
+		writeObjectSlang(dst, tokens[sizeTokens-1])
+		dst.WriteString("\n")
 	}
-	dst.WriteString("\n" + strings.Repeat(indent, 2) + "]\n")
+	dst.WriteString(strings.Repeat(indent, 2) + "]\n")
 
 	dst.WriteString(indent + "},\n")
 }
@@ -59,7 +75,7 @@ func marshallComment(dst *bytes.Buffer, comment *Node, prefix string) {
 	writeObjectSlang(dst, textRange)
 	dst.WriteString(", \"contentRange\": ")
 	writeObjectSlang(dst, textContentRange)
-	dst.WriteString("}\n")
+	dst.WriteString("}")
 }
 
 func marshalIndentSlang(dst *bytes.Buffer, node *Node, prefix, indent string) {
@@ -77,11 +93,15 @@ func marshalIndentSlang(dst *bytes.Buffer, node *Node, prefix, indent string) {
 	}
 
 	if len(node.SlangField) != 0 {
-		for k, v := range node.SlangField {
-			dst.WriteString(",\"" + k + "\":")
+		//Sort the fields to report them in the same order
+		sortedField := sortSlangField(node.SlangField)
 
-			switch obj := v.(type) {
+		for _, kv := range sortedField {
+			dst.WriteString(",\"" + kv.Key + "\":")
+
+			switch obj := kv.Value.(type) {
 			case *Node:
+				dst.WriteString("\n")
 				marshalIndentSlang(dst, obj, prefix+indent, indent)
 			case []*Node:
 				dst.WriteString("[\n")
@@ -92,8 +112,10 @@ func marshalIndentSlang(dst *bytes.Buffer, node *Node, prefix, indent string) {
 				}
 				marshalIndentSlang(dst, obj[size-1], prefix+indent, indent)
 				dst.WriteString("\n" + prefix + "]")
+			case nil:
+				dst.WriteString("null")
 			default:
-				writeObjectSlang(dst, v)
+				writeObjectSlang(dst, obj)
 			}
 		}
 		dst.WriteString("}")
@@ -117,6 +139,24 @@ func marshalIndentSlang(dst *bytes.Buffer, node *Node, prefix, indent string) {
 			marshalIndentSlang(dst, lastChildren, prefix+indent, indent)
 			dst.WriteString("\n" + prefix[0:len(prefix)-len(indent)] + "}]")
 		}*/
+}
+
+type KeyValue struct {
+	Key   string
+	Value interface{}
+}
+
+func sortSlangField(slangField map[string]interface{}) ([]KeyValue)  {
+	var sortedField []KeyValue
+	for k, v := range slangField {
+		sortedField = append(sortedField, KeyValue{k, v})
+	}
+
+	sort.Slice(sortedField, func(i, j int) bool {
+		return sortedField[i].Key > sortedField[j].Key
+	})
+
+	return sortedField;
 }
 
 func writeObjectSlang(dst *bytes.Buffer, obj interface{}) {

@@ -23,7 +23,7 @@
 package main
 
 import (
-	"fmt"
+	"encoding/json"
 	"go/ast"
 	"go/token"
 	"io/ioutil"
@@ -47,6 +47,7 @@ func astFromString(source string) (fileSet *token.FileSet, astFile *ast.File) {
 	return
 }
 
+//Update all .txt files in resources/ast from all .go files
 func Test_fix_all_go_files_test_automatically(t *testing.T) {
 	for _, file := range getAllGoFiles("resources/ast") {
 		source, err := ioutil.ReadFile(file)
@@ -64,30 +65,37 @@ func Test_fix_all_go_files_test_automatically(t *testing.T) {
 }
 
 
+
 func Test_mapFile(t *testing.T) {
 	for _, file := range getAllGoFiles("resources/ast") {
 		source, err := ioutil.ReadFile(file)
 		if err != nil {
 			panic(err)
 		}
-
 		actual := toJsonSlang(slangFromString(string(source), ""))
 
-		dat, err := ioutil.ReadFile(strings.Replace(file, "go", "txt", 1))
+		var jsonActual interface{}
+		err1 := json.Unmarshal([]byte(actual), &jsonActual)
+		if err1 != nil {
+			panic(err1)
+		}
+
+		expectedData, err := ioutil.ReadFile(strings.Replace(file, "go", "txt", 1))
 		if err != nil {
 			panic(err)
 		}
+		var jsonExpected map[string]interface{}
 
-		expected := string(dat)
-
-		if !reflect.DeepEqual(expected, actual) {
-			t.Fatalf("got: %#v\nexpected: %#v", actual, expected)
+		err2 := json.Unmarshal(expectedData, &jsonExpected)
+		if err2 != nil {
+			panic(err2)
 		}
 
-		fmt.Println(file)
+		if !reflect.DeepEqual(jsonExpected, jsonActual) {
+			t.Fatalf("got: %#v\nexpected: %#v", jsonActual, jsonExpected)
+		}
 	}
 }
-
 
 func getAllGoFiles(folder string) []string {
 	var files []string
@@ -103,5 +111,3 @@ func getAllGoFiles(folder string) []string {
 	}
 	return files
 }
-
-

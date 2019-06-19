@@ -23,63 +23,62 @@
       {"text":"(","textRange":"9:13:9:14","type":""},
       {"text":"msg","textRange":"9:14:9:17","type":""},
       {"text":")","textRange":"9:17:9:18","type":""},
-      {"text":"}","textRange":"10:1:10:2","type":""},
-
+      {"text":"}","textRange":"10:1:10:2","type":""}
     ]
   },
   "tree":
-    {"@type": "Native", "metaData": "1:1:10:2","children":[
+    {"@type": "Native", "metaData": "1:1:10:2","nativeKind":"(File)","children":[
       {"@type": "Native", "metaData": "1:1:3:13","nativeKind":"File.Package","children":[
         {"@type": "Native", "metaData": "1:1:1:17","nativeKind":""},
         {"@type": "Native", "metaData": "3:1:3:8","nativeKind":""},
         {"@type": "Identifier", "metaData": "3:9:3:13","name":"main"}
       ]},
       {"@type": "Native", "metaData": "5:1:10:2","nativeKind":"Decls([]Decl)","children":[
-        {"@type": "Native", "metaData": "5:1:5:13","children":[
+        {"@type": "Native", "metaData": "5:1:5:13","nativeKind":"[0](GenDecl)","children":[
           {"@type": "Native", "metaData": "5:1:5:7","nativeKind":"Tok"},
           {"@type": "Native", "metaData": "5:8:5:13","nativeKind":"Specs([]Spec)","children":[
-            {"@type": "Native", "metaData": "5:8:5:13","children":[
+            {"@type": "Native", "metaData": "5:8:5:13","nativeKind":"[0](ImportSpec)","children":[
               {"@type": "Native", "metaData": "5:8:5:13","nativeKind":"Path(BasicLit)"}
-            ],"nativeKind":"[0](ImportSpec)"}
+            ]}
           ]}
-        ],"nativeKind":"[0](GenDecl)"},
+        ]},
         {"@type": "Native", "metaData": "7:1:10:2","nativeKind":"[1](FuncDecl)","children":[
           {"@type": "Native", "metaData": "7:1:7:5","nativeKind":"Type.Func"},
           {"@type": "Identifier", "metaData": "7:6:7:10","name":"main"},
-          {"@type": "Native", "metaData": "7:10:7:12","children":[
-            {"@type": "Native", "metaData": "7:10:7:12","children":[
+          {"@type": "Native", "metaData": "7:10:7:12","nativeKind":"Type(FuncType)","children":[
+            {"@type": "Native", "metaData": "7:10:7:12","nativeKind":"Params(FieldList)","children":[
               {"@type": "Native", "metaData": "7:10:7:11","nativeKind":"Opening"},
               {"@type": "Native", "metaData": "7:11:7:12","nativeKind":"Closing"}
-            ],"nativeKind":"Params(FieldList)"}
-          ],"nativeKind":"Type(FuncType)"},
-          {"@type": "Native", "metaData": "7:13:10:2","children":[
+            ]}
+          ]},
+          {"@type": "Native", "metaData": "7:13:10:2","nativeKind":"Body(BlockStmt)","children":[
             {"@type": "Native", "metaData": "7:13:7:14","nativeKind":"Lbrace"},
-            {"@type": "Native", "metaData": "8:2:8:23","children":[
-              {"@type": "Native", "metaData": "8:2:8:5","children":[
+            {"@type": "Native", "metaData": "8:2:8:23","nativeKind":"[0](AssignStmt)","children":[
+              {"@type": "Native", "metaData": "8:2:8:5","nativeKind":"Lhs([]Expr)","children":[
                 {"@type": "Identifier", "metaData": "8:2:8:5","name":"msg"}
-              ],"nativeKind":"Lhs([]Expr)"},
+              ]},
               {"@type": "Native", "metaData": "8:6:8:8","nativeKind":"Tok"},
-              {"@type": "Native", "metaData": "8:9:8:23","children":[
+              {"@type": "Native", "metaData": "8:9:8:23","nativeKind":"Rhs([]Expr)","children":[
                 {"@type": "Native", "metaData": "8:9:8:23","nativeKind":"[0](BasicLit)"}
-              ],"nativeKind":"Rhs([]Expr)"}
-            ],"nativeKind":"[0](AssignStmt)"},
+              ]}
+            ]},
             {"@type": "Native", "metaData": "9:2:9:18","nativeKind":"[1](ExprStmt)","children":[
-              {"@type": "Native", "metaData": "9:2:9:18","children":[
-                {"@type": "Native", "metaData": "9:2:9:13","children":[
+              {"@type": "Native", "metaData": "9:2:9:18","nativeKind":"X(CallExpr)","children":[
+                {"@type": "Native", "metaData": "9:2:9:13","nativeKind":"Fun(SelectorExpr)","children":[
                   {"@type": "Identifier", "metaData": "9:2:9:5","name":"fmt"},
                   {"@type": "Native", "metaData": "9:5:9:6","nativeKind":""},
                   {"@type": "Identifier", "metaData": "9:6:9:13","name":"Println"}
-                ],"nativeKind":"Fun(SelectorExpr)"},
+                ]},
                 {"@type": "Native", "metaData": "9:13:9:14","nativeKind":"Lparen"},
-                {"@type": "Native", "metaData": "9:14:9:17","children":[
+                {"@type": "Native", "metaData": "9:14:9:17","nativeKind":"Args([]Expr)","children":[
                   {"@type": "Identifier", "metaData": "9:14:9:17","name":"msg"}
-                ],"nativeKind":"Args([]Expr)"},
+                ]},
                 {"@type": "Native", "metaData": "9:17:9:18","nativeKind":"Rparen"}
-              ],"nativeKind":"X(CallExpr)"}
+              ]}
             ]},
             {"@type": "Native", "metaData": "10:1:10:2","nativeKind":"Rbrace"}
-          ],"nativeKind":"Body(BlockStmt)"}
+          ]}
         ]}
       ]}
-    ],"nativeKind":"(File)"}
+    ]}
 } 
