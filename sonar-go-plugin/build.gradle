@@ -20,7 +20,7 @@ dependencies {
     compile     'org.sonarsource.analyzer-commons:sonar-analyzer-commons'
     compile     'org.sonarsource.sonarqube:sonar-plugin-api'
     // using temporarily scala-dependency to get SLANG packages
-    compile(group: 'org.sonarsource.slang', name: 'sonar-scala-plugin', version: '1.6.0.339')
+    compile(group: 'org.sonarsource.slang', name: 'sonar-scala-plugin', version: '1.5.0.315')
 
     testCompile 'org.mockito:mockito-core'
     testCompile 'org.assertj:assertj-core'
