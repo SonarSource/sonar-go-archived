@@ -64,6 +64,12 @@ import (
 			"CallExpr#Args":     true,
 			"CompositeLit#Elts": true,
 		},
+		InsertBeforeField: map[string]string{
+			// Additional code can be placed before the mapping of the referenced field
+			"EmptyStmt#Semicolon": "if astNode.Implicit {\n\t\treturn nil\n\t}",
+			"FuncDecl#Recv": "children = t.appendNode(children, " +
+				"t.createTokenFromPosAstToken(astNode.Type.Func, token.FUNC, \"Type.Func\"))",
+		},
 		OverrideField: map[string]string{
 			// The mapping of each field can be replaced by some custom code. Put function definitions in 'goparser.go'
 			"File#Package": "children = t.appendNode(children, t.mapPackageDecl(astNode))",
@@ -99,12 +105,6 @@ import (
 			"[]*ast.CommentGroup":    true,
 			"map[string]*ast.File":   true,
 			"map[string]*ast.Object": true,
-		},
-		InsertBeforeField: map[string]string{
-			// Additional code can be placed before the mapping of the referenced field
-			"EmptyStmt#Semicolon": "if astNode.Implicit {\n\t\treturn nil\n\t}",
-			"FuncDecl#Recv": "children = t.appendNode(children, " +
-				"t.createTokenFromPosAstToken(astNode.Type.Func, token.FUNC, \"Type.Func\"))",
 		},
 		TokenFieldWithPos: map[string]bool{
 			// There's a common pattern in the Go ast where 2 fields define one terminal token.
@@ -199,7 +199,6 @@ import (
 		TypeProcessed: map[reflect.Type]bool{
 			//Node already implemented inside goparser.go
 			typeOf((*ast.BasicLit)(nil)):   true,
-			typeOf((*ast.IfStmt)(nil)):     true,
 			typeOf((*ast.Ident)(nil)):      true,
 			typeOf((*ast.ReturnStmt)(nil)): true,
 		},
@@ -278,6 +277,11 @@ func (t *AstContext) pushType(structType reflect.Type) {
 	}
 }
 
+func (t *AstContext) writeLn(text string) {
+	t.Out.WriteString(text)
+	t.Out.WriteString("\n")
+}
+
 func (t *AstContext) visitType(nextType reflect.Type) {
 	switch nextType.Kind() {
 	case reflect.Interface:
@@ -289,9 +293,28 @@ func (t *AstContext) visitType(nextType reflect.Type) {
 	}
 }
 
-func (t *AstContext) writeLn(text string) {
-	t.Out.WriteString(text)
-	t.Out.WriteString("\n")
+func (t *AstContext) visitInterfaceType(interfaceType reflect.Type) {
+	if interfaceType.Kind() != reflect.Interface {
+		panic("Expect a Interface")
+	}
+	t.writeLn("")
+	methodName := "map" + interfaceType.Name()
+	arguments := "astNode " + interfaceType.String() + ", nativeNode string"
+	t.writeLn("func (t *SlangMapper) " + methodName + "(" + arguments + ") *Node {")
+	t.writeLn("\tswitch node := astNode.(type) {")
+	for _, astStruct := range t.getStructTypesThatImplement(interfaceType) {
+		if !t.TypeToIgnore[astStruct.String()] {
+			t.writeLn("\tcase *" + astStruct.String() + ":")
+			t.writeLn("\t\treturn t.map" + astStruct.Name() + "(node, nativeNode)")
+			t.pushType(astStruct)
+		} else {
+			t.writeLn("\t// ignore " + astStruct.String() + " intentionally")
+		}
+	}
+	t.writeLn("\tdefault:")
+	t.writeLn("\t\treturn nil")
+	t.writeLn("\t}")
+	t.writeLn("}")
 }
 
 func (t *AstContext) visitStructType(structType reflect.Type) {
@@ -353,30 +376,9 @@ func (t *AstContext) visitField(fullName string, structType reflect.Type, field 
 	}
 }
 
-func (t *AstContext) visitIntField(fullName string, field reflect.StructField, fieldType reflect.Type) {
-	if fieldType.String() == "token.Pos" && t.TokenFieldWithPos[fullName] {
-		// ignore, will be added by the "token.Token" field
-		return
-	}
-	var tokenPos string
-	var tokenValue string
-	if fieldType.String() == "token.Token" && t.TokenFieldWithPos[fullName+"Pos"] {
-		tokenPos = "astNode." + field.Name + "Pos"
-		tokenValue = "astNode." + field.Name
-	} else if fieldType.String() == "token.Pos" {
-		tokenPos = "astNode." + field.Name
-		tokenValue = t.MatchingTokenPos[fullName]
-		if len(tokenValue) == 0 {
-			tokenValue = t.MatchingTokenPos[field.Name]
-		}
-	}
-	if len(tokenValue) > 0 {
-		arguments := tokenPos + ", " + tokenValue + ", \"" + field.Name + "\""
-		mappedField := "t.createTokenFromPosAstToken(" + arguments + ")"
-		t.writeLn("\tchildren = t.appendNode(children, " + mappedField + ")")
-	} else {
-		panic("Unsupported Int Kind " + fullName + " " + fieldType.String())
-	}
+func (t *AstContext) visitStructField(fullName, name string, fieldType reflect.Type) {
+	mappedField := t.mapField(fullName, fieldType, "astNode."+name, name)
+	t.writeLn("\tchildren = t.appendNode(children, " + mappedField + ")")
 }
 
 func (t *AstContext) visitSliceField(fullName, name string, sliceType reflect.Type) {
@@ -403,9 +405,30 @@ func (t *AstContext) visitSliceField(fullName, name string, sliceType reflect.Ty
 	}
 }
 
-func (t *AstContext) visitStructField(fullName, name string, fieldType reflect.Type) {
-	mappedField := t.mapField(fullName, fieldType, "astNode."+name, name)
-	t.writeLn("\tchildren = t.appendNode(children, " + mappedField + ")")
+func (t *AstContext) visitIntField(fullName string, field reflect.StructField, fieldType reflect.Type) {
+	if fieldType.String() == "token.Pos" && t.TokenFieldWithPos[fullName] {
+		// ignore, will be added by the "token.Token" field
+		return
+	}
+	var tokenPos string
+	var tokenValue string
+	if fieldType.String() == "token.Token" && t.TokenFieldWithPos[fullName+"Pos"] {
+		tokenPos = "astNode." + field.Name + "Pos"
+		tokenValue = "astNode." + field.Name
+	} else if fieldType.String() == "token.Pos" {
+		tokenPos = "astNode." + field.Name
+		tokenValue = t.MatchingTokenPos[fullName]
+		if len(tokenValue) == 0 {
+			tokenValue = t.MatchingTokenPos[field.Name]
+		}
+	}
+	if len(tokenValue) > 0 {
+		arguments := tokenPos + ", " + tokenValue + ", \"" + field.Name + "\""
+		mappedField := "t.createTokenFromPosAstToken(" + arguments + ")"
+		t.writeLn("\tchildren = t.appendNode(children, " + mappedField + ")")
+	} else {
+		panic("Unsupported Int Kind " + fullName + " " + fieldType.String())
+	}
 }
 
 func (t *AstContext) mapField(fullName string, fieldType reflect.Type, name, fieldName string) string {
@@ -422,30 +445,6 @@ func (t *AstContext) mapField(fullName string, fieldType reflect.Type, name, fie
 	t.pushType(fieldType)
 	methodMane := "t.map" + fieldType.Name() + t.FieldVariationMap[fullName]
 	return methodMane + "(" + addressPrefix + name + ", \"" + fieldName + "\")"
-}
-
-func (t *AstContext) visitInterfaceType(interfaceType reflect.Type) {
-	if interfaceType.Kind() != reflect.Interface {
-		panic("Expect a Interface")
-	}
-	t.writeLn("")
-	methodName := "map" + interfaceType.Name()
-	arguments := "astNode " + interfaceType.String() + ", nativeNode string"
-	t.writeLn("func (t *SlangMapper) " + methodName + "(" + arguments + ") *Node {")
-	t.writeLn("\tswitch node := astNode.(type) {")
-	for _, astStruct := range t.getStructTypesThatImplement(interfaceType) {
-		if !t.TypeToIgnore[astStruct.String()] {
-			t.writeLn("\tcase *" + astStruct.String() + ":")
-			t.writeLn("\t\treturn t.map" + astStruct.Name() + "(node, nativeNode)")
-			t.pushType(astStruct)
-		} else {
-			t.writeLn("\t// ignore " + astStruct.String() + " intentionally")
-		}
-	}
-	t.writeLn("\tdefault:")
-	t.writeLn("\t\treturn nil")
-	t.writeLn("\t}")
-	t.writeLn("}")
 }
 
 func (t *AstContext) getStructTypesThatImplement(interfaceType reflect.Type) []reflect.Type {

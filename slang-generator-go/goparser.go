@@ -149,11 +149,6 @@ func (t *SlangMapper) mapPackageDecl(file *ast.File) *Node {
 	return t.createNativeNode(nil, children, "File.Package")
 }
 
-func (t *SlangMapper) appendNodeList(parentList []*Node, children []*Node, nativeNode string) []*Node {
-	// TODO provide the next Token offset, so the last separator can be part of the children
-	return t.appendNode(parentList, t.createNativeNode(nil, children, nativeNode))
-}
-
 func (t *SlangMapper) mapBasicLit(astNode *ast.BasicLit, fieldName string) *Node {
 	if astNode == nil {
 		return nil
@@ -162,72 +157,21 @@ func (t *SlangMapper) mapBasicLit(astNode *ast.BasicLit, fieldName string) *Node
 	return t.createExpectedToken(astNode.Pos(), astNode.Value, fieldName+"(BasicLit)")
 }
 
-func (t *SlangMapper) handleSwitchCase(casePos token.Pos, isDefault bool, children []*Node) []*Node {
-	tok := token.CASE
-	if isDefault {
-		tok = token.DEFAULT
+func (t *SlangMapper) appendNode(children []*Node, child *Node) []*Node {
+	if child == nil {
+		return children
 	}
-	children = t.appendNode(children, t.createTokenFromPosAstToken(casePos, tok, "Case"))
-	return children
-}
-
-func (t *SlangMapper) mapIfStmt(astNode *ast.IfStmt, fieldName string) *Node {
-	if astNode == nil {
-		return nil
-	}
-	var children []*Node
-	children = t.appendNode(children, t.createTokenFromPosAstToken(astNode.If, token.IF, "If"))
-	children = t.appendNode(children, t.createAdditionalInitAndCond(astNode.Init, astNode.Cond))
-	children = t.appendNode(children, t.mapBlockStmt(astNode.Body, "Body"))
-	children = t.appendNode(children, t.mapStmt(astNode.Else, "Else"))
-	nNode := t.createNativeNode(astNode, children, fieldName+"(IfStmt)")
-	return nNode
-}
-
-func (t *SlangMapper) mapReturnStmt(astNode *ast.ReturnStmt, fieldName string) *Node {
-	if astNode == nil {
-		return nil
-	}
-	var children []*Node
-	slangField := make(map[string]interface{})
-	returnToken := t.createTokenFromPosAstToken(astNode.Return, token.RETURN, "Return")
-	slangField["keyword"] = returnToken.Token.TextRange
-	children = t.appendNode(children, returnToken)
-
-	if len(astNode.Results) == 0 {
-		slangField["body"] = nil
-	} else if len(astNode.Results) == 1 {
-		body := t.mapExpr(astNode.Results[0], "["+strconv.Itoa(0)+"]")
-		slangField["body"] = body
-		children = t.appendNode(children, body)
-	} else {
-		//Slang does not support multiple body, map the whole node to native
-		for i := 0; i < len(astNode.Results); i++ {
-			children = t.appendNode(children, t.mapExpr(astNode.Results[i], "["+strconv.Itoa(i)+"]"))
+	// Comments are not appended before the first child. They will be appended by an
+	// ancestor node before a non first child (except for the "package" node, it's the
+	// very first node, it has his specific logic to append header comments)
+	if len(children) > 0 {
+		lastChild := children[len(children)-1]
+		children = t.appendCommentOrMissingToken(children, lastChild.endOffset, child.offset)
+		if t.paranoiac && children[len(children)-1].endOffset > child.offset {
+			panic("Invalid token sequence" + t.location(children[len(children)-1].endOffset, child.offset))
 		}
-		return t.createNativeNode(astNode, children, fieldName+"(ReturnStmt)")
 	}
-
-	return t.createNode(astNode, children, fieldName+"(ReturnStmt)", "Return", slangField)
-}
-
-func (t *SlangMapper) mapIdent(astNode *ast.Ident, fieldName string) *Node {
-	if astNode == nil {
-		return nil
-	}
-	slangField := make(map[string]interface{})
-	var slangType string
-
-	switch astNode.Name {
-	case "true", "false", "nil":
-		slangType = "Litteral"
-		slangField["value"] = astNode.Name
-	default:
-		slangType = "Identifier"
-		slangField["name"] = astNode.Name
-	}
-	var children []*Node
-	return t.createNode(astNode, children, fieldName+"(Ident)", slangType, slangField)
+	return t.appendNodeCheckOrder(children, child)
 }
 
 func (t *SlangMapper) createAdditionalInitAndCond(astInit ast.Stmt, astCond ast.Expr) *Node {
@@ -237,7 +181,49 @@ func (t *SlangMapper) createAdditionalInitAndCond(astInit ast.Stmt, astCond ast.
 	return t.createNativeNode(nil, children, "InitAndCond")
 }
 
-//Create Native node
+func (t *SlangMapper) appendCommentOrMissingToken(children []*Node, offset, endOffset int) []*Node {
+	if len(t.comments) == 0 {
+		return t.appendMissingToken(children, offset, endOffset)
+	}
+	// when a child append a comment, it move the 'commentPos' forward, so the parent has to rewind
+	for t.commentPos > 0 && t.comments[t.commentPos-1].offset >= offset {
+		t.commentPos--
+	}
+
+	for t.commentPos < len(t.comments) {
+		commentNode := t.comments[t.commentPos]
+		if commentNode.offset >= offset {
+			if commentNode.endOffset <= endOffset {
+				children = t.appendMissingToken(children, offset, commentNode.offset)
+				children = t.appendNodeCheckOrder(children, commentNode)
+				offset = commentNode.endOffset
+			} else {
+				break
+			}
+		}
+		t.commentPos++
+	}
+	return t.appendMissingToken(children, offset, endOffset)
+}
+
+func (t *SlangMapper) appendNodeCheckOrder(parentList []*Node, child *Node) []*Node {
+	if child == nil {
+		return parentList
+	}
+	if len(parentList) > 0 {
+		lastChild := parentList[len(parentList)-1]
+		if t.paranoiac && lastChild.endOffset > child.offset {
+			panic("Invalid token sequence" + t.location(lastChild.endOffset, child.offset))
+		}
+	}
+	return append(parentList, child)
+}
+
+func (t *SlangMapper) appendNodeList(parentList []*Node, children []*Node, nativeNode string) []*Node {
+	// TODO provide the next Token offset, so the last separator can be part of the children
+	return t.appendNode(parentList, t.createNativeNode(nil, children, nativeNode))
+}
+
 func (t *SlangMapper) createNativeNode(astNode ast.Node, children []*Node, nativeNode string) *Node {
 	slangField := make(map[string]interface{})
 	slangField["children"] = children
@@ -272,6 +258,112 @@ func (t *SlangMapper) createNode(astNode ast.Node, children []*Node, nativeNode,
 	} else {
 		return nil
 	}
+}
+
+var missingKeywordToken = map[byte]string{
+	',': ",", ';': ";", '.': ".", '[': "[", ']': "]", '=': "=", ':': ":",
+	't': "type", 'r': "range", 'e': "else", 'c': "chan", '<': "<-"}
+
+func (t *SlangMapper) appendMissingToken(children []*Node, offset, endOffset int) []*Node {
+	if offset < 0 || endOffset < offset || endOffset > len(t.fileContent) {
+		return nil
+	}
+	for offset < endOffset && t.fileContent[offset] <= ' ' {
+		offset++
+	}
+	for endOffset > offset && t.fileContent[endOffset-1] <= ' ' {
+		endOffset--
+	}
+	for offset < endOffset {
+		missingTokenValue := missingKeywordToken[t.fileContent[offset]]
+		tokenLength := len(missingTokenValue)
+		if tokenLength == 0 || t.fileContent[offset:offset+tokenLength] != missingTokenValue {
+			if t.paranoiac {
+				location := t.location(offset, endOffset)
+				panic(fmt.Sprintf("Invalid missing token '%s'%s", t.fileContent[offset:endOffset], location))
+			}
+			tokenLength = endOffset - offset
+		}
+		missingToken := t.createToken(offset, offset+tokenLength, "")
+		children = t.appendNodeCheckOrder(children, missingToken)
+		offset += tokenLength
+		for offset < endOffset && t.fileContent[offset] <= ' ' {
+			offset++
+		}
+	}
+	return children
+}
+
+func (t *SlangMapper) createTokenFromPosAstToken(pos token.Pos, tok token.Token, nativeNode string) *Node {
+	if pos == token.NoPos {
+		return nil
+	}
+	if !(tok.IsOperator() || tok.IsKeyword()) {
+		if t.paranoiac {
+			offset := t.file.Offset(pos)
+			location := t.location(offset, offset)
+			panic(fmt.Sprintf("Unsupported token '%s'%s", tok.String(), location))
+		}
+		return nil
+	}
+
+	return t.createExpectedToken(pos, tok.String(), nativeNode)
+}
+
+func (t *SlangMapper) handleSwitchCase(casePos token.Pos, isDefault bool, children []*Node) []*Node {
+	tok := token.CASE
+	if isDefault {
+		tok = token.DEFAULT
+	}
+	children = t.appendNode(children, t.createTokenFromPosAstToken(casePos, tok, "Case"))
+	return children
+}
+
+func (t *SlangMapper) createExpectedToken(pos token.Pos, expectedValue string, nativeNode string) *Node {
+	if pos == token.NoPos {
+		return nil
+	}
+	offset := t.file.Offset(pos)
+	var endOffset int
+	endOffset, expectedValue = t.computeEndOffsetSupportingMultiLineToken(offset, expectedValue)
+	node := t.createToken(offset, endOffset, nativeNode)
+	if node != nil && node.Token.Value != expectedValue {
+		if t.paranoiac {
+			location := t.location(offset, endOffset)
+			panic(fmt.Sprintf("Invalid token value '%s' instead of '%s'%s",
+				node.Token.Value, expectedValue, location))
+		}
+		return nil
+	}
+	return node
+}
+
+func (t *SlangMapper) computeEndOffsetSupportingMultiLineToken(offset int, value string) (int, string) {
+	length := len(value)
+	endOffset := offset + length
+	if offset < 0 || !t.hasCarriageReturn {
+		return endOffset, value
+	}
+	contentLength := len(t.fileContent)
+	// computedEndOffset will be equal to offset + len(value) + <computed number of \r characters>
+	computedEndOffset := offset
+	for length > 0 && computedEndOffset < contentLength {
+		if t.fileContent[computedEndOffset] != '\r' {
+			length--
+		}
+		computedEndOffset++
+	}
+	if computedEndOffset != endOffset {
+		return computedEndOffset, t.fileContent[offset:computedEndOffset]
+	}
+	return endOffset, value
+}
+
+func (t *SlangMapper) createToken(offset, endOffset int, nativeNode string) *Node {
+	slangField := make(map[string]interface{})
+	slangField["nativeKind"] = nativeNode
+
+	return t.createLeafNode(offset, endOffset, nativeNode, "Native", slangField)
 }
 
 func (t *SlangMapper) createLeafNode(offset, endOffset int, nativeNode, slangType string, slangField map[string]interface{}) *Node {
@@ -340,164 +432,12 @@ func (t *SlangMapper) createLeafNode(offset, endOffset int, nativeNode, slangTyp
 	}
 }
 
-func (t *SlangMapper) createToken(offset, endOffset int, nativeNode string) *Node {
-	slangField := make(map[string]interface{})
-	slangField["nativeKind"] = nativeNode
-
-	return t.createLeafNode(offset, endOffset, nativeNode, "Native", slangField)
-}
-
-func (t *SlangMapper) createTokenFromPosAstToken(pos token.Pos, tok token.Token, nativeNode string) *Node {
-	if pos == token.NoPos {
-		return nil
-	}
-	if !(tok.IsOperator() || tok.IsKeyword()) {
-		if t.paranoiac {
-			offset := t.file.Offset(pos)
-			location := t.location(offset, offset)
-			panic(fmt.Sprintf("Unsupported token '%s'%s", tok.String(), location))
-		}
-		return nil
-	}
-
-	return t.createExpectedToken(pos, tok.String(), nativeNode)
-}
-
-func (t *SlangMapper) createExpectedToken(pos token.Pos, expectedValue string, nativeNode string) *Node {
-	if pos == token.NoPos {
-		return nil
-	}
-	offset := t.file.Offset(pos)
-	var endOffset int
-	endOffset, expectedValue = t.computeEndOffsetSupportingMultiLineToken(offset, expectedValue)
-	node := t.createToken(offset, endOffset, nativeNode)
-	if node != nil && node.Token.Value != expectedValue {
-		if t.paranoiac {
-			location := t.location(offset, endOffset)
-			panic(fmt.Sprintf("Invalid token value '%s' instead of '%s'%s",
-				node.Token.Value, expectedValue, location))
-		}
-		return nil
-	}
-	return node
-}
-
-func (t *SlangMapper) computeEndOffsetSupportingMultiLineToken(offset int, value string) (int, string) {
-	length := len(value)
-	endOffset := offset + length
-	if offset < 0 || !t.hasCarriageReturn {
-		return endOffset, value
-	}
-	contentLength := len(t.fileContent)
-	// computedEndOffset will be equal to offset + len(value) + <computed number of \r characters>
-	computedEndOffset := offset
-	for length > 0 && computedEndOffset < contentLength {
-		if t.fileContent[computedEndOffset] != '\r' {
-			length--
-		}
-		computedEndOffset++
-	}
-	if computedEndOffset != endOffset {
-		return computedEndOffset, t.fileContent[offset:computedEndOffset]
-	}
-	return endOffset, value
-}
-
 func (t *SlangMapper) toPosition(offset int) token.Position {
 	position := t.file.Position(t.file.Pos(offset))
 	if t.paranoiac && !position.IsValid() {
 		panic("Invalid offset" + t.location(offset, offset))
 	}
 	return position
-}
-
-func (t *SlangMapper) appendNode(children []*Node, child *Node) []*Node {
-	if child == nil {
-		return children
-	}
-	// Comments are not appended before the first child. They will be appended by an
-	// ancestor node before a non first child (except for the "package" node, it's the
-	// very first node, it has his specific logic to append header comments)
-	if len(children) > 0 {
-		lastChild := children[len(children)-1]
-		children = t.appendCommentOrMissingToken(children, lastChild.endOffset, child.offset)
-		if t.paranoiac && children[len(children)-1].endOffset > child.offset {
-			panic("Invalid token sequence" + t.location(children[len(children)-1].endOffset, child.offset))
-		}
-	}
-	return t.appendNodeCheckOrder(children, child)
-}
-
-func (t *SlangMapper) appendCommentOrMissingToken(children []*Node, offset, endOffset int) []*Node {
-	if len(t.comments) == 0 {
-		return t.appendMissingToken(children, offset, endOffset)
-	}
-	// when a child append a comment, it move the 'commentPos' forward, so the parent has to rewind
-	for t.commentPos > 0 && t.comments[t.commentPos-1].offset >= offset {
-		t.commentPos--
-	}
-
-	for t.commentPos < len(t.comments) {
-		commentNode := t.comments[t.commentPos]
-		if commentNode.offset >= offset {
-			if commentNode.endOffset <= endOffset {
-				children = t.appendMissingToken(children, offset, commentNode.offset)
-				children = t.appendNodeCheckOrder(children, commentNode)
-				offset = commentNode.endOffset
-			} else {
-				break
-			}
-		}
-		t.commentPos++
-	}
-	return t.appendMissingToken(children, offset, endOffset)
-}
-
-func (t *SlangMapper) appendNodeCheckOrder(parentList []*Node, child *Node) []*Node {
-	if child == nil {
-		return parentList
-	}
-	if len(parentList) > 0 {
-		lastChild := parentList[len(parentList)-1]
-		if t.paranoiac && lastChild.endOffset > child.offset {
-			panic("Invalid token sequence" + t.location(lastChild.endOffset, child.offset))
-		}
-	}
-	return append(parentList, child)
-}
-
-var missingKeywordToken = map[byte]string{
-	',': ",", ';': ";", '.': ".", '[': "[", ']': "]", '=': "=", ':': ":",
-	't': "type", 'r': "range", 'e': "else", 'c': "chan", '<': "<-"}
-
-func (t *SlangMapper) appendMissingToken(children []*Node, offset, endOffset int) []*Node {
-	if offset < 0 || endOffset < offset || endOffset > len(t.fileContent) {
-		return nil
-	}
-	for offset < endOffset && t.fileContent[offset] <= ' ' {
-		offset++
-	}
-	for endOffset > offset && t.fileContent[endOffset-1] <= ' ' {
-		endOffset--
-	}
-	for offset < endOffset {
-		missingTokenValue := missingKeywordToken[t.fileContent[offset]]
-		tokenLength := len(missingTokenValue)
-		if tokenLength == 0 || t.fileContent[offset:offset+tokenLength] != missingTokenValue {
-			if t.paranoiac {
-				location := t.location(offset, endOffset)
-				panic(fmt.Sprintf("Invalid missing token '%s'%s", t.fileContent[offset:endOffset], location))
-			}
-			tokenLength = endOffset - offset
-		}
-		missingToken := t.createToken(offset, offset+tokenLength, "")
-		children = t.appendNodeCheckOrder(children, missingToken)
-		offset += tokenLength
-		for offset < endOffset && t.fileContent[offset] <= ' ' {
-			offset++
-		}
-	}
-	return children
 }
 
 func (t *SlangMapper) location(offset, endOffset int) string {
@@ -512,4 +452,50 @@ func (t *SlangMapper) location(offset, endOffset int) string {
 
 func isEndOfLine(ch byte) bool {
 	return ch == '\n' || ch == '\r'
+}
+
+func (t *SlangMapper) mapReturnStmt(astNode *ast.ReturnStmt, fieldName string) *Node {
+	if astNode == nil {
+		return nil
+	}
+	var children []*Node
+	slangField := make(map[string]interface{})
+	returnToken := t.createTokenFromPosAstToken(astNode.Return, token.RETURN, "Return")
+	slangField["keyword"] = returnToken.Token.TextRange
+	children = t.appendNode(children, returnToken)
+
+	if len(astNode.Results) == 0 {
+		slangField["body"] = nil
+	} else if len(astNode.Results) == 1 {
+		body := t.mapExpr(astNode.Results[0], "["+strconv.Itoa(0)+"]")
+		slangField["body"] = body
+		children = t.appendNode(children, body)
+	} else {
+		//Slang does not support multiple body, map the whole node to native
+		for i := 0; i < len(astNode.Results); i++ {
+			children = t.appendNode(children, t.mapExpr(astNode.Results[i], "["+strconv.Itoa(i)+"]"))
+		}
+		return t.createNativeNode(astNode, children, fieldName+"(ReturnStmt)")
+	}
+
+	return t.createNode(astNode, children, fieldName+"(ReturnStmt)", "Return", slangField)
+}
+
+func (t *SlangMapper) mapIdent(astNode *ast.Ident, fieldName string) *Node {
+	if astNode == nil {
+		return nil
+	}
+	slangField := make(map[string]interface{})
+	var slangType string
+
+	switch astNode.Name {
+	case "true", "false", "nil":
+		slangType = "Litteral"
+		slangField["value"] = astNode.Name
+	default:
+		slangType = "Identifier"
+		slangField["name"] = astNode.Name
+	}
+	var children []*Node
+	return t.createNode(astNode, children, fieldName+"(Ident)", slangType, slangField)
 }
