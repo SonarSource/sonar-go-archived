@@ -104,7 +104,7 @@ import (
 			// Additional code can be placed before the mapping of the referenced field
 			"EmptyStmt#Semicolon": "if astNode.Implicit {\n\t\treturn nil\n\t}",
 			"FuncDecl#Recv": "children = t.appendNode(children, " +
-				"t.createUastTokenFromPosAstToken(astNode.Type.Func, token.FUNC, \"Type.Func\"))",
+				"t.createTokenFromPosAstToken(astNode.Type.Func, token.FUNC, \"Type.Func\"))",
 		},
 		TokenFieldWithPos: map[string]bool{
 			// There's a common pattern in the Go ast where 2 fields define one terminal token.
@@ -372,8 +372,7 @@ func (t *AstContext) visitIntField(fullName string, field reflect.StructField, f
 	}
 	if len(tokenValue) > 0 {
 		arguments := tokenPos + ", " + tokenValue + ", \"" + field.Name + "\""
-		mappedField := "t.createUastTokenFromPosAstToken(" + arguments + ")" //TODO: Rename
-		//TODO: (Same as visitStructField) Verify this
+		mappedField := "t.createTokenFromPosAstToken(" + arguments + ")"
 		t.writeLn("\tchildren = t.appendNode(children, " + mappedField + ")")
 	} else {
 		panic("Unsupported Int Kind " + fullName + " " + fieldType.String())
@@ -405,7 +404,6 @@ func (t *AstContext) visitSliceField(fullName, name string, sliceType reflect.Ty
 }
 
 func (t *AstContext) visitStructField(fullName, name string, fieldType reflect.Type) {
-	//TODO: Double check with uast if correct
 	mappedField := t.mapField(fullName, fieldType, "astNode."+name, name)
 	t.writeLn("\tchildren = t.appendNode(children, " + mappedField + ")")
 }

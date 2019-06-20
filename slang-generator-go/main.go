@@ -30,9 +30,8 @@ func exit() {
 }
 
 type Params struct {
-	dumpAst   bool
-	dumpKinds bool
-	path      string
+	dumpAst bool
+	path    string
 }
 
 func parseArgs() Params {
@@ -42,19 +41,15 @@ func parseArgs() Params {
 	}
 
 	dumpAstFlag := flag.Bool("d", false, "dump ast (instead of JSON)")
-	dumpKinds := flag.Bool("k", false, "dump supported uast kinds")
 	flag.Parse()
 	var path string
 	if len(flag.Args()) == 1 {
 		path = flag.Args()[0]
 	}
-	if !*dumpKinds && len(path) == 0 {
-		exit()
-	}
+
 	return Params{
-		dumpAst:   *dumpAstFlag,
-		dumpKinds: *dumpKinds,
-		path:      path,
+		dumpAst: *dumpAstFlag,
+		path:    path,
 	}
 }
 

@@ -130,7 +130,7 @@ func (t *SlangMapper) mapAllComments() []*Node {
 	var list []*Node
 	for _, commentGroup := range t.astFile.Comments {
 		for _, comment := range commentGroup.List {
-			node := t.createUastExpectedToken(comment.Pos(), comment.Text, "")
+			node := t.createExpectedToken(comment.Pos(), comment.Text, "")
 			list = append(list, node)
 		}
 	}
@@ -140,7 +140,7 @@ func (t *SlangMapper) mapAllComments() []*Node {
 func (t *SlangMapper) mapPackageDecl(file *ast.File) *Node {
 	var children []*Node
 	// "package" node is the very first node, header comments are appended before
-	packageNode := t.createUastExpectedToken(file.Package, token.PACKAGE.String(), "")
+	packageNode := t.createExpectedToken(file.Package, token.PACKAGE.String(), "")
 	if packageNode != nil {
 		children = t.appendCommentOrMissingToken(children, 0, packageNode.offset)
 		children = append(children, packageNode)
@@ -159,7 +159,7 @@ func (t *SlangMapper) mapBasicLit(astNode *ast.BasicLit, fieldName string) *Node
 		return nil
 	}
 
-	return t.createUastExpectedToken(astNode.Pos(), astNode.Value, fieldName+"(BasicLit)")
+	return t.createExpectedToken(astNode.Pos(), astNode.Value, fieldName+"(BasicLit)")
 }
 
 func (t *SlangMapper) handleSwitchCase(casePos token.Pos, isDefault bool, children []*Node) []*Node {
@@ -167,7 +167,7 @@ func (t *SlangMapper) handleSwitchCase(casePos token.Pos, isDefault bool, childr
 	if isDefault {
 		tok = token.DEFAULT
 	}
-	children = t.appendNode(children, t.createUastTokenFromPosAstToken(casePos, tok, "Case"))
+	children = t.appendNode(children, t.createTokenFromPosAstToken(casePos, tok, "Case"))
 	return children
 }
 
@@ -176,7 +176,7 @@ func (t *SlangMapper) mapIfStmt(astNode *ast.IfStmt, fieldName string) *Node {
 		return nil
 	}
 	var children []*Node
-	children = t.appendNode(children, t.createUastTokenFromPosAstToken(astNode.If, token.IF, "If"))
+	children = t.appendNode(children, t.createTokenFromPosAstToken(astNode.If, token.IF, "If"))
 	children = t.appendNode(children, t.createAdditionalInitAndCond(astNode.Init, astNode.Cond))
 	children = t.appendNode(children, t.mapBlockStmt(astNode.Body, "Body"))
 	children = t.appendNode(children, t.mapStmt(astNode.Else, "Else"))
@@ -190,7 +190,7 @@ func (t *SlangMapper) mapReturnStmt(astNode *ast.ReturnStmt, fieldName string) *
 	}
 	var children []*Node
 	slangField := make(map[string]interface{})
-	returnToken := t.createUastTokenFromPosAstToken(astNode.Return, token.RETURN, "Return")
+	returnToken := t.createTokenFromPosAstToken(astNode.Return, token.RETURN, "Return")
 	slangField["keyword"] = returnToken.Token.TextRange
 	children = t.appendNode(children, returnToken)
 
@@ -347,7 +347,7 @@ func (t *SlangMapper) createToken(offset, endOffset int, nativeNode string) *Nod
 	return t.createLeafNode(offset, endOffset, nativeNode, "Native", slangField)
 }
 
-func (t *SlangMapper) createUastTokenFromPosAstToken(pos token.Pos, tok token.Token, nativeNode string) *Node {
+func (t *SlangMapper) createTokenFromPosAstToken(pos token.Pos, tok token.Token, nativeNode string) *Node {
 	if pos == token.NoPos {
 		return nil
 	}
@@ -360,10 +360,10 @@ func (t *SlangMapper) createUastTokenFromPosAstToken(pos token.Pos, tok token.To
 		return nil
 	}
 
-	return t.createUastExpectedToken(pos, tok.String(), nativeNode)
+	return t.createExpectedToken(pos, tok.String(), nativeNode)
 }
 
-func (t *SlangMapper) createUastExpectedToken(pos token.Pos, expectedValue string, nativeNode string) *Node {
+func (t *SlangMapper) createExpectedToken(pos token.Pos, expectedValue string, nativeNode string) *Node {
 	if pos == token.NoPos {
 		return nil
 	}

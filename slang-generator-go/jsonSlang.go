@@ -121,23 +121,6 @@ func marshalIndentSlang(dst *bytes.Buffer, node *Node, prefix, indent string) {
 	} else {
 		dst.WriteString("}")
 	}
-
-	/*
-		if len(node.Children) > 0 {
-			for k, v := range node.SlangField {
-				dst.WriteString(k)
-			}
-			dst.WriteString(", \"children\": "+fmt.Sprintf("%d", len(node.SlangField))+"[{\n" + prefix)
-			size := len(node.Children)
-			for i := 0; i < size-1; i++ {
-				child := node.Children[i]
-				marshalIndentSlang(dst, child, prefix+indent, indent)
-				dst.WriteString(",\n" + prefix)
-			}
-			lastChildren := node.Children[size-1]
-			marshalIndentSlang(dst, lastChildren, prefix+indent, indent)
-			dst.WriteString("\n" + prefix[0:len(prefix)-len(indent)] + "}]")
-		}*/
 }
 
 type KeyValue struct {
