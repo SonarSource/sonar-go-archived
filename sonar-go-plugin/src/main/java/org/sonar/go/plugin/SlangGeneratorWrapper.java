@@ -38,7 +38,7 @@ import org.sonarsource.slang.api.Tree;
 
 public class SlangGeneratorWrapper {
 
-  private static final Logger LOG = Loggers.get(UastGeneratorWrapper.class);
+  private static final Logger LOG = Loggers.get(SlangGeneratorWrapper.class);
 
   private final ProcessBuilder processBuilder;
   private final ExternalProcessStreamConsumer errorConsumer;
@@ -73,7 +73,6 @@ public class SlangGeneratorWrapper {
       System.out.println(stringBuilder.toString());
 
       // input stream should be used to consume SLANG version of the file
-      in.close();
 
       boolean exited = process.waitFor(5, TimeUnit.SECONDS);
       if (exited && process.exitValue() != 0) {

@@ -71,7 +71,11 @@ func marshallComment(dst *bytes.Buffer, comment *Node, prefix string) {
 		panic("Unknown comment content: " + text)
 	}
 
-	dst.WriteString(prefix + "{\"text\":\"" + text + "\", \"contentText\":\"" + contentText + "\", \"range\":")
+	dst.WriteString(prefix + "{\"text\":")
+	writeObjectSlang(dst, text)
+	dst.WriteString(", \"contentText\":")
+	writeObjectSlang(dst, contentText)
+	dst.WriteString(", \"range\":")
 	writeObjectSlang(dst, textRange)
 	dst.WriteString(", \"contentRange\": ")
 	writeObjectSlang(dst, textContentRange)
